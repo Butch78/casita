@@ -324,13 +324,15 @@ pub(super) fn decode_index_delta(bytes: &[u8]) -> io::Result<DecodedIndexDelta> 
 pub(super) fn apply_decoded_index_delta(index: &mut Index, delta: DecodedIndexDelta) {
     // A run may introduce thousands of packs. Remove their previous locations
     // in one pass, preserving all unaffected duplicate locations, instead of
-    // draining and rebuilding the growing overlay once for every pack.
+    // draining and rebuilding the growing overlay once for every pack. New
+    // packs have no previous locations, so skip that scan altogether.
     let affected = delta
         .removed_packs
         .iter()
         .chain(delta.patch.packs.keys())
         .chain(delta.patch.superseded.iter())
         .chain(index.superseded.iter())
+        .filter(|pack| index.packs.contains_key(pack))
         .copied()
         .collect();
     index.chunks.remove_packs(&affected);
@@ -373,7 +375,12 @@ pub(super) fn apply_decoded_index_delta(index: &mut Index, delta: DecodedIndexDe
         }
     }
     index.superseded.extend(superseded);
-    index.manifests.merge(manifests);
+    // Keep additions in the manifest overlay while replaying small deltas.
+    // Rebuilding the sorted base for every delta makes a long inline catalog
+    // quadratic to open; checkpoint encoding sorts the overlay when needed.
+    for manifest in manifests.iter() {
+        index.manifests.insert(*manifest);
+    }
     index.manifests_complete |= manifests_complete;
     for pack in &index.superseded {
         index.packs.remove(pack);
