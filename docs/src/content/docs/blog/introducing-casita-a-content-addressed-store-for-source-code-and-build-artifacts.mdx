@@ -203,11 +203,16 @@ while files and chunks shared with `v2` stay. Active readers and writers also
 hold on to the data they are using during collection.
 
 The local CLI can preview a pass with `gc --dry-run` before running `gc`.
-In the standard local repository, a mutation also attempts collection when
-disk use reaches 80%. If use remains at or above 75%, Casita releases the least
-recently used evictable roots and vacuums after each release until use drops
-below 75% or none remain. Manual `gc` preserves every named root, including
-evictable ones.
+
+Automatic collection helps keep a busy disk from filling up. In the standard
+local repository, starting a mutation when the filesystem is at least 80% full
+triggers a nonblocking collection attempt. Casita first reclaims data no root
+or active operation needs. If disk use remains at or above 75%, it releases
+the least recently used roots explicitly marked evictable, vacuuming after
+each release until use falls below 75% or no eligible roots remain. Permanent
+roots stay, and manual `gc` preserves every named root, including evictable
+ones.
+
 Collection applies to the Casita repository. See
 [Garbage Collection](/concepts/garbage-collection/) for the retention and
 recovery rules.
