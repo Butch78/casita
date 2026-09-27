@@ -19,8 +19,6 @@ Crates.io publication is not part of the initial contract. Optional WAL3 and
 Chroma dependencies remain pinned to Git revisions and cannot currently be
 represented by a publishable crates.io package. Do not treat `cargo publish` or
 `cargo package` as a release gate until that policy changes explicitly.
-The `0.0.0-placeholder` package in `publishing/casita-placeholder` only reserves
-the crate name and is not a supported Casita release.
 
 The initial binary feature profile is `cli,git,ssh`. `cli` enables the
 `experimental` API internally; release binaries exclude the optional S3,
