@@ -1,0 +1,1404 @@
+diff --git a/benchmarks/all.py b/benchmarks/all.py
+index e8fd702..41d511b 100644
+--- a/benchmarks/all.py
++++ b/benchmarks/all.py
+@@ -41,6 +41,8 @@ SMOKE = {
+     "fsck": ["--profile", "smoke"],
+     "metadata-scan": ["--profile", "smoke"],
+     "metadata-collection": ["--profile", "smoke"],
++    "held-catalog-gc": ["--profile", "smoke"],
++    "catalog-marking": ["--profile", "smoke"],
+     "cleanup-batches": ["--profile", "smoke"],
+     "repository": ["--profile", "smoke", "--implementations", "casita,git,tar-zstd", "--cache-policies", "warm"],
+     "nixpkgs": ["--cache-policies", "warm"],
+diff --git a/benchmarks/manifest.json b/benchmarks/manifest.json
+index 47b9606..0126222 100644
+--- a/benchmarks/manifest.json
++++ b/benchmarks/manifest.json
+@@ -195,6 +195,22 @@
+       "target": ["cargo", "bench", "--features", "experimental", "--bench", "retained_readers"],
+       "profiles": ["experiment"]
+     },
++    {
++      "id": "held-catalog-gc",
++      "suite_id": "collection-and-fsck",
++      "title": "End-to-end local GC with overlapping historical holds",
++      "kind": "module",
++      "target": "benchmarks.suites.held_catalog_gc",
++      "profiles": ["smoke", "standard"]
++    },
++    {
++      "id": "catalog-marking",
++      "suite_id": "blob-backends",
++      "title": "Historical catalog marking with overlapping holds",
++      "kind": "module",
++      "target": "benchmarks.suites.catalog_marking",
++      "profiles": ["smoke", "standard"]
++    },
+     {
+       "id": "cleanup-batches",
+       "suite_id": "blob-backends",
+diff --git a/benchmarks/revisions.py b/benchmarks/revisions.py
+index 515cc22..2cf7d3a 100644
+--- a/benchmarks/revisions.py
++++ b/benchmarks/revisions.py
+@@ -168,6 +168,8 @@ SUITE_BUILD_SPECS["pin-growth"] = SUITE_BUILD_SPECS["metadata-collection"]
+ SUITE_BUILD_SPECS["reader-coordination"] = SUITE_BUILD_SPECS["metadata-collection"]
+ SUITE_BUILD_SPECS["object-reads"] = SUITE_BUILD_SPECS["metadata-collection"]
+ SUITE_BUILD_SPECS["snapshot-connections"] = SUITE_BUILD_SPECS["metadata-collection"]
++SUITE_BUILD_SPECS["held-catalog-gc"] = SUITE_BUILD_SPECS["metadata-collection"]
++SUITE_BUILD_SPECS["catalog-marking"] = SUITE_BUILD_SPECS["metadata-collection"]
+ SUITE_BUILD_SPECS["cleanup-batches"] = SUITE_BUILD_SPECS["metadata-collection"]
+ SUITE_BUILD_SPECS["mutation-catalog"] = SUITE_BUILD_SPECS["metadata-collection"]
+ SUITE_BUILD_SPECS["ingest-concurrency"] = SUITE_BUILD_SPECS["pack-gc"]
+diff --git a/benchmarks/suites/catalog_marking.py b/benchmarks/suites/catalog_marking.py
+new file mode 100644
+index 0000000..4ad1a1e
+--- /dev/null
++++ b/benchmarks/suites/catalog_marking.py
+@@ -0,0 +1,114 @@
++"""Historical catalog marking with identical, overlapping and disjoint holds."""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import itertools
++import json
++import os
++import pathlib
++import subprocess
++
++from benchmarks import cli
++from benchmarks.suites import repository as common
++from benchmarks.suites.metadata_collection import CARGO_ARGUMENTS, positive_csv
++from benchmarks.suites.pack.catalog import parse_probe_binary
++
++PROBE = "blob::pack::tests::benchmark_catalog_marking"
++CORRECTNESS = "exact union of pack, chunk outboard, blob and blob outboard paths"
++MODES = ("identical", "overlap", "disjoint")
++
++
++def parse_sample(stdout, count, holds, mode):
++    rows = [json.loads(line.removeprefix("catalog_marking_sample "))
++            for line in stdout.splitlines() if line.startswith("catalog_marking_sample ")]
++    if len(rows) != 1 or "test result: ok. 1 passed; 0 failed;" not in stdout:
++        raise common.BenchmarkError("expected one passing catalog-marking probe")
++    row = rows[0]
++    if (row.get("count") != count or row.get("holds") != holds or row.get("mode") != mode
++            or row.get("correctness") != CORRECTNESS
++            or row.get("paths") != count * 4 * (holds if mode == "disjoint" else 1)
++            or any(type(row.get(key)) is not int or row[key] <= 0
++                   for key in ("nanos", "path_bytes", "index_requests", "index_bytes"))
++            or any(key not in row or (row[key] is not None and
++                   (type(row[key]) is not int or row[key] < 0))
++                   for key in ("rss_before", "rss_after"))):
++        raise common.BenchmarkError("invalid catalog-marking configuration or correctness gate")
++    return row
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--profile", choices=("smoke", "standard"), default="standard")
++    parser.add_argument("--counts", type=positive_csv)
++    parser.add_argument("--holds", type=positive_csv, default=[1, 8])
++    parser.add_argument("--repetitions", type=int, default=3)
++    parser.add_argument("--probe-binary", type=pathlib.Path)
++    parser.add_argument("--baseline-binary", type=pathlib.Path)
++    parser.add_argument("--no-build", action="store_true")
++    parser.add_argument("--output", type=pathlib.Path, required=True)
++    args = parser.parse_args(argv)
++    if args.repetitions < 1 or (args.no_build and args.probe_binary is None):
++        parser.error("positive repetitions and a binary for --no-build are required")
++    counts = args.counts or ([1024] if args.profile == "smoke" else [1024, 65536])
++    binary = args.probe_binary
++    if binary is None:
++        built = subprocess.run(["cargo", *CARGO_ARGUMENTS], cwd=cli.ROOT, capture_output=True, text=True)
++        if built.returncode:
++            raise common.BenchmarkError(built.stderr or built.stdout)
++        binary = parse_probe_binary(built.stdout)
++    binary = binary.resolve()
++    variants = [("candidate", binary)]
++    if args.baseline_binary:
++        variants.insert(0, ("baseline", args.baseline_binary.resolve()))
++    artifacts = []
++    for variant, executable in variants:
++        with executable.open("rb") as source:
++            digest = hashlib.file_digest(source, "sha256").hexdigest()
++        artifacts.append(dict(variant=variant, path=str(executable), sha256=digest))
++    result = dict(schema_version=1, suite_id="blob-backends", complete=False,
++                  environment=common.environment_metadata(cli.ROOT),
++                  configuration=dict(counts=counts, holds=args.holds, modes=MODES,
++                                     repetitions=args.repetitions, profile=args.profile,
++                                     paired=bool(args.baseline_binary)),
++                  artifacts=artifacts,
++                  source_sha256={name: hashlib.sha256((cli.ROOT / name).read_bytes()).hexdigest()
++                                 for name in ("src/blob/pack.rs", "src/blob/pack/shard.rs",
++                                              "benchmarks/suites/catalog_marking.py")},
++                  samples=[], processes=[])
++
++    def save():
++        common.write_atomic(args.output, json.dumps(result, indent=2) + "\n")
++
++    save()
++    try:
++        # Interleave cases across repetitions; each sample uses a fresh process/cache.
++        for repetition, count, holds, mode in itertools.product(
++                range(1, args.repetitions + 1), counts, args.holds, MODES):
++            if holds == 1 and mode != "identical":
++                continue
++            for variant, executable in (variants if repetition % 2 else variants[::-1]):
++                process = subprocess.run([str(executable), PROBE, "--exact", "--ignored", "--nocapture"],
++                    env={**os.environ, "CASITA_BENCH_MARK_ENTRIES": str(count),
++                         "CASITA_BENCH_MARK_HOLDS": str(holds), "CASITA_BENCH_MARK_MODE": mode},
++                    capture_output=True, text=True)
++                result["processes"].append(dict(variant=variant, count=count, holds=holds, mode=mode,
++                    repetition=repetition, exit_code=process.returncode,
++                    stdout=process.stdout, stderr=process.stderr))
++                if process.returncode:
++                    raise common.BenchmarkError("catalog-marking probe failed")
++                sample = parse_sample(process.stdout, count, holds, mode)
++                result["samples"].append(dict(sample, variant=variant, status="ok", operation="catalog-marking",
++                    entries=count, repetition=repetition, wall_seconds=sample["nanos"] / 1e9))
++                save()
++        result["complete"] = True
++    except Exception as error:
++        result["error"] = str(error)
++        raise
++    finally:
++        save()
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/benchmarks/suites/held_catalog_gc.py b/benchmarks/suites/held_catalog_gc.py
+new file mode 100644
+index 0000000..ae335b1
+--- /dev/null
++++ b/benchmarks/suites/held_catalog_gc.py
+@@ -0,0 +1,202 @@
++"""End-to-end local GC with overlapping historical selected holds."""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import itertools
++import json
++import os
++import pathlib
++import re
++import subprocess
++import tempfile
++
++from benchmarks import cli
++from benchmarks.suites import repository as common
++from benchmarks.suites.metadata_collection import CARGO_ARGUMENTS, positive_csv
++from benchmarks.suites.pack.catalog import parse_probe_binary
++
++PROBE = "blob::pack::gc_benchmark::benchmark_held_catalog_gc"
++CORRECTNESS = "distinct shared-base holds; exact logical removals; held streams readable; packs reclaimed after release"
++
++
++def parse_sample(stdout, count, holds):
++    rows = [json.loads(line.removeprefix("held_catalog_gc_sample "))
++            for line in stdout.splitlines() if line.startswith("held_catalog_gc_sample ")]
++    if len(rows) != 1 or "test result: ok. 1 passed; 0 failed;" not in stdout:
++        raise common.BenchmarkError("expected one passing held-catalog-gc probe")
++    row = rows[0]
++    if (row.get("count") != count or row.get("holds") != holds
++            or row.get("correctness") != CORRECTNESS
++            or row.get("garbage_objects") != count + holds - 2
++            or type(row.get("pack_bytes_before")) is not int or row["pack_bytes_before"] <= 0
++            or type(row.get("pack_bytes_during")) is not int
++            or row["pack_bytes_during"] < row["pack_bytes_before"]
++            or row.get("historical_packs_preserved") is not True
++            or row.get("pack_bytes_after_release") != 0
++            or any(type(row.get(key)) not in (float, int) or not 0 < row[key] < float("inf")
++                   for key in ("seconds", "release_seconds"))
++            or not any(phase.get("phase") == "finish_payload_collection" for phase in row.get("phases", []))):
++        raise common.BenchmarkError("invalid held-catalog-gc configuration or correctness gate")
++    return row
++
++
++def compaction_summary(phases):
++    """Union wall intervals so two concurrent pack writes are not double-counted.
++
++    Busy times for different phases may overlap; they must not be added together.
++    End times are recorded when the tracing subscriber receives each event.
++    """
++    groups = {}
++    for phase in phases:
++        if phase["phase"].startswith("compact_pack"):
++            end, seconds = phase["finished_seconds"], phase["seconds"]
++            groups.setdefault(phase["phase"], []).append((end - seconds, end))
++    result = {}
++    for name, intervals in groups.items():
++        busy, previous_end = 0.0, float("-inf")
++        for start, end in sorted(intervals):
++            busy += max(0.0, end - max(start, previous_end))
++            previous_end = max(previous_end, end)
++        result[name] = dict(calls=len(intervals), busy_seconds=busy,
++                            summed_seconds=sum(end - start for start, end in intervals))
++    return result
++
++
++def sync_trace_summary(paths):
++    """Full-process sync totals; concurrent syscall times are not wall time.
++
++    Marker-directory totals exclude shared ancestors outside pack-replacements.
++    Setup, held GC, released GC and fixture cleanup are all inside this scope.
++    """
++    groups = {}
++    unparsed = 0
++    artifacts = []
++    marker_files = set()
++    directory_syncs = []
++    pattern = re.compile(r"^\d+\.\d+ (?:fsync|fdatasync)\(\d+<([^>]+)>\) = (-?\d+).*<([\d.]+)>$")
++    for path in sorted(paths):
++        raw = path.read_bytes()
++        artifacts.append(dict(path=str(path), sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw)))
++        for line in raw.decode().splitlines():
++            if "fsync(" not in line and "fdatasync(" not in line:
++                continue
++            match = pattern.match(line)
++            if not match:
++                unparsed += 1
++                continue
++            location, result, seconds = match.groups()
++            kind = "other"
++            if "/pack-replacements/" in location or location.endswith("/pack-replacements"):
++                kind = "marker_file" if "#" in location else "marker_directory"
++            if kind == "marker_file":
++                marker_files.add(str(pathlib.Path(location).parent))
++            elif kind == "marker_directory":
++                directory_syncs.append((location, result, float(seconds)))
++            group = groups.setdefault(kind, dict(calls=0, failures=0, summed_seconds=0.0))
++            group["calls"] += 1
++            group["failures"] += int(result != "0")
++            group["summed_seconds"] += float(seconds)
++    leaf_syncs = [(result, seconds) for location, result, seconds in directory_syncs if location in marker_files]
++    leaf = dict(calls=len(leaf_syncs), failures=sum(result != "0" for result, _ in leaf_syncs),
++                summed_seconds=sum(seconds for _, seconds in leaf_syncs))
++    return dict(scope="full probe process including setup and both collections", groups=groups,
++                marker_leaf_directory_subset=leaf,
++                unparsed_sync_lines=unparsed, artifacts=artifacts)
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--profile", choices=("smoke", "standard"), default="standard")
++    parser.add_argument("--counts", type=positive_csv)
++    parser.add_argument("--holds", type=positive_csv, default=[1, 8, 10])
++    parser.add_argument("--repetitions", type=int, default=3)
++    parser.add_argument("--probe-binary", type=pathlib.Path)
++    parser.add_argument("--baseline-binary", type=pathlib.Path)
++    parser.add_argument("--no-build", action="store_true")
++    parser.add_argument("--strace-dir", type=pathlib.Path, help="retain per-thread sync/rename traces; timings include tracing overhead")
++    parser.add_argument("--output", type=pathlib.Path, required=True)
++    args = parser.parse_args(argv)
++    if args.repetitions < 1 or (args.no_build and args.probe_binary is None):
++        parser.error("positive repetitions and a binary for --no-build are required")
++    counts = args.counts or ([128] if args.profile == "smoke" else [128, 1024])
++    if min(counts) < 2:
++        parser.error("counts must include at least one held and one garbage object")
++    binary = args.probe_binary
++    if binary is None:
++        built = subprocess.run(["cargo", *CARGO_ARGUMENTS], cwd=cli.ROOT, capture_output=True, text=True)
++        if built.returncode:
++            raise common.BenchmarkError(built.stderr or built.stdout)
++        binary = parse_probe_binary(built.stdout)
++    binary = binary.resolve()
++    if args.strace_dir:
++        args.strace_dir = args.strace_dir.resolve()
++        args.strace_dir.mkdir(parents=True, exist_ok=True)
++    variants = [("candidate", binary)]
++    if args.baseline_binary:
++        variants.insert(0, ("baseline", args.baseline_binary.resolve()))
++    artifacts = []
++    for variant, executable in variants:
++        with executable.open("rb") as source:
++            digest = hashlib.file_digest(source, "sha256").hexdigest()
++        artifacts.append(dict(variant=variant, path=str(executable), sha256=digest))
++    result = dict(schema_version=1, suite_id="collection-and-fsck", complete=False,
++                  environment=common.environment_metadata(cli.ROOT),
++                  fixture_filesystem=common.command_version(["findmnt", "--noheadings", "--output",
++                      "FSTYPE,SOURCE,OPTIONS", "--target", tempfile.gettempdir()]),
++                  configuration=dict(counts=counts, holds=args.holds,
++                                     repetitions=args.repetitions, profile=args.profile,
++                                     paired=bool(args.baseline_binary), traced=bool(args.strace_dir)),
++                  artifacts=artifacts,
++                  source_sha256={name: hashlib.sha256((cli.ROOT / name).read_bytes()).hexdigest()
++                                 for name in ("src/blob/pack.rs", "src/blob/pack/shard.rs",
++                                              "src/blob/pack/gc_benchmark.rs", "src/repository/collection_timing.rs",
++                                              "benches/bench_util/gc_timing.rs", "benchmarks/suites/held_catalog_gc.py")},
++                  samples=[], processes=[])
++
++    def save():
++        common.write_atomic(args.output, json.dumps(result, indent=2) + "\n")
++
++    save()
++    try:
++        # Interleave cases across repetitions; each sample uses a fresh process/cache.
++        for repetition, count, holds in itertools.product(
++                range(1, args.repetitions + 1), counts, args.holds):
++            for variant, executable in (variants if repetition % 2 else variants[::-1]):
++                command = [str(executable), PROBE, "--exact", "--ignored", "--nocapture"]
++                trace_prefix = None
++                if args.strace_dir:
++                    trace_prefix = args.strace_dir / f"{variant}-{count}-{holds}-{repetition}"
++                    if list(args.strace_dir.glob(trace_prefix.name + ".*")):
++                        raise common.BenchmarkError("trace prefix already exists; use a fresh --strace-dir")
++                    command = ["strace", "-ff", "-qq", "-ttt", "-T", "-yy",
++                               "-e", "trace=fsync,fdatasync,rename,renameat,renameat2",
++                               "-o", str(trace_prefix), *command]
++                process = subprocess.run(command,
++                    env={**os.environ, "CASITA_BENCH_GC_ENTRIES": str(count),
++                         "CASITA_BENCH_GC_HOLDS": str(holds)},
++                    capture_output=True, text=True)
++                result["processes"].append(dict(variant=variant, count=count, holds=holds,
++                    repetition=repetition, command=command, trace_prefix=str(trace_prefix) if trace_prefix else None, exit_code=process.returncode,
++                    stdout=process.stdout, stderr=process.stderr))
++                if process.returncode:
++                    raise common.BenchmarkError("held-catalog-gc probe failed")
++                sample = parse_sample(process.stdout, count, holds)
++                if trace_prefix:
++                    sample["sync_trace"] = sync_trace_summary(args.strace_dir.glob(trace_prefix.name + ".*"))
++                sample["compaction"] = compaction_summary(sample["phases"])
++                sample["release_compaction"] = compaction_summary(sample["release_phases"])
++                result["samples"].append(dict(sample, variant=variant, status="ok", operation="held-catalog-gc",
++                    entries=count, repetition=repetition, wall_seconds=sample["seconds"]))
++                save()
++        result["complete"] = True
++    except Exception as error:
++        result["error"] = str(error)
++        raise
++    finally:
++        save()
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/benchmarks/tests/test_catalog_marking.py b/benchmarks/tests/test_catalog_marking.py
+new file mode 100644
+index 0000000..7b1315d
+--- /dev/null
++++ b/benchmarks/tests/test_catalog_marking.py
+@@ -0,0 +1,73 @@
++import json
++import unittest
++
++from benchmarks.suites.catalog_marking import CORRECTNESS, parse_sample
++from benchmarks.suites.repository import BenchmarkError
++
++
++class CatalogMarkingTest(unittest.TestCase):
++    def output(self, **changes):
++        row = dict(count=1024, holds=8, mode="overlap", paths=4096,
++                   nanos=100, path_bytes=1000, index_requests=33, index_bytes=100,
++                   rss_before=1024, rss_after=2048, correctness=CORRECTNESS)
++        row.update(changes)
++        return 'catalog_marking_sample ' + json.dumps(row) + '\ntest result: ok. 1 passed; 0 failed;'
++
++    def test_accepts_overlap(self):
++        parse_sample(self.output(), 1024, 8, 'overlap')
++
++    def test_disjoint_requires_full_union(self):
++        with self.assertRaises(BenchmarkError):
++            parse_sample(self.output(mode='disjoint'), 1024, 8, 'disjoint')
++        parse_sample(self.output(mode='disjoint', paths=32768), 1024, 8, 'disjoint')
++
++    def test_rejects_wrong_config_or_metrics(self):
++        for changes in (dict(holds=1), dict(nanos=0), dict(rss_after=-1), dict(correctness='ok')):
++            with self.subTest(changes=changes), self.assertRaises(BenchmarkError):
++                parse_sample(self.output(**changes), 1024, 8, 'overlap')
++
++    def test_requires_one_completed_probe(self):
++        output = self.output()
++        for invalid in (output.split('\n')[0], output + '\n' + output):
++            with self.assertRaises(BenchmarkError):
++                parse_sample(invalid, 1024, 8, 'overlap')
++
++
++class CatalogMarkingPairTest(unittest.TestCase):
++    def test_pairs_binaries_and_alternates_order(self):
++        import pathlib
++        import subprocess
++        import tempfile
++        from unittest import mock
++        from benchmarks.suites import catalog_marking
++
++        with tempfile.TemporaryDirectory() as directory:
++            root = pathlib.Path(directory)
++            before, after, output = root / 'before', root / 'after', root / 'result.json'
++            before.write_bytes(b'baseline')
++            after.write_bytes(b'candidate')
++            calls = []
++
++            def run(command, **kwargs):
++                calls.append(pathlib.Path(command[0]).name)
++                env = kwargs['env']
++                row = dict(count=int(env['CASITA_BENCH_MARK_ENTRIES']),
++                           holds=int(env['CASITA_BENCH_MARK_HOLDS']),
++                           mode=env['CASITA_BENCH_MARK_MODE'], paths=4096,
++                           nanos=100, path_bytes=1000, index_requests=33, index_bytes=100,
++                           rss_before=1024, rss_after=2048, correctness=CORRECTNESS)
++                stdout = 'catalog_marking_sample ' + json.dumps(row) + '\ntest result: ok. 1 passed; 0 failed;'
++                return subprocess.CompletedProcess(command, 0, stdout, '')
++
++            with mock.patch.object(catalog_marking.subprocess, 'run', side_effect=run), \
++                    mock.patch.object(catalog_marking.common, 'environment_metadata', return_value={}):
++                catalog_marking.main(['--counts', '1024', '--holds', '1', '--repetitions', '2',
++                    '--probe-binary', str(after), '--baseline-binary', str(before),
++                    '--no-build', '--output', str(output)])
++            result = json.loads(output.read_text())
++            self.assertEqual(calls, ['before', 'after', 'after', 'before'])
++            self.assertTrue(result['complete'])
++            self.assertTrue(result['configuration']['paired'])
++            self.assertEqual([s['variant'] for s in result['samples']],
++                             ['baseline', 'candidate', 'candidate', 'baseline'])
++            self.assertNotEqual(result['artifacts'][0]['sha256'], result['artifacts'][1]['sha256'])
+diff --git a/benchmarks/tests/test_held_catalog_gc.py b/benchmarks/tests/test_held_catalog_gc.py
+new file mode 100644
+index 0000000..f8a21ec
+--- /dev/null
++++ b/benchmarks/tests/test_held_catalog_gc.py
+@@ -0,0 +1,73 @@
++import json
++import unittest
++import pathlib
++import tempfile
++
++from benchmarks.suites.held_catalog_gc import CORRECTNESS, compaction_summary, parse_sample, sync_trace_summary
++from benchmarks.suites.repository import BenchmarkError
++
++
++class HeldCatalogGcTest(unittest.TestCase):
++    def output(self, **changes):
++        row = dict(count=128, holds=8, garbage_objects=134,
++                   seconds=0.1, release_seconds=0.2, pack_bytes_before=100,
++                   pack_bytes_during=120, pack_bytes_after_release=0,
++                   historical_packs_preserved=True,
++                   phases=[dict(phase='finish_payload_collection', seconds=0.05)],
++                   correctness=CORRECTNESS)
++        row.update(changes)
++        return 'held_catalog_gc_sample ' + json.dumps(row) + '\ntest result: ok. 1 passed; 0 failed;'
++
++    def test_accepts_compaction_with_retained_historical_packs(self):
++        parse_sample(self.output(), 128, 8)
++
++    def test_rejects_incomplete_gc_or_lost_historical_packs(self):
++        for changes in (dict(garbage_objects=0), dict(historical_packs_preserved=False),
++                        dict(pack_bytes_during=50), dict(pack_bytes_after_release=100),
++                        dict(phases=[]), dict(seconds=float('nan')), dict(holds=1)):
++            with self.subTest(changes=changes), self.assertRaises(BenchmarkError):
++                parse_sample(self.output(**changes), 128, 8)
++
++    def test_requires_one_completed_probe(self):
++        output = self.output()
++        for invalid in (output.split('\n')[0], output + '\n' + output):
++            with self.assertRaises(BenchmarkError):
++                parse_sample(invalid, 128, 8)
++
++
++class CompactionSummaryTest(unittest.TestCase):
++    def test_concurrent_intervals_are_counted_once(self):
++        phases = [dict(phase="compact_pack_marker_write", seconds=2, finished_seconds=end)
++                  for end in (3, 4, 8)]
++        phases.append(dict(phase="finish_deletions", seconds=9, finished_seconds=9))
++        self.assertEqual(compaction_summary(phases), {
++            "compact_pack_marker_write": dict(calls=3, busy_seconds=5, summed_seconds=6)})
++
++    def test_nested_intervals_and_old_binaries(self):
++        self.assertEqual(compaction_summary([]), {})
++        self.assertEqual(compaction_summary([
++            dict(phase="compact_pack", seconds=4, finished_seconds=5),
++            dict(phase="compact_pack", seconds=1, finished_seconds=3),
++        ])["compact_pack"]["busy_seconds"], 4)
++
++
++class SyncTraceTest(unittest.TestCase):
++    def test_counts_syncs_without_confusing_rename_or_shared_ancestors(self):
++        with tempfile.TemporaryDirectory() as directory:
++            path = pathlib.Path(directory) / "trace.123"
++            path.write_text("\n".join([
++                "123.1 fsync(5</tmp/blobs/pack-replacements/ab/file#1>) = 0 <0.002>",
++                "123.2 fsync(5</tmp/blobs/pack-replacements/ab>) = 0 <0.003>",
++                "123.3 fsync(5</tmp/blobs>) = 0 <0.004>",
++                '123.4 rename("a", "b") = 0 <0.005>',
++                "123.5 fsync(5</tmp/blobs/pack-replacements/ab>) = -1 EIO <0.006>",
++                "123.6 fsync(5 <unfinished ...>",
++            ]))
++            result = sync_trace_summary([path])
++            self.assertEqual(result["groups"]["marker_file"]["calls"], 1)
++            self.assertEqual(result["groups"]["marker_directory"]["calls"], 2)
++            self.assertEqual(result["groups"]["marker_directory"]["failures"], 1)
++            self.assertAlmostEqual(result["groups"]["marker_directory"]["summed_seconds"], 0.009)
++            self.assertEqual(result["groups"]["other"]["calls"], 1)
++            self.assertEqual(result["unparsed_sync_lines"], 1)
++            self.assertEqual(result["marker_leaf_directory_subset"]["calls"], 2)
+diff --git a/benchmarks/tests/test_revisions.py b/benchmarks/tests/test_revisions.py
+index 3f1b3f2..94c84db 100644
+--- a/benchmarks/tests/test_revisions.py
++++ b/benchmarks/tests/test_revisions.py
+@@ -60,7 +60,7 @@ class RevisionArgumentTests(unittest.TestCase):
+             set(revisions.SUPPORTED_SUITES),
+             {
+                 "metadata-collection",
+-                "mutation-catalog", "cleanup-batches",
++                "mutation-catalog", "cleanup-batches", "catalog-marking", "held-catalog-gc",
+                 "memory-snapshots",
+                 "memory-publication",
+                 "memory-index-lifecycle",
+diff --git a/src/blob/pack.rs b/src/blob/pack.rs
+index 6d5c378..e250c44 100644
+--- a/src/blob/pack.rs
++++ b/src/blob/pack.rs
+@@ -24,6 +24,15 @@ struct CatalogPinMark {
+     owned_claims: Arc<BTreeSet<crate::metadata::PinToken>>,
+ }
+
++// A mark-local cache of fully processed references. Keep payload table kinds
++// separate, and include all reference metadata so a conflicting reference is
++// still loaded and validated even when its immutable bytes were seen earlier.
++#[derive(Default)]
++struct PayloadShardMarks {
++    packs: HashSet<ShardRef>,
++    manifests: HashSet<ShardRef>,
++}
++
+ struct PayloadPinMark {
+     ledger: CatalogPinMark,
+     retained: HashSet<Path>,
+@@ -63,6 +72,9 @@ use super::local_durability::{LocalCatalogLock, LocalDurability, PreparedLocalPu
+ use crate::digest::{BlobId, ChunkId, DIGEST_LEN, Digest, PackId};
+
+ mod delta;
++#[cfg(test)]
++#[path = "pack/gc_benchmark.rs"]
++mod gc_benchmark;
+ #[path = "pack/run.rs"]
+ mod run;
+ #[path = "pack/run_stream.rs"]
+@@ -2120,8 +2132,10 @@ impl PackedChunks {
+                 }
+             }
+         }
++        let mut shards = PayloadShardMarks::default();
+         for catalog in catalogs {
+-            self.mark_catalog_payloads(catalog, &mut retained).await?;
++            self.mark_catalog_payloads(catalog, &mut retained, &mut shards)
++                .await?;
+         }
+         Ok(PayloadPinMark {
+             ledger: CatalogPinMark {
+@@ -2220,6 +2234,7 @@ impl PackedChunks {
+         &self,
+         catalog: &[u8],
+         retained: &mut HashSet<Path>,
++        shards: &mut PayloadShardMarks,
+     ) -> io::Result<()> {
+         let loaded = self
+             .decode_v1_index_catalog(
+@@ -2239,15 +2254,29 @@ impl PackedChunks {
+         // compacted the corresponding chunks into a replacement pack.
+         if let Some(base) = loaded.lazy.base {
+             for reference in &base.map.packs {
++                if shards.packs.contains(reference) {
++                    continue;
++                }
+                 let bytes = self.load_catalog_shard(*reference).await?;
++                if bytes.len() as u64 != reference.encoded_bytes {
++                    return Err(io::Error::other("catalog shard identity mismatch"));
++                }
+                 let index = decode_pack_shard(&bytes, reference.prefix, reference.entries)?;
+                 self.mark_index_payloads(&index, retained);
++                shards.packs.insert(*reference);
+             }
+             for reference in &base.map.manifests {
++                if shards.manifests.contains(reference) {
++                    continue;
++                }
+                 let bytes = self.load_catalog_shard(*reference).await?;
++                if bytes.len() as u64 != reference.encoded_bytes {
++                    return Err(io::Error::other("catalog shard identity mismatch"));
++                }
+                 for blob in list_manifest_shard(&bytes, reference.prefix)? {
+                     self.mark_manifest_paths(blob, retained);
+                 }
++                shards.manifests.insert(*reference);
+             }
+         }
+         for reference in loaded.lazy.run_refs.values() {
+@@ -6392,6 +6421,25 @@ impl PackedChunks {
+         ))
+     }
+
++    async fn put_replacement_marker(&self, old: PackId, new: Option<PackId>) -> io::Result<()> {
++        let marker = encode_replacement(old, new);
++        let marker_id = Digest::from(blake3::hash(&marker));
++        let path = sharded_path(&self.base, REPLACEMENTS_KIND, &marker_id);
++        self.read_counters
++            .gc_marker_put_requests
++            .fetch_add(1, Ordering::Relaxed);
++        self.read_counters
++            .gc_marker_put_bytes
++            .fetch_add(marker.len() as u64, Ordering::Relaxed);
++        if let Some(local) = &self.local_durability {
++            local.put(&path, marker).await
++        } else {
++            put_object(&self.object_store, &path, marker, true)
++                .await
++                .map_err(io::Error::other)
++        }
++    }
++
+     #[tracing::instrument(name = "blob.pack.compact", skip_all)]
+     async fn compact_pack(
+         &self,
+@@ -6400,7 +6448,13 @@ impl PackedChunks {
+         force_reclaim: bool,
+         retirement: PayloadRetirement<'_>,
+     ) -> io::Result<PackCompaction> {
++        use crate::repository::CollectionPhase;
++
++        let _total = CollectionPhase::new("compact_pack");
++        let load = CollectionPhase::new("compact_pack_load");
+         self.ensure_pack_loaded(old).await?;
++        drop(load);
++        let classify = CollectionPhase::new("compact_pack_classify");
+         let (entries, old_len) = {
+             let index = self.index.read().unwrap();
+             (
+@@ -6444,6 +6498,8 @@ impl PackedChunks {
+                 dead,
+             }));
+         }
++        drop(classify);
++        let copy = CollectionPhase::new("compact_pack_copy");
+         let mut survivors = Batch::default();
+         let old_bytes = if live_entries.is_empty() {
+             None
+@@ -6494,6 +6550,7 @@ impl PackedChunks {
+                 pack.slice(start..end),
+             );
+         }
++        drop(copy);
+         // A wholly dead pack is the emergency-space primitive: remove its
+         // large object before creating the tiny tombstone marker. This order
+         // is safe because a crash after deletion cannot resurrect an absent
+@@ -6511,21 +6568,14 @@ impl PackedChunks {
+             self.read_counters
+                 .gc_pack_delete_requests
+                 .fetch_add(1, Ordering::Relaxed);
++            let retire = CollectionPhase::new("compact_pack_retire");
+             let retired = self
+                 .retire_collected_path(pack_path(&self.base, &old), retirement)
+                 .await?;
+-            let marker = encode_replacement(old, None);
+-            let marker_id = Digest::from(blake3::hash(&marker));
+-            let marker_path = sharded_path(&self.base, REPLACEMENTS_KIND, &marker_id);
+-            self.read_counters
+-                .gc_marker_put_requests
+-                .fetch_add(1, Ordering::Relaxed);
+-            self.read_counters
+-                .gc_marker_put_bytes
+-                .fetch_add(marker.len() as u64, Ordering::Relaxed);
+-            put_object(&self.object_store, &marker_path, marker, true)
+-                .await
+-                .map_err(io::Error::other)?;
++            drop(retire);
++            let marker_write = CollectionPhase::new("compact_pack_marker_write");
++            self.put_replacement_marker(old, None).await?;
++            drop(marker_write);
+             {
+                 let mut index = self.index.write().unwrap();
+                 index.remove_pack(old);
+@@ -6547,7 +6597,10 @@ impl PackedChunks {
+         }
+
+         let replacement = {
++            let seal_phase = CollectionPhase::new("compact_pack_seal");
+             let sealed = seal(&survivors)?;
++            drop(seal_phase);
++            let _write = CollectionPhase::new("compact_pack_replacement_write");
+             let pack_len = sealed.bytes.len() as u64;
+             self.read_counters
+                 .gc_replacement_put_requests
+@@ -6565,20 +6618,11 @@ impl PackedChunks {
+             .map_err(io::Error::other)?;
+             Some((sealed.id, pack_len, sealed.entries))
+         };
++        let marker_write = CollectionPhase::new("compact_pack_marker_write");
+         let replacement_id = replacement.as_ref().map(|(id, _, _)| *id);
+-        let marker = encode_replacement(old, replacement_id);
+-        let marker_id = Digest::from(blake3::hash(&marker));
+-        let marker_path = sharded_path(&self.base, REPLACEMENTS_KIND, &marker_id);
+-        self.read_counters
+-            .gc_marker_put_requests
+-            .fetch_add(1, Ordering::Relaxed);
+-        self.read_counters
+-            .gc_marker_put_bytes
+-            .fetch_add(marker.len() as u64, Ordering::Relaxed);
+-        put_object(&self.object_store, &marker_path, marker, true)
+-            .await
+-            .map_err(io::Error::other)?;
++        self.put_replacement_marker(old, replacement_id).await?;
+
++        drop(marker_write);
+         {
+             let mut index = self.index.write().unwrap();
+             let tombstone_records = index
+@@ -7316,6 +7360,70 @@ mod tests {
+         assert_eq!(reopened.get(&b.digest).await.unwrap(), None);
+     }
+
++    #[tokio::test]
++    async fn local_marker_failure_keeps_old_pack_and_retries() {
++        let directory = tempfile::tempdir().unwrap();
++        let fs = object_store::local::LocalFileSystem::new_with_prefix(directory.path())
++            .unwrap()
++            .with_fsync(true);
++        let durability = LocalDurability::new(fs.clone(), directory.path()).unwrap();
++        let objects: Arc<dyn ObjectStore> = Arc::new(fs);
++        let store = PackedChunks::open_with_initial_catalog(
++            objects.clone(),
++            Path::default(),
++            u64::MAX,
++            0,
++            2,
++            Some(&PackedChunks::empty_state_catalog().unwrap()),
++            Some(durability),
++        )
++        .await
++        .unwrap();
++        let (meta, bytes) = chunk(b"failed local marker must not retire its pack");
++        store.put(meta.clone(), bytes).await.unwrap();
++        store.prepare_state_catalog().await.unwrap().unwrap();
++        store.finish_state_catalog(true).unwrap();
++        let old = store.location(&meta.digest).await.unwrap().unwrap().pack;
++        let marker = encode_replacement(old, None);
++        let path = sharded_path(
++            &Path::default(),
++            REPLACEMENTS_KIND,
++            &Digest::from(blake3::hash(&marker)),
++        );
++        let obstacle = directory.path().join(path.as_ref());
++        std::fs::create_dir_all(&obstacle).unwrap();
++        store.delete_many(&[meta.digest]).await.unwrap();
++        assert!(
++            store
++                .finish_deletions_inner(true, PayloadRetirement::Deferred)
++                .await
++                .is_err()
++        );
++        assert!(store.index.read().unwrap().packs.contains_key(&old));
++        assert!(store.dirty_packs.lock().await.contains(&old));
++        assert!(
++            objects
++                .head(&pack_path(&Path::default(), &old))
++                .await
++                .is_ok()
++        );
++        std::fs::remove_dir(&obstacle).unwrap();
++        store
++            .finish_deletions_inner(true, PayloadRetirement::Deferred)
++            .await
++            .unwrap();
++        assert!(!store.index.read().unwrap().packs.contains_key(&old));
++        assert!(!store.dirty_packs.lock().await.contains(&old));
++        let actual = objects.get(&path).await.unwrap().bytes().await.unwrap();
++        assert_eq!(actual, marker);
++        assert!(
++            objects
++                .head(&pack_path(&Path::default(), &old))
++                .await
++                .is_ok()
++        );
++    }
++
+     #[tokio::test]
+     async fn online_local_sweep_preserves_pinned_packs_and_reclaims_unrelated_data() {
+         use crate::metadata::{DataPin, PinScope, PinStore};
+@@ -9922,6 +10030,330 @@ mod tests {
+         }
+     }
+
++    #[tokio::test]
++    async fn payload_mark_deduplicates_shared_shards_without_losing_root_additions() {
++        let objects: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
++        let base = Path::from("shared-payload-mark");
++        let writer = PackedChunks::open_with_state_catalog(
++            objects.clone(),
++            base.clone(),
++            u64::MAX,
++            0,
++            DEFAULT_PACK_CACHE_PROMOTION_READS,
++            &PackedChunks::empty_state_catalog().unwrap(),
++        )
++        .await
++        .unwrap();
++        let mut index = Index {
++            manifests_complete: true,
++            ..Index::default()
++        };
++        let mut expected = HashSet::new();
++        let mut maps = Vec::new();
++        let mut catalogs = Vec::new();
++        for generation in 1..=2 {
++            for entry in 0..if generation == 1 { 32 } else { 1 } {
++                let id = |kind| Digest::hash(format!("{generation}/{entry}/{kind}").as_bytes());
++                let pack = PackId::new(id("pack"));
++                let chunk = ChunkId::new(id("chunk"));
++                let blob = BlobId::new(id("blob"));
++                index.add_pack(
++                    pack,
++                    100 + 8 + PACK_ENTRY_LEN as u64 + PACK_TRAILER_LEN as u64,
++                    vec![PackEntry {
++                        digest: chunk,
++                        offset: 0,
++                        framed_len: 100,
++                        uncompressed_len: 100,
++                    }],
++                );
++                index.manifests.insert(blob);
++                expected.insert(pack_path(&base, &pack));
++                expected.insert(sharded_path(&base, "bao", chunk.as_digest()));
++                for kind in ["blobs", "bao"] {
++                    expected.insert(sharded_path(&base, kind, blob.as_digest()));
++                }
++            }
++            let encoded = encode_index_shards(&index, 4).unwrap();
++            maps.push(decode_shard_map(&encoded.map).unwrap());
++            for (digest, bytes) in encoded.objects {
++                put_object(
++                    &objects,
++                    &sharded_path(&base, INDEXES_KIND, &digest),
++                    bytes,
++                    true,
++                )
++                .await
++                .unwrap();
++            }
++            put_object(
++                &objects,
++                &sharded_path(&base, INDEXES_KIND, &encoded.map_digest),
++                encoded.map,
++                true,
++            )
++            .await
++            .unwrap();
++            let blob = BlobId::new(Digest::hash(format!("inline-{generation}").as_bytes()));
++            for kind in ["blobs", "bao"] {
++                expected.insert(sharded_path(&base, kind, blob.as_digest()));
++            }
++            let mut inline = Index::default();
++            inline.manifests.insert(blob);
++            let mut mutations = IndexMutations::default();
++            mutations.record_manifest_add(blob);
++            catalogs.push(
++                encode_delta_catalog(&DeltaCatalog {
++                    generation,
++                    base: CatalogBase::Sharded {
++                        root: encoded.map_digest,
++                        shard_bits: 4,
++                    },
++                    runs: BTreeMap::new(),
++                    deltas: vec![encode_index_mutations(&inline, &mutations).unwrap()],
++                })
++                .unwrap(),
++            );
++        }
++        assert!(
++            maps[0]
++                .packs
++                .iter()
++                .any(|reference| maps[1].packs.contains(reference))
++        );
++        assert!(
++            maps[1]
++                .packs
++                .iter()
++                .any(|reference| !maps[0].packs.contains(reference))
++        );
++        let mut retained = HashSet::new();
++        let mut shards = PayloadShardMarks::default();
++        for catalog in &catalogs {
++            writer
++                .mark_catalog_payloads(catalog, &mut retained, &mut shards)
++                .await
++                .unwrap();
++        }
++        assert_eq!(retained, expected);
++        assert_eq!(
++            shards.packs,
++            maps.iter()
++                .flat_map(|map| map.packs.iter().copied())
++                .collect()
++        );
++        assert_eq!(
++            shards.manifests,
++            maps.iter()
++                .flat_map(|map| map.manifests.iter().copied())
++                .collect()
++        );
++        // The visited references must not survive the marking pass.
++        let mut again = HashSet::new();
++        let mut fresh = PayloadShardMarks::default();
++        for catalog in &catalogs {
++            writer
++                .mark_catalog_payloads(catalog, &mut again, &mut fresh)
++                .await
++                .unwrap();
++        }
++        assert_eq!(again, expected);
++
++        // Even with the original references and bytes already cached, a map
++        // with conflicting metadata must not take the deduplication shortcut.
++        for fault in [
++            "pack-prefix",
++            "pack-count",
++            "pack-length",
++            "manifest-prefix",
++            "manifest-length",
++        ] {
++            let mut map = maps[0].clone();
++            match fault {
++                "pack-prefix" => map.packs[0].prefix ^= 1,
++                "pack-count" => map.packs[0].entries += 1,
++                "pack-length" => map.packs[0].encoded_bytes += 1,
++                "manifest-prefix" => map.manifests[0].prefix ^= 1,
++                "manifest-length" => map.manifests[0].encoded_bytes += 1,
++                _ => unreachable!(),
++            }
++            // A single reference avoids unrelated map ordering errors.
++            map.packs.truncate(1);
++            map.manifests.truncate(1);
++            let bytes = encode_shard_map(&map).unwrap();
++            let digest = Digest::hash(&bytes);
++            put_object(
++                &objects,
++                &sharded_path(&base, INDEXES_KIND, &digest),
++                bytes,
++                true,
++            )
++            .await
++            .unwrap();
++            let catalog = encode_delta_catalog(&DeltaCatalog {
++                generation: 3,
++                base: CatalogBase::Sharded {
++                    root: digest,
++                    shard_bits: 4,
++                },
++                runs: BTreeMap::new(),
++                deltas: Vec::new(),
++            })
++            .unwrap();
++            assert!(
++                writer
++                    .mark_catalog_payloads(&catalog, &mut retained, &mut shards)
++                    .await
++                    .is_err(),
++                "{fault}"
++            );
++        }
++    }
++
++    #[tokio::test]
++    #[ignore = "performance corpus; benchmark run catalog-marking"]
++    async fn benchmark_catalog_marking() {
++        use crate::metadata::{DataPin, PinScope, PinStore};
++        fn rss_bytes() -> Option<u64> {
++            std::fs::read_to_string("/proc/self/status")
++                .ok()?
++                .lines()
++                .find_map(|line| {
++                    line.strip_prefix("VmRSS:")?
++                        .split_whitespace()
++                        .next()?
++                        .parse::<u64>()
++                        .ok()
++                })
++                .map(|kb| kb * 1024)
++        }
++        let count: usize = std::env::var("CASITA_BENCH_MARK_ENTRIES")
++            .unwrap()
++            .parse()
++            .unwrap();
++        let holds: usize = std::env::var("CASITA_BENCH_MARK_HOLDS")
++            .unwrap()
++            .parse()
++            .unwrap();
++        let mode = std::env::var("CASITA_BENCH_MARK_MODE").unwrap();
++        assert!(count > 0 && holds > 0);
++        assert!(["identical", "overlap", "disjoint"].contains(&mode.as_str()));
++        let objects: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
++        let base = Path::from("catalog-marking");
++        let writer = PackedChunks::open_with_state_catalog(
++            objects.clone(),
++            base.clone(),
++            u64::MAX,
++            0,
++            DEFAULT_PACK_CACHE_PROMOTION_READS,
++            &PackedChunks::empty_state_catalog().unwrap(),
++        )
++        .await
++        .unwrap();
++        let ledger = Arc::new(crate::metadata::MemoryPinStore::default());
++        let collector = ledger.acquire_collection(None).await.unwrap().unwrap();
++        let mut expected = HashSet::new();
++        let mut roots = Vec::new();
++        for group in 0..if mode == "disjoint" { holds } else { 1 } {
++            let mut index = Index {
++                manifests_complete: true,
++                ..Index::default()
++            };
++            for entry in 0..count {
++                let id = |kind| Digest::hash(format!("{group}/{entry}/{kind}").as_bytes());
++                let pack = PackId::new(id("pack"));
++                let chunk = ChunkId::new(id("chunk"));
++                let blob = BlobId::new(id("blob"));
++                index.add_pack(
++                    pack,
++                    100 + 8 + PACK_ENTRY_LEN as u64 + PACK_TRAILER_LEN as u64,
++                    vec![PackEntry {
++                        digest: chunk,
++                        offset: 0,
++                        framed_len: 100,
++                        uncompressed_len: 100,
++                    }],
++                );
++                index.manifests.insert(blob);
++                expected.insert(pack_path(&base, &pack));
++                expected.insert(sharded_path(&base, "bao", chunk.as_digest()));
++                expected.insert(sharded_path(&base, "bao", blob.as_digest()));
++                expected.insert(sharded_path(&base, "blobs", blob.as_digest()));
++            }
++            let encoded = encode_index_shards(&index, 4).unwrap();
++            for (digest, bytes) in encoded.objects {
++                put_object(
++                    &objects,
++                    &sharded_path(&base, INDEXES_KIND, &digest),
++                    bytes,
++                    true,
++                )
++                .await
++                .unwrap();
++            }
++            put_object(
++                &objects,
++                &sharded_path(&base, INDEXES_KIND, &encoded.map_digest),
++                encoded.map,
++                true,
++            )
++            .await
++            .unwrap();
++            roots.push(encoded.map_digest);
++        }
++        for hold in 0..holds {
++            let catalog = encode_delta_catalog(&DeltaCatalog {
++                generation: if mode == "identical" {
++                    1
++                } else {
++                    hold as u64 + 1
++                },
++                base: CatalogBase::Sharded {
++                    root: roots[if mode == "disjoint" { hold } else { 0 }],
++                    shard_bits: 4,
++                },
++                runs: BTreeMap::new(),
++                deltas: Vec::new(),
++            })
++            .unwrap();
++            ledger
++                .register(DataPin {
++                    scope: PinScope::Snapshot {
++                        generation: u64::MAX,
++                    },
++                    catalog: Some(catalog.to_vec()),
++                    resources: BTreeSet::new(),
++                })
++                .await
++                .unwrap()
++                .unwrap();
++        }
++        writer.reset_read_stats();
++        let rss_before = rss_bytes();
++        let started = Instant::now();
++        let mark = writer
++            .payload_pin_mark(ledger.clone(), BTreeSet::new())
++            .await
++            .unwrap();
++        let nanos = started.elapsed().as_nanos();
++        let rss_after = rss_bytes();
++        assert_eq!(mark.retained, expected);
++        assert_eq!(mark.retained.len(), count * 4 * roots.len());
++        let path_bytes: usize = mark.retained.iter().map(|path| path.as_ref().len()).sum();
++        let stats = writer.read_stats();
++        println!(
++            "catalog_marking_sample {}",
++            serde_json::json!({
++                "count": count, "holds": holds, "mode": mode, "nanos": nanos,
++                "rss_before": rss_before, "rss_after": rss_after,
++                "paths": mark.retained.len(), "path_bytes": path_bytes,
++                "index_requests": stats.index_requests, "index_bytes": stats.index_bytes,
++                "correctness": "exact union of pack, chunk outboard, blob and blob outboard paths",
++            })
++        );
++        ledger.finish_collection(&collector).await.unwrap();
++    }
++
+     #[tokio::test]
+     #[ignore = "performance corpus; benchmark run cleanup-batches"]
+     async fn benchmark_retirement_queue_memory() {
+diff --git a/src/blob/pack/gc_benchmark.rs b/src/blob/pack/gc_benchmark.rs
+new file mode 100644
+index 0000000..fa5d2f4
+--- /dev/null
++++ b/src/blob/pack/gc_benchmark.rs
+@@ -0,0 +1,199 @@
++//! End-to-end local GC while historical selected readers remain live.
++use super::*;
++use crate::metadata::{MetadataStore, RootChange, flush_repository_leases};
++use crate::transfer::{TransferSelection, TransferSource};
++use tokio::io::AsyncReadExt;
++
++#[path = "../../../benches/bench_util/gc_timing.rs"]
++mod gc_timing;
++
++fn payload(seed: usize) -> Vec<u8> {
++    (0..128)
++        .flat_map(|block| *blake3::hash(format!("gc-holds/{seed}/{block}").as_bytes()).as_bytes())
++        .collect()
++}
++
++fn disk_bytes(path: &std::path::Path) -> u64 {
++    if !path.exists() {
++        return 0;
++    }
++    std::fs::read_dir(path)
++        .unwrap()
++        .map(|entry| {
++            let path = entry.unwrap().path();
++            if path.is_dir() {
++                disk_bytes(&path)
++            } else {
++                std::fs::metadata(path).unwrap().len()
++            }
++        })
++        .sum()
++}
++
++#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
++#[ignore = "performance corpus; benchmark run held-catalog-gc"]
++async fn benchmark_held_catalog_gc() {
++    let count: usize = std::env::var("CASITA_BENCH_GC_ENTRIES")
++        .unwrap()
++        .parse()
++        .unwrap();
++    let holds: usize = std::env::var("CASITA_BENCH_GC_HOLDS")
++        .unwrap()
++        .parse()
++        .unwrap();
++    assert!(count >= 2 && holds > 0);
++    let timings = gc_timing::Timings::install();
++    let directory = tempfile::tempdir().unwrap();
++    let source = crate::repository::Repository::local(directory.path())
++        .await
++        .unwrap();
++    // Exercise a realistic shared base without millions of setup publications.
++    // This only changes when setup compacts; measured GC uses normal settings.
++    source
++        .payloads()
++        .set_pack_catalog_rebase_run_bytes_for_test(1);
++    let mutation = source.mutation_session().await.unwrap();
++    let mut staged = Vec::new();
++    for seed in 0..count {
++        staged.push(mutation.stage_blob(&payload(seed)).await.unwrap());
++    }
++    let key = staged[0].record().key().clone();
++    let name: crate::RootName = "selected".parse().unwrap();
++    mutation
++        .publish_rooted(staged, name.clone(), key.clone())
++        .await
++        .unwrap();
++    drop(mutation);
++    flush_repository_leases().await.unwrap();
++    let snapshot = source.metadata().snapshot().await.unwrap();
++    let root = decode_delta_catalog(snapshot.payload_catalog().unwrap()).unwrap();
++    assert!(
++        matches!(root.base, CatalogBase::Sharded { .. }),
++        "setup must produce a sharded base"
++    );
++    drop(snapshot);
++    drop(source);
++    flush_repository_leases().await.unwrap();
++    // Fresh normal configuration, followed by ordinary reads and publications.
++    let source = crate::repository::Repository::local(directory.path())
++        .await
++        .unwrap();
++    let mut sessions = Vec::new();
++    let mut readers = Vec::new();
++    for hold in 0..holds {
++        if hold > 0 {
++            let mutation = source.mutation_session().await.unwrap();
++            let extra = mutation.stage_blob(&payload(count + hold)).await.unwrap();
++            mutation.publish_unrooted(vec![extra]).await.unwrap();
++            drop(mutation);
++            flush_repository_leases().await.unwrap();
++        }
++        let session = source
++            .begin_transfer(TransferSelection::Selected {
++                objects: vec![key.clone()],
++                roots: Vec::new(),
++            })
++            .await
++            .unwrap();
++        let record = session.object(&key).await.unwrap().unwrap();
++        let mut reader = session.open_payload(&record).await.unwrap().unwrap();
++        let mut first = [0];
++        reader.read_exact(&mut first).await.unwrap();
++        assert_eq!(first[0], payload(0)[0]);
++        readers.push(reader);
++        sessions.push(session);
++    }
++    let mutation = source.mutation_session().await.unwrap();
++    mutation
++        .publish(Vec::new(), vec![RootChange::Remove { name }])
++        .await
++        .unwrap();
++    drop(mutation);
++    flush_repository_leases().await.unwrap();
++    let ledger = source.metadata().pin_store().await.unwrap();
++    let inventory = ledger.inventory().await.unwrap();
++    let catalogs: BTreeSet<_> = inventory
++        .pins
++        .values()
++        .filter_map(|pin| pin.catalog.as_deref())
++        .collect();
++    assert_eq!(
++        catalogs.len(),
++        holds,
++        "each selected session must hold a distinct root"
++    );
++    let bases: BTreeSet<_> = catalogs
++        .iter()
++        .map(
++            |catalog| match decode_delta_catalog(catalog).unwrap().base {
++                CatalogBase::Sharded { root, .. } => root,
++                _ => panic!("held root must retain its shared sharded base"),
++            },
++        )
++        .collect();
++    assert_eq!(bases.len(), 1);
++    drop(inventory);
++    let pack_root = directory.path().join("blobs/packs");
++    let mut directories = vec![pack_root.clone()];
++    let mut historical_packs = Vec::new();
++    while let Some(path) = directories.pop() {
++        for entry in std::fs::read_dir(path).unwrap() {
++            let path = entry.unwrap().path();
++            if path.is_dir() {
++                directories.push(path);
++            } else {
++                historical_packs.push((path.clone(), std::fs::metadata(path).unwrap().len()));
++            }
++        }
++    }
++    let pack_bytes_before = disk_bytes(&directory.path().join("blobs/packs"));
++    assert!(pack_bytes_before > 0);
++    timings.reset();
++    let start = Instant::now();
++    let collected = source.try_collect().await.unwrap();
++    let seconds = start.elapsed().as_secs_f64();
++    let phases = timings.take(start);
++    let ledger_timing = timings.take_ledger();
++    let garbage = count + holds - 2;
++    assert_eq!(collected.removed.logical_objects, garbage);
++    let pack_bytes_during = disk_bytes(&directory.path().join("blobs/packs"));
++    // GC can write a compacted current pack while old catalogs retain the
++    // originals. Check every historical file, allowing those new packs.
++    for (path, bytes) in &historical_packs {
++        assert_eq!(std::fs::metadata(path).unwrap().len(), *bytes);
++    }
++    assert!(pack_bytes_during >= pack_bytes_before);
++    for (session, mut reader) in sessions.iter().zip(readers) {
++        let mut received = vec![payload(0)[0]];
++        reader.read_to_end(&mut received).await.unwrap();
++        assert_eq!(received, payload(0));
++        // Open again through each held catalog after collection, too.
++        let record = session.object(&key).await.unwrap().unwrap();
++        let mut fresh = session.open_payload(&record).await.unwrap().unwrap();
++        let mut received = Vec::new();
++        fresh.read_to_end(&mut received).await.unwrap();
++        assert_eq!(received, payload(0));
++    }
++    drop(sessions);
++    flush_repository_leases().await.unwrap();
++    timings.reset();
++    let start = Instant::now();
++    let released = source.try_collect().await.unwrap();
++    let release_seconds = start.elapsed().as_secs_f64();
++    let release_phases = timings.take(start);
++    assert_eq!(released.removed.logical_objects, 1);
++    let pack_bytes_after_release = disk_bytes(&directory.path().join("blobs/packs"));
++    assert_eq!(pack_bytes_after_release, 0);
++    println!(
++        "held_catalog_gc_sample {}",
++        serde_json::json!({
++            "count": count, "holds": holds, "seconds": seconds, "phases": phases,
++            "ledger": ledger_timing, "release_seconds": release_seconds,
++            "release_phases": release_phases, "garbage_objects": garbage,
++            "pack_bytes_before": pack_bytes_before, "pack_bytes_during": pack_bytes_during,
++            "pack_bytes_after_release": pack_bytes_after_release,
++        "historical_packs_preserved": true, "historical_pack_files": historical_packs.len(),
++            "correctness": "distinct shared-base holds; exact logical removals; held streams readable; packs reclaimed after release",
++        })
++    );
++}
+diff --git a/src/blob/pack/shard.rs b/src/blob/pack/shard.rs
+index 9174fb5..6ae305c 100644
+--- a/src/blob/pack/shard.rs
++++ b/src/blob/pack/shard.rs
+@@ -25,7 +25,7 @@ const CHUNK_LOCATION_LEN: usize = DIGEST_LEN * 2 + 8 * 4;
+ const MAX_RUN_ROUTING_BYTES: usize = 32 * 1024 * 1024;
+ pub(super) const DEFAULT_SHARD_TARGET_BYTES: u64 = 32 * 1024 * 1024;
+
+-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
++#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+ pub(super) struct ShardRef {
+     pub(super) prefix: u32,
+     pub(super) digest: Digest,
+diff --git a/src/repository.rs b/src/repository.rs
+index 43150c3..51e03a9 100644
+--- a/src/repository.rs
++++ b/src/repository.rs
+@@ -38,7 +38,7 @@ mod collection_timing;
+ #[cfg(test)]
+ mod mutation_catalog_tests;
+ mod publication;
+-use collection_timing::CollectionPhase;
++pub(crate) use collection_timing::CollectionPhase;
+ use publication::Publication;
+
+ /// Semantic result of checking one object's complete forward graph.
+diff --git a/src/repository/collection_timing.rs b/src/repository/collection_timing.rs
+index 5b02a82..d7c809c 100644
+--- a/src/repository/collection_timing.rs
++++ b/src/repository/collection_timing.rs
+@@ -1,13 +1,13 @@
+ //! Optional wall-clock diagnostics, including waits and failed phases.
+ use std::time::Instant;
+
+-pub(super) struct CollectionPhase {
++pub(crate) struct CollectionPhase {
+     name: &'static str,
+     started: Option<Instant>,
+ }
+
+ impl CollectionPhase {
+-    pub(super) fn new(name: &'static str) -> Self {
++    pub(crate) fn new(name: &'static str) -> Self {
+         Self {
+             name,
+             started: tracing::enabled!(target: "casita::collection_timing", tracing::Level::DEBUG)

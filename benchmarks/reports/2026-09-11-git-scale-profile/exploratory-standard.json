@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.git-import-profile.v1",
+  "suite_id": "native-git",
+  "complete": false,
+  "environment": {
+    "captured_at_utc": "2026-09-11T23:57:36.069777+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "949f145542f2b47439e7ccfb206c437fb74d0f57",
+    "casita_worktree_dirty": true
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-git-profile-bin/baseline",
+      "sha256": "cc3709c5f5777de232fa6980b85404979ab7d51890b085c75129115f9ef05221"
+    }
+  ],
+  "samples": [],
+  "processes": [
+    {
+      "shape": "delta-heavy",
+      "operation": "initial-import",
+      "repetition": 0,
+      "stdout": "\nrunning 1 test\ntest git_repository::import_profile::benchmark_git_import_profile has been running for over 60 seconds\n",
+      "stderr": "",
+      "wall_seconds": 796.384080636,
+      "user_seconds": 430.58,
+      "system_seconds": 189.49,
+      "max_rss_bytes": 1209196544,
+      "exit_code": 143
+    }
+  ],
+  "corpora": {
+    "delta-heavy": {
+      "profile": "standard",
+      "shape": "delta-heavy",
+      "scale": {
+        "commits": 2000,
+        "files": 64,
+        "blob_bytes": 262144,
+        "changes_per_commit": 4,
+        "incremental_commits": 20,
+        "delta_friendly": true,
+        "incompressible": false
+      },
+      "sources": {
+        "base": {
+          "objects": 14060,
+          "tip": "git.sha1.commit.v1:Qqjvpyg-yzozk1tjUGkMxLyvSnA",
+          "logical_bytes": 2118555482,
+          "inventory_sha256": "2c3d5edbacd19cd7d4ac8ef5291b3ee80e37ce55e98a9c9aaaedfb32c758d035",
+          "source": {
+            "reachable_objects": 14060,
+            "pack_count": 1,
+            "pack_bytes": 1271070,
+            "index_bytes": 394752,
+            "loose_objects": 0,
+            "loose_allocated_bytes": 0
+          }
+        },
+        "incremental": {
+          "objects": 14200,
+          "tip": "git.sha1.commit.v1:oPlDfLWmxw3tfur1a0JIMZ6RgJU",
+          "logical_bytes": 2139583762,
+          "inventory_sha256": "b06b56234ad38a73262480baa0d50a38a2526e6a034eb1588f7b3191be2c043a",
+          "source": {
+            "reachable_objects": 14200,
+            "pack_count": 1,
+            "pack_bytes": 1276354,
+            "index_bytes": 398672,
+            "loose_objects": 0,
+            "loose_allocated_bytes": 0
+          }
+        }
+      }
+    }
+  },
+  "configuration": {
+    "profile": "standard",
+    "shapes": [
+      "delta-heavy",
+      "many-objects",
+      "wide-tree"
+    ],
+    "repetitions": 1,
+    "concurrency": 16,
+    "max_buffered_bytes": 67108864,
+    "max_cached_pack_bytes": 0,
+    "measurement_note": "Baseline production 949f145 with test-only phase instrumentation; same git-scale standard shapes; warm source cache; shared host; no own builds or fixture generation during measured processes. A 10-second perf recording at 99 Hz was attached after about 11 minutes. The exploratory process was then terminated intentionally; no successful import timing is claimed.",
+    "timing": "import wall and phase clocks; source setup, repository open and complete closure audit excluded; warm cache; fresh process for each import",
+    "memory": "Linux process high-water RSS sampled immediately after import, before independent inventory/closure audit; includes repository open",
+    "phase_accounting": "verify_sum and upload_sum overlap each other and stage_poll/drain; do not add these durations to wall time"
+  },
+  "error": "profile failed: \nrunning 1 test\ntest git_repository::import_profile::benchmark_git_import_profile has been running for over 60 seconds\n\n",
+  "stop_reason": "Exploratory standard delta-heavy import stopped intentionally after CPU sampling identified repeated full staging-pin index updates; not a completed timing or correctness sample."
+}

@@ -1,0 +1,114 @@
+---
+import Button from '@cachix/site-kit/ui/Button.astro';
+import ButtonGroup from '@cachix/site-kit/ui/ButtonGroup.astro';
+import { comparisons, environment, repetitions, sourceUrl, tools, workloads } from '../data/homepage-benchmarks';
+---
+<section class="benchmarks-section" aria-labelledby="benchmarks-title">
+  <div class="landing-container">
+    <div class="section-heading">
+      <h2 id="benchmarks-title">Benchmarks</h2>
+      <p>First import. Small update. Sync the difference.</p>
+    </div>
+    <casita-benchmarks>
+      <div class="benchmark-toolbar">
+        <div class="benchmark-controls" hidden>
+          <label>Workload <select name="workload" aria-label="Benchmark workload">
+            {workloads.map(workload => <option value={workload.id}>{workload.name} · {workload.size} MiB</option>)}
+          </select></label>
+          <label>File cache <select name="cache" aria-label="Benchmark file cache">
+            <option value="warm">Warm</option><option value="cold">Cold</option>
+          </select></label>
+        </div>
+        <noscript><p>Mixed files · 40.0 MiB · warm file cache</p></noscript>
+        <p>Median of {repetitions} runs · seconds · lower is faster</p>
+      </div>
+      {comparisons.map(comparison => (
+        <div class="benchmark-charts" data-workload={comparison.workload} data-cache={comparison.cache} hidden={comparison.workload !== 'mixed' || comparison.cache !== 'warm'}>
+          {comparison.charts.map(chart => <figure>
+            <figcaption><h3>{chart.name}</h3><p>{chart.description}</p></figcaption>
+            <div class="chart-scale" aria-hidden="true"><span>0</span><span>{chart.ceiling.toFixed(1)} s</span></div>
+            <ul class="chart-rows" aria-label={`${chart.name}: median duration in seconds`}>
+              {chart.rows.map(row => <li class:list={{ 'casita-result': row.id === 'casita' }}>
+                <div class="result-label"><span>{row.name}</span><span>{row.result ? `${row.result.median_wall_seconds.toFixed(3)} s` : 'Not measured'}</span></div>
+                <div class="bar-track" aria-hidden="true"><span style={`width: ${100 * (row.result?.median_wall_seconds ?? 0) / chart.ceiling}%`}></span></div>
+              </li>)}
+            </ul>
+          </figure>)}
+        </div>
+      ))}
+      <p class="measurement-note">Each chart has its own scale. Sync measures a local update, not a network transfer.</p>
+      <p class="benchmark-machine">{environment.cpu.replace(' with Radeon 780M Graphics', '')} · {(environment.memory_bytes / 2 ** 30).toFixed(1)} GiB RAM · Linux / Btrfs</p>
+      <p class="measurement-note">Baseline: {environment.captured_at_utc.slice(0, 10)} · Casita <code>{environment.casita_revision.slice(0, 7)}</code> · <a href={sourceUrl}>Source data ↗</a></p>
+      <details class="benchmark-method">
+        <summary>Run details and comparison limits</summary>
+        <div>
+          <p>Measured {environment.captured_at_utc.slice(0, 10)} at Casita revision <code>{environment.casita_revision.slice(0, 7)}</code>, using the standard profile and the {environment.cpu_governor} CPU governor. These are published baseline results, not measurements of the current build.</p>
+          <p>The update inserts 4 KiB into one file and adds an 8 KiB file. Re-import uses a copied tree; it does not measure an in-place edit. Sync starts with the base tree already at the destination.</p>
+          <p>Warm cache pre-reads regular files; cold cache requests eviction with <code>POSIX_FADV_DONTNEED</code>. Neither controls filesystem metadata or device caches. The filesystem uses zstd compression on an encrypted volume.</p>
+          <p>Git, backup tools, and tar archives have different publication and verification guarantees. restic uses repository encryption; Casita and Borg use plaintext repositories. tar + zstd rebuilds the archive for an update. Borg and tar + zstd have no sync measurement in this suite.</p>
+          <p>Timings use the report’s nearest-rank p50: the fifth sorted sample of ten. Setup and validation are outside the timed region. Every accepted sample passes integrity and restored-content checks. <a href={sourceUrl}>Raw samples and hardware details ↗</a></p>
+          <p class="tool-versions">{Object.values(tools).map(tool => tool.version).join(' · ')}</p>
+        </div>
+      </details>
+      <span class="sr-only" aria-live="polite" data-benchmark-announcement></span>
+    </casita-benchmarks>
+    <ButtonGroup class="benchmark-actions">
+      <Button href="/benchmarks/" arrow>Explore all benchmarks</Button>
+      <Button href="/reference/benchmarks/" variant="secondary">Reproduce a run</Button>
+    </ButtonGroup>
+  </div>
+</section>
+<style>
+  .benchmarks-section { padding-bottom: 7rem; }
+  casita-benchmarks { display: block; margin-top: 2.5rem; }
+  .benchmark-toolbar { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 1rem; padding-bottom: 1.8rem; border-bottom: 1px solid var(--landing-line); }
+  .benchmark-controls { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .benchmark-controls[hidden], .benchmark-charts[hidden] { display: none; }
+  label { display: grid; gap: 0.5rem; color: var(--sl-color-gray-2); font-size: 0.75rem; }
+  select { font: 0.85rem var(--sl-font); color: var(--sl-color-text); background: var(--sl-color-bg); border: 1px solid var(--landing-line); border-radius: 0.35rem; padding: 0.7rem 2rem 0.7rem 0.8rem; max-width: 100%; }
+  select:focus-visible, summary:focus-visible { outline: 2px solid var(--sl-color-text-accent); outline-offset: 3px; }
+  .benchmark-toolbar > p, .measurement-note, .benchmark-machine { color: var(--sl-color-gray-2); font-size: 0.75rem; margin: 0; line-height: 1.6; }
+  .benchmark-charts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; padding-block: 2rem; }
+  figure { margin: 0; min-width: 0; }
+  figcaption h3 { color: var(--sl-color-white); font-size: 1.1rem; letter-spacing: -0.03em; margin: 0 0 0.6rem; }
+  figcaption p { color: var(--sl-color-gray-2); font-size: 0.78rem; line-height: 1.6; margin: 0; min-height: 2.5rem; }
+  .chart-scale { display: flex; justify-content: space-between; color: var(--sl-color-gray-3); font: 0.65rem var(--sl-font-mono); margin: 1.2rem 0 0.8rem; border-bottom: 1px solid var(--landing-line); padding-bottom: 0.5rem; }
+  .chart-rows { padding: 0; margin: 0; list-style: none; display: grid; gap: 1.1rem; }
+  .result-label { display: flex; justify-content: space-between; gap: 0.5rem; color: var(--sl-color-gray-2); font-size: 0.78rem; }
+  .result-label span:last-child { font-family: var(--sl-font-mono); font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+  .bar-track { height: 8px; background: var(--landing-panel); margin-top: 0.5rem; }
+  .bar-track > span { display: block; height: 100%; background: var(--sl-color-gray-4); }
+  .casita-result .result-label { color: var(--sl-color-text-accent); font-weight: 700; }
+  .casita-result .bar-track > span { background: var(--sl-color-text-accent); }
+  .benchmark-machine { margin-top: 0.7rem; color: var(--sl-color-text); }
+  .benchmark-method { margin-top: 1.2rem; border-bottom: 1px solid var(--landing-line); padding-bottom: 1.5rem; }
+  summary { color: var(--sl-color-text-accent); font-size: 0.8rem; cursor: pointer; width: fit-content; }
+  .benchmark-method p { font-size: 0.8rem; line-height: 1.7; color: var(--sl-color-gray-2); max-width: 70rem; }
+  .benchmark-method a, .measurement-note a { color: var(--sl-color-text-accent); }
+  .tool-versions { overflow-wrap: anywhere; }
+  .benchmark-actions { margin-top: 1.5rem; }
+  @media (max-width: 52rem) { .benchmarks-section { padding-bottom: 5rem; } .benchmark-charts { grid-template-columns: 1fr; gap: 2.5rem; } figcaption p { min-height: 0; } }
+</style>
+<script>
+  class CasitaBenchmarks extends HTMLElement {
+    private events?: AbortController;
+    connectedCallback() {
+      this.events?.abort();
+      this.events = new AbortController();
+      const workload = this.querySelector<HTMLSelectElement>('[name="workload"]')!;
+      const cache = this.querySelector<HTMLSelectElement>('[name="cache"]')!;
+      const update = () => {
+        this.querySelectorAll<HTMLElement>('[data-workload]').forEach(panel => {
+          panel.hidden = panel.dataset.workload !== workload.value || panel.dataset.cache !== cache.value;
+        });
+        this.querySelector<HTMLElement>('[data-benchmark-announcement]')!.textContent =
+          `${workload.selectedOptions[0].textContent}, ${cache.value} file cache. Benchmark comparisons updated.`;
+      };
+      this.querySelector<HTMLElement>('.benchmark-controls')!.hidden = false;
+      this.addEventListener('change', update, { signal: this.events.signal });
+      update();
+    }
+    disconnectedCallback() { this.events?.abort(); }
+  }
+  if (!customElements.get('casita-benchmarks')) customElements.define('casita-benchmarks', CasitaBenchmarks);
+</script>

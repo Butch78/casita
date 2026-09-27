@@ -1,0 +1,7 @@
+---
+import { repositoryIcons } from './repository-icons';
+interface Props { name: keyof typeof repositoryIcons; }
+const { name } = Astro.props;
+---
+<svg class="repository-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={repositoryIcons[name]} /></svg>
+<style>.repository-icon { display: inline-block; flex: 0 0 auto; vertical-align: middle; }</style>

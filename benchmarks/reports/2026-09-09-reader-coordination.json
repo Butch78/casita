@@ -1,0 +1,612 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.reader-coordination.v1",
+  "suite_id": "state-and-publication",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-09T06:11:13.147071+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.0.10-x86_64-with-glibc2.42",
+    "kernel": "7.0.10",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29178875904,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "ade46e004c58354e4ffbd959642a0eccd48ce4c7",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "profile": "smoke",
+    "counts": [
+      1,
+      64
+    ],
+    "iterations": 8,
+    "repetitions": 3
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita4-process-reader-bin/casita-lib-test",
+      "sha256": "87ee97a7bf2d13a658e84a6df7c34072ce48ee21b8bd865eea49df23096ad891"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "operation": "cold-register",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.026612299,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-register",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.000138915125,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-protect",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.000136392,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-release",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.000130604,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "last-reserved-register",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.000451176,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "reservation-rollover-protect",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.01901116,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "renewed-release",
+      "readers": 1,
+      "repetition": 1,
+      "wall_seconds": 0.000274268,
+      "max_rss_bytes": 17096704,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "cold-register",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.019154824,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-register",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.000140992875,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-protect",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.0001402505,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-release",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.000142031625,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "last-reserved-register",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.000389437,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "reservation-rollover-protect",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.014836588,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "renewed-release",
+      "readers": 64,
+      "repetition": 1,
+      "wall_seconds": 0.000175722,
+      "max_rss_bytes": 17387520,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "cold-register",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.018951794,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-register",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.000140696,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-protect",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.0001415865,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-release",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.00013950875,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "last-reserved-register",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.00027783,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "reservation-rollover-protect",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.014803343,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "renewed-release",
+      "readers": 1,
+      "repetition": 2,
+      "wall_seconds": 0.000254084,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "cold-register",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.019330545,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-register",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.000156427625,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-protect",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.0001567245,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-release",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.000162215875,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "last-reserved-register",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.00027783,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "reservation-rollover-protect",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.015407683,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "renewed-release",
+      "readers": 64,
+      "repetition": 2,
+      "wall_seconds": 0.000332446,
+      "max_rss_bytes": 17264640,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "cold-register",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.018688212,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-register",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.000156872875,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-protect",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.00015984125,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-release",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.000134610875,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "last-reserved-register",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.00032176,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "reservation-rollover-protect",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.014954132,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "renewed-release",
+      "readers": 1,
+      "repetition": 3,
+      "wall_seconds": 0.000258833,
+      "max_rss_bytes": 17117184,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "cold-register",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.01857898,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-register",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.00015420175,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-protect",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.00014930375,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "warm-release",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.000151233375,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "last-reserved-register",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.000584155,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "reservation-rollover-protect",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.014800969,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 1
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    },
+    {
+      "status": "ok",
+      "operation": "renewed-release",
+      "readers": 64,
+      "repetition": 3,
+      "wall_seconds": 0.000243398,
+      "max_rss_bytes": 16977920,
+      "metrics": {
+        "durable_revision_changed": 0
+      },
+      "correctness": "durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary"
+    }
+  ],
+  "processes": [
+    {
+      "wall_seconds": 0.156243662,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 17096704,
+      "exit_code": 0,
+      "active_readers": 1,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nreader_coordination_sample {\"active_readers\":1,\"correctness\":\"durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary\",\"iterations\":8,\"reservation\":65536,\"samples\":[{\"durable_changed\":1,\"nanos\":26612299,\"phase\":\"cold-register\"},{\"durable_changed\":0,\"nanos\":211341,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":187595,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":116356,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":115169,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":115168,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":113981,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":113981,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":113982,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":141290,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":141290,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":132978,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":134166,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":141290,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":143664,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":451176,\"phase\":\"last-reserved-register\"},{\"durable_changed\":1,\"nanos\":19011160,\"phase\":\"reservation-rollover-protect\"},{\"durable_changed\":0,\"nanos\":274268,\"phase\":\"renewed-release\"}]}\ntest metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 0.15s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.125560088,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 17387520,
+      "exit_code": 0,
+      "active_readers": 64,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nreader_coordination_sample {\"active_readers\":64,\"correctness\":\"durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary\",\"iterations\":8,\"reservation\":65536,\"samples\":[{\"durable_changed\":1,\"nanos\":19154824,\"phase\":\"cold-register\"},{\"durable_changed\":0,\"nanos\":149600,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":167410,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":155537,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":140103,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":137727,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":168598,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":154350,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":141290,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":134166,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":136541,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":134165,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":134166,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":142477,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":141289,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":132978,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":136540,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":134165,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":141289,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":136541,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":131792,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":130604,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":134166,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":138915,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":389437,\"phase\":\"last-reserved-register\"},{\"durable_changed\":1,\"nanos\":14836588,\"phase\":\"reservation-rollover-protect\"},{\"durable_changed\":0,\"nanos\":175722,\"phase\":\"renewed-release\"}]}\ntest metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.104054397,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 17526784,
+      "exit_code": 0,
+      "active_readers": 1,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nreader_coordination_sample {\"active_readers\":1,\"correctness\":\"durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary\",\"iterations\":8,\"reservation\":65536,\"samples\":[{\"durable_changed\":1,\"nanos\":18951794,\"phase\":\"cold-register\"},{\"durable_changed\":0,\"nanos\":160287,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":179283,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":149601,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":129417,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":119918,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":137728,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":149601,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":153163,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":125855,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":154350,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":155537,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":124667,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":147226,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":138915,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":147226,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":130604,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":150788,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":147226,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":124668,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":130604,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":141289,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":123480,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":121106,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":277830,\"phase\":\"last-reserved-register\"},{\"durable_changed\":1,\"nanos\":14803343,\"phase\":\"reservation-rollover-protect\"},{\"durable_changed\":0,\"nanos\":254084,\"phase\":\"renewed-release\"}]}\ntest metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 0.10s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.128352634,
+      "user_seconds": 0.0,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 17264640,
+      "exit_code": 0,
+      "active_readers": 64,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nreader_coordination_sample {\"active_readers\":64,\"correctness\":\"durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary\",\"iterations\":8,\"reservation\":65536,\"samples\":[{\"durable_changed\":1,\"nanos\":19330545,\"phase\":\"cold-register\"},{\"durable_changed\":0,\"nanos\":166223,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":189969,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":181658,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":160286,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":155537,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":157912,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":162661,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":155538,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":160287,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":147226,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":159099,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":185220,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":165036,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":148413,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":150788,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":156724,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":151975,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":151975,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":147226,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":143664,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":147226,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":146039,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":149601,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":162661,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":277830,\"phase\":\"last-reserved-register\"},{\"durable_changed\":1,\"nanos\":15407683,\"phase\":\"reservation-rollover-protect\"},{\"durable_changed\":0,\"nanos\":332446,\"phase\":\"renewed-release\"}]}\ntest metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.103631716,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 17117184,
+      "exit_code": 0,
+      "active_readers": 1,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nreader_coordination_sample {\"active_readers\":1,\"correctness\":\"durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary\",\"iterations\":8,\"reservation\":65536,\"samples\":[{\"durable_changed\":1,\"nanos\":18688212,\"phase\":\"cold-register\"},{\"durable_changed\":0,\"nanos\":328885,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":328884,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":154349,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":154350,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":160287,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":143665,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":137727,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":136540,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":121105,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":134165,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":125855,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":127042,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":131791,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":132978,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":134166,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":122293,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":143665,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":130603,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":119918,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":124667,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":132979,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":125854,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":125854,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":132978,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":321760,\"phase\":\"last-reserved-register\"},{\"durable_changed\":1,\"nanos\":14954132,\"phase\":\"reservation-rollover-protect\"},{\"durable_changed\":0,\"nanos\":258833,\"phase\":\"renewed-release\"}]}\ntest metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 0.10s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.123325576,
+      "user_seconds": 0.0,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 16977920,
+      "exit_code": 0,
+      "active_readers": 64,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nreader_coordination_sample {\"active_readers\":64,\"correctness\":\"durable write protection preserved, no leaked readers, stale and protected deletion claims rejected, exact reservation boundary\",\"iterations\":8,\"reservation\":65536,\"samples\":[{\"durable_changed\":1,\"nanos\":18578980,\"phase\":\"cold-register\"},{\"durable_changed\":0,\"nanos\":159100,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":161474,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":160287,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":148414,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":154350,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":172160,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":153163,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":162661,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":159099,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":172159,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":150788,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":140102,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":143664,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":155537,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":140103,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":150788,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":141290,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":159099,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":154350,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":138914,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":140102,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":151976,\"phase\":\"warm-register\"},{\"durable_changed\":0,\"nanos\":129416,\"phase\":\"warm-protect\"},{\"durable_changed\":0,\"nanos\":138915,\"phase\":\"warm-release\"},{\"durable_changed\":0,\"nanos\":584155,\"phase\":\"last-reserved-register\"},{\"durable_changed\":1,\"nanos\":14800969,\"phase\":\"reservation-rollover-protect\"},{\"durable_changed\":0,\"nanos\":243398,\"phase\":\"renewed-release\"}]}\ntest metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    }
+  ]
+}

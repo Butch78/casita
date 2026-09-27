@@ -1,0 +1,26 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on build directory
+warning: function `fuzz_decode` is never used
+   --> crates/casita/src/sync/sliced.rs:952:8
+    |
+952 | pub fn fuzz_decode(bytes: &[u8]) {
+    |        ^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `casita` (lib test) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 4m 18s
+     Running unittests src/lib.rs (/home/domen/dev/casita7/target/release/deps/casita-20517d70d0d1c6ad)
+
+running 6 tests
+test casitar::import::tests::a_forged_record_prevents_the_entire_protected_batch_from_publication ... ok
+test casitar::import::tests::unreachable_records_and_payloads_publish_no_root ... ok
+test casitar::import::tests::ambient_destination_objects_cannot_conceal_an_omitted_record ... ok
+test casitar::import::tests::import_admits_collection_before_final_root_publication ... ok
+test casitar::import::tests::root_conflicts_are_preflighted_and_replacement_is_conditional ... ok
+test casitar::import::tests::imports_exact_multi_root_closure_atomically_and_reuses_on_retry ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 803 filtered out; finished in 0.47s
+

@@ -1,0 +1,23 @@
+[
+  "/home/domen/dev/casita7/.devenv/profile/bin/python3",
+  "-m",
+  "benchmarks.cli",
+  "run",
+  "casitar-quiet-import",
+  "--profile",
+  "standard",
+  "--file-counts",
+  "4096",
+  "--repetitions",
+  "4",
+  "--max-external-cpu-percent",
+  "40",
+  "--baseline-bin",
+  "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/baseline",
+  "--casita-bin",
+  "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/candidate",
+  "--quiet-timeout",
+  "180",
+  "--output",
+  "/tmp/casita-current-main-20260925/benchmarks/reports/casitar-current-main-20260925/paired.json"
+]

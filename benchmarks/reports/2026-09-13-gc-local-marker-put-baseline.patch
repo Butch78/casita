@@ -1,0 +1,139 @@
+--- a/src/blob/pack.rs
++++ b/src/blob/pack.rs
+@@ -6421,25 +6421,6 @@
+         ))
+     }
+
+-    async fn put_replacement_marker(&self, old: PackId, new: Option<PackId>) -> io::Result<()> {
+-        let marker = encode_replacement(old, new);
+-        let marker_id = Digest::from(blake3::hash(&marker));
+-        let path = sharded_path(&self.base, REPLACEMENTS_KIND, &marker_id);
+-        self.read_counters
+-            .gc_marker_put_requests
+-            .fetch_add(1, Ordering::Relaxed);
+-        self.read_counters
+-            .gc_marker_put_bytes
+-            .fetch_add(marker.len() as u64, Ordering::Relaxed);
+-        if let Some(local) = &self.local_durability {
+-            local.put(&path, marker).await
+-        } else {
+-            put_object(&self.object_store, &path, marker, true)
+-                .await
+-                .map_err(io::Error::other)
+-        }
+-    }
+-
+     #[tracing::instrument(name = "blob.pack.compact", skip_all)]
+     async fn compact_pack(
+         &self,
+@@ -6574,7 +6555,18 @@
+                 .await?;
+             drop(retire);
+             let marker_write = CollectionPhase::new("compact_pack_marker_write");
+-            self.put_replacement_marker(old, None).await?;
++            let marker = encode_replacement(old, None);
++            let marker_id = Digest::from(blake3::hash(&marker));
++            let marker_path = sharded_path(&self.base, REPLACEMENTS_KIND, &marker_id);
++            self.read_counters
++                .gc_marker_put_requests
++                .fetch_add(1, Ordering::Relaxed);
++            self.read_counters
++                .gc_marker_put_bytes
++                .fetch_add(marker.len() as u64, Ordering::Relaxed);
++            put_object(&self.object_store, &marker_path, marker, true)
++                .await
++                .map_err(io::Error::other)?;
+             drop(marker_write);
+             {
+                 let mut index = self.index.write().unwrap();
+@@ -6620,7 +6612,18 @@
+         };
+         let marker_write = CollectionPhase::new("compact_pack_marker_write");
+         let replacement_id = replacement.as_ref().map(|(id, _, _)| *id);
+-        self.put_replacement_marker(old, replacement_id).await?;
++        let marker = encode_replacement(old, replacement_id);
++        let marker_id = Digest::from(blake3::hash(&marker));
++        let marker_path = sharded_path(&self.base, REPLACEMENTS_KIND, &marker_id);
++        self.read_counters
++            .gc_marker_put_requests
++            .fetch_add(1, Ordering::Relaxed);
++        self.read_counters
++            .gc_marker_put_bytes
++            .fetch_add(marker.len() as u64, Ordering::Relaxed);
++        put_object(&self.object_store, &marker_path, marker, true)
++            .await
++            .map_err(io::Error::other)?;
+
+         drop(marker_write);
+         {
+@@ -7358,70 +7361,6 @@
+         let reopened = PackedChunks::open(objects, base, u64::MAX).await.unwrap();
+         assert_eq!(reopened.get(&a.digest).await.unwrap(), Some(a_bytes));
+         assert_eq!(reopened.get(&b.digest).await.unwrap(), None);
+-    }
+-
+-    #[tokio::test]
+-    async fn local_marker_failure_keeps_old_pack_and_retries() {
+-        let directory = tempfile::tempdir().unwrap();
+-        let fs = object_store::local::LocalFileSystem::new_with_prefix(directory.path())
+-            .unwrap()
+-            .with_fsync(true);
+-        let durability = LocalDurability::new(fs.clone(), directory.path()).unwrap();
+-        let objects: Arc<dyn ObjectStore> = Arc::new(fs);
+-        let store = PackedChunks::open_with_initial_catalog(
+-            objects.clone(),
+-            Path::default(),
+-            u64::MAX,
+-            0,
+-            2,
+-            Some(&PackedChunks::empty_state_catalog().unwrap()),
+-            Some(durability),
+-        )
+-        .await
+-        .unwrap();
+-        let (meta, bytes) = chunk(b"failed local marker must not retire its pack");
+-        store.put(meta.clone(), bytes).await.unwrap();
+-        store.prepare_state_catalog().await.unwrap().unwrap();
+-        store.finish_state_catalog(true).unwrap();
+-        let old = store.location(&meta.digest).await.unwrap().unwrap().pack;
+-        let marker = encode_replacement(old, None);
+-        let path = sharded_path(
+-            &Path::default(),
+-            REPLACEMENTS_KIND,
+-            &Digest::from(blake3::hash(&marker)),
+-        );
+-        let obstacle = directory.path().join(path.as_ref());
+-        std::fs::create_dir_all(&obstacle).unwrap();
+-        store.delete_many(&[meta.digest]).await.unwrap();
+-        assert!(
+-            store
+-                .finish_deletions_inner(true, PayloadRetirement::Deferred)
+-                .await
+-                .is_err()
+-        );
+-        assert!(store.index.read().unwrap().packs.contains_key(&old));
+-        assert!(store.dirty_packs.lock().await.contains(&old));
+-        assert!(
+-            objects
+-                .head(&pack_path(&Path::default(), &old))
+-                .await
+-                .is_ok()
+-        );
+-        std::fs::remove_dir(&obstacle).unwrap();
+-        store
+-            .finish_deletions_inner(true, PayloadRetirement::Deferred)
+-            .await
+-            .unwrap();
+-        assert!(!store.index.read().unwrap().packs.contains_key(&old));
+-        assert!(!store.dirty_packs.lock().await.contains(&old));
+-        let actual = objects.get(&path).await.unwrap().bytes().await.unwrap();
+-        assert_eq!(actual, marker);
+-        assert!(
+-            objects
+-                .head(&pack_path(&Path::default(), &old))
+-                .await
+-                .is_ok()
+-        );
+     }
+
+     #[tokio::test]

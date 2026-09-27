@@ -1,0 +1,8 @@
+chain       obrador jobs= 8 round=1: 73.589s (1149.82 ms/build)
+wide        obrador jobs= 8 round=1: 47.105s (736.02 ms/build)
+
+| Workload | Backend | Jobs | Median batch (s) | Amortized ms/build |
+|---|---|---:|---:|---:|
+| chain | obrador | 8 | 73.589 | 1149.82 |
+| wide | obrador | 8 | 47.105 | 736.02 |
+Results and stores: /Users/hetzner/obrador-shared-pins-20260909/trace-baseline

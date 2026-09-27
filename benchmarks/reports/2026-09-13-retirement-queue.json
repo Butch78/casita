@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "base_revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+  "method": "Three fresh-process repetitions per case and binary. Before then after cohorts on a shared host, identical debug test benchmark code and dependency lockfile. No own compilation during timed runs. All samples retained. Queue-only RSS is Linux process RSS before cleanup and paused at the first deletion, not allocator accounting or a whole-GC memory bound.",
+  "before": {
+    "cleanup-batches": {
+      "schema_version": 1,
+      "suite_id": "blob-backends",
+      "complete": true,
+      "environment": {
+        "captured_at_utc": "2026-09-13T21:28:13.456498+00:00",
+        "hostname": "cherimoya",
+        "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+        "kernel": "7.2.2",
+        "architecture": "x86_64",
+        "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+        "logical_cpus": 16,
+        "memory_bytes": 29177946112,
+        "cpu_governor": "performance",
+        "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+        "python": "3.14.7",
+        "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+        "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+        "casita_revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+        "casita_worktree_dirty": true
+      },
+      "configuration": {
+        "counts": [
+          999,
+          1001
+        ],
+        "queue_counts": [
+          999,
+          1001,
+          100000
+        ],
+        "repetitions": 3,
+        "batch_limit": 1000,
+        "profile": "smoke"
+      },
+      "artifacts": [
+        {
+          "path": "/tmp/casita-queue-before/bin/casita-lib-test",
+          "sha256": "fd18afd42836b7def184dbdd207268c1df2d5c33f6bb0787766dc2bcb4269a06"
+        }
+      ],
+      "samples": [
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 999,
+          "repetition": 1,
+          "wall_seconds": 1.068743758,
+          "claim_pairs": 1,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 999,
+          "repetition": 2,
+          "wall_seconds": 1.317705229,
+          "claim_pairs": 1,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 999,
+          "repetition": 3,
+          "wall_seconds": 1.18985078,
+          "claim_pairs": 1,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 1001,
+          "repetition": 1,
+          "wall_seconds": 1.158840867,
+          "claim_pairs": 2,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 1001,
+          "repetition": 2,
+          "wall_seconds": 1.062324026,
+          "claim_pairs": 2,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 1001,
+          "repetition": 3,
+          "wall_seconds": 1.112948143,
+          "claim_pairs": 2,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 999,
+          "repetition": 1,
+          "wall_seconds": 0.010183476,
+          "rss_before": 53673984,
+          "rss_at_first_delete": 65175552,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 999,
+          "repetition": 2,
+          "wall_seconds": 0.007704392,
+          "rss_before": 53661696,
+          "rss_at_first_delete": 65163264,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 999,
+          "repetition": 3,
+          "wall_seconds": 0.008901192,
+          "rss_before": 54415360,
+          "rss_at_first_delete": 65744896,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 1001,
+          "repetition": 1,
+          "wall_seconds": 0.008182875,
+          "rss_before": 53534720,
+          "rss_at_first_delete": 64405504,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 1001,
+          "repetition": 2,
+          "wall_seconds": 0.008577059,
+          "rss_before": 54861824,
+          "rss_at_first_delete": 65953792,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 1001,
+          "repetition": 3,
+          "wall_seconds": 0.009278753,
+          "rss_before": 54964224,
+          "rss_at_first_delete": 65257472,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 100000,
+          "repetition": 1,
+          "wall_seconds": 0.676002577,
+          "rss_before": 68907008,
+          "rss_at_first_delete": 92499968,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 100000,
+          "repetition": 2,
+          "wall_seconds": 0.658867457,
+          "rss_before": 69455872,
+          "rss_at_first_delete": 94064640,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 100000,
+          "repetition": 3,
+          "wall_seconds": 0.672516663,
+          "rss_before": 67997696,
+          "rss_at_first_delete": 92278784,
+          "correctness": "every candidate visited once; queue empty"
+        }
+      ],
+      "processes": [
+        {
+          "count": 999,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":1,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":999,\"nanos\":1068743758}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.74s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 999,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":1,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":999,\"nanos\":1317705229}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.90s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 999,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":1,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":999,\"nanos\":1189850780}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 2.59s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 1001,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":2,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":1001,\"nanos\":1158840867}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.78s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 1001,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":2,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":1001,\"nanos\":1062324026}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 2.21s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 1001,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":2,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":1001,\"nanos\":1112948143}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.81s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 999,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":999,\"nanos\":10183476,\"rss_at_first_delete\":65175552,\"rss_before\":53673984}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 999,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":999,\"nanos\":7704392,\"rss_at_first_delete\":65163264,\"rss_before\":53661696}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 999,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":999,\"nanos\":8901192,\"rss_at_first_delete\":65744896,\"rss_before\":54415360}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 1001,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":1001,\"nanos\":8182875,\"rss_at_first_delete\":64405504,\"rss_before\":53534720}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 1001,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":1001,\"nanos\":8577059,\"rss_at_first_delete\":65953792,\"rss_before\":54861824}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 1001,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":1001,\"nanos\":9278753,\"rss_at_first_delete\":65257472,\"rss_before\":54964224}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 100000,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":100000,\"nanos\":676002577,\"rss_at_first_delete\":92499968,\"rss_before\":68907008}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.45s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 100000,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":100000,\"nanos\":658867457,\"rss_at_first_delete\":94064640,\"rss_before\":69455872}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.35s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 100000,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":100000,\"nanos\":672516663,\"rss_at_first_delete\":92278784,\"rss_before\":67997696}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 769 filtered out; finished in 1.39s\n\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "environment": {
+      "captured_at_utc": "2026-09-13T21:28:12.302631+00:00",
+      "hostname": "cherimoya",
+      "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+      "kernel": "7.2.2",
+      "architecture": "x86_64",
+      "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+      "logical_cpus": 16,
+      "memory_bytes": 29177946112,
+      "cpu_governor": "performance",
+      "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+      "python": "3.14.7",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+      "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+      "casita_revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+      "casita_worktree_dirty": true
+    },
+    "execution": {
+      "schema_version": 1,
+      "profile": "smoke",
+      "complete": true,
+      "revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+      "diff": " benchmarks/manifest.json                 |  2 +-\n benchmarks/suites/cleanup_batches.py     | 46 ++++++++++++++++++++-\n benchmarks/tests/test_cleanup_batches.py | 24 ++++++++++-\n src/blob/pack.rs                         | 70 ++++++++++++++++++++++++++++++++\n 4 files changed, 138 insertions(+), 4 deletions(-)\n",
+      "entries": [
+        {
+          "suite": "cleanup-batches",
+          "status": "passed",
+          "command": [
+            "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+            "-m",
+            "benchmarks.cli",
+            "run",
+            "cleanup-batches",
+            "--profile",
+            "smoke",
+            "--probe-binary",
+            "/tmp/casita-queue-before/bin/casita-lib-test",
+            "--no-build",
+            "--repetitions",
+            "3",
+            "--output",
+            "/tmp/casita-queue-before/cleanup-batches.json"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 16.92456910799956,
+          "log": "/tmp/casita-queue-before/cleanup-batches.log"
+        }
+      ],
+      "artifacts_unchanged": true
+    },
+    "artifacts": {
+      "casita-lib-test": {
+        "path": "/tmp/casita-queue-before/bin/casita-lib-test",
+        "sha256": "fd18afd42836b7def184dbdd207268c1df2d5c33f6bb0787766dc2bcb4269a06"
+      }
+    }
+  },
+  "after": {
+    "cleanup-batches": {
+      "schema_version": 1,
+      "suite_id": "blob-backends",
+      "complete": true,
+      "environment": {
+        "captured_at_utc": "2026-09-13T21:34:45.586660+00:00",
+        "hostname": "cherimoya",
+        "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+        "kernel": "7.2.2",
+        "architecture": "x86_64",
+        "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+        "logical_cpus": 16,
+        "memory_bytes": 29177946112,
+        "cpu_governor": "performance",
+        "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+        "python": "3.14.7",
+        "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+        "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+        "casita_revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+        "casita_worktree_dirty": true
+      },
+      "configuration": {
+        "counts": [
+          999,
+          1001
+        ],
+        "queue_counts": [
+          999,
+          1001,
+          100000
+        ],
+        "repetitions": 3,
+        "batch_limit": 1000,
+        "profile": "smoke"
+      },
+      "artifacts": [
+        {
+          "path": "/tmp/casita-queue-after/bin/casita-lib-test",
+          "sha256": "f251f5c1e3fa2812eb8a10a1c3cb37a8fd625807f6efc26603d3142257128ba9"
+        }
+      ],
+      "samples": [
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 999,
+          "repetition": 1,
+          "wall_seconds": 0.409294846,
+          "claim_pairs": 1,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 999,
+          "repetition": 2,
+          "wall_seconds": 0.387854749,
+          "claim_pairs": 1,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 999,
+          "repetition": 3,
+          "wall_seconds": 0.401628515,
+          "claim_pairs": 1,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 1001,
+          "repetition": 1,
+          "wall_seconds": 0.392789136,
+          "claim_pairs": 2,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 1001,
+          "repetition": 2,
+          "wall_seconds": 0.360532816,
+          "claim_pairs": 2,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "cleanup-batches",
+          "entries": 1001,
+          "repetition": 3,
+          "wall_seconds": 0.402802759,
+          "claim_pairs": 2,
+          "correctness": "held path survives; candidates and claims reclaimed"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 999,
+          "repetition": 1,
+          "wall_seconds": 0.005776171,
+          "rss_before": 42192896,
+          "rss_at_first_delete": 51343360,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 999,
+          "repetition": 2,
+          "wall_seconds": 0.00589965,
+          "rss_before": 41771008,
+          "rss_at_first_delete": 50884608,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 999,
+          "repetition": 3,
+          "wall_seconds": 0.005577893,
+          "rss_before": 41938944,
+          "rss_at_first_delete": 51642368,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 1001,
+          "repetition": 1,
+          "wall_seconds": 0.006315202,
+          "rss_before": 41979904,
+          "rss_at_first_delete": 51343360,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 1001,
+          "repetition": 2,
+          "wall_seconds": 0.005443729,
+          "rss_before": 41472000,
+          "rss_at_first_delete": 50827264,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 1001,
+          "repetition": 3,
+          "wall_seconds": 0.005556522,
+          "rss_before": 41979904,
+          "rss_at_first_delete": 51593216,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 100000,
+          "repetition": 1,
+          "wall_seconds": 0.548555811,
+          "rss_before": 56348672,
+          "rss_at_first_delete": 66002944,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 100000,
+          "repetition": 2,
+          "wall_seconds": 0.563616608,
+          "rss_before": 56496128,
+          "rss_at_first_delete": 65585152,
+          "correctness": "every candidate visited once; queue empty"
+        },
+        {
+          "status": "ok",
+          "operation": "retirement-queue",
+          "entries": 100000,
+          "repetition": 3,
+          "wall_seconds": 0.556597353,
+          "rss_before": 56782848,
+          "rss_at_first_delete": 65847296,
+          "correctness": "every candidate visited once; queue empty"
+        }
+      ],
+      "processes": [
+        {
+          "count": 999,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":1,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":999,\"nanos\":409294846}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 2.14s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 999,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":1,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":999,\"nanos\":387854749}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.77s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 999,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":1,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":999,\"nanos\":401628515}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.76s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 1001,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":2,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":1001,\"nanos\":392789136}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.77s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 1001,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":2,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":1001,\"nanos\":360532816}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.73s\n\n",
+          "stderr": ""
+        },
+        {
+          "count": 1001,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\ncleanup_batch_sample {\"claim_pairs\":2,\"correctness\":\"held path survives; candidates and claims reclaimed\",\"count\":1001,\"nanos\":402802759}\ntest blob::pack::tests::benchmark_cleanup_batch_boundary ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.71s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 999,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":999,\"nanos\":5776171,\"rss_at_first_delete\":51343360,\"rss_before\":42192896}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.01s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 999,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":999,\"nanos\":5899650,\"rss_at_first_delete\":50884608,\"rss_before\":41771008}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.02s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 999,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":999,\"nanos\":5577893,\"rss_at_first_delete\":51642368,\"rss_before\":41938944}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.01s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 1001,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":1001,\"nanos\":6315202,\"rss_at_first_delete\":51343360,\"rss_before\":41979904}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.01s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 1001,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":1001,\"nanos\":5443729,\"rss_at_first_delete\":50827264,\"rss_before\":41472000}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.01s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 1001,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":1001,\"nanos\":5556522,\"rss_at_first_delete\":51593216,\"rss_before\":41979904}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.01s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 100000,
+          "repetition": 1,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":100000,\"nanos\":548555811,\"rss_at_first_delete\":66002944,\"rss_before\":56348672}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 1.23s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 100000,
+          "repetition": 2,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":100000,\"nanos\":563616608,\"rss_at_first_delete\":65585152,\"rss_before\":56496128}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 1.24s\n\n",
+          "stderr": ""
+        },
+        {
+          "operation": "retirement-queue",
+          "count": 100000,
+          "repetition": 3,
+          "exit_code": 0,
+          "stdout": "\nrunning 1 test\nretirement_queue_sample {\"correctness\":\"every candidate visited once; queue empty\",\"count\":100000,\"nanos\":556597353,\"rss_at_first_delete\":65847296,\"rss_before\":56782848}\ntest blob::pack::tests::benchmark_retirement_queue_memory ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 1.24s\n\n",
+          "stderr": ""
+        }
+      ]
+    },
+    "environment": {
+      "captured_at_utc": "2026-09-13T21:34:44.334264+00:00",
+      "hostname": "cherimoya",
+      "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+      "kernel": "7.2.2",
+      "architecture": "x86_64",
+      "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+      "logical_cpus": 16,
+      "memory_bytes": 29177946112,
+      "cpu_governor": "performance",
+      "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+      "python": "3.14.7",
+      "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+      "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+      "casita_revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+      "casita_worktree_dirty": true
+    },
+    "execution": {
+      "schema_version": 1,
+      "profile": "smoke",
+      "complete": true,
+      "revision": "9076c6ee68c8ddfa502bac13af148843925317a8",
+      "diff": " benchmarks/README.md                     |  10 +-\n benchmarks/manifest.json                 |   2 +-\n benchmarks/suites/cleanup_batches.py     |  46 ++++++-\n benchmarks/tests/test_cleanup_batches.py |  24 +++-\n src/blob/pack.rs                         | 222 ++++++++++++++++++++++++++++---\n 5 files changed, 279 insertions(+), 25 deletions(-)\n",
+      "entries": [
+        {
+          "suite": "cleanup-batches",
+          "status": "passed",
+          "command": [
+            "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+            "-m",
+            "benchmarks.cli",
+            "run",
+            "cleanup-batches",
+            "--profile",
+            "smoke",
+            "--probe-binary",
+            "/tmp/casita-queue-after/bin/casita-lib-test",
+            "--no-build",
+            "--repetitions",
+            "3",
+            "--output",
+            "/tmp/casita-queue-after/cleanup-batches.json"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 10.392275870999583,
+          "log": "/tmp/casita-queue-after/cleanup-batches.log"
+        }
+      ],
+      "artifacts_unchanged": true
+    },
+    "artifacts": {
+      "casita-lib-test": {
+        "path": "/tmp/casita-queue-after/bin/casita-lib-test",
+        "sha256": "f251f5c1e3fa2812eb8a10a1c3cb37a8fd625807f6efc26603d3142257128ba9"
+      }
+    }
+  },
+  "source_hashes": {
+    "src/blob/pack.rs": "cf4bad4cfc56592946e8c127c7b6fa156dec4ed01b372cc40cc5e53d65b9c436",
+    "benchmarks/suites/cleanup_batches.py": "3246ba15221f98372118d354f86505db57f7fee2d19a988469cc0dc3030134d1",
+    "Cargo.lock": "0dad8a2b3f10d83548a8b214879cd1d10c48b98412f0591f5d78095aec77a723"
+  },
+  "before_pack_sha256": "039ccd4b42b9d9c00163788081371efbf92a54f0a70ab531e2ee80ef526b4a0d"
+}

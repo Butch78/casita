@@ -1,0 +1,4 @@
+casitar-scaling: round 1, baseline, object-count, 254 files x 128 bytes
+casitar-scaling: round 1, candidate, object-count, 254 files x 128 bytes
+casitar-scaling: round 1, baseline, object-count, 256 files x 128 bytes
+casitar-scaling: round 1, candidate, object-count, 256 files x 128 bytes

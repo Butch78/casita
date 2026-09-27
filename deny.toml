@@ -1,0 +1,83 @@
+# Dependency policy for release builds. Every exception must name an exact
+# crate/advisory and include a review reason; broad suppressions are not used.
+
+[graph]
+all-features = true
+
+[advisories]
+yanked = "deny"
+unmaintained = "workspace"
+# Chroma enables the AWS SDK's legacy Hyper/Rustls connector even though the
+# SDK now uses its Hyper 1 connector by default. The legacy connector is not
+# selected by Casita, but Cargo still includes it in the feature-unified graph.
+ignore = [
+  "RUSTSEC-2026-0098", # legacy rustls-webpki certificate name constraints
+  "RUSTSEC-2026-0099", # legacy rustls-webpki wildcard name constraints
+  "RUSTSEC-2026-0104", # legacy rustls-webpki CRL parser (Casita does not use CRLs)
+  "RUSTSEC-2026-0258", # legacy Hyper 0.14 h2 client
+  # Chroma pins object_store 0.12.5. Its quick-xml path is not used by Casita's
+  # S3 integration; remove these when the pinned Chroma revision reaches
+  # object_store 0.14 / quick-xml 0.41.
+  "RUSTSEC-2026-0194",
+  "RUSTSEC-2026-0195",
+]
+unused-ignored-advisory = "deny"
+
+[licenses]
+confidence-threshold = 0.93
+allow = [
+  "Apache-2.0",
+  "Apache-2.0 WITH LLVM-exception",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "BSL-1.0",
+  "CC0-1.0",
+  "ISC",
+  "MIT",
+  "MPL-2.0",
+  "Unicode-3.0",
+  "Zlib",
+]
+exceptions = [
+  # Mozilla's root-certificate data is distributed under this permissive data
+  # license; keep the allowance scoped to the two crates that package it.
+  { allow = ["CDLA-Permissive-2.0"], crate = "webpki-root-certs" },
+  { allow = ["CDLA-Permissive-2.0"], crate = "webpki-roots" },
+]
+
+# These workspace crates omit package-level license metadata, but are covered
+# by Chroma's repository-level Apache-2.0 license at the pinned Git revision.
+[[licenses.clarify]]
+name = "chroma-config"
+expression = "Apache-2.0"
+license-files = [{ path = "../../LICENSE", hash = 0x0a6d4ed6 }]
+
+[[licenses.clarify]]
+name = "chroma-storage"
+expression = "Apache-2.0"
+license-files = [{ path = "../../LICENSE", hash = 0x0a6d4ed6 }]
+
+[[licenses.clarify]]
+name = "wal3"
+expression = "Apache-2.0"
+license-files = [{ path = "../../LICENSE", hash = 0x0a6d4ed6 }]
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+allow-wildcard-paths = true
+deny = []
+skip = []
+skip-tree = []
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+# Both repositories are immutable in the resolved graph: Chroma is pinned by
+# commit and its Google Cloud dependency by an exact tag.
+allow-git = [
+  "https://github.com/domenkozar/chroma",
+  "https://github.com/yoshidan/google-cloud-rust",
+]
+unused-allowed-source = "deny"

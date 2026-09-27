@@ -1,0 +1,8 @@
+# Uncompressed copies of the committed raw reports.
+/workloads-read-control.json
+/workloads-read-phases.json
+/workloads-read-ranges.json
+/workloads-read-trace.json
+/read-phases-tests.log
+/read-ranges-tests.log
+/workloads-macho.json

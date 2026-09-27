@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="700" viewBox="0 0 720 700" role="img" aria-labelledby="title desc">
+  <title id="title">Native identities, one repository lifecycle</title>
+  <desc id="desc">Filesystem, Git, IPLD, and custom objects keep their native identities. The namespace's ObjectFormat verifies identity, canonical payload, and exact forward links. MetadataStore holds immutable object records and named roots. Records refer to canonical payloads in a BLAKE3-addressed BlobStore. All formats share publication, reads, sync, integrity checks, and collection.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="m1 1 8 4-8 4" fill="none" stroke="#a23b20" stroke-width="1.5"/></marker>
+    <style>
+      text { font-family: system-ui, sans-serif; fill: #222b32; }
+      .heading { font-size: 27px; font-weight: 700; }
+      .label { font-size: 20px; font-weight: 650; }
+      .body { font-size: 18px; }
+      .small { font-size: 16px; fill: #56616a; }
+      .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; fill: #a23b20; }
+      .card { fill: #fffdfa; stroke: #d5d6d2; stroke-width: 1.5; }
+      .flow { fill: none; stroke: #a23b20; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="720" height="700" rx="20" fill="#faf8f4"/>
+  <text x="32" y="38" class="eyebrow">01 / OBJECT MODEL</text>
+  <text x="32" y="77" class="heading">Native identities. Shared lifecycle.</text>
+  <g text-anchor="middle">
+    <rect x="32" y="112" width="154" height="88" rx="12" class="card"/>
+    <text x="109" y="147" class="label">Filesystem</text>
+    <text x="109" y="177" class="small">Directory / blob ID</text>
+    <rect x="200" y="112" width="154" height="88" rx="12" class="card"/>
+    <text x="277" y="147" class="label">Git</text>
+    <text x="277" y="177" class="small">Native object ID</text>
+    <rect x="368" y="112" width="154" height="88" rx="12" class="card"/>
+    <text x="445" y="147" class="label">IPLD</text>
+    <text x="445" y="177" class="small">CID</text>
+    <rect x="536" y="112" width="152" height="88" rx="12" class="card"/>
+    <text x="612" y="147" class="label">Custom</text>
+    <text x="612" y="177" class="small">Format-defined ID</text>
+  </g>
+  <path d="M109 200v26h503v-26 M277 200v26 M445 200v26" fill="none" stroke="#a23b20" stroke-width="2"/>
+  <path d="M360 226v30" class="flow"/>
+  <rect x="32" y="260" width="656" height="104" rx="12" fill="#fff0e9" stroke="#d25a37" stroke-width="1.5"/>
+  <text x="56" y="296" class="label">ObjectFormat · selected by namespace</text>
+  <text x="56" y="327" class="body">Verify native identity, canonical payload, and exact links.</text>
+  <path d="M196 364v34" class="flow"/>
+  <path d="M536 364v34" class="flow"/>
+  <rect x="32" y="402" width="320" height="188" rx="12" class="card"/>
+  <text x="56" y="437" class="label">MetadataStore</text>
+  <text x="56" y="468" class="body">Immutable object records</text>
+  <text x="56" y="496" class="small">Native key · payload digest</text>
+  <text x="56" y="521" class="small">Payload length · forward links</text>
+  <path d="M56 538h272" stroke="#d5d6d2"/>
+  <text x="56" y="567" class="body">Named roots + local revision</text>
+  <rect x="400" y="402" width="288" height="188" rx="12" class="card"/>
+  <text x="424" y="437" class="label">BlobStore</text>
+  <text x="424" y="468" class="body">Canonical payload bytes</text>
+  <text x="424" y="496" class="small">Addressed by BLAKE3</text>
+  <path d="M352 494h44" class="flow"/>
+  <path d="M424 514h240" stroke="#d5d6d2"/>
+  <text x="424" y="543" class="small">Chunking, compression, and</text>
+  <text x="424" y="568" class="small">packing stay behind this API.</text>
+  <rect x="32" y="618" width="656" height="54" rx="12" fill="#222b32"/>
+  <text x="360" y="652" text-anchor="middle" style="fill: #fffdfa; font-size: 18px; font-weight: 600">One repository: publish · read · sync · fsck · collect</text>
+</svg>

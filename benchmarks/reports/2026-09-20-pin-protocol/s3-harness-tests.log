@@ -1,0 +1,20 @@
+.....Failed protocol case: {'writers': 1, 'objects': 9, 'fault': 'none', 'variant': 'current-shape', 'status': 'failed', 'error': "RuntimeError('indeterminate PUT')", 'fresh_readback': False}
+................building benchmark artifacts
+building benchmark artifacts
+....running online-holds
+.completion ledger: /tmp/tmp6p_k5f5c/results/execution.json
+running online-holds
+...completion ledger: /tmp/tmpu7g2c1ur/results/execution.json
+running fskit-setup-reuse
+completion ledger: /tmp/tmpry06vng_/results/execution.json
+running fskit-setup-reuse
+.completion ledger: /tmp/tmp_at95amf/results/execution.json
+running transfer-holds
+completion ledger: /tmp/tmp176dfc6i/results/execution.json
+running transfer-holds
+.
+----------------------------------------------------------------------
+Ran 31 tests in 1.316s
+
+OK
+completion ledger: /tmp/tmpsa5sdso8/results/execution.json

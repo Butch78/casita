@@ -1,0 +1,45 @@
+{
+  "project": "serde",
+  "version": "1.0.229",
+  "source": "https://static.crates.io/crates/serde/serde-1.0.229.crate",
+  "source_sha256": "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+  "command": "cargo build --lib --locked --message-format=json",
+  "files": [
+    {
+      "label": "libserde.rlib",
+      "kind": "Compiled library",
+      "path": "libserde.rlib",
+      "bytes": 1104024,
+      "sha256": "0abbef362e315e34e5903b3550f89dbf85349b576129c1d59ef4722318eca9a6"
+    },
+    {
+      "label": "libserde.rmeta",
+      "kind": "Compiler metadata",
+      "path": "libserde-cda365ab3860e0b3.rmeta",
+      "bytes": 825510,
+      "sha256": "2230e74d48f3c37f9c5a4229bf1fb70a998878bc10d0decdcaad10167da89d27"
+    },
+    {
+      "label": "libserde.d",
+      "kind": "Dependency file",
+      "path": "libserde.d",
+      "bytes": 530,
+      "sha256": "4f2c82d8f54cdcb0332f412a92e1a606dcf624bc4e1d3bda2b3a9b47a895d968"
+    }
+  ],
+  "illustration": "Output filenames are real. Chunk boundaries, counts, sharing and transfer are schematic, not measured.",
+  "primary_artifact": "target/debug/libserde.rlib",
+  "profile": "dev",
+  "second_build": {
+    "same_workspace_and_inputs": true,
+    "serde_fresh": true,
+    "recompiled_targets": 0,
+    "output_bytes_unchanged": true
+  },
+  "verified": {
+    "source_checksum": true,
+    "built_serde_itself": true,
+    "all_output_files_exist": true
+  }
+}

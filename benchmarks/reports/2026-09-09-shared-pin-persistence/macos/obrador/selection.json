@@ -1,0 +1,59 @@
+{
+  "pairs": [
+    [
+      "round-1-baseline",
+      "round-1-after"
+    ],
+    [
+      "round-2-baseline",
+      "round-2-after"
+    ],
+    [
+      "round-3-baseline",
+      "round-3-after"
+    ]
+  ],
+  "excluded": [],
+  "observations": [
+    {
+      "workload": "chain",
+      "variant": "baseline",
+      "seconds": [
+        71.85547895915806,
+        70.91811458300799,
+        73.88172366702929
+      ],
+      "median_seconds": 71.85547895915806
+    },
+    {
+      "workload": "chain",
+      "variant": "after",
+      "seconds": [
+        41.191681707976386,
+        41.04787712497637,
+        42.406661208951846
+      ],
+      "median_seconds": 41.191681707976386
+    },
+    {
+      "workload": "wide",
+      "variant": "baseline",
+      "seconds": [
+        47.256366666872054,
+        45.91727020777762,
+        47.60200037504546
+      ],
+      "median_seconds": 47.256366666872054
+    },
+    {
+      "workload": "wide",
+      "variant": "after",
+      "seconds": [
+        20.727098749950528,
+        20.716979542048648,
+        22.006295999977738
+      ],
+      "median_seconds": 20.727098749950528
+    }
+  ]
+}

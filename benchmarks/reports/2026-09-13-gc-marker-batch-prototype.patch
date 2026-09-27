@@ -1,0 +1,282 @@
+--- a/src/blob/pack.rs
++++ b/src/blob/pack.rs
+@@ -124,6 +124,7 @@
+ const PACK_CACHE_LOAD_STRIPES: usize = 64;
+ const MAX_CONCURRENT_FOOTER_READS: usize = 32;
+ const MAX_CONCURRENT_PACK_COMPACTIONS: usize = 2;
++const DEAD_PACK_MARKER_BATCH: usize = 8;
+ const MAX_CONCURRENT_CATALOG_SYNCS: usize = 8;
+ const PACK_MAGIC: [u8; 8] = *b"casitac1";
+ const PACK_TRAILER_LEN: usize = 16;
+@@ -1504,6 +1505,13 @@
+ enum PackCompaction {
+     Complete,
+     Deferred(DeferredTombstone),
++    PreparedDead(PreparedDeadPack),
++}
++
++struct PreparedDeadPack {
++    old: PackId,
++    retired: Option<Path>,
++    marker: PreparedLocalPut,
+ }
+
+ struct DeferredTombstone {
+@@ -3382,12 +3390,23 @@
+             });
+         let mut first_error = None;
+         let mut deferred = Vec::new();
++        let mut prepared = Vec::new();
+         let mut saw_dirty_pack = false;
+         let mut results = compactions.buffer_unordered(MAX_CONCURRENT_PACK_COMPACTIONS);
+         while let Some((old, result)) = results.next().await {
+             saw_dirty_pack |= old.is_some();
+             match result {
+                 Ok(PackCompaction::Complete) => {}
++                Ok(PackCompaction::PreparedDead(pack)) => {
++                    prepared.push(pack);
++                    if prepared.len() == DEAD_PACK_MARKER_BATCH
++                        && let Err(error) = self
++                            .commit_dead_pack_markers(std::mem::take(&mut prepared))
++                            .await
++                    {
++                        first_error.get_or_insert(error);
++                    }
++                }
+                 Ok(PackCompaction::Deferred(tombstone)) => deferred.push(tombstone),
+                 Err(error) => {
+                     if let Some(old) = old {
+@@ -3396,6 +3415,12 @@
+                     first_error.get_or_insert(error);
+                 }
+             }
++        }
++
++        if !prepared.is_empty()
++            && let Err(error) = self.commit_dead_pack_markers(prepared).await
++        {
++            first_error.get_or_insert(error);
+         }
+
+         if !saw_dirty_pack {
+@@ -6422,6 +6447,50 @@
+     }
+
+     #[tracing::instrument(name = "blob.pack.compact", skip_all)]
++    async fn commit_dead_pack_markers(&self, prepared: Vec<PreparedDeadPack>) -> io::Result<()> {
++        let _phase = crate::repository::CollectionPhase::new("compact_pack_marker_commit");
++        let (packs, markers): (Vec<_>, Vec<_>) = prepared
++            .into_iter()
++            .map(|pack| ((pack.old, pack.retired), pack.marker))
++            .unzip();
++        self.local_durability
++            .as_ref()
++            .expect("only local compaction prepares markers")
++            .commit(markers)
++            .await?;
++        let mut retry = self.dirty_packs.lock().await;
++        for (old, retired) in packs {
++            self.apply_dead_pack(old, retired);
++            retry.remove(&old);
++        }
++        Ok(())
++    }
++
++    fn apply_dead_pack(&self, old: PackId, retired: Option<Path>) {
++        let mut index = self.index.write().unwrap();
++        let tombstone_records = index
++            .tombstone_records
++            .get(&old)
++            .cloned()
++            .unwrap_or_default();
++        index.remove_pack(old);
++        self.record_pack_mutation(old);
++        let mut pending = self.pending_catalog.lock().unwrap();
++        pending.retirements.extend(retired);
++        for record in index.unreferenced_tombstone_records(tombstone_records) {
++            pending
++                .retirements
++                .insert(sharded_path(&self.base, TOMBSTONES_KIND, &record));
++            self.read_counters
++                .gc_tombstone_delete_requests
++                .fetch_add(1, Ordering::Relaxed);
++        }
++        self.index_dirty.store(true, Ordering::Release);
++        drop(pending);
++        drop(index);
++        self.cache.lock().unwrap().remove(old);
++    }
++
+     async fn compact_pack(
+         &self,
+         old: PackId,
+@@ -6538,14 +6607,6 @@
+         // content-addressed object, and it lets GC make progress on a truly
+         // full local filesystem. Partially live packs remain copy-on-write.
+         if survivors.is_empty() {
+-            let tombstone_records = self
+-                .index
+-                .read()
+-                .unwrap()
+-                .tombstone_records
+-                .get(&old)
+-                .cloned()
+-                .unwrap_or_default();
+             self.read_counters
+                 .gc_pack_delete_requests
+                 .fetch_add(1, Ordering::Relaxed);
+@@ -6564,27 +6625,24 @@
+             self.read_counters
+                 .gc_marker_put_bytes
+                 .fetch_add(marker.len() as u64, Ordering::Relaxed);
++            if matches!(retirement, PayloadRetirement::Deferred)
++                && let Some(local) = &self.local_durability
++            {
++                // Keep retry state through preparation, group commit and cancellation.
++                // No index mutation is visible until every marker in the group is durable.
++                self.dirty_packs.lock().await.insert(old);
++                let marker = local.prepare(&marker_path, marker).await?;
++                return Ok(PackCompaction::PreparedDead(PreparedDeadPack {
++                    old,
++                    retired,
++                    marker,
++                }));
++            }
+             put_object(&self.object_store, &marker_path, marker, true)
+                 .await
+                 .map_err(io::Error::other)?;
+             drop(marker_write);
+-            {
+-                let mut index = self.index.write().unwrap();
+-                index.remove_pack(old);
+-                self.record_pack_mutation(old);
+-                let mut pending = self.pending_catalog.lock().unwrap();
+-                pending.retirements.extend(retired);
+-                for record in index.unreferenced_tombstone_records(tombstone_records) {
+-                    pending
+-                        .retirements
+-                        .insert(sharded_path(&self.base, TOMBSTONES_KIND, &record));
+-                    self.read_counters
+-                        .gc_tombstone_delete_requests
+-                        .fetch_add(1, Ordering::Relaxed);
+-                }
+-                self.index_dirty.store(true, Ordering::Release);
+-            }
+-            self.cache.lock().unwrap().remove(old);
++            self.apply_dead_pack(old, retired);
+             return Ok(PackCompaction::Complete);
+         }
+
+@@ -7361,6 +7419,112 @@
+         let reopened = PackedChunks::open(objects, base, u64::MAX).await.unwrap();
+         assert_eq!(reopened.get(&a.digest).await.unwrap(), Some(a_bytes));
+         assert_eq!(reopened.get(&b.digest).await.unwrap(), None);
++    }
++
++    #[tokio::test]
++    async fn dead_marker_batch_retries_cancellation_and_partial_commit() {
++        for fail_commit in [false, true] {
++            let directory = tempfile::tempdir().unwrap();
++            let fs = object_store::local::LocalFileSystem::new_with_prefix(directory.path())
++                .unwrap()
++                .with_fsync(true);
++            let durability = LocalDurability::new(fs.clone(), directory.path()).unwrap();
++            let objects: Arc<dyn ObjectStore> = Arc::new(fs);
++            let store = PackedChunks::open_with_initial_catalog(
++                objects.clone(),
++                Path::default(),
++                1,
++                0,
++                2,
++                Some(&PackedChunks::empty_state_catalog().unwrap()),
++                Some(durability.clone()),
++            )
++            .await
++            .unwrap();
++            let mut chunks = Vec::new();
++            for seed in 0..3 {
++                let (meta, bytes) = chunk(format!("dead batch {seed}").as_bytes());
++                store.put(meta.clone(), bytes.clone()).await.unwrap();
++                store.flush().await.unwrap();
++                chunks.push((meta, bytes));
++            }
++            let catalog = store.prepare_state_catalog().await.unwrap().unwrap();
++            store.finish_state_catalog(true).unwrap();
++            let deleted = chunks
++                .iter()
++                .map(|(meta, _)| meta.digest)
++                .collect::<HashSet<_>>();
++            let mut prepared = Vec::new();
++            let mut paths = Vec::new();
++            for (meta, _) in &chunks {
++                let old = store.location(&meta.digest).await.unwrap().unwrap().pack;
++                let marker = encode_replacement(old, None);
++                let path = sharded_path(
++                    &Path::default(),
++                    REPLACEMENTS_KIND,
++                    &Digest::from(blake3::hash(&marker)),
++                );
++                assert!(matches!(
++                    objects.head(&path).await,
++                    Err(object_store::Error::NotFound { .. })
++                ));
++                let PackCompaction::PreparedDead(pack) = store
++                    .compact_pack(old, &deleted, true, PayloadRetirement::Deferred)
++                    .await
++                    .unwrap()
++                else {
++                    panic!("expected staged local marker")
++                };
++                assert!(store.index.read().unwrap().packs.contains_key(&old));
++                assert!(matches!(
++                    objects.head(&path).await,
++                    Err(object_store::Error::NotFound { .. })
++                ));
++                paths.push(path);
++                prepared.push(pack);
++            }
++            if fail_commit {
++                // The first rename succeeds and the second fails. No index changes
++                // may escape, even though a prefix of the markers is now visible.
++                let obstacle = directory.path().join(paths[1].as_ref());
++                std::fs::create_dir(&obstacle).unwrap();
++                assert!(store.commit_dead_pack_markers(prepared).await.is_err());
++                assert!(objects.head(&paths[0]).await.is_ok());
++                std::fs::remove_dir(obstacle).unwrap();
++            } else {
++                // Dropping staged work models cancellation before group commit.
++                drop(prepared);
++            }
++            assert_eq!(store.dirty_packs.lock().await.len(), 3);
++            assert_eq!(store.index.read().unwrap().packs.len(), 3);
++            let reopened = PackedChunks::open_with_initial_catalog(
++                objects.clone(),
++                Path::default(),
++                1,
++                0,
++                2,
++                Some(&catalog),
++                Some(durability),
++            )
++            .await
++            .unwrap();
++            for (meta, bytes) in &chunks {
++                assert_eq!(
++                    reopened.get(&meta.digest).await.unwrap(),
++                    Some(bytes.clone())
++                );
++            }
++            store.deleted.lock().await.extend(deleted.iter().copied());
++            store
++                .finish_deletions_inner(true, PayloadRetirement::Deferred)
++                .await
++                .unwrap();
++            assert!(store.dirty_packs.lock().await.is_empty());
++            assert!(store.index.read().unwrap().packs.is_empty());
++            for path in paths {
++                assert!(objects.head(&path).await.is_ok());
++            }
++        }
+     }
+
+     #[tokio::test]

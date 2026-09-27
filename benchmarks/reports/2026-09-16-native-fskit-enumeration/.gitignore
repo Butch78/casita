@@ -1,0 +1,20 @@
+# Uncompressed copies of the committed raw reports.
+/before.json
+/density-emulated-0.json
+/density-emulated-128.json
+/density-emulated-256.json
+/density-emulated-512.json
+/density-explicit-0.json
+/density-explicit-128.json
+/density-explicit-256.json
+/density-explicit-512.json
+/enumeration-eager.json
+/enumeration-requested.json
+/path-controls.json
+/security-controls.json
+/security-profile.json
+/xattrs-emulated.json
+/xattrs-explicit.json
+/density-emulated.json
+/density-explicit.json
+/security-profile-stacks.txt

@@ -1,0 +1,83 @@
+Benchmarking nar_generation/local-cached/1
+Benchmarking nar_generation/local-cached/1: Warming up for 200.00 ms
+Benchmarking nar_generation/local-cached/1: Collecting 20 samples in estimated 2.0235 s (13k iterations)
+Benchmarking nar_generation/local-cached/1: Analyzing
+nar_generation/local-cached/1
+                        time:   [150.03 µs 153.52 µs 158.61 µs]
+Benchmarking nar_generation/local-raw-dedup/1
+Benchmarking nar_generation/local-raw-dedup/1: Warming up for 200.00 ms
+
+Warning: Unable to complete 20 samples in 2.0s. You may wish to increase target time to 2.7s, enable flat sampling, or reduce sample count to 10.
+Benchmarking nar_generation/local-raw-dedup/1: Collecting 20 samples in estimated 2.6529 s (210 iterations)
+Benchmarking nar_generation/local-raw-dedup/1: Analyzing
+nar_generation/local-raw-dedup/1
+                        time:   [12.533 ms 14.313 ms 16.134 ms]
+Found 1 outliers among 20 measurements (5.00%)
+  1 (5.00%) high severe
+Benchmarking nar_generation/local-second-handle-cached/1
+Benchmarking nar_generation/local-second-handle-cached/1: Warming up for 200.00 ms
+Benchmarking nar_generation/local-second-handle-cached/1: Collecting 20 samples in estimated 2.0026 s (13k iterations)
+Benchmarking nar_generation/local-second-handle-cached/1: Analyzing
+nar_generation/local-second-handle-cached/1
+                        time:   [153.54 µs 159.70 µs 166.70 µs]
+Found 2 outliers among 20 measurements (10.00%)
+  2 (10.00%) high mild
+Benchmarking nar_generation/local-scrub/1
+Benchmarking nar_generation/local-scrub/1: Warming up for 200.00 ms
+Benchmarking nar_generation/local-scrub/1: Collecting 20 samples in estimated 2.3063 s (1050 iterations)
+Benchmarking nar_generation/local-scrub/1: Analyzing
+nar_generation/local-scrub/1
+                        time:   [2.1640 ms 2.2130 ms 2.2724 ms]
+Benchmarking nar_generation/local-cached/256
+Benchmarking nar_generation/local-cached/256: Warming up for 200.00 ms
+Benchmarking nar_generation/local-cached/256: Collecting 20 samples in estimated 2.0129 s (10k iterations)
+Benchmarking nar_generation/local-cached/256: Analyzing
+nar_generation/local-cached/256
+                        time:   [208.58 µs 217.47 µs 227.14 µs]
+Benchmarking nar_generation/local-raw-dedup/256
+Benchmarking nar_generation/local-raw-dedup/256: Warming up for 200.00 ms
+Benchmarking nar_generation/local-raw-dedup/256: Collecting 20 samples in estimated 2.2421 s (40 iterations)
+Benchmarking nar_generation/local-raw-dedup/256: Analyzing
+nar_generation/local-raw-dedup/256
+                        time:   [38.676 ms 44.310 ms 50.839 ms]
+Found 4 outliers among 20 measurements (20.00%)
+  3 (15.00%) high mild
+  1 (5.00%) high severe
+Benchmarking nar_generation/local-second-handle-cached/256
+Benchmarking nar_generation/local-second-handle-cached/256: Warming up for 200.00 ms
+Benchmarking nar_generation/local-second-handle-cached/256: Collecting 20 samples in estimated 2.0349 s (10k iterations)
+Benchmarking nar_generation/local-second-handle-cached/256: Analyzing
+nar_generation/local-second-handle-cached/256
+                        time:   [206.78 µs 210.53 µs 215.37 µs]
+Found 2 outliers among 20 measurements (10.00%)
+  2 (10.00%) high severe
+Benchmarking nar_generation/local-scrub/256
+Benchmarking nar_generation/local-scrub/256: Warming up for 200.00 ms
+Benchmarking nar_generation/local-scrub/256: Collecting 20 samples in estimated 2.3469 s (100 iterations)
+Benchmarking nar_generation/local-scrub/256: Analyzing
+nar_generation/local-scrub/256
+                        time:   [23.374 ms 23.758 ms 24.196 ms]
+Found 1 outliers among 20 measurements (5.00%)
+  1 (5.00%) high mild
+Benchmarking nar_generation/memory-cached/1
+Benchmarking nar_generation/memory-cached/1: Warming up for 200.00 ms
+Benchmarking nar_generation/memory-cached/1: Collecting 20 samples in estimated 2.0000 s (258k iterations)
+Benchmarking nar_generation/memory-cached/1: Analyzing
+nar_generation/memory-cached/1
+                        time:   [6.1411 µs 6.1610 µs 6.1915 µs]
+Found 4 outliers among 20 measurements (20.00%)
+  4 (20.00%) high severe
+Benchmarking nar_generation/memory-raw-dedup/1
+Benchmarking nar_generation/memory-raw-dedup/1: Warming up for 200.00 ms
+Benchmarking nar_generation/memory-raw-dedup/1: Collecting 20 samples in estimated 2.0156 s (21k iterations)
+Benchmarking nar_generation/memory-raw-dedup/1: Analyzing
+nar_generation/memory-raw-dedup/1
+                        time:   [93.418 µs 95.935 µs 99.459 µs]
+Benchmarking nar_generation/memory-scrub/1
+Benchmarking nar_generation/memory-scrub/1: Warming up for 200.00 ms
+Benchmarking nar_generation/memory-scrub/1: Collecting 20 samples in estimated 2.0029 s (111k iterations)
+Benchmarking nar_generation/memory-scrub/1: Analyzing
+nar_generation/memory-scrub/1
+                        time:   [16.289 µs 16.472 µs 16.630 µs]
+Found 1 outliers among 20 measurements (5.00%)
+  1 (5.00%) high mild

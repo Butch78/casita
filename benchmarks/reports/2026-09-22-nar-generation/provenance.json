@@ -1,0 +1,51 @@
+{
+  "baseline_revision": "c1a9a771f4b94dac4361958e267a3be510b58a61",
+  "candidate_revision": "1355e75f34c4ee06d4ce25aebe2b0732e062a5ce",
+  "benchmark_source_sha256": "176a523fee9278e276176d8bae2305b3cfc1c0e17752a30ada8d413b888f3987",
+  "fixture_sha256": "8fd2b2fb72b3300db8c5c8da1564e8f29b704f4df34020d5b07a0c4b221f2b57",
+  "cargo_lock_sha256": "986d83dc1511b115d405bd86bc1e828a4912e65de8b9abd8030e33ed43b4490b",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2\n",
+  "features": [
+    "default",
+    "native"
+  ],
+  "profile": {
+    "opt_level": 3,
+    "debuginfo": 0,
+    "debug_assertions": false,
+    "overflow_checks": false
+  },
+  "filesystem": "Filesystem                Type  1K-blocks      Used Available Use% Mounted on\n-                         -     999139328 698624640 258429312  73% /tmp\n/dev/mapper/encryptedroot btrfs 999139328 698624640 258429312  73% /\n",
+  "note": "Identical permanent benchmark source and Cargo.lock copied into baseline worktree. Production code differs only by the NAR invalidation fix. Both immutable executables retained before measurement.",
+  "matching_dependency_artifact_count": 393,
+  "isolated_baseline_build_directory": "/tmp/casita-nar-generation-mMnXlf/isolated-build",
+  "binary_content_gate": "Only candidate contains the durable nar-invalidation-generation key; binary SHA-256 hashes differ.",
+  "recommended_build_command": "cargo --config build.build-dir=REVISION_SPECIFIC_BUILD_DIRECTORY bench --locked --manifest-path REVISION_CHECKOUT/Cargo.toml --bench nar_associations --no-run --message-format=json",
+  "executed_build_commands": {
+    "candidate": [
+      "cargo",
+      "--config",
+      "build.build-dir=\"/home/domen/.cargo/build/71/4162b89e8f9ad0\"",
+      "bench",
+      "--manifest-path",
+      "/home/domen/dev/casita11/Cargo.toml",
+      "--bench",
+      "nar_associations",
+      "--no-run",
+      "--message-format=json"
+    ],
+    "baseline": [
+      "cargo",
+      "--config",
+      "build.build-dir=\"/tmp/casita-nar-generation-mMnXlf/isolated-build\"",
+      "bench",
+      "--locked",
+      "--manifest-path",
+      "/tmp/casita-nar-generation-mMnXlf/baseline/Cargo.toml",
+      "--bench",
+      "nar_associations",
+      "--no-run",
+      "--message-format=json"
+    ]
+  }
+}

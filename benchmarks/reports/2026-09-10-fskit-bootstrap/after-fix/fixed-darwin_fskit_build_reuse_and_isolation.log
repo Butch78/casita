@@ -1,0 +1,11 @@
+
+running 1 test
+FSKit initial mount and build: 192.5495ms
+FSKit build: 23.391792ms
+FSKit build: 16.831166ms
+FSKit build: 16.808ms
+FSKit C compile: 149.649125ms
+test local::tests::darwin_fskit_build_reuse_and_isolation ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 60 filtered out; finished in 6.27s
+

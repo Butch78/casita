@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.git-import-profile.v1",
+  "suite_id": "native-git",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-12T02:06:09.622494+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "tmpfs tmpfs rw,nosuid,nodev",
+    "python": "3.14.7",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "casita_revision": "fd2f3635e3b23eaa9e32b0789ef3547b1449afa7",
+    "casita_worktree_dirty": true
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-checkpoint-profile-bin/before",
+      "sha256": "843dc105b64d36e011df51c934b46aca4af3a9b137253efbb6598ea3c1116e4c"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "shape": "delta-heavy",
+      "repetition": 0,
+      "entries": 14060,
+      "wall_seconds": 184.308083589,
+      "concurrency": 16,
+      "correctness": "exact independent Git inventory and ref; persisted view identity; complete verified closure",
+      "max_buffered_bytes": 67108864,
+      "objects": 14060,
+      "operation": "initial-import",
+      "peak_rss_at_import_end_bytes": 1167507456,
+      "phase_names": [
+        "mutation_start",
+        "existing_view",
+        "source_header",
+        "source_decode",
+        "stage_poll",
+        "verify_sum",
+        "upload_sum",
+        "checkpoint_drain",
+        "checkpoint_publish",
+        "pack_cache",
+        "root_publish",
+        "compact"
+      ],
+      "profile": {
+        "calls": [
+          1,
+          1,
+          14055,
+          14060,
+          14037,
+          14061,
+          14061,
+          3,
+          4,
+          1,
+          1,
+          1
+        ],
+        "decoded_bytes": 2118555482,
+        "decoded_objects": 14060,
+        "nanos": [
+          8986709,
+          3742384,
+          98914317,
+          1151567777,
+          180742705161,
+          11397902809,
+          1718417325164,
+          247639600,
+          966027495,
+          4426269,
+          619130257,
+          997335
+        ],
+        "peak_active": 16,
+        "peak_buffered_bytes": 4194304
+      },
+      "publication": [
+        {
+          "calls": 5,
+          "nanos": 36807,
+          "phase": "coordination_wait"
+        },
+        {
+          "calls": 5,
+          "nanos": 227894680,
+          "phase": "snapshot"
+        },
+        {
+          "calls": 5,
+          "nanos": 3352947,
+          "phase": "validation"
+        },
+        {
+          "calls": 5,
+          "nanos": 227775956,
+          "phase": "payload_prepare"
+        },
+        {
+          "calls": 5,
+          "nanos": 329267975,
+          "phase": "state_commit"
+        },
+        {
+          "calls": 5,
+          "nanos": 46306,
+          "phase": "payload_finish"
+        }
+      ],
+      "root": "git.view.v1:XmhcqDeZQdxpEUguZeyI1PcIkLVSXURHOJHsROGZJgw",
+      "wall_nanos": 184308083589
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "shape": "delta-heavy",
+      "repetition": 0,
+      "entries": 14060,
+      "wall_seconds": 0.023407693,
+      "concurrency": 16,
+      "correctness": "exact independent Git inventory and ref; persisted view identity; complete verified closure",
+      "max_buffered_bytes": 67108864,
+      "objects": 14060,
+      "operation": "unchanged-import",
+      "peak_rss_at_import_end_bytes": 61882368,
+      "phase_names": [
+        "mutation_start",
+        "existing_view",
+        "source_header",
+        "source_decode",
+        "stage_poll",
+        "verify_sum",
+        "upload_sum",
+        "checkpoint_drain",
+        "checkpoint_publish",
+        "pack_cache",
+        "root_publish",
+        "compact"
+      ],
+      "profile": {
+        "calls": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "decoded_bytes": 0,
+        "decoded_objects": 0,
+        "nanos": [
+          7415899,
+          13233687,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "peak_active": 0,
+        "peak_buffered_bytes": 0
+      },
+      "publication": [
+        {
+          "calls": 0,
+          "nanos": 0,
+          "phase": "coordination_wait"
+        },
+        {
+          "calls": 0,
+          "nanos": 0,
+          "phase": "snapshot"
+        },
+        {
+          "calls": 0,
+          "nanos": 0,
+          "phase": "validation"
+        },
+        {
+          "calls": 0,
+          "nanos": 0,
+          "phase": "payload_prepare"
+        },
+        {
+          "calls": 0,
+          "nanos": 0,
+          "phase": "state_commit"
+        },
+        {
+          "calls": 0,
+          "nanos": 0,
+          "phase": "payload_finish"
+        }
+      ],
+      "root": "git.view.v1:XmhcqDeZQdxpEUguZeyI1PcIkLVSXURHOJHsROGZJgw",
+      "wall_nanos": 23407693
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "shape": "delta-heavy",
+      "repetition": 0,
+      "entries": 14200,
+      "wall_seconds": 0.386671582,
+      "concurrency": 16,
+      "correctness": "exact independent Git inventory and ref; persisted view identity; complete verified closure",
+      "max_buffered_bytes": 67108864,
+      "objects": 14200,
+      "operation": "incremental-import",
+      "peak_rss_at_import_end_bytes": 243396608,
+      "phase_names": [
+        "mutation_start",
+        "existing_view",
+        "source_header",
+        "source_decode",
+        "stage_poll",
+        "verify_sum",
+        "upload_sum",
+        "checkpoint_drain",
+        "checkpoint_publish",
+        "pack_cache",
+        "root_publish",
+        "compact"
+      ],
+      "profile": {
+        "calls": [
+          1,
+          1,
+          119,
+          140,
+          141,
+          141,
+          141,
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "decoded_bytes": 21028280,
+        "decoded_objects": 140,
+        "nanos": [
+          9913986,
+          18571805,
+          506982,
+          12913124,
+          237072499,
+          59288009,
+          2311301623,
+          0,
+          22754676,
+          2329490,
+          56704439,
+          0
+        ],
+        "peak_active": 16,
+        "peak_buffered_bytes": 4194304
+      },
+      "publication": [
+        {
+          "calls": 2,
+          "nanos": 9498,
+          "phase": "coordination_wait"
+        },
+        {
+          "calls": 2,
+          "nanos": 19798289,
+          "phase": "snapshot"
+        },
+        {
+          "calls": 2,
+          "nanos": 64114,
+          "phase": "validation"
+        },
+        {
+          "calls": 2,
+          "nanos": 16429909,
+          "phase": "payload_prepare"
+        },
+        {
+          "calls": 2,
+          "nanos": 12318277,
+          "phase": "state_commit"
+        },
+        {
+          "calls": 2,
+          "nanos": 18997,
+          "phase": "payload_finish"
+        }
+      ],
+      "root": "git.view.v1:RglP4FEuC2YTzAyweFF_axF2HV0oj19J2CgtwznPuUw",
+      "wall_nanos": 386671582
+    }
+  ],
+  "processes": [
+    {
+      "shape": "delta-heavy",
+      "operation": "initial-import",
+      "repetition": 0,
+      "stdout": "\nrunning 1 test\ntest git_repository::import_profile::benchmark_git_import_profile has been running for over 60 seconds\ngit_import_profile {\"concurrency\":16,\"correctness\":\"exact independent Git inventory and ref; persisted view identity; complete verified closure\",\"max_buffered_bytes\":67108864,\"objects\":14060,\"operation\":\"initial-import\",\"peak_rss_at_import_end_bytes\":1167507456,\"phase_names\":[\"mutation_start\",\"existing_view\",\"source_header\",\"source_decode\",\"stage_poll\",\"verify_sum\",\"upload_sum\",\"checkpoint_drain\",\"checkpoint_publish\",\"pack_cache\",\"root_publish\",\"compact\"],\"profile\":{\"calls\":[1,1,14055,14060,14037,14061,14061,3,4,1,1,1],\"decoded_bytes\":2118555482,\"decoded_objects\":14060,\"nanos\":[8986709,3742384,98914317,1151567777,180742705161,11397902809,1718417325164,247639600,966027495,4426269,619130257,997335],\"peak_active\":16,\"peak_buffered_bytes\":4194304},\"publication\":[{\"calls\":5,\"nanos\":36807,\"phase\":\"coordination_wait\"},{\"calls\":5,\"nanos\":227894680,\"phase\":\"snapshot\"},{\"calls\":5,\"nanos\":3352947,\"phase\":\"validation\"},{\"calls\":5,\"nanos\":227775956,\"phase\":\"payload_prepare\"},{\"calls\":5,\"nanos\":329267975,\"phase\":\"state_commit\"},{\"calls\":5,\"nanos\":46306,\"phase\":\"payload_finish\"}],\"root\":\"git.view.v1:XmhcqDeZQdxpEUguZeyI1PcIkLVSXURHOJHsROGZJgw\",\"wall_nanos\":184308083589}\ntest git_repository::import_profile::benchmark_git_import_profile ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 650 filtered out; finished in 195.16s\n\n",
+      "stderr": "import completed in 184.308s; auditing 14060 objects\n",
+      "wall_seconds": 195.262143911,
+      "user_seconds": 171.46,
+      "system_seconds": 8.15,
+      "max_rss_bytes": 1167507456,
+      "exit_code": 0
+    },
+    {
+      "shape": "delta-heavy",
+      "operation": "unchanged-import",
+      "repetition": 0,
+      "stdout": "\nrunning 1 test\ngit_import_profile {\"concurrency\":16,\"correctness\":\"exact independent Git inventory and ref; persisted view identity; complete verified closure\",\"max_buffered_bytes\":67108864,\"objects\":14060,\"operation\":\"unchanged-import\",\"peak_rss_at_import_end_bytes\":61882368,\"phase_names\":[\"mutation_start\",\"existing_view\",\"source_header\",\"source_decode\",\"stage_poll\",\"verify_sum\",\"upload_sum\",\"checkpoint_drain\",\"checkpoint_publish\",\"pack_cache\",\"root_publish\",\"compact\"],\"profile\":{\"calls\":[1,1,0,0,0,0,0,0,0,0,0,0],\"decoded_bytes\":0,\"decoded_objects\":0,\"nanos\":[7415899,13233687,0,0,0,0,0,0,0,0,0,0],\"peak_active\":0,\"peak_buffered_bytes\":0},\"publication\":[{\"calls\":0,\"nanos\":0,\"phase\":\"coordination_wait\"},{\"calls\":0,\"nanos\":0,\"phase\":\"snapshot\"},{\"calls\":0,\"nanos\":0,\"phase\":\"validation\"},{\"calls\":0,\"nanos\":0,\"phase\":\"payload_prepare\"},{\"calls\":0,\"nanos\":0,\"phase\":\"state_commit\"},{\"calls\":0,\"nanos\":0,\"phase\":\"payload_finish\"}],\"root\":\"git.view.v1:XmhcqDeZQdxpEUguZeyI1PcIkLVSXURHOJHsROGZJgw\",\"wall_nanos\":23407693}\ntest git_repository::import_profile::benchmark_git_import_profile ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 650 filtered out; finished in 9.11s\n\n",
+      "stderr": "import completed in 0.023s; auditing 14060 objects\n",
+      "wall_seconds": 9.134429994,
+      "user_seconds": 8.49,
+      "system_seconds": 0.36,
+      "max_rss_bytes": 77627392,
+      "exit_code": 0
+    },
+    {
+      "shape": "delta-heavy",
+      "operation": "incremental-import",
+      "repetition": 0,
+      "stdout": "\nrunning 1 test\ngit_import_profile {\"concurrency\":16,\"correctness\":\"exact independent Git inventory and ref; persisted view identity; complete verified closure\",\"max_buffered_bytes\":67108864,\"objects\":14200,\"operation\":\"incremental-import\",\"peak_rss_at_import_end_bytes\":243396608,\"phase_names\":[\"mutation_start\",\"existing_view\",\"source_header\",\"source_decode\",\"stage_poll\",\"verify_sum\",\"upload_sum\",\"checkpoint_drain\",\"checkpoint_publish\",\"pack_cache\",\"root_publish\",\"compact\"],\"profile\":{\"calls\":[1,1,119,140,141,141,141,0,1,1,1,0],\"decoded_bytes\":21028280,\"decoded_objects\":140,\"nanos\":[9913986,18571805,506982,12913124,237072499,59288009,2311301623,0,22754676,2329490,56704439,0],\"peak_active\":16,\"peak_buffered_bytes\":4194304},\"publication\":[{\"calls\":2,\"nanos\":9498,\"phase\":\"coordination_wait\"},{\"calls\":2,\"nanos\":19798289,\"phase\":\"snapshot\"},{\"calls\":2,\"nanos\":64114,\"phase\":\"validation\"},{\"calls\":2,\"nanos\":16429909,\"phase\":\"payload_prepare\"},{\"calls\":2,\"nanos\":12318277,\"phase\":\"state_commit\"},{\"calls\":2,\"nanos\":18997,\"phase\":\"payload_finish\"}],\"root\":\"git.view.v1:RglP4FEuC2YTzAyweFF_axF2HV0oj19J2CgtwznPuUw\",\"wall_nanos\":386671582}\ntest git_repository::import_profile::benchmark_git_import_profile ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 650 filtered out; finished in 15.39s\n\n",
+      "stderr": "import completed in 0.387s; auditing 14200 objects\n",
+      "wall_seconds": 15.413802317,
+      "user_seconds": 12.36,
+      "system_seconds": 0.94,
+      "max_rss_bytes": 243396608,
+      "exit_code": 0
+    }
+  ],
+  "corpora": {
+    "delta-heavy": {
+      "profile": "standard",
+      "shape": "delta-heavy",
+      "scale": {
+        "commits": 2000,
+        "files": 64,
+        "blob_bytes": 262144,
+        "changes_per_commit": 4,
+        "incremental_commits": 20,
+        "delta_friendly": true,
+        "incompressible": false
+      },
+      "sources": {
+        "base": {
+          "objects": 14060,
+          "tip": "git.sha1.commit.v1:Qqjvpyg-yzozk1tjUGkMxLyvSnA",
+          "logical_bytes": 2118555482,
+          "inventory_sha256": "2c3d5edbacd19cd7d4ac8ef5291b3ee80e37ce55e98a9c9aaaedfb32c758d035",
+          "source": {
+            "reachable_objects": 14060,
+            "pack_count": 1,
+            "pack_bytes": 1271070,
+            "index_bytes": 394752,
+            "loose_objects": 0,
+            "loose_allocated_bytes": 0
+          }
+        },
+        "incremental": {
+          "objects": 14200,
+          "tip": "git.sha1.commit.v1:oPlDfLWmxw3tfur1a0JIMZ6RgJU",
+          "logical_bytes": 2139583762,
+          "inventory_sha256": "b06b56234ad38a73262480baa0d50a38a2526e6a034eb1588f7b3191be2c043a",
+          "source": {
+            "reachable_objects": 14200,
+            "pack_count": 1,
+            "pack_bytes": 1276354,
+            "index_bytes": 398672,
+            "loose_objects": 0,
+            "loose_allocated_bytes": 0
+          }
+        }
+      }
+    }
+  },
+  "configuration": {
+    "profile": "standard",
+    "shapes": [
+      "delta-heavy"
+    ],
+    "repetitions": 1,
+    "concurrency": 16,
+    "max_buffered_bytes": 67108864,
+    "max_cached_pack_bytes": 0,
+    "measurement_note": "Reference fd2f363; RAM-backed destination; shared host; one repetition.",
+    "timing": "import wall and phase clocks; source setup, repository open and complete closure audit excluded; warm cache; fresh process for each import",
+    "memory": "Linux process high-water RSS sampled immediately after import, before independent inventory/closure audit; includes repository open",
+    "phase_accounting": "verify_sum and upload_sum overlap each other and stage_poll/drain; do not add these durations to wall time"
+  }
+}

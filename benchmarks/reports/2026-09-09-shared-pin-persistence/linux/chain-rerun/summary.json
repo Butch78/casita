@@ -1,0 +1,27 @@
+{
+  "workload": "Chain-64",
+  "jobs": 8,
+  "rounds": 3,
+  "diagnostic_tracing": false,
+  "samples": {
+    "baseline": {
+      "seconds": [
+        64.7382651400003,
+        85.3531529869997,
+        42.83394265199968
+      ],
+      "median_seconds": 64.7382651400003
+    },
+    "after": {
+      "seconds": [
+        80.76521078900078,
+        40.87607608899998,
+        63.34274316899973
+      ],
+      "median_seconds": 63.34274316899973
+    }
+  },
+  "verified_builds": 768,
+  "verified_outputs": 12,
+  "median_change_percent": -2.1556369605868597
+}

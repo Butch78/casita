@@ -1,0 +1,64 @@
+diff --git a/src/blob/chunked/tests.rs b/src/blob/chunked/tests.rs
+index 59e5bf4..3acfedc 100644
+--- a/src/blob/chunked/tests.rs
++++ b/src/blob/chunked/tests.rs
+@@ -3190,6 +3190,19 @@ async fn small_blob_protects_both_identities_in_one_ledger_edit() {
+     }
+ }
+ 
++async fn small_blob_pin_store(objects: Arc<dyn ObjectStore>, layout: &str) -> ChunkedBlobStore {
++    match layout {
++        "loose" => ChunkedBlobStore::new(objects, Path::from("blobs"), 1024),
++        "packed" => ChunkedBlobStore::packed_with_options(
++            objects,
++            Path::from("blobs"),
++            1024,
++            crate::PackOptions { target_size: 16 * 1024 * 1024, cache_capacity: 0 },
++        ).await.unwrap(),
++        _ => panic!("unknown pin benchmark layout: {layout}"),
++    }
++}
++
+ #[tokio::test]
+ #[ignore = "permanent durable small-blob staging benchmark; run benchmark small-blob-pins"]
+ async fn benchmark_small_blob_pins() {
+@@ -3208,17 +3221,8 @@ async fn benchmark_small_blob_pins() {
+     let ledger = Arc::new(FilePinStore::new(directory.path().join("pins")));
+     let objects =
+         Arc::new(object_store::local::LocalFileSystem::new_with_prefix(directory.path()).unwrap());
+-    let store = ChunkedBlobStore::packed_with_options(
+-        objects,
+-        Path::from("blobs"),
+-        1024,
+-        crate::PackOptions {
+-            target_size: 16 * 1024 * 1024,
+-            cache_capacity: 0,
+-        },
+-    )
+-    .await
+-    .unwrap();
++    let layout = std::env::var("CASITA_BENCH_PIN_LAYOUT").unwrap_or_else(|_| "packed".into());
++    let store = small_blob_pin_store(objects.clone(), &layout).await;
+     let pin = DataPinLease::acquire(
+         ledger.clone(),
+         DataPin {
+@@ -3250,8 +3254,9 @@ async fn benchmark_small_blob_pins() {
+     }
+     assert_eq!(ledger.inventory().await.unwrap().revision - before, edits);
+     store.flush().await.unwrap();
++    let reader = small_blob_pin_store(objects, &layout).await;
+     for (index, blob) in blobs.iter().enumerate() {
+-        assert_eq!(read_blob(&store, blob).await.unwrap(), payload(index));
++        assert_eq!(read_blob(&reader, blob).await.unwrap(), payload(index));
+     }
+     drop(batch);
+     crate::flush_repository_leases().await.unwrap();
+@@ -3259,7 +3264,7 @@ async fn benchmark_small_blob_pins() {
+     println!(
+         "small_blob_pins_sample {}",
+         serde_json::json!({
+-            "count": count, "bytes": size, "nanos": nanos, "ledger_edits": edits,
++            "layout": layout, "count": count, "bytes": size, "nanos": nanos, "ledger_edits": edits,
+             "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins",
+         })
+     );

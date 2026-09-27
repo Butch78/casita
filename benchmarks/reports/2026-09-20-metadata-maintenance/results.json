@@ -1,0 +1,76 @@
+{
+  "baseline_casita": "5fd5b6223b73b133c2bbed9f0fe9b4e186851390",
+  "obrador_benchmark_revision": "56c1780291fe6b72f7e4e694b8af41c81a3817ed",
+  "obrador_profiler_revision": "d925706d55feeb4e6438cfb618e742a617ca2d6f",
+  "platform": "Linux-7.2.2-x86_64-with-glibc2.40",
+  "measurements": {
+    "before": {
+      "binary_sha256": "0cde897f58ecf9a23268aa9751bc1c4ecdc07e2f28f857d120a90fe01d4ad0b6",
+      "import_pin_ledger_syncs": 469,
+      "writer_partition": {
+        "outside_writer_stages": 85,
+        "repository.stage_blob": 223,
+        "repository.stage_directory": 46,
+        "put_path_info": 96,
+        "repository.stage_blob & put_path_info": 6,
+        "repository.stage_directory & put_path_info": 13
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & repository.mutation.prepare": 36,
+        "repository.mutation_session & pin.acquire": 6,
+        "repository.mutation_session & repository.mutation.admit": 6,
+        "repository.publish.commit": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": 19,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": 6
+      },
+      "import_syncs": {
+        "fsync:pin_ledger": 469,
+        "fsync:blobs/pack-indexes": 84,
+        "fsync:other": 47,
+        "fsync:blobs/blobs": 61,
+        "fsync:blobs/pages": 107,
+        "fsync:blobs/bao-packs": 37,
+        "fsync:blobs/packs": 56,
+        "fsync:blobs/bao-indexes": 155,
+        "fsync:blobs/pack-index-reclaim-needed": 12,
+        "fsync:metadata/casita.sqlite-wal": 35,
+        "fsync:metadata/casita.sqlite": 6
+      }
+    },
+    "after": {
+      "binary_sha256": "99404bfe657bf6fba041f116f62d1c6a365c61958e14ecf8753cd214aee8d563",
+      "import_pin_ledger_syncs": 406,
+      "writer_partition": {
+        "outside_writer_stages": 55,
+        "repository.stage_blob": 226,
+        "repository.stage_directory": 46,
+        "put_path_info": 60,
+        "repository.stage_blob & put_path_info": 6,
+        "repository.stage_directory & put_path_info": 13
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & pin.acquire": 6,
+        "repository.mutation_session & repository.mutation.admit": 6,
+        "repository.publish.commit": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": 19,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": 6,
+        "repository.mutation_session & repository.mutation.prepare": 6
+      },
+      "import_syncs": {
+        "fsync:pin_ledger": 406,
+        "fsync:blobs/blobs": 61,
+        "fsync:other": 31,
+        "fsync:blobs/pages": 107,
+        "fsync:blobs/bao-packs": 37,
+        "fsync:blobs/packs": 60,
+        "fsync:blobs/bao-indexes": 157,
+        "fsync:blobs/pack-index-reclaim-needed": 12,
+        "fsync:blobs/pack-indexes": 60,
+        "fsync:metadata/casita.sqlite-wal": 35,
+        "fsync:metadata/casita.sqlite": 6
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+15 retained NAR imports: 125 journal syncs
+16 retained NAR imports: 133 journal syncs
+17 retained NAR imports: 141 journal syncs
+18 retained NAR imports: 151 journal syncs
+19 retained NAR imports: 159 journal syncs
+32 retained NAR imports: 264 journal syncs
+test nar::tests::repeated_nar_intake_reports_maintenance_syncs ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 760 filtered out; finished in 9.39s
+

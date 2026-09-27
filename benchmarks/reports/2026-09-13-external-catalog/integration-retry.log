@@ -1,0 +1,26 @@
+  warning: Skip selectors from environment variables `SKIP` are ignored during installing hooks.
+  error: No hooks found after filtering with the given selectors
+✖ execute command in 38.9ms (failed)
+✖ Running devenv:git-hooks:run in 38.9ms (failed)
+✖ Running devenv:enterTest in 2.38µs (dependency failed)
+✖ Running tasks in 250ms (failed)
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling casita v0.1.0 (/home/domen/dev/casita6)
+    Finished `release` profile [optimized] target(s) in 7m 14s
+     Running tests/turso_multiprocess.rs (/home/domen/.cargo/build/57/be681442755f18/release/deps/turso_multiprocess-96e28cf6fe3d2ac4)
+
+running 4 tests
+test child_writes_the_live_repository ... ok
+test concurrent_writer_child ... ok
+test a_second_process_opens_and_writes_the_live_database ... ok
+test independent_processes_can_publish_concurrently ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 21.89s
+
+     Running tests/verified_cli.rs (/home/domen/.cargo/build/57/be681442755f18/release/deps/verified_cli-1aceadc0431d2b1a)
+
+running 1 test
+test verified_cat_local_and_transfer_source_emit_only_authenticated_bytes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.72s

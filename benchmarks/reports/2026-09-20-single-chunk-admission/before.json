@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "suite_id": "state-and-publication",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-20T17:46:47.974860+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.40",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.13.9",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "casita_revision": "e547cc9ababa2a68effc6eea3327d1ae1e02f67e",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "counts": [
+      16
+    ],
+    "sizes": [
+      64,
+      511,
+      512,
+      513,
+      2047,
+      2048,
+      2049
+    ],
+    "repetitions": 1,
+    "average_chunk_bytes": 1024,
+    "profile": "smoke"
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-pin-admission-before-20260920",
+      "sha256": "47bb36c9d0d7078bf0a420aa862edbb59f7e444e529162245dbd931af69f5dcf"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 64,
+      "repetition": 1,
+      "wall_seconds": 0.044414447,
+      "ledger_edits": 16,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 511,
+      "repetition": 1,
+      "wall_seconds": 0.030633478,
+      "ledger_edits": 16,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 512,
+      "repetition": 1,
+      "wall_seconds": 0.044068944,
+      "ledger_edits": 32,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 513,
+      "repetition": 1,
+      "wall_seconds": 0.046038672,
+      "ledger_edits": 32,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 2047,
+      "repetition": 1,
+      "wall_seconds": 0.044970103,
+      "ledger_edits": 32,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 2048,
+      "repetition": 1,
+      "wall_seconds": 0.051117933,
+      "ledger_edits": 32,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "small-blob-staging",
+      "entries": 16,
+      "bytes_per_file": 2049,
+      "repetition": 1,
+      "wall_seconds": 0.0769666,
+      "ledger_edits": 49,
+      "correctness": "exact readback, duplicate identity, no duplicate edits, no leaked pins"
+    }
+  ],
+  "processes": [
+    {
+      "count": 16,
+      "size": 64,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":64,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":16,\"nanos\":44414447}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.64s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 16,
+      "size": 511,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":511,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":16,\"nanos\":30633478}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.07s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 16,
+      "size": 512,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":512,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":32,\"nanos\":44068944}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.08s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 16,
+      "size": 513,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":513,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":32,\"nanos\":46038672}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.09s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 16,
+      "size": 2047,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":2047,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":32,\"nanos\":44970103}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.08s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 16,
+      "size": 2048,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":2048,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":32,\"nanos\":51117933}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.09s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 16,
+      "size": 2049,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\nsmall_blob_pins_sample {\"bytes\":2049,\"correctness\":\"exact readback, duplicate identity, no duplicate edits, no leaked pins\",\"count\":16,\"ledger_edits\":49,\"nanos\":76966600}\ntest blob::chunked::tests::benchmark_small_blob_pins ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.13s\n\n",
+      "stderr": ""
+    }
+  ]
+}

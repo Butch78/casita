@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "suite_id": "state-and-publication",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-11T19:42:42.929203+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.40",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.13.9",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "casita_revision": "4be9276041e3ee82adf3e05ae76f1a5824e9bc0c",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "counts": [
+      63,
+      65
+    ],
+    "repetitions": 1,
+    "catalog_bytes": 1048576,
+    "profile": "smoke"
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-catalog-all/bin/casita-lib-test",
+      "sha256": "7282bb5fd4849ed4bbf79638dddc0fe382c7ce848556a46dbc15ee3959dd82d5"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "operation": "mutation-catalog-history",
+      "entries": 63,
+      "repetition": 1,
+      "wall_seconds": 0.399502971,
+      "peak_catalog_bytes": 1048576,
+      "correctness": "bounded active catalog and empty released inventory"
+    },
+    {
+      "status": "ok",
+      "operation": "mutation-catalog-history",
+      "entries": 65,
+      "repetition": 1,
+      "wall_seconds": 0.336010363,
+      "peak_catalog_bytes": 1048576,
+      "correctness": "bounded active catalog and empty released inventory"
+    }
+  ],
+  "processes": [
+    {
+      "count": 63,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\ncatalog_history_sample {\"correctness\":\"bounded active catalog and empty released inventory\",\"count\":63,\"nanos\":399502971,\"peak_catalog_bytes\":1048576}\ntest repository::mutation_catalog_tests::benchmark_mutation_catalog_history ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 633 filtered out; finished in 1.44s\n\n",
+      "stderr": ""
+    },
+    {
+      "count": 65,
+      "repetition": 1,
+      "exit_code": 0,
+      "stdout": "\nrunning 1 test\ncatalog_history_sample {\"correctness\":\"bounded active catalog and empty released inventory\",\"count\":65,\"nanos\":336010363,\"peak_catalog_bytes\":1048576}\ntest repository::mutation_catalog_tests::benchmark_mutation_catalog_history ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 633 filtered out; finished in 0.45s\n\n",
+      "stderr": ""
+    }
+  ]
+}

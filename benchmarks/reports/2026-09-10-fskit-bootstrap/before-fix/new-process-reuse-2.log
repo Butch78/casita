@@ -1,0 +1,8 @@
+
+running 1 test
+{"correctness":"passed","iterations":1000000,"native":true,"native_first_ensure_ns":145292,"ns_per_call":16.321958,"platform":"macos","profile":"test","scenario":"memory_reuse","schema_version":1}
+{"correctness":"passed","iterations":2000,"ns_per_call":38698.625,"platform":"macos","profile":"test","scenario":"receipt_reuse","schema_version":1}
+test darwin::setup::tests::benchmark_reuse ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.10s
+

@@ -1,0 +1,12 @@
+[package]
+name = "casita-slatedb-experiment"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[dependencies]
+slatedb = { version = "=0.16.0", default-features = false }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time"] }
+serde_json = "1"

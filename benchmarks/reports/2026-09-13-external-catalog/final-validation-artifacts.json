@@ -1,0 +1,21 @@
+{
+  "rustc": "1.96.0",
+  "source": "final-source.json",
+  "artifacts": [
+    {
+      "target": "default-library",
+      "path": "/tmp/casita-external-default8/casita-lib-test",
+      "sha256": "074516600bef554440e82e070c0bc324905faeb46bad2aed6e815748fbce62c7"
+    },
+    {
+      "target": "multiprocess",
+      "path": "/tmp/casita-external-integration/turso-multiprocess-final",
+      "sha256": "d34e782c155fe32ebe99e60be8a85cf1b71d0e71c1ada96cd6bf227855511aa7"
+    },
+    {
+      "target": "verified-cli",
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/verified_cli-1aceadc0431d2b1a",
+      "sha256": "c187027e3e52ee85bb80eb153620c89533ea0360430fd14a86570ed1d95e75ef"
+    }
+  ]
+}

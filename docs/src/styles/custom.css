@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* Casita identity. See /BRANDING.md. */
+:root {
+  --casita-rust: #ce422b;
+  --casita-orange: var(--casita-rust);
+  --casita-orange-bright: #b53724;
+  --casita-orange-soft: #fdf0ec;
+  --casita-ink: #17191e;
+  --casita-paper: #f5f6f8;
+  --casita-line: #e2e3e7;
+  --sl-font: 'Manrope', system-ui, sans-serif;
+  --sl-font-mono: 'DM Mono', ui-monospace, monospace;
+  --sl-content-width: 48rem;
+  --sl-line-height: 1.8;
+  --sl-color-accent-low: #fbe7e1;
+  --sl-color-accent: #ce422b;
+  --sl-color-accent-high: #8f2d1d;
+  --sl-color-text-accent: #b53724;
+  --sl-color-bg-accent: #ce422b;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #f5f6f8;
+  --sl-color-hairline-light: var(--casita-line);
+  --sl-color-hairline: var(--casita-line);
+  --csk-button-primary-background: #ce422b;
+  --csk-button-primary-color: #ffffff;
+  --csk-button-radius: 0.35rem;
+  --csk-navbar-backdrop-filter: none;
+}
+
+:root[data-theme='light'] {
+  --sl-color-white: #17191e;
+  --sl-color-gray-1: #272930;
+  --sl-color-gray-2: #474b55;
+  --sl-color-gray-3: #646974;
+  --sl-color-gray-4: #9a9ea8;
+  --sl-color-gray-5: #e2e3e7;
+  --sl-color-gray-6: #f5f6f8;
+  --sl-color-black: #ffffff;
+}
+
+:root[data-theme='dark'] {
+  --casita-orange: #ef8664;
+  --casita-orange-bright: #ffa589;
+  --casita-orange-soft: #34231f;
+  --casita-paper: #202228;
+  --casita-line: #34363e;
+  --sl-color-accent-low: #43261f;
+  --sl-color-accent: #ef8664;
+  --sl-color-accent-high: #ffc7b5;
+  --sl-color-text-accent: #ef8664;
+  --sl-color-bg-accent: #ce422b;
+  --sl-color-bg: #17191e;
+  --sl-color-bg-nav: #17191e;
+  --sl-color-bg-sidebar: #1d1f25;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #eceef2;
+  --sl-color-gray-2: #c0c2c7;
+  --sl-color-gray-3: #a0a3ae;
+  --sl-color-gray-4: #737783;
+  --sl-color-gray-5: #34363e;
+  --sl-color-gray-6: #202228;
+  --sl-color-black: #17191e;
+}
+
+body { letter-spacing: -0.01em; }
+:where(a, button, input, select):focus-visible {
+  outline: 2px solid var(--sl-color-text-accent);
+  outline-offset: 4px;
+}
+::selection { background: var(--sl-color-accent-low); color: var(--sl-color-accent-high); }
+
+/* A quiet reading surface with clear hierarchy and navigational accents. */
+.content-panel { border-color: var(--casita-line); }
+.content-panel h1 {
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.13;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.sl-markdown-content { font-size: 1rem; }
+.sl-markdown-content :is(h2, h3, h4) { letter-spacing: -0.03em; line-height: 1.3; }
+.sl-markdown-content h2 { margin-top: 2.8rem; padding-top: 1.1rem; border-top: 1px solid var(--casita-line); }
+.sl-markdown-content :is(p, li) { line-height: 1.85; }
+.sl-markdown-content a:not([class]) { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.sl-markdown-content :not(pre) > code { border: 1px solid var(--casita-line); border-radius: 0.25rem; font-size: 0.84em; padding: 0.12em 0.32em; }
+.sl-markdown-content table { font-size: 0.88rem; line-height: 1.6; }
+.sl-markdown-content th { background: var(--casita-paper); font-weight: 700; }
+.sl-markdown-content :is(th, td) { padding: 0.85rem 1rem; border-color: var(--casita-line); }
+.sl-markdown-content tbody tr:nth-child(even) { background: color-mix(in srgb, var(--casita-paper) 55%, transparent); }
+.sl-markdown-content blockquote { border-inline-start: 3px solid var(--casita-orange); background: var(--casita-paper); padding: 1rem 1.25rem; }
+.sl-markdown-content .starlight-aside { border-radius: 0.35rem; border-inline-start-width: 3px; }
+.expressive-code { margin-block: 1.5rem; }
+
+.sidebar-content { font-size: 0.86rem; }
+.sidebar-content summary { font-weight: 750; }
+.sidebar-content a[aria-current='page'] {
+  background: var(--casita-orange-soft);
+  color: var(--sl-color-text-accent);
+  box-shadow: inset 3px 0 var(--casita-orange);
+  border-radius: 0 0.3rem 0.3rem 0;
+  font-weight: 750;
+}
+.sidebar-content a:not([aria-current='page']):hover { background: var(--sl-color-bg); }
+.right-sidebar-panel h2 {
+  font-family: var(--sl-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+starlight-toc a[aria-current='true'] { color: var(--sl-color-text-accent); font-weight: 700; }
+.pagination-links a { box-shadow: none; border-color: var(--casita-line); border-radius: 0.4rem; background: var(--casita-paper); padding: 1.3rem; }
+.pagination-links a:hover { border-color: var(--casita-orange); }
+.pagination-links .link-title { font-size: 1rem; font-weight: 750; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

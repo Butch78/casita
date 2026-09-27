@@ -1,0 +1,13 @@
+# Uncompressed copies of the committed raw reports.
+/workloads-adaptive-16.json
+/workloads-adaptive-32-gc-failure.json
+/workloads-adaptive-32.json
+/adaptive-awk-repeat.json
+/adaptive-awk.json
+/adaptive-measure.log
+/adaptive-native-tests.log
+/adaptive-retry.log
+/adaptive-synthetic.json
+/adaptive-tests.log
+/fixture-gc-roots.json
+/replay-summary.txt

@@ -1,0 +1,19 @@
+...................building benchmark artifacts
+building benchmark artifacts
+....running online-holds
+.completion ledger: /tmp/tmp3ml152s3/results/execution.json
+running online-holds
+...completion ledger: /tmp/tmp_0049r32/results/execution.json
+running fskit-setup-reuse
+completion ledger: /tmp/tmpowbmap23/results/execution.json
+running fskit-setup-reuse
+.completion ledger: /tmp/tmpvvhsu2jz/results/execution.json
+running transfer-holds
+completion ledger: /tmp/tmpn17bmpzm/results/execution.json
+running transfer-holds
+.
+----------------------------------------------------------------------
+Ran 29 tests in 1.797s
+
+OK
+completion ledger: /tmp/tmpxkjo9xml/results/execution.json

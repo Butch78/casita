@@ -1,0 +1,12 @@
+{
+  "casita_baseline": "59c2fbdcb1f10b0df607e5976c797f39e776ce3f",
+  "casita_after": "4e7b5be711e3f6b8780d5aedd60b6af99498e141",
+  "obrador_base": "88f546af44717074d0a8a4105968c39f2b2ff311",
+  "obrador_original_archive_sha256": "51cf3db5d6021721f9adb4eaf0be68a8367b639539080542e519f6ae14b58dd0",
+  "obrador_source_patch_sha256": "f75df1e05b9226c6189d0ac4d55892fb1027bfd6c1ef59c258c98366f2556799",
+  "casita_toolchain": "1.96.0",
+  "obrador_toolchain": "1.95.0",
+  "nix_version": "2.36.0pre20260901_f8cd4ce",
+  "note": "Obrador source and API usage frozen from the prior pin trace; only its Casita manifest pin and corresponding lock source change between variants.",
+  "obrador_source_patch_file": "obrador-source.patch.gz"
+}

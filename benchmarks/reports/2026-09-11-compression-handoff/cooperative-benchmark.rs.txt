@@ -1,0 +1,220 @@
+//! Compression scheduling, including a competing ready task and poll duration.
+mod bench_util;
+#[path = "../src/compression.rs"]
+#[allow(dead_code)]
+mod compression;
+
+use std::sync::{
+    Arc,
+    atomic::{AtomicBool, Ordering},
+};
+use std::time::{Duration, Instant};
+
+use criterion::{BenchmarkId, Criterion, Throughput, criterion_group, criterion_main};
+use futures::{Future, StreamExt};
+
+const CHUNKS: usize = 64;
+
+#[derive(Clone, Copy, PartialEq)]
+enum Mode {
+    Blocking,
+    Inline,
+    Inline4kYield,
+}
+
+impl Mode {
+    fn name(self) -> &'static str {
+        match self {
+            Self::Blocking => "blocking",
+            Self::Inline => "inline",
+            Self::Inline4kYield => "inline_4k_yield",
+        }
+    }
+}
+
+struct Measurement {
+    elapsed: Duration,
+    longest_poll: Duration,
+    ready_task_gap: Duration,
+    ready_task_polls: usize,
+}
+
+async fn batch(
+    input: &[Vec<u8>],
+    concurrency: usize,
+    mode: Mode,
+    competing_task: bool,
+) -> Measurement {
+    // Ownership transfer matches ChunkUploader; input copies and output
+    // validation are outside the measured compression interval.
+    let owned = input.to_vec();
+    let done = Arc::new(AtomicBool::new(false));
+    let observer = if competing_task {
+        let done = done.clone();
+        let (ready, started) = tokio::sync::oneshot::channel();
+        let observer = tokio::spawn(async move {
+            let mut previous = Instant::now();
+            let mut longest = Duration::ZERO;
+            let mut polls = 0;
+            ready.send(()).unwrap();
+            while !done.load(Ordering::Relaxed) {
+                tokio::task::yield_now().await;
+                let now = Instant::now();
+                longest = longest.max(now - previous);
+                previous = now;
+                polls += 1;
+            }
+            (longest, polls)
+        });
+        started.await.unwrap();
+        Some(observer)
+    } else {
+        None
+    };
+    let started = Instant::now();
+    let job = tokio::spawn(async move {
+        let work = futures::stream::iter(owned.into_iter().enumerate())
+            .map(|(index, bytes)| async move {
+                let inline =
+                    mode == Mode::Inline || (mode == Mode::Inline4kYield && bytes.len() <= 4096);
+                let encoded = if inline {
+                    if mode == Mode::Inline4kYield {
+                        tokio::task::yield_now().await;
+                    }
+                    compression::compress(&bytes, zstd::DEFAULT_COMPRESSION_LEVEL).unwrap()
+                } else {
+                    tokio::task::spawn_blocking(move || {
+                        compression::compress(&bytes, zstd::DEFAULT_COMPRESSION_LEVEL).unwrap()
+                    })
+                    .await
+                    .unwrap()
+                };
+                (index, encoded)
+            })
+            .buffer_unordered(concurrency)
+            .collect::<Vec<_>>();
+        let mut work = Box::pin(work);
+        let mut longest_poll = Duration::ZERO;
+        let output = std::future::poll_fn(|cx| {
+            let started = Instant::now();
+            let result = work.as_mut().poll(cx);
+            longest_poll = longest_poll.max(started.elapsed());
+            result
+        })
+        .await;
+        (output, longest_poll)
+    });
+    let (output, longest_poll) = job.await.unwrap();
+    let elapsed = started.elapsed();
+    done.store(true, Ordering::Relaxed);
+    let (ready_task_gap, ready_task_polls) = match observer {
+        Some(observer) => observer.await.unwrap(),
+        None => (Duration::ZERO, 0),
+    };
+    assert_eq!(output.len(), input.len());
+    let mut seen = vec![false; input.len()];
+    for (index, encoded) in output {
+        assert!(!seen[index]);
+        seen[index] = true;
+        assert_eq!(
+            zstd::zstd_safe::get_frame_content_size(&encoded).unwrap(),
+            Some(input[index].len() as u64)
+        );
+        assert_eq!(
+            zstd::bulk::decompress(&encoded, input[index].len()).unwrap(),
+            input[index]
+        );
+    }
+    Measurement {
+        elapsed,
+        longest_poll,
+        ready_task_gap,
+        ready_task_polls,
+    }
+}
+
+fn scheduling(c: &mut Criterion) {
+    let mut group = c.benchmark_group("compression_handoff");
+    group.sample_size(10);
+    for workers in [1, 4] {
+        let runtime = if workers == 1 {
+            tokio::runtime::Builder::new_current_thread()
+                .build()
+                .unwrap()
+        } else {
+            tokio::runtime::Builder::new_multi_thread()
+                .worker_threads(workers)
+                .build()
+                .unwrap()
+        };
+        for size in [1024, 4095, 4096, 4097, 16384, 65536] {
+            for (flavor, generate) in [
+                (
+                    "random",
+                    bench_util::random_bytes as fn(u64, usize) -> Vec<u8>,
+                ),
+                ("text", bench_util::compressible_bytes),
+            ] {
+                let input: Vec<_> = (0..CHUNKS)
+                    .map(|index| generate(113 + index as u64, size))
+                    .collect();
+                group.throughput(Throughput::Bytes((CHUNKS * size) as u64));
+                for concurrency in [1, 16] {
+                    // Warm all strategies before collecting paired diagnostics.
+                    let modes = [Mode::Blocking, Mode::Inline, Mode::Inline4kYield];
+                    for mode in modes {
+                        runtime.block_on(batch(&input, concurrency, mode, false));
+                    }
+                    for repetition in 0..4 {
+                        for mode in if repetition % 2 == 0 {
+                            modes
+                        } else {
+                            [Mode::Inline4kYield, Mode::Inline, Mode::Blocking]
+                        } {
+                            let result = runtime.block_on(batch(&input, concurrency, mode, true));
+                            assert!(result.ready_task_polls > 0);
+                            eprintln!(
+                                "{}",
+                                serde_json::json!({
+                                    "schema": "casita.compression-handoff.v1", "workers": workers,
+                                    "size": size, "flavor": flavor, "concurrency": concurrency,
+                                    "chunks": CHUNKS, "repetition": repetition,
+                                    "variant": mode.name(),
+                                    "wall_ns": result.elapsed.as_nanos(), "longest_poll_ns": result.longest_poll.as_nanos(),
+                                    "ready_task_gap_ns": result.ready_task_gap.as_nanos(), "ready_task_polls": result.ready_task_polls,
+                                    "correctness": "frame length and complete roundtrip for every indexed chunk"
+                                })
+                            );
+                        }
+                    }
+                    for mode in modes {
+                        let variant = mode.name();
+                        group.bench_function(
+                            BenchmarkId::new(
+                                format!("workers-{workers}/{flavor}/{size}/{concurrency}"),
+                                variant,
+                            ),
+                            |b| {
+                                b.iter_custom(|iterations| {
+                                    runtime.block_on(async {
+                                        let mut elapsed = Duration::ZERO;
+                                        for _ in 0..iterations {
+                                            elapsed += batch(&input, concurrency, mode, false)
+                                                .await
+                                                .elapsed;
+                                        }
+                                        elapsed
+                                    })
+                                });
+                            },
+                        );
+                    }
+                }
+            }
+        }
+    }
+    group.finish();
+}
+
+criterion_group!(benches, scheduling);
+criterion_main!(benches);

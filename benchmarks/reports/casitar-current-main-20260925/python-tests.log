@@ -1,0 +1,156 @@
+building benchmark artifacts
+building benchmark artifacts
+building benchmark artifacts
+....results: /tmp/tmpt0tlj5s6/results
+running online-holds
+.completion ledger: /tmp/tmpt0tlj5s6/results/execution.json
+results: /tmp/tmpz25v6t8t/results
+running online-holds
+...completion ledger: /tmp/tmpz25v6t8t/results/execution.json
+results: /tmp/tmpsceqm4go/results
+running pin-protocol-s3
+.completion ledger: /tmp/tmpsceqm4go/results/execution.json
+results: /tmp/tmpgo53vc1z/results
+running transfer-holds
+completion ledger: /tmp/tmpgo53vc1z/results/execution.json
+results: /tmp/tmpwbsprv1i/results
+running transfer-holds
+..............completion ledger: /tmp/tmpwbsprv1i/results/execution.json
+casitar-scaling: round 1, single, payload-size, 2 files x 65535 bytes
+....casitar-scaling: round 1, baseline, object-count, 254 files x 128 bytes
+casitar-scaling: round 1, candidate, object-count, 254 files x 128 bytes
+casitar-scaling: round 1, baseline, object-count, 256 files x 128 bytes
+casitar-scaling: round 1, candidate, object-count, 256 files x 128 bytes
+casitar-scaling: round 2, candidate, object-count, 256 files x 128 bytes
+casitar-scaling: round 2, baseline, object-count, 256 files x 128 bytes
+casitar-scaling: round 2, candidate, object-count, 254 files x 128 bytes
+casitar-scaling: round 2, baseline, object-count, 254 files x 128 bytes
+.......casitar-scaling: round 1, single, payload-size, 2 files x 65535 bytes
+..................[1/1 1/1] base: 1 files, 49.0 B
+....[1/1 1/1] base: 1 files, 49.0 B
+.......raw results: /tmp/tmpti767dap/result.json
+report: /tmp/tmpti767dap/result.md
+[1/1 1/1] base: 1 files, 49.0 B
+[wire 1/1] base
+.....................................s...........................................raw results: /tmp/tmp9s0rj579/result.json
+report: /tmp/tmp9s0rj579/result.md
+preparing random: 4 edits and full historical audit
+read pair 1/1: random rtt=0 cache=ample rep=1 proxy-buffer=67108864
+..preparing random: 4 edits and full historical audit
+read pair 1/1: random rtt=0 cache=ample rep=1 proxy-buffer=67108864
+.preparing random: 4 edits and full historical audit
+read pair 1/1: random rtt=0 cache=ample rep=1 proxy-buffer=67108864
+.......preparing random: 4 edits and full historical audit
+read pair 1/1: random rtt=0 cache=ample rep=1 proxy-buffer=67108864
+.....fsck benchmark failed: checkout mismatch
+..usage: python3 -m unittest [-h] [--casita CASITA]
+                           [--baseline-casita BASELINE_CASITA]
+                           [--seed-probe SEED_PROBE]
+                           [--profile {smoke,standard,frontier}]
+                           [--files FILES] [--memory-objects MEMORY_OBJECTS]
+                           [--repetitions REPETITIONS]
+                           [--spill-bytes SPILL_BYTES] [--work-dir WORK_DIR |
+                           --reuse-work-dir REUSE_WORK_DIR] --output OUTPUT
+python3 -m unittest: error: baseline and candidate binaries must have distinct hashes
+....wrote /tmp/tmpn73bin23/result.json
+fsck baseline files=256 records=321 memory=322 repetition=1
+fsck candidate files=256 records=321 memory=322 repetition=1
+fsck baseline files=256 records=321 memory=128 repetition=1
+fsck candidate files=256 records=321 memory=128 repetition=1
+fsck baseline files=256 records=321 memory=32 repetition=1
+fsck candidate files=256 records=321 memory=32 repetition=1
+fsck baseline files=256 records=321 memory=321 repetition=1
+fsck candidate files=256 records=321 memory=321 repetition=1
+fsck baseline files=256 records=321 memory=320 repetition=1
+fsck candidate files=256 records=321 memory=320 repetition=1
+..............................................metadata-batch: 512 objects, repetition 1
+..metadata-batch: 512 objects, repetition 1
+.metadata-collection: 65536 objects, repetition 1
+....metadata-ordered-scan: 256 objects, repetition 1
+metadata-ordered-scan: 8192 objects, repetition 1
+metadata-ordered-scan: 257 objects, repetition 1
+.metadata-collection: 65536 objects, repetition 1
+metadata-collection: 65537 objects, repetition 1
+.....metadata-primitives: 256 records, batch 1, repetition 1
+metadata-primitives: 256 records, batch 16, repetition 1
+metadata-primitives: 257 records, batch 1, repetition 1
+metadata-primitives: 257 records, batch 16, repetition 1
+metadata-primitives: 256 records, batch 1, repetition 1
+metadata-primitives: 256 records, batch 16, repetition 1
+..........results: /tmp/tmp16vl6e87/all
+running native-fskit
+running native-fskit-portable
+running native-fskit-repository
+running native-fskit-launch
+running native-fskit-launch-uncached
+running native-fskit-launch-eager
+running native-fskit-launch-enumeration-uncached
+running native-fskit-launch-density-enumeration-uncached
+running native-fskit-launch-density
+running native-fskit-launch-density-phases
+running native-fskit-launch-capabilities
+running native-fskit-launch-zero-times
+running native-fskit-first-launch
+running native-fskit-workloads
+running native-fskit-workloads-readers-16
+running native-fskit-workloads-uncached
+running native-fskit-workloads-read-trace
+running native-fskit-first-launch-uncached
+running native-fskit-launch-density-filename-bytes
+running native-fskit-launch-profile
+running native-fskit-launch-explicit-xattrs
+running native-fskit-launch-density-explicit-xattrs
+........................................completion ledger: /tmp/tmp16vl6e87/all/execution.json
+rebuilding durable benchmark
+rebuilding process benchmark
+...results: /tmp/tmpl4sgvt_8/results
+running obrador-reads
+.completion ledger: /tmp/tmpl4sgvt_8/results/execution.json
+Obrador durable: paths=1, workers=1, gc=False
+timeout during competing host activity; retaining failure and retrying
+Obrador process: paths=1, workers=1, gc=False
+Obrador process: paths=1, workers=1, gc=True
+Obrador durable: paths=1, workers=1, gc=True
+..............[1/1] pack target 4 MiB
+.........Failed protocol case: {'writers': 1, 'objects': 9, 'fault': 'none', 'variant': 'current-shape', 'status': 'failed', 'error': "RuntimeError('indeterminate PUT')", 'fresh_readback': False}
+.....................summary: /tmp/tmpapa3p1f2/limits.json
+report: /tmp/tmpapa3p1f2/limits.md
++ cargo bench --features git --bench gix_odb --no-run --message-format=json
+.round 1/3: before (aaaaaaaaaaaa)
+error: benchmark interrupted
+..building a (aaaaaaaaaaaa)
+building b (bbbbbbbbbbbb)
+building c (cccccccccccc)
+round 1/3: a (aaaaaaaaaaaa)
+round 1/3: b (bbbbbbbbbbbb)
+round 1/3: c (cccccccccccc)
+round 2/3: b (bbbbbbbbbbbb)
+round 2/3: c (cccccccccccc)
+round 2/3: a (aaaaaaaaaaaa)
+round 3/3: c (cccccccccccc)
+round 3/3: a (aaaaaaaaaaaa)
+round 3/3: b (bbbbbbbbbbbb)
+.................s......................................hashing source files: /tmp/tmpgpc7nh1z/run
+archiving 3 files and links: /tmp/tmpgpc7nh1z/run.tar.gz
+verifying archive: /tmp/tmpgpc7nh1z/run.tar.gz
+...hashing source files: /tmp/tmphk6zf9v0/benchmarks/work/0c4c2a49dca54e149e144cde1cda633d
+archiving 3 files and links: /tmp/tmphk6zf9v0/benchmarks/archives/work-0c4c2a49dca54e149e144cde1cda633d-a207071a.tar.gz
+verifying archive: /tmp/tmphk6zf9v0/benchmarks/archives/work-0c4c2a49dca54e149e144cde1cda633d-a207071a.tar.gz
+.revision series: /tmp/tmps7aw8jgo/output/series.json
+report: /tmp/tmps7aw8jgo/output/series.md
+results: /tmp/tmpwae350hb/auto-output
+....tar matrix 1/2, candidate, order [1, 16]
+tar matrix 2/2, candidate, order [16, 1]
+report: /tmp/tmp0exec4ar/report/report.json; complete=False
+....tar matrix 1/2, baseline, order [1, 16]
+tar matrix 1/2, candidate, order [1, 16]
+tar matrix 2/2, candidate, order [16, 1]
+tar matrix 2/2, baseline, order [16, 1]
+report: /tmp/tmpcezmhwus/report/report.json; complete=True
+.tar matrix 1/4, candidate, order [1, 16]
+report: /tmp/tmp5it9m0to/report/report.json; complete=False
+............
+----------------------------------------------------------------------
+Ran 406 tests in 19.366s
+
+OK (skipped=2)

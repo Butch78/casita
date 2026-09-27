@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.metadata-collection.v1",
+  "suite_id": "collection-and-fsck",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-14T20:02:47.983044+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "c2c6eac0ae6812490101d112e790aeb7b3c0a023",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "profile": "standard",
+    "counts": [
+      65536,
+      65537
+    ],
+    "iterations": 1,
+    "repetitions": 1,
+    "fixture": "all-retained-blobs",
+    "seed_batch_size": 1024
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-prune-profile-bin/casita-lib-test",
+      "sha256": "9d69b5bc53c3fa3eaa2b2ae7ec316c77eacc6bbda3781bc67768d0349e3ccef3"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65536,
+      "repetition": 1,
+      "wall_seconds": 0.257709664,
+      "max_rss_bytes": 74833920,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 257709664,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65536,
+      "repetition": 1,
+      "wall_seconds": 0.238310349,
+      "max_rss_bytes": 74833920,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 238310349,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65537,
+      "repetition": 1,
+      "wall_seconds": 0.68777272,
+      "max_rss_bytes": 69185536,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 687772720,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65537,
+      "repetition": 1,
+      "wall_seconds": 0.818898265,
+      "max_rss_bytes": 69185536,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 818898265,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    }
+  ],
+  "processes": [
+    {
+      "wall_seconds": 4.09014818,
+      "user_seconds": 1.79,
+      "system_seconds": 1.36,
+      "max_rss_bytes": 74833920,
+      "exit_code": 0,
+      "entries": 65536,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65536,\"iterations\":1,\"samples\":[{\"iteration\":0,\"nanos\":257709664,\"warm\":false},{\"iteration\":1,\"nanos\":238310349,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 670 filtered out; finished in 4.08s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 4.894532876,
+      "user_seconds": 2.84,
+      "system_seconds": 1.31,
+      "max_rss_bytes": 69185536,
+      "exit_code": 0,
+      "entries": 65537,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65537,\"iterations\":1,\"samples\":[{\"iteration\":0,\"nanos\":687772720,\"warm\":false},{\"iteration\":1,\"nanos\":818898265,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 670 filtered out; finished in 4.89s\n\n",
+      "stderr": ""
+    }
+  ]
+}

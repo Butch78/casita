@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+  <title id="title">Roots retain the union of their reachable object graphs</title>
+  <desc id="desc">Root projects/app selects object A, which links to a leaf and a shared object. Root releases/v1 selects object B, which also links to the shared object. All four reachable objects survive collection. A separate unrooted object is collectible. Removing projects/app would make A and its exclusive leaf collectible, while B and the shared object remain retained by releases/v1.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="m1 1 8 4-8 4" fill="none" stroke="#a23b20" stroke-width="1.5"/></marker>
+    <style>
+      text { font-family: system-ui, sans-serif; fill: #222b32; }
+      .heading { font-size: 27px; font-weight: 700; }
+      .label { font-size: 20px; font-weight: 650; }
+      .small { font-size: 17px; fill: #56616a; }
+      .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; fill: #a23b20; }
+      .live { fill: #fff0e9; stroke: #d25a37; stroke-width: 2; }
+      .flow { fill: none; stroke: #a23b20; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="720" height="560" rx="20" fill="#faf8f4"/>
+  <text x="32" y="38" class="eyebrow">02 / ROOTS &amp; RETENTION</text>
+  <text x="32" y="77" class="heading">Keep everything a root can reach.</text>
+  <g text-anchor="middle">
+    <rect x="60" y="112" width="240" height="72" rx="12" fill="#222b32"/>
+    <text x="180" y="140" style="font-size: 14px; fill: #dddcd8">NAMED ROOT</text>
+    <text x="180" y="167" style="font-size: 20px; fill: #fffdfa">projects/app</text>
+    <rect x="420" y="112" width="240" height="72" rx="12" fill="#222b32"/>
+    <text x="540" y="140" style="font-size: 14px; fill: #dddcd8">NAMED ROOT</text>
+    <text x="540" y="167" style="font-size: 20px; fill: #fffdfa">releases/v1</text>
+  </g>
+  <path d="M180 184v36" class="flow"/>
+  <path d="M540 184v36" class="flow"/>
+  <path d="M165 286 117 338" class="flow"/>
+  <path d="M208 280 329 339" class="flow"/>
+  <path d="M514 281 391 339" class="flow"/>
+  <g text-anchor="middle">
+    <circle cx="180" cy="254" r="32" class="live"/>
+    <text x="180" y="261" class="label">A</text>
+    <circle cx="540" cy="254" r="32" class="live"/>
+    <text x="540" y="261" class="label">B</text>
+    <rect x="48" y="342" width="136" height="64" rx="32" class="live"/>
+    <text x="116" y="381" class="label">Leaf</text>
+    <rect x="282" y="342" width="156" height="64" rx="32" class="live"/>
+    <text x="360" y="381" class="label">Shared</text>
+    <text x="360" y="434" class="small">Reached by both roots</text>
+    <rect x="536" y="342" width="152" height="64" rx="32" fill="#eeede9" stroke="#727b80" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="612" y="381" class="label">Unrooted</text>
+    <text x="612" y="434" class="small">Collectible</text>
+  </g>
+  <path d="M32 463h656" stroke="#d5d6d2"/>
+  <text x="32" y="493" style="font-size: 18px; font-weight: 650">Collection marks the union of all named-root closures.</text>
+  <text x="32" y="525" class="small">Shared objects and bytes survive while any retained graph needs them.</text>
+</svg>

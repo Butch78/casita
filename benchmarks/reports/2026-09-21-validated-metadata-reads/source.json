@@ -1,0 +1,24 @@
+{
+  "base_revision": "c038bc28f70eddd1561c9c7e81edb27b4ba42cb7",
+  "source_pr": 82,
+  "files": {
+    "Cargo.toml": "82fdb3689d6573cdd24fd1281a66a20a721f2f9477bd6322e5c12dd494caeacf",
+    "Cargo.lock": "7b4324ec337c254d4db530329d04b7d11475544854951c469481faa97410ae3c",
+    "devenv.lock": "aa478ed439d191b652c75225b2d882c40b9b5334a8da441dfa4215d67f74baa3",
+    "src/api.rs": "59928e0045a3e0ceb26dda8fee9bdbffdfe4971435ae9e393d295412a6f305b9",
+    "src/metadata.rs": "519fd099d5b10c5ad86c41db52d206827eb771019d86667f81b74b80f10c38cf",
+    "src/metadata/sqlite.rs": "0199f1db4ec97b26a3998aa4cd928901aaa485f267c46414d6c9de9c0c567c00",
+    "src/sqlite.rs": "61ca70c0c2e5a25c65bb74a0cf73415b5e9c22190d72860e8a4e2fee73707d2a",
+    "src/metadata/kv_benchmarks.rs": "9a759f00d259078d3b7ef24ef2f339a666ba44bcc4148b9debabaf32f88be55d",
+    "src/metadata/record_tests.rs": "99bb832088fd10956dd455773859095a1f515adca0d46fa5c09a33a425b4a373",
+    "benchmarks/suites/metadata_kv.py": "98545c0639c81ce16eac35ca6afec6d365d669307262629452166be1b25be0e5",
+    "benchmarks/manifest.json": "fcc58d0e2c79454a26409155604e2c0d3cc74e42b19a5d3fddea908f5222cc74",
+    "benchmarks/all.py": "ca7b2929c202132c7c11d8771101f04dcff2e4572503f19c92c42036309b9e5a"
+  },
+  "compiler": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+  "previous_candidate_revision": "4d80d040502e51f8512aa1607eb93d17e79d41ed",
+  "change": "Shared snapshot state validation restored before all current record reads",
+  "candidate_revision": "822268666753536d137796541bf7853daef9df0a",
+  "compiler_evidence": "rustc --version from .devenv/profile/bin reports rustc 1.96.0 (ac68faa20 2026-05-25)",
+  "benchmark_binary_sha256": "8f414281f95a55a3d745a5b41b1207d061c7e98e56d439c492130fdfee97107f"
+}

@@ -1,0 +1,22 @@
+.............+ cargo bench --features git --bench gix_odb --no-run --message-format=json
+.round 1/3: before (aaaaaaaaaaaa)
+error: benchmark interrupted
+..building a (aaaaaaaaaaaa)
+building b (bbbbbbbbbbbb)
+building c (cccccccccccc)
+round 1/3: a (aaaaaaaaaaaa)
+round 1/3: b (bbbbbbbbbbbb)
+round 1/3: c (cccccccccccc)
+round 2/3: b (bbbbbbbbbbbb)
+round 2/3: c (cccccccccccc)
+round 2/3: a (aaaaaaaaaaaa)
+round 3/3: c (cccccccccccc)
+round 3/3: a (aaaaaaaaaaaa)
+round 3/3: b (bbbbbbbbbbbb)
+....
+----------------------------------------------------------------------
+Ran 20 tests in 0.027s
+
+OK
+revision series: /tmp/tmpnueymmv0/output/series.json
+report: /tmp/tmpnueymmv0/output/series.md

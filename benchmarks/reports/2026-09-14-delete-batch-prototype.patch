@@ -1,0 +1,228 @@
+--- a/src/metadata/sqlite.rs
++++ b/src/metadata/sqlite.rs
+@@ -28,6 +28,22 @@
+ /// Small repositories validate collection directly in bounded memory; larger
+ /// repositories retain the spill-backed temporary-table path below.
+ const INLINE_COLLECTION_OBJECTS: usize = 65_536;
++const COLLECTION_DELETE_BATCH: usize = 64;
++
++fn collection_delete_sql(width: usize) -> &'static str {
++    static QUERIES: std::sync::LazyLock<Vec<String>> = std::sync::LazyLock::new(|| {
++        (0..=6)
++            .map(|power| {
++                let values = (0..1usize << power)
++                    .map(|index| format!("?{}", index + 1))
++                    .collect::<Vec<_>>()
++                    .join(",");
++                format!("DELETE FROM objects WHERE rowid IN ({values})")
++            })
++            .collect()
++    });
++    &QUERIES[width.next_power_of_two().trailing_zeros() as usize]
++}
+
+ const OBJECT_BATCH_SIZE: usize = 256;
+
+@@ -1351,7 +1367,7 @@
+     drop(roots);
+
+     let mut rows = transaction
+-        .prepare_cached("SELECT namespace, native_id, record FROM objects")
++        .prepare_cached("SELECT rowid, namespace, native_id, record FROM objects")
+         .await?
+         .query(())
+         .await?;
+@@ -1359,16 +1375,18 @@
+     let mut stale = Vec::new();
+     let mut live_blob_digests = BTreeSet::new();
+     while let Some(row) = rows.next().await? {
+-        let key = decode_key(row.get(0)?, row.get(1)?)?;
++        let key = decode_key(row.get(1)?, row.get(2)?)?;
+         if !retained_keys.contains(&key) {
+-            stale.push(key);
++            // These physical IDs are consumed inside this same transaction,
++            // after all retained-set validation and before any insertions.
++            stale.push(row.get::<i64>(0)?);
+             continue;
+         }
+         unseen.remove(&key);
+         if key.namespace().as_str() == "casita.blob.v1" {
+             live_blob_digests.insert(key.native_id().to_vec());
+         }
+-        let stored: Vec<u8> = row.get(2)?;
++        let stored: Vec<u8> = row.get(3)?;
+         let record = decode_stored_record(&key, &stored)?;
+         if let Some(target) = record
+             .links()
+@@ -1387,12 +1405,16 @@
+         )));
+     }
+
+-    let mut delete_object = transaction
+-        .prepare_cached("DELETE FROM objects WHERE namespace = ?1 AND native_id = ?2")
+-        .await?;
+-    for key in &stale {
+-        delete_object
+-            .execute(params![key.namespace().as_str(), key.native_id()])
++    for batch in stale.chunks(COLLECTION_DELETE_BATCH) {
++        // Bound parameter count and statement-cache shapes. NULL padding cannot
++        // match a row ID.
++        let width = batch.len().next_power_of_two();
++        let mut values: Vec<_> = batch.iter().copied().map(turso::Value::Integer).collect();
++        values.resize(width, turso::Value::Null);
++        transaction
++            .prepare_cached(collection_delete_sql(width))
++            .await?
++            .execute(values)
+             .await?;
+     }
+
+@@ -2881,6 +2903,148 @@
+     }
+
+     #[tokio::test]
++    async fn collection_delete_batches_use_indexed_seeks() {
++        let directory = tempfile::tempdir().unwrap();
++        let store = TursoMetadataStore::open(directory.path().join("plans.sqlite"))
++            .await
++            .unwrap();
++        store
++            .db
++            .write(|connection| {
++                Box::pin(async move {
++                    for width in [1, 2, 32, 64] {
++                        let mut rows = connection
++                            .query(
++                                format!("EXPLAIN QUERY PLAN {}", collection_delete_sql(width)),
++                                vec![turso::Value::Null; width],
++                            )
++                            .await?;
++                        let mut details = Vec::new();
++                        while let Some(row) = rows.next().await? {
++                            details.push(row.get::<String>(3)?);
++                        }
++                        println!("collection delete plan {width}: {details:?}");
++                        assert!(
++                            !details.iter().any(|detail| detail.contains("SCAN objects")),
++                            "{details:?}"
++                        );
++                        assert!(
++                            details
++                                .iter()
++                                .any(|detail| detail.contains("INTEGER PRIMARY KEY (rowid=?)")),
++                            "{details:?}"
++                        );
++                    }
++                    Ok(())
++                })
++            })
++            .await
++            .unwrap();
++    }
++
++    #[tokio::test]
++    async fn inline_collection_batches_preserve_composite_keys_and_reject_unknown_retained() {
++        for garbage in [0, 1, 2, 3, 63, 64, 65, 127, 128, 129] {
++            let directory = tempfile::tempdir().unwrap();
++            let path = directory.path().join("collection.sqlite");
++            let store = TursoMetadataStore::open(&path).await.unwrap();
++            let mut expected = BTreeMap::new();
++            let mut seed = Vec::new();
++            for index in 0..garbage.max(1) {
++                // Include empty and zero-containing native IDs, and identical
++                // native IDs in live/dead namespaces. NULL padding and tuple
++                // matching must not remove an unrelated live record.
++                let native = if index == 0 {
++                    vec![]
++                } else {
++                    (index as u64).to_le_bytes().to_vec()
++                };
++                for namespace in ["test.live.v1", "test.dead.v1"] {
++                    if namespace == "test.dead.v1" && index >= garbage {
++                        continue;
++                    }
++                    let key = ObjectKey::new(namespace.parse().unwrap(), native.clone()).unwrap();
++                    let record = ObjectRecord::new(
++                        key.clone(),
++                        BlobId::new(Digest::hash(&key.encode())),
++                        0,
++                        vec![],
++                    )
++                    .unwrap();
++                    if namespace == "test.live.v1" {
++                        expected.insert(key, record.clone());
++                    }
++                    seed.push(record);
++                }
++            }
++            let original = seed.clone();
++            store
++                .db
++                .write(move |connection| {
++                    Box::pin(async move {
++                        let transaction = connection.transaction().await?;
++                        for record in seed {
++                            insert_record_tx(&transaction, &record, 0)
++                                .await
++                                .map_err(state_as_database)?;
++                        }
++                        transaction.commit().await?;
++                        Ok(())
++                    })
++                })
++                .await
++                .unwrap();
++            let revision = store.snapshot().await.unwrap().revision();
++            let retained: BTreeSet<_> = expected.keys().cloned().collect();
++            let mut invalid = retained.clone();
++            invalid.insert(ObjectKey::new("test.missing.v1".parse().unwrap(), vec![]).unwrap());
++            assert!(matches!(
++                store
++                    .commit(
++                        &revision,
++                        MetadataMutation::install_retained_objects(invalid)
++                    )
++                    .await,
++                Err(MetadataError::InvalidRetainedSet(_))
++            ));
++            let snapshot = store.snapshot().await.unwrap();
++            assert_eq!(snapshot.revision(), revision);
++            let actual = snapshot
++                .objects_unordered()
++                .try_collect::<Vec<_>>()
++                .await
++                .unwrap();
++            assert_eq!(actual.len(), original.len());
++            for record in &original {
++                assert_eq!(
++                    snapshot.object(record.key()).await.unwrap().as_ref(),
++                    Some(record)
++                );
++            }
++            drop(snapshot);
++            let committed = store
++                .commit(
++                    &revision,
++                    MetadataMutation::install_retained_objects(retained),
++                )
++                .await
++                .unwrap();
++            assert_eq!(committed.objects_removed, garbage);
++            drop(store);
++            let reopened = TursoMetadataStore::open(&path).await.unwrap();
++            let snapshot = reopened.snapshot().await.unwrap();
++            assert_eq!(snapshot.revision(), committed.revision);
++            let actual: BTreeMap<_, _> = snapshot
++                .objects_unordered()
++                .map_ok(|record| (record.key().clone(), record))
++                .try_collect()
++                .await
++                .unwrap();
++            assert_eq!(actual, expected);
++        }
++    }
++
++    #[tokio::test]
+     async fn stale_commit_and_atomic_collection() {
+         let directory = tempfile::tempdir().unwrap();
+         let store = TursoMetadataStore::open(directory.path().join("casita.sqlite"))

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "450a6336550e5faeb4d37c563a728ebfacaabbb3",
+  "diff": " .github/workflows/ci.yml           |   6 +\n Cargo.toml                         |   5 +-\n README.md                          |   3 +\n benchmarks/README.md               |  43 +++++++\n benchmarks/all.py                  |  26 +++-\n benchmarks/dashboard.py            |   2 +-\n benchmarks/manifest.json           |   4 +\n benchmarks/revisions.py            |   1 +\n benchmarks/tests/test_all.py       |  24 +++-\n benchmarks/tests/test_revisions.py |   2 +-\n src/metadata/sqlite.rs             |   2 +-\n src/sqlite.rs                      | 250 ++++++++++++++++++++++++++++++++++++-\n 12 files changed, 355 insertions(+), 13 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "snapshot-connections",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "snapshot-connections",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/home/domen/dev/casita5/benchmarks/reports/2026-09-11-rootless-readers/snapshot-all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/home/domen/dev/casita5/benchmarks/reports/2026-09-11-rootless-readers/snapshot-all/snapshot-connections.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.4683468079892918,
+      "log": "/home/domen/dev/casita5/benchmarks/reports/2026-09-11-rootless-readers/snapshot-all/snapshot-connections.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

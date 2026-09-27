@@ -1,0 +1,913 @@
+{
+  "evidence": "JSON protocol prototypes on RustFS 1.0.0-rc.1, not production Casita publication",
+  "gc_interval_seconds": 0.01,
+  "attempted_cases": 60,
+  "successful_cases": 34,
+  "failed_cases": 26,
+  "fresh_readback_all": true,
+  "acknowledgments_in_successful_cases": 531,
+  "failure_audit": "all durable roots, including interrupted acknowledgment queue messages; no successful performance sample implied",
+  "provenance": {
+    "writers_1_10": "rustfs-protocol-initial.json.gz",
+    "writers_32_64_100": "rustfs-protocol-remaining.json.gz"
+  },
+  "normal": [
+    {
+      "writers": 1,
+      "variant": "current-shape",
+      "seconds": 1.5421049579745159,
+      "pin_get": 37,
+      "pin_put": 11,
+      "writer_conflicts": 0,
+      "writer_http_503": 0,
+      "gc_requests": 68,
+      "latency_nearest_rank_seconds": {
+        "50": 1.4502172640059143,
+        "95": 1.4502172640059143,
+        "99": 1.4502172640059143
+      }
+    },
+    {
+      "writers": 1,
+      "variant": "batched",
+      "seconds": 1.393420284963213,
+      "pin_get": 4,
+      "pin_put": 4,
+      "writer_conflicts": 0,
+      "writer_http_503": 0,
+      "gc_requests": 36,
+      "latency_nearest_rank_seconds": {
+        "50": 1.3204890579218045,
+        "95": 1.3204890579218045,
+        "99": 1.3204890579218045
+      }
+    },
+    {
+      "writers": 1,
+      "variant": "owned",
+      "seconds": 0.7815915669780225,
+      "pin_get": 13,
+      "pin_put": 5,
+      "writer_conflicts": 0,
+      "writer_http_503": 0,
+      "gc_requests": 49,
+      "latency_nearest_rank_seconds": {
+        "50": 0.6365910929162055,
+        "95": 0.6365910929162055,
+        "99": 0.6365910929162055
+      }
+    },
+    {
+      "writers": 10,
+      "variant": "current-shape",
+      "seconds": 37.34574514999986,
+      "pin_get": 980,
+      "pin_put": 793,
+      "writer_conflicts": 683,
+      "writer_http_503": 0,
+      "gc_requests": 316,
+      "latency_nearest_rank_seconds": {
+        "50": 33.57720632501878,
+        "95": 37.047797592007555,
+        "99": 37.047797592007555
+      }
+    },
+    {
+      "writers": 10,
+      "variant": "batched",
+      "seconds": 8.854226795956492,
+      "pin_get": 293,
+      "pin_put": 235,
+      "writer_conflicts": 195,
+      "writer_http_503": 0,
+      "gc_requests": 137,
+      "latency_nearest_rank_seconds": {
+        "50": 5.142936130054295,
+        "95": 8.33852682390716,
+        "99": 8.33852682390716
+      }
+    },
+    {
+      "writers": 10,
+      "variant": "owned",
+      "seconds": 6.339026752975769,
+      "pin_get": 944,
+      "pin_put": 93,
+      "writer_conflicts": 43,
+      "writer_http_503": 0,
+      "gc_requests": 259,
+      "latency_nearest_rank_seconds": {
+        "50": 2.625247508054599,
+        "95": 6.274927866994403,
+        "99": 6.274927866994403
+      }
+    },
+    {
+      "writers": 32,
+      "variant": "batched",
+      "seconds": 58.02163455891423,
+      "pin_get": 2577,
+      "pin_put": 2228,
+      "writer_conflicts": 2100,
+      "writer_http_503": 0,
+      "gc_requests": 579,
+      "latency_nearest_rank_seconds": {
+        "50": 47.08520573202986,
+        "95": 57.722138780052774,
+        "99": 57.92691396805458
+      }
+    },
+    {
+      "writers": 32,
+      "variant": "owned",
+      "seconds": 10.473795350058936,
+      "pin_get": 2167,
+      "pin_put": 556,
+      "writer_conflicts": 396,
+      "writer_http_503": 0,
+      "gc_requests": 764,
+      "latency_nearest_rank_seconds": {
+        "50": 6.942041647969745,
+        "95": 10.419737483025528,
+        "99": 10.430287849972956
+      }
+    },
+    {
+      "writers": 64,
+      "variant": "owned",
+      "seconds": 35.17663065204397,
+      "pin_get": 2962,
+      "pin_put": 1891,
+      "writer_conflicts": 1571,
+      "writer_http_503": 0,
+      "gc_requests": 1193,
+      "latency_nearest_rank_seconds": {
+        "50": 26.3279517829651,
+        "95": 33.223087689024396,
+        "99": 35.10052933602128
+      }
+    }
+  ],
+  "failures": [
+    {
+      "writers": 32,
+      "fault": "none",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0019', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 59, 'put': 59, 'conflicts': 59, 'read_bytes': 93217, 'write_bytes': 94162, 'ambiguous': 0, 'blocked': 0, 'pin_get': 59, 'pin_put': 59, 'pin_read_bytes': 93217, 'pin_write_bytes': 94162, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 59}})",
+      "triggering_writer": {
+        "owner": "owner-0019",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 59,
+          "put": 59,
+          "conflicts": 59,
+          "read_bytes": 93217,
+          "write_bytes": 94162,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 59,
+          "pin_put": 59,
+          "pin_read_bytes": 93217,
+          "pin_write_bytes": 94162,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 59
+        }
+      }
+    },
+    {
+      "writers": 32,
+      "fault": "crash",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0011', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 72, 'put': 70, 'conflicts': 70, 'read_bytes': 129375, 'write_bytes': 127043, 'ambiguous': 0, 'blocked': 2, 'pin_get': 72, 'pin_put': 70, 'pin_read_bytes': 129375, 'pin_write_bytes': 127043, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 70}})",
+      "triggering_writer": {
+        "owner": "owner-0011",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 72,
+          "put": 70,
+          "conflicts": 70,
+          "read_bytes": 129375,
+          "write_bytes": 127043,
+          "ambiguous": 0,
+          "blocked": 2,
+          "pin_get": 72,
+          "pin_put": 70,
+          "pin_read_bytes": 129375,
+          "pin_write_bytes": 127043,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 70
+        }
+      }
+    },
+    {
+      "writers": 32,
+      "fault": "ambiguous",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0030', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 71, 'put': 71, 'conflicts': 71, 'read_bytes': 135804, 'write_bytes': 136941, 'ambiguous': 0, 'blocked': 0, 'pin_get': 71, 'pin_put': 71, 'pin_read_bytes': 135804, 'pin_write_bytes': 136941, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 71}})",
+      "triggering_writer": {
+        "owner": "owner-0030",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 71,
+          "put": 71,
+          "conflicts": 71,
+          "read_bytes": 135804,
+          "write_bytes": 136941,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 71,
+          "pin_put": 71,
+          "pin_read_bytes": 135804,
+          "pin_write_bytes": 136941,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 71
+        }
+      }
+    },
+    {
+      "writers": 32,
+      "fault": "ambiguous",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0025', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 64, 'put': 61, 'conflicts': 61, 'read_bytes': 310528, 'write_bytes': 308967, 'ambiguous': 0, 'blocked': 3, 'pin_get': 64, 'pin_put': 61, 'pin_read_bytes': 310528, 'pin_write_bytes': 308967, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 61}})",
+      "triggering_writer": {
+        "owner": "owner-0025",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 64,
+          "put": 61,
+          "conflicts": 61,
+          "read_bytes": 310528,
+          "write_bytes": 308967,
+          "ambiguous": 0,
+          "blocked": 3,
+          "pin_get": 64,
+          "pin_put": 61,
+          "pin_read_bytes": 310528,
+          "pin_write_bytes": 308967,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 61
+        }
+      }
+    },
+    {
+      "writers": 32,
+      "fault": "cancel",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0028', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 71, 'put': 70, 'conflicts': 70, 'read_bytes': 136436, 'write_bytes': 137168, 'ambiguous': 0, 'blocked': 1, 'pin_get': 71, 'pin_put': 70, 'pin_read_bytes': 136436, 'pin_write_bytes': 137168, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 70}})",
+      "triggering_writer": {
+        "owner": "owner-0028",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 71,
+          "put": 70,
+          "conflicts": 70,
+          "read_bytes": 136436,
+          "write_bytes": 137168,
+          "ambiguous": 0,
+          "blocked": 1,
+          "pin_get": 71,
+          "pin_put": 70,
+          "pin_read_bytes": 136436,
+          "pin_write_bytes": 137168,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 70
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "none",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0061', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 38, 'put': 37, 'conflicts': 37, 'read_bytes': 18802, 'write_bytes': 18992, 'ambiguous': 0, 'blocked': 1, 'pin_get': 38, 'pin_put': 37, 'pin_read_bytes': 18802, 'pin_write_bytes': 18992, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 37}})",
+      "triggering_writer": {
+        "owner": "owner-0061",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 38,
+          "put": 37,
+          "conflicts": 37,
+          "read_bytes": 18802,
+          "write_bytes": 18992,
+          "ambiguous": 0,
+          "blocked": 1,
+          "pin_get": 38,
+          "pin_put": 37,
+          "pin_read_bytes": 18802,
+          "pin_write_bytes": 18992,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 37
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "none",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0025', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 44, 'put': 42, 'conflicts': 42, 'read_bytes': 98626, 'write_bytes': 99204, 'ambiguous': 0, 'blocked': 2, 'pin_get': 44, 'pin_put': 42, 'pin_read_bytes': 98626, 'pin_write_bytes': 99204, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 42}})",
+      "triggering_writer": {
+        "owner": "owner-0025",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 44,
+          "put": 42,
+          "conflicts": 42,
+          "read_bytes": 98626,
+          "write_bytes": 99204,
+          "ambiguous": 0,
+          "blocked": 2,
+          "pin_get": 44,
+          "pin_put": 42,
+          "pin_read_bytes": 98626,
+          "pin_write_bytes": 99204,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 42
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "crash",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0000', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 45, 'put': 45, 'conflicts': 44, 'read_bytes': 31302, 'write_bytes': 34123, 'ambiguous': 0, 'blocked': 0, 'pin_get': 45, 'pin_put': 45, 'pin_read_bytes': 31302, 'pin_write_bytes': 34123, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 44}})",
+      "triggering_writer": {
+        "owner": "owner-0000",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 45,
+          "put": 45,
+          "conflicts": 44,
+          "read_bytes": 31302,
+          "write_bytes": 34123,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 45,
+          "pin_put": 45,
+          "pin_read_bytes": 31302,
+          "pin_write_bytes": 34123,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 44
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "crash",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0000', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 59, 'put': 54, 'conflicts': 54, 'read_bytes': 195111, 'write_bytes': 176178, 'ambiguous': 0, 'blocked': 5, 'pin_get': 59, 'pin_put': 54, 'pin_read_bytes': 195111, 'pin_write_bytes': 176178, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 54}})",
+      "triggering_writer": {
+        "owner": "owner-0000",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 59,
+          "put": 54,
+          "conflicts": 54,
+          "read_bytes": 195111,
+          "write_bytes": 176178,
+          "ambiguous": 0,
+          "blocked": 5,
+          "pin_get": 59,
+          "pin_put": 54,
+          "pin_read_bytes": 195111,
+          "pin_write_bytes": 176178,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 54
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "crash",
+      "variant": "owned",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0027', 'error': \"TimeoutError('bounded edit exhausted: registry')\", 'metrics': {'get': 770, 'put': 56, 'conflicts': 55, 'read_bytes': 560512, 'write_bytes': 24526, 'ambiguous': 0, 'blocked': 714, 'pin_get': 770, 'pin_put': 56, 'pin_read_bytes': 560512, 'pin_write_bytes': 24526, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 55}})",
+      "triggering_writer": {
+        "owner": "owner-0027",
+        "error": "TimeoutError('bounded edit exhausted: registry')",
+        "metrics": {
+          "get": 770,
+          "put": 56,
+          "conflicts": 55,
+          "read_bytes": 560512,
+          "write_bytes": 24526,
+          "ambiguous": 0,
+          "blocked": 714,
+          "pin_get": 770,
+          "pin_put": 56,
+          "pin_read_bytes": 560512,
+          "pin_write_bytes": 24526,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 55
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "ambiguous",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0012', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 66, 'put': 59, 'conflicts': 59, 'read_bytes': 52955, 'write_bytes': 53230, 'ambiguous': 0, 'blocked': 7, 'pin_get': 66, 'pin_put': 59, 'pin_read_bytes': 52955, 'pin_write_bytes': 53230, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 59}})",
+      "triggering_writer": {
+        "owner": "owner-0012",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 66,
+          "put": 59,
+          "conflicts": 59,
+          "read_bytes": 52955,
+          "write_bytes": 53230,
+          "ambiguous": 0,
+          "blocked": 7,
+          "pin_get": 66,
+          "pin_put": 59,
+          "pin_read_bytes": 52955,
+          "pin_write_bytes": 53230,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 59
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "ambiguous",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0049', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 50, 'put': 50, 'conflicts': 50, 'read_bytes': 193242, 'write_bytes': 194042, 'ambiguous': 0, 'blocked': 0, 'pin_get': 50, 'pin_put': 50, 'pin_read_bytes': 193242, 'pin_write_bytes': 194042, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 50}})",
+      "triggering_writer": {
+        "owner": "owner-0049",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 50,
+          "put": 50,
+          "conflicts": 50,
+          "read_bytes": 193242,
+          "write_bytes": 194042,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 50,
+          "pin_put": 50,
+          "pin_read_bytes": 193242,
+          "pin_write_bytes": 194042,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 50
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "cancel",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0002', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 43, 'put': 41, 'conflicts': 41, 'read_bytes': 28726, 'write_bytes': 29288, 'ambiguous': 0, 'blocked': 2, 'pin_get': 43, 'pin_put': 41, 'pin_read_bytes': 28726, 'pin_write_bytes': 29288, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 41}})",
+      "triggering_writer": {
+        "owner": "owner-0002",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 43,
+          "put": 41,
+          "conflicts": 41,
+          "read_bytes": 28726,
+          "write_bytes": 29288,
+          "ambiguous": 0,
+          "blocked": 2,
+          "pin_get": 43,
+          "pin_put": 41,
+          "pin_read_bytes": 28726,
+          "pin_write_bytes": 29288,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 41
+        }
+      }
+    },
+    {
+      "writers": 64,
+      "fault": "cancel",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0026', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 42, 'put': 41, 'conflicts': 41, 'read_bytes': 108841, 'write_bytes': 106488, 'ambiguous': 0, 'blocked': 1, 'pin_get': 42, 'pin_put': 41, 'pin_read_bytes': 108841, 'pin_write_bytes': 106488, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 41}})",
+      "triggering_writer": {
+        "owner": "owner-0026",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 42,
+          "put": 41,
+          "conflicts": 41,
+          "read_bytes": 108841,
+          "write_bytes": 106488,
+          "ambiguous": 0,
+          "blocked": 1,
+          "pin_get": 42,
+          "pin_put": 41,
+          "pin_read_bytes": 108841,
+          "pin_write_bytes": 106488,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 41
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "none",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0008', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 32, 'put': 32, 'conflicts': 32, 'read_bytes': 16227, 'write_bytes': 16740, 'ambiguous': 0, 'blocked': 0, 'pin_get': 32, 'pin_put': 32, 'pin_read_bytes': 16227, 'pin_write_bytes': 16740, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 32}})",
+      "triggering_writer": {
+        "owner": "owner-0008",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 32,
+          "put": 32,
+          "conflicts": 32,
+          "read_bytes": 16227,
+          "write_bytes": 16740,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 32,
+          "pin_put": 32,
+          "pin_read_bytes": 16227,
+          "pin_write_bytes": 16740,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 32
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "none",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0096', 'error': 'RuntimeError(\\'unresolved backend outcome: {\\\\\\'method\\\\\\': \\\\\\'GET\\\\\\', \\\\\\'status\\\\\\': 503, \\\\\\'seconds\\\\\\': 5.006481328047812, \\\\\\'code\\\\\\': \\\\\\'ServiceUnavailable\\\\\\', \\\\\\'request_id\\\\\\': \\\\\\'d40cdd79-d713-4c26-b7e1-4907831968e7\\\\\\', \\\\\\'key\\\\\\': \\\\\\'ledger\\\\\\', \\\\\\'error_body\\\\\\': \\\\\\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\\\\\'}\\')', 'metrics': {'get': 15, 'put': 14, 'conflicts': 14, 'read_bytes': 5634, 'write_bytes': 5859, 'ambiguous': 0, 'blocked': 0, 'pin_get': 15, 'pin_put': 14, 'pin_read_bytes': 5634, 'pin_write_bytes': 5859, 'list': 0, 'delete': 0, 'http_503': 1, 'http_409': 0, 'http_412': 14}})",
+      "triggering_writer": {
+        "owner": "owner-0096",
+        "error": "RuntimeError('unresolved backend outcome: {\\'method\\': \\'GET\\', \\'status\\': 503, \\'seconds\\': 5.006481328047812, \\'code\\': \\'ServiceUnavailable\\', \\'request_id\\': \\'d40cdd79-d713-4c26-b7e1-4907831968e7\\', \\'key\\': \\'ledger\\', \\'error_body\\': \\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\'}')",
+        "metrics": {
+          "get": 15,
+          "put": 14,
+          "conflicts": 14,
+          "read_bytes": 5634,
+          "write_bytes": 5859,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 15,
+          "pin_put": 14,
+          "pin_read_bytes": 5634,
+          "pin_write_bytes": 5859,
+          "list": 0,
+          "delete": 0,
+          "http_503": 1,
+          "http_409": 0,
+          "http_412": 14
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "none",
+      "variant": "owned",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0066', 'error': \"TimeoutError('bounded edit exhausted: registry')\", 'metrics': {'get': 78, 'put': 43, 'conflicts': 42, 'read_bytes': 27963, 'write_bytes': 14982, 'ambiguous': 0, 'blocked': 35, 'pin_get': 78, 'pin_put': 43, 'pin_read_bytes': 27963, 'pin_write_bytes': 14982, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 42}})",
+      "triggering_writer": {
+        "owner": "owner-0066",
+        "error": "TimeoutError('bounded edit exhausted: registry')",
+        "metrics": {
+          "get": 78,
+          "put": 43,
+          "conflicts": 42,
+          "read_bytes": 27963,
+          "write_bytes": 14982,
+          "ambiguous": 0,
+          "blocked": 35,
+          "pin_get": 78,
+          "pin_put": 43,
+          "pin_read_bytes": 27963,
+          "pin_write_bytes": 14982,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 42
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "crash",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0075', 'error': 'RuntimeError(\\'unresolved backend outcome: {\\\\\\'method\\\\\\': \\\\\\'GET\\\\\\', \\\\\\'status\\\\\\': 503, \\\\\\'seconds\\\\\\': 5.002115613897331, \\\\\\'code\\\\\\': \\\\\\'ServiceUnavailable\\\\\\', \\\\\\'request_id\\\\\\': \\\\\\'c179cd16-55dc-42ef-8df3-d99a4a70c3ae\\\\\\', \\\\\\'key\\\\\\': \\\\\\'ledger\\\\\\', \\\\\\'error_body\\\\\\': \\\\\\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\\\\\'}\\')', 'metrics': {'get': 23, 'put': 21, 'conflicts': 21, 'read_bytes': 7163, 'write_bytes': 7065, 'ambiguous': 0, 'blocked': 1, 'pin_get': 23, 'pin_put': 21, 'pin_read_bytes': 7163, 'pin_write_bytes': 7065, 'list': 0, 'delete': 0, 'http_503': 1, 'http_409': 0, 'http_412': 21}})",
+      "triggering_writer": {
+        "owner": "owner-0075",
+        "error": "RuntimeError('unresolved backend outcome: {\\'method\\': \\'GET\\', \\'status\\': 503, \\'seconds\\': 5.002115613897331, \\'code\\': \\'ServiceUnavailable\\', \\'request_id\\': \\'c179cd16-55dc-42ef-8df3-d99a4a70c3ae\\', \\'key\\': \\'ledger\\', \\'error_body\\': \\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\'}')",
+        "metrics": {
+          "get": 23,
+          "put": 21,
+          "conflicts": 21,
+          "read_bytes": 7163,
+          "write_bytes": 7065,
+          "ambiguous": 0,
+          "blocked": 1,
+          "pin_get": 23,
+          "pin_put": 21,
+          "pin_read_bytes": 7163,
+          "pin_write_bytes": 7065,
+          "list": 0,
+          "delete": 0,
+          "http_503": 1,
+          "http_409": 0,
+          "http_412": 21
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "crash",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0000', 'error': \"TimeoutError('bounded edit exhausted: ledger')\", 'metrics': {'get': 31, 'put': 31, 'conflicts': 30, 'read_bytes': 57855, 'write_bytes': 73921, 'ambiguous': 0, 'blocked': 0, 'pin_get': 31, 'pin_put': 31, 'pin_read_bytes': 57855, 'pin_write_bytes': 73921, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 30}})",
+      "triggering_writer": {
+        "owner": "owner-0000",
+        "error": "TimeoutError('bounded edit exhausted: ledger')",
+        "metrics": {
+          "get": 31,
+          "put": 31,
+          "conflicts": 30,
+          "read_bytes": 57855,
+          "write_bytes": 73921,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 31,
+          "pin_put": 31,
+          "pin_read_bytes": 57855,
+          "pin_write_bytes": 73921,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 30
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "crash",
+      "variant": "owned",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0000', 'error': \"TimeoutError('bounded edit exhausted: registry')\", 'metrics': {'get': 70, 'put': 41, 'conflicts': 40, 'read_bytes': 19813, 'write_bytes': 14256, 'ambiguous': 0, 'blocked': 29, 'pin_get': 70, 'pin_put': 41, 'pin_read_bytes': 19813, 'pin_write_bytes': 14256, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 40}})",
+      "triggering_writer": {
+        "owner": "owner-0000",
+        "error": "TimeoutError('bounded edit exhausted: registry')",
+        "metrics": {
+          "get": 70,
+          "put": 41,
+          "conflicts": 40,
+          "read_bytes": 19813,
+          "write_bytes": 14256,
+          "ambiguous": 0,
+          "blocked": 29,
+          "pin_get": 70,
+          "pin_put": 41,
+          "pin_read_bytes": 19813,
+          "pin_write_bytes": 14256,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 40
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "ambiguous",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0064', 'error': 'RuntimeError(\\'unresolved backend outcome: {\\\\\\'method\\\\\\': \\\\\\'GET\\\\\\', \\\\\\'status\\\\\\': 503, \\\\\\'seconds\\\\\\': 5.0019208929734305, \\\\\\'code\\\\\\': \\\\\\'ServiceUnavailable\\\\\\', \\\\\\'request_id\\\\\\': \\\\\\'8b60ebb8-3319-41b5-98da-07d77e9d16f9\\\\\\', \\\\\\'key\\\\\\': \\\\\\'ledger\\\\\\', \\\\\\'error_body\\\\\\': \\\\\\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\\\\\'}\\')', 'metrics': {'get': 4, 'put': 3, 'conflicts': 3, 'read_bytes': 333, 'write_bytes': 381, 'ambiguous': 0, 'blocked': 0, 'pin_get': 4, 'pin_put': 3, 'pin_read_bytes': 333, 'pin_write_bytes': 381, 'list': 0, 'delete': 0, 'http_503': 1, 'http_409': 0, 'http_412': 3}})",
+      "triggering_writer": {
+        "owner": "owner-0064",
+        "error": "RuntimeError('unresolved backend outcome: {\\'method\\': \\'GET\\', \\'status\\': 503, \\'seconds\\': 5.0019208929734305, \\'code\\': \\'ServiceUnavailable\\', \\'request_id\\': \\'8b60ebb8-3319-41b5-98da-07d77e9d16f9\\', \\'key\\': \\'ledger\\', \\'error_body\\': \\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\'}')",
+        "metrics": {
+          "get": 4,
+          "put": 3,
+          "conflicts": 3,
+          "read_bytes": 333,
+          "write_bytes": 381,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 4,
+          "pin_put": 3,
+          "pin_read_bytes": 333,
+          "pin_write_bytes": 381,
+          "list": 0,
+          "delete": 0,
+          "http_503": 1,
+          "http_409": 0,
+          "http_412": 3
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "ambiguous",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0004', 'error': 'RuntimeError(\\'unresolved backend outcome: {\\\\\\'method\\\\\\': \\\\\\'GET\\\\\\', \\\\\\'status\\\\\\': 503, \\\\\\'seconds\\\\\\': 5.003039331058972, \\\\\\'code\\\\\\': \\\\\\'ServiceUnavailable\\\\\\', \\\\\\'request_id\\\\\\': \\\\\\'4560780f-14a9-4f18-95f9-575ddc01e5d6\\\\\\', \\\\\\'key\\\\\\': \\\\\\'ledger\\\\\\', \\\\\\'error_body\\\\\\': \\\\\\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\\\\\'}\\')', 'metrics': {'get': 6, 'put': 5, 'conflicts': 5, 'read_bytes': 475, 'write_bytes': 555, 'ambiguous': 0, 'blocked': 0, 'pin_get': 6, 'pin_put': 5, 'pin_read_bytes': 475, 'pin_write_bytes': 555, 'list': 0, 'delete': 0, 'http_503': 1, 'http_409': 0, 'http_412': 5}})",
+      "triggering_writer": {
+        "owner": "owner-0004",
+        "error": "RuntimeError('unresolved backend outcome: {\\'method\\': \\'GET\\', \\'status\\': 503, \\'seconds\\': 5.003039331058972, \\'code\\': \\'ServiceUnavailable\\', \\'request_id\\': \\'4560780f-14a9-4f18-95f9-575ddc01e5d6\\', \\'key\\': \\'ledger\\', \\'error_body\\': \\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\'}')",
+        "metrics": {
+          "get": 6,
+          "put": 5,
+          "conflicts": 5,
+          "read_bytes": 475,
+          "write_bytes": 555,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 6,
+          "pin_put": 5,
+          "pin_read_bytes": 475,
+          "pin_write_bytes": 555,
+          "list": 0,
+          "delete": 0,
+          "http_503": 1,
+          "http_409": 0,
+          "http_412": 5
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "ambiguous",
+      "variant": "owned",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0020', 'error': \"TimeoutError('bounded edit exhausted: registry')\", 'metrics': {'get': 39, 'put': 39, 'conflicts': 38, 'read_bytes': 12943, 'write_bytes': 13491, 'ambiguous': 0, 'blocked': 0, 'pin_get': 39, 'pin_put': 39, 'pin_read_bytes': 12943, 'pin_write_bytes': 13491, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 38}})",
+      "triggering_writer": {
+        "owner": "owner-0020",
+        "error": "TimeoutError('bounded edit exhausted: registry')",
+        "metrics": {
+          "get": 39,
+          "put": 39,
+          "conflicts": 38,
+          "read_bytes": 12943,
+          "write_bytes": 13491,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 39,
+          "pin_put": 39,
+          "pin_read_bytes": 12943,
+          "pin_write_bytes": 13491,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 38
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "cancel",
+      "variant": "current-shape",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0000', 'error': 'RuntimeError(\\'unresolved backend outcome: {\\\\\\'method\\\\\\': \\\\\\'GET\\\\\\', \\\\\\'status\\\\\\': 503, \\\\\\'seconds\\\\\\': 5.010956260026433, \\\\\\'code\\\\\\': \\\\\\'ServiceUnavailable\\\\\\', \\\\\\'request_id\\\\\\': \\\\\\'b89b4cbc-e460-4e5d-a9ad-9ce68f9068a0\\\\\\', \\\\\\'key\\\\\\': \\\\\\'ledger\\\\\\', \\\\\\'error_body\\\\\\': \\\\\\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\\\\\'}\\')', 'metrics': {'get': 2, 'put': 1, 'conflicts': 1, 'read_bytes': 48, 'write_bytes': 63, 'ambiguous': 0, 'blocked': 0, 'pin_get': 2, 'pin_put': 1, 'pin_read_bytes': 48, 'pin_write_bytes': 63, 'list': 0, 'delete': 0, 'http_503': 1, 'http_409': 0, 'http_412': 1}})",
+      "triggering_writer": {
+        "owner": "owner-0000",
+        "error": "RuntimeError('unresolved backend outcome: {\\'method\\': \\'GET\\', \\'status\\': 503, \\'seconds\\': 5.010956260026433, \\'code\\': \\'ServiceUnavailable\\', \\'request_id\\': \\'b89b4cbc-e460-4e5d-a9ad-9ce68f9068a0\\', \\'key\\': \\'ledger\\', \\'error_body\\': \\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\'}')",
+        "metrics": {
+          "get": 2,
+          "put": 1,
+          "conflicts": 1,
+          "read_bytes": 48,
+          "write_bytes": 63,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 2,
+          "pin_put": 1,
+          "pin_read_bytes": 48,
+          "pin_write_bytes": 63,
+          "list": 0,
+          "delete": 0,
+          "http_503": 1,
+          "http_409": 0,
+          "http_412": 1
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "cancel",
+      "variant": "batched",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0038', 'error': 'RuntimeError(\\'unresolved backend outcome: {\\\\\\'method\\\\\\': \\\\\\'GET\\\\\\', \\\\\\'status\\\\\\': 503, \\\\\\'seconds\\\\\\': 5.002438553026877, \\\\\\'code\\\\\\': \\\\\\'ServiceUnavailable\\\\\\', \\\\\\'request_id\\\\\\': \\\\\\'67e07491-1fd9-4378-b490-c27bd43745d3\\\\\\', \\\\\\'key\\\\\\': \\\\\\'ledger\\\\\\', \\\\\\'error_body\\\\\\': \\\\\\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\\\\\'}\\')', 'metrics': {'get': 21, 'put': 20, 'conflicts': 20, 'read_bytes': 12332, 'write_bytes': 12652, 'ambiguous': 0, 'blocked': 0, 'pin_get': 21, 'pin_put': 20, 'pin_read_bytes': 12332, 'pin_write_bytes': 12652, 'list': 0, 'delete': 0, 'http_503': 1, 'http_409': 0, 'http_412': 20}})",
+      "triggering_writer": {
+        "owner": "owner-0038",
+        "error": "RuntimeError('unresolved backend outcome: {\\'method\\': \\'GET\\', \\'status\\': 503, \\'seconds\\': 5.002438553026877, \\'code\\': \\'ServiceUnavailable\\', \\'request_id\\': \\'67e07491-1fd9-4378-b490-c27bd43745d3\\', \\'key\\': \\'ledger\\', \\'error_body\\': \\'<?xml version=\"1.0\" encoding=\"UTF-8\"?><Error><Code>ServiceUnavailable</Code><Message>The service is unavailable. Please retry.</Message></Error>\\'}')",
+        "metrics": {
+          "get": 21,
+          "put": 20,
+          "conflicts": 20,
+          "read_bytes": 12332,
+          "write_bytes": 12652,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 21,
+          "pin_put": 20,
+          "pin_read_bytes": 12332,
+          "pin_write_bytes": 12652,
+          "list": 0,
+          "delete": 0,
+          "http_503": 1,
+          "http_409": 0,
+          "http_412": 20
+        }
+      }
+    },
+    {
+      "writers": 100,
+      "fault": "cancel",
+      "variant": "owned",
+      "fresh_readback": true,
+      "error": "RuntimeError({'owner': 'owner-0003', 'error': \"TimeoutError('bounded edit exhausted: registry')\", 'metrics': {'get': 55, 'put': 52, 'conflicts': 51, 'read_bytes': 22766, 'write_bytes': 23332, 'ambiguous': 0, 'blocked': 3, 'pin_get': 55, 'pin_put': 52, 'pin_read_bytes': 22766, 'pin_write_bytes': 23332, 'list': 0, 'delete': 0, 'http_503': 0, 'http_409': 0, 'http_412': 51}})",
+      "triggering_writer": {
+        "owner": "owner-0003",
+        "error": "TimeoutError('bounded edit exhausted: registry')",
+        "metrics": {
+          "get": 55,
+          "put": 52,
+          "conflicts": 51,
+          "read_bytes": 22766,
+          "write_bytes": 23332,
+          "ambiguous": 0,
+          "blocked": 3,
+          "pin_get": 55,
+          "pin_put": 52,
+          "pin_read_bytes": 22766,
+          "pin_write_bytes": 23332,
+          "list": 0,
+          "delete": 0,
+          "http_503": 0,
+          "http_409": 0,
+          "http_412": 51
+        }
+      }
+    }
+  ],
+  "triggering_failure_counts": {
+    "TimeoutError('bounded edit exhausted: ledger')": 15,
+    "TimeoutError('bounded edit exhausted: registry')": 5,
+    "backend_503": 6
+  },
+  "initial_recovery_audit": "rustfs-initial-recovery-audit.json"
+}

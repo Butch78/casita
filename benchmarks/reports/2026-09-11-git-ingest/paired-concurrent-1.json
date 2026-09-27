@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.git-ingest-concurrency.v1",
+  "suite_id": "native-git",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-11T19:49:05.282491+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "4be9276041e3ee82adf3e05ae76f1a5824e9bc0c",
+    "casita_worktree_dirty": true
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-git-ingest/bin/concurrent",
+      "sha256": "b1b442c6339625fb182bd61cddc3dbebf2bcec7e399488b2308b82d372f1fffc"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "initial-import",
+      "entries": 64,
+      "layout": "loose",
+      "concurrency": 16,
+      "max_buffered_bytes": 67108864,
+      "repetition": 0,
+      "root": "git.view.v1:Hg_BaCYyu0V0Sfkdbpj-k4q0zixO0Na1PCH_C-_Qud8",
+      "objects": 67,
+      "correctness": "source object count, reopened view/ref identity, exact checkout manifest, fsck",
+      "command": [
+        "/tmp/casita-git-ingest/bin/concurrent",
+        "--repository",
+        "/tmp/casita-git-ingest-1z2j_twc/repository-0",
+        "import",
+        "/tmp/casita-git-ingest-1z2j_twc/loose-64-0.git",
+        "-i",
+        "git",
+        "--git-view",
+        "bench",
+        "--git-max-cached-pack-bytes",
+        "0",
+        "--git-concurrency",
+        "16",
+        "--git-max-buffered-bytes",
+        "67108864"
+      ],
+      "wall_seconds": 0.523856206,
+      "user_seconds": 0.01,
+      "system_seconds": 0.14,
+      "max_rss_bytes": 38109184,
+      "exit_code": 0
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "incremental-import",
+      "entries": 64,
+      "layout": "loose",
+      "concurrency": 16,
+      "max_buffered_bytes": 67108864,
+      "repetition": 0,
+      "root": "git.view.v1:RpOjAvXEktSu1-cNqgXQUzjF5xPvu52jHqeumK52XDw",
+      "objects": 86,
+      "correctness": "source object count, reopened view/ref identity, exact checkout manifest, fsck",
+      "command": [
+        "/tmp/casita-git-ingest/bin/concurrent",
+        "--repository",
+        "/tmp/casita-git-ingest-1z2j_twc/repository-0",
+        "import",
+        "/tmp/casita-git-ingest-1z2j_twc/loose-64-1.git",
+        "-i",
+        "git",
+        "--git-view",
+        "bench",
+        "--git-max-cached-pack-bytes",
+        "0",
+        "--git-concurrency",
+        "16",
+        "--git-max-buffered-bytes",
+        "67108864"
+      ],
+      "wall_seconds": 0.267977311,
+      "user_seconds": 0.01,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 39690240,
+      "exit_code": 0
+    }
+  ],
+  "configuration": {
+    "counts": [
+      64
+    ],
+    "layouts": [
+      "loose"
+    ],
+    "concurrency": [
+      16
+    ],
+    "max_buffered_bytes": [
+      67108864
+    ],
+    "omit_limits": false,
+    "repetitions": 1,
+    "measurement_note": "Alternating old serial/new concurrent release pair 1; shared host; no builds launched by this investigation.",
+    "timing": "CLI initial/incremental durable imports; setup and correctness excluded; warm source cache; native pack cache disabled"
+  }
+}

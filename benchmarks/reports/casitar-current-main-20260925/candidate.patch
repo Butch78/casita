@@ -1,0 +1,556 @@
+diff --git a/crates/casita/src/casitar/import.rs b/crates/casita/src/casitar/import.rs
+index 38335e5..9b49fee 100644
+--- a/crates/casita/src/casitar/import.rs
++++ b/crates/casita/src/casitar/import.rs
+@@ -16,6 +16,45 @@ use crate::{
+ 
+ const MEMBERSHIP_PAGE: usize = 256;
+ 
++/// Opt-in, exclusive wall-clock phase accounting for the permanent benchmark.
++/// No clock reads or per-frame allocations when disabled. Diagnostics never use stdout.
++#[derive(Default)]
++struct ImportProfile {
++    enabled: bool,
++    phases: std::collections::BTreeMap<&'static str, (u64, u64)>,
++}
++
++impl ImportProfile {
++    fn start(&self) -> Option<std::time::Instant> {
++        self.enabled.then(std::time::Instant::now)
++    }
++
++    fn finish(&mut self, phase: &'static str, start: Option<std::time::Instant>) {
++        if let Some(start) = start {
++            let entry = self.phases.entry(phase).or_default();
++            entry.0 += 1;
++            entry.1 = entry
++                .1
++                .saturating_add(start.elapsed().as_nanos().min(u64::MAX as u128) as u64);
++        }
++    }
++
++    fn emit(&self) {
++        if self.enabled {
++            // Phase names are fixed internal identifiers, never input strings.
++            let phases = self
++                .phases
++                .iter()
++                .map(|(phase, (calls, nanos))| {
++                    format!(r#"{{"phase":"{phase}","calls":{calls},"nanos":{nanos}}}"#)
++                })
++                .collect::<Vec<_>>()
++                .join(",");
++            eprintln!("casitar_import_profile {{\"schema_version\":1,\"phases\":[{phases}]}}");
++        }
++    }
++}
++
+ /// How an import treats destination names that already exist.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub enum CasitarRootConflictPolicy {
+@@ -187,11 +226,20 @@ where
+             .map(|(index, (root, name))| CasitarRootMapping { index, root, name })
+             .collect::<Vec<_>>();
+ 
++        let mut profile = ImportProfile {
++            enabled: std::env::var_os("CASITA_CASITAR_IMPORT_PROFILE")
++                .is_some_and(|value| value == "1"),
++            ..Default::default()
++        };
++        let start = profile.start();
+         let mutation = self.mutation_session().await?;
++        profile.finish("mutation_start", start);
+         mutation
+             .write_scope()
+             .run(async {
++                let start = profile.start();
+                 let expectations = preflight_roots(self, &mappings, conflict_policy).await?;
++                profile.finish("preflight", start);
+                 let area = self.spill_area();
+                 let mut archive_records = SpillSet::new(area.clone(), "casitar-import-records");
+                 let mut archive_payloads = SpillSet::new(area.clone(), "casitar-import-payloads");
+@@ -210,14 +258,22 @@ where
+                 let mut payloads_written = 0u64;
+                 let mut payloads_reused = 0u64;
+ 
+-                while let Some(frame) = reader.next_frame().await? {
++                loop {
++                    let start = profile.start();
++                    let frame = reader.next_frame().await?;
++                    profile.finish("frame_decode", start);
++                    let Some(frame) = frame else { break };
++
+                     match frame {
+                         CasitarReadFrame::Payload { payload, size } => {
++                            let start = profile.start();
+                             let reused = self
+                                 .payloads()
+                                 .has(&payload)
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("payload_lookup", start);
++                            let start = profile.start();
+                             if reused {
+                                 reader.read_payload_to(&mut tokio::io::sink()).await?;
+                                 payloads_reused = checked_increment(payloads_reused)?;
+@@ -236,10 +292,20 @@ where
+                                 }
+                                 payloads_written = checked_increment(payloads_written)?;
+                             }
++                            profile.finish(
++                                if reused {
++                                    "payload_reuse_verify"
++                                } else {
++                                    "payload_write"
++                                },
++                                start,
++                            );
++                            let start = profile.start();
+                             archive_payloads
+                                 .insert(payload)
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("payload_membership_insert", start);
+                         }
+                         CasitarReadFrame::Record(record) => {
+                             if archive_records.len() >= self.limits().max_traversal_objects {
+@@ -249,6 +315,7 @@ where
+                                 ))
+                                 .into());
+                             }
++                            let start = profile.start();
+                             archive_records
+                                 .insert(record.key().clone())
+                                 .await
+@@ -257,31 +324,30 @@ where
+                                 .insert(record.payload())
+                                 .await
+                                 .map_err(RepositoryError::from)?;
+-                            let staged = mutation
+-                                .stage_existing(record.key().clone(), record.payload())
+-                                .await?;
+-                            if staged.record() != &record {
+-                                return Err(CasitarImportError::RecordMismatch {
+-                                    key: record.key().clone(),
+-                                });
+-                            }
+-                            pending.push(staged);
++                            profile.finish("record_membership_insert", start);
++                            pending.push(record);
+                             if pending.len() == batch_limit {
+-                                let result = mutation.publish_unrooted(pending).await?;
+-                                records_inserted =
+-                                    checked_add_usize(records_inserted, result.objects_inserted)?;
++                                let inserted = publish_records(
++                                    &mutation,
++                                    pending,
++                                    &mut profile,
++                                    "publish_batch",
++                                )
++                                .await?;
++                                records_inserted = checked_add_usize(records_inserted, inserted)?;
+                                 pending = Vec::with_capacity(batch_limit);
+                             }
+                         }
+                     }
+                 }
+                 if !pending.is_empty() {
+-                    let result = mutation.publish_unrooted(pending).await?;
+-                    records_inserted =
+-                        checked_add_usize(records_inserted, result.objects_inserted)?;
++                    let inserted =
++                        publish_records(&mutation, pending, &mut profile, "publish_tail").await?;
++                    records_inserted = checked_add_usize(records_inserted, inserted)?;
+                 }
+                 let (_, stats) = reader.into_inner()?;
+ 
++                let start = profile.start();
+                 let archive_records = archive_records
+                     .freeze()
+                     .await
+@@ -296,6 +362,8 @@ where
+                     .map_err(RepositoryError::from)?;
+                 validate_payload_membership(&archive_payloads, &referenced_payloads).await?;
+ 
++                profile.finish("freeze_and_payload_membership", start);
++                let start = profile.start();
+                 let hold = self.retention_hold().await?;
+                 let mut reachable = SpillSet::new(area.clone(), "casitar-import-reachable");
+                 for root in &roots {
+@@ -307,9 +375,12 @@ where
+                         });
+                     }
+                 }
++                profile.finish("verify_closure", start);
++                let start = profile.start();
+                 let reachable = reachable.freeze().await.map_err(RepositoryError::from)?;
+                 validate_record_membership(&archive_records, &reachable).await?;
+                 drop(hold);
++                profile.finish("record_membership", start);
+ 
+                 let changes = mappings
+                     .iter()
+@@ -318,6 +389,7 @@ where
+                         target: mapping.root.clone(),
+                     })
+                     .collect();
++                let start = profile.start();
+                 let destination_revision = match mutation
+                     .publish_if_roots_match(Vec::new(), expectations, changes)
+                     .await?
+@@ -336,6 +408,8 @@ where
+                     }
+                 };
+ 
++                profile.finish("publish_roots", start);
++                profile.emit();
+                 let records_reused = stats
+                     .records
+                     .checked_sub(records_inserted)
+@@ -366,6 +440,38 @@ where
+     }
+ }
+ 
++/// Protect each batch in one durable operation, then use the same receiver
++/// verification as individual staging. No record becomes visible until every
++/// record in this batch agrees with its verified payload.
++async fn publish_records<PS: BlobStore, SS: MetadataStore>(
++    mutation: &crate::repository::MutationSession<'_, PS, SS>,
++    records: Vec<crate::ObjectRecord>,
++    profile: &mut ImportProfile,
++    phase: &'static str,
++) -> Result<usize, CasitarImportError> {
++    let start = profile.start();
++    mutation.protect_existing_records(&records).await?;
++    profile.finish("protect_records", start);
++    let mut pending = Vec::with_capacity(records.len());
++    for record in records {
++        let start = profile.start();
++        let staged = mutation
++            .stage_existing(record.key().clone(), record.payload())
++            .await?;
++        profile.finish("stage_existing", start);
++        if staged.record() != &record {
++            return Err(CasitarImportError::RecordMismatch {
++                key: record.key().clone(),
++            });
++        }
++        pending.push(staged);
++    }
++    let start = profile.start();
++    let result = mutation.publish_unrooted(pending).await?;
++    profile.finish(phase, start);
++    Ok(result.objects_inserted)
++}
++
+ fn validate_destinations<PS, SS>(
+     repository: &Repository<PS, SS>,
+     roots: &[ObjectKey],
+@@ -647,6 +753,43 @@ mod tests {
+         (writer.0, roots)
+     }
+ 
++    #[tokio::test]
++    async fn a_forged_record_prevents_the_entire_protected_batch_from_publication() {
++        let repository = Repository::memory().unwrap();
++        let mutation = repository.mutation_session().await.unwrap();
++        let first = mutation.stage_blob(b"valid batch member").await.unwrap();
++        let second = mutation.stage_blob(b"forged batch member").await.unwrap();
++        let first_record = first.record().clone();
++        let second_record = second.record();
++        let forged = ObjectRecord::new(
++            second_record.key().clone(),
++            second_record.payload(),
++            second_record.payload_size() + 1,
++            vec![],
++        )
++        .unwrap();
++        let result = publish_records(
++            &mutation,
++            vec![first_record.clone(), forged],
++            &mut ImportProfile::default(),
++            "publish_tail",
++        )
++        .await;
++        assert!(matches!(
++            result,
++            Err(CasitarImportError::RecordMismatch { .. })
++        ));
++        let snapshot = repository.metadata().snapshot().await.unwrap();
++        assert!(snapshot.object(first_record.key()).await.unwrap().is_none());
++        assert!(
++            snapshot
++                .object(second_record.key())
++                .await
++                .unwrap()
++                .is_none()
++        );
++    }
++
+     #[tokio::test]
+     async fn imports_exact_multi_root_closure_atomically_and_reuses_on_retry() {
+         let (archive, roots) = graph_archive().await;
+diff --git a/crates/casita/src/cli/commands/mod.rs b/crates/casita/src/cli/commands/mod.rs
+index e50fce3..dfafc6c 100644
+--- a/crates/casita/src/cli/commands/mod.rs
++++ b/crates/casita/src/cli/commands/mod.rs
+@@ -554,15 +554,23 @@ async fn archive_verify(
+         .map(|(index, _)| RootName::try_from(format!("verify/{index}")))
+         .collect::<Result<Vec<_>, _>>()?;
+     let temporary = tempfile::tempdir()?;
+-    let repository = casita::experimental::Repository::local(temporary.path())
+-        .await?
+-        .with_spill_limits(spill_limits);
+-    let report = repository
+-        .import(casita::import::CasitarImport::from_reader(
+-            reader,
+-            destinations,
+-        ))
+-        .await?;
++    let report: Result<_, Error> = async {
++        let repository = casita::experimental::Repository::local(temporary.path())
++            .await?
++            .with_spill_limits(spill_limits);
++        Ok(repository
++            .import(casita::import::CasitarImport::from_reader(
++                reader,
++                destinations,
++            ))
++            .await?)
++    }
++    .await;
++    // Session drops schedule asynchronous pin releases. Keep the temporary
++    // repository alive until those complete, including when import fails.
++    let cleanup = casita::experimental::flush_repository_leases().await;
++    let report = report?;
++    cleanup?;
+     emit_archive_summary(
+         "verify",
+         "verified",
+diff --git a/crates/casita/src/repository/mutation.rs b/crates/casita/src/repository/mutation.rs
+index 9d73592..65fb700 100644
+--- a/crates/casita/src/repository/mutation.rs
++++ b/crates/casita/src/repository/mutation.rs
+@@ -555,6 +555,34 @@ where
+             .await
+     }
+ 
++    /// Durably protect a bounded set of existing records before staging them.
++    /// This grants no trust: callers must still verify every record through
++    /// `stage_existing`. Its repeated protection checks use the confirmed cache.
++    pub(crate) async fn protect_existing_records(
++        &self,
++        records: &[ObjectRecord],
++    ) -> Result<(), RepositoryError> {
++        if records.len() > self.repository.limits.max_batch_objects {
++            return Err(RepositoryError::LimitExceeded(
++                "existing-record protection exceeds mutation batch limit".to_owned(),
++            ));
++        }
++        self.pin
++            .protect(
++                records
++                    .iter()
++                    .flat_map(|record| {
++                        [
++                            crate::metadata::PinResource::Object(record.key().clone()),
++                            crate::metadata::PinResource::Blob(record.payload()),
++                        ]
++                    })
++                    .collect(),
++            )
++            .await?;
++        Ok(())
++    }
++
+     /// Verify an already durable payload under an exact logical key.
+     #[tracing::instrument(name = "repository.stage_existing", level = "debug", skip_all)]
+     pub async fn stage_existing<'hold>(
+diff --git a/crates/casita/src/repository/tests.rs b/crates/casita/src/repository/tests.rs
+index 34863b0..7969dab 100644
+--- a/crates/casita/src/repository/tests.rs
++++ b/crates/casita/src/repository/tests.rs
+@@ -5593,3 +5593,117 @@ async fn multi_root_pages_keep_equal_relative_names_separate_and_reuse_cache() {
+     drop(session);
+     assert!(repository.fsck().await.unwrap().is_clean());
+ }
++
++#[tokio::test]
++async fn batched_existing_protection_survives_collection_and_releases_after_drop() {
++    let repository = repository();
++    let seed = repository.mutation_session().await.unwrap();
++    let first = seed.stage_blob(b"first protected payload").await.unwrap();
++    let second = seed.stage_blob(b"second protected payload").await.unwrap();
++    let records = vec![first.record().clone(), second.record().clone()];
++    seed.publish_unrooted(vec![first, second]).await.unwrap();
++    drop(seed);
++    crate::flush_repository_leases().await.unwrap();
++
++    let mutation = repository.mutation_session().await.unwrap();
++    mutation.protect_existing_records(&records).await.unwrap();
++    // Force collection between durable batch protection and verification.
++    assert_eq!(
++        repository
++            .try_collect()
++            .await
++            .unwrap()
++            .removed
++            .logical_objects,
++        0
++    );
++    for record in &records {
++        let staged = mutation
++            .stage_existing(record.key().clone(), record.payload())
++            .await
++            .unwrap();
++        assert_eq!(staged.record(), record);
++    }
++    drop(mutation);
++    crate::flush_repository_leases().await.unwrap();
++    assert_eq!(
++        repository
++            .try_collect()
++            .await
++            .unwrap()
++            .removed
++            .logical_objects,
++        2
++    );
++    for record in records {
++        assert!(!repository.payloads().has(&record.payload()).await.unwrap());
++    }
++}
++
++#[tokio::test]
++async fn batched_existing_protection_obeys_limits_and_does_not_verify_claims() {
++    let mut repository = repository();
++    repository.limits.max_batch_objects = 1;
++    let mutation = repository.mutation_session().await.unwrap();
++    let staged = mutation.stage_blob(b"actual bytes").await.unwrap();
++    let record = staged.record().clone();
++    assert!(matches!(
++        mutation
++            .protect_existing_records(&[record.clone(), record.clone()])
++            .await,
++        Err(RepositoryError::LimitExceeded(_))
++    ));
++    let wrong = ObjectKey::blob(BlobId::new(Digest::hash(b"different bytes")));
++    let claimed = ObjectRecord::new(
++        wrong.clone(),
++        record.payload(),
++        record.payload_size(),
++        vec![],
++    )
++    .unwrap();
++    mutation.protect_existing_records(&[claimed]).await.unwrap();
++    assert!(
++        mutation
++            .stage_existing(wrong, record.payload())
++            .await
++            .is_err()
++    );
++}
++
++#[tokio::test]
++async fn batched_existing_protection_invalidates_a_stale_collection_plan() {
++    let repository = repository();
++    let seed = repository.mutation_session().await.unwrap();
++    let staged = seed.stage_blob(b"protected after marking").await.unwrap();
++    let record = staged.record().clone();
++    seed.publish_unrooted(vec![staged]).await.unwrap();
++    drop(seed);
++    crate::flush_repository_leases().await.unwrap();
++    let plan = repository
++        .collection_plan(
++            repository.coordination.clone().lock_owned().await,
++            None,
++            true,
++        )
++        .await
++        .unwrap();
++    assert_eq!(plan.preview.logical_objects, 1);
++    let mutation = repository.mutation_session().await.unwrap();
++    mutation
++        .protect_existing_records(std::slice::from_ref(&record))
++        .await
++        .unwrap();
++    assert!(matches!(
++        repository.execute_collection(plan, false).await,
++        Err(RepositoryError::Busy(_))
++    ));
++    assert!(repository.payloads().has(&record.payload()).await.unwrap());
++    assert_eq!(
++        mutation
++            .stage_existing(record.key().clone(), record.payload())
++            .await
++            .unwrap()
++            .record(),
++        &record
++    );
++}
+diff --git a/crates/casita/tests/casitar_cli_pipes.rs b/crates/casita/tests/casitar_cli_pipes.rs
+index b8682a3..3988ee4 100644
+--- a/crates/casita/tests/casitar_cli_pipes.rs
++++ b/crates/casita/tests/casitar_cli_pipes.rs
+@@ -155,3 +155,61 @@ async fn two_repositories_exchange_every_multi_root_archive_over_pipes() {
+         ));
+     }
+ }
++
++#[test]
++fn verification_drains_temporary_repository_cleanup_across_batches() {
++    let temporary = tempfile::tempdir().unwrap();
++    let source = temporary.path().join("source");
++    let tree = temporary.path().join("tree");
++    let archive = temporary.path().join("fixture.casitar");
++    std::fs::create_dir(&tree).unwrap();
++    for index in 0..256u32 {
++        std::fs::write(tree.join(format!("file-{index}")), index.to_le_bytes()).unwrap();
++    }
++    assert_success(
++        "seed",
++        casita()
++            .arg("--repository")
++            .arg(&source)
++            .arg("import")
++            .arg(&tree)
++            .args(["--root", "fixture"])
++            .output()
++            .unwrap(),
++    );
++    assert_success(
++        "export",
++        casita()
++            .arg("--repository")
++            .arg(&source)
++            .args(["archive", "create", "--root", "fixture", "--output"])
++            .arg(&archive)
++            .output()
++            .unwrap(),
++    );
++    for _ in 0..3 {
++        let verified = casita()
++            .args(["archive", "verify"])
++            .arg(&archive)
++            .arg("--json")
++            .output()
++            .unwrap();
++        assert_success("verify and drain", verified.clone());
++        let report: serde_json::Value = serde_json::from_slice(&verified.stdout).unwrap();
++        assert_eq!(report["validity"], "verified");
++        assert_eq!(report["stats"]["records"], 257);
++        assert!(!String::from_utf8_lossy(&verified.stderr).contains("background task failed"));
++    }
++    // Failure after ingesting frames must also drain before deleting the store.
++    let mut bytes = std::fs::read(&archive).unwrap();
++    bytes.pop();
++    std::fs::write(&archive, bytes).unwrap();
++    let failed = casita()
++        .args(["archive", "verify"])
++        .arg(&archive)
++        .arg("--json")
++        .output()
++        .unwrap();
++    assert!(!failed.status.success());
++    assert!(!String::from_utf8_lossy(&failed.stderr).contains("background task failed"));
++}

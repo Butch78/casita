@@ -1,0 +1,572 @@
+{
+  "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+  "uid": 1000,
+  "binaries": {
+    "baseline": {
+      "path": "/tmp/casita-small-file-baseline-bench",
+      "sha256": "8f147fdd0cf5f60d9c43e726deac09fb55320083486f95cb8938ace45bc805f1"
+    },
+    "candidate": {
+      "path": "/tmp/casita-small-file-v2-bench",
+      "sha256": "50798ba3c27a2ec747e748eb725e710dce36e5f5fc7c076ae12d0adfa1063542"
+    }
+  },
+  "runs": [
+    {
+      "variant": "baseline",
+      "round": 0,
+      "command": [
+        "/tmp/casita-small-file-baseline-bench",
+        "--bench",
+        "--warm-up-time",
+        "0.2",
+        "--measurement-time",
+        "0.5",
+        "--sample-size",
+        "10",
+        "--noplot"
+      ],
+      "wall_seconds": 11.922450398000365,
+      "exit_code": 0,
+      "process_cpu_seconds": 16.446341,
+      "peak_rss_bytes": 89878528,
+      "load_before": [
+        8.755859375,
+        8.041015625,
+        11.55029296875
+      ],
+      "load_after": [
+        8.4541015625,
+        8.00537109375,
+        11.5009765625
+      ],
+      "samples": [
+        {
+          "case": "filesystem_import/bytes-0-files-48/1",
+          "median_ns": 2053929.5222222223,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 2024882.2,
+            "upper_bound": 2135529.85
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-0-files-48/16",
+          "median_ns": 784208.9270833333,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 752217.8055555555,
+            "upper_bound": 813451.5648148148
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/1",
+          "median_ns": 3472335.595833333,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 3259588.8333333335,
+            "upper_bound": 3614722.333333333
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/16",
+          "median_ns": 1038599.3875,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1029141.6908482143,
+            "upper_bound": 1062852.4375
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/1",
+          "median_ns": 18814482.25,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 17856631.75,
+            "upper_bound": 20155533.0
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/16",
+          "median_ns": 23184918.0,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 22354998.0,
+            "upper_bound": 23983374.5
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/1",
+          "median_ns": 5959846.51875,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5747699.0,
+            "upper_bound": 6266547.0
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/16",
+          "median_ns": 8319109.458333334,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8056751.95,
+            "upper_bound": 8993765.8
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/1",
+          "median_ns": 5732412.65,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5546914.0,
+            "upper_bound": 5886968.5
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/16",
+          "median_ns": 8096471.753968254,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 7967526.55,
+            "upper_bound": 8502423.333333334
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/1",
+          "median_ns": 6317431.392857143,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 6010684.625,
+            "upper_bound": 6574093.847222222
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/16",
+          "median_ns": 9116234.95,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8920350.916666668,
+            "upper_bound": 9171909.625
+          }
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "round": 0,
+      "command": [
+        "/tmp/casita-small-file-v2-bench",
+        "--bench",
+        "--warm-up-time",
+        "0.2",
+        "--measurement-time",
+        "0.5",
+        "--sample-size",
+        "10",
+        "--noplot"
+      ],
+      "wall_seconds": 11.50774031400033,
+      "exit_code": 0,
+      "process_cpu_seconds": 14.4876,
+      "peak_rss_bytes": 87998464,
+      "load_before": [
+        8.4541015625,
+        8.00537109375,
+        11.5009765625
+      ],
+      "load_after": [
+        7.337890625,
+        7.7763671875,
+        11.36962890625
+      ],
+      "samples": [
+        {
+          "case": "filesystem_import/bytes-0-files-48/1",
+          "median_ns": 1323731.9897959183,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1309226.7857142857,
+            "upper_bound": 1369178.0952380951
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-0-files-48/16",
+          "median_ns": 477238.7588235294,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 467364.887605042,
+            "upper_bound": 532956.1078431372
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/1",
+          "median_ns": 1813804.05,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1733299.157142857,
+            "upper_bound": 1875054.62
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/16",
+          "median_ns": 732716.6041666666,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 715789.4444444445,
+            "upper_bound": 775002.8068181819
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/1",
+          "median_ns": 19481444.5,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 18531905.0,
+            "upper_bound": 20201836.5
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/16",
+          "median_ns": 21076576.5,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 20915400.5,
+            "upper_bound": 21869096.0
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/1",
+          "median_ns": 4547936.25,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 4422528.25,
+            "upper_bound": 4734638.7
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/16",
+          "median_ns": 5519678.575,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5332857.5,
+            "upper_bound": 5701196.194444444
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/1",
+          "median_ns": 4685959.275,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 4397624.4,
+            "upper_bound": 4755515.0625
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/16",
+          "median_ns": 5526004.086805556,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5478419.95,
+            "upper_bound": 5942217.083333333
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/1",
+          "median_ns": 5873255.208333333,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5444344.7,
+            "upper_bound": 6426769.777777778
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/16",
+          "median_ns": 9100003.291666668,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8957849.0,
+            "upper_bound": 9372274.7
+          }
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "round": 1,
+      "command": [
+        "/tmp/casita-small-file-v2-bench",
+        "--bench",
+        "--warm-up-time",
+        "0.2",
+        "--measurement-time",
+        "0.5",
+        "--sample-size",
+        "10",
+        "--noplot"
+      ],
+      "wall_seconds": 12.380715340999814,
+      "exit_code": 0,
+      "process_cpu_seconds": 14.108133,
+      "peak_rss_bytes": 95973376,
+      "load_before": [
+        7.337890625,
+        7.7763671875,
+        11.36962890625
+      ],
+      "load_after": [
+        6.60302734375,
+        7.6025390625,
+        11.27392578125
+      ],
+      "samples": [
+        {
+          "case": "filesystem_import/bytes-0-files-48/1",
+          "median_ns": 1365330.6357142858,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1345630.0,
+            "upper_bound": 1462041.5476190476
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-0-files-48/16",
+          "median_ns": 1593034.2833333332,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 896348.8,
+            "upper_bound": 1974644.8199999998
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/1",
+          "median_ns": 6838427.416666666,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 4784504.875,
+            "upper_bound": 7196350.73888889
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/16",
+          "median_ns": 758296.025,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 727849.21875,
+            "upper_bound": 820698.3
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/1",
+          "median_ns": 17869590.5,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 17578109.833333336,
+            "upper_bound": 18306515.5
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/16",
+          "median_ns": 26249028.5,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 24751551.25,
+            "upper_bound": 27948939.0
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/1",
+          "median_ns": 4723270.0,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 4622537.777777778,
+            "upper_bound": 4815670.833333333
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/16",
+          "median_ns": 5606409.958333334,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5388145.333333333,
+            "upper_bound": 5710179.65
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/1",
+          "median_ns": 4535642.5625,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 4415797.375,
+            "upper_bound": 4634014.75
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/16",
+          "median_ns": 5482077.96875,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5331313.6,
+            "upper_bound": 5579827.777777778
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/1",
+          "median_ns": 5634693.035714285,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5512613.55,
+            "upper_bound": 5838427.166666667
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/16",
+          "median_ns": 8877261.25,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8747400.5,
+            "upper_bound": 9218097.444444444
+          }
+        }
+      ]
+    },
+    {
+      "variant": "baseline",
+      "round": 1,
+      "command": [
+        "/tmp/casita-small-file-baseline-bench",
+        "--bench",
+        "--warm-up-time",
+        "0.2",
+        "--measurement-time",
+        "0.5",
+        "--sample-size",
+        "10",
+        "--noplot"
+      ],
+      "wall_seconds": 11.145515203999821,
+      "exit_code": 0,
+      "process_cpu_seconds": 15.249661,
+      "peak_rss_bytes": 87379968,
+      "load_before": [
+        6.60302734375,
+        7.6025390625,
+        11.27392578125
+      ],
+      "load_after": [
+        6.048828125,
+        7.45068359375,
+        11.1845703125
+      ],
+      "samples": [
+        {
+          "case": "filesystem_import/bytes-0-files-48/1",
+          "median_ns": 1899138.7625000002,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1821548.6,
+            "upper_bound": 1960277.822222222
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-0-files-48/16",
+          "median_ns": 717203.5787037037,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 685479.4166666666,
+            "upper_bound": 733570.5666666667
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/1",
+          "median_ns": 3213429.340277778,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 3162079.1904761903,
+            "upper_bound": 3248249.4444444445
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1024-files-48/16",
+          "median_ns": 1037901.6916666667,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1016687.7925347222,
+            "upper_bound": 1118358.375
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/1",
+          "median_ns": 18953095.75,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 17904120.0,
+            "upper_bound": 20341934.5
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-1048576-files-16/16",
+          "median_ns": 25095569.0,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 22644100.5,
+            "upper_bound": 27235372.5
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/1",
+          "median_ns": 5580734.6875,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5442117.716666667,
+            "upper_bound": 5694269.611111111
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262143-files-16/16",
+          "median_ns": 7532158.4875,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 7316115.375,
+            "upper_bound": 7907256.555555556
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/1",
+          "median_ns": 5492886.947916666,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5336894.0,
+            "upper_bound": 5692234.142857143
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262144-files-16/16",
+          "median_ns": 7196000.416666667,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 7121042.5,
+            "upper_bound": 7505912.857142857
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/1",
+          "median_ns": 5840958.170138889,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5423566.0,
+            "upper_bound": 6116749.0
+          }
+        },
+        {
+          "case": "filesystem_import/bytes-262145-files-16/16",
+          "median_ns": 8684859.3125,
+          "median_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8356449.916666667,
+            "upper_bound": 9051545.516666666
+          }
+        }
+      ]
+    }
+  ]
+}

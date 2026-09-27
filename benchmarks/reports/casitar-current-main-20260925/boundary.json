@@ -1,0 +1,2376 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.casitar-scaling.v1",
+  "suite_id": "casitar",
+  "complete": true,
+  "configuration": {
+    "profile": "smoke",
+    "payload_bytes": [],
+    "file_counts": [
+      254,
+      256
+    ],
+    "repetitions": 1,
+    "casita_bin": "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/candidate",
+    "import_profile": true,
+    "pin_timing": true,
+    "require_quiet_host": false,
+    "quiet_timeout": 180,
+    "max_external_cpu_percent": 40,
+    "allow_competing_builds": true,
+    "baseline": {
+      "path": "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/baseline",
+      "sha256": "e5507de0ceb93139288c350319c1d4bd66aca55cf60d2366f46801db973a601b"
+    },
+    "variant_order": "alternating",
+    "case_order": "alternating",
+    "binary_sha256": "8ded761d2ab0817be38391a5cd6e8c5641204ea027a4c426f7226287347f8b50"
+  },
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.075475252,
+      "user_seconds": 0.03,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 30674944,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-HtcKR3sStKFhr6fms56RdMkACP5zyKPV5toOhkXxulw",
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.034299817,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 12636160,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.84712156,
+      "user_seconds": 0.09,
+      "system_seconds": 0.44,
+      "max_rss_bytes": 33112064,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "destination_revision": "rev-XWbEEJvp6b0Fjcsb0H8vr0yPX7j9_xNe4RGrqTy8WXU",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 255,
+        "records_inserted": 255,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 511,
+            "nanos": 31175828
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 80642
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 4604695
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 255,
+            "nanos": 1449115
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 255,
+            "nanos": 598856
+          },
+          {
+            "phase": "payload_write",
+            "calls": 255,
+            "nanos": 403139160
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 192110
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 14996985
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 35535714
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 119776
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 255,
+            "nanos": 757795
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 255,
+            "nanos": 326751872
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 11346762
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 520,
+          "seconds": 0.0014799900000000068,
+          "max_seconds": 4.0319e-05
+        },
+        "journal_append_sync": {
+          "calls": 517,
+          "seconds": 0.6228773850000002,
+          "max_seconds": 0.042629276
+        },
+        "journal_flush": {
+          "calls": 521,
+          "seconds": 0.6544965689999993,
+          "max_seconds": 0.042700429
+        },
+        "group_total": {
+          "calls": 520,
+          "seconds": 0.6862414329999998,
+          "max_seconds": 0.042768024
+        },
+        "group_wait": {
+          "calls": 520,
+          "seconds": 0.70690667,
+          "max_seconds": 0.04282969
+        },
+        "journal_checkpoint": {
+          "calls": 2,
+          "seconds": 0.005696995,
+          "max_seconds": 0.00309166
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000192117,
+          "max_seconds": 0.000192117
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.750604155,
+      "user_seconds": 0.09,
+      "system_seconds": 0.39,
+      "max_rss_bytes": 33509376,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "destination_revision": "rev-VagrE5oCrWKlbYEqw8aDPJJIvgc91jpYWDLF7evu0cw",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 127,
+        "payloads_written": 128,
+        "records_inserted": 128,
+        "records_reused": 127,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 511,
+            "nanos": 29576172
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 78273
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 4001252
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 255,
+            "nanos": 5733901
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 255,
+            "nanos": 560943
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 127,
+            "nanos": 3499644
+          },
+          {
+            "phase": "payload_write",
+            "calls": 128,
+            "nanos": 187657317
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 215835
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 14824415
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 38397607
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 120967
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 255,
+            "nanos": 884720
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 255,
+            "nanos": 428949772
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 11461051
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 393,
+          "seconds": 0.0011989830000000072,
+          "max_seconds": 1.4231e-05
+        },
+        "journal_append_sync": {
+          "calls": 391,
+          "seconds": 0.5246765120000004,
+          "max_seconds": 0.050086361
+        },
+        "journal_flush": {
+          "calls": 394,
+          "seconds": 0.5492587459999999,
+          "max_seconds": 0.050174121
+        },
+        "group_total": {
+          "calls": 393,
+          "seconds": 0.5745560140000001,
+          "max_seconds": 0.050260696
+        },
+        "group_wait": {
+          "calls": 393,
+          "seconds": 0.5919324510000001,
+          "max_seconds": 0.050327109
+        },
+        "journal_checkpoint": {
+          "calls": 1,
+          "seconds": 0.003216305,
+          "max_seconds": 0.003216305
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.00011148,
+          "max_seconds": 0.00011148
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 1.116735338,
+      "user_seconds": 0.12,
+      "system_seconds": 0.53,
+      "max_rss_bytes": 34025472,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "destination_revision": "rev-I4ieljySVwiErLPMq1DEPGN7hswGu3_4ST7afm369O4",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 255,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 255,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 511,
+            "nanos": 76806869
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 93700
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 9471719
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 255,
+            "nanos": 20659628
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 255,
+            "nanos": 620296
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 255,
+            "nanos": 29014109
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 857507
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 6625455
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 15754729
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 241961
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 255,
+            "nanos": 1572697
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 255,
+            "nanos": 904767813
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 20603434
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 262,
+          "seconds": 0.0013675070000000033,
+          "max_seconds": 4.1511e-05
+        },
+        "journal_append_sync": {
+          "calls": 260,
+          "seconds": 0.6731006709999997,
+          "max_seconds": 0.223031868
+        },
+        "journal_flush": {
+          "calls": 263,
+          "seconds": 0.7672499839999998,
+          "max_seconds": 0.223552543
+        },
+        "group_total": {
+          "calls": 262,
+          "seconds": 0.805351596,
+          "max_seconds": 0.223715032
+        },
+        "group_wait": {
+          "calls": 262,
+          "seconds": 0.8389462929999995,
+          "max_seconds": 0.223790941
+        },
+        "journal_checkpoint": {
+          "calls": 1,
+          "seconds": 0.004651651,
+          "max_seconds": 0.004651651
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000134028,
+          "max_seconds": 0.000134028
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.02266603,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 30818304,
+      "exit_code": 1,
+      "variant": "baseline",
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.143704664,
+      "user_seconds": 0.05,
+      "system_seconds": 0.05,
+      "max_rss_bytes": 32235520,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-lpzuXq50wrQe0Km5gyir9EE90zyGhCCDEJWtq7wxsvY",
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.056056811,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 11907072,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.752684666,
+      "user_seconds": 0.13,
+      "system_seconds": 0.36,
+      "max_rss_bytes": 35074048,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "destination_revision": "rev-KwPJYAnKfa8qjN3-3MrVLQJ91XOi0glJJd3GfKIkwYE",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 255,
+        "records_inserted": 255,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 511,
+            "nanos": 40471532
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 100827
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 4298649
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 255,
+            "nanos": 2653475
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 255,
+            "nanos": 1027226
+          },
+          {
+            "phase": "payload_write",
+            "calls": 255,
+            "nanos": 558392203
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 335684
+          },
+          {
+            "phase": "protect_records",
+            "calls": 1,
+            "nanos": 3557412
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 30027453
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 60192505
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 183861
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 255,
+            "nanos": 632247
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 255,
+            "nanos": 1779300
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 22466618
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 266,
+          "seconds": 0.0012288650000000013,
+          "max_seconds": 1.8979e-05
+        },
+        "journal_append_sync": {
+          "calls": 264,
+          "seconds": 0.45068897600000024,
+          "max_seconds": 0.057173627
+        },
+        "journal_flush": {
+          "calls": 267,
+          "seconds": 0.47952852700000015,
+          "max_seconds": 0.057295806
+        },
+        "group_total": {
+          "calls": 266,
+          "seconds": 0.5064166460000001,
+          "max_seconds": 0.057425102
+        },
+        "group_wait": {
+          "calls": 266,
+          "seconds": 0.534851723,
+          "max_seconds": 0.057501019
+        },
+        "journal_checkpoint": {
+          "calls": 1,
+          "seconds": 0.003457772,
+          "max_seconds": 0.003457772
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000141157,
+          "max_seconds": 0.000141157
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.497168718,
+      "user_seconds": 0.1,
+      "system_seconds": 0.24,
+      "max_rss_bytes": 37478400,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "destination_revision": "rev-E6dvRRq6FOZEkrt4B8YJhY2146MHIBTOX79ntwbTIGQ",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 127,
+        "payloads_written": 128,
+        "records_inserted": 128,
+        "records_reused": 127,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 511,
+            "nanos": 43549001
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 84223
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 5957093
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 255,
+            "nanos": 10895520
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 255,
+            "nanos": 772225
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 127,
+            "nanos": 7453090
+          },
+          {
+            "phase": "payload_write",
+            "calls": 128,
+            "nanos": 291909092
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 231308
+          },
+          {
+            "phase": "protect_records",
+            "calls": 1,
+            "nanos": 3762741
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 24111436
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 47703300
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 221826
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 255,
+            "nanos": 652432
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 255,
+            "nanos": 10368893
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 25481539
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 139,
+          "seconds": 0.0006903910000000006,
+          "max_seconds": 8.303e-06
+        },
+        "journal_append_sync": {
+          "calls": 138,
+          "seconds": 0.23485016799999994,
+          "max_seconds": 0.004881362
+        },
+        "journal_flush": {
+          "calls": 140,
+          "seconds": 0.24919644999999996,
+          "max_seconds": 0.004992867
+        },
+        "group_total": {
+          "calls": 139,
+          "seconds": 0.26853551100000017,
+          "max_seconds": 0.005118609
+        },
+        "group_wait": {
+          "calls": 139,
+          "seconds": 0.2806255759999999,
+          "max_seconds": 0.005379581
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000126927,
+          "max_seconds": 0.000126927
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.141155651,
+      "user_seconds": 0.05,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 35344384,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "destination_revision": "rev-QS-CduHMO93GGr3cYrdmr0FUCA5GM4ZoJpxcg-gKX4U",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 255,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 255,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 511,
+            "nanos": 34406619
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 75921
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 6773611
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 255,
+            "nanos": 9946897
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 255,
+            "nanos": 550441
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 255,
+            "nanos": 6741584
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 301313
+          },
+          {
+            "phase": "protect_records",
+            "calls": 1,
+            "nanos": 3302581
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 5510232
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 14223397
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 213529
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 255,
+            "nanos": 647702
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 255,
+            "nanos": 16100078
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 18692083
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 8,
+          "seconds": 3.7958e-05,
+          "max_seconds": 7.117e-06
+        },
+        "journal_append_sync": {
+          "calls": 7,
+          "seconds": 0.008945674,
+          "max_seconds": 0.001456742
+        },
+        "journal_flush": {
+          "calls": 9,
+          "seconds": 0.009853173,
+          "max_seconds": 0.001745006
+        },
+        "group_total": {
+          "calls": 8,
+          "seconds": 0.013937505,
+          "max_seconds": 0.004170931
+        },
+        "group_wait": {
+          "calls": 8,
+          "seconds": 0.015268501,
+          "max_seconds": 0.004256342
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 6.4058e-05,
+          "max_seconds": 6.4058e-05
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.02550012,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 28565504,
+      "exit_code": 1,
+      "variant": "candidate",
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.139583752,
+      "user_seconds": 0.05,
+      "system_seconds": 0.07,
+      "max_rss_bytes": 32362496,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-waL8e0L1g51JO-PxRNlnEhKJYJjChtHUXr6TPylEYPo",
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.044996707,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 12410880,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 1.224217266,
+      "user_seconds": 0.17,
+      "system_seconds": 0.64,
+      "max_rss_bytes": 35168256,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "destination_revision": "rev-VsMZ48nOzS8NHBMRrkKyYSYh25ei1Ev1k0boATW4naM",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 257,
+        "records_inserted": 257,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 515,
+            "nanos": 45364097
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 64066
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 5435955
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 257,
+            "nanos": 3197315
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 257,
+            "nanos": 978768
+          },
+          {
+            "phase": "payload_write",
+            "calls": 257,
+            "nanos": 617121670
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 278797
+          },
+          {
+            "phase": "publish_batch",
+            "calls": 1,
+            "nanos": 60228935
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 20707479
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 4407487
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 177961
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 257,
+            "nanos": 1023865
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 257,
+            "nanos": 424764310
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 14480048
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 525,
+          "seconds": 0.0020749939999999975,
+          "max_seconds": 3.6778e-05
+        },
+        "journal_append_sync": {
+          "calls": 521,
+          "seconds": 0.8449594340000012,
+          "max_seconds": 0.065618764
+        },
+        "journal_flush": {
+          "calls": 526,
+          "seconds": 0.8947594560000003,
+          "max_seconds": 0.065731472
+        },
+        "group_total": {
+          "calls": 525,
+          "seconds": 0.9469606619999995,
+          "max_seconds": 0.065848926
+        },
+        "group_wait": {
+          "calls": 525,
+          "seconds": 0.9851244839999999,
+          "max_seconds": 0.065918924
+        },
+        "journal_checkpoint": {
+          "calls": 2,
+          "seconds": 0.006818259,
+          "max_seconds": 0.003554464
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000131691,
+          "max_seconds": 0.000131691
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.802035093,
+      "user_seconds": 0.09,
+      "system_seconds": 0.46,
+      "max_rss_bytes": 38842368,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "destination_revision": "rev-W4M0JK3mtBNzxxwKv6hkHUJxMGmVnLtDkquI1kP85kc",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 128,
+        "payloads_written": 129,
+        "records_inserted": 129,
+        "records_reused": 128,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 515,
+            "nanos": 29658490
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 79493
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 4413532
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 257,
+            "nanos": 6341477
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 257,
+            "nanos": 538639
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 128,
+            "nanos": 3255576
+          },
+          {
+            "phase": "payload_write",
+            "calls": 129,
+            "nanos": 197198272
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 291863
+          },
+          {
+            "phase": "publish_batch",
+            "calls": 1,
+            "nanos": 47115620
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 15256724
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 2904461
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 130511
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 257,
+            "nanos": 1007277
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 257,
+            "nanos": 454972766
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 12353449
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 397,
+          "seconds": 0.001315764999999996,
+          "max_seconds": 3.4406e-05
+        },
+        "journal_append_sync": {
+          "calls": 394,
+          "seconds": 0.549571985,
+          "max_seconds": 0.064219263
+        },
+        "journal_flush": {
+          "calls": 398,
+          "seconds": 0.5768160979999998,
+          "max_seconds": 0.064310619
+        },
+        "group_total": {
+          "calls": 397,
+          "seconds": 0.6058149189999994,
+          "max_seconds": 0.064392482
+        },
+        "group_wait": {
+          "calls": 397,
+          "seconds": 0.6251229869999991,
+          "max_seconds": 0.064448244
+        },
+        "journal_checkpoint": {
+          "calls": 1,
+          "seconds": 0.003058625,
+          "max_seconds": 0.003058625
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000104409,
+          "max_seconds": 0.000104409
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 1.252051561,
+      "user_seconds": 0.13,
+      "system_seconds": 0.64,
+      "max_rss_bytes": 33767424,
+      "exit_code": 0,
+      "variant": "baseline",
+      "archive_report": {
+        "destination_revision": "rev-VaK9J_ibw_LIwpMtDiWPXEZ34jH91p2JSEKrwa3R9Cg",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 257,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 257,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 515,
+            "nanos": 82444191
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 88991
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 6462967
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 257,
+            "nanos": 12619803
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 257,
+            "nanos": 575456
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 257,
+            "nanos": 12691010
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 234930
+          },
+          {
+            "phase": "publish_batch",
+            "calls": 1,
+            "nanos": 123306985
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 5663381
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 3562010
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 196967
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 257,
+            "nanos": 1671800
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 257,
+            "nanos": 950734879
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 22977452
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 265,
+          "seconds": 0.00177621,
+          "max_seconds": 0.000290697
+        },
+        "journal_append_sync": {
+          "calls": 262,
+          "seconds": 0.730275835,
+          "max_seconds": 0.158446267
+        },
+        "journal_flush": {
+          "calls": 266,
+          "seconds": 0.7704561929999999,
+          "max_seconds": 0.158558988
+        },
+        "group_total": {
+          "calls": 265,
+          "seconds": 0.8097763229999998,
+          "max_seconds": 0.158675267
+        },
+        "group_wait": {
+          "calls": 265,
+          "seconds": 0.8556709990000002,
+          "max_seconds": 0.158767816
+        },
+        "journal_checkpoint": {
+          "calls": 1,
+          "seconds": 0.005589689,
+          "max_seconds": 0.005589689
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000160184,
+          "max_seconds": 0.000160184
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.036862406,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 31100928,
+      "exit_code": 1,
+      "variant": "baseline",
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.12257184,
+      "user_seconds": 0.05,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 31907840,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-pQTVI4tWciIewj2vhFbBcjgvuwfD-S7WOSONfjqleLc",
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.053456164,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 11853824,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.878792713,
+      "user_seconds": 0.15,
+      "system_seconds": 0.4,
+      "max_rss_bytes": 34729984,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "destination_revision": "rev-LpZQolULii_RyX7eaRTMKed9tYfIN9CRKr_OjQTv85Y",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 257,
+        "records_inserted": 257,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 515,
+            "nanos": 49677688
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 65264
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 5434611
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 257,
+            "nanos": 3062637
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 257,
+            "nanos": 1050146
+          },
+          {
+            "phase": "payload_write",
+            "calls": 257,
+            "nanos": 660335368
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 277664
+          },
+          {
+            "phase": "protect_records",
+            "calls": 2,
+            "nanos": 5603223
+          },
+          {
+            "phase": "publish_batch",
+            "calls": 1,
+            "nanos": 57754011
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 38368190
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 5024152
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 218338
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 257,
+            "nanos": 688230
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 257,
+            "nanos": 2042176
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 19897254
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 270,
+          "seconds": 0.0012708650000000008,
+          "max_seconds": 5.6958e-05
+        },
+        "journal_append_sync": {
+          "calls": 267,
+          "seconds": 0.5273152059999997,
+          "max_seconds": 0.060315925
+        },
+        "journal_flush": {
+          "calls": 271,
+          "seconds": 0.5637632039999998,
+          "max_seconds": 0.060413228
+        },
+        "group_total": {
+          "calls": 270,
+          "seconds": 0.5990850129999998,
+          "max_seconds": 0.060552062
+        },
+        "group_wait": {
+          "calls": 270,
+          "seconds": 0.6278354719999996,
+          "max_seconds": 0.060623259
+        },
+        "journal_checkpoint": {
+          "calls": 1,
+          "seconds": 0.009007637,
+          "max_seconds": 0.009007637
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000208845,
+          "max_seconds": 0.000208845
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.692689912,
+      "user_seconds": 0.09,
+      "system_seconds": 0.36,
+      "max_rss_bytes": 34586624,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "destination_revision": "rev-eLpjoIWf1wx77NF9zlc9yoU9eIilXOPpfbXMQRDJzJs",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 128,
+        "payloads_written": 129,
+        "records_inserted": 129,
+        "records_reused": 128,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 515,
+            "nanos": 50125048
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 84252
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 7693014
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 257,
+            "nanos": 11097493
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 257,
+            "nanos": 1484496
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 128,
+            "nanos": 6298711
+          },
+          {
+            "phase": "payload_write",
+            "calls": 129,
+            "nanos": 317443913
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 259875
+          },
+          {
+            "phase": "protect_records",
+            "calls": 2,
+            "nanos": 6172922
+          },
+          {
+            "phase": "publish_batch",
+            "calls": 1,
+            "nanos": 174071198
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 44231469
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 5466870
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 208849
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 257,
+            "nanos": 655034
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 257,
+            "nanos": 11796432
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 31028370
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 142,
+          "seconds": 0.00078556,
+          "max_seconds": 8.3066e-05
+        },
+        "journal_append_sync": {
+          "calls": 140,
+          "seconds": 0.24694185,
+          "max_seconds": 0.004333625
+        },
+        "journal_flush": {
+          "calls": 143,
+          "seconds": 0.284726988,
+          "max_seconds": 0.017606238
+        },
+        "group_total": {
+          "calls": 142,
+          "seconds": 0.3020674330000001,
+          "max_seconds": 0.017758129
+        },
+        "group_wait": {
+          "calls": 142,
+          "seconds": 0.3177643729999997,
+          "max_seconds": 0.017834074
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000131717,
+          "max_seconds": 0.000131717
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.158422269,
+      "user_seconds": 0.06,
+      "system_seconds": 0.07,
+      "max_rss_bytes": 32034816,
+      "exit_code": 0,
+      "variant": "candidate",
+      "archive_report": {
+        "destination_revision": "rev-lr0VOg1AyTmAHg9uaDooBbI7G0Tni7hQzrkLuZvMlPE",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 257,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 257,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "import_profile": {
+        "schema_version": 1,
+        "phases": [
+          {
+            "phase": "frame_decode",
+            "calls": 515,
+            "nanos": 30572023
+          },
+          {
+            "phase": "freeze_and_payload_membership",
+            "calls": 1,
+            "nanos": 59336
+          },
+          {
+            "phase": "mutation_start",
+            "calls": 1,
+            "nanos": 5829121
+          },
+          {
+            "phase": "payload_lookup",
+            "calls": 257,
+            "nanos": 11092182
+          },
+          {
+            "phase": "payload_membership_insert",
+            "calls": 257,
+            "nanos": 542321
+          },
+          {
+            "phase": "payload_reuse_verify",
+            "calls": 257,
+            "nanos": 7408621
+          },
+          {
+            "phase": "preflight",
+            "calls": 1,
+            "nanos": 590982
+          },
+          {
+            "phase": "protect_records",
+            "calls": 2,
+            "nanos": 5309341
+          },
+          {
+            "phase": "publish_batch",
+            "calls": 1,
+            "nanos": 16631745
+          },
+          {
+            "phase": "publish_roots",
+            "calls": 1,
+            "nanos": 5724690
+          },
+          {
+            "phase": "publish_tail",
+            "calls": 1,
+            "nanos": 3346524
+          },
+          {
+            "phase": "record_membership",
+            "calls": 1,
+            "nanos": 198180
+          },
+          {
+            "phase": "record_membership_insert",
+            "calls": 257,
+            "nanos": 679984
+          },
+          {
+            "phase": "stage_existing",
+            "calls": 257,
+            "nanos": 25242512
+          },
+          {
+            "phase": "verify_closure",
+            "calls": 1,
+            "nanos": 20827953
+          }
+        ]
+      },
+      "pin_profile": {
+        "exclusive_lock_wait": {
+          "calls": 10,
+          "seconds": 4.9843000000000004e-05,
+          "max_seconds": 7.121e-06
+        },
+        "journal_append_sync": {
+          "calls": 8,
+          "seconds": 0.011630950000000001,
+          "max_seconds": 0.001693436
+        },
+        "journal_flush": {
+          "calls": 11,
+          "seconds": 0.012697801,
+          "max_seconds": 0.00198418
+        },
+        "group_total": {
+          "calls": 10,
+          "seconds": 0.016396774,
+          "max_seconds": 0.003215985
+        },
+        "group_wait": {
+          "calls": 10,
+          "seconds": 0.018079527999999997,
+          "max_seconds": 0.003300241
+        },
+        "read_decode": {
+          "calls": 1,
+          "seconds": 0.000106804,
+          "max_seconds": 0.000106804
+        }
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.024251612,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 28377088,
+      "exit_code": 1,
+      "variant": "candidate",
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    }
+  ],
+  "environment": {
+    "captured_at_utc": "2026-09-25T15:49:42.956997+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "e50179d3f73be902d4d42befb86ac9b6c4eebb43",
+    "casita_worktree_dirty": true
+  }
+}

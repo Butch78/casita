@@ -1,0 +1,1820 @@
+{
+  "sources": {
+    "/tmp/obrador-maintenance-after.jsonl": "2be54186d0e9b6fb9a475b7e312ede8514c3eba6ec842386ff37f2515df7994f",
+    "/tmp/obrador-maintenance-after.strace": "d00e50dedfe2b31757d6fc62e2459189aa5bd79bcd49c2fa93bd84ffa66f9b37"
+  },
+  "note": "Different phases overlap. Union removes overlap only within each phase. Pin events are assigned by import timestamp window; background work can overlap. Span duration rounding affects interval estimates. Syscalls are assigned by start time in the same run. pin_ledger_sync_partition assigns each ledger syscall exactly once by overlapping writer stage names at its start; combined labels preserve ambiguity and outside_writer_stages preserves unmatched calls. outside_writer_lifecycle_partition further partitions unmatched writer calls using complete lifecycle spans, including background work without an import parent. Span CLOSE context may differ from its creation context; writer classification uses complete recorded lifetimes, which can include time retained by child spans. This is temporal correlation, not causal attribution.",
+  "parsed_sync_calls": 1061,
+  "imports": [
+    {
+      "path": "libunistring-1.4.2",
+      "seconds": 0.7842650413513184,
+      "spans": {
+        "repository.stage_blob": {
+          "count": 3,
+          "sum_seconds": 0.24897980690002441,
+          "union_seconds": 0.24014973640441895
+        },
+        "repository.stage_directory": {
+          "count": 4,
+          "sum_seconds": 0.03866982460021973,
+          "union_seconds": 0.02992987632751465
+        },
+        "put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.2462000846862793,
+          "union_seconds": 0.2462000846862793
+        },
+        "collection.disk_pressure": {
+          "count": 3,
+          "sum_seconds": 0.0008609294891357422,
+          "union_seconds": 0.0008609294891357422
+        },
+        "repository.mutation.prepare": {
+          "count": 3,
+          "sum_seconds": 0.003796100616455078,
+          "union_seconds": 0.003796100616455078
+        },
+        "pin.acquire": {
+          "count": 7,
+          "sum_seconds": 0.04345059394836426,
+          "union_seconds": 0.04345059394836426
+        },
+        "state.snapshot": {
+          "count": 14,
+          "sum_seconds": 0.017395734786987305,
+          "union_seconds": 0.017395734786987305
+        },
+        "blob.catalog.synchronize": {
+          "count": 7,
+          "sum_seconds": 0.0013747215270996094,
+          "union_seconds": 0.0013747215270996094
+        },
+        "repository.catalog.synchronize": {
+          "count": 7,
+          "sum_seconds": 0.003392934799194336,
+          "union_seconds": 0.003392934799194336
+        },
+        "repository.mutation.admit": {
+          "count": 3,
+          "sum_seconds": 0.04086017608642578,
+          "union_seconds": 0.04086017608642578
+        },
+        "repository.mutation_session": {
+          "count": 3,
+          "sum_seconds": 0.08249998092651367,
+          "union_seconds": 0.08249998092651367
+        },
+        "byte_budget.reserve": {
+          "count": 15,
+          "sum_seconds": 0.0038442611694335938,
+          "union_seconds": 0.0038442611694335938
+        },
+        "blob.pack.stage_chunk": {
+          "count": 14,
+          "sum_seconds": 0.0028977394104003906,
+          "union_seconds": 0.0028977394104003906
+        },
+        "repository.publish.commit": {
+          "count": 2,
+          "sum_seconds": 0.37761998176574707,
+          "union_seconds": 0.37761998176574707
+        },
+        "repository.directories": {
+          "count": 2,
+          "sum_seconds": 0.00041675567626953125,
+          "union_seconds": 0.00041675567626953125
+        },
+        "ensure_reference_closures": {
+          "count": 1,
+          "sum_seconds": 0.0006070137023925781,
+          "union_seconds": 0.0006070137023925781
+        },
+        "repository.lease": {
+          "count": 1,
+          "sum_seconds": 0.0052700042724609375,
+          "union_seconds": 0.0052700042724609375
+        },
+        "blob.pack.read_chunk": {
+          "count": 5,
+          "sum_seconds": 0.001119375228881836,
+          "union_seconds": 0.001119375228881836
+        },
+        "blob.read": {
+          "count": 5,
+          "sum_seconds": 0.0034530162811279297,
+          "union_seconds": 0.0034530162811279297
+        },
+        "repository.publish": {
+          "count": 1,
+          "sum_seconds": 0.13635993003845215,
+          "union_seconds": 0.13635993003845215
+        },
+        "repository.compose_root": {
+          "count": 1,
+          "sum_seconds": 0.19449996948242188,
+          "union_seconds": 0.19449996948242188
+        },
+        "blob.pack.flush": {
+          "count": 1,
+          "sum_seconds": 0.00017714500427246094,
+          "union_seconds": 0.00017714500427246094
+        },
+        "blob.flush": {
+          "count": 1,
+          "sum_seconds": 0.00045108795166015625,
+          "union_seconds": 0.00045108795166015625
+        },
+        "state.compact": {
+          "count": 1,
+          "sum_seconds": 0.022912025451660156,
+          "union_seconds": 0.022912025451660156
+        },
+        "add_path_from_nar": {
+          "count": 1,
+          "sum_seconds": 0.7837998867034912,
+          "union_seconds": 0.7837998867034912
+        }
+      },
+      "pins": {
+        "exclusive_lock_wait": {
+          "count": 33,
+          "sum_seconds": 0.0019583702087402344,
+          "union_seconds": 0.0019583702087402344
+        },
+        "journal_flush": {
+          "count": 33,
+          "sum_seconds": 0.2083756923675537,
+          "union_seconds": 0.2083756923675537
+        },
+        "group_total": {
+          "count": 33,
+          "sum_seconds": 0.24086880683898926,
+          "union_seconds": 0.24086880683898926
+        },
+        "group_wait": {
+          "count": 35,
+          "sum_seconds": 0.2822692394256592,
+          "union_seconds": 0.25507044792175293
+        },
+        "journal_append_sync": {
+          "count": 29,
+          "sum_seconds": 0.1935420036315918,
+          "union_seconds": 0.1935420036315918
+        }
+      },
+      "pin_append_sync_by_stage": {
+        "repository.stage_blob": {
+          "count": 8,
+          "sum_seconds": 0.04667258262634277,
+          "union_seconds": 0.04667258262634277
+        },
+        "repository.stage_directory": {
+          "count": 3,
+          "sum_seconds": 0.017997264862060547,
+          "union_seconds": 0.017997264862060547
+        },
+        "put_path_info": {
+          "count": 13,
+          "sum_seconds": 0.09439253807067871,
+          "union_seconds": 0.09439253807067871
+        }
+      },
+      "pin_ledger_sync_partition": {
+        "outside_writer_stages": {
+          "count": 8,
+          "sum_seconds": 0.052025794982910156,
+          "union_seconds": 0.052025794982910156
+        },
+        "repository.stage_blob": {
+          "count": 7,
+          "sum_seconds": 0.039630889892578125,
+          "union_seconds": 0.039630889892578125
+        },
+        "repository.stage_directory": {
+          "count": 1,
+          "sum_seconds": 0.005036115646362305,
+          "union_seconds": 0.005036115646362305
+        },
+        "put_path_info": {
+          "count": 10,
+          "sum_seconds": 0.07389688491821289,
+          "union_seconds": 0.07389688491821289
+        },
+        "repository.stage_blob & put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.005784034729003906,
+          "union_seconds": 0.005784034729003906
+        },
+        "repository.stage_directory & put_path_info": {
+          "count": 2,
+          "sum_seconds": 0.01253199577331543,
+          "union_seconds": 0.01253199577331543
+        }
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & pin.acquire": {
+          "count": 1,
+          "sum_seconds": 0.004528045654296875,
+          "union_seconds": 0.004528045654296875
+        },
+        "repository.mutation_session & repository.mutation.admit": {
+          "count": 1,
+          "sum_seconds": 0.00680994987487793,
+          "union_seconds": 0.00680994987487793
+        },
+        "repository.publish.commit": {
+          "count": 1,
+          "sum_seconds": 0.008028984069824219,
+          "union_seconds": 0.008028984069824219
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": {
+          "count": 3,
+          "sum_seconds": 0.02115488052368164,
+          "union_seconds": 0.02115488052368164
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": {
+          "count": 1,
+          "sum_seconds": 0.006146907806396484,
+          "union_seconds": 0.006146907806396484
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": {
+          "count": 1,
+          "sum_seconds": 0.005357027053833008,
+          "union_seconds": 0.005357027053833008
+        }
+      },
+      "syncs": {
+        "fsync:pin_ledger": {
+          "count": 29,
+          "sum_seconds": 0.1889057159423828,
+          "union_seconds": 0.1889057159423828,
+          "unique_targets": 1
+        },
+        "fsync:blobs/blobs": {
+          "count": 5,
+          "sum_seconds": 0.03503584861755371,
+          "union_seconds": 0.03503584861755371,
+          "unique_targets": 4
+        },
+        "fsync:other": {
+          "count": 8,
+          "sum_seconds": 0.04532313346862793,
+          "union_seconds": 0.04532313346862793,
+          "unique_targets": 1
+        },
+        "fsync:blobs/pages": {
+          "count": 13,
+          "sum_seconds": 0.10333895683288574,
+          "union_seconds": 0.10333895683288574,
+          "unique_targets": 8
+        },
+        "fsync:blobs/bao-packs": {
+          "count": 5,
+          "sum_seconds": 0.03750014305114746,
+          "union_seconds": 0.03750014305114746,
+          "unique_targets": 4
+        },
+        "fsync:blobs/packs": {
+          "count": 8,
+          "sum_seconds": 0.061701059341430664,
+          "union_seconds": 0.061701059341430664,
+          "unique_targets": 5
+        },
+        "fsync:blobs/bao-indexes": {
+          "count": 5,
+          "sum_seconds": 0.03670096397399902,
+          "union_seconds": 0.03670096397399902,
+          "unique_targets": 4
+        },
+        "fsync:blobs/pack-index-reclaim-needed": {
+          "count": 2,
+          "sum_seconds": 0.01367807388305664,
+          "union_seconds": 0.01367807388305664,
+          "unique_targets": 2
+        },
+        "fsync:blobs/pack-indexes": {
+          "count": 8,
+          "sum_seconds": 0.04239225387573242,
+          "union_seconds": 0.04239225387573242,
+          "unique_targets": 6
+        },
+        "fsync:metadata/casita.sqlite-wal": {
+          "count": 5,
+          "sum_seconds": 0.02978515625,
+          "union_seconds": 0.02978515625,
+          "unique_targets": 1
+        },
+        "fsync:metadata/casita.sqlite": {
+          "count": 1,
+          "sum_seconds": 0.0074520111083984375,
+          "union_seconds": 0.0074520111083984375,
+          "unique_targets": 1
+        }
+      }
+    },
+    {
+      "path": "xgcc-15.2.0-libgcc",
+      "seconds": 0.6999449729919434,
+      "spans": {
+        "repository.stage_blob": {
+          "count": 3,
+          "sum_seconds": 0.06743001937866211,
+          "union_seconds": 0.057990074157714844
+        },
+        "repository.stage_directory": {
+          "count": 4,
+          "sum_seconds": 0.07188701629638672,
+          "union_seconds": 0.060739994049072266
+        },
+        "put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.26379990577697754,
+          "union_seconds": 0.26379990577697754
+        },
+        "collection.disk_pressure": {
+          "count": 3,
+          "sum_seconds": 0.0007870197296142578,
+          "union_seconds": 0.0007870197296142578
+        },
+        "repository.mutation.prepare": {
+          "count": 3,
+          "sum_seconds": 0.0033960342407226562,
+          "union_seconds": 0.0033960342407226562
+        },
+        "pin.acquire": {
+          "count": 7,
+          "sum_seconds": 0.03677821159362793,
+          "union_seconds": 0.03677821159362793
+        },
+        "state.snapshot": {
+          "count": 14,
+          "sum_seconds": 0.016670942306518555,
+          "union_seconds": 0.016670942306518555
+        },
+        "blob.catalog.synchronize": {
+          "count": 7,
+          "sum_seconds": 0.0013315677642822266,
+          "union_seconds": 0.0013315677642822266
+        },
+        "repository.catalog.synchronize": {
+          "count": 7,
+          "sum_seconds": 0.0033142566680908203,
+          "union_seconds": 0.0033142566680908203
+        },
+        "repository.mutation.admit": {
+          "count": 3,
+          "sum_seconds": 0.035540103912353516,
+          "union_seconds": 0.035540103912353516
+        },
+        "repository.mutation_session": {
+          "count": 3,
+          "sum_seconds": 0.07014012336730957,
+          "union_seconds": 0.07014012336730957
+        },
+        "byte_budget.reserve": {
+          "count": 8,
+          "sum_seconds": 0.0020368099212646484,
+          "union_seconds": 0.0020368099212646484
+        },
+        "blob.pack.stage_chunk": {
+          "count": 6,
+          "sum_seconds": 0.0013158321380615234,
+          "union_seconds": 0.0013158321380615234
+        },
+        "repository.publish.commit": {
+          "count": 2,
+          "sum_seconds": 0.45010995864868164,
+          "union_seconds": 0.45010995864868164
+        },
+        "repository.directories": {
+          "count": 2,
+          "sum_seconds": 0.0004119873046875,
+          "union_seconds": 0.0004119873046875
+        },
+        "ensure_reference_closures": {
+          "count": 1,
+          "sum_seconds": 0.0005440711975097656,
+          "union_seconds": 0.0005440711975097656
+        },
+        "repository.lease": {
+          "count": 1,
+          "sum_seconds": 0.005409955978393555,
+          "union_seconds": 0.005409955978393555
+        },
+        "blob.pack.read_chunk": {
+          "count": 4,
+          "sum_seconds": 0.000728607177734375,
+          "union_seconds": 0.000728607177734375
+        },
+        "blob.read": {
+          "count": 4,
+          "sum_seconds": 0.0018610954284667969,
+          "union_seconds": 0.0018610954284667969
+        },
+        "repository.publish": {
+          "count": 1,
+          "sum_seconds": 0.10625004768371582,
+          "union_seconds": 0.10625004768371582
+        },
+        "repository.compose_root": {
+          "count": 1,
+          "sum_seconds": 0.21690011024475098,
+          "union_seconds": 0.21690011024475098
+        },
+        "blob.pack.flush": {
+          "count": 1,
+          "sum_seconds": 0.0001990795135498047,
+          "union_seconds": 0.0001990795135498047
+        },
+        "blob.flush": {
+          "count": 1,
+          "sum_seconds": 0.0004930496215820312,
+          "union_seconds": 0.0004930496215820312
+        },
+        "state.compact": {
+          "count": 1,
+          "sum_seconds": 0.025475025177001953,
+          "union_seconds": 0.025475025177001953
+        },
+        "add_path_from_nar": {
+          "count": 1,
+          "sum_seconds": 0.699700117111206,
+          "union_seconds": 0.699700117111206
+        }
+      },
+      "pins": {
+        "exclusive_lock_wait": {
+          "count": 28,
+          "sum_seconds": 0.0015680789947509766,
+          "union_seconds": 0.0015680789947509766
+        },
+        "journal_append_sync": {
+          "count": 25,
+          "sum_seconds": 0.19876313209533691,
+          "union_seconds": 0.19876313209533691
+        },
+        "journal_flush": {
+          "count": 28,
+          "sum_seconds": 0.21284770965576172,
+          "union_seconds": 0.21284770965576172
+        },
+        "group_total": {
+          "count": 28,
+          "sum_seconds": 0.24123501777648926,
+          "union_seconds": 0.24123501777648926
+        },
+        "group_wait": {
+          "count": 30,
+          "sum_seconds": 0.28515052795410156,
+          "union_seconds": 0.25363874435424805
+        }
+      },
+      "pin_append_sync_by_stage": {
+        "repository.stage_blob": {
+          "count": 3,
+          "sum_seconds": 0.046320199966430664,
+          "union_seconds": 0.046320199966430664
+        },
+        "repository.stage_directory": {
+          "count": 4,
+          "sum_seconds": 0.04677605628967285,
+          "union_seconds": 0.04677605628967285
+        },
+        "put_path_info": {
+          "count": 14,
+          "sum_seconds": 0.12653875350952148,
+          "union_seconds": 0.12653875350952148
+        }
+      },
+      "pin_ledger_sync_partition": {
+        "outside_writer_stages": {
+          "count": 8,
+          "sum_seconds": 0.05135393142700195,
+          "union_seconds": 0.05135393142700195
+        },
+        "repository.stage_blob": {
+          "count": 2,
+          "sum_seconds": 0.011343955993652344,
+          "union_seconds": 0.011343955993652344
+        },
+        "repository.stage_directory": {
+          "count": 1,
+          "sum_seconds": 0.007560014724731445,
+          "union_seconds": 0.007560014724731445
+        },
+        "put_path_info": {
+          "count": 10,
+          "sum_seconds": 0.05127310752868652,
+          "union_seconds": 0.05127310752868652
+        },
+        "repository.stage_blob & put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.03452301025390625,
+          "union_seconds": 0.03452301025390625
+        },
+        "repository.stage_directory & put_path_info": {
+          "count": 3,
+          "sum_seconds": 0.03827476501464844,
+          "union_seconds": 0.03827476501464844
+        }
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & pin.acquire": {
+          "count": 1,
+          "sum_seconds": 0.0048100948333740234,
+          "union_seconds": 0.0048100948333740234
+        },
+        "repository.mutation_session & repository.mutation.admit": {
+          "count": 1,
+          "sum_seconds": 0.006964921951293945,
+          "union_seconds": 0.006964921951293945
+        },
+        "repository.publish.commit": {
+          "count": 1,
+          "sum_seconds": 0.008275985717773438,
+          "union_seconds": 0.008275985717773438
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": {
+          "count": 3,
+          "sum_seconds": 0.01874995231628418,
+          "union_seconds": 0.01874995231628418
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": {
+          "count": 1,
+          "sum_seconds": 0.0070650577545166016,
+          "union_seconds": 0.0070650577545166016
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": {
+          "count": 1,
+          "sum_seconds": 0.005487918853759766,
+          "union_seconds": 0.005487918853759766
+        }
+      },
+      "syncs": {
+        "fsync:pin_ledger": {
+          "count": 25,
+          "sum_seconds": 0.19432878494262695,
+          "union_seconds": 0.19432878494262695,
+          "unique_targets": 1
+        },
+        "fsync:blobs/bao-packs": {
+          "count": 4,
+          "sum_seconds": 0.03130173683166504,
+          "union_seconds": 0.03130173683166504,
+          "unique_targets": 3
+        },
+        "fsync:blobs/packs": {
+          "count": 8,
+          "sum_seconds": 0.054276227951049805,
+          "union_seconds": 0.054276227951049805,
+          "unique_targets": 5
+        },
+        "fsync:blobs/bao-indexes": {
+          "count": 4,
+          "sum_seconds": 0.030527114868164062,
+          "union_seconds": 0.030527114868164062,
+          "unique_targets": 3
+        },
+        "fsync:blobs/pack-index-reclaim-needed": {
+          "count": 2,
+          "sum_seconds": 0.012483835220336914,
+          "union_seconds": 0.012483835220336914,
+          "unique_targets": 2
+        },
+        "fsync:other": {
+          "count": 4,
+          "sum_seconds": 0.013907194137573242,
+          "union_seconds": 0.013907194137573242,
+          "unique_targets": 1
+        },
+        "fsync:blobs/pack-indexes": {
+          "count": 8,
+          "sum_seconds": 0.14110565185546875,
+          "union_seconds": 0.14110565185546875,
+          "unique_targets": 6
+        },
+        "fsync:metadata/casita.sqlite-wal": {
+          "count": 6,
+          "sum_seconds": 0.03778409957885742,
+          "union_seconds": 0.03778409957885742,
+          "unique_targets": 1
+        },
+        "fsync:metadata/casita.sqlite": {
+          "count": 1,
+          "sum_seconds": 0.0077381134033203125,
+          "union_seconds": 0.0077381134033203125,
+          "unique_targets": 1
+        }
+      }
+    },
+    {
+      "path": "libidn2-2.3.8",
+      "seconds": 0.8444631099700928,
+      "spans": {
+        "repository.stage_blob": {
+          "count": 29,
+          "sum_seconds": 0.41013216972351074,
+          "union_seconds": 0.16255998611450195
+        },
+        "repository.stage_directory": {
+          "count": 58,
+          "sum_seconds": 0.7404472827911377,
+          "union_seconds": 0.16544508934020996
+        },
+        "put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.28119993209838867,
+          "union_seconds": 0.28119993209838867
+        },
+        "collection.disk_pressure": {
+          "count": 3,
+          "sum_seconds": 0.0007750988006591797,
+          "union_seconds": 0.0007750988006591797
+        },
+        "repository.mutation.prepare": {
+          "count": 3,
+          "sum_seconds": 0.0033979415893554688,
+          "union_seconds": 0.0033979415893554688
+        },
+        "pin.acquire": {
+          "count": 11,
+          "sum_seconds": 0.048978328704833984,
+          "union_seconds": 0.048978328704833984
+        },
+        "state.snapshot": {
+          "count": 22,
+          "sum_seconds": 0.024905681610107422,
+          "union_seconds": 0.024905681610107422
+        },
+        "blob.catalog.synchronize": {
+          "count": 11,
+          "sum_seconds": 0.0021848678588867188,
+          "union_seconds": 0.0021848678588867188
+        },
+        "repository.catalog.synchronize": {
+          "count": 11,
+          "sum_seconds": 0.005774259567260742,
+          "union_seconds": 0.005774259567260742
+        },
+        "repository.mutation.admit": {
+          "count": 3,
+          "sum_seconds": 0.04079008102416992,
+          "union_seconds": 0.04079008102416992
+        },
+        "repository.mutation_session": {
+          "count": 3,
+          "sum_seconds": 0.07530999183654785,
+          "union_seconds": 0.07530999183654785
+        },
+        "byte_budget.reserve": {
+          "count": 88,
+          "sum_seconds": 0.023525238037109375,
+          "union_seconds": 0.023525238037109375
+        },
+        "blob.pack.stage_chunk": {
+          "count": 87,
+          "sum_seconds": 0.018276214599609375,
+          "union_seconds": 0.018276214599609375
+        },
+        "repository.publish.commit": {
+          "count": 2,
+          "sum_seconds": 0.3532700538635254,
+          "union_seconds": 0.3532700538635254
+        },
+        "blob.pack.read_chunk": {
+          "count": 10,
+          "sum_seconds": 0.001857757568359375,
+          "union_seconds": 0.001857757568359375
+        },
+        "blob.read": {
+          "count": 10,
+          "sum_seconds": 0.0053539276123046875,
+          "union_seconds": 0.0053539276123046875
+        },
+        "repository.lease": {
+          "count": 1,
+          "sum_seconds": 0.004920005798339844,
+          "union_seconds": 0.004920005798339844
+        },
+        "repository.read": {
+          "count": 2,
+          "sum_seconds": 0.011909961700439453,
+          "union_seconds": 0.011909961700439453
+        },
+        "repository.publish": {
+          "count": 1,
+          "sum_seconds": 0.14844989776611328,
+          "union_seconds": 0.14844989776611328
+        },
+        "repository.compose_root": {
+          "count": 1,
+          "sum_seconds": 0.20939993858337402,
+          "union_seconds": 0.20939993858337402
+        },
+        "blob.pack.flush": {
+          "count": 1,
+          "sum_seconds": 0.00018525123596191406,
+          "union_seconds": 0.00018525123596191406
+        },
+        "blob.flush": {
+          "count": 1,
+          "sum_seconds": 0.0004489421844482422,
+          "union_seconds": 0.0004489421844482422
+        },
+        "state.compact": {
+          "count": 1,
+          "sum_seconds": 0.02260899543762207,
+          "union_seconds": 0.02260899543762207
+        },
+        "add_path_from_nar": {
+          "count": 1,
+          "sum_seconds": 0.8444631099700928,
+          "union_seconds": 0.8444631099700928
+        }
+      },
+      "pins": {
+        "exclusive_lock_wait": {
+          "count": 50,
+          "sum_seconds": 0.0028336048126220703,
+          "union_seconds": 0.0028336048126220703
+        },
+        "journal_append_sync": {
+          "count": 43,
+          "sum_seconds": 0.28682470321655273,
+          "union_seconds": 0.28682470321655273
+        },
+        "journal_flush": {
+          "count": 50,
+          "sum_seconds": 0.3103189468383789,
+          "union_seconds": 0.3103189468383789
+        },
+        "group_total": {
+          "count": 50,
+          "sum_seconds": 0.3581240177154541,
+          "union_seconds": 0.3581240177154541
+        },
+        "group_wait": {
+          "count": 52,
+          "sum_seconds": 0.3991210460662842,
+          "union_seconds": 0.3789701461791992
+        }
+      },
+      "pin_append_sync_by_stage": {
+        "repository.stage_blob": {
+          "count": 14,
+          "sum_seconds": 0.0987401008605957,
+          "union_seconds": 0.0987401008605957
+        },
+        "repository.stage_directory": {
+          "count": 11,
+          "sum_seconds": 0.07009744644165039,
+          "union_seconds": 0.07009744644165039
+        },
+        "put_path_info": {
+          "count": 13,
+          "sum_seconds": 0.0883781909942627,
+          "union_seconds": 0.0883781909942627
+        }
+      },
+      "pin_ledger_sync_partition": {
+        "outside_writer_stages": {
+          "count": 8,
+          "sum_seconds": 0.05116605758666992,
+          "union_seconds": 0.05116605758666992
+        },
+        "repository.stage_blob": {
+          "count": 13,
+          "sum_seconds": 0.08872103691101074,
+          "union_seconds": 0.08872103691101074
+        },
+        "repository.stage_directory": {
+          "count": 9,
+          "sum_seconds": 0.05353808403015137,
+          "union_seconds": 0.05353808403015137
+        },
+        "put_path_info": {
+          "count": 10,
+          "sum_seconds": 0.06399393081665039,
+          "union_seconds": 0.06399393081665039
+        },
+        "repository.stage_blob & put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.007684946060180664,
+          "union_seconds": 0.007684946060180664
+        },
+        "repository.stage_directory & put_path_info": {
+          "count": 2,
+          "sum_seconds": 0.014674186706542969,
+          "union_seconds": 0.014674186706542969
+        }
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & pin.acquire": {
+          "count": 1,
+          "sum_seconds": 0.008069992065429688,
+          "union_seconds": 0.008069992065429688
+        },
+        "repository.mutation_session & repository.mutation.admit": {
+          "count": 1,
+          "sum_seconds": 0.008117914199829102,
+          "union_seconds": 0.008117914199829102
+        },
+        "repository.publish.commit": {
+          "count": 1,
+          "sum_seconds": 0.007554054260253906,
+          "union_seconds": 0.007554054260253906
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": {
+          "count": 3,
+          "sum_seconds": 0.016716957092285156,
+          "union_seconds": 0.016716957092285156
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": {
+          "count": 1,
+          "sum_seconds": 0.005227088928222656,
+          "union_seconds": 0.005227088928222656
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": {
+          "count": 1,
+          "sum_seconds": 0.005480051040649414,
+          "union_seconds": 0.005480051040649414
+        }
+      },
+      "syncs": {
+        "fsync:pin_ledger": {
+          "count": 43,
+          "sum_seconds": 0.27977824211120605,
+          "union_seconds": 0.27977824211120605,
+          "unique_targets": 1
+        },
+        "fsync:blobs/bao-packs": {
+          "count": 4,
+          "sum_seconds": 0.024449825286865234,
+          "union_seconds": 0.024449825286865234,
+          "unique_targets": 3
+        },
+        "fsync:blobs/packs": {
+          "count": 8,
+          "sum_seconds": 0.07532072067260742,
+          "union_seconds": 0.07532072067260742,
+          "unique_targets": 5
+        },
+        "fsync:blobs/bao-indexes": {
+          "count": 4,
+          "sum_seconds": 0.028222084045410156,
+          "union_seconds": 0.028222084045410156,
+          "unique_targets": 3
+        },
+        "fsync:blobs/pack-index-reclaim-needed": {
+          "count": 2,
+          "sum_seconds": 0.013463020324707031,
+          "union_seconds": 0.013463020324707031,
+          "unique_targets": 2
+        },
+        "fsync:other": {
+          "count": 4,
+          "sum_seconds": 0.014046907424926758,
+          "union_seconds": 0.014046907424926758,
+          "unique_targets": 1
+        },
+        "fsync:blobs/pack-indexes": {
+          "count": 8,
+          "sum_seconds": 0.04259777069091797,
+          "union_seconds": 0.04259777069091797,
+          "unique_targets": 6
+        },
+        "fsync:metadata/casita.sqlite-wal": {
+          "count": 6,
+          "sum_seconds": 0.04028725624084473,
+          "union_seconds": 0.04028725624084473,
+          "unique_targets": 1
+        },
+        "fsync:metadata/casita.sqlite": {
+          "count": 1,
+          "sum_seconds": 0.0077059268951416016,
+          "union_seconds": 0.0077059268951416016,
+          "unique_targets": 1
+        }
+      }
+    },
+    {
+      "path": "glibc-2.42-67",
+      "seconds": 5.021568059921265,
+      "spans": {
+        "repository.stage_blob": {
+          "count": 947,
+          "sum_seconds": 24.542919874191284,
+          "union_seconds": 4.041248559951782
+        },
+        "repository.stage_directory": {
+          "count": 96,
+          "sum_seconds": 1.2840275764465332,
+          "union_seconds": 0.30005455017089844
+        },
+        "put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.29889988899230957,
+          "union_seconds": 0.29889988899230957
+        },
+        "collection.disk_pressure": {
+          "count": 3,
+          "sum_seconds": 0.0007500648498535156,
+          "union_seconds": 0.0007500648498535156
+        },
+        "repository.mutation.prepare": {
+          "count": 3,
+          "sum_seconds": 0.003342866897583008,
+          "union_seconds": 0.003342866897583008
+        },
+        "pin.acquire": {
+          "count": 13,
+          "sum_seconds": 0.05780744552612305,
+          "union_seconds": 0.05780744552612305
+        },
+        "state.snapshot": {
+          "count": 26,
+          "sum_seconds": 0.030796051025390625,
+          "union_seconds": 0.030796051025390625
+        },
+        "blob.catalog.synchronize": {
+          "count": 13,
+          "sum_seconds": 0.0025010108947753906,
+          "union_seconds": 0.0025010108947753906
+        },
+        "repository.catalog.synchronize": {
+          "count": 13,
+          "sum_seconds": 0.006264686584472656,
+          "union_seconds": 0.006264686584472656
+        },
+        "repository.mutation.admit": {
+          "count": 3,
+          "sum_seconds": 0.0427401065826416,
+          "union_seconds": 0.0427401065826416
+        },
+        "repository.mutation_session": {
+          "count": 3,
+          "sum_seconds": 0.07719993591308594,
+          "union_seconds": 0.07719993591308594
+        },
+        "byte_budget.reserve": {
+          "count": 1132,
+          "sum_seconds": 0.28696727752685547,
+          "union_seconds": 0.28696727752685547
+        },
+        "blob.pack.stage_chunk": {
+          "count": 1084,
+          "sum_seconds": 3.2755916118621826,
+          "union_seconds": 0.6056573390960693
+        },
+        "repository.publish.commit": {
+          "count": 2,
+          "sum_seconds": 0.4824700355529785,
+          "union_seconds": 0.4824700355529785
+        },
+        "blob.pack.read_chunk": {
+          "count": 18,
+          "sum_seconds": 0.003650188446044922,
+          "union_seconds": 0.003650188446044922
+        },
+        "blob.read": {
+          "count": 18,
+          "sum_seconds": 0.009082555770874023,
+          "union_seconds": 0.009082555770874023
+        },
+        "repository.lease": {
+          "count": 1,
+          "sum_seconds": 0.004990100860595703,
+          "union_seconds": 0.004990100860595703
+        },
+        "repository.read": {
+          "count": 4,
+          "sum_seconds": 0.024850130081176758,
+          "union_seconds": 0.024850130081176758
+        },
+        "repository.publish": {
+          "count": 1,
+          "sum_seconds": 0.13759994506835938,
+          "union_seconds": 0.13759994506835938
+        },
+        "repository.compose_root": {
+          "count": 1,
+          "sum_seconds": 0.20390009880065918,
+          "union_seconds": 0.20390009880065918
+        },
+        "blob.pack.flush": {
+          "count": 1,
+          "sum_seconds": 0.000171661376953125,
+          "union_seconds": 0.000171661376953125
+        },
+        "blob.flush": {
+          "count": 1,
+          "sum_seconds": 0.0004189014434814453,
+          "union_seconds": 0.0004189014434814453
+        },
+        "state.compact": {
+          "count": 1,
+          "sum_seconds": 0.019721031188964844,
+          "union_seconds": 0.019721031188964844
+        },
+        "add_path_from_nar": {
+          "count": 1,
+          "sum_seconds": 5.019999980926514,
+          "union_seconds": 5.019999980926514
+        }
+      },
+      "pins": {
+        "exclusive_lock_wait": {
+          "count": 221,
+          "sum_seconds": 0.012663602828979492,
+          "union_seconds": 0.012663602828979492
+        },
+        "journal_append_sync": {
+          "count": 211,
+          "sum_seconds": 1.8432927131652832,
+          "union_seconds": 1.8432927131652832
+        },
+        "journal_flush": {
+          "count": 221,
+          "sum_seconds": 1.9739811420440674,
+          "union_seconds": 1.9739811420440674
+        },
+        "group_total": {
+          "count": 221,
+          "sum_seconds": 2.1848278045654297,
+          "union_seconds": 2.1848278045654297
+        },
+        "group_wait": {
+          "count": 223,
+          "sum_seconds": 2.331247091293335,
+          "union_seconds": 2.3095898628234863
+        },
+        "journal_checkpoint": {
+          "count": 1,
+          "sum_seconds": 0.013835668563842773,
+          "union_seconds": 0.013835668563842773
+        }
+      },
+      "pin_append_sync_by_stage": {
+        "repository.stage_blob": {
+          "count": 172,
+          "sum_seconds": 1.5659809112548828,
+          "union_seconds": 1.5659809112548828
+        },
+        "repository.stage_directory": {
+          "count": 20,
+          "sum_seconds": 0.14131522178649902,
+          "union_seconds": 0.14131522178649902
+        },
+        "put_path_info": {
+          "count": 13,
+          "sum_seconds": 0.09921669960021973,
+          "union_seconds": 0.09921669960021973
+        }
+      },
+      "pin_ledger_sync_partition": {
+        "outside_writer_stages": {
+          "count": 9,
+          "sum_seconds": 0.06177544593811035,
+          "union_seconds": 0.06177544593811035
+        },
+        "repository.stage_blob": {
+          "count": 172,
+          "sum_seconds": 1.5334432125091553,
+          "union_seconds": 1.5334432125091553
+        },
+        "repository.stage_directory": {
+          "count": 18,
+          "sum_seconds": 0.12107205390930176,
+          "union_seconds": 0.12107205390930176
+        },
+        "put_path_info": {
+          "count": 10,
+          "sum_seconds": 0.07102274894714355,
+          "union_seconds": 0.07102274894714355
+        },
+        "repository.stage_blob & put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.00876307487487793,
+          "union_seconds": 0.00876307487487793
+        },
+        "repository.stage_directory & put_path_info": {
+          "count": 2,
+          "sum_seconds": 0.017110109329223633,
+          "union_seconds": 0.017110109329223633
+        }
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & pin.acquire": {
+          "count": 1,
+          "sum_seconds": 0.007622957229614258,
+          "union_seconds": 0.007622957229614258
+        },
+        "repository.mutation_session & repository.mutation.admit": {
+          "count": 1,
+          "sum_seconds": 0.007494926452636719,
+          "union_seconds": 0.007494926452636719
+        },
+        "repository.publish.commit": {
+          "count": 1,
+          "sum_seconds": 0.009511947631835938,
+          "union_seconds": 0.009511947631835938
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": {
+          "count": 4,
+          "sum_seconds": 0.02416372299194336,
+          "union_seconds": 0.02416372299194336
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": {
+          "count": 1,
+          "sum_seconds": 0.006557941436767578,
+          "union_seconds": 0.006557941436767578
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": {
+          "count": 1,
+          "sum_seconds": 0.0064239501953125,
+          "union_seconds": 0.0064239501953125
+        }
+      },
+      "syncs": {
+        "fsync:pin_ledger": {
+          "count": 212,
+          "sum_seconds": 1.8131866455078125,
+          "union_seconds": 1.8131866455078125,
+          "unique_targets": 2
+        },
+        "fsync:blobs/bao-packs": {
+          "count": 16,
+          "sum_seconds": 0.11586904525756836,
+          "union_seconds": 0.11586904525756836,
+          "unique_targets": 9
+        },
+        "fsync:blobs/packs": {
+          "count": 20,
+          "sum_seconds": 0.19571375846862793,
+          "union_seconds": 0.19571375846862793,
+          "unique_targets": 11
+        },
+        "fsync:blobs/blobs": {
+          "count": 44,
+          "sum_seconds": 0.34331417083740234,
+          "union_seconds": 0.27329301834106445,
+          "unique_targets": 23
+        },
+        "fsync:blobs/pages": {
+          "count": 94,
+          "sum_seconds": 0.9223232269287109,
+          "union_seconds": 0.7866151332855225,
+          "unique_targets": 49
+        },
+        "fsync:other": {
+          "count": 5,
+          "sum_seconds": 0.02189803123474121,
+          "union_seconds": 0.02189803123474121,
+          "unique_targets": 2
+        },
+        "fsync:blobs/bao-indexes": {
+          "count": 68,
+          "sum_seconds": 0.4105076789855957,
+          "union_seconds": 0.06389617919921875,
+          "unique_targets": 35
+        },
+        "fsync:blobs/pack-index-reclaim-needed": {
+          "count": 2,
+          "sum_seconds": 0.014564037322998047,
+          "union_seconds": 0.014564037322998047,
+          "unique_targets": 2
+        },
+        "fsync:blobs/pack-indexes": {
+          "count": 8,
+          "sum_seconds": 0.04679560661315918,
+          "union_seconds": 0.04679560661315918,
+          "unique_targets": 6
+        },
+        "fsync:metadata/casita.sqlite-wal": {
+          "count": 6,
+          "sum_seconds": 0.035066843032836914,
+          "union_seconds": 0.035066843032836914,
+          "unique_targets": 1
+        },
+        "fsync:metadata/casita.sqlite": {
+          "count": 1,
+          "sum_seconds": 0.009462118148803711,
+          "union_seconds": 0.009462118148803711,
+          "unique_targets": 1
+        }
+      }
+    },
+    {
+      "path": "pcre2-10.46",
+      "seconds": 0.8275570869445801,
+      "spans": {
+        "repository.stage_blob": {
+          "count": 9,
+          "sum_seconds": 0.34015798568725586,
+          "union_seconds": 0.1240689754486084
+        },
+        "repository.stage_directory": {
+          "count": 4,
+          "sum_seconds": 0.05210304260253906,
+          "union_seconds": 0.03799605369567871
+        },
+        "put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.2730998992919922,
+          "union_seconds": 0.2730998992919922
+        },
+        "collection.disk_pressure": {
+          "count": 3,
+          "sum_seconds": 0.0007600784301757812,
+          "union_seconds": 0.0007600784301757812
+        },
+        "repository.mutation.prepare": {
+          "count": 3,
+          "sum_seconds": 0.0033190250396728516,
+          "union_seconds": 0.0033190250396728516
+        },
+        "pin.acquire": {
+          "count": 11,
+          "sum_seconds": 0.0488436222076416,
+          "union_seconds": 0.0488436222076416
+        },
+        "state.snapshot": {
+          "count": 22,
+          "sum_seconds": 0.02440619468688965,
+          "union_seconds": 0.02440619468688965
+        },
+        "blob.catalog.synchronize": {
+          "count": 11,
+          "sum_seconds": 0.0020437240600585938,
+          "union_seconds": 0.0020437240600585938
+        },
+        "repository.catalog.synchronize": {
+          "count": 11,
+          "sum_seconds": 0.005052328109741211,
+          "union_seconds": 0.005052328109741211
+        },
+        "repository.mutation.admit": {
+          "count": 3,
+          "sum_seconds": 0.03840017318725586,
+          "union_seconds": 0.03840017318725586
+        },
+        "repository.mutation_session": {
+          "count": 3,
+          "sum_seconds": 0.07168984413146973,
+          "union_seconds": 0.07168984413146973
+        },
+        "byte_budget.reserve": {
+          "count": 20,
+          "sum_seconds": 0.004911899566650391,
+          "union_seconds": 0.004911899566650391
+        },
+        "blob.pack.stage_chunk": {
+          "count": 17,
+          "sum_seconds": 0.0038127899169921875,
+          "union_seconds": 0.0038127899169921875
+        },
+        "repository.publish.commit": {
+          "count": 2,
+          "sum_seconds": 0.5039598941802979,
+          "union_seconds": 0.5039598941802979
+        },
+        "blob.pack.read_chunk": {
+          "count": 19,
+          "sum_seconds": 0.0038025379180908203,
+          "union_seconds": 0.0038025379180908203
+        },
+        "blob.read": {
+          "count": 19,
+          "sum_seconds": 0.009961843490600586,
+          "union_seconds": 0.009961843490600586
+        },
+        "repository.lease": {
+          "count": 1,
+          "sum_seconds": 0.004940032958984375,
+          "union_seconds": 0.004940032958984375
+        },
+        "repository.read": {
+          "count": 2,
+          "sum_seconds": 0.011890172958374023,
+          "union_seconds": 0.011890172958374023
+        },
+        "repository.publish": {
+          "count": 1,
+          "sum_seconds": 0.13919997215270996,
+          "union_seconds": 0.13919997215270996
+        },
+        "repository.compose_root": {
+          "count": 1,
+          "sum_seconds": 0.1979999542236328,
+          "union_seconds": 0.1979999542236328
+        },
+        "blob.pack.flush": {
+          "count": 1,
+          "sum_seconds": 0.00018024444580078125,
+          "union_seconds": 0.00018024444580078125
+        },
+        "blob.flush": {
+          "count": 1,
+          "sum_seconds": 0.0004398822784423828,
+          "union_seconds": 0.0004398822784423828
+        },
+        "state.compact": {
+          "count": 1,
+          "sum_seconds": 0.022047996520996094,
+          "union_seconds": 0.022047996520996094
+        },
+        "add_path_from_nar": {
+          "count": 1,
+          "sum_seconds": 0.8275570869445801,
+          "union_seconds": 0.8275570869445801
+        }
+      },
+      "pins": {
+        "exclusive_lock_wait": {
+          "count": 38,
+          "sum_seconds": 0.002248048782348633,
+          "union_seconds": 0.002248048782348633
+        },
+        "journal_append_sync": {
+          "count": 31,
+          "sum_seconds": 0.19588232040405273,
+          "union_seconds": 0.19588232040405273
+        },
+        "journal_flush": {
+          "count": 38,
+          "sum_seconds": 0.21456646919250488,
+          "union_seconds": 0.21456646919250488
+        },
+        "group_total": {
+          "count": 38,
+          "sum_seconds": 0.24962615966796875,
+          "union_seconds": 0.24962615966796875
+        },
+        "group_wait": {
+          "count": 40,
+          "sum_seconds": 0.2902107238769531,
+          "union_seconds": 0.26764631271362305
+        }
+      },
+      "pin_append_sync_by_stage": {
+        "repository.stage_blob": {
+          "count": 10,
+          "sum_seconds": 0.05886387825012207,
+          "union_seconds": 0.05886387825012207
+        },
+        "repository.stage_directory": {
+          "count": 3,
+          "sum_seconds": 0.02322101593017578,
+          "union_seconds": 0.02322101593017578
+        },
+        "put_path_info": {
+          "count": 13,
+          "sum_seconds": 0.08281326293945312,
+          "union_seconds": 0.08281326293945312
+        }
+      },
+      "pin_ledger_sync_partition": {
+        "outside_writer_stages": {
+          "count": 8,
+          "sum_seconds": 0.051210880279541016,
+          "union_seconds": 0.051210880279541016
+        },
+        "repository.stage_blob": {
+          "count": 9,
+          "sum_seconds": 0.050896406173706055,
+          "union_seconds": 0.050896406173706055
+        },
+        "repository.stage_directory": {
+          "count": 1,
+          "sum_seconds": 0.007890939712524414,
+          "union_seconds": 0.007890939712524414
+        },
+        "put_path_info": {
+          "count": 10,
+          "sum_seconds": 0.05962228775024414,
+          "union_seconds": 0.05962228775024414
+        },
+        "repository.stage_blob & put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.006431102752685547,
+          "union_seconds": 0.006431102752685547
+        },
+        "repository.stage_directory & put_path_info": {
+          "count": 2,
+          "sum_seconds": 0.014514923095703125,
+          "union_seconds": 0.014514923095703125
+        }
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & pin.acquire": {
+          "count": 1,
+          "sum_seconds": 0.005961894989013672,
+          "union_seconds": 0.005961894989013672
+        },
+        "repository.mutation_session & repository.mutation.admit": {
+          "count": 1,
+          "sum_seconds": 0.009527921676635742,
+          "union_seconds": 0.009527921676635742
+        },
+        "repository.publish.commit": {
+          "count": 1,
+          "sum_seconds": 0.005920886993408203,
+          "union_seconds": 0.005920886993408203
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": {
+          "count": 3,
+          "sum_seconds": 0.019443035125732422,
+          "union_seconds": 0.019443035125732422
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": {
+          "count": 1,
+          "sum_seconds": 0.005382061004638672,
+          "union_seconds": 0.005382061004638672
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": {
+          "count": 1,
+          "sum_seconds": 0.004975080490112305,
+          "union_seconds": 0.004975080490112305
+        }
+      },
+      "syncs": {
+        "fsync:pin_ledger": {
+          "count": 31,
+          "sum_seconds": 0.1905665397644043,
+          "union_seconds": 0.1905665397644043,
+          "unique_targets": 1
+        },
+        "fsync:blobs/blobs": {
+          "count": 12,
+          "sum_seconds": 0.09190082550048828,
+          "union_seconds": 0.05099606513977051,
+          "unique_targets": 7
+        },
+        "fsync:blobs/bao-packs": {
+          "count": 4,
+          "sum_seconds": 0.030432939529418945,
+          "union_seconds": 0.030432939529418945,
+          "unique_targets": 3
+        },
+        "fsync:blobs/packs": {
+          "count": 8,
+          "sum_seconds": 0.19434571266174316,
+          "union_seconds": 0.19434571266174316,
+          "unique_targets": 5
+        },
+        "fsync:blobs/bao-indexes": {
+          "count": 16,
+          "sum_seconds": 0.10601806640625,
+          "union_seconds": 0.049048662185668945,
+          "unique_targets": 9
+        },
+        "fsync:blobs/pack-index-reclaim-needed": {
+          "count": 2,
+          "sum_seconds": 0.012953042984008789,
+          "union_seconds": 0.012953042984008789,
+          "unique_targets": 2
+        },
+        "fsync:other": {
+          "count": 4,
+          "sum_seconds": 0.014632940292358398,
+          "union_seconds": 0.014632940292358398,
+          "unique_targets": 1
+        },
+        "fsync:blobs/pack-indexes": {
+          "count": 8,
+          "sum_seconds": 0.0421297550201416,
+          "union_seconds": 0.0421297550201416,
+          "unique_targets": 6
+        },
+        "fsync:metadata/casita.sqlite-wal": {
+          "count": 6,
+          "sum_seconds": 0.03238105773925781,
+          "union_seconds": 0.03238105773925781,
+          "unique_targets": 1
+        },
+        "fsync:metadata/casita.sqlite": {
+          "count": 1,
+          "sum_seconds": 0.007678031921386719,
+          "union_seconds": 0.007678031921386719,
+          "unique_targets": 1
+        }
+      }
+    },
+    {
+      "path": "gnugrep-3.12",
+      "seconds": 1.2506189346313477,
+      "spans": {
+        "repository.stage_blob": {
+          "count": 50,
+          "sum_seconds": 0.6632671356201172,
+          "union_seconds": 0.25469136238098145
+        },
+        "repository.stage_directory": {
+          "count": 98,
+          "sum_seconds": 1.304985761642456,
+          "union_seconds": 0.2732248306274414
+        },
+        "put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.29180002212524414,
+          "union_seconds": 0.29180002212524414
+        },
+        "coordination.try_exclusive": {
+          "count": 1,
+          "sum_seconds": 0.0005459785461425781,
+          "union_seconds": 0.0005459785461425781
+        },
+        "collection.disk_pressure": {
+          "count": 3,
+          "sum_seconds": 0.0007929801940917969,
+          "union_seconds": 0.0007929801940917969
+        },
+        "repository.mutation.prepare": {
+          "count": 3,
+          "sum_seconds": 0.18546175956726074,
+          "union_seconds": 0.18546175956726074
+        },
+        "pin.acquire": {
+          "count": 13,
+          "sum_seconds": 0.04812002182006836,
+          "union_seconds": 0.04812002182006836
+        },
+        "state.snapshot": {
+          "count": 26,
+          "sum_seconds": 0.030825138092041016,
+          "union_seconds": 0.030825138092041016
+        },
+        "blob.catalog.synchronize": {
+          "count": 13,
+          "sum_seconds": 0.002446413040161133,
+          "union_seconds": 0.002446413040161133
+        },
+        "repository.catalog.synchronize": {
+          "count": 13,
+          "sum_seconds": 0.006239414215087891,
+          "union_seconds": 0.006239414215087891
+        },
+        "repository.mutation.admit": {
+          "count": 3,
+          "sum_seconds": 0.04255986213684082,
+          "union_seconds": 0.04255986213684082
+        },
+        "repository.mutation_session": {
+          "count": 3,
+          "sum_seconds": 0.25237011909484863,
+          "union_seconds": 0.25237011909484863
+        },
+        "byte_budget.reserve": {
+          "count": 149,
+          "sum_seconds": 0.038630008697509766,
+          "union_seconds": 0.038630008697509766
+        },
+        "blob.pack.stage_chunk": {
+          "count": 148,
+          "sum_seconds": 0.03072071075439453,
+          "union_seconds": 0.03072071075439453
+        },
+        "repository.publish.commit": {
+          "count": 2,
+          "sum_seconds": 0.3676600456237793,
+          "union_seconds": 0.3676600456237793
+        },
+        "blob.pack.read_chunk": {
+          "count": 24,
+          "sum_seconds": 0.0049479007720947266,
+          "union_seconds": 0.0049479007720947266
+        },
+        "blob.read": {
+          "count": 24,
+          "sum_seconds": 0.012113571166992188,
+          "union_seconds": 0.012113571166992188
+        },
+        "repository.lease": {
+          "count": 1,
+          "sum_seconds": 0.007030010223388672,
+          "union_seconds": 0.007030010223388672
+        },
+        "repository.read": {
+          "count": 4,
+          "sum_seconds": 0.02626967430114746,
+          "union_seconds": 0.02626967430114746
+        },
+        "repository.publish": {
+          "count": 1,
+          "sum_seconds": 0.13829994201660156,
+          "union_seconds": 0.13829994201660156
+        },
+        "repository.compose_root": {
+          "count": 1,
+          "sum_seconds": 0.19589996337890625,
+          "union_seconds": 0.19589996337890625
+        },
+        "blob.pack.flush": {
+          "count": 1,
+          "sum_seconds": 0.0002086162567138672,
+          "union_seconds": 0.0002086162567138672
+        },
+        "blob.flush": {
+          "count": 1,
+          "sum_seconds": 0.000492095947265625,
+          "union_seconds": 0.000492095947265625
+        },
+        "state.compact": {
+          "count": 1,
+          "sum_seconds": 0.011126041412353516,
+          "union_seconds": 0.011126041412353516
+        },
+        "add_path_from_nar": {
+          "count": 1,
+          "sum_seconds": 1.2506189346313477,
+          "union_seconds": 1.2506189346313477
+        }
+      },
+      "pins": {
+        "exclusive_lock_wait": {
+          "count": 81,
+          "sum_seconds": 0.004476070404052734,
+          "union_seconds": 0.004476070404052734
+        },
+        "read_decode": {
+          "count": 7,
+          "sum_seconds": 0.0017824172973632812,
+          "union_seconds": 0.0017824172973632812
+        },
+        "journal_append_sync": {
+          "count": 66,
+          "sum_seconds": 0.41772890090942383,
+          "union_seconds": 0.41772890090942383
+        },
+        "journal_flush": {
+          "count": 75,
+          "sum_seconds": 0.45243406295776367,
+          "union_seconds": 0.45243406295776367
+        },
+        "group_total": {
+          "count": 75,
+          "sum_seconds": 0.5237445831298828,
+          "union_seconds": 0.5237445831298828
+        },
+        "group_wait": {
+          "count": 77,
+          "sum_seconds": 0.5769491195678711,
+          "union_seconds": 0.5556318759918213
+        },
+        "blocking_queue": {
+          "count": 6,
+          "sum_seconds": 0.0004620552062988281,
+          "union_seconds": 0.0004620552062988281
+        },
+        "lock_setup": {
+          "count": 6,
+          "sum_seconds": 0.0007672309875488281,
+          "union_seconds": 0.0007672309875488281
+        }
+      },
+      "pin_append_sync_by_stage": {
+        "repository.stage_blob": {
+          "count": 24,
+          "sum_seconds": 0.1495802402496338,
+          "union_seconds": 0.1495802402496338
+        },
+        "repository.stage_directory": {
+          "count": 18,
+          "sum_seconds": 0.11913156509399414,
+          "union_seconds": 0.11913156509399414
+        },
+        "put_path_info": {
+          "count": 13,
+          "sum_seconds": 0.08227014541625977,
+          "union_seconds": 0.08227014541625977
+        }
+      },
+      "pin_ledger_sync_partition": {
+        "outside_writer_stages": {
+          "count": 14,
+          "sum_seconds": 0.08402419090270996,
+          "union_seconds": 0.08402419090270996
+        },
+        "repository.stage_blob": {
+          "count": 23,
+          "sum_seconds": 0.13860678672790527,
+          "union_seconds": 0.13860678672790527
+        },
+        "repository.stage_directory": {
+          "count": 16,
+          "sum_seconds": 0.10444092750549316,
+          "union_seconds": 0.10444092750549316
+        },
+        "put_path_info": {
+          "count": 10,
+          "sum_seconds": 0.06107473373413086,
+          "union_seconds": 0.06107473373413086
+        },
+        "repository.stage_blob & put_path_info": {
+          "count": 1,
+          "sum_seconds": 0.007210969924926758,
+          "union_seconds": 0.007210969924926758
+        },
+        "repository.stage_directory & put_path_info": {
+          "count": 2,
+          "sum_seconds": 0.011740922927856445,
+          "union_seconds": 0.011740922927856445
+        }
+      },
+      "outside_writer_lifecycle_partition": {
+        "repository.mutation_session & repository.mutation.prepare": {
+          "count": 6,
+          "sum_seconds": 0.038947105407714844,
+          "union_seconds": 0.038947105407714844
+        },
+        "repository.mutation_session & pin.acquire": {
+          "count": 1,
+          "sum_seconds": 0.0051860809326171875,
+          "union_seconds": 0.0051860809326171875
+        },
+        "repository.mutation_session & repository.mutation.admit": {
+          "count": 1,
+          "sum_seconds": 0.007585048675537109,
+          "union_seconds": 0.007585048675537109
+        },
+        "repository.publish.commit": {
+          "count": 1,
+          "sum_seconds": 0.007107973098754883,
+          "union_seconds": 0.007107973098754883
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": {
+          "count": 3,
+          "sum_seconds": 0.015555143356323242,
+          "union_seconds": 0.015555143356323242
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": {
+          "count": 1,
+          "sum_seconds": 0.004164934158325195,
+          "union_seconds": 0.004164934158325195
+        },
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": {
+          "count": 1,
+          "sum_seconds": 0.0054779052734375,
+          "union_seconds": 0.0054779052734375
+        }
+      },
+      "syncs": {
+        "fsync:pin_ledger": {
+          "count": 66,
+          "sum_seconds": 0.40709853172302246,
+          "union_seconds": 0.40709853172302246,
+          "unique_targets": 1
+        },
+        "fsync:blobs/pack-indexes": {
+          "count": 20,
+          "sum_seconds": 0.1146996021270752,
+          "union_seconds": 0.1146996021270752,
+          "unique_targets": 16
+        },
+        "fsync:other": {
+          "count": 6,
+          "sum_seconds": 0.02221202850341797,
+          "union_seconds": 0.02221202850341797,
+          "unique_targets": 1
+        },
+        "fsync:blobs/bao-packs": {
+          "count": 4,
+          "sum_seconds": 0.028277158737182617,
+          "union_seconds": 0.028277158737182617,
+          "unique_targets": 3
+        },
+        "fsync:blobs/packs": {
+          "count": 8,
+          "sum_seconds": 0.05538821220397949,
+          "union_seconds": 0.05538821220397949,
+          "unique_targets": 5
+        },
+        "fsync:blobs/bao-indexes": {
+          "count": 60,
+          "sum_seconds": 0.3425009250640869,
+          "union_seconds": 0.03166627883911133,
+          "unique_targets": 32
+        },
+        "fsync:blobs/pack-index-reclaim-needed": {
+          "count": 2,
+          "sum_seconds": 0.013910055160522461,
+          "union_seconds": 0.013910055160522461,
+          "unique_targets": 2
+        },
+        "fsync:metadata/casita.sqlite-wal": {
+          "count": 6,
+          "sum_seconds": 0.030286073684692383,
+          "union_seconds": 0.030286073684692383,
+          "unique_targets": 1
+        },
+        "fsync:metadata/casita.sqlite": {
+          "count": 1,
+          "sum_seconds": 0.005302906036376953,
+          "union_seconds": 0.005302906036376953,
+          "unique_targets": 1
+        }
+      }
+    }
+  ]
+}

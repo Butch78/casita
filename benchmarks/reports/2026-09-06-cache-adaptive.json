@@ -1,0 +1,4175 @@
+{
+  "comparisons": [
+    {
+      "operation": "random-warm",
+      "cache_bytes": 8388608,
+      "working_set_bytes": 4194304,
+      "operations": 512,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "original-size",
+      "after": {
+        "wall_seconds": 0.041763354,
+        "p50_nanos": 40369,
+        "p95_nanos": 66489,
+        "p99_nanos": 211340,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 512,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.059635815,
+          0.038108838,
+          0.041763354
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.059635815,
+            "p50_nanos": 40368,
+            "p95_nanos": 66489,
+            "p99_nanos": 3072739,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 512,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.038108838,
+            "p50_nanos": 46305,
+            "p95_nanos": 67677,
+            "p99_nanos": 211340,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 512,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.041763354,
+            "p50_nanos": 40369,
+            "p95_nanos": 60552,
+            "p99_nanos": 93797,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 512,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.036796869,
+        "p50_nanos": 47492,
+        "p95_nanos": 66489,
+        "p99_nanos": 117543,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 512,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.036796869,
+          0.031034892,
+          0.065260064
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.036796869,
+            "p50_nanos": 47492,
+            "p95_nanos": 66489,
+            "p99_nanos": 117543,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 512,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.031034892,
+            "p50_nanos": 49867,
+            "p95_nanos": 66489,
+            "p99_nanos": 75987,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 512,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.065260064,
+            "p50_nanos": 42743,
+            "p95_nanos": 70050,
+            "p99_nanos": 2689240,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 512,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 13.49703150015291
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 8388608,
+      "working_set_bytes": 33554432,
+      "operations": 512,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "original-size",
+      "before": {
+        "wall_seconds": 53.895786755,
+        "p50_nanos": 110131748,
+        "p95_nanos": 116492126,
+        "p99_nanos": 120826966,
+        "backend_read_bytes": 31724264,
+        "pack_range_requests": 484,
+        "whole_pack_requests": 0,
+        "cache_hits": 28,
+        "cache_evictions": 388,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 484,
+        "wall_seconds_samples": [
+          53.895786755,
+          53.317133086,
+          53.902968253
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 53.895786755,
+            "p50_nanos": 110159100,
+            "p95_nanos": 119649211,
+            "p99_nanos": 127543584,
+            "backend_read_bytes": 31724264,
+            "pack_range_requests": 484,
+            "whole_pack_requests": 0,
+            "cache_hits": 28,
+            "cache_evictions": 388,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 53.317133086,
+            "p50_nanos": 109982171,
+            "p95_nanos": 110935573,
+            "p99_nanos": 112013642,
+            "backend_read_bytes": 31724264,
+            "pack_range_requests": 484,
+            "whole_pack_requests": 0,
+            "cache_hits": 28,
+            "cache_evictions": 388,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 53.902968253,
+            "p50_nanos": 110131748,
+            "p95_nanos": 116492126,
+            "p99_nanos": 120826966,
+            "backend_read_bytes": 31724264,
+            "pack_range_requests": 484,
+            "whole_pack_requests": 0,
+            "cache_hits": 28,
+            "cache_evictions": 388,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 52.120843723,
+        "p50_nanos": 110518823,
+        "p95_nanos": 134858505,
+        "p99_nanos": 149830381,
+        "backend_read_bytes": 66643592,
+        "pack_range_requests": 228,
+        "whole_pack_requests": 197,
+        "cache_hits": 87,
+        "cache_evictions": 212,
+        "cache_promotions": 197,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 425,
+        "wall_seconds_samples": [
+          53.70176582,
+          51.511711171,
+          52.120843723
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 53.70176582,
+            "p50_nanos": 116531343,
+            "p95_nanos": 146141471,
+            "p99_nanos": 158205648,
+            "backend_read_bytes": 66643592,
+            "pack_range_requests": 228,
+            "whole_pack_requests": 197,
+            "cache_hits": 87,
+            "cache_evictions": 212,
+            "cache_promotions": 197
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 51.511711171,
+            "p50_nanos": 110518823,
+            "p95_nanos": 134572373,
+            "p99_nanos": 135407045,
+            "backend_read_bytes": 66643592,
+            "pack_range_requests": 228,
+            "whole_pack_requests": 197,
+            "cache_hits": 87,
+            "cache_evictions": 212,
+            "cache_promotions": 197
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 52.120843723,
+            "p50_nanos": 110245737,
+            "p95_nanos": 134858505,
+            "p99_nanos": 149830381,
+            "backend_read_bytes": 50300814,
+            "pack_range_requests": 331,
+            "whole_pack_requests": 109,
+            "cache_hits": 72,
+            "cache_evictions": 195,
+            "cache_promotions": 109
+          }
+        ]
+      },
+      "wall_change_percent": -3.293287173018844
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 0,
+      "concurrency": 8,
+      "matrix": "concurrent",
+      "before": {
+        "wall_seconds": 0.003463359,
+        "p50_nanos": 22559,
+        "p95_nanos": 134165,
+        "p99_nanos": 189968,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003921659,
+          0.003463359,
+          0.002868522
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003921659,
+            "p50_nanos": 28495,
+            "p95_nanos": 174534,
+            "p99_nanos": 292077,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.003463359,
+            "p50_nanos": 22559,
+            "p95_nanos": 134165,
+            "p99_nanos": 189968,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.002868522,
+            "p50_nanos": 17810,
+            "p95_nanos": 118730,
+            "p99_nanos": 178095,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.002974191,
+        "p50_nanos": 17810,
+        "p95_nanos": 116356,
+        "p99_nanos": 173346,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002792534,
+          0.002974191,
+          0.003200966
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002792534,
+            "p50_nanos": 17810,
+            "p95_nanos": 116356,
+            "p99_nanos": 180470,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.002974191,
+            "p50_nanos": 17810,
+            "p95_nanos": 127042,
+            "p99_nanos": 172158,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.003200966,
+            "p50_nanos": 18997,
+            "p95_nanos": 113981,
+            "p99_nanos": 173346,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -14.124091669388006
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 8,
+      "matrix": "concurrent",
+      "after": {
+        "wall_seconds": 0.003659265,
+        "p50_nanos": 26120,
+        "p95_nanos": 161474,
+        "p99_nanos": 254082,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003659265,
+          0.00335769,
+          0.003855169
+        ],
+        "repetitions": [
+          {
+            "repetition": 2,
+            "wall_seconds": 0.003659265,
+            "p50_nanos": 26120,
+            "p95_nanos": 161474,
+            "p99_nanos": 267143,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 1,
+            "wall_seconds": 0.00335769,
+            "p50_nanos": 18997,
+            "p95_nanos": 160285,
+            "p99_nanos": 254082,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.003855169,
+            "p50_nanos": 27308,
+            "p95_nanos": 173346,
+            "p99_nanos": 239835,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.003377874,
+        "p50_nanos": 21371,
+        "p95_nanos": 132978,
+        "p99_nanos": 199466,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.00320809,
+          0.003377874,
+          0.003645016
+        ],
+        "repetitions": [
+          {
+            "repetition": 2,
+            "wall_seconds": 0.00320809,
+            "p50_nanos": 18997,
+            "p95_nanos": 119917,
+            "p99_nanos": 178095,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003377874,
+            "p50_nanos": 21372,
+            "p95_nanos": 132978,
+            "p99_nanos": 199466,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.003645016,
+            "p50_nanos": 21371,
+            "p95_nanos": 149600,
+            "p99_nanos": 275454,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 8.330417297980919
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "concurrent",
+      "after": {
+        "wall_seconds": 0.003249645,
+        "p50_nanos": 20184,
+        "p95_nanos": 121105,
+        "p99_nanos": 188781,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.004112813,
+          0.002853086,
+          0.003249645
+        ],
+        "repetitions": [
+          {
+            "repetition": 3,
+            "wall_seconds": 0.004112813,
+            "p50_nanos": 24933,
+            "p95_nanos": 168597,
+            "p99_nanos": 333632,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.002853086,
+            "p50_nanos": 16623,
+            "p95_nanos": 106858,
+            "p99_nanos": 161473,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003249645,
+            "p50_nanos": 20184,
+            "p95_nanos": 121105,
+            "p99_nanos": 188781,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.003306636,
+        "p50_nanos": 18997,
+        "p95_nanos": 124667,
+        "p99_nanos": 181657,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003558344,
+          0.003306636,
+          0.003104794
+        ],
+        "repetitions": [
+          {
+            "repetition": 3,
+            "wall_seconds": 0.003558344,
+            "p50_nanos": 27308,
+            "p95_nanos": 122292,
+            "p99_nanos": 180470,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.003306636,
+            "p50_nanos": 18997,
+            "p95_nanos": 124667,
+            "p99_nanos": 181657,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003104794,
+            "p50_nanos": 17810,
+            "p95_nanos": 135352,
+            "p99_nanos": 184032,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -1.723534129550397
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 0,
+      "concurrency": 8,
+      "matrix": "concurrent",
+      "after": {
+        "wall_seconds": 1.125208298,
+        "p50_nanos": 101618787,
+        "p95_nanos": 103606330,
+        "p99_nanos": 104639282,
+        "backend_read_bytes": 12987780,
+        "pack_range_requests": 41,
+        "whole_pack_requests": 39,
+        "cache_hits": 47,
+        "cache_evictions": 57,
+        "cache_promotions": 39,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 81,
+        "wall_seconds_samples": [
+          1.124725108,
+          1.125208298,
+          1.233595885
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.124725108,
+            "p50_nanos": 101453756,
+            "p95_nanos": 103696570,
+            "p99_nanos": 104590608,
+            "backend_read_bytes": 12594256,
+            "pack_range_requests": 40,
+            "whole_pack_requests": 38,
+            "cache_hits": 50,
+            "cache_evictions": 57,
+            "cache_promotions": 38
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 1.125208298,
+            "p50_nanos": 101618787,
+            "p95_nanos": 103438920,
+            "p99_nanos": 104684401,
+            "backend_read_bytes": 12987780,
+            "pack_range_requests": 42,
+            "whole_pack_requests": 39,
+            "cache_hits": 47,
+            "cache_evictions": 56,
+            "cache_promotions": 39
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 1.233595885,
+            "p50_nanos": 102037904,
+            "p95_nanos": 103606330,
+            "p99_nanos": 104639282,
+            "backend_read_bytes": 13184666,
+            "pack_range_requests": 41,
+            "whole_pack_requests": 40,
+            "cache_hits": 47,
+            "cache_evictions": 60,
+            "cache_promotions": 40
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 1.630266298,
+        "p50_nanos": 101744641,
+        "p95_nanos": 103047115,
+        "p99_nanos": 103966087,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 125,
+        "wall_seconds_samples": [
+          1.629080245,
+          1.630266298,
+          1.6383803160000001
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.629080245,
+            "p50_nanos": 101558238,
+            "p95_nanos": 103047115,
+            "p99_nanos": 103966087,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 1.630266298,
+            "p50_nanos": 101744641,
+            "p95_nanos": 102817962,
+            "p99_nanos": 103462667,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 1.6383803160000001,
+            "p50_nanos": 102097270,
+            "p95_nanos": 103587333,
+            "p99_nanos": 104353142,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -30.980092063462383
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 8,
+      "matrix": "concurrent",
+      "before": {
+        "wall_seconds": 2.650251229,
+        "p50_nanos": 165292605,
+        "p95_nanos": 168517317,
+        "p99_nanos": 169195266,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 125,
+        "wall_seconds_samples": [
+          2.650605127,
+          2.650251229,
+          2.645758432
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 2.650605127,
+            "p50_nanos": 165292605,
+            "p95_nanos": 168517317,
+            "p99_nanos": 169195266,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 2.650251229,
+            "p50_nanos": 165323470,
+            "p95_nanos": 167277768,
+            "p99_nanos": 167552036,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 2.645758432,
+            "p50_nanos": 164766622,
+            "p95_nanos": 170254331,
+            "p99_nanos": 174669907,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 2.652561684,
+        "p50_nanos": 165128752,
+        "p95_nanos": 167685013,
+        "p99_nanos": 168358213,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 125,
+        "wall_seconds_samples": [
+          2.6700531180000002,
+          2.6486626060000003,
+          2.652561684
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 2.6700531180000002,
+            "p50_nanos": 165101448,
+            "p95_nanos": 186776831,
+            "p99_nanos": 195166306,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 2.6486626060000003,
+            "p50_nanos": 165128752,
+            "p95_nanos": 167685013,
+            "p99_nanos": 168358213,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 2.652561684,
+            "p50_nanos": 165628604,
+            "p95_nanos": 167011811,
+            "p99_nanos": 167311011,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 0.0871787162936899
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "concurrent",
+      "after": {
+        "wall_seconds": 1.457474752,
+        "p50_nanos": 109616457,
+        "p95_nanos": 133546520,
+        "p99_nanos": 134574724,
+        "backend_read_bytes": 13053326,
+        "pack_range_requests": 43,
+        "whole_pack_requests": 39,
+        "cache_hits": 46,
+        "cache_evictions": 55,
+        "cache_promotions": 39,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 82,
+        "wall_seconds_samples": [
+          1.459844631,
+          1.457474752,
+          1.418112094
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.459844631,
+            "p50_nanos": 109616457,
+            "p95_nanos": 133844539,
+            "p99_nanos": 135976933,
+            "backend_read_bytes": 13053326,
+            "pack_range_requests": 43,
+            "whole_pack_requests": 39,
+            "cache_hits": 46,
+            "cache_evictions": 55,
+            "cache_promotions": 39
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 1.457474752,
+            "p50_nanos": 109667510,
+            "p95_nanos": 133337559,
+            "p99_nanos": 134529610,
+            "backend_read_bytes": 13315758,
+            "pack_range_requests": 43,
+            "whole_pack_requests": 40,
+            "cache_hits": 45,
+            "cache_evictions": 57,
+            "cache_promotions": 40
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 1.418112094,
+            "p50_nanos": 109416985,
+            "p95_nanos": 133546520,
+            "p99_nanos": 134574724,
+            "backend_read_bytes": 12790894,
+            "pack_range_requests": 43,
+            "whole_pack_requests": 38,
+            "cache_hits": 47,
+            "cache_evictions": 50,
+            "cache_promotions": 38
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 1.758908156,
+        "p50_nanos": 109673448,
+        "p95_nanos": 111605183,
+        "p99_nanos": 112179837,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 3,
+        "requests": 125,
+        "wall_seconds_samples": [
+          1.758908156,
+          1.758432028,
+          1.761822912
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.758908156,
+            "p50_nanos": 109673448,
+            "p95_nanos": 111348730,
+            "p99_nanos": 112042114,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 1.758432028,
+            "p50_nanos": 109639014,
+            "p95_nanos": 112217834,
+            "p99_nanos": 112563339,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 1.761822912,
+            "p50_nanos": 109836104,
+            "p95_nanos": 111605183,
+            "p99_nanos": 112179837,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -17.13752949360933
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "serial",
+      "after": {
+        "wall_seconds": 0.003062051,
+        "p50_nanos": 17810,
+        "p95_nanos": 37993,
+        "p99_nanos": 45117,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002762851,
+          0.003300698,
+          0.003062051
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002762851,
+            "p50_nanos": 17810,
+            "p95_nanos": 22559,
+            "p99_nanos": 27308,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.003300698,
+            "p50_nanos": 17810,
+            "p95_nanos": 39181,
+            "p99_nanos": 47492,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.003062051,
+            "p50_nanos": 16623,
+            "p95_nanos": 37993,
+            "p99_nanos": 45117,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.002849524,
+        "p50_nanos": 17810,
+        "p95_nanos": 24933,
+        "p99_nanos": 37993,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002849524,
+          0.002689239,
+          0.003085798
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002849524,
+            "p50_nanos": 18997,
+            "p95_nanos": 22559,
+            "p99_nanos": 28496,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 0.002689239,
+            "p50_nanos": 16623,
+            "p95_nanos": 24933,
+            "p99_nanos": 37993,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 0.003085798,
+            "p50_nanos": 17810,
+            "p95_nanos": 28496,
+            "p99_nanos": 39181,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 7.458333391822647
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "serial",
+      "before": {
+        "wall_seconds": 13.898147321,
+        "p50_nanos": 110239781,
+        "p95_nanos": 111315478,
+        "p99_nanos": 111717975,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 126,
+        "wall_seconds_samples": [
+          13.869595315,
+          13.913055666,
+          13.898147321
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 13.869595315,
+            "p50_nanos": 109944146,
+            "p95_nanos": 111148070,
+            "p99_nanos": 111717975,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 13.913055666,
+            "p50_nanos": 110313395,
+            "p95_nanos": 111315478,
+            "p99_nanos": 111549376,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 13.898147321,
+            "p50_nanos": 110239781,
+            "p95_nanos": 111357031,
+            "p99_nanos": 111759527,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 13.993030823,
+        "p50_nanos": 110914171,
+        "p95_nanos": 134542662,
+        "p99_nanos": 135733525,
+        "backend_read_bytes": 18563406,
+        "pack_range_requests": 59,
+        "whole_pack_requests": 56,
+        "cache_hits": 13,
+        "cache_evictions": 71,
+        "cache_promotions": 56,
+        "max_in_flight_reads": 1,
+        "samples": 3,
+        "requests": 115,
+        "wall_seconds_samples": [
+          13.993030823,
+          14.002809593,
+          13.976406018
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 13.993030823,
+            "p50_nanos": 110914171,
+            "p95_nanos": 134485674,
+            "p99_nanos": 135306099,
+            "backend_read_bytes": 18563406,
+            "pack_range_requests": 59,
+            "whole_pack_requests": 56,
+            "cache_hits": 13,
+            "cache_evictions": 71,
+            "cache_promotions": 56
+          },
+          {
+            "repetition": 3,
+            "wall_seconds": 14.002809593,
+            "p50_nanos": 110933167,
+            "p95_nanos": 134543849,
+            "p99_nanos": 135873627,
+            "backend_read_bytes": 18563406,
+            "pack_range_requests": 59,
+            "whole_pack_requests": 56,
+            "cache_hits": 13,
+            "cache_evictions": 71,
+            "cache_promotions": 56
+          },
+          {
+            "repetition": 2,
+            "wall_seconds": 13.976406018,
+            "p50_nanos": 110603095,
+            "p95_nanos": 134542662,
+            "p99_nanos": 135733525,
+            "backend_read_bytes": 18563406,
+            "pack_range_requests": 59,
+            "whole_pack_requests": 56,
+            "cache_hits": 13,
+            "cache_evictions": 71,
+            "cache_promotions": 56
+          }
+        ]
+      },
+      "wall_change_percent": 0.682706117646581
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 0.087362851,
+        "p50_nanos": 17809,
+        "p95_nanos": 41555,
+        "p99_nanos": 32939313,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.087362851
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.087362851,
+            "p50_nanos": 17809,
+            "p95_nanos": 41555,
+            "p99_nanos": 32939313,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.088386304,
+        "p50_nanos": 17810,
+        "p95_nanos": 39181,
+        "p99_nanos": 32925065,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.088386304
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.088386304,
+            "p50_nanos": 17810,
+            "p95_nanos": 39181,
+            "p99_nanos": 32925065,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": 1.1714967955887667
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 0.036868093,
+        "p50_nanos": 17810,
+        "p95_nanos": 24877534,
+        "p99_nanos": 34151548,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.036868093
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.036868093,
+            "p50_nanos": 17810,
+            "p95_nanos": 24877534,
+            "p99_nanos": 34151548,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.037170856,
+        "p50_nanos": 18997,
+        "p95_nanos": 24432295,
+        "p99_nanos": 34462620,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.037170856
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.037170856,
+            "p50_nanos": 18997,
+            "p95_nanos": 24432295,
+            "p99_nanos": 34462620,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": -0.814517158281225
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 0.190285289,
+        "p50_nanos": 18996,
+        "p95_nanos": 39181,
+        "p99_nanos": 58271582,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.190285289
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.190285289,
+            "p50_nanos": 18996,
+            "p95_nanos": 39181,
+            "p99_nanos": 58271582,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.190455073,
+        "p50_nanos": 18996,
+        "p95_nanos": 42743,
+        "p99_nanos": 58251399,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.190455073
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.190455073,
+            "p50_nanos": 18996,
+            "p95_nanos": 42743,
+            "p99_nanos": 58251399,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": 0.08922602524465972
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 0.062414079,
+        "p50_nanos": 18997,
+        "p95_nanos": 36634195,
+        "p99_nanos": 59151373,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.062414079
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.062414079,
+            "p50_nanos": 18997,
+            "p95_nanos": 36634195,
+            "p99_nanos": 59151373,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.062320281,
+        "p50_nanos": 18997,
+        "p95_nanos": 35962182,
+        "p99_nanos": 59490942,
+        "backend_read_bytes": 655956,
+        "pack_range_requests": 2,
+        "whole_pack_requests": 2,
+        "cache_hits": 124,
+        "cache_evictions": 0,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 4,
+        "wall_seconds_samples": [
+          0.062320281
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.062320281,
+            "p50_nanos": 18997,
+            "p95_nanos": 35962182,
+            "p99_nanos": 59490942,
+            "backend_read_bytes": 655956,
+            "pack_range_requests": 2,
+            "whole_pack_requests": 2,
+            "cache_hits": 124,
+            "cache_evictions": 0,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": 0.15050959093074745
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 1.23318384,
+        "p50_nanos": 9285887,
+        "p95_nanos": 10166865,
+        "p99_nanos": 33044982,
+        "backend_read_bytes": 8652568,
+        "pack_range_requests": 124,
+        "whole_pack_requests": 2,
+        "cache_hits": 2,
+        "cache_evictions": 109,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          1.23318384
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.23318384,
+            "p50_nanos": 9285887,
+            "p95_nanos": 10166865,
+            "p99_nanos": 33044982,
+            "backend_read_bytes": 8652568,
+            "pack_range_requests": 124,
+            "whole_pack_requests": 2,
+            "cache_hits": 2,
+            "cache_evictions": 109,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 1.229321546,
+        "p50_nanos": 9306071,
+        "p95_nanos": 10247601,
+        "p99_nanos": 32871636,
+        "backend_read_bytes": 8652568,
+        "pack_range_requests": 124,
+        "whole_pack_requests": 2,
+        "cache_hits": 2,
+        "cache_evictions": 109,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          1.229321546
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.229321546,
+            "p50_nanos": 9306071,
+            "p95_nanos": 10247601,
+            "p99_nanos": 32871636,
+            "backend_read_bytes": 8652568,
+            "pack_range_requests": 124,
+            "whole_pack_requests": 2,
+            "cache_hits": 2,
+            "cache_evictions": 109,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": -0.31319693582749775
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 0.167959267,
+        "p50_nanos": 8809779,
+        "p95_nanos": 17149387,
+        "p99_nanos": 36191332,
+        "backend_read_bytes": 9440112,
+        "pack_range_requests": 120,
+        "whole_pack_requests": 6,
+        "cache_hits": 2,
+        "cache_evictions": 105,
+        "cache_promotions": 6,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          0.167959267
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.167959267,
+            "p50_nanos": 8809779,
+            "p95_nanos": 17149387,
+            "p99_nanos": 36191332,
+            "backend_read_bytes": 9440112,
+            "pack_range_requests": 120,
+            "whole_pack_requests": 6,
+            "cache_hits": 2,
+            "cache_evictions": 105,
+            "cache_promotions": 6
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.171105617,
+        "p50_nanos": 8903576,
+        "p95_nanos": 15875412,
+        "p99_nanos": 36286316,
+        "backend_read_bytes": 9440112,
+        "pack_range_requests": 120,
+        "whole_pack_requests": 6,
+        "cache_hits": 2,
+        "cache_evictions": 105,
+        "cache_promotions": 6,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          0.171105617
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.171105617,
+            "p50_nanos": 8903576,
+            "p95_nanos": 15875412,
+            "p99_nanos": 36286316,
+            "backend_read_bytes": 9440112,
+            "pack_range_requests": 120,
+            "whole_pack_requests": 6,
+            "cache_hits": 2,
+            "cache_evictions": 105,
+            "cache_promotions": 6
+          }
+        ]
+      },
+      "wall_change_percent": 1.8732815736805852
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 4.431849605,
+        "p50_nanos": 34601535,
+        "p95_nanos": 35932500,
+        "p99_nanos": 58479430,
+        "backend_read_bytes": 8652568,
+        "pack_range_requests": 124,
+        "whole_pack_requests": 2,
+        "cache_hits": 2,
+        "cache_evictions": 109,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          4.431849605
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.431849605,
+            "p50_nanos": 34601535,
+            "p95_nanos": 35932500,
+            "p99_nanos": 58479430,
+            "backend_read_bytes": 8652568,
+            "pack_range_requests": 124,
+            "whole_pack_requests": 2,
+            "cache_hits": 2,
+            "cache_evictions": 109,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 4.415285477,
+        "p50_nanos": 34533858,
+        "p95_nanos": 35525256,
+        "p99_nanos": 57795474,
+        "backend_read_bytes": 8652568,
+        "pack_range_requests": 124,
+        "whole_pack_requests": 2,
+        "cache_hits": 2,
+        "cache_evictions": 109,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          4.415285477
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.415285477,
+            "p50_nanos": 34533858,
+            "p95_nanos": 35525256,
+            "p99_nanos": 57795474,
+            "backend_read_bytes": 8652568,
+            "pack_range_requests": 124,
+            "whole_pack_requests": 2,
+            "cache_hits": 2,
+            "cache_evictions": 109,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": 0.3751541794134283
+    },
+    {
+      "operation": "random-cold",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 0.575539775,
+        "p50_nanos": 34367637,
+        "p95_nanos": 37839307,
+        "p99_nanos": 61442865,
+        "backend_read_bytes": 9374566,
+        "pack_range_requests": 119,
+        "whole_pack_requests": 6,
+        "cache_hits": 3,
+        "cache_evictions": 105,
+        "cache_promotions": 6,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 125,
+        "wall_seconds_samples": [
+          0.575539775
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.575539775,
+            "p50_nanos": 34367637,
+            "p95_nanos": 37839307,
+            "p99_nanos": 61442865,
+            "backend_read_bytes": 9374566,
+            "pack_range_requests": 119,
+            "whole_pack_requests": 6,
+            "cache_hits": 3,
+            "cache_evictions": 105,
+            "cache_promotions": 6
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.574739534,
+        "p50_nanos": 34375947,
+        "p95_nanos": 37211224,
+        "p99_nanos": 60398040,
+        "backend_read_bytes": 9374566,
+        "pack_range_requests": 119,
+        "whole_pack_requests": 6,
+        "cache_hits": 3,
+        "cache_evictions": 105,
+        "cache_promotions": 6,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 125,
+        "wall_seconds_samples": [
+          0.574739534
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.574739534,
+            "p50_nanos": 34375947,
+            "p95_nanos": 37211224,
+            "p99_nanos": 60398040,
+            "backend_read_bytes": 9374566,
+            "pack_range_requests": 119,
+            "whole_pack_requests": 6,
+            "cache_hits": 3,
+            "cache_evictions": 105,
+            "cache_promotions": 6
+          }
+        ]
+      },
+      "wall_change_percent": 0.13923541929168337
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 0.003021683,
+        "p50_nanos": 17810,
+        "p95_nanos": 27308,
+        "p99_nanos": 37994,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003021683
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003021683,
+            "p50_nanos": 17810,
+            "p95_nanos": 27308,
+            "p99_nanos": 37994,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.003494229,
+        "p50_nanos": 18997,
+        "p95_nanos": 39180,
+        "p99_nanos": 58178,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003494229
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003494229,
+            "p50_nanos": 18997,
+            "p95_nanos": 39180,
+            "p99_nanos": 58178,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 15.638503443279795
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 0.003255582,
+        "p50_nanos": 18997,
+        "p95_nanos": 130604,
+        "p99_nanos": 179283,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003255582
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003255582,
+            "p50_nanos": 18997,
+            "p95_nanos": 130604,
+            "p99_nanos": 179283,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.003108356,
+        "p50_nanos": 18997,
+        "p95_nanos": 122292,
+        "p99_nanos": 178096,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003108356
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003108356,
+            "p50_nanos": 18997,
+            "p95_nanos": 122292,
+            "p99_nanos": 178096,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 4.736458758263207
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 0.002986064,
+        "p50_nanos": 17810,
+        "p95_nanos": 27308,
+        "p99_nanos": 37994,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002986064
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002986064,
+            "p50_nanos": 17810,
+            "p95_nanos": 27308,
+            "p99_nanos": 37994,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.003267454,
+        "p50_nanos": 20184,
+        "p95_nanos": 37994,
+        "p99_nanos": 39181,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003267454
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003267454,
+            "p50_nanos": 20184,
+            "p95_nanos": 37994,
+            "p99_nanos": 39181,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 9.423441694484769
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 0.002781848,
+        "p50_nanos": 17810,
+        "p95_nanos": 123479,
+        "p99_nanos": 172159,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002781848
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002781848,
+            "p50_nanos": 17810,
+            "p95_nanos": 123479,
+            "p99_nanos": 172159,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.003351753,
+        "p50_nanos": 20184,
+        "p95_nanos": 119918,
+        "p99_nanos": 178095,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003351753
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003351753,
+            "p50_nanos": 20184,
+            "p95_nanos": 119918,
+            "p99_nanos": 178095,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -17.00319206099017
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 1.192946183,
+        "p50_nanos": 9340503,
+        "p95_nanos": 10403138,
+        "p99_nanos": 10688091,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          1.192946183
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.192946183,
+            "p50_nanos": 9340503,
+            "p95_nanos": 10403138,
+            "p99_nanos": 10688091,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 1.174742471,
+        "p50_nanos": 9240770,
+        "p95_nanos": 9830858,
+        "p99_nanos": 10914865,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          1.174742471
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 1.174742471,
+            "p50_nanos": 9240770,
+            "p95_nanos": 9830858,
+            "p99_nanos": 10914865,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -1.5259457852676683
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 0,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "before": {
+        "wall_seconds": 0.148791468,
+        "p50_nanos": 9021119,
+        "p95_nanos": 11125018,
+        "p99_nanos": 12743310,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 125,
+        "wall_seconds_samples": [
+          0.148791468
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.148791468,
+            "p50_nanos": 9021119,
+            "p95_nanos": 11125018,
+            "p99_nanos": 12743310,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.150788509,
+        "p50_nanos": 9116102,
+        "p95_nanos": 12218522,
+        "p99_nanos": 13667031,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 125,
+        "wall_seconds_samples": [
+          0.150788509
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.150788509,
+            "p50_nanos": 9116102,
+            "p95_nanos": 12218522,
+            "p99_nanos": 13667031,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 1.3421744047850792
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 4.394310609,
+        "p50_nanos": 34755884,
+        "p95_nanos": 35753217,
+        "p99_nanos": 36898964,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          4.394310609
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.394310609,
+            "p50_nanos": 34755884,
+            "p95_nanos": 35753217,
+            "p99_nanos": 36898964,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 4.400044287,
+        "p50_nanos": 34763008,
+        "p95_nanos": 35769840,
+        "p99_nanos": 36750551,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          4.400044287
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.400044287,
+            "p50_nanos": 34763008,
+            "p95_nanos": 35769840,
+            "p99_nanos": 36750551,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -0.13030955204111905
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 25,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "controls",
+      "after": {
+        "wall_seconds": 0.55948997,
+        "p50_nanos": 34657338,
+        "p95_nanos": 36538024,
+        "p99_nanos": 38064894,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 125,
+        "wall_seconds_samples": [
+          0.55948997
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.55948997,
+            "p50_nanos": 34657338,
+            "p95_nanos": 36538024,
+            "p99_nanos": 38064894,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.561911925,
+        "p50_nanos": 34675147,
+        "p95_nanos": 37511612,
+        "p99_nanos": 38911440,
+        "backend_read_bytes": 8193250,
+        "pack_range_requests": 125,
+        "whole_pack_requests": 0,
+        "cache_hits": 3,
+        "cache_evictions": 113,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 125,
+        "wall_seconds_samples": [
+          0.561911925
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.561911925,
+            "p50_nanos": 34675147,
+            "p95_nanos": 37511612,
+            "p99_nanos": 38911440,
+            "backend_read_bytes": 8193250,
+            "pack_range_requests": 125,
+            "whole_pack_requests": 0,
+            "cache_hits": 3,
+            "cache_evictions": 113,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -0.4310203952336389
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 0.003085797,
+        "p50_nanos": 16623,
+        "p95_nanos": 37994,
+        "p99_nanos": 39181,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003085797
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003085797,
+            "p50_nanos": 16623,
+            "p95_nanos": 37994,
+            "p99_nanos": 39181,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.003222337,
+        "p50_nanos": 17809,
+        "p95_nanos": 39180,
+        "p99_nanos": 52241,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003222337
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003222337,
+            "p50_nanos": 17809,
+            "p95_nanos": 39180,
+            "p99_nanos": 52241,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 4.424788798485446
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 0.002930261,
+        "p50_nanos": 18997,
+        "p95_nanos": 130603,
+        "p99_nanos": 186406,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002930261
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002930261,
+            "p50_nanos": 18997,
+            "p95_nanos": 130603,
+            "p99_nanos": 186406,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.002864959,
+        "p50_nanos": 17809,
+        "p95_nanos": 109231,
+        "p99_nanos": 162660,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002864959
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002864959,
+            "p50_nanos": 17809,
+            "p95_nanos": 109231,
+            "p99_nanos": 162660,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 2.279334538469846
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 0.003170095,
+        "p50_nanos": 17810,
+        "p95_nanos": 37994,
+        "p99_nanos": 39181,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003170095
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003170095,
+            "p50_nanos": 17810,
+            "p95_nanos": 37994,
+            "p99_nanos": 39181,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.003142788,
+        "p50_nanos": 20184,
+        "p95_nanos": 28496,
+        "p99_nanos": 41556,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003142788
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003142788,
+            "p50_nanos": 20184,
+            "p95_nanos": 28496,
+            "p99_nanos": 41556,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -0.8613937437206065
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 0.002923136,
+        "p50_nanos": 16623,
+        "p95_nanos": 117543,
+        "p99_nanos": 167409,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002923136
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002923136,
+            "p50_nanos": 16623,
+            "p95_nanos": 117543,
+            "p99_nanos": 167409,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.003088172,
+        "p50_nanos": 17810,
+        "p95_nanos": 113981,
+        "p99_nanos": 165035,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003088172
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003088172,
+            "p50_nanos": 17810,
+            "p95_nanos": 113981,
+            "p99_nanos": 165035,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -5.34413238640854
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 16.604041706,
+        "p50_nanos": 72425,
+        "p95_nanos": 353056037,
+        "p99_nanos": 353631949,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          16.604041706
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 16.604041706,
+            "p50_nanos": 72425,
+            "p95_nanos": 353056037,
+            "p99_nanos": 353631949,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 16.600648937,
+        "p50_nanos": 59365,
+        "p95_nanos": 353162893,
+        "p99_nanos": 353689006,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          16.600648937
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 16.600648937,
+            "p50_nanos": 59365,
+            "p95_nanos": 353162893,
+            "p99_nanos": 353689006,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "wall_change_percent": -0.020433392423813146
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 4.343323735,
+        "p50_nanos": 330039073,
+        "p95_nanos": 354193539,
+        "p99_nanos": 354449996,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          4.343323735
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.343323735,
+            "p50_nanos": 330039073,
+            "p95_nanos": 354193539,
+            "p99_nanos": 354449996,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 4.335772345,
+        "p50_nanos": 328939561,
+        "p95_nanos": 353895456,
+        "p99_nanos": 354504611,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          4.335772345
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.335772345,
+            "p50_nanos": 328939561,
+            "p95_nanos": 353895456,
+            "p99_nanos": 354504611,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "wall_change_percent": -0.17386201123229528
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 7.819224446,
+        "p50_nanos": 129416,
+        "p95_nanos": 134129477,
+        "p99_nanos": 134928531,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          7.819224446
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 7.819224446,
+            "p50_nanos": 129416,
+            "p95_nanos": 134129477,
+            "p99_nanos": 134928531,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 7.819142639,
+        "p50_nanos": 66488,
+        "p95_nanos": 134428676,
+        "p99_nanos": 134847794,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          7.819142639
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 7.819142639,
+            "p50_nanos": 66488,
+            "p95_nanos": 134428676,
+            "p99_nanos": 134847794,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "wall_change_percent": 0.001046240026258971
+    },
+    {
+      "operation": "sequential-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 2.009773307,
+        "p50_nanos": 123994665,
+        "p95_nanos": 134213771,
+        "p99_nanos": 134780114,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          2.009773307
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 2.009773307,
+            "p50_nanos": 123994665,
+            "p95_nanos": 134213771,
+            "p99_nanos": 134780114,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 2.009003793,
+        "p50_nanos": 126636411,
+        "p95_nanos": 133825523,
+        "p99_nanos": 134084355,
+        "backend_read_bytes": 10495296,
+        "pack_range_requests": 32,
+        "whole_pack_requests": 32,
+        "cache_hits": 64,
+        "cache_evictions": 32,
+        "cache_promotions": 32,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 64,
+        "wall_seconds_samples": [
+          2.009003793
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 2.009003793,
+            "p50_nanos": 126636411,
+            "p95_nanos": 133825523,
+            "p99_nanos": 134084355,
+            "backend_read_bytes": 10495296,
+            "pack_range_requests": 32,
+            "whole_pack_requests": 32,
+            "cache_hits": 64,
+            "cache_evictions": 32,
+            "cache_promotions": 32
+          }
+        ]
+      },
+      "wall_change_percent": 0.038303262675820626
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 0.002913639,
+        "p50_nanos": 18997,
+        "p95_nanos": 23746,
+        "p99_nanos": 30870,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002913639
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002913639,
+            "p50_nanos": 18997,
+            "p95_nanos": 23746,
+            "p99_nanos": 30870,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.002566947,
+        "p50_nanos": 16622,
+        "p95_nanos": 20184,
+        "p99_nanos": 26120,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002566947
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002566947,
+            "p50_nanos": 16622,
+            "p95_nanos": 20184,
+            "p99_nanos": 26120,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -11.898934631229196
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 0.002781848,
+        "p50_nanos": 17810,
+        "p95_nanos": 128229,
+        "p99_nanos": 169784,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002781848
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002781848,
+            "p50_nanos": 17810,
+            "p95_nanos": 128229,
+            "p99_nanos": 169784,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.002741479,
+        "p50_nanos": 17809,
+        "p95_nanos": 112794,
+        "p99_nanos": 162661,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002741479
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002741479,
+            "p50_nanos": 17809,
+            "p95_nanos": 112794,
+            "p99_nanos": 162661,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": 1.4725263261181398
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 0.003059677,
+        "p50_nanos": 17809,
+        "p95_nanos": 32057,
+        "p99_nanos": 37994,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003059677
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003059677,
+            "p50_nanos": 17809,
+            "p95_nanos": 32057,
+            "p99_nanos": 37994,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.002933822,
+        "p50_nanos": 16622,
+        "p95_nanos": 28495,
+        "p99_nanos": 37993,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002933822
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002933822,
+            "p50_nanos": 16622,
+            "p95_nanos": 28495,
+            "p99_nanos": 37993,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -4.113342682904109
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 0.002881581,
+        "p50_nanos": 17809,
+        "p95_nanos": 111606,
+        "p99_nanos": 166223,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002881581
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002881581,
+            "p50_nanos": 17809,
+            "p95_nanos": 111606,
+            "p99_nanos": 166223,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.003029994,
+        "p50_nanos": 17810,
+        "p95_nanos": 119917,
+        "p99_nanos": 178095,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003029994
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003029994,
+            "p50_nanos": 17810,
+            "p95_nanos": 119917,
+            "p99_nanos": 178095,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -4.898128511145572
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 4.856800435,
+        "p50_nanos": 40369,
+        "p95_nanos": 166286357,
+        "p99_nanos": 352728349,
+        "backend_read_bytes": 2163514,
+        "pack_range_requests": 25,
+        "whole_pack_requests": 2,
+        "cache_hits": 101,
+        "cache_evictions": 15,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 27,
+        "wall_seconds_samples": [
+          4.856800435
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.856800435,
+            "p50_nanos": 40369,
+            "p95_nanos": 166286357,
+            "p99_nanos": 352728349,
+            "backend_read_bytes": 2163514,
+            "pack_range_requests": 25,
+            "whole_pack_requests": 2,
+            "cache_hits": 101,
+            "cache_evictions": 15,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 4.8603626030000004,
+        "p50_nanos": 41555,
+        "p95_nanos": 166490573,
+        "p99_nanos": 352991929,
+        "backend_read_bytes": 2163514,
+        "pack_range_requests": 25,
+        "whole_pack_requests": 2,
+        "cache_hits": 101,
+        "cache_evictions": 15,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 27,
+        "wall_seconds_samples": [
+          4.8603626030000004
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 4.8603626030000004,
+            "p50_nanos": 41555,
+            "p95_nanos": 166490573,
+            "p99_nanos": 352991929,
+            "backend_read_bytes": 2163514,
+            "pack_range_requests": 25,
+            "whole_pack_requests": 2,
+            "cache_hits": 101,
+            "cache_evictions": 15,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": 0.07334392359072961
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "before": {
+        "wall_seconds": 0.829549882,
+        "p50_nanos": 27308,
+        "p95_nanos": 167486713,
+        "p99_nanos": 352067008,
+        "backend_read_bytes": 2753428,
+        "pack_range_requests": 34,
+        "whole_pack_requests": 2,
+        "cache_hits": 92,
+        "cache_evictions": 12,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 36,
+        "wall_seconds_samples": [
+          0.829549882
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.829549882,
+            "p50_nanos": 27308,
+            "p95_nanos": 167486713,
+            "p99_nanos": 352067008,
+            "backend_read_bytes": 2753428,
+            "pack_range_requests": 34,
+            "whole_pack_requests": 2,
+            "cache_hits": 92,
+            "cache_evictions": 12,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.829482204,
+        "p50_nanos": 28495,
+        "p95_nanos": 166590300,
+        "p99_nanos": 352128748,
+        "backend_read_bytes": 2556790,
+        "pack_range_requests": 31,
+        "whole_pack_requests": 2,
+        "cache_hits": 95,
+        "cache_evictions": 11,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 33,
+        "wall_seconds_samples": [
+          0.829482204
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.829482204,
+            "p50_nanos": 28495,
+            "p95_nanos": 166590300,
+            "p99_nanos": 352128748,
+            "backend_read_bytes": 2556790,
+            "pack_range_requests": 31,
+            "whole_pack_requests": 2,
+            "cache_hits": 95,
+            "cache_evictions": 11,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": -0.008158400292568313
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 1,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 2.989623274,
+        "p50_nanos": 37994,
+        "p95_nanos": 133094145,
+        "p99_nanos": 133888449,
+        "backend_read_bytes": 3607510,
+        "pack_range_requests": 15,
+        "whole_pack_requests": 10,
+        "cache_hits": 103,
+        "cache_evictions": 15,
+        "cache_promotions": 10,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 25,
+        "wall_seconds_samples": [
+          2.989623274
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 2.989623274,
+            "p50_nanos": 37994,
+            "p95_nanos": 133094145,
+            "p99_nanos": 133888449,
+            "backend_read_bytes": 3607510,
+            "pack_range_requests": 15,
+            "whole_pack_requests": 10,
+            "cache_hits": 103,
+            "cache_evictions": 15,
+            "cache_promotions": 10
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 3.024404156,
+        "p50_nanos": 39181,
+        "p95_nanos": 110443990,
+        "p99_nanos": 132936233,
+        "backend_read_bytes": 2163514,
+        "pack_range_requests": 25,
+        "whole_pack_requests": 2,
+        "cache_hits": 101,
+        "cache_evictions": 15,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 27,
+        "wall_seconds_samples": [
+          3.024404156
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 3.024404156,
+            "p50_nanos": 39181,
+            "p95_nanos": 110443990,
+            "p99_nanos": 132936233,
+            "backend_read_bytes": 2163514,
+            "pack_range_requests": 25,
+            "whole_pack_requests": 2,
+            "cache_hits": 101,
+            "cache_evictions": 15,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": -1.1500077438724499
+    },
+    {
+      "operation": "skewed-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 8192,
+      "concurrency": 8,
+      "matrix": "patterns",
+      "after": {
+        "wall_seconds": 0.513706343,
+        "p50_nanos": 37993,
+        "p95_nanos": 133932383,
+        "p99_nanos": 134657825,
+        "backend_read_bytes": 2886008,
+        "pack_range_requests": 12,
+        "whole_pack_requests": 8,
+        "cache_hits": 108,
+        "cache_evictions": 12,
+        "cache_promotions": 8,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 20,
+        "wall_seconds_samples": [
+          0.513706343
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.513706343,
+            "p50_nanos": 37993,
+            "p95_nanos": 133932383,
+            "p99_nanos": 134657825,
+            "backend_read_bytes": 2886008,
+            "pack_range_requests": 12,
+            "whole_pack_requests": 8,
+            "cache_hits": 108,
+            "cache_evictions": 12,
+            "cache_promotions": 8
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 0.551939903,
+        "p50_nanos": 37993,
+        "p95_nanos": 112244012,
+        "p99_nanos": 132378205,
+        "backend_read_bytes": 2687882,
+        "pack_range_requests": 33,
+        "whole_pack_requests": 2,
+        "cache_hits": 93,
+        "cache_evictions": 13,
+        "cache_promotions": 2,
+        "max_in_flight_reads": 8,
+        "samples": 1,
+        "requests": 35,
+        "wall_seconds_samples": [
+          0.551939903
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.551939903,
+            "p50_nanos": 37993,
+            "p95_nanos": 112244012,
+            "p99_nanos": 132378205,
+            "backend_read_bytes": 2687882,
+            "pack_range_requests": 33,
+            "whole_pack_requests": 2,
+            "cache_hits": 93,
+            "cache_evictions": 13,
+            "cache_promotions": 2
+          }
+        ]
+      },
+      "wall_change_percent": -6.9271237307153015
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 524288,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 1,
+      "matrix": "slow-serial",
+      "before": {
+        "wall_seconds": 0.003426553,
+        "p50_nanos": 17809,
+        "p95_nanos": 39181,
+        "p99_nanos": 59365,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.003426553
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.003426553,
+            "p50_nanos": 17809,
+            "p95_nanos": 39181,
+            "p99_nanos": 59365,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "after": {
+        "wall_seconds": 0.002783036,
+        "p50_nanos": 16622,
+        "p95_nanos": 27308,
+        "p99_nanos": 29682,
+        "backend_read_bytes": 0,
+        "pack_range_requests": 0,
+        "whole_pack_requests": 0,
+        "cache_hits": 128,
+        "cache_evictions": 0,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 0,
+        "wall_seconds_samples": [
+          0.002783036
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 0.002783036,
+            "p50_nanos": 16622,
+            "p95_nanos": 27308,
+            "p99_nanos": 29682,
+            "backend_read_bytes": 0,
+            "pack_range_requests": 0,
+            "whole_pack_requests": 0,
+            "cache_hits": 128,
+            "cache_evictions": 0,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -18.780301953595934
+    },
+    {
+      "operation": "random-warm",
+      "cache_bytes": 1048576,
+      "working_set_bytes": 4194304,
+      "operations": 128,
+      "rtt_ms": 100,
+      "bandwidth_kib_per_connection": 1024,
+      "concurrency": 1,
+      "matrix": "slow-serial",
+      "after": {
+        "wall_seconds": 20.875153169,
+        "p50_nanos": 165534787,
+        "p95_nanos": 166729213,
+        "p99_nanos": 166985670,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          20.875153169
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 20.875153169,
+            "p50_nanos": 165534787,
+            "p95_nanos": 166729213,
+            "p99_nanos": 166985670,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "before": {
+        "wall_seconds": 20.90573684,
+        "p50_nanos": 165814990,
+        "p95_nanos": 166996495,
+        "p99_nanos": 167229206,
+        "backend_read_bytes": 8258796,
+        "pack_range_requests": 126,
+        "whole_pack_requests": 0,
+        "cache_hits": 2,
+        "cache_evictions": 114,
+        "cache_promotions": 0,
+        "max_in_flight_reads": 1,
+        "samples": 1,
+        "requests": 126,
+        "wall_seconds_samples": [
+          20.90573684
+        ],
+        "repetitions": [
+          {
+            "repetition": 1,
+            "wall_seconds": 20.90573684,
+            "p50_nanos": 165814990,
+            "p95_nanos": 166996495,
+            "p99_nanos": 167229206,
+            "backend_read_bytes": 8258796,
+            "pack_range_requests": 126,
+            "whole_pack_requests": 0,
+            "cache_hits": 2,
+            "cache_evictions": 114,
+            "cache_promotions": 0
+          }
+        ]
+      },
+      "wall_change_percent": -0.14629319805404828
+    }
+  ],
+  "inputs": [
+    {
+      "matrix": "original-size",
+      "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/original-size.json",
+      "sha256": "d897a3e8337dc7ec236385bc04ebef0c468d6ae47131cef04f902d06f2b0dc0d",
+      "complete": true,
+      "sample_count": 12,
+      "artifacts": [
+        {
+          "variant": "after",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/bin/after",
+          "sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4"
+        },
+        {
+          "variant": "before",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-network/bin/after",
+          "sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626"
+        }
+      ],
+      "backend_artifact": {
+        "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+        "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+        "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+      }
+    },
+    {
+      "matrix": "concurrent",
+      "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/concurrent.json",
+      "sha256": "5f5b89515ecba2593f77b07e624642b6c74dd44eaa05ef60286f74138d7a53b8",
+      "complete": true,
+      "sample_count": 36,
+      "artifacts": [
+        {
+          "variant": "after",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/bin/after",
+          "sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4"
+        },
+        {
+          "variant": "before",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-network/bin/after",
+          "sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626"
+        }
+      ],
+      "backend_artifact": {
+        "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+        "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+        "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+      }
+    },
+    {
+      "matrix": "serial",
+      "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/serial.json",
+      "sha256": "3b1b6e518c1c7df7ff93c1b5313341ffd1788f4bb1dfc8e87ac375ad273cc69f",
+      "complete": true,
+      "sample_count": 12,
+      "artifacts": [
+        {
+          "variant": "after",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/bin/after",
+          "sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4"
+        },
+        {
+          "variant": "before",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-network/bin/after",
+          "sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626"
+        }
+      ],
+      "backend_artifact": {
+        "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+        "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+        "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+      }
+    },
+    {
+      "matrix": "controls",
+      "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/controls.json",
+      "sha256": "c99f469113aebf31b2ca96fb3a77b96e12b9bf9a9a3092e005157bcf610b87a4",
+      "complete": true,
+      "sample_count": 32,
+      "artifacts": [
+        {
+          "variant": "after",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/bin/after",
+          "sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4"
+        },
+        {
+          "variant": "before",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-network/bin/after",
+          "sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626"
+        }
+      ],
+      "backend_artifact": {
+        "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+        "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+        "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+      }
+    },
+    {
+      "matrix": "patterns",
+      "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/patterns.json",
+      "sha256": "7f32829b3fbeeb3c0617986c078f38eca6a4a3bf21303993a2b32e65b1112428",
+      "complete": true,
+      "sample_count": 32,
+      "artifacts": [
+        {
+          "variant": "after",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/bin/after",
+          "sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4"
+        },
+        {
+          "variant": "before",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-network/bin/after",
+          "sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626"
+        }
+      ],
+      "backend_artifact": {
+        "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+        "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+        "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+      }
+    },
+    {
+      "matrix": "slow-serial",
+      "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/slow-serial.json",
+      "sha256": "ecaecd1d421fbb04272a858c3aa5ce8c5b029363ab8884acc1f52a3d6f8f8682",
+      "complete": true,
+      "sample_count": 4,
+      "artifacts": [
+        {
+          "variant": "after",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-adaptive/bin/after",
+          "sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4"
+        },
+        {
+          "variant": "before",
+          "path": "/home/domen/dev/casita/benchmarks/results/2026-09-06-cache-network/bin/after",
+          "sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626"
+        }
+      ],
+      "backend_artifact": {
+        "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+        "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+        "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+      }
+    }
+  ],
+  "source": {
+    "base_revision": "947f2f69081b297e86bf03d237dbfe22a59c9344",
+    "source_sha256": {
+      "src/blob/pack.rs": "5eda6486c6242cee8db2b9e56a8483a0e99a83aed770a5c3af558cdcf0f305a1",
+      "src/blob/chunked.rs": "950e0e7565d3f69b5127c16f09557ef38d79d5ea26e12bd7119b0c39485a3192",
+      "examples/pack_cache_network.rs": "e6b065744b3450754028b22c3c6605c02e87cbe79f5e682db3bd8184cfa217b7",
+      "Cargo.toml": "23829e8aae533e5347027a36bad89deb63102bf53c2deb2afd60535d341a1974",
+      "Cargo.lock": "4f8c489cab68ff1b1b45693057e6b6c0ed2cc95dff7f77edd845feb30c864a6f",
+      "benchmarks/suites/pack/cache_network.py": "d454e4250f2dbae20401f195fe5d6afb7afb6f85054e2d0a6ad648bfd865bbb9",
+      "benchmarks/lib/tcp_latency_proxy.py": "8268fa81549d4cdb54b27cd2b12a069d558adec244b8378b95d430c009d2b364"
+    },
+    "before_binary_sha256": "f3656577de5c6b95027d6885d9de095e4c52ea4c8edebc93f6401de52d40f626",
+    "after_binary_sha256": "2e51bf08eda74fe0e192a337e6df984b0e84bab433a787f32533caab1ff047b4",
+    "pilot_binary_sha256": "bd7756209bf521ba37fa2037628e7978c46510d94d3e22d7841ec94922c7ab81",
+    "pilot_note": "First candidate without avoiding range-driven eviction when whole packs are cheap; excluded from final comparisons.",
+    "build_features": "s3,ssh,experimental",
+    "build_log": "benchmarks/results/2026-09-06-cache-adaptive/build.log"
+  },
+  "validation": {
+    "samples_by_matrix": {
+      "original-size": 12,
+      "concurrent": 36,
+      "serial": 12,
+      "controls": 32,
+      "patterns": 32,
+      "slow-serial": 4
+    },
+    "verified_samples": 128,
+    "fitting_warm_samples_with_zero_backend_reads": 56,
+    "fixture_pairs_verified": true,
+    "source_and_binary_hashes_verified": true,
+    "checks": {
+      "library_tests": {
+        "passed": 484,
+        "failed": 0,
+        "ignored": 17,
+        "log_sha256": "f632a7755c35662fe84fd24cf6075c90c5ae591efb95f1f25b29501dbff2f177"
+      },
+      "integration_tests": {
+        "passed": 40,
+        "failed": 0,
+        "ignored": 0,
+        "log_sha256": "d9c365fe4777dfe916cb1605aee5dad9f7d6b080485d5a4ac2105d71d9c5d399"
+      },
+      "clippy_all_features_all_targets": "passed",
+      "formatting": "passed",
+      "git_diff_check": "passed"
+    }
+  },
+  "environment": {
+    "captured_at_utc": "2026-09-06T13:53:37.989782+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.0.10-x86_64-with-glibc2.42",
+    "kernel": "7.0.10",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29178875904,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "947f2f69081b297e86bf03d237dbfe22a59c9344",
+    "casita_worktree_dirty": true
+  },
+  "backend_artifact": {
+    "path": "/home/domen/dev/casita/.devenv/profile/bin/rustfs",
+    "sha256": "94103a3dd62aef061aa213a5a9f26efae0499f9be341fb789dcff23d5dbb3137",
+    "version": "rustfs 1.0.0-rc.1\nbuild time   : 1980-01-01 00:00:00 +00:00\nbuild profile: release\nbuild os     : linux-x86_64\nrust version : rustc 1.97.1 (8bab26f4f 2026-07-14) (built from a source tarball)\nrust channel : \ngit branch   : \ngit commit   : \ngit tag      : \ngit status   :"
+  },
+  "disposition": {
+    "status": "discarded",
+    "production_changes_reverted": true,
+    "reason": "The modest serial gain, increased traffic and tail latency, and measurements limited to 256 KiB packs did not justify adding a timing heuristic to the default policy.",
+    "measurements": "Historical results for the discarded candidate; retained for reference."
+  }
+}

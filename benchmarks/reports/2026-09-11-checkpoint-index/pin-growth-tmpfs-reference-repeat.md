@@ -1,0 +1,17 @@
+# Growing staging pin
+
+Complete: True
+
+Seed and replay/audits excluded from protection time. Sequential durable additions to one pin; warm cache.
+
+| Resources | Repetition | Mean protection, ms | Journal bytes | Checkpoints |
+|---:|---:|---:|---:|---:|
+| 1 | 0 | 0.357 | 67712 | 0 |
+| 8192 | 0 | 5.408 | 10166600 | 8 |
+| 16384 | 0 | 55.319 | 20264872 | 16 |
+| 1 | 1 | 0.208 | 67712 | 0 |
+| 8192 | 1 | 7.175 | 10166600 | 8 |
+| 16384 | 1 | 29.032 | 20264872 | 16 |
+| 1 | 2 | 1.460 | 67712 | 0 |
+| 8192 | 2 | 10.218 | 10166600 | 8 |
+| 16384 | 2 | 27.745 | 20264872 | 16 |

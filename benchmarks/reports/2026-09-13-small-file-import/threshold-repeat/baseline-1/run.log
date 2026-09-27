@@ -1,0 +1,97 @@
+Benchmarking filesystem_import/bytes-0-files-48/1
+Benchmarking filesystem_import/bytes-0-files-48/1: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-0-files-48/1: Collecting 10 samples in estimated 535.94 ms (275 iterations)
+Benchmarking filesystem_import/bytes-0-files-48/1: Analyzing
+filesystem_import/bytes-0-files-48/1
+                        time:   [2.8938 ms 3.4623 ms 3.9031 ms]
+                        thrpt:  [0.0000   B/s 0.0000   B/s 0.0000   B/s]
+Benchmarking filesystem_import/bytes-0-files-48/16
+Benchmarking filesystem_import/bytes-0-files-48/16: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-0-files-48/16: Collecting 10 samples in estimated 521.94 ms (330 iterations)
+Benchmarking filesystem_import/bytes-0-files-48/16: Analyzing
+filesystem_import/bytes-0-files-48/16
+                        time:   [902.08 µs 1.1198 ms 1.2662 ms]
+                        thrpt:  [0.0000   B/s 0.0000   B/s 0.0000   B/s]
+Benchmarking filesystem_import/bytes-1024-files-48/1
+Benchmarking filesystem_import/bytes-1024-files-48/1: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-1024-files-48/1: Collecting 10 samples in estimated 919.48 ms (110 iterations)
+Benchmarking filesystem_import/bytes-1024-files-48/1: Analyzing
+filesystem_import/bytes-1024-files-48/1
+                        time:   [5.3857 ms 6.1321 ms 6.7158 ms]
+                        thrpt:  [6.9798 MiB/s 7.6442 MiB/s 8.7036 MiB/s]
+Benchmarking filesystem_import/bytes-1024-files-48/16
+Benchmarking filesystem_import/bytes-1024-files-48/16: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-1024-files-48/16: Collecting 10 samples in estimated 516.69 ms (275 iterations)
+Benchmarking filesystem_import/bytes-1024-files-48/16: Analyzing
+filesystem_import/bytes-1024-files-48/16
+                        time:   [1.0366 ms 1.0772 ms 1.1040 ms]
+                        thrpt:  [42.460 MiB/s 43.517 MiB/s 45.221 MiB/s]
+Benchmarking filesystem_import/bytes-262143-files-16/1
+Benchmarking filesystem_import/bytes-262143-files-16/1: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-262143-files-16/1: Collecting 10 samples in estimated 986.68 ms (110 iterations)
+Benchmarking filesystem_import/bytes-262143-files-16/1: Analyzing
+filesystem_import/bytes-262143-files-16/1
+                        time:   [5.7190 ms 5.9201 ms 6.2493 ms]
+                        thrpt:  [640.07 MiB/s 675.66 MiB/s 699.42 MiB/s]
+Benchmarking filesystem_import/bytes-262143-files-16/16
+Benchmarking filesystem_import/bytes-262143-files-16/16: Warming up for 200.00 ms
+
+Warning: Unable to complete 10 samples in 500.0ms. You may wish to increase target time to 608.9ms or enable flat sampling.
+Benchmarking filesystem_import/bytes-262143-files-16/16: Collecting 10 samples in estimated 608.93 ms (55 iterations)
+Benchmarking filesystem_import/bytes-262143-files-16/16: Analyzing
+filesystem_import/bytes-262143-files-16/16
+                        time:   [7.9208 ms 8.0831 ms 8.2900 ms]
+                        thrpt:  [482.51 MiB/s 494.86 MiB/s 505.00 MiB/s]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) high mild
+  1 (10.00%) high severe
+Benchmarking filesystem_import/bytes-262144-files-16/1
+Benchmarking filesystem_import/bytes-262144-files-16/1: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-262144-files-16/1: Collecting 10 samples in estimated 837.35 ms (110 iterations)
+Benchmarking filesystem_import/bytes-262144-files-16/1: Analyzing
+filesystem_import/bytes-262144-files-16/1
+                        time:   [5.7680 ms 5.9224 ms 6.0547 ms]
+                        thrpt:  [660.64 MiB/s 675.40 MiB/s 693.48 MiB/s]
+Benchmarking filesystem_import/bytes-262144-files-16/16
+Benchmarking filesystem_import/bytes-262144-files-16/16: Warming up for 200.00 ms
+
+Warning: Unable to complete 10 samples in 500.0ms. You may wish to increase target time to 573.7ms or enable flat sampling.
+Benchmarking filesystem_import/bytes-262144-files-16/16: Collecting 10 samples in estimated 573.69 ms (55 iterations)
+Benchmarking filesystem_import/bytes-262144-files-16/16: Analyzing
+filesystem_import/bytes-262144-files-16/16
+                        time:   [7.9846 ms 8.0992 ms 8.2059 ms]
+                        thrpt:  [487.46 MiB/s 493.88 MiB/s 500.96 MiB/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) low mild
+Benchmarking filesystem_import/bytes-262145-files-16/1
+Benchmarking filesystem_import/bytes-262145-files-16/1: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-262145-files-16/1: Collecting 10 samples in estimated 859.67 ms (110 iterations)
+Benchmarking filesystem_import/bytes-262145-files-16/1: Analyzing
+filesystem_import/bytes-262145-files-16/1
+                        time:   [6.0496 ms 6.2295 ms 6.4230 ms]
+                        thrpt:  [622.76 MiB/s 642.11 MiB/s 661.21 MiB/s]
+Benchmarking filesystem_import/bytes-262145-files-16/16
+Benchmarking filesystem_import/bytes-262145-files-16/16: Warming up for 200.00 ms
+
+Warning: Unable to complete 10 samples in 500.0ms. You may wish to increase target time to 615.3ms or enable flat sampling.
+Benchmarking filesystem_import/bytes-262145-files-16/16: Collecting 10 samples in estimated 615.27 ms (55 iterations)
+Benchmarking filesystem_import/bytes-262145-files-16/16: Analyzing
+filesystem_import/bytes-262145-files-16/16
+                        time:   [8.6953 ms 9.0845 ms 9.2808 ms]
+                        thrpt:  [431.00 MiB/s 440.31 MiB/s 460.02 MiB/s]
+Benchmarking filesystem_import/bytes-1048576-files-16/1
+Benchmarking filesystem_import/bytes-1048576-files-16/1: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-1048576-files-16/1: Collecting 10 samples in estimated 530.85 ms (20 iterations)
+Benchmarking filesystem_import/bytes-1048576-files-16/1: Analyzing
+filesystem_import/bytes-1048576-files-16/1
+                        time:   [18.375 ms 18.792 ms 19.328 ms]
+                        thrpt:  [827.81 MiB/s 851.41 MiB/s 870.73 MiB/s]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking filesystem_import/bytes-1048576-files-16/16
+Benchmarking filesystem_import/bytes-1048576-files-16/16: Warming up for 200.00 ms
+Benchmarking filesystem_import/bytes-1048576-files-16/16: Collecting 10 samples in estimated 678.33 ms (20 iterations)
+Benchmarking filesystem_import/bytes-1048576-files-16/16: Analyzing
+filesystem_import/bytes-1048576-files-16/16
+                        time:   [23.471 ms 24.955 ms 26.300 ms]
+                        thrpt:  [608.37 MiB/s 641.16 MiB/s 681.70 MiB/s]

@@ -1,0 +1,122 @@
+name: Hostile input
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # The scheduled run spends substantially longer exploring the same bounded
+    # targets than the deterministic change gate below.
+    - cron: "17 3 * * 2,5"
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_FUZZ_VERSION: 0.13.2
+
+permissions:
+  contents: read
+
+jobs:
+  fuzz:
+    name: fuzz (${{ github.event_name == 'schedule' && 'scheduled' || 'smoke' }})
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@nightly
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: fuzz -> target
+      - name: Install cargo-fuzz
+        run: cargo install cargo-fuzz --version "$CARGO_FUZZ_VERSION" --locked
+      - name: Run ownership-scoped fuzz targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          targets=(
+            logical_records
+            frozen_formats
+            casitar_stream
+            git_owned_parsers
+            input_boundaries
+          )
+          for target in "${targets[@]}"; do
+            mkdir -p "fuzz/corpus/$target"
+            if [[ "$GITHUB_EVENT_NAME" == schedule ]]; then
+              cargo fuzz run "$target" "fuzz/corpus/$target" -- \
+                -max_total_time=600 -max_len=262144 -timeout=15
+            else
+              cargo fuzz run "$target" "fuzz/corpus/$target" -- \
+                -runs=512 -seed=1 -max_len=262144 -timeout=15
+            fi
+          done
+      - name: Preserve the scheduled corpus for coverage
+        if: github.event_name == 'schedule'
+        uses: actions/upload-artifact@v4
+        with:
+          name: scheduled-fuzz-corpus-${{ github.run_id }}
+          path: fuzz/corpus
+          retention-days: 14
+      - name: Upload crash artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-artifacts-${{ github.run_id }}
+          path: fuzz/artifacts
+          if-no-files-found: ignore
+
+  # Coverage consumes the scheduled run's evolved corpus, but cannot fail the
+  # correctness workflow. The retained profiles make changes visible between
+  # scheduled runs without treating a coverage fluctuation as a release bug.
+  coverage:
+    if: github.event_name == 'schedule'
+    needs: fuzz
+    continue-on-error: true
+    name: fuzz coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: llvm-tools-preview
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: fuzz -> target
+      - name: Install cargo-fuzz
+        run: cargo install cargo-fuzz --version "$CARGO_FUZZ_VERSION" --locked
+      - uses: actions/download-artifact@v5
+        with:
+          name: scheduled-fuzz-corpus-${{ github.run_id }}
+          path: fuzz/corpus
+      - name: Measure the evolved corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          for target in \
+            logical_records \
+            frozen_formats \
+            casitar_stream \
+            git_owned_parsers \
+            input_boundaries
+          do
+            cargo fuzz coverage "$target" "fuzz/corpus/$target"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-coverage-${{ github.run_id }}
+          path: fuzz/coverage
+          retention-days: 30
+
+  # Miri is intentionally narrow: it checks Casita's portable unsafe-input
+  # regression suite, not dependencies or backend/database implementations.
+  miri:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    name: miri (owned parsers)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: miri
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo miri test --no-default-features --test hostile_inputs

@@ -1,0 +1,1 @@
+First attempt: rejected at 85.679% external CPU, above the authorized 40% ceiling. 156 of 222 measured activity intervals exceeded the ceiling. Six completed baseline samples are retained but excluded from performance conclusions. Compiler activity was recorded in all intervals and was not itself a rejection reason. Retry after validation builds finish.

@@ -1,0 +1,12 @@
+chain       nix     jobs= 8 round=1: 1.591s (24.86 ms/build)
+chain       obrador jobs= 8 round=1: 73.882s (1154.40 ms/build)
+wide        nix     jobs= 8 round=1: 1.291s (20.17 ms/build)
+wide        obrador jobs= 8 round=1: 47.602s (743.78 ms/build)
+
+| Workload | Backend | Jobs | Median batch (s) | Amortized ms/build |
+|---|---|---:|---:|---:|
+| chain | nix | 8 | 1.591 | 24.86 |
+| chain | obrador | 8 | 73.882 | 1154.40 |
+| wide | nix | 8 | 1.291 | 20.17 |
+| wide | obrador | 8 | 47.602 | 743.78 |
+Results and stores: /Users/hetzner/obrador-shared-pins-20260909/round-3-baseline

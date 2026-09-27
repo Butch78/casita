@@ -1,0 +1,239 @@
+diff --git a/crates/casita/src/casitar/import.rs b/crates/casita/src/casitar/import.rs
+index 38335e5..6d98e8c 100644
+--- a/crates/casita/src/casitar/import.rs
++++ b/crates/casita/src/casitar/import.rs
+@@ -16,6 +16,45 @@ use crate::{
+ 
+ const MEMBERSHIP_PAGE: usize = 256;
+ 
++/// Opt-in, exclusive wall-clock phase accounting for the permanent benchmark.
++/// No clock reads or per-frame allocations when disabled. Diagnostics never use stdout.
++#[derive(Default)]
++struct ImportProfile {
++    enabled: bool,
++    phases: std::collections::BTreeMap<&'static str, (u64, u64)>,
++}
++
++impl ImportProfile {
++    fn start(&self) -> Option<std::time::Instant> {
++        self.enabled.then(std::time::Instant::now)
++    }
++
++    fn finish(&mut self, phase: &'static str, start: Option<std::time::Instant>) {
++        if let Some(start) = start {
++            let entry = self.phases.entry(phase).or_default();
++            entry.0 += 1;
++            entry.1 = entry
++                .1
++                .saturating_add(start.elapsed().as_nanos().min(u64::MAX as u128) as u64);
++        }
++    }
++
++    fn emit(&self) {
++        if self.enabled {
++            // Phase names are fixed internal identifiers, never input strings.
++            let phases = self
++                .phases
++                .iter()
++                .map(|(phase, (calls, nanos))| {
++                    format!(r#"{{"phase":"{phase}","calls":{calls},"nanos":{nanos}}}"#)
++                })
++                .collect::<Vec<_>>()
++                .join(",");
++            eprintln!("casitar_import_profile {{\"schema_version\":1,\"phases\":[{phases}]}}");
++        }
++    }
++}
++
+ /// How an import treats destination names that already exist.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub enum CasitarRootConflictPolicy {
+@@ -187,11 +226,20 @@ where
+             .map(|(index, (root, name))| CasitarRootMapping { index, root, name })
+             .collect::<Vec<_>>();
+ 
++        let mut profile = ImportProfile {
++            enabled: std::env::var_os("CASITA_CASITAR_IMPORT_PROFILE")
++                .is_some_and(|value| value == "1"),
++            ..Default::default()
++        };
++        let start = profile.start();
+         let mutation = self.mutation_session().await?;
++        profile.finish("mutation_start", start);
+         mutation
+             .write_scope()
+             .run(async {
++                let start = profile.start();
+                 let expectations = preflight_roots(self, &mappings, conflict_policy).await?;
++                profile.finish("preflight", start);
+                 let area = self.spill_area();
+                 let mut archive_records = SpillSet::new(area.clone(), "casitar-import-records");
+                 let mut archive_payloads = SpillSet::new(area.clone(), "casitar-import-payloads");
+@@ -210,14 +258,22 @@ where
+                 let mut payloads_written = 0u64;
+                 let mut payloads_reused = 0u64;
+ 
+-                while let Some(frame) = reader.next_frame().await? {
++                loop {
++                    let start = profile.start();
++                    let frame = reader.next_frame().await?;
++                    profile.finish("frame_decode", start);
++                    let Some(frame) = frame else { break };
++
+                     match frame {
+                         CasitarReadFrame::Payload { payload, size } => {
++                            let start = profile.start();
+                             let reused = self
+                                 .payloads()
+                                 .has(&payload)
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("payload_lookup", start);
++                            let start = profile.start();
+                             if reused {
+                                 reader.read_payload_to(&mut tokio::io::sink()).await?;
+                                 payloads_reused = checked_increment(payloads_reused)?;
+@@ -236,10 +292,20 @@ where
+                                 }
+                                 payloads_written = checked_increment(payloads_written)?;
+                             }
++                            profile.finish(
++                                if reused {
++                                    "payload_reuse_verify"
++                                } else {
++                                    "payload_write"
++                                },
++                                start,
++                            );
++                            let start = profile.start();
+                             archive_payloads
+                                 .insert(payload)
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("payload_membership_insert", start);
+                         }
+                         CasitarReadFrame::Record(record) => {
+                             if archive_records.len() >= self.limits().max_traversal_objects {
+@@ -249,6 +315,7 @@ where
+                                 ))
+                                 .into());
+                             }
++                            let start = profile.start();
+                             archive_records
+                                 .insert(record.key().clone())
+                                 .await
+@@ -257,9 +324,12 @@ where
+                                 .insert(record.payload())
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("record_membership_insert", start);
++                            let start = profile.start();
+                             let staged = mutation
+                                 .stage_existing(record.key().clone(), record.payload())
+                                 .await?;
++                            profile.finish("stage_existing", start);
+                             if staged.record() != &record {
+                                 return Err(CasitarImportError::RecordMismatch {
+                                     key: record.key().clone(),
+@@ -267,7 +337,9 @@ where
+                             }
+                             pending.push(staged);
+                             if pending.len() == batch_limit {
++                                let start = profile.start();
+                                 let result = mutation.publish_unrooted(pending).await?;
++                                profile.finish("publish_batch", start);
+                                 records_inserted =
+                                     checked_add_usize(records_inserted, result.objects_inserted)?;
+                                 pending = Vec::with_capacity(batch_limit);
+@@ -276,12 +348,15 @@ where
+                     }
+                 }
+                 if !pending.is_empty() {
++                    let start = profile.start();
+                     let result = mutation.publish_unrooted(pending).await?;
++                    profile.finish("publish_tail", start);
+                     records_inserted =
+                         checked_add_usize(records_inserted, result.objects_inserted)?;
+                 }
+                 let (_, stats) = reader.into_inner()?;
+ 
++                let start = profile.start();
+                 let archive_records = archive_records
+                     .freeze()
+                     .await
+@@ -296,6 +371,8 @@ where
+                     .map_err(RepositoryError::from)?;
+                 validate_payload_membership(&archive_payloads, &referenced_payloads).await?;
+ 
++                profile.finish("freeze_and_payload_membership", start);
++                let start = profile.start();
+                 let hold = self.retention_hold().await?;
+                 let mut reachable = SpillSet::new(area.clone(), "casitar-import-reachable");
+                 for root in &roots {
+@@ -307,9 +384,12 @@ where
+                         });
+                     }
+                 }
++                profile.finish("verify_closure", start);
++                let start = profile.start();
+                 let reachable = reachable.freeze().await.map_err(RepositoryError::from)?;
+                 validate_record_membership(&archive_records, &reachable).await?;
+                 drop(hold);
++                profile.finish("record_membership", start);
+ 
+                 let changes = mappings
+                     .iter()
+@@ -318,6 +398,7 @@ where
+                         target: mapping.root.clone(),
+                     })
+                     .collect();
++                let start = profile.start();
+                 let destination_revision = match mutation
+                     .publish_if_roots_match(Vec::new(), expectations, changes)
+                     .await?
+@@ -336,6 +417,8 @@ where
+                     }
+                 };
+ 
++                profile.finish("publish_roots", start);
++                profile.emit();
+                 let records_reused = stats
+                     .records
+                     .checked_sub(records_inserted)
+diff --git a/crates/casita/src/cli/commands/mod.rs b/crates/casita/src/cli/commands/mod.rs
+index e50fce3..dfafc6c 100644
+--- a/crates/casita/src/cli/commands/mod.rs
++++ b/crates/casita/src/cli/commands/mod.rs
+@@ -554,15 +554,23 @@ async fn archive_verify(
+         .map(|(index, _)| RootName::try_from(format!("verify/{index}")))
+         .collect::<Result<Vec<_>, _>>()?;
+     let temporary = tempfile::tempdir()?;
+-    let repository = casita::experimental::Repository::local(temporary.path())
+-        .await?
+-        .with_spill_limits(spill_limits);
+-    let report = repository
+-        .import(casita::import::CasitarImport::from_reader(
+-            reader,
+-            destinations,
+-        ))
+-        .await?;
++    let report: Result<_, Error> = async {
++        let repository = casita::experimental::Repository::local(temporary.path())
++            .await?
++            .with_spill_limits(spill_limits);
++        Ok(repository
++            .import(casita::import::CasitarImport::from_reader(
++                reader,
++                destinations,
++            ))
++            .await?)
++    }
++    .await;
++    // Session drops schedule asynchronous pin releases. Keep the temporary
++    // repository alive until those complete, including when import fails.
++    let cleanup = casita::experimental::flush_repository_leases().await;
++    let report = report?;
++    cleanup?;
+     emit_archive_summary(
+         "verify",
+         "verified",

@@ -1,0 +1,1714 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.object-reads.v1",
+  "suite_id": "repository-e2e",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-09T04:24:37.632702+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.0.10-x86_64-with-glibc2.42",
+    "kernel": "7.0.10",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29178875904,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "ade46e004c58354e4ffbd959642a0eccd48ce4c7",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "profile": "standard",
+    "sizes": [
+      64,
+      1048593
+    ],
+    "garbage_counts": [
+      64
+    ],
+    "repetitions": 3,
+    "pack_cache_bytes": 0,
+    "pack_target_bytes": 131072
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita4-object-bin/casita-lib-test",
+      "sha256": "8318bf05be08fd9614c7341de3324d3ba4c7c236ac05114940aee331b6830131"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.011722214,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.01117012,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.000484418,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.004315836,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 4.749e-06,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.003212834,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.614839819,
+      "max_rss_bytes": 42921984,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.006249948,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.005815396,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.000432177,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 8.311e-06,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 4.749e-06,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.004070065,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.016851352,
+      "max_rss_bytes": 42905600,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.008903564,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.008338409,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.000499853,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.003552402,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 4.749e-06,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.003432485,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.646252234,
+      "max_rss_bytes": 43466752,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.015193881,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.014859062,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.000331256,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 8.311e-06,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.003292383,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.015336357,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.038454278,
+      "max_rss_bytes": 49389568,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.026353317,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.025864149,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.000484418,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 1.0686e-05,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 4.749e-06,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.025900955,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.06052263,
+      "max_rss_bytes": 41152512,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.080896706,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.05942438,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.021392777,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.016447671,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.002603749,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 0.01834379,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 3,
+      "wall_seconds": 3.133918337,
+      "max_rss_bytes": 50425856,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.014933863,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.014615667,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.000313447,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 8.311e-06,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 5.936e-06,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.016946338,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "snapshot",
+      "repetition": 1,
+      "wall_seconds": 0.031629681,
+      "max_rss_bytes": 42573824,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 2103065
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.020275529,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.019938336,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.000334819,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 8.311e-06,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.003130912,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.015227128,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 3,
+      "wall_seconds": 0.038688183,
+      "max_rss_bytes": 49188864,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.045179156,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.030865062,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.014245231,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.013784558,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.00314041,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 0.029938969,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 1,
+      "wall_seconds": 4.484984665,
+      "max_rss_bytes": 50122752,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.033707461,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.033125683,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.000510539,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.013789308,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 4.749e-06,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.015750729,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 64,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 3.366919405,
+      "max_rss_bytes": 43560960,
+      "metrics": {
+        "open_ledger_updates": 3,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 2103065,
+        "pack_bytes_after": 153
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.015140456,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.014842444,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.000294451,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 8.311e-06,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.011125007,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.02198287,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "snapshot",
+      "repetition": 2,
+      "wall_seconds": 0.031941947,
+      "max_rss_bytes": 49606656,
+      "metrics": {
+        "open_ledger_updates": 1,
+        "release_ledger_updates": 1,
+        "gc_removed": 0,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 3151799
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "open",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.046254856,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "admission",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.028332554,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "resolve",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.017810696,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "handoff",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.016389497,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "read",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.002921947,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "release",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 0.01472134,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    },
+    {
+      "status": "ok",
+      "operation": "gc",
+      "entries": 64,
+      "file_bytes": 1048593,
+      "variant": "object",
+      "repetition": 2,
+      "wall_seconds": 3.048401378,
+      "max_rss_bytes": 51490816,
+      "metrics": {
+        "open_ledger_updates": 4,
+        "release_ledger_updates": 1,
+        "gc_removed": 64,
+        "pack_bytes_before": 3151799,
+        "pack_bytes_after": 1048887
+      },
+      "correctness": "exact bytes and seek after GC, expected logical and physical collection, no leaked pins"
+    }
+  ],
+  "processes": [
+    {
+      "wall_seconds": 3.835510188,
+      "user_seconds": 0.34,
+      "system_seconds": 1.42,
+      "max_rss_bytes": 42921984,
+      "exit_code": 0,
+      "size": 64,
+      "garbage": 64,
+      "mode": "object",
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":11170120,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":614839819,\"gc_removed\":64,\"handoff_nanos\":4315836,\"mode\":\"object\",\"open_ledger_updates\":3,\"open_nanos\":11722214,\"pack_bytes_after\":153,\"pack_bytes_before\":2103065,\"read_nanos\":4749,\"release_ledger_updates\":1,\"release_nanos\":3212834,\"resolve_nanos\":484418,\"size\":64}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 3.82s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 4.377602984,
+      "user_seconds": 0.41,
+      "system_seconds": 1.46,
+      "max_rss_bytes": 42905600,
+      "exit_code": 0,
+      "size": 64,
+      "garbage": 64,
+      "mode": "snapshot",
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":5815396,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":16851352,\"gc_removed\":0,\"handoff_nanos\":8311,\"mode\":\"snapshot\",\"open_ledger_updates\":1,\"open_nanos\":6249948,\"pack_bytes_after\":2103065,\"pack_bytes_before\":2103065,\"read_nanos\":4749,\"release_ledger_updates\":1,\"release_nanos\":4070065,\"resolve_nanos\":432177,\"size\":64}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 4.37s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 5.317666945,
+      "user_seconds": 0.4,
+      "system_seconds": 1.71,
+      "max_rss_bytes": 43466752,
+      "exit_code": 0,
+      "size": 64,
+      "garbage": 64,
+      "mode": "object",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":8338409,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":646252234,\"gc_removed\":64,\"handoff_nanos\":3552402,\"mode\":\"object\",\"open_ledger_updates\":3,\"open_nanos\":8903564,\"pack_bytes_after\":153,\"pack_bytes_before\":2103065,\"read_nanos\":4749,\"release_ledger_updates\":1,\"release_nanos\":3432485,\"resolve_nanos\":499853,\"size\":64}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 5.31s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 8.64699925,
+      "user_seconds": 0.32,
+      "system_seconds": 1.25,
+      "max_rss_bytes": 49389568,
+      "exit_code": 0,
+      "size": 1048593,
+      "garbage": 64,
+      "mode": "snapshot",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":14859062,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":38454278,\"gc_removed\":0,\"handoff_nanos\":8311,\"mode\":\"snapshot\",\"open_ledger_updates\":1,\"open_nanos\":15193881,\"pack_bytes_after\":3151799,\"pack_bytes_before\":3151799,\"read_nanos\":3292383,\"release_ledger_updates\":1,\"release_nanos\":15336357,\"resolve_nanos\":331256,\"size\":1048593}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 8.64s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 25.33692183,
+      "user_seconds": 0.38,
+      "system_seconds": 1.35,
+      "max_rss_bytes": 41152512,
+      "exit_code": 0,
+      "size": 64,
+      "garbage": 64,
+      "mode": "snapshot",
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":25864149,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":60522630,\"gc_removed\":0,\"handoff_nanos\":10686,\"mode\":\"snapshot\",\"open_ledger_updates\":1,\"open_nanos\":26353317,\"pack_bytes_after\":2103065,\"pack_bytes_before\":2103065,\"read_nanos\":4749,\"release_ledger_updates\":1,\"release_nanos\":25900955,\"resolve_nanos\":484418,\"size\":64}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 25.33s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 16.652114656,
+      "user_seconds": 0.41,
+      "system_seconds": 1.62,
+      "max_rss_bytes": 50425856,
+      "exit_code": 0,
+      "size": 1048593,
+      "garbage": 64,
+      "mode": "object",
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":59424380,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":3133918337,\"gc_removed\":64,\"handoff_nanos\":16447671,\"mode\":\"object\",\"open_ledger_updates\":4,\"open_nanos\":80896706,\"pack_bytes_after\":1048887,\"pack_bytes_before\":3151799,\"read_nanos\":2603749,\"release_ledger_updates\":1,\"release_nanos\":18343790,\"resolve_nanos\":21392777,\"size\":1048593}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 16.64s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 17.186992911,
+      "user_seconds": 0.36,
+      "system_seconds": 1.36,
+      "max_rss_bytes": 42573824,
+      "exit_code": 0,
+      "size": 64,
+      "garbage": 64,
+      "mode": "snapshot",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":14615667,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":31629681,\"gc_removed\":0,\"handoff_nanos\":8311,\"mode\":\"snapshot\",\"open_ledger_updates\":1,\"open_nanos\":14933863,\"pack_bytes_after\":2103065,\"pack_bytes_before\":2103065,\"read_nanos\":5936,\"release_ledger_updates\":1,\"release_nanos\":16946338,\"resolve_nanos\":313447,\"size\":64}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 17.18s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 16.936162097,
+      "user_seconds": 0.39,
+      "system_seconds": 1.5,
+      "max_rss_bytes": 49188864,
+      "exit_code": 0,
+      "size": 1048593,
+      "garbage": 64,
+      "mode": "snapshot",
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":19938336,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":38688183,\"gc_removed\":0,\"handoff_nanos\":8311,\"mode\":\"snapshot\",\"open_ledger_updates\":1,\"open_nanos\":20275529,\"pack_bytes_after\":3151799,\"pack_bytes_before\":3151799,\"read_nanos\":3130912,\"release_ledger_updates\":1,\"release_nanos\":15227128,\"resolve_nanos\":334819,\"size\":1048593}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 16.93s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 19.460048837,
+      "user_seconds": 0.4,
+      "system_seconds": 1.6,
+      "max_rss_bytes": 50122752,
+      "exit_code": 0,
+      "size": 1048593,
+      "garbage": 64,
+      "mode": "object",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":30865062,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":4484984665,\"gc_removed\":64,\"handoff_nanos\":13784558,\"mode\":\"object\",\"open_ledger_updates\":4,\"open_nanos\":45179156,\"pack_bytes_after\":1048887,\"pack_bytes_before\":3151799,\"read_nanos\":3140410,\"release_ledger_updates\":1,\"release_nanos\":29938969,\"resolve_nanos\":14245231,\"size\":1048593}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 19.45s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 24.361674914,
+      "user_seconds": 0.43,
+      "system_seconds": 1.69,
+      "max_rss_bytes": 43560960,
+      "exit_code": 0,
+      "size": 64,
+      "garbage": 64,
+      "mode": "object",
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":33125683,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":3366919405,\"gc_removed\":64,\"handoff_nanos\":13789308,\"mode\":\"object\",\"open_ledger_updates\":3,\"open_nanos\":33707461,\"pack_bytes_after\":153,\"pack_bytes_before\":2103065,\"read_nanos\":4749,\"release_ledger_updates\":1,\"release_nanos\":15750729,\"resolve_nanos\":510539,\"size\":64}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 24.35s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 15.703463633,
+      "user_seconds": 0.42,
+      "system_seconds": 1.56,
+      "max_rss_bytes": 49606656,
+      "exit_code": 0,
+      "size": 1048593,
+      "garbage": 64,
+      "mode": "snapshot",
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":14842444,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":31941947,\"gc_removed\":0,\"handoff_nanos\":8311,\"mode\":\"snapshot\",\"open_ledger_updates\":1,\"open_nanos\":15140456,\"pack_bytes_after\":3151799,\"pack_bytes_before\":3151799,\"read_nanos\":11125007,\"release_ledger_updates\":1,\"release_nanos\":21982870,\"resolve_nanos\":294451,\"size\":1048593}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 15.69s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 21.570883973,
+      "user_seconds": 0.38,
+      "system_seconds": 1.53,
+      "max_rss_bytes": 51490816,
+      "exit_code": 0,
+      "size": 1048593,
+      "garbage": 64,
+      "mode": "object",
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nobject_read_sample {\"admission_nanos\":28332554,\"correctness\":\"exact bytes and seek after GC, expected logical and physical collection, no leaked pins\",\"garbage\":64,\"gc_nanos\":3048401378,\"gc_removed\":64,\"handoff_nanos\":16389497,\"mode\":\"object\",\"open_ledger_updates\":4,\"open_nanos\":46254856,\"pack_bytes_after\":1048887,\"pack_bytes_before\":3151799,\"read_nanos\":2921947,\"release_ledger_updates\":1,\"release_nanos\":14721340,\"resolve_nanos\":17810696,\"size\":1048593}\ntest object_read_tests::benchmark_object_reads ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 627 filtered out; finished in 21.56s\n\n",
+      "stderr": ""
+    }
+  ]
+}

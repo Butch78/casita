@@ -1,0 +1,42 @@
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 0, "variant": "before"}
+{"imports": 60, "pair": 0, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 0, "variant": "after"}
+{"imports": 60, "pair": 0, "variant": "after", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 1, "variant": "before"}
+{"imports": 60, "pair": 1, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 1, "variant": "after"}
+{"imports": 60, "pair": 1, "variant": "after", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 60, "attempt": 1, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 2, "variant": "after"}
+{"imports": 60, "pair": 2, "variant": "after", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 2, "variant": "before"}
+{"imports": 60, "pair": 2, "variant": "before", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 60, "attempt": 2, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 3, "variant": "before"}
+{"imports": 60, "pair": 3, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 3, "variant": "after"}
+{"imports": 60, "pair": 3, "variant": "after", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 60, "attempt": 3, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 4, "variant": "after"}
+{"imports": 60, "pair": 4, "variant": "after", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 4, "variant": "before"}
+{"imports": 60, "pair": 4, "variant": "before", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 60, "attempt": 4, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 5, "variant": "before"}
+{"imports": 60, "pair": 5, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 5, "variant": "after"}
+{"imports": 60, "pair": 5, "variant": "after", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 60, "attempt": 5, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 6, "variant": "after"}
+{"imports": 60, "pair": 6, "variant": "after", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 6, "variant": "before"}
+Traceback (most recent call last):
+  File "/home/domen/dev/casita/benchmarks/results/publication-retirements-quiet-2026-09-10/run.py", line 100, in <module>
+    rows = [run(imports, attempt, variant) for variant in
+            ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/domen/dev/casita/benchmarks/results/publication-retirements-quiet-2026-09-10/run.py", line 47, in run
+    with guard:
+         ^^^^^
+  File "/home/domen/dev/casita/benchmarks/host_activity.py", line 87, in __enter__
+    raise BenchmarkError('host did not become quiet before the deadline')
+benchmarks.suites.repository.BenchmarkError: host did not become quiet before the deadline

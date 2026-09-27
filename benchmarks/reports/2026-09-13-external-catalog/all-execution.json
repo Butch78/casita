@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "62ea96d5f167a03233a50c0a97773d0f25ea4ce1",
+  "diff": " README.md                                |  19 +-\n benchmarks/README.md                     |  15 ++\n benchmarks/all.py                        |   1 +\n benchmarks/manifest.json                 |   1 +\n benchmarks/revisions.py                  |   1 +\n benchmarks/tests/test_revisions.py       |   2 +-\n src/blob/chunked.rs                      |  11 +-\n src/blob/crash_tests.rs                  | 108 ++++++++++\n src/blob/pack.rs                         | 178 ++++++++++++++++-\n src/blob/pack/benchmarks.rs              | 274 +++++++++++++++++++++++++\n src/metadata/sqlite.rs                   |   4 +-\n src/object_read_tests.rs                 |   8 +-\n src/repository.rs                        | 331 ++++++++++++++++++++++---------\n src/repository/mutation_catalog_tests.rs |  21 ++\n src/sqlite.rs                            |  53 ++++-\n 15 files changed, 913 insertions(+), 114 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "catalog-wal",
+      "status": "passed",
+      "command": [
+        "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "catalog-wal",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-external-all8/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-external-all8/catalog-wal.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 48.87578691599629,
+      "log": "/tmp/casita-external-all8/catalog-wal.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

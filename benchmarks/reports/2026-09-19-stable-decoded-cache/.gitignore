@@ -1,0 +1,6 @@
+# Uncompressed copies of the committed raw reports.
+/workloads-stable-cache.json
+/stable-cache-awk.json
+/stable-cache-measure.log
+/stable-cache-synthetic.json
+/stable-cache-tests.log

@@ -1,0 +1,2422 @@
+//! Read-only native Git fetch sessions over one immutable repository view.
+//!
+//! The service binds an owned retention hold, exact state revision, and exact
+//! `git.view.v1` object for its whole lifetime. Wire adapters may therefore
+//! advertise and answer requests without observing a different ref snapshot or
+//! allowing collection to remove the selected closure between HTTP requests.
+
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, VecDeque};
+use std::pin::Pin;
+use std::sync::Arc;
+use std::task::{Context, Poll};
+
+use data_encoding::HEXLOWER;
+use flate2::Compression;
+
+#[cfg(test)]
+mod pipeline_benchmark;
+#[cfg(test)]
+mod read_ahead_tests;
+mod streaming;
+use futures::stream::FuturesOrdered;
+use futures::{Future, Stream, StreamExt};
+use gix_packetline::PacketLineRef;
+use gix_packetline::blocking_io::encode as pkt_encode;
+use gix_packetline::decode as pkt_decode;
+use tokio::io::{AsyncReadExt, AsyncWrite, AsyncWriteExt};
+
+use crate::git::{GIT_VIEW_NAMESPACE, GitObjectFormat, GitObjectKind, GitViewBody, git_key_parts};
+use crate::{
+    BlobStore, ClosureStatus, MetadataStore, ObjectKey, OwnedRetentionHold, RepositoryError,
+    RepositoryRevision, repository::Repository,
+};
+
+const INFO_REFS_PREFIX: &[u8] = b"001e# service=git-upload-pack\n0000";
+const MAX_PKT_LINE: usize = 65_520;
+const SIDEBAND_DATA: usize = MAX_PKT_LINE - 5;
+const PACK_TRAILER_SHA1_BYTES: usize = 20;
+const PACK_TRAILER_SHA256_BYTES: usize = 32;
+const MAX_HAVE_CLOSURE_METADATA_BYTES: u64 = 32 * 1024 * 1024;
+const MAX_CACHED_HISTORY_TREES: usize = 128;
+const MAX_CACHED_HISTORY_ROOT_TREES: usize = 32;
+const MAX_PARALLEL_PACK_ENCODERS: usize = 8;
+const MAX_PARALLEL_PACK_READS: usize = 8;
+const MAX_BUFFERED_PACK_OBJECT_BYTES: u64 = 1024 * 1024;
+const MAX_TREE_DELTA_DEPTH: u8 = 32;
+const MIN_TREE_DELTA_COPY_BYTES: usize = 16;
+
+/// Hostile-input and response bounds for one native fetch service.
+#[derive(Debug, Clone)]
+#[non_exhaustive]
+pub struct GitFetchLimits {
+    /// Largest upload-pack request body accepted.
+    pub max_request_bytes: usize,
+    /// Largest number of wants plus haves accepted.
+    pub max_request_oids: usize,
+    /// Largest generated pack, including header and trailer.
+    pub max_pack_bytes: usize,
+    /// Zlib level for generated pack entries (`0..=9`).
+    pub compression_level: u32,
+    /// Largest requested shallow depth.
+    pub max_depth: u32,
+}
+
+impl Default for GitFetchLimits {
+    fn default() -> Self {
+        Self {
+            max_request_bytes: 4 * 1024 * 1024,
+            max_request_oids: 4_096,
+            max_pack_bytes: 512 * 1024 * 1024,
+            compression_level: 6,
+            max_depth: 1_000_000,
+        }
+    }
+}
+
+/// Parsed protocol-v0/v1 upload-pack request.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct GitFetchRequest {
+    /// Untyped native OIDs requested by the client.
+    pub wants: Vec<Vec<u8>>,
+    /// Untyped native OIDs claimed by the client.
+    pub haves: Vec<Vec<u8>>,
+    /// Optional commit depth from each wanted tip.
+    pub depth: Option<u32>,
+    /// Whether the client ended negotiation and requested a pack.
+    pub done: bool,
+    /// Whether the client selected the advertised `multi_ack_detailed` capability.
+    pub multi_ack_detailed: bool,
+    /// Whether the response pack is multiplexed on side-band channel 1.
+    pub side_band_64k: bool,
+}
+
+/// Generated pack and shallow boundary for one authorized request.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct GitFetchPack {
+    /// Commits whose omitted parents become shallow boundaries.
+    pub shallow: Vec<Vec<u8>>,
+    /// Complete native pack v2 bytes, including its native hash trailer.
+    pub pack: Vec<u8>,
+}
+
+/// Native fetch binding, authorization, protocol, or pack failure.
+#[derive(Debug, thiserror::Error)]
+#[non_exhaustive]
+pub enum GitFetchError {
+    /// View mutation/read semantics failed.
+    #[error(transparent)]
+    View(#[from] crate::GitViewError),
+    /// Generic repository access failed.
+    #[error(transparent)]
+    Repository(#[from] RepositoryError),
+    /// Git object/view semantics failed.
+    #[error(transparent)]
+    Git(#[from] crate::GitError),
+    /// Upload-pack framing or command syntax is invalid.
+    #[error("invalid Git upload-pack request: {0}")]
+    Protocol(String),
+    /// A want or have is outside the exact advertised view closure.
+    #[error("Git OID `{0}` is not authorized by the advertised view")]
+    UnauthorizedOid(String),
+    /// Two selected type-qualified objects share one untyped native OID.
+    #[error("advertised Git closure has ambiguous OID `{0}`")]
+    AmbiguousOid(String),
+    /// A configured request, traversal, or response bound was exceeded.
+    #[error("Git fetch limit exceeded: {0}")]
+    Limit(String),
+    /// Reading or compressing a native object failed.
+    #[error(transparent)]
+    Io(#[from] std::io::Error),
+    /// Pack SHA-1 collision detection rejected the generated byte stream.
+    #[error("generated Git pack SHA-1 collision detected")]
+    PackSha1Collision,
+}
+
+struct GitFetchInner<PS, SS> {
+    hold: OwnedRetentionHold<PS, SS>,
+    view_key: ObjectKey,
+    view: GitViewBody,
+    records: Vec<GitCatalogRecord>,
+    by_key: HashMap<ObjectKey, u32>,
+    by_oid: BTreeMap<Vec<u8>, u32>,
+    catalog_links: CachedCatalogLinks,
+    cached_pack: Option<CachedPackRecord>,
+    limits: GitFetchLimits,
+    streaming_encoders: Arc<tokio::sync::Semaphore>,
+}
+
+#[derive(Clone)]
+struct GitCatalogRecord {
+    key: ObjectKey,
+    kind: GitObjectKind,
+    payload: crate::BlobId,
+    payload_size: u64,
+}
+
+#[derive(Clone)]
+struct CachedPackRecord {
+    key: ObjectKey,
+    payload: crate::BlobId,
+    payload_size: u64,
+}
+
+#[derive(Default)]
+struct CachedCatalogLinks {
+    entries: Vec<CachedCatalogLinkEntry>,
+    links: Vec<u32>,
+}
+
+struct CachedCatalogLinkEntry {
+    index: u32,
+    start: u32,
+    len: u32,
+}
+
+impl CachedCatalogLinks {
+    fn get(&self, index: u32) -> Option<&[u32]> {
+        let position = self
+            .entries
+            .binary_search_by_key(&index, |entry| entry.index)
+            .ok()?;
+        let entry = &self.entries[position];
+        let start = entry.start as usize;
+        let end = start + entry.len as usize;
+        Some(&self.links[start..end])
+    }
+}
+
+type PackEncodeJob = tokio::task::JoinHandle<std::io::Result<Vec<u8>>>;
+
+struct TreeDeltaBase {
+    oid: Vec<u8>,
+    payload: Arc<[u8]>,
+    depth: u8,
+}
+
+/// Cloneable read-only service bound to one exact immutable Git view.
+pub struct GitFetchService<PS, SS> {
+    inner: Arc<GitFetchInner<PS, SS>>,
+}
+
+impl<PS, SS> Clone for GitFetchService<PS, SS> {
+    fn clone(&self) -> Self {
+        Self {
+            inner: self.inner.clone(),
+        }
+    }
+}
+
+impl<PS, SS> GitFetchService<PS, SS>
+where
+    PS: BlobStore + Clone,
+    SS: MetadataStore + Clone,
+{
+    /// Bind the current `git/<view-name>` selection under an owned retention
+    /// hold. Later root replacement cannot alter this service's advertisement.
+    #[tracing::instrument(name = "git.fetch.bind", skip_all)]
+    pub async fn bind(
+        repository: &Repository<PS, SS>,
+        view_name: &str,
+        limits: GitFetchLimits,
+    ) -> Result<Self, GitFetchError> {
+        if limits.compression_level > 9 {
+            return Err(GitFetchError::Limit(format!(
+                "compression level {} exceeds 9",
+                limits.compression_level
+            )));
+        }
+        let hold = repository.owned_retention_hold().await?;
+        let root = crate::git_view_root_name(view_name)?;
+        let view_key = hold
+            .snapshot()
+            .root(&root)
+            .await
+            .map_err(RepositoryError::Metadata)?
+            .ok_or_else(|| RepositoryError::Absent(format!("Git view `{view_name}`")))?;
+        if view_key.namespace().as_str() != GIT_VIEW_NAMESPACE {
+            return Err(crate::GitError::InvalidView(format!(
+                "root `{root}` selects non-view object {view_key}"
+            ))
+            .into());
+        }
+        // Publishing a Git view records an exact, durable closure witness. A
+        // fresh full audit here would revisit every edge in large histories
+        // for every service bind, even though the held snapshot cannot change.
+        match hold.verify_closure_incremental(&view_key).await? {
+            ClosureStatus::Complete { .. } => {}
+            status => {
+                return Err(RepositoryError::ObjectNotReadable {
+                    object: view_key,
+                    status,
+                }
+                .into());
+            }
+        }
+        let (record, mut reader) = hold
+            .open_payload(&view_key)
+            .await?
+            .ok_or_else(|| RepositoryError::Absent(view_key.to_string()))?;
+        if record.payload_size() > repository.limits().max_metadata_bytes {
+            return Err(GitFetchError::Limit(format!(
+                "view payload is {} bytes, limit is {}",
+                record.payload_size(),
+                repository.limits().max_metadata_bytes
+            )));
+        }
+        let mut payload = Vec::new();
+        reader.read_to_end(&mut payload).await?;
+        if payload.len() as u64 != record.payload_size() {
+            return Err(
+                RepositoryError::Metadata(crate::MetadataError::Corruption(format!(
+                    "view {view_key} declares {} bytes but yielded {}",
+                    record.payload_size(),
+                    payload.len()
+                )))
+                .into(),
+            );
+        }
+        let view = GitViewBody::decode(&payload)?;
+        let (records, by_key, by_oid, catalog_links) = build_catalog(&hold, &view).await?;
+        let cached_pack = match &view.pack {
+            Some(key) => {
+                let record = hold
+                    .object(key)
+                    .await?
+                    .ok_or_else(|| RepositoryError::Absent(key.to_string()))?;
+                Some(CachedPackRecord {
+                    key: key.clone(),
+                    payload: record.payload(),
+                    payload_size: record.payload_size(),
+                })
+            }
+            None => None,
+        };
+        tracing::info!(
+            revision = %hold.snapshot().revision(),
+            object_format = ?view.object_format,
+            objects = records.len(),
+            cached_pack = cached_pack.is_some(),
+            "Git fetch view bound"
+        );
+        Ok(Self {
+            inner: Arc::new(GitFetchInner {
+                hold,
+                view_key,
+                view,
+                records,
+                by_key,
+                by_oid,
+                catalog_links,
+                cached_pack,
+                limits,
+                streaming_encoders: Arc::new(tokio::sync::Semaphore::new(
+                    MAX_PARALLEL_PACK_ENCODERS,
+                )),
+            }),
+        })
+    }
+
+    /// Exact immutable view object advertised by this service.
+    pub fn view_key(&self) -> &ObjectKey {
+        &self.inner.view_key
+    }
+
+    /// Exact repository revision retained by this service.
+    pub fn revision(&self) -> RepositoryRevision {
+        self.inner.hold.snapshot().revision()
+    }
+
+    /// Object format fixed by the advertised view.
+    pub fn object_format(&self) -> GitObjectFormat {
+        self.inner.view.object_format
+    }
+
+    /// Active request and response limits used by wire adapters.
+    pub fn limits(&self) -> &GitFetchLimits {
+        &self.inner.limits
+    }
+
+    /// Smart-HTTP discovery body for `info/refs?service=git-upload-pack`.
+    pub fn info_refs(&self) -> Result<Vec<u8>, GitFetchError> {
+        let mut refs = Vec::<(String, ObjectKey)>::new();
+        if let Some(default_ref) = &self.inner.view.default_ref {
+            refs.push((
+                "HEAD".to_owned(),
+                self.inner.view.resolve_ref(default_ref)?.clone(),
+            ));
+        }
+        for name in self.inner.view.refs.keys() {
+            refs.push((
+                name.as_str().to_owned(),
+                self.inner.view.resolve_ref(name)?.clone(),
+            ));
+        }
+        if refs.is_empty() {
+            return Err(crate::GitError::InvalidView("view has no advertised refs".into()).into());
+        }
+
+        let mut capabilities = vec![
+            "multi_ack_detailed".to_owned(),
+            "side-band-64k".to_owned(),
+            "no-progress".to_owned(),
+            "include-tag".to_owned(),
+            "ofs-delta".to_owned(),
+            "shallow".to_owned(),
+            "agent=casita/0.1".to_owned(),
+            format!("object-format={}", format_name(self.object_format())),
+        ];
+        if let Some(default_ref) = &self.inner.view.default_ref {
+            capabilities.push(format!("symref=HEAD:{default_ref}"));
+        }
+        let mut output = Vec::from(INFO_REFS_PREFIX);
+        for (index, (name, target)) in refs.into_iter().enumerate() {
+            let oid = HEXLOWER.encode(target.native_id());
+            let line = if index == 0 {
+                format!("{oid} {name}\0{}\n", capabilities.join(" "))
+            } else {
+                format!("{oid} {name}\n")
+            };
+            put_pkt_line(&mut output, line.as_bytes())?;
+        }
+        put_flush(&mut output)?;
+        Ok(output)
+    }
+
+    /// Parse and authorize one protocol-v0/v1 upload-pack request body.
+    #[tracing::instrument(
+        name = "git.fetch.parse_request",
+        level = "debug",
+        skip_all,
+        fields(request_bytes = body.len())
+    )]
+    pub async fn parse_request(&self, body: &[u8]) -> Result<GitFetchRequest, GitFetchError> {
+        if body.len() > self.inner.limits.max_request_bytes {
+            return Err(GitFetchError::Limit(format!(
+                "request is {} bytes, limit is {}",
+                body.len(),
+                self.inner.limits.max_request_bytes
+            )));
+        }
+        let mut wants = Vec::new();
+        let mut haves = Vec::new();
+        let mut depth = None;
+        let mut done = false;
+        let mut multi_ack_detailed = false;
+        let mut side_band_64k = false;
+        for line in parse_pkt_lines(body)? {
+            let line = line.strip_suffix(b"\n").unwrap_or(&line);
+            if line == b"done" {
+                done = true;
+                continue;
+            }
+            if line.is_empty() {
+                continue;
+            }
+            if let Some(rest) = line.strip_prefix(b"want ") {
+                let mut fields = rest.split(|byte| *byte == b' ');
+                let oid = fields
+                    .next()
+                    .ok_or_else(|| GitFetchError::Protocol("want has no OID".into()))?;
+                wants.push(self.decode_authorized_oid(oid)?);
+                for field in fields {
+                    multi_ack_detailed |= field == b"multi_ack_detailed";
+                    side_band_64k |= field == b"side-band-64k";
+                }
+            } else if let Some(oid) = line.strip_prefix(b"have ") {
+                haves.push(self.decode_authorized_oid(oid)?);
+            } else if let Some(value) = line.strip_prefix(b"deepen ") {
+                let value = std::str::from_utf8(value)
+                    .map_err(|_| GitFetchError::Protocol("deepen is not ASCII".into()))?;
+                let requested: u32 = value
+                    .parse()
+                    .map_err(|_| GitFetchError::Protocol("deepen is not a positive u32".into()))?;
+                if requested == 0 || requested > self.inner.limits.max_depth {
+                    return Err(GitFetchError::Limit(format!(
+                        "depth {requested} is outside 1..={}",
+                        self.inner.limits.max_depth
+                    )));
+                }
+                depth = Some(requested);
+            } else if let Some(oid) = line.strip_prefix(b"shallow ") {
+                self.decode_authorized_oid(oid)?;
+            } else {
+                return Err(GitFetchError::Protocol(format!(
+                    "unsupported command `{}`",
+                    String::from_utf8_lossy(line)
+                )));
+            }
+            if wants.len().saturating_add(haves.len()) > self.inner.limits.max_request_oids {
+                return Err(GitFetchError::Limit(format!(
+                    "request exceeds {} wants+haves",
+                    self.inner.limits.max_request_oids
+                )));
+            }
+        }
+        let mut seen = BTreeSet::new();
+        wants.retain(|oid| seen.insert(oid.clone()));
+        seen.clear();
+        haves.retain(|oid| seen.insert(oid.clone()));
+        if wants.is_empty() {
+            return Err(GitFetchError::Protocol("request has no wants".into()));
+        }
+        tracing::debug!(
+            wants = wants.len(),
+            haves = haves.len(),
+            ?depth,
+            done,
+            "Git fetch request parsed"
+        );
+        Ok(GitFetchRequest {
+            wants,
+            haves,
+            depth,
+            done,
+            multi_ack_detailed,
+            side_band_64k,
+        })
+    }
+
+    /// Generate a deterministic native pack for one authorized request.
+    /// Haves are validated, but generated deltas only reference bases included
+    /// earlier in the same self-contained pack.
+    #[tracing::instrument(
+        name = "git.fetch.build_pack",
+        skip_all,
+        fields(wants = request.wants.len(), haves = request.haves.len(), depth = ?request.depth)
+    )]
+    pub async fn build_pack(
+        &self,
+        request: &GitFetchRequest,
+    ) -> Result<GitFetchPack, GitFetchError> {
+        self.build_pack_with_read_batch(request, MAX_PARALLEL_PACK_READS, false)
+            .await
+    }
+
+    /// Benchmark the direct in-memory pack path with a bounded read batch.
+    ///
+    /// This experimental hook preserves production encoding and permits only
+    /// the serial path or batches up to the production read bound.
+    #[cfg(feature = "experimental")]
+    #[doc(hidden)]
+    pub async fn benchmark_build_pack(
+        &self,
+        request: &GitFetchRequest,
+        read_batch: usize,
+    ) -> Result<GitFetchPack, GitFetchError> {
+        if !(1..=MAX_PARALLEL_PACK_READS).contains(&read_batch) {
+            return Err(GitFetchError::Limit(
+                "read batch must be between 1 and 8".into(),
+            ));
+        }
+        self.build_pack_with_read_batch(request, read_batch, false)
+            .await
+    }
+
+    /// Benchmark read/encode overlap while continuing to poll bounded reads
+    /// during output backpressure. No read tasks are detached.
+    #[cfg(feature = "experimental")]
+    #[doc(hidden)]
+    pub async fn benchmark_build_pack_pipelined(
+        &self,
+        request: &GitFetchRequest,
+        read_batch: usize,
+    ) -> Result<GitFetchPack, GitFetchError> {
+        if !(1..=MAX_PARALLEL_PACK_READS).contains(&read_batch) {
+            return Err(GitFetchError::Limit(
+                "read batch must be between 1 and 8".into(),
+            ));
+        }
+        self.build_pack_with_read_batch(request, read_batch, true)
+            .await
+    }
+
+    async fn build_pack_with_read_batch(
+        &self,
+        request: &GitFetchRequest,
+        read_batch: usize,
+        pipelined: bool,
+    ) -> Result<GitFetchPack, GitFetchError> {
+        let prepared = self.prepare_pack(request).await?;
+        let mut output = VecAsyncWriter::default();
+        self.write_prepared_pack_with_read_batch(
+            prepared.selected,
+            &mut output,
+            false,
+            prepared.use_cached_pack,
+            read_batch,
+            pipelined,
+        )
+        .await?;
+        Ok(GitFetchPack {
+            shallow: prepared
+                .shallow
+                .into_iter()
+                .map(|index| self.catalog_record(index).key.native_id().to_vec())
+                .collect(),
+            pack: output.into_inner(),
+        })
+    }
+
+    async fn prepare_pack(&self, request: &GitFetchRequest) -> Result<PreparedPack, GitFetchError> {
+        if request.wants.len().saturating_add(request.haves.len())
+            > self.inner.limits.max_request_oids
+        {
+            return Err(GitFetchError::Limit(format!(
+                "request exceeds {} wants+haves",
+                self.inner.limits.max_request_oids
+            )));
+        }
+        for oid in request.wants.iter().chain(&request.haves) {
+            self.authorized_index(oid)?;
+        }
+        // A non-shallow negotiation round returns only ACK/NAK lines. Object
+        // selection is needed only once the client sends `done`; doing the
+        // full graph walk here doubled incremental-fetch metadata work.
+        if !request.done && request.depth.is_none() {
+            return Ok(PreparedPack {
+                selected: BTreeSet::new(),
+                shallow: BTreeSet::new(),
+                use_cached_pack: false,
+            });
+        }
+        let (selected, shallow) = self
+            .select_objects(&request.wants, &request.haves, request.depth)
+            .await?;
+        if selected.len() > self.inner.hold.repository().limits().max_traversal_objects {
+            return Err(GitFetchError::Limit(format!(
+                "pack selects {} objects, traversal limit is {}",
+                selected.len(),
+                self.inner.hold.repository().limits().max_traversal_objects
+            )));
+        }
+        u32::try_from(selected.len())
+            .map_err(|_| GitFetchError::Limit("pack object count exceeds u32".into()))?;
+        let use_cached_pack = request.depth.is_none()
+            && request.haves.is_empty()
+            && selected.len() == self.inner.records.len()
+            && self.inner.cached_pack.as_ref().is_some_and(|pack| {
+                usize::try_from(pack.payload_size)
+                    .is_ok_and(|size| size <= self.inner.limits.max_pack_bytes)
+            });
+        Ok(PreparedPack {
+            selected,
+            shallow,
+            use_cached_pack,
+        })
+    }
+
+    async fn write_prepared_pack<W>(
+        &self,
+        selected: BTreeSet<u32>,
+        output: &mut W,
+        side_band_64k: bool,
+        use_cached_pack: bool,
+    ) -> Result<(), GitFetchError>
+    where
+        W: AsyncWrite + Unpin,
+    {
+        self.write_prepared_pack_with_read_batch(
+            selected,
+            output,
+            side_band_64k,
+            use_cached_pack,
+            MAX_PARALLEL_PACK_READS,
+            false,
+        )
+        .await
+    }
+
+    #[tracing::instrument(
+        name = "git.fetch.write_pack",
+        skip_all,
+        fields(objects = selected.len(), side_band_64k = side_band_64k)
+    )]
+    async fn write_prepared_pack_with_read_batch<W>(
+        &self,
+        selected: BTreeSet<u32>,
+        output: &mut W,
+        side_band_64k: bool,
+        use_cached_pack: bool,
+        read_batch: usize,
+        pipelined: bool,
+    ) -> Result<(), GitFetchError>
+    where
+        W: AsyncWrite + Unpin,
+    {
+        if use_cached_pack {
+            return self.write_cached_pack(output, side_band_64k).await;
+        }
+        let count = u32::try_from(selected.len())
+            .map_err(|_| GitFetchError::Limit("pack object count exceeds u32".into()))?;
+
+        let hash_kind = match self.object_format() {
+            GitObjectFormat::Sha1 => gix_hash::Kind::Sha1,
+            GitObjectFormat::Sha256 => gix_hash::Kind::Sha256,
+        };
+        let trailer_bytes = match self.object_format() {
+            GitObjectFormat::Sha1 => PACK_TRAILER_SHA1_BYTES,
+            GitObjectFormat::Sha256 => PACK_TRAILER_SHA256_BYTES,
+        };
+        let mut pack = PackWriter {
+            output,
+            hasher: Some(gix_hash::hasher(hash_kind)),
+            bytes: 0,
+            limit: self.inner.limits.max_pack_bytes,
+            trailer_bytes,
+            side_band_64k,
+            wire_buffer: Vec::with_capacity(if side_band_64k { SIDEBAND_DATA + 5 } else { 0 }),
+        };
+        let header = gix_pack::data::header::encode(gix_pack::data::Version::V2, count);
+        pack.write_hashed(&header).await?;
+        let encoder_jobs = std::thread::available_parallelism()
+            .map(usize::from)
+            .unwrap_or(1)
+            .min(MAX_PARALLEL_PACK_ENCODERS);
+        let mut pending = FuturesOrdered::<PackEncodeJob>::new();
+        let mut ordered: Vec<_> = selected.into_iter().collect();
+        // Keep equal-sized trees adjacent. Git tree revisions generally retain
+        // their byte layout, which makes a bounded same-offset delta both
+        // cheap to construct and dramatically smaller than another whole tree.
+        // All other objects retain their canonical catalog order.
+        ordered.sort_unstable_by_key(|index| {
+            let record = self.catalog_record(*index);
+            match record.kind {
+                GitObjectKind::Tree => (0u8, record.payload_size, *index),
+                _ => (1u8, 0, *index),
+            }
+        });
+        let mut tree_base: Option<TreeDeltaBase> = None;
+        // Never prefetch across a streaming object: suspended read futures may
+        // hold backend permits which that object's streaming reader also needs.
+        // Each group is either consecutive small objects or one large object.
+        for group in ordered.chunk_by(|left, right| {
+            self.catalog_record(*left).payload_size <= MAX_BUFFERED_PACK_OBJECT_BYTES
+                && self.catalog_record(*right).payload_size <= MAX_BUFFERED_PACK_OBJECT_BYTES
+        }) {
+            if self.catalog_record(group[0]).payload_size > MAX_BUFFERED_PACK_OBJECT_BYTES {
+                while !pending.is_empty() {
+                    write_next_encoded_entry(&mut pending, &mut pack).await?;
+                }
+                self.write_streaming_pack_entry(group[0], &mut pack).await?;
+                continue;
+            }
+            if pipelined {
+                for batch in group.chunks(read_batch) {
+                    let mut reads: FuturesOrdered<_> = batch
+                        .iter()
+                        .map(|index| self.read_pack_payload(*index))
+                        .collect();
+                    let mut ready = VecDeque::new();
+                    for &index in batch {
+                        let payload = match ready.pop_front() {
+                            Some(payload) => payload,
+                            None => reads.next().await.expect("one read per batch index")?,
+                        };
+                        self.enqueue_pack_entry(index, payload, &mut tree_base, &mut pending)?;
+                        if pending.len() >= encoder_jobs {
+                            write_next_while_reading(
+                                &mut pending,
+                                &mut pack,
+                                &mut reads,
+                                &mut ready,
+                            )
+                            .await?;
+                        }
+                    }
+                    debug_assert!(reads.is_empty() && ready.is_empty());
+                }
+                continue;
+            }
+            // Complete each bounded batch before awaiting output, so a slow
+            // client cannot suspend reads while they hold backend permits.
+            // Ordered results preserve tree delta selection and pack order.
+            // Each slot retains at most 1 MiB of payload (+ one validation byte).
+            // Dropping the join cancels reads; no detached tasks are spawned.
+            // A batch of one is the serial path.
+            for batch in group.chunks(read_batch) {
+                let payloads = futures::future::try_join_all(
+                    batch.iter().map(|index| self.read_pack_payload(*index)),
+                )
+                .await?;
+                for (&index, payload) in batch.iter().zip(payloads) {
+                    self.enqueue_pack_entry(index, payload, &mut tree_base, &mut pending)?;
+                    if pending.len() >= encoder_jobs {
+                        write_next_encoded_entry(&mut pending, &mut pack).await?;
+                    }
+                }
+            }
+        }
+        while !pending.is_empty() {
+            write_next_encoded_entry(&mut pending, &mut pack).await?;
+        }
+        let trailer = pack
+            .hasher
+            .take()
+            .expect("pack hash is finalized once")
+            .try_finalize()
+            .map_err(|_| GitFetchError::PackSha1Collision)?;
+        pack.write_trailer(trailer.as_slice()).await?;
+        if side_band_64k {
+            put_flush_async(pack.output).await?;
+        }
+        tracing::info!(objects = count, pack_bytes = pack.bytes, "Git pack written");
+        Ok(())
+    }
+
+    fn enqueue_pack_entry(
+        &self,
+        index: u32,
+        payload: Vec<u8>,
+        tree_base: &mut Option<TreeDeltaBase>,
+        pending: &mut FuturesOrdered<PackEncodeJob>,
+    ) -> Result<(), GitFetchError> {
+        let record = self.catalog_record(index);
+        let payload: Arc<[u8]> = payload.into();
+        let encoded_header = encode_pack_entry_header(record.kind, record.payload_size)?;
+        let compression_level = self.inner.limits.compression_level;
+        let delta_base = (record.kind == GitObjectKind::Tree)
+            .then_some(tree_base.as_ref())
+            .flatten()
+            .filter(|base| base.payload.len() == payload.len() && base.depth < MAX_TREE_DELTA_DEPTH)
+            .map(|base| (base.oid.clone(), Arc::clone(&base.payload)));
+        let next_depth = delta_base
+            .as_ref()
+            .and_then(|_| tree_base.as_ref().map(|base| base.depth + 1))
+            .unwrap_or(0);
+        if record.kind == GitObjectKind::Tree {
+            *tree_base = Some(TreeDeltaBase {
+                oid: record.key.native_id().to_vec(),
+                payload: Arc::clone(&payload),
+                depth: next_depth,
+            });
+        }
+        pending.push_back(tokio::task::spawn_blocking(move || {
+            let span = tracing::trace_span!("git.fetch.encode_object", index = u64::from(index));
+            let _entered = span.enter();
+            encode_pack_object(
+                encoded_header,
+                &payload,
+                delta_base
+                    .as_ref()
+                    .map(|(oid, base)| (oid.as_slice(), base.as_ref())),
+                compression_level,
+            )
+        }));
+        Ok(())
+    }
+
+    #[tracing::instrument(
+        level = "trace",
+        name = "git.fetch.read_payload",
+        skip_all,
+        fields(index = u64::from(index))
+    )]
+    async fn read_pack_payload(&self, index: u32) -> Result<Vec<u8>, GitFetchError> {
+        let record = self.catalog_record(index);
+        let key = record.key.clone();
+        let payload = record.payload;
+        let payload_size = record.payload_size;
+        let capacity = usize::try_from(payload_size).map_err(|_| {
+            GitFetchError::Limit(format!("Git object {key} does not fit in memory"))
+        })?;
+        let reader = self
+            .inner
+            .hold
+            .repository()
+            .payloads()
+            .open_read(&payload)
+            .await
+            .map_err(RepositoryError::Payload)?
+            .ok_or_else(|| RepositoryError::MissingPayload(payload))?;
+        let mut body = Vec::with_capacity(capacity);
+        let read_limit = payload_size.saturating_add(1);
+        reader.take(read_limit).read_to_end(&mut body).await?;
+        match (body.len() as u64).cmp(&payload_size) {
+            std::cmp::Ordering::Less => Err(RepositoryError::Metadata(
+                crate::MetadataError::Corruption(format!(
+                    "Git object {key} ended with {} declared bytes remaining",
+                    payload_size - body.len() as u64
+                )),
+            )
+            .into()),
+            std::cmp::Ordering::Greater => Err(RepositoryError::Metadata(
+                crate::MetadataError::Corruption(format!(
+                    "Git object {key} exceeds its declared payload size"
+                )),
+            )
+            .into()),
+            std::cmp::Ordering::Equal => Ok(body),
+        }
+    }
+
+    #[tracing::instrument(name = "git.fetch.streaming_entry", skip_all)]
+    async fn write_streaming_pack_entry<W>(
+        &self,
+        index: u32,
+        pack: &mut PackWriter<'_, W>,
+    ) -> Result<(), GitFetchError>
+    where
+        W: AsyncWrite + Unpin,
+    {
+        let record = self.catalog_record(index);
+        let key = &record.key;
+        let encoded_header = encode_pack_entry_header(record.kind, record.payload_size)?;
+        pack.write_hashed(&encoded_header).await?;
+        let mut reader = self
+            .inner
+            .hold
+            .repository()
+            .payloads()
+            .open_read(&record.payload)
+            .await
+            .map_err(RepositoryError::Payload)?
+            .ok_or_else(|| RepositoryError::MissingPayload(record.payload))?;
+        streaming::write_payload(
+            &mut reader,
+            key,
+            record.payload_size,
+            self.inner.hold.repository().limits().read_buffer_bytes,
+            self.inner.limits.compression_level,
+            &self.inner.streaming_encoders,
+            pack,
+        )
+        .await
+    }
+
+    async fn write_cached_pack<W>(
+        &self,
+        output: &mut W,
+        side_band_64k: bool,
+    ) -> Result<(), GitFetchError>
+    where
+        W: AsyncWrite + Unpin,
+    {
+        let record = self
+            .inner
+            .cached_pack
+            .as_ref()
+            .expect("prepared cached-pack response has an exact artifact");
+        let trailer_bytes = match self.object_format() {
+            GitObjectFormat::Sha1 => PACK_TRAILER_SHA1_BYTES,
+            GitObjectFormat::Sha256 => PACK_TRAILER_SHA256_BYTES,
+        };
+        let mut pack = PackWriter {
+            output,
+            hasher: None,
+            bytes: 0,
+            limit: self.inner.limits.max_pack_bytes,
+            trailer_bytes,
+            side_band_64k,
+            wire_buffer: Vec::with_capacity(if side_band_64k { SIDEBAND_DATA + 5 } else { 0 }),
+        };
+        let mut reader = self
+            .inner
+            .hold
+            .repository()
+            .payloads()
+            .open_read(&record.payload)
+            .await
+            .map_err(RepositoryError::Payload)?
+            .ok_or_else(|| RepositoryError::MissingPayload(record.payload))?;
+        let buffer_bytes = if side_band_64k {
+            // Fill complete side-band payloads across underlying CAS chunk
+            // boundaries. A generic 64 KiB read is slightly larger than the
+            // protocol payload limit and otherwise emits a second tiny packet
+            // for every read.
+            SIDEBAND_DATA
+        } else {
+            self.inner
+                .hold
+                .repository()
+                .limits()
+                .read_buffer_bytes
+                .max(1)
+        };
+        let mut buffer = vec![0u8; buffer_bytes];
+        let mut remaining = record.payload_size;
+        while remaining != 0 {
+            let wanted = usize::try_from(remaining.min(buffer.len() as u64))
+                .expect("bounded by buffer length");
+            let mut filled = 0;
+            while filled < wanted {
+                let read = reader.read(&mut buffer[filled..wanted]).await?;
+                if read == 0 {
+                    return Err(RepositoryError::Metadata(crate::MetadataError::Corruption(
+                        format!(
+                            "cached Git pack {} ended with {remaining} declared bytes remaining",
+                            record.key
+                        ),
+                    ))
+                    .into());
+                }
+                filled += read;
+                remaining -= read as u64;
+            }
+            pack.write_cached(&buffer[..filled]).await?;
+        }
+        let mut extra = [0u8; 1];
+        if reader.read(&mut extra).await? != 0 {
+            return Err(
+                RepositoryError::Metadata(crate::MetadataError::Corruption(format!(
+                    "cached Git pack {} exceeds its declared payload size",
+                    record.key
+                )))
+                .into(),
+            );
+        }
+        if side_band_64k {
+            put_flush_async(pack.output).await?;
+        }
+        Ok(())
+    }
+
+    /// Handle one upload-pack request body and return its complete smart-HTTP
+    /// response body.
+    pub async fn upload_pack(&self, body: &[u8]) -> Result<Vec<u8>, GitFetchError> {
+        let mut output = VecAsyncWriter::default();
+        self.upload_pack_to(body, &mut output).await?;
+        Ok(output.into_inner())
+    }
+
+    /// Validate and authorize an upload-pack request before response headers
+    /// are committed by a streaming transport.
+    pub async fn validate_upload_pack(&self, body: &[u8]) -> Result<(), GitFetchError> {
+        self.prepare_upload_pack(body).await?;
+        Ok(())
+    }
+
+    /// Parse, authorize, and select a request once before a streaming
+    /// transport commits its success response.
+    pub(crate) async fn prepare_upload_pack(
+        &self,
+        body: &[u8],
+    ) -> Result<PreparedUploadPack, GitFetchError> {
+        let request = self.parse_request(body).await?;
+        let pack = self.prepare_pack(&request).await?;
+        let response_bytes =
+            if pack.use_cached_pack {
+                let mut negotiation = Vec::new();
+                put_negotiation_result(&mut negotiation, &request)?;
+                let payload_bytes = self
+                    .inner
+                    .cached_pack
+                    .as_ref()
+                    .expect("cached-pack selection has an exact artifact")
+                    .payload_size;
+                let wire_bytes = if request.side_band_64k {
+                    let packets = payload_bytes.div_ceil(SIDEBAND_DATA as u64);
+                    payload_bytes
+                        .checked_add(packets.checked_mul(5).ok_or_else(|| {
+                            GitFetchError::Limit("cached Git pack framing length overflow".into())
+                        })?)
+                        .and_then(|bytes| bytes.checked_add(4))
+                } else {
+                    Some(payload_bytes)
+                }
+                .ok_or_else(|| {
+                    GitFetchError::Limit("cached Git pack response length overflow".into())
+                })?;
+                let total = wire_bytes
+                    .checked_add(negotiation.len() as u64)
+                    .ok_or_else(|| {
+                        GitFetchError::Limit("cached Git response length overflow".into())
+                    })?;
+                Some(usize::try_from(total).map_err(|_| {
+                    GitFetchError::Limit("cached Git response exceeds usize".into())
+                })?)
+            } else {
+                None
+            };
+        Ok(PreparedUploadPack {
+            request,
+            pack,
+            response_bytes,
+        })
+    }
+
+    /// Handle one upload-pack request while streaming the response to `output`.
+    ///
+    /// Pack compression, hashing, and side-band framing use bounded working
+    /// buffers. Backpressure and output cancellation are inherited from the
+    /// supplied asynchronous writer.
+    #[tracing::instrument(
+        name = "git.fetch.upload_pack",
+        skip_all,
+        fields(request_bytes = body.len())
+    )]
+    pub async fn upload_pack_to<W>(&self, body: &[u8], output: &mut W) -> Result<(), GitFetchError>
+    where
+        W: AsyncWrite + Unpin,
+    {
+        let prepared = self.prepare_upload_pack(body).await?;
+        self.write_prepared_upload_pack_to(prepared, output).await
+    }
+
+    /// Stream a request already validated before transport headers were
+    /// committed, without repeating authorization or graph selection.
+    pub(crate) async fn write_prepared_upload_pack_to<W>(
+        &self,
+        prepared: PreparedUploadPack,
+        output: &mut W,
+    ) -> Result<(), GitFetchError>
+    where
+        W: AsyncWrite + Unpin,
+    {
+        let PreparedUploadPack { request, pack, .. } = prepared;
+        if request.depth.is_some() {
+            for index in &pack.shallow {
+                let key = &self.catalog_record(*index).key;
+                put_pkt_line_async(
+                    output,
+                    format!("shallow {}\n", HEXLOWER.encode(key.native_id())).as_bytes(),
+                )
+                .await?;
+            }
+            put_flush_async(output).await?;
+        }
+        if request.depth.is_some() && !request.done {
+            return Ok(());
+        }
+        let mut negotiation = Vec::new();
+        put_negotiation_result(&mut negotiation, &request)?;
+        output.write_all(&negotiation).await?;
+        if !request.done {
+            return Ok(());
+        }
+
+        self.write_prepared_pack(
+            pack.selected,
+            output,
+            request.side_band_64k,
+            pack.use_cached_pack,
+        )
+        .await
+    }
+
+    fn decode_authorized_oid(&self, encoded: &[u8]) -> Result<Vec<u8>, GitFetchError> {
+        if encoded.len() != self.object_format().oid_len() * 2 {
+            return Err(GitFetchError::Protocol(format!(
+                "OID has {} hexadecimal bytes, expected {}",
+                encoded.len(),
+                self.object_format().oid_len() * 2
+            )));
+        }
+        let normalized = encoded.to_ascii_lowercase();
+        let oid = HEXLOWER
+            .decode(&normalized)
+            .map_err(|error| GitFetchError::Protocol(format!("invalid OID: {error}")))?;
+        self.authorized_index(&oid)?;
+        Ok(oid)
+    }
+
+    fn authorized_index(&self, oid: &[u8]) -> Result<u32, GitFetchError> {
+        self.inner
+            .by_oid
+            .get(oid)
+            .copied()
+            .ok_or_else(|| GitFetchError::UnauthorizedOid(HEXLOWER.encode(oid)))
+    }
+
+    fn catalog_record(&self, index: u32) -> &GitCatalogRecord {
+        &self.inner.records[index as usize]
+    }
+
+    async fn select_objects(
+        &self,
+        wants: &[Vec<u8>],
+        haves: &[Vec<u8>],
+        depth_limit: Option<u32>,
+    ) -> Result<(BTreeSet<u32>, BTreeSet<u32>), GitFetchError> {
+        // A non-shallow response is deliberately self-contained. The exact
+        // immutable inventory already names that set, so do not rediscover it
+        // by walking every repeated historical tree edge.
+        if depth_limit.is_none() && haves.is_empty() {
+            return Ok((
+                (0..self.inner.records.len() as u32).collect(),
+                BTreeSet::new(),
+            ));
+        }
+
+        // A Git `have` commit is a promise that the receiver has that commit's
+        // complete closure. Stop precisely at those boundaries. Generated
+        // deltas never rely on these client-side objects as thin-pack bases.
+        let mut boundaries = HashSet::new();
+        let mut preferred_have = None;
+        for oid in haves {
+            let index = self.authorized_index(oid)?;
+            if self.catalog_record(index).kind == GitObjectKind::Commit {
+                preferred_have.get_or_insert(index);
+                boundaries.insert(index);
+            }
+        }
+        // Git sends its best common candidates first. Expanding the current
+        // tree of that one candidate avoids resending unchanged blobs without
+        // reading every historical tree named by a negotiation round. Every
+        // have remains a commit boundary, so this can only send extra objects
+        // for unusual multi-branch ordering; it cannot omit required data.
+        if let Some(preferred_have) = preferred_have {
+            let preferred = HashSet::from([preferred_have]);
+            if let Some(closure) = self.bounded_have_closure(&preferred).await? {
+                boundaries.extend(closure);
+            }
+        }
+        // Selection probes the same large, mostly unchanged trees repeatedly.
+        // A dense bit set turns each boundary test into one indexed load while
+        // using only one bit per catalog object (about 1.25 MiB at 10M objects).
+        let mut boundary_mask = vec![false; self.inner.records.len()];
+        for index in boundaries {
+            boundary_mask[index as usize] = true;
+        }
+        let mut selected = BTreeSet::new();
+        let mut shallow = BTreeSet::new();
+        let mut non_commits = BTreeSet::new();
+        let mut commit_depths = BTreeMap::<u32, u32>::new();
+        let mut fetched_links = HashMap::<u32, Arc<[u32]>>::new();
+        let mut queue = VecDeque::new();
+        for oid in wants {
+            let index = self.authorized_index(oid)?;
+            let kind = self.catalog_record(index).kind;
+            queue.push_back((index, (kind == GitObjectKind::Commit).then_some(1)));
+        }
+
+        while let Some((index, depth)) = queue.pop_front() {
+            if boundary_mask[index as usize] {
+                continue;
+            }
+            let catalog = self.catalog_record(index);
+            let kind = catalog.kind;
+            if kind == GitObjectKind::Commit {
+                let depth = depth.unwrap_or(1);
+                if commit_depths
+                    .get(&index)
+                    .is_some_and(|known| *known <= depth)
+                {
+                    continue;
+                }
+                commit_depths.insert(index, depth);
+                selected.insert(index);
+                shallow.remove(&index);
+            } else if !non_commits.insert(index) {
+                continue;
+            } else {
+                selected.insert(index);
+            }
+            if kind == GitObjectKind::Blob {
+                continue;
+            }
+            let linked_indices = self
+                .selection_links(index, &queue, &mut fetched_links)
+                .await?;
+            for linked_index in linked_indices {
+                if boundary_mask[linked_index as usize] {
+                    continue;
+                }
+                let linked_kind = self.catalog_record(linked_index).kind;
+                if kind == GitObjectKind::Commit && linked_kind == GitObjectKind::Commit {
+                    let current = depth.unwrap_or(1);
+                    if depth_limit.is_some_and(|limit| current >= limit) {
+                        shallow.insert(index);
+                        continue;
+                    }
+                    let parent = (linked_index, Some(current.saturating_add(1)));
+                    if depth_limit.is_none() {
+                        // Finish the new commit ancestry before visiting its
+                        // trees. Their roots then form one batchable frontier.
+                        queue.push_front(parent);
+                    } else {
+                        // Shallow selection needs breadth-first depths.
+                        queue.push_back(parent);
+                    }
+                } else if kind == GitObjectKind::Tag && linked_kind == GitObjectKind::Commit {
+                    queue.push_back((linked_index, Some(1)));
+                } else {
+                    queue.push_back((linked_index, None));
+                }
+            }
+            if selected.len() > self.inner.hold.repository().limits().max_traversal_objects {
+                return Err(GitFetchError::Limit(format!(
+                    "selection exceeds {} objects",
+                    self.inner.hold.repository().limits().max_traversal_objects
+                )));
+            }
+        }
+        Ok((selected, shallow))
+    }
+
+    async fn selection_links(
+        &self,
+        index: u32,
+        queue: &VecDeque<(u32, Option<u32>)>,
+        fetched: &mut HashMap<u32, Arc<[u32]>>,
+    ) -> Result<Vec<u32>, GitFetchError> {
+        if let Some(links) = self.inner.catalog_links.get(index) {
+            return Ok(links.to_vec());
+        }
+        if let Some(links) = fetched.get(&index) {
+            return Ok(links.to_vec());
+        }
+
+        // Commit traversal queues the corresponding tree roots behind the
+        // parent chain. Fetch that frontier through one state call instead of
+        // paying one blocking-task and connection-lock handoff per tree.
+        let mut wanted = BTreeSet::from([index]);
+        for (candidate, _) in queue {
+            if wanted.len() == 1_024 {
+                break;
+            }
+            if self.catalog_record(*candidate).kind != GitObjectKind::Blob
+                && self.inner.catalog_links.get(*candidate).is_none()
+                && !fetched.contains_key(candidate)
+            {
+                wanted.insert(*candidate);
+            }
+        }
+        let wanted: Vec<_> = wanted.into_iter().collect();
+        let keys: Vec<_> = wanted
+            .iter()
+            .map(|candidate| self.catalog_record(*candidate).key.clone())
+            .collect();
+        let records = self
+            .inner
+            .hold
+            .snapshot()
+            .object_batch(&keys)
+            .await
+            .map_err(RepositoryError::Metadata)?;
+        for (candidate, record) in wanted.into_iter().zip(records) {
+            let record = record.ok_or_else(|| {
+                RepositoryError::Absent(self.catalog_record(candidate).key.to_string())
+            })?;
+            let links = record
+                .links()
+                .iter()
+                .map(|link| {
+                    self.inner.by_key.get(link).copied().ok_or_else(|| {
+                        crate::GitError::InvalidView(format!(
+                            "reachable object {link} is absent from the view inventory"
+                        ))
+                    })
+                })
+                .collect::<Result<Vec<_>, _>>()?;
+            fetched.insert(candidate, links.into());
+        }
+        Ok(fetched
+            .get(&index)
+            .expect("requested selection links were fetched")
+            .to_vec())
+    }
+
+    /// Expand a `have` commit's current tree without walking its ancestry.
+    /// This avoids resending unchanged blobs in wide trees while deep
+    /// histories retain the cheap exact commit boundary. Tree metadata remains
+    /// subject to a strict byte budget.
+    async fn bounded_have_closure(
+        &self,
+        haves: &HashSet<u32>,
+    ) -> Result<Option<HashSet<u32>>, GitFetchError> {
+        if haves.is_empty() {
+            return Ok(Some(HashSet::new()));
+        }
+
+        let mut tree_roots = BTreeSet::new();
+        let mut commit_bytes = 0u64;
+        for index in haves {
+            let index = *index;
+            let catalog = self.catalog_record(index);
+            commit_bytes = commit_bytes
+                .checked_add(catalog.payload_size)
+                .ok_or_else(|| GitFetchError::Limit("have-closure metadata overflow".into()))?;
+            if commit_bytes > MAX_HAVE_CLOSURE_METADATA_BYTES {
+                return Ok(None);
+            }
+            let links = if let Some(links) = self.inner.catalog_links.get(index) {
+                links.to_vec()
+            } else {
+                let record = self
+                    .inner
+                    .hold
+                    .object(&catalog.key)
+                    .await?
+                    .ok_or_else(|| RepositoryError::Absent(catalog.key.to_string()))?;
+                record
+                    .links()
+                    .iter()
+                    .map(|link| {
+                        self.inner.by_key.get(link).copied().ok_or_else(|| {
+                            crate::GitError::InvalidView(format!(
+                                "reachable object {link} is absent from the view inventory"
+                            ))
+                        })
+                    })
+                    .collect::<Result<Vec<_>, _>>()?
+            };
+            for linked in links {
+                if self.catalog_record(linked).kind != GitObjectKind::Commit {
+                    tree_roots.insert(linked);
+                }
+            }
+        }
+
+        let root_bytes = tree_roots.iter().try_fold(0u64, |total, index| {
+            total.checked_add(self.catalog_record(*index).payload_size)
+        });
+        if root_bytes.is_none_or(|bytes| bytes > MAX_HAVE_CLOSURE_METADATA_BYTES) {
+            return Ok(None);
+        }
+
+        let mut closure = haves.clone();
+        let mut queue: VecDeque<_> = tree_roots.into_iter().collect();
+        let mut metadata_bytes = 0u64;
+        while let Some(index) = queue.pop_front() {
+            if !closure.insert(index) {
+                continue;
+            }
+            let catalog = self.catalog_record(index);
+            if catalog.kind == GitObjectKind::Blob {
+                continue;
+            }
+            metadata_bytes = metadata_bytes
+                .checked_add(catalog.payload_size)
+                .ok_or_else(|| GitFetchError::Limit("have-closure metadata overflow".into()))?;
+            if metadata_bytes > MAX_HAVE_CLOSURE_METADATA_BYTES {
+                return Ok(None);
+            }
+            let links = if let Some(links) = self.inner.catalog_links.get(index) {
+                links.to_vec()
+            } else {
+                let record = self
+                    .inner
+                    .hold
+                    .object(&catalog.key)
+                    .await?
+                    .ok_or_else(|| RepositoryError::Absent(catalog.key.to_string()))?;
+                record
+                    .links()
+                    .iter()
+                    .map(|link| {
+                        self.inner.by_key.get(link).copied().ok_or_else(|| {
+                            crate::GitError::InvalidView(format!(
+                                "reachable object {link} is absent from the view inventory"
+                            ))
+                        })
+                    })
+                    .collect::<Result<Vec<_>, _>>()?
+            };
+            for linked in links {
+                queue.push_back(linked);
+            }
+        }
+        Ok(Some(closure))
+    }
+}
+
+async fn build_catalog<PS, SS>(
+    hold: &OwnedRetentionHold<PS, SS>,
+    view: &GitViewBody,
+) -> Result<
+    (
+        Vec<GitCatalogRecord>,
+        HashMap<ObjectKey, u32>,
+        BTreeMap<Vec<u8>, u32>,
+        CachedCatalogLinks,
+    ),
+    GitFetchError,
+>
+where
+    PS: BlobStore,
+    SS: MetadataStore,
+{
+    let mut records = Vec::with_capacity(view.objects().len());
+    let mut by_key = HashMap::with_capacity(view.objects().len());
+    let mut by_oid = BTreeMap::new();
+    if view.objects().len() > hold.repository().limits().max_traversal_objects {
+        return Err(GitFetchError::Limit(format!(
+            "advertised inventory exceeds {} objects",
+            hold.repository().limits().max_traversal_objects
+        )));
+    }
+
+    let keys: Vec<_> = view.objects().iter().cloned().collect();
+    for (position, key) in keys.iter().enumerate() {
+        let index = u32::try_from(position)
+            .map_err(|_| GitFetchError::Limit("view object count exceeds u32".into()))?;
+        by_key.insert(key.clone(), index);
+    }
+    for key_batch in keys.chunks(1_024) {
+        let found = hold
+            .snapshot()
+            .object_payload_batch(key_batch)
+            .await
+            .map_err(RepositoryError::Metadata)?;
+        for (key, payload) in key_batch.iter().cloned().zip(found) {
+            let (format, kind, oid) = git_key_parts(&key)?;
+            if format != view.object_format {
+                return Err(crate::GitError::InvalidView(format!(
+                    "view crosses from {:?} to {format:?} at {key}",
+                    view.object_format
+                ))
+                .into());
+            }
+            let index = *by_key
+                .get(&key)
+                .expect("every canonical view key was indexed");
+            if let Some(existing) = by_oid.insert(oid.to_vec(), index)
+                && keys[existing as usize] != key
+            {
+                return Err(GitFetchError::AmbiguousOid(HEXLOWER.encode(oid)));
+            }
+            let (payload, payload_size) =
+                payload.ok_or_else(|| RepositoryError::Absent(key.to_string()))?;
+            records.push(GitCatalogRecord {
+                key,
+                kind,
+                payload,
+                payload_size,
+            });
+        }
+    }
+
+    // Commit and tag fanout is small but lies on every history walk. Resolve
+    // it in batches while binding so a fetch does not cross the state
+    // backend once per commit. Tree fanout deliberately remains lazy: a huge
+    // repository can contain millions of mostly-overlapping historical tree
+    // links, and retaining all of them would defeat bounded-memory serving.
+    let linked_indices: Vec<u32> = records
+        .iter()
+        .enumerate()
+        .filter(|(_, record)| matches!(record.kind, GitObjectKind::Commit | GitObjectKind::Tag))
+        .map(|(index, _)| u32::try_from(index).expect("catalog size was already bounded by u32"))
+        .collect();
+    let mut catalog_links = CachedCatalogLinks::default();
+    for index_batch in linked_indices.chunks(1_024) {
+        let link_keys: Vec<_> = index_batch
+            .iter()
+            .map(|index| records[*index as usize].key.clone())
+            .collect();
+        let found = hold
+            .snapshot()
+            .object_batch(&link_keys)
+            .await
+            .map_err(RepositoryError::Metadata)?;
+        for (index, record) in index_batch.iter().copied().zip(found) {
+            let record = record
+                .ok_or_else(|| RepositoryError::Absent(records[index as usize].key.to_string()))?;
+            let start = u32::try_from(catalog_links.links.len())
+                .map_err(|_| GitFetchError::Limit("Git catalog link table exceeds u32".into()))?;
+            for link in record.links() {
+                let linked = by_key.get(link).copied().ok_or_else(|| {
+                    crate::GitError::InvalidView(format!(
+                        "reachable object {link} is absent from the view inventory"
+                    ))
+                })?;
+                catalog_links.links.push(linked);
+            }
+            let len = u32::try_from(record.links().len())
+                .map_err(|_| GitFetchError::Limit("Git object link count exceeds u32".into()))?;
+            catalog_links
+                .entries
+                .push(CachedCatalogLinkEntry { index, start, len });
+        }
+    }
+    // Incremental negotiation overwhelmingly starts from a recent advertised
+    // commit. Retain a strictly bounded window of its root-tree adjacency so
+    // the first fetch can diff recent history without decoding the same wide
+    // link records on the request path. Huge trees exceed the byte budget and
+    // remain lazy.
+    let mut history = VecDeque::new();
+    for target in view.direct_targets() {
+        if let Some(index) = by_key.get(&target).copied() {
+            history.push_back(index);
+        }
+    }
+    let mut visited_history = HashSet::new();
+    let mut history_roots = Vec::new();
+    let mut scheduled_trees = HashSet::new();
+    let mut history_tree_bytes = 0u64;
+    while let Some(index) = history.pop_front() {
+        if history_roots.len() == MAX_CACHED_HISTORY_ROOT_TREES || !visited_history.insert(index) {
+            continue;
+        }
+        let Some(links) = catalog_links.get(index) else {
+            continue;
+        };
+        for linked in links {
+            let linked = *linked;
+            match records[linked as usize].kind {
+                GitObjectKind::Commit | GitObjectKind::Tag => history.push_back(linked),
+                GitObjectKind::Tree => {
+                    let next_bytes = history_tree_bytes
+                        .checked_add(records[linked as usize].payload_size)
+                        .ok_or_else(|| {
+                            GitFetchError::Limit("Git history-tree metadata overflow".into())
+                        })?;
+                    if next_bytes <= MAX_HAVE_CLOSURE_METADATA_BYTES
+                        && history_roots.len() < MAX_CACHED_HISTORY_ROOT_TREES
+                        && scheduled_trees.insert(linked)
+                    {
+                        history_tree_bytes = next_bytes;
+                        history_roots.push(linked);
+                    }
+                }
+                GitObjectKind::Blob => {}
+            }
+        }
+    }
+    // Cache each recent root's descendants as well. Repositories commonly use
+    // a tiny root that points at one very wide directory; caching roots alone
+    // leaves the expensive part of every incremental selection on disk.
+    let mut history_trees: VecDeque<_> = history_roots.into();
+    while !history_trees.is_empty() {
+        let mut index_batch = Vec::with_capacity(history_trees.len().min(1_024));
+        while index_batch.len() < 1_024 {
+            let Some(index) = history_trees.pop_front() else {
+                break;
+            };
+            index_batch.push(index);
+        }
+        let link_keys: Vec<_> = index_batch
+            .iter()
+            .map(|index| records[*index as usize].key.clone())
+            .collect();
+        let found = hold
+            .snapshot()
+            .object_batch(&link_keys)
+            .await
+            .map_err(RepositoryError::Metadata)?;
+        for (index, record) in index_batch.into_iter().zip(found) {
+            let record = record
+                .ok_or_else(|| RepositoryError::Absent(records[index as usize].key.to_string()))?;
+            let start = u32::try_from(catalog_links.links.len())
+                .map_err(|_| GitFetchError::Limit("Git catalog link table exceeds u32".into()))?;
+            for link in record.links() {
+                let linked = by_key.get(link).copied().ok_or_else(|| {
+                    crate::GitError::InvalidView(format!(
+                        "reachable object {link} is absent from the view inventory"
+                    ))
+                })?;
+                catalog_links.links.push(linked);
+                if records[linked as usize].kind == GitObjectKind::Tree
+                    && scheduled_trees.len() < MAX_CACHED_HISTORY_TREES
+                    && !scheduled_trees.contains(&linked)
+                {
+                    let next_bytes = history_tree_bytes
+                        .checked_add(records[linked as usize].payload_size)
+                        .ok_or_else(|| {
+                            GitFetchError::Limit("Git history-tree metadata overflow".into())
+                        })?;
+                    if next_bytes <= MAX_HAVE_CLOSURE_METADATA_BYTES {
+                        scheduled_trees.insert(linked);
+                        history_trees.push_back(linked);
+                        history_tree_bytes = next_bytes;
+                    }
+                }
+            }
+            let len = u32::try_from(record.links().len())
+                .map_err(|_| GitFetchError::Limit("Git object link count exceeds u32".into()))?;
+            catalog_links
+                .entries
+                .push(CachedCatalogLinkEntry { index, start, len });
+        }
+    }
+    catalog_links
+        .entries
+        .sort_unstable_by_key(|entry| entry.index);
+    Ok((records, by_key, by_oid, catalog_links))
+}
+
+fn format_name(format: GitObjectFormat) -> &'static str {
+    match format {
+        GitObjectFormat::Sha1 => "sha1",
+        GitObjectFormat::Sha256 => "sha256",
+    }
+}
+
+fn put_pkt_line(output: &mut Vec<u8>, payload: &[u8]) -> Result<(), GitFetchError> {
+    pkt_encode::data_to_write(payload, output)
+        .map_err(|error| GitFetchError::Limit(format!("cannot encode pkt-line: {error}")))?;
+    Ok(())
+}
+
+fn put_flush(output: &mut Vec<u8>) -> Result<(), GitFetchError> {
+    pkt_encode::flush_to_write(output).map_err(GitFetchError::Io)?;
+    Ok(())
+}
+
+#[cfg(test)]
+fn pack_digest(format: GitObjectFormat, bytes: &[u8]) -> Result<Vec<u8>, GitFetchError> {
+    let kind = match format {
+        GitObjectFormat::Sha1 => gix_hash::Kind::Sha1,
+        GitObjectFormat::Sha256 => gix_hash::Kind::Sha256,
+    };
+    let mut hasher = gix_hash::hasher(kind);
+    hasher.update(bytes);
+    hasher
+        .try_finalize()
+        .map(|digest| digest.as_slice().to_vec())
+        .map_err(|_| GitFetchError::PackSha1Collision)
+}
+
+fn put_negotiation_result(
+    output: &mut Vec<u8>,
+    request: &GitFetchRequest,
+) -> Result<(), GitFetchError> {
+    if request.multi_ack_detailed && !request.done {
+        for common in &request.haves {
+            put_pkt_line(
+                output,
+                format!("ACK {} common\n", HEXLOWER.encode(common)).as_bytes(),
+            )?;
+        }
+        if let Some(common) = request.haves.last() {
+            put_pkt_line(
+                output,
+                format!("ACK {} ready\n", HEXLOWER.encode(common)).as_bytes(),
+            )?;
+        }
+        return put_pkt_line(output, b"NAK\n");
+    }
+    if let Some(common) = request.haves.first() {
+        put_pkt_line(
+            output,
+            format!("ACK {}\n", HEXLOWER.encode(common)).as_bytes(),
+        )
+    } else {
+        put_pkt_line(output, b"NAK\n")
+    }
+}
+
+fn parse_pkt_lines(input: &[u8]) -> Result<Vec<Vec<u8>>, GitFetchError> {
+    let mut cursor = 0usize;
+    let mut lines = Vec::new();
+    while cursor < input.len() {
+        let decoded = pkt_decode::streaming(&input[cursor..]).map_err(|error| match error {
+            pkt_decode::Error::DataLengthLimitExceeded { .. } => {
+                GitFetchError::Limit(format!("pkt-line exceeds the Git protocol limit: {error}"))
+            }
+            _ => GitFetchError::Protocol(format!("invalid pkt-line: {error}")),
+        })?;
+        let pkt_decode::Stream::Complete {
+            line,
+            bytes_consumed,
+        } = decoded
+        else {
+            return Err(GitFetchError::Protocol("truncated pkt-line payload".into()));
+        };
+        cursor += bytes_consumed;
+        match line {
+            PacketLineRef::Data(payload) => lines.push(payload.to_vec()),
+            PacketLineRef::Flush => {}
+            PacketLineRef::Delimiter | PacketLineRef::ResponseEnd => {
+                return Err(GitFetchError::Protocol(
+                    "protocol-v2 packet boundary in a v0/v1 request".into(),
+                ));
+            }
+        }
+    }
+    Ok(lines)
+}
+
+struct PreparedPack {
+    selected: BTreeSet<u32>,
+    shallow: BTreeSet<u32>,
+    use_cached_pack: bool,
+}
+
+/// One request parsed, authorized, and selected before HTTP response headers
+/// are committed. Keeping the request and its selection together prevents the
+/// transport from repeating graph selection on the response path.
+pub(crate) struct PreparedUploadPack {
+    request: GitFetchRequest,
+    pack: PreparedPack,
+    response_bytes: Option<usize>,
+}
+
+impl PreparedUploadPack {
+    pub(crate) fn done(&self) -> bool {
+        self.request.done
+    }
+
+    pub(crate) fn uses_cached_pack(&self) -> bool {
+        self.pack.use_cached_pack
+    }
+
+    pub(crate) fn response_bytes(&self) -> Option<usize> {
+        self.response_bytes
+    }
+}
+
+fn encode_pack_entry_header(kind: GitObjectKind, payload_size: u64) -> std::io::Result<Vec<u8>> {
+    let header = match kind {
+        GitObjectKind::Commit => gix_pack::data::entry::Header::Commit,
+        GitObjectKind::Tree => gix_pack::data::entry::Header::Tree,
+        GitObjectKind::Blob => gix_pack::data::entry::Header::Blob,
+        GitObjectKind::Tag => gix_pack::data::entry::Header::Tag,
+    };
+    let mut encoded = Vec::with_capacity(16);
+    header.write_to(payload_size, &mut encoded)?;
+    Ok(encoded)
+}
+
+fn encode_pack_object(
+    full_header: Vec<u8>,
+    payload: &[u8],
+    delta_base: Option<(&[u8], &[u8])>,
+    compression_level: u32,
+) -> std::io::Result<Vec<u8>> {
+    let compression = Compression::new(compression_level);
+    let mut full_encoder = flate2::write::ZlibEncoder::new(full_header, compression);
+    std::io::Write::write_all(&mut full_encoder, payload)?;
+    let full = full_encoder.finish()?;
+
+    let Some((base_oid, base)) = delta_base else {
+        return Ok(full);
+    };
+    let Some(delta) = encode_same_offset_delta(base, payload) else {
+        return Ok(full);
+    };
+    let mut delta_header = Vec::with_capacity(16 + base_oid.len());
+    gix_pack::data::entry::Header::RefDelta {
+        base_id: gix_hash::ObjectId::from_bytes_or_panic(base_oid),
+    }
+    .write_to(delta.len() as u64, &mut delta_header)?;
+    let mut delta_encoder = flate2::write::ZlibEncoder::new(delta_header, compression);
+    std::io::Write::write_all(&mut delta_encoder, &delta)?;
+    let encoded_delta = delta_encoder.finish()?;
+    if encoded_delta.len() < full.len() {
+        Ok(encoded_delta)
+    } else {
+        Ok(full)
+    }
+}
+
+/// Encode a bounded linear-time Git delta for revisions that retain the same
+/// byte layout. This captures the common wide-tree case without a hash table,
+/// an unbounded search window, or the memory cliff of a general-purpose delta
+/// compressor. Differently sized objects deliberately fall back to whole-object
+/// compression.
+fn encode_same_offset_delta(base: &[u8], target: &[u8]) -> Option<Vec<u8>> {
+    if base.len() != target.len() || base.is_empty() {
+        return None;
+    }
+    let mut delta = Vec::with_capacity(target.len().min(4 * 1024));
+    encode_delta_size(base.len(), &mut delta);
+    encode_delta_size(target.len(), &mut delta);
+    let mut offset = 0usize;
+    while offset < target.len() {
+        let equal_end = equal_run_end(base, target, offset);
+        if equal_end - offset >= MIN_TREE_DELTA_COPY_BYTES {
+            encode_delta_copy(offset, equal_end - offset, &mut delta);
+            offset = equal_end;
+            continue;
+        }
+
+        let insert_start = offset;
+        offset = equal_end.max(offset + 1);
+        while offset < target.len() {
+            let candidate_end = equal_run_end(base, target, offset);
+            if candidate_end - offset >= MIN_TREE_DELTA_COPY_BYTES {
+                break;
+            }
+            offset = candidate_end.max(offset + 1);
+        }
+        encode_delta_insert(&target[insert_start..offset], &mut delta);
+    }
+    Some(delta)
+}
+
+fn equal_run_end(base: &[u8], target: &[u8], start: usize) -> usize {
+    let mut end = start;
+    while end < target.len() && base[end] == target[end] {
+        end += 1;
+    }
+    end
+}
+
+fn encode_delta_size(mut size: usize, output: &mut Vec<u8>) {
+    loop {
+        let mut byte = (size & 0x7f) as u8;
+        size >>= 7;
+        if size != 0 {
+            byte |= 0x80;
+        }
+        output.push(byte);
+        if size == 0 {
+            break;
+        }
+    }
+}
+
+fn encode_delta_copy(mut offset: usize, mut length: usize, output: &mut Vec<u8>) {
+    const MAX_COPY_BYTES: usize = 0x00ff_ffff;
+    while length != 0 {
+        let chunk = length.min(MAX_COPY_BYTES);
+        let mut instruction = 0x80u8;
+        let mut operands = Vec::with_capacity(7);
+        for bit in 0..4 {
+            let byte = ((offset >> (bit * 8)) & 0xff) as u8;
+            if byte != 0 {
+                instruction |= 1 << bit;
+                operands.push(byte);
+            }
+        }
+        for bit in 0..3 {
+            let byte = ((chunk >> (bit * 8)) & 0xff) as u8;
+            if byte != 0 {
+                instruction |= 0x10 << bit;
+                operands.push(byte);
+            }
+        }
+        output.push(instruction);
+        output.extend_from_slice(&operands);
+        offset += chunk;
+        length -= chunk;
+    }
+}
+
+fn encode_delta_insert(mut bytes: &[u8], output: &mut Vec<u8>) {
+    while !bytes.is_empty() {
+        let length = bytes.len().min(0x7f);
+        output.push(length as u8);
+        output.extend_from_slice(&bytes[..length]);
+        bytes = &bytes[length..];
+    }
+}
+
+// A finite read window must continue making progress even when output stalls:
+// otherwise its suspended futures may retain all backend request permits.
+// Drain completions into bounded memory while waiting, but admit no new reads.
+// Stop immediately when the write completes, preserving overlap on fast sinks.
+async fn write_next_while_reading<W, F>(
+    pending: &mut FuturesOrdered<PackEncodeJob>,
+    pack: &mut PackWriter<'_, W>,
+    reads: &mut FuturesOrdered<F>,
+    ready: &mut VecDeque<Vec<u8>>,
+) -> Result<(), GitFetchError>
+where
+    W: AsyncWrite + Unpin,
+    F: Future<Output = Result<Vec<u8>, GitFetchError>>,
+{
+    let write = write_next_encoded_entry(pending, pack);
+    futures::pin_mut!(write);
+    futures::future::poll_fn(|cx| {
+        if let Poll::Ready(result) = write.as_mut().poll(cx) {
+            return Poll::Ready(result);
+        }
+        loop {
+            match Pin::new(&mut *reads).poll_next(cx) {
+                Poll::Ready(Some(Ok(payload))) => ready.push_back(payload),
+                Poll::Ready(Some(Err(error))) => return Poll::Ready(Err(error)),
+                Poll::Ready(None) | Poll::Pending => return Poll::Pending,
+            }
+        }
+    })
+    .await
+}
+
+async fn write_next_encoded_entry<W>(
+    pending: &mut FuturesOrdered<PackEncodeJob>,
+    pack: &mut PackWriter<'_, W>,
+) -> Result<(), GitFetchError>
+where
+    W: AsyncWrite + Unpin,
+{
+    let encoded = pending
+        .next()
+        .await
+        .expect("called only for a non-empty pack encoder queue")
+        .map_err(std::io::Error::other)??;
+    pack.write_hashed(&encoded).await
+}
+
+struct PackWriter<'a, W> {
+    output: &'a mut W,
+    hasher: Option<gix_hash::Hasher>,
+    bytes: usize,
+    limit: usize,
+    trailer_bytes: usize,
+    side_band_64k: bool,
+    wire_buffer: Vec<u8>,
+}
+
+impl<W> PackWriter<'_, W>
+where
+    W: AsyncWrite + Unpin,
+{
+    async fn write_hashed(&mut self, bytes: &[u8]) -> Result<(), GitFetchError> {
+        self.check_limit(bytes.len(), self.trailer_bytes)?;
+        self.hasher
+            .as_mut()
+            .expect("pack hash exists until the trailer")
+            .update(bytes);
+        self.write_wire(bytes).await?;
+        self.bytes += bytes.len();
+        Ok(())
+    }
+
+    async fn write_trailer(&mut self, bytes: &[u8]) -> Result<(), GitFetchError> {
+        debug_assert_eq!(bytes.len(), self.trailer_bytes);
+        self.check_limit(bytes.len(), 0)?;
+        self.write_wire(bytes).await?;
+        self.bytes += bytes.len();
+        Ok(())
+    }
+
+    async fn write_cached(&mut self, bytes: &[u8]) -> Result<(), GitFetchError> {
+        self.check_limit(bytes.len(), 0)?;
+        self.write_wire(bytes).await?;
+        self.bytes += bytes.len();
+        Ok(())
+    }
+
+    fn check_limit(&self, additional: usize, reserved: usize) -> Result<(), GitFetchError> {
+        let length = self
+            .bytes
+            .checked_add(additional)
+            .and_then(|length| length.checked_add(reserved))
+            .ok_or_else(|| GitFetchError::Limit("Git pack length overflow".into()))?;
+        if length > self.limit {
+            return Err(GitFetchError::Limit(format!(
+                "Git pack exceeds {} bytes",
+                self.limit
+            )));
+        }
+        Ok(())
+    }
+
+    async fn write_wire(&mut self, bytes: &[u8]) -> Result<(), GitFetchError> {
+        if !self.side_band_64k {
+            self.output.write_all(bytes).await?;
+            return Ok(());
+        }
+        for chunk in bytes.chunks(SIDEBAND_DATA) {
+            self.wire_buffer.clear();
+            pkt_encode::band_to_write(gix_packetline::Channel::Data, chunk, &mut self.wire_buffer)
+                .map_err(|error| {
+                    GitFetchError::Limit(format!("cannot encode side-band pkt-line: {error}"))
+                })?;
+            self.output.write_all(&self.wire_buffer).await?;
+        }
+        Ok(())
+    }
+}
+
+async fn put_pkt_line_async<W>(output: &mut W, payload: &[u8]) -> Result<(), GitFetchError>
+where
+    W: AsyncWrite + Unpin,
+{
+    let mut packet = Vec::with_capacity(payload.len() + 4);
+    put_pkt_line(&mut packet, payload)?;
+    output.write_all(&packet).await?;
+    Ok(())
+}
+
+async fn put_flush_async<W>(output: &mut W) -> Result<(), GitFetchError>
+where
+    W: AsyncWrite + Unpin,
+{
+    output.write_all(b"0000").await?;
+    Ok(())
+}
+
+#[derive(Default)]
+struct VecAsyncWriter {
+    bytes: Vec<u8>,
+}
+
+impl VecAsyncWriter {
+    fn into_inner(self) -> Vec<u8> {
+        self.bytes
+    }
+}
+
+impl AsyncWrite for VecAsyncWriter {
+    fn poll_write(
+        mut self: Pin<&mut Self>,
+        _cx: &mut Context<'_>,
+        buffer: &[u8],
+    ) -> Poll<Result<usize, std::io::Error>> {
+        self.bytes.extend_from_slice(buffer);
+        Poll::Ready(Ok(buffer.len()))
+    }
+
+    fn poll_flush(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Result<(), std::io::Error>> {
+        Poll::Ready(Ok(()))
+    }
+
+    fn poll_shutdown(
+        self: Pin<&mut Self>,
+        _cx: &mut Context<'_>,
+    ) -> Poll<Result<(), std::io::Error>> {
+        Poll::Ready(Ok(()))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{
+        CanonicalRefName, GitRefValue, MemoryBlobStore, MemoryMetadataStore, RootName,
+        git_object_key_for_body, publish_git_view,
+    };
+
+    async fn service() -> GitFetchService<MemoryBlobStore, MemoryMetadataStore> {
+        let repository =
+            Repository::new(MemoryBlobStore::new(), MemoryMetadataStore::new().unwrap());
+        let blob_body = b"hello\n";
+        let blob =
+            git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Blob, blob_body).unwrap();
+        let mut tree_body = b"100644 hello\0".to_vec();
+        tree_body.extend_from_slice(blob.native_id());
+        let tree = git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Tree, &tree_body)
+            .unwrap();
+        let commit_body = format!(
+            "tree {}\nauthor Test <test@example.com> 0 +0000\ncommitter Test <test@example.com> 0 +0000\n\nfirst\n",
+            HEXLOWER.encode(tree.native_id())
+        )
+        .into_bytes();
+        let commit =
+            git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Commit, &commit_body)
+                .unwrap();
+        let mutation = repository.mutation_session().await.unwrap();
+        let blob_object = mutation
+            .stage_object(blob.clone(), blob_body)
+            .await
+            .unwrap();
+        let tree_object = mutation
+            .stage_object(tree.clone(), &tree_body)
+            .await
+            .unwrap();
+        let commit_object = mutation
+            .stage_object(commit.clone(), &commit_body)
+            .await
+            .unwrap();
+        mutation
+            .publish_unrooted(vec![blob_object, tree_object, commit_object])
+            .await
+            .unwrap();
+        drop(mutation);
+        let main = CanonicalRefName::try_from("refs/heads/main").unwrap();
+        publish_git_view(
+            &repository,
+            "test",
+            &GitViewBody {
+                object_format: GitObjectFormat::Sha1,
+                refs: BTreeMap::from([(main.clone(), GitRefValue::Direct(commit.clone()))]),
+                default_ref: Some(main),
+                pack: None,
+                objects: BTreeSet::from([blob, tree, commit]),
+            },
+        )
+        .await
+        .unwrap();
+        GitFetchService::bind(&repository, "test", GitFetchLimits::default())
+            .await
+            .unwrap()
+    }
+
+    #[tokio::test]
+    async fn binding_caches_recent_nested_tree_links() {
+        let repository =
+            Repository::new(MemoryBlobStore::new(), MemoryMetadataStore::new().unwrap());
+        let blob_body = b"nested\n";
+        let blob =
+            git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Blob, blob_body).unwrap();
+        let mut nested_body = b"100644 file\0".to_vec();
+        nested_body.extend_from_slice(blob.native_id());
+        let nested =
+            git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Tree, &nested_body)
+                .unwrap();
+        let mut root_body = b"40000 dir\0".to_vec();
+        root_body.extend_from_slice(nested.native_id());
+        let root = git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Tree, &root_body)
+            .unwrap();
+        let commit_body = format!(
+            "tree {}\nauthor Test <test@example.com> 0 +0000\ncommitter Test <test@example.com> 0 +0000\n\nnested\n",
+            HEXLOWER.encode(root.native_id())
+        )
+        .into_bytes();
+        let commit =
+            git_object_key_for_body(GitObjectFormat::Sha1, GitObjectKind::Commit, &commit_body)
+                .unwrap();
+        let mutation = repository.mutation_session().await.unwrap();
+        let objects = vec![
+            mutation
+                .stage_object(blob.clone(), blob_body)
+                .await
+                .unwrap(),
+            mutation
+                .stage_object(nested.clone(), &nested_body)
+                .await
+                .unwrap(),
+            mutation
+                .stage_object(root.clone(), &root_body)
+                .await
+                .unwrap(),
+            mutation
+                .stage_object(commit.clone(), &commit_body)
+                .await
+                .unwrap(),
+        ];
+        mutation.publish_unrooted(objects).await.unwrap();
+        drop(mutation);
+        let main = CanonicalRefName::try_from("refs/heads/main").unwrap();
+        publish_git_view(
+            &repository,
+            "nested",
+            &GitViewBody {
+                object_format: GitObjectFormat::Sha1,
+                refs: BTreeMap::from([(main.clone(), GitRefValue::Direct(commit.clone()))]),
+                default_ref: Some(main),
+                pack: None,
+                objects: BTreeSet::from([blob, nested.clone(), root, commit]),
+            },
+        )
+        .await
+        .unwrap();
+
+        let service = GitFetchService::bind(&repository, "nested", GitFetchLimits::default())
+            .await
+            .unwrap();
+        let nested_index = service.inner.by_key[&nested];
+        assert!(service.inner.catalog_links.get(nested_index).is_some());
+    }
+
+    fn apply_test_delta(base: &[u8], delta: &[u8]) -> Vec<u8> {
+        fn size(input: &[u8], cursor: &mut usize) -> usize {
+            let mut value = 0usize;
+            let mut shift = 0;
+            loop {
+                let byte = input[*cursor];
+                *cursor += 1;
+                value |= usize::from(byte & 0x7f) << shift;
+                if byte & 0x80 == 0 {
+                    return value;
+                }
+                shift += 7;
+            }
+        }
+
+        let mut cursor = 0;
+        assert_eq!(size(delta, &mut cursor), base.len());
+        let result_size = size(delta, &mut cursor);
+        let mut result = Vec::with_capacity(result_size);
+        while cursor < delta.len() {
+            let instruction = delta[cursor];
+            cursor += 1;
+            if instruction & 0x80 == 0 {
+                let length = usize::from(instruction);
+                result.extend_from_slice(&delta[cursor..cursor + length]);
+                cursor += length;
+                continue;
+            }
+            let mut offset = 0usize;
+            let mut length = 0usize;
+            for bit in 0..4 {
+                if instruction & (1 << bit) != 0 {
+                    offset |= usize::from(delta[cursor]) << (bit * 8);
+                    cursor += 1;
+                }
+            }
+            for bit in 0..3 {
+                if instruction & (0x10 << bit) != 0 {
+                    length |= usize::from(delta[cursor]) << (bit * 8);
+                    cursor += 1;
+                }
+            }
+            if length == 0 {
+                length = 0x10000;
+            }
+            result.extend_from_slice(&base[offset..offset + length]);
+        }
+        assert_eq!(result.len(), result_size);
+        result
+    }
+
+    #[test]
+    fn same_offset_delta_roundtrips_large_copies_and_inserts() {
+        let base: Vec<_> = (0..200_000usize)
+            .map(|index| ((index * 73 + index / 251) % 251) as u8)
+            .collect();
+        let mut target = base.clone();
+        target[3..11].fill(0xff);
+        target[500..800].fill(0xee);
+        target[70_000..70_100].fill(0xdd);
+        target[199_800..].fill(0xcc);
+
+        let delta = encode_same_offset_delta(&base, &target).unwrap();
+        assert_eq!(apply_test_delta(&base, &delta), target);
+        assert!(delta.len() < 1_000, "delta was {} bytes", delta.len());
+        assert!(encode_same_offset_delta(&base, &target[..target.len() - 1]).is_none());
+    }
+
+    #[test]
+    fn encoded_tree_delta_is_a_valid_ref_delta_entry() {
+        use std::io::Read as _;
+
+        let mut state = 0x1234_5678u32;
+        let base: Vec<_> = (0..4_096)
+            .map(|_| {
+                state ^= state << 13;
+                state ^= state >> 17;
+                state ^= state << 5;
+                state as u8
+            })
+            .collect();
+        let mut target = base.clone();
+        target[1_000..1_100].fill(b'b');
+        let full_header =
+            encode_pack_entry_header(GitObjectKind::Tree, target.len() as u64).unwrap();
+        let base_oid = [7u8; 20];
+        let encoded =
+            encode_pack_object(full_header, &target, Some((&base_oid, &base)), 6).unwrap();
+        let entry = gix_pack::data::Entry::from_bytes(&encoded, 0, base_oid.len()).unwrap();
+        assert!(matches!(
+            entry.header,
+            gix_pack::data::entry::Header::RefDelta { base_id }
+                if base_id.as_slice() == base_oid
+        ));
+        let mut delta = Vec::new();
+        flate2::read::ZlibDecoder::new(&encoded[entry.data_offset as usize..])
+            .read_to_end(&mut delta)
+            .unwrap();
+        assert_eq!(entry.decompressed_size, delta.len() as u64);
+        assert_eq!(apply_test_delta(&base, &delta), target);
+    }
+
+    #[tokio::test]
+    async fn advertisement_request_authorization_and_pack_are_exact() {
+        let service = service().await;
+        let advertisement = service.info_refs().unwrap();
+        assert!(advertisement.starts_with(INFO_REFS_PREFIX));
+        assert!(String::from_utf8_lossy(&advertisement).contains("symref=HEAD:refs/heads/main"));
+        let main = service
+            .inner
+            .view
+            .resolve_ref(&CanonicalRefName::try_from("refs/heads/main").unwrap())
+            .unwrap();
+        let line = format!(
+            "want {} multi_ack_detailed side-band-64k no-progress\n",
+            HEXLOWER.encode(main.native_id())
+        );
+        let mut request = Vec::new();
+        put_pkt_line(&mut request, line.as_bytes()).unwrap();
+        request.extend_from_slice(b"0000");
+        put_pkt_line(
+            &mut request,
+            format!("have {}\n", HEXLOWER.encode(main.native_id())).as_bytes(),
+        )
+        .unwrap();
+        request.extend_from_slice(b"00000009done\n");
+        let parsed = service.parse_request(&request).await.unwrap();
+        assert!(parsed.side_band_64k);
+        assert!(parsed.multi_ack_detailed);
+        assert!(parsed.done);
+        assert_eq!(parsed.haves, vec![main.native_id().to_vec()]);
+        let pack = service.build_pack(&parsed).await.unwrap();
+        assert_eq!(&pack.pack[..4], b"PACK");
+        assert_eq!(u32::from_be_bytes(pack.pack[4..8].try_into().unwrap()), 2);
+        assert_eq!(u32::from_be_bytes(pack.pack[8..12].try_into().unwrap()), 0);
+        let trailer = pack_digest(
+            GitObjectFormat::Sha1,
+            &pack.pack[..pack.pack.len() - GitObjectFormat::Sha1.oid_len()],
+        )
+        .unwrap();
+        assert_eq!(
+            &pack.pack[pack.pack.len() - trailer.len()..],
+            trailer.as_slice()
+        );
+
+        let mut initial = parsed.clone();
+        initial.haves.clear();
+        let full = service.build_pack(&initial).await.unwrap();
+        assert_eq!(u32::from_be_bytes(full.pack[8..12].try_into().unwrap()), 3);
+
+        let unauthorized = vec![0x77; GitObjectFormat::Sha1.oid_len()];
+        let request = GitFetchRequest {
+            wants: vec![unauthorized.clone()],
+            haves: Vec::new(),
+            depth: None,
+            done: true,
+            multi_ack_detailed: false,
+            side_band_64k: false,
+        };
+        assert!(matches!(
+            service.build_pack(&request).await,
+            Err(GitFetchError::UnauthorizedOid(oid)) if oid == HEXLOWER.encode(&unauthorized)
+        ));
+    }
+
+    #[tokio::test]
+    async fn stateless_negotiation_acknowledges_a_common_have_without_sending_a_pack() {
+        let service = service().await;
+        let main = service
+            .inner
+            .view
+            .resolve_ref(&CanonicalRefName::try_from("refs/heads/main").unwrap())
+            .unwrap();
+        let mut request = Vec::new();
+        put_pkt_line(
+            &mut request,
+            format!(
+                "want {} multi_ack_detailed side-band-64k\n",
+                HEXLOWER.encode(main.native_id())
+            )
+            .as_bytes(),
+        )
+        .unwrap();
+        put_flush(&mut request).unwrap();
+        put_pkt_line(
+            &mut request,
+            format!("have {}\n", HEXLOWER.encode(main.native_id())).as_bytes(),
+        )
+        .unwrap();
+        put_flush(&mut request).unwrap();
+
+        let response = service.upload_pack(&request).await.unwrap();
+        let mut expected = Vec::new();
+        put_pkt_line(
+            &mut expected,
+            format!("ACK {} common\n", HEXLOWER.encode(main.native_id())).as_bytes(),
+        )
+        .unwrap();
+        put_pkt_line(
+            &mut expected,
+            format!("ACK {} ready\n", HEXLOWER.encode(main.native_id())).as_bytes(),
+        )
+        .unwrap();
+        put_pkt_line(&mut expected, b"NAK\n").unwrap();
+        assert_eq!(response, expected);
+        assert!(!response.windows(4).any(|window| window == b"PACK"));
+    }
+
+    #[test]
+    fn packet_parser_rejects_v2_boundaries_and_empty_data_lines() {
+        assert!(matches!(
+            parse_pkt_lines(b"0001"),
+            Err(GitFetchError::Protocol(message))
+                if message.contains("protocol-v2 packet boundary")
+        ));
+        assert!(matches!(
+            parse_pkt_lines(b"0004"),
+            Err(GitFetchError::Protocol(message)) if message.contains("invalid empty line")
+        ));
+    }
+
+    #[tokio::test]
+    async fn owned_binding_keeps_the_exact_view_alive_across_root_replacement() {
+        let service = service().await;
+        let view = service.view_key().clone();
+        let revision = service.revision();
+        assert_eq!(
+            service
+                .inner
+                .hold
+                .snapshot()
+                .root(&RootName::try_from("git/test").unwrap())
+                .await
+                .unwrap(),
+            Some(view)
+        );
+        assert_eq!(service.revision(), revision);
+    }
+}

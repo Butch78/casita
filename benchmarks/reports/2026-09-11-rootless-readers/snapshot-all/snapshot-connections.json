@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.snapshot-connections.v1",
+  "suite_id": "state-and-publication",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-11T17:02:16.829894+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177954304,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "casita_revision": "450a6336550e5faeb4d37c563a728ebfacaabbb3",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "profile": "smoke",
+    "widths": [
+      1,
+      7,
+      8,
+      9,
+      16
+    ],
+    "iterations": 8,
+    "repetitions": 1,
+    "idle_limit": 8,
+    "measurement_note": "",
+    "timing": "acquire/query/release burst; fresh control also destroys idle connections; writer commits excluded"
+  },
+  "artifacts": [
+    {
+      "path": "/home/domen/dev/casita5/benchmarks/reports/2026-09-11-rootless-readers/snapshot-all/bin/casita-lib-test",
+      "sha256": "260a5511db52c01b06bb63993a416ebc6d5ec49fd78ed0d4480b1c48d93f7593"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 16,
+      "variant": "fresh",
+      "repetition": 1,
+      "wall_seconds": 6.21202578125e-05,
+      "max_rss_bytes": 35942400,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 7,
+      "variant": "fresh",
+      "repetition": 1,
+      "wall_seconds": 9.470887499999999e-05,
+      "max_rss_bytes": 35950592,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 1,
+      "variant": "fresh",
+      "repetition": 1,
+      "wall_seconds": 0.000353372375,
+      "max_rss_bytes": 32264192,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 7,
+      "variant": "reused",
+      "repetition": 1,
+      "wall_seconds": 5.3216785714285714e-05,
+      "max_rss_bytes": 33607680,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 1,
+      "variant": "reused",
+      "repetition": 1,
+      "wall_seconds": 0.000235235125,
+      "max_rss_bytes": 33931264,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 16,
+      "variant": "reused",
+      "repetition": 1,
+      "wall_seconds": 4.65461484375e-05,
+      "max_rss_bytes": 36179968,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 8,
+      "variant": "reused",
+      "repetition": 1,
+      "wall_seconds": 5.2927921875e-05,
+      "max_rss_bytes": 36110336,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 8,
+      "variant": "fresh",
+      "repetition": 1,
+      "wall_seconds": 7.9030125e-05,
+      "max_rss_bytes": 35872768,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 9,
+      "variant": "reused",
+      "repetition": 1,
+      "wall_seconds": 4.5068180555555556e-05,
+      "max_rss_bytes": 36114432,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    },
+    {
+      "status": "ok",
+      "operation": "snapshot-acquire-query-release",
+      "entries": 9,
+      "variant": "fresh",
+      "repetition": 1,
+      "wall_seconds": 7.554238888888888e-05,
+      "max_rss_bytes": 35717120,
+      "correctness": "fresh committed generation, query-only, bounded idle cache, no idle transaction"
+    }
+  ],
+  "processes": [
+    {
+      "wall_seconds": 0.13496114,
+      "user_seconds": 0.01,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 35942400,
+      "exit_code": 0,
+      "width": 16,
+      "mode": "fresh",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"fresh\",\"wall_nanos\":7951393,\"width\":16}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.13s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.127457363,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 35950592,
+      "exit_code": 0,
+      "width": 7,
+      "mode": "fresh",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"fresh\",\"wall_nanos\":5303697,\"width\":7}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.146266674,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 32264192,
+      "exit_code": 0,
+      "width": 1,
+      "mode": "fresh",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"fresh\",\"wall_nanos\":2826979,\"width\":1}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.14s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.130239222,
+      "user_seconds": 0.0,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 33607680,
+      "exit_code": 0,
+      "width": 7,
+      "mode": "reused",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"reused\",\"wall_nanos\":2980140,\"width\":7}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.102463371,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 33931264,
+      "exit_code": 0,
+      "width": 1,
+      "mode": "reused",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"reused\",\"wall_nanos\":1881881,\"width\":1}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.10s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.127921599,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 36179968,
+      "exit_code": 0,
+      "width": 16,
+      "mode": "reused",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"reused\",\"wall_nanos\":5957907,\"width\":16}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.139838596,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 36110336,
+      "exit_code": 0,
+      "width": 8,
+      "mode": "reused",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"reused\",\"wall_nanos\":3387387,\"width\":8}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.13s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.127994025,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 35872768,
+      "exit_code": 0,
+      "width": 8,
+      "mode": "fresh",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"fresh\",\"wall_nanos\":5057928,\"width\":8}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.129811791,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 36114432,
+      "exit_code": 0,
+      "width": 9,
+      "mode": "reused",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"reused\",\"wall_nanos\":3244909,\"width\":9}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.126527701,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 35717120,
+      "exit_code": 0,
+      "width": 9,
+      "mode": "fresh",
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nsnapshot_connection_sample {\"correctness\":\"fresh committed generation, query-only, bounded idle cache, no idle transaction\",\"idle_limit\":8,\"iterations\":8,\"mode\":\"fresh\",\"wall_nanos\":5439052,\"width\":9}\ntest sqlite::tests::benchmark_snapshot_connections ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 590 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    }
+  ]
+}

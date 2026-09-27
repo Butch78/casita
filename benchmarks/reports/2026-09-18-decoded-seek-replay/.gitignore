@@ -1,0 +1,7 @@
+# Uncompressed copies of the committed raw reports.
+/workloads-decoded-cache-retry.json
+/workloads-decoded-cache.json
+/decoded-seek-awk.json
+/decoded-seek-final-tests.log
+/decoded-seek-synthetic.json
+/decoded-seek-tests.log

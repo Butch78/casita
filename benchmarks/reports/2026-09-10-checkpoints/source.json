@@ -1,0 +1,14 @@
+{
+  "linux_revision": "218bcb18acb6a730c9359fd4835bce9af4b31f34",
+  "macos_revision": "4e7b5be711e3f6b8780d5aedd60b6af99498e141",
+  "source_note": "Both builds include the new benchmark cases. Matching SHA-256 values for these files were verified on each host. Production checkpoint code is unchanged.",
+  "identical_source_sha256": {
+    "src/metadata/pins/persistent/journal.rs": "23eac0de18b8342a1556e5c921b21695126c7d7f997ec9695f2ded3fb2f867d8",
+    "src/metadata/pins/persistent/journal/incremental.rs": "77ab9e4c48ec495ab77950a64fad55cf799d44bd9499f6b76ceac74684e5efbc",
+    "src/metadata/pins/persistent/journal/tests.rs": "4525eeadbad245da73d31695e9f00b2f37b7b2bbd6c077dada40c839e279be39"
+  },
+  "lockfile_sha256": {
+    "linux.Cargo.lock": "0fa182ba9b5bfb8c12d3811c3fe6885b411df1dd57308c823184ae5b51cdafdb",
+    "macos.Cargo.lock": "15d9814afc708b77d81f03d6ceef8d816dc97bc3a9ae931be469598e0473f271"
+  }
+}

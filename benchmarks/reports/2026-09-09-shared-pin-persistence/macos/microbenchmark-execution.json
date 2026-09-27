@@ -1,0 +1,46 @@
+{
+  "cwd": "/Users/hetzner/casita-shared-20260909",
+  "path_prefix": "/nix/store/bnjpr94kj3xydjf99b4w79nn6vjd4037-time-1.10/bin",
+  "commands": [
+    [
+      "/nix/store/mfkdmplffnbc0av8r6pknl796a6b1r2n-python3-3.13.13/bin/python3",
+      "-m",
+      "benchmarks.cli",
+      "run",
+      "ledger-boundaries",
+      "--probe-binary",
+      "/Users/hetzner/casita-shared-20260909/target/release/deps/casita-b4474b4d14527ee7",
+      "--no-build",
+      "--repetitions",
+      "3",
+      "--output",
+      "shared-results/boundaries.json"
+    ],
+    [
+      "/nix/store/mfkdmplffnbc0av8r6pknl796a6b1r2n-python3-3.13.13/bin/python3",
+      "-m",
+      "benchmarks.cli",
+      "run",
+      "durable-ledger",
+      "--probe-binary",
+      "/Users/hetzner/casita-shared-20260909/target/release/deps/casita-b4474b4d14527ee7",
+      "--no-build",
+      "--counts",
+      "64,4096",
+      "--writers",
+      "1,8,64",
+      "--iterations",
+      "2",
+      "--contexts",
+      "quiet,readers,claims",
+      "--repetitions",
+      "3",
+      "--output",
+      "shared-results/ledger.json"
+    ]
+  ],
+  "setup_notes": [
+    "Restored Git metadata for the source archive at implementation revision 4e7b5be711e3f6b8780d5aedd60b6af99498e141; retained existing files.",
+    "Initial harness attempts stopped before successful probe execution: absent Git metadata, then BSD time lacked GNU options. Added existing Nix GNU time to PATH; no suite implementation or correctness gates changed."
+  ]
+}

@@ -1,0 +1,4860 @@
+{
+  "schema": "casita.chunk-decode-comparison.v1",
+  "binary": "/home/domen/dev/casita3/benchmarks/results/2026-09-13-chunk-decode/optimization",
+  "binary_sha256": "363f6ece4d6df0096cb70adca6db3db773accf9a7c2788a3ddbd99ed520d50e7",
+  "runs": [
+    {
+      "repetition": 0,
+      "reverse": false,
+      "command": [
+        "/home/domen/dev/casita3/benchmarks/results/2026-09-13-chunk-decode/optimization",
+        "--bench",
+        "chunk_decompression",
+        "--warm-up-time",
+        "0.1",
+        "--measurement-time",
+        "0.3",
+        "--noplot"
+      ],
+      "status": "failed",
+      "activity_intervals": [
+        {
+          "external_cpu_fraction": 0.3560477684816249,
+          "kernel_worker_cpu_fraction": 0.0029670647373468743,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 23
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 55452,
+              "name": "codex",
+              "ticks": 7
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 6
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2049987,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2050077,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054062,
+              "name": "clippy-driver"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0532294629992975
+        },
+        {
+          "external_cpu_fraction": 0.35239562303412897,
+          "kernel_worker_cpu_fraction": 0.006592435124788127,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test",
+              "ticks": 13
+            },
+            {
+              "pid": 55452,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.042861988000368
+        },
+        {
+          "external_cpu_fraction": 0.3336137397740091,
+          "kernel_worker_cpu_fraction": 0.0017968424045278766,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 293
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 5
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 3
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0434971900012897
+        },
+        {
+          "external_cpu_fraction": 0.33920148579648646,
+          "kernel_worker_cpu_fraction": 0.006592255024313341,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 106
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 100
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 5
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test",
+              "ticks": 4
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0428904790005618
+        },
+        {
+          "external_cpu_fraction": 0.3467475320498867,
+          "kernel_worker_cpu_fraction": 0.004199364574998627,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 203
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 59663,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0418242859996099
+        },
+        {
+          "external_cpu_fraction": 0.33708060637247295,
+          "kernel_worker_cpu_fraction": 0.0023991502232916222,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 4
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 59663,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0420356240010733
+        },
+        {
+          "external_cpu_fraction": 0.3477507827601451,
+          "kernel_worker_cpu_fraction": 0.007194843781244381,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 8
+            },
+            {
+              "pid": 1910001,
+              "name": "factorseal-netw",
+              "ticks": 5
+            },
+            {
+              "pid": 59663,
+              "name": "codex",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0424131820000184
+        },
+        {
+          "external_cpu_fraction": 0.34168667050138996,
+          "kernel_worker_cpu_fraction": 0.0035841259143502445,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 203
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test",
+              "ticks": 5
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 4
+            },
+            {
+              "pid": 2545,
+              "name": ".quickshell-wra",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053730,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.046280206001029
+        },
+        {
+          "external_cpu_fraction": 0.3347880201409046,
+          "kernel_worker_cpu_fraction": 0.023956208954626444,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 203
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 59663,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 1909796,
+              "name": "factorseal-desk",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054234,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0435707939996064
+        },
+        {
+          "external_cpu_fraction": 0.3589195274018777,
+          "kernel_worker_cpu_fraction": 0.004777630980391051,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054234,
+              "name": "casita-lib-test",
+              "ticks": 36
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 6
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054234,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0465437830007431
+        },
+        {
+          "external_cpu_fraction": 0.3470674095773339,
+          "kernel_worker_cpu_fraction": 0.0029971278892688595,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 6
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 5
+            },
+            {
+              "pid": 67344,
+              "name": "codex",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054312,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0426648829998157
+        },
+        {
+          "external_cpu_fraction": 0.3682563266757769,
+          "kernel_worker_cpu_fraction": 0.0023951631003302563,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054312,
+              "name": "casita-lib-test",
+              "ticks": 38
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 11
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054312,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0437702550007089
+        },
+        {
+          "external_cpu_fraction": 0.35841872318406914,
+          "kernel_worker_cpu_fraction": 0.06360000560646002,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 203
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2545,
+              "name": ".quickshell-wra",
+              "ticks": 22
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 7
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.051493618000677
+        },
+        {
+          "external_cpu_fraction": 0.352295444429479,
+          "kernel_worker_cpu_fraction": 0.008971870401429856,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test",
+              "ticks": 8
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 6
+            },
+            {
+              "pid": 2545,
+              "name": ".quickshell-wra",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0449326149991975
+        },
+        {
+          "external_cpu_fraction": 0.3409477535889946,
+          "kernel_worker_cpu_fraction": 0.017976155725254548,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 5
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 5
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0430483740001364
+        },
+        {
+          "external_cpu_fraction": 0.36771845629239164,
+          "kernel_worker_cpu_fraction": 0.0029798902454812935,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 18
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test",
+              "ticks": 18
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 10
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2053756,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.048696342000767
+        },
+        {
+          "external_cpu_fraction": 0.30690869424890854,
+          "kernel_worker_cpu_fraction": 0.005994310434548995,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 195
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 136
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 17
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 10
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 7
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0426553760007664
+        },
+        {
+          "external_cpu_fraction": 0.3340896681967665,
+          "kernel_worker_cpu_fraction": 0.0029990095888399143,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 194
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 10
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 4
+            },
+            {
+              "pid": 59663,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0420106729998224
+        },
+        {
+          "external_cpu_fraction": 0.36458721090763657,
+          "kernel_worker_cpu_fraction": 0.005379155570768408,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 197
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 59663,
+              "name": "codex",
+              "ticks": 18
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test",
+              "ticks": 17
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0457031639998604
+        },
+        {
+          "external_cpu_fraction": 0.3490102402617438,
+          "kernel_worker_cpu_fraction": 0.0030035304669685354,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 5
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 5
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0404422510000586
+        },
+        {
+          "external_cpu_fraction": 0.34301698563208954,
+          "kernel_worker_cpu_fraction": 0.0023945339311140634,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 7
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 6
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054388,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0440445080002974
+        },
+        {
+          "external_cpu_fraction": 0.3448801018095006,
+          "kernel_worker_cpu_fraction": 0.0023784834607551764,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 11
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 7
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054618,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0510899239998253
+        },
+        {
+          "external_cpu_fraction": 0.36669771917256866,
+          "kernel_worker_cpu_fraction": 0.001797537839081219,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054618,
+              "name": "casita-lib-test",
+              "ticks": 24
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 10
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054618,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.043093480000607
+        },
+        {
+          "external_cpu_fraction": 0.3615006960490565,
+          "kernel_worker_cpu_fraction": 0.0035851308699079982,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 206
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054618,
+              "name": "casita-lib-test",
+              "ticks": 22
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 12
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054618,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0459869210008037
+        },
+        {
+          "external_cpu_fraction": 0.35083865943316783,
+          "kernel_worker_cpu_fraction": 0.005369979481119916,
+          "top_external_processes": [
+            {
+              "pid": 2054116,
+              "name": "rustc",
+              "ticks": 200
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 107
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 12
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 7
+            },
+            {
+              "pid": 55452,
+              "name": "codex",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054116,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.047490036000454
+        },
+        {
+          "external_cpu_fraction": 0.33274183548774416,
+          "kernel_worker_cpu_fraction": 0.007181478463764262,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 276
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 8
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 6
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 5
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0443531979999534
+        },
+        {
+          "external_cpu_fraction": 0.3961332565290382,
+          "kernel_worker_cpu_fraction": 0.007191526593568015,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 79
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 7
+            },
+            {
+              "pid": 1910001,
+              "name": "factorseal-netw",
+              "ticks": 6
+            },
+            {
+              "pid": 55452,
+              "name": "codex",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0428940090005199
+        },
+        {
+          "external_cpu_fraction": 0.3966520518480707,
+          "kernel_worker_cpu_fraction": 0.0053441144710069406,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 309
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 54
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 23
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 16
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 6
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0525597890009522
+        },
+        {
+          "external_cpu_fraction": 0.4064090421158877,
+          "kernel_worker_cpu_fraction": 0.004802470217026738,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 67
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 18
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test",
+              "ticks": 11
+            },
+            {
+              "pid": 1557,
+              "name": "cachix",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0411308709990408
+        },
+        {
+          "external_cpu_fraction": 0.37424825831870384,
+          "kernel_worker_cpu_fraction": 0.013794406957259918,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 50
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 6
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0420890180012066
+        },
+        {
+          "external_cpu_fraction": 0.41060140555674124,
+          "kernel_worker_cpu_fraction": 0.004189810260783074,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 68
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 30
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 16
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 11
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0442000299990468
+        },
+        {
+          "external_cpu_fraction": 0.45464440063153105,
+          "kernel_worker_cpu_fraction": 0.0052865627980410584,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 311
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 114
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 105
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 33
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 25
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 17
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0640183830000751
+        },
+        {
+          "external_cpu_fraction": 0.4232795648989377,
+          "kernel_worker_cpu_fraction": 0.0029808420063305472,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 308
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 65
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 31
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 23
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 15
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 11
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0483615009998175
+        },
+        {
+          "external_cpu_fraction": 0.419617741870311,
+          "kernel_worker_cpu_fraction": 0.007183185310190772,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 305
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 67
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 23
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 19
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 11
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test",
+              "ticks": 11
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0441050420013198
+        },
+        {
+          "external_cpu_fraction": 0.41714453567063686,
+          "kernel_worker_cpu_fraction": 0.008951599477910663,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 77
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 20
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 17
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 16
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 12
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.047298867999416
+        },
+        {
+          "external_cpu_fraction": 0.4617862104570229,
+          "kernel_worker_cpu_fraction": 0.006537513918953992,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 135
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 21
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 18
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 13
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0516230000012001
+        },
+        {
+          "external_cpu_fraction": 0.4139030621617248,
+          "kernel_worker_cpu_fraction": 0.0065604231754740235,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2054766,
+              "name": ".devenv-wrapped",
+              "ticks": 51
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 32
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 21
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 10
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054716,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0479506910014607
+        },
+        {
+          "external_cpu_fraction": 0.3940809982723506,
+          "kernel_worker_cpu_fraction": 0.013175960428558835,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 48
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 19
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 14
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0435671900013404
+        },
+        {
+          "external_cpu_fraction": 0.3534288281280504,
+          "kernel_worker_cpu_fraction": 0.0035820489337302403,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 308
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 11
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 10
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.046886870999515
+        },
+        {
+          "external_cpu_fraction": 0.3735965862201361,
+          "kernel_worker_cpu_fraction": 0.004190987345418193,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 24
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 7
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 7
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0439067549996253
+        },
+        {
+          "external_cpu_fraction": 0.36408585639334257,
+          "kernel_worker_cpu_fraction": 0.0035870527723482026,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test",
+              "ticks": 17
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 10
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 8
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 7
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0454264929994679
+        },
+        {
+          "external_cpu_fraction": 0.3563481278001703,
+          "kernel_worker_cpu_fraction": 0.005999126730642597,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 13
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test",
+              "ticks": 13
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 10
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055087,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0418182979992707
+        },
+        {
+          "external_cpu_fraction": 0.37059783887802156,
+          "kernel_worker_cpu_fraction": 0.053537408505653195,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 308
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 20
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 16
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 15
+            },
+            {
+              "pid": 2054834,
+              "name": "nix-daemon",
+              "ticks": 9
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055634,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0506672169995
+        },
+        {
+          "external_cpu_fraction": 0.3672318338497107,
+          "kernel_worker_cpu_fraction": 0.01410170241982889,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 311
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy",
+              "ticks": 21
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 13
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 7
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055738,
+              "name": "clippy-driver"
+            },
+            {
+              "pid": 2055739,
+              "name": "clippy-driver"
+            },
+            {
+              "pid": 2055740,
+              "name": "clippy-driver"
+            },
+            {
+              "pid": 2055743,
+              "name": "clippy-driver"
+            },
+            {
+              "pid": 2055744,
+              "name": "clippy-driver"
+            },
+            {
+              "pid": 2055759,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0637013570012641
+        },
+        {
+          "external_cpu_fraction": 0.4559222596310633,
+          "kernel_worker_cpu_fraction": 0.011660415847341773,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 311
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 105
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc",
+              "ticks": 98
+            },
+            {
+              "pid": 808587,
+              "name": "chromium",
+              "ticks": 91
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 14
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055797,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0720029339991015
+        },
+        {
+          "external_cpu_fraction": 0.42442308677712903,
+          "kernel_worker_cpu_fraction": 0.002367771753289423,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 107
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 808587,
+              "name": "chromium",
+              "ticks": 27
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 7
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055855,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0558450139997149
+        },
+        {
+          "external_cpu_fraction": 0.4092258091653111,
+          "kernel_worker_cpu_fraction": 0.009558559046197047,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 308
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 19
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 6
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055903,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0461827929993888
+        },
+        {
+          "external_cpu_fraction": 0.44555045216704026,
+          "kernel_worker_cpu_fraction": 0.0041584708868923756,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 309
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 28
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 26
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 21
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055928,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.05206940700009
+        },
+        {
+          "external_cpu_fraction": 0.5720004677359457,
+          "kernel_worker_cpu_fraction": 0.0047468918484310845,
+          "top_external_processes": [
+            {
+              "pid": 2055734,
+              "name": "rustc",
+              "ticks": 337
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 22
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 13
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 13
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 12
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2055734,
+              "name": "rustc"
+            },
+            {
+              "pid": 2055987,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0533208169999853
+        },
+        {
+          "external_cpu_fraction": 0.36416878513015805,
+          "kernel_worker_cpu_fraction": 0.013730954193432187,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 19
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 14
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 9
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 7
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056230,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2056252,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0469046649996017
+        },
+        {
+          "external_cpu_fraction": 0.3806581345426607,
+          "kernel_worker_cpu_fraction": 0.005975794890779602,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2056230,
+              "name": "casita-lib-test",
+              "ticks": 26
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 21
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 15
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056230,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2056280,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.045885963998444
+        },
+        {
+          "external_cpu_fraction": 0.39532091419788995,
+          "kernel_worker_cpu_fraction": 0.004784519385148441,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 307
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2056230,
+              "name": "casita-lib-test",
+              "ticks": 30
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 19
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 13
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 12
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056230,
+              "name": "casita-lib-test"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0450370449998445
+        },
+        {
+          "external_cpu_fraction": 0.4454671559374362,
+          "kernel_worker_cpu_fraction": 0.006542241275449664,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 308
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 23
+            },
+            {
+              "pid": 2056331,
+              "name": ".cargo-fmt-wrap",
+              "ticks": 19
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 12
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 12
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            },
+            {
+              "pid": 2056411,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0508631079992483
+        },
+        {
+          "external_cpu_fraction": 0.43278556997281414,
+          "kernel_worker_cpu_fraction": 0.007114283342018863,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 309
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2056411,
+              "name": "casita-lib-test",
+              "ticks": 20
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 19
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 11
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            },
+            {
+              "pid": 2056411,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0542172189998382
+        },
+        {
+          "external_cpu_fraction": 0.43795516997521083,
+          "kernel_worker_cpu_fraction": 0.0029874158934189003,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 308
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2056411,
+              "name": "casita-lib-test",
+              "ticks": 26
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 17
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 11
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            },
+            {
+              "pid": 2056411,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0460545539990562
+        },
+        {
+          "external_cpu_fraction": 0.41160436537736816,
+          "kernel_worker_cpu_fraction": 0.008400089089334045,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 306
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 17
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 10
+            },
+            {
+              "pid": 2044616,
+              "name": "python3",
+              "ticks": 9
+            },
+            {
+              "pid": 2044696,
+              "name": "rustfs",
+              "ticks": 6
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            },
+            {
+              "pid": 2056494,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.041655618999357
+        },
+        {
+          "external_cpu_fraction": 0.45223727551626663,
+          "kernel_worker_cpu_fraction": 0.007178369452639153,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 267
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 141
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 1010784,
+              "name": "chromium",
+              "ticks": 41
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 21
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 15
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            },
+            {
+              "pid": 2056494,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.044805515999542
+        },
+        {
+          "external_cpu_fraction": 0.44052755200875116,
+          "kernel_worker_cpu_fraction": 0.005365017548144466,
+          "top_external_processes": [
+            {
+              "pid": 2049413,
+              "name": "rustc",
+              "ticks": 206
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 22
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 13
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 55452,
+              "name": "codex",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 2001095,
+              "name": "cargo"
+            },
+            {
+              "pid": 2001144,
+              "name": "rustc"
+            },
+            {
+              "pid": 2022762,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2034655,
+              "name": "cargo"
+            },
+            {
+              "pid": 2049413,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054476,
+              "name": "rustc"
+            },
+            {
+              "pid": 2054766,
+              "name": "cargo-clippy"
+            },
+            {
+              "pid": 2055693,
+              "name": ".cargo-wrapped"
+            },
+            {
+              "pid": 2056324,
+              "name": "rustc"
+            },
+            {
+              "pid": 2056494,
+              "name": "casita-lib-test"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0484588260005694
+        }
+      ],
+      "error": "host did not become quiet before the deadline"
+    }
+  ],
+  "complete": false,
+  "policy": "30% sampled external CPU; build activity recorded without a separate veto; two matrices with reversed variant order",
+  "source_sha256": {
+    "benches/optimization.rs": "b4c3ce8ab6d0b9450f28a5a5e83e4b9a8407df9595dcef79ddaa3e0e89ff8e69",
+    "src/compression.rs": "414c210e2a24f9e0737f92fd325c5cf9963c69dfe8ca2dfc07e514c8f9a4e94a",
+    "src/blob/chunked/manifest.rs": "389adab06c9cff85d0b4f510e357656d2aa99592931a00951bcc15ca1e8f01ae"
+  }
+}

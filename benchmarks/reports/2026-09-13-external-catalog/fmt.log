@@ -1,0 +1,30 @@
+  warning: Skip selectors from environment variables `SKIP` are ignored during installing hooks.
+  error: No hooks found after filtering with the given selectors
+✖ execute command in 34.3ms (failed)
+✖ Running devenv:git-hooks:run in 34.3ms (failed)
+✖ Running devenv:enterTest in 4.75µs (dependency failed)
+✖ Running tasks in 391ms (failed)
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.

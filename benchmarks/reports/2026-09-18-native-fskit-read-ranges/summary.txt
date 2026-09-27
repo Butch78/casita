@@ -1,0 +1,455 @@
+native median first ms shared 1 {'untraced': 360.151, 'traced': 374.897}
+native median first ms shared 8 {'untraced': 594.546, 'traced': 606.527}
+native median first ms shared 15 {'untraced': 828.605, 'traced': 862.171}
+native median first ms shared 16 {'untraced': 875.823, 'traced': 902.261}
+native median first ms shared 17 {'untraced': 903.279, 'traced': 935.584}
+native median first ms distinct 1 {'untraced': 351.309, 'traced': 373.018}
+native median first ms distinct 8 {'untraced': 1702.531, 'traced': 1736.761}
+native median first ms distinct 15 {'untraced': 3003.091, 'traced': 2997.804}
+native median first ms distinct 16 {'untraced': 3205.293, 'traced': 3222.478}
+native median first ms distinct 17 {'untraced': 3659.047, 'traced': 3576.39}
+Current sources match: True
+0 shared 1 calls 281 service_ms 17.719 wall_ms 338.8 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.011, 'seek_ns': 0.079, 'stream_read_ns': 12.065}
+0 shared 8 calls 491 service_ms 266.406 wall_ms 581.467 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.025, 'seek_ns': 3.526, 'stream_read_ns': 255.677}
+0 shared 15 calls 701 service_ms 454.082 wall_ms 824.206 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.032, 'seek_ns': 6.042, 'stream_read_ns': 439.607}
+0 shared 16 calls 731 service_ms 478.123 wall_ms 805.419 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.035, 'seek_ns': 7.028, 'stream_read_ns': 464.202}
+0 shared 17 calls 761 service_ms 525.44 wall_ms 922.415 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.059, 'seek_ns': 9.551, 'stream_read_ns': 506.417}
+0 distinct 1 calls 281 service_ms 18.686 wall_ms 373.018 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.017, 'seek_ns': 0.155, 'stream_read_ns': 9.636}
+0 distinct 8 calls 1942 service_ms 93.148 wall_ms 1736.761 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.085, 'seek_ns': 0.72, 'stream_read_ns': 47.887}
+0 distinct 15 calls 3300 service_ms 156.0 wall_ms 2997.804 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.141, 'seek_ns': 1.128, 'stream_read_ns': 82.796}
+0 distinct 16 calls 3581 service_ms 166.86 wall_ms 3233.244 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.16, 'seek_ns': 1.163, 'stream_read_ns': 94.416}
+0 distinct 17 calls 3922 service_ms 317.34 wall_ms 3556.464 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.184, 'seek_ns': 0.954, 'stream_read_ns': 99.309}
+1 shared 8 calls 491 service_ms 239.073 wall_ms 606.527 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.029, 'seek_ns': 3.165, 'stream_read_ns': 218.912}
+1 shared 15 calls 701 service_ms 452.813 wall_ms 862.171 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.04, 'seek_ns': 7.26, 'stream_read_ns': 436.611}
+1 shared 16 calls 731 service_ms 484.352 wall_ms 902.261 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.041, 'seek_ns': 7.175, 'stream_read_ns': 470.744}
+1 shared 17 calls 761 service_ms 532.471 wall_ms 936.864 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.041, 'seek_ns': 7.721, 'stream_read_ns': 515.017}
+1 distinct 1 calls 281 service_ms 17.895 wall_ms 368.714 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.017, 'seek_ns': 0.145, 'stream_read_ns': 10.449}
+1 distinct 8 calls 1972 service_ms 133.969 wall_ms 1786.382 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.095, 'seek_ns': 1.312, 'stream_read_ns': 94.176}
+1 distinct 15 calls 3300 service_ms 150.741 wall_ms 2989.685 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.145, 'seek_ns': 1.148, 'stream_read_ns': 84.438}
+1 distinct 16 calls 3581 service_ms 171.589 wall_ms 3222.478 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.163, 'seek_ns': 1.263, 'stream_read_ns': 91.797}
+1 distinct 17 calls 3922 service_ms 310.241 wall_ms 3591.752 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.179, 'seek_ns': 1.059, 'stream_read_ns': 100.635}
+1 shared 1 calls 281 service_ms 20.412 wall_ms 374.897 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.018, 'seek_ns': 0.169, 'stream_read_ns': 10.644}
+2 shared 15 calls 701 service_ms 485.421 wall_ms 907.991 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.04, 'seek_ns': 8.721, 'stream_read_ns': 466.038}
+2 shared 16 calls 731 service_ms 490.484 wall_ms 915.447 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.04, 'seek_ns': 8.601, 'stream_read_ns': 474.184}
+2 shared 17 calls 761 service_ms 502.254 wall_ms 935.584 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.043, 'seek_ns': 8.002, 'stream_read_ns': 485.259}
+2 distinct 1 calls 281 service_ms 23.085 wall_ms 385.269 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.018, 'seek_ns': 0.151, 'stream_read_ns': 7.079}
+2 distinct 8 calls 1942 service_ms 91.367 wall_ms 1685.354 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.081, 'seek_ns': 0.705, 'stream_read_ns': 50.309}
+2 distinct 15 calls 3309 service_ms 149.269 wall_ms 3007.056 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.148, 'seek_ns': 1.143, 'stream_read_ns': 82.568}
+2 distinct 16 calls 3581 service_ms 165.339 wall_ms 3205.74 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.156, 'seek_ns': 1.303, 'stream_read_ns': 91.626}
+2 distinct 17 calls 3952 service_ms 313.238 wall_ms 3576.39 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.191, 'seek_ns': 1.73, 'stream_read_ns': 125.707}
+2 shared 1 calls 281 service_ms 15.022 wall_ms 403.069 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.017, 'seek_ns': 0.143, 'stream_read_ns': 8.624}
+2 shared 8 calls 491 service_ms 248.331 wall_ms 617.482 repeat_calls 0
+  phases_ms {'reader_lock_ns': 0.029, 'seek_ns': 3.571, 'stream_read_ns': 236.51}
+
+Shared 8 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 14.355
+('workload-shared', 16384, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.118
+('workload-shared', 32768, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.354
+('workload-shared', 49152, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 5.254
+('workload-shared', 81920, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.241
+('workload-shared', 98304, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.413
+('workload-shared', 163840, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.902
+('workload-shared', 196608, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.313
+('workload-shared', 212992, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.692
+('workload-shared', 229376, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.317
+('workload-shared', 262144, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.902
+('workload-shared', 294912, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.129
+('workload-shared', 311296, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.759
+('workload-shared', 344064, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.633
+('workload-shared', 360448, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 29.83
+('workload-shared', 376832, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.108
+('workload-shared', 409600, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.891
+('workload-shared', 425984, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 5.161
+('workload-shared', 475136, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 9.19
+('workload-shared', 540672, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.103
+('workload-shared', 573440, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 10.449
+('workload-shared', 966656, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.908
+('workload-shared', 999424, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.979
+('workload-shared', 1015808, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.263
+('workload-shared', 1048576, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 11.366
+('workload-shared', 1064960, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.465
+('workload-shared', 1081344, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 18.897
+('workload-shared', 1097728, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.96
+('workload-shared', 1114112, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 0.88
+('workload-shared', 1130496, 23040) extra_calls 7 per_added_worker 1.0 total_service_ms 1.779
+
+Shared 15 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 22.63
+('workload-shared', 16384, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.9
+('workload-shared', 32768, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 12.821
+('workload-shared', 49152, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 8.863
+('workload-shared', 81920, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 11.635
+('workload-shared', 98304, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 20.967
+('workload-shared', 163840, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 15.992
+('workload-shared', 196608, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.189
+('workload-shared', 212992, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 34.097
+('workload-shared', 229376, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 12.744
+('workload-shared', 262144, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.49
+('workload-shared', 294912, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.959
+('workload-shared', 311296, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 14.696
+('workload-shared', 344064, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.013
+('workload-shared', 360448, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.924
+('workload-shared', 376832, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 13.787
+('workload-shared', 409600, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.393
+('workload-shared', 425984, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 14.009
+('workload-shared', 475136, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.616
+('workload-shared', 540672, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.036
+('workload-shared', 573440, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.531
+('workload-shared', 966656, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.059
+('workload-shared', 999424, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.205
+('workload-shared', 1015808, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.238
+('workload-shared', 1048576, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.665
+('workload-shared', 1064960, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 10.831
+('workload-shared', 1081344, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 20.296
+('workload-shared', 1097728, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.512
+('workload-shared', 1114112, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 1.708
+('workload-shared', 1130496, 23040) extra_calls 14 per_added_worker 1.0 total_service_ms 2.813
+
+Shared 16 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 21.593
+('workload-shared', 16384, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.966
+('workload-shared', 32768, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.214
+('workload-shared', 49152, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 9.688
+('workload-shared', 81920, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.527
+('workload-shared', 98304, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 13.752
+('workload-shared', 163840, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 18.375
+('workload-shared', 196608, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.227
+('workload-shared', 212992, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 27.063
+('workload-shared', 229376, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 13.958
+('workload-shared', 262144, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.25
+('workload-shared', 294912, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.277
+('workload-shared', 311296, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.976
+('workload-shared', 344064, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.117
+('workload-shared', 360448, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 19.461
+('workload-shared', 376832, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.268
+('workload-shared', 409600, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 16.142
+('workload-shared', 425984, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 12.176
+('workload-shared', 475136, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 16.843
+('workload-shared', 540672, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 16.13
+('workload-shared', 573440, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.06
+('workload-shared', 966656, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 17.912
+('workload-shared', 999424, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 24.444
+('workload-shared', 1015808, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 17.972
+('workload-shared', 1048576, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.317
+('workload-shared', 1064960, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 11.882
+('workload-shared', 1081344, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 23.791
+('workload-shared', 1097728, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.658
+('workload-shared', 1114112, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 1.903
+('workload-shared', 1130496, 23040) extra_calls 15 per_added_worker 1.0 total_service_ms 2.989
+
+Shared 17 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 23.252
+('workload-shared', 16384, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.571
+('workload-shared', 32768, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.652
+('workload-shared', 49152, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 10.185
+('workload-shared', 81920, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.827
+('workload-shared', 98304, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 14.306
+('workload-shared', 163840, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 15.803
+('workload-shared', 196608, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.14
+('workload-shared', 212992, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 33.25
+('workload-shared', 229376, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 14.552
+('workload-shared', 262144, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 17.636
+('workload-shared', 294912, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.465
+('workload-shared', 311296, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.098
+('workload-shared', 344064, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.986
+('workload-shared', 360448, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 35.015
+('workload-shared', 376832, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 15.687
+('workload-shared', 409600, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.807
+('workload-shared', 425984, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 11.411
+('workload-shared', 475136, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 19.529
+('workload-shared', 540672, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 17.342
+('workload-shared', 573440, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 18.869
+('workload-shared', 966656, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.291
+('workload-shared', 999424, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 27.791
+('workload-shared', 1015808, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 19.581
+('workload-shared', 1048576, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 20.151
+('workload-shared', 1064960, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.346
+('workload-shared', 1081344, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 22.374
+('workload-shared', 1097728, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 18.663
+('workload-shared', 1114112, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 1.955
+('workload-shared', 1130496, 23040) extra_calls 16 per_added_worker 1.0 total_service_ms 3.366
+
+Shared 8 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 23.337
+('workload-shared', 16384, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.229
+('workload-shared', 32768, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.397
+('workload-shared', 49152, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 3.574
+('workload-shared', 81920, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.181
+('workload-shared', 98304, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.314
+('workload-shared', 163840, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.742
+('workload-shared', 196608, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.663
+('workload-shared', 212992, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 9.779
+('workload-shared', 229376, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.37
+('workload-shared', 262144, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.093
+('workload-shared', 294912, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.188
+('workload-shared', 311296, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.004
+('workload-shared', 344064, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.843
+('workload-shared', 360448, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 21.904
+('workload-shared', 376832, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.015
+('workload-shared', 409600, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.825
+('workload-shared', 425984, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 5.529
+('workload-shared', 475136, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.575
+('workload-shared', 540672, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.914
+('workload-shared', 573440, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.154
+('workload-shared', 966656, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.847
+('workload-shared', 999424, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.849
+('workload-shared', 1015808, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.79
+('workload-shared', 1048576, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 10.246
+('workload-shared', 1064960, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 4.644
+('workload-shared', 1081344, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 10.237
+('workload-shared', 1097728, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.202
+('workload-shared', 1114112, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 0.617
+('workload-shared', 1130496, 23040) extra_calls 7 per_added_worker 1.0 total_service_ms 1.563
+
+Shared 15 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 24.365
+('workload-shared', 16384, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.227
+('workload-shared', 32768, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 12.887
+('workload-shared', 49152, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 10.559
+('workload-shared', 81920, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.166
+('workload-shared', 98304, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 13.166
+('workload-shared', 163840, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 15.875
+('workload-shared', 196608, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 12.796
+('workload-shared', 212992, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.915
+('workload-shared', 229376, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 12.971
+('workload-shared', 262144, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 14.918
+('workload-shared', 294912, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.986
+('workload-shared', 311296, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 13.818
+('workload-shared', 344064, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.754
+('workload-shared', 360448, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 38.054
+('workload-shared', 376832, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 13.93
+('workload-shared', 409600, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.061
+('workload-shared', 425984, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 9.978
+('workload-shared', 475136, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.008
+('workload-shared', 540672, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 14.382
+('workload-shared', 573440, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.713
+('workload-shared', 966656, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 15.861
+('workload-shared', 999424, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.089
+('workload-shared', 1015808, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 15.789
+('workload-shared', 1048576, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 15.735
+('workload-shared', 1064960, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 19.879
+('workload-shared', 1081344, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 19.412
+('workload-shared', 1097728, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.94
+('workload-shared', 1114112, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 1.805
+('workload-shared', 1130496, 23040) extra_calls 14 per_added_worker 1.0 total_service_ms 2.897
+
+Shared 16 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 22.528
+('workload-shared', 16384, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.378
+('workload-shared', 32768, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.465
+('workload-shared', 49152, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 11.827
+('workload-shared', 81920, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.805
+('workload-shared', 98304, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.057
+('workload-shared', 163840, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 19.124
+('workload-shared', 196608, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.916
+('workload-shared', 212992, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.644
+('workload-shared', 229376, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 13.635
+('workload-shared', 262144, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.013
+('workload-shared', 294912, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.347
+('workload-shared', 311296, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 21.264
+('workload-shared', 344064, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.827
+('workload-shared', 360448, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 41.482
+('workload-shared', 376832, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.876
+('workload-shared', 409600, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.006
+('workload-shared', 425984, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 12.589
+('workload-shared', 475136, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 18.829
+('workload-shared', 540672, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 14.797
+('workload-shared', 573440, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.244
+('workload-shared', 966656, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 16.799
+('workload-shared', 999424, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 17.111
+('workload-shared', 1015808, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 16.793
+('workload-shared', 1048576, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.034
+('workload-shared', 1064960, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 13.469
+('workload-shared', 1081344, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.119
+('workload-shared', 1097728, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 17.491
+('workload-shared', 1114112, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 2.193
+('workload-shared', 1130496, 23040) extra_calls 15 per_added_worker 1.0 total_service_ms 2.96
+
+Shared 17 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 24.965
+('workload-shared', 16384, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.938
+('workload-shared', 32768, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.69
+('workload-shared', 49152, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 12.778
+('workload-shared', 81920, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.906
+('workload-shared', 98304, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 14.343
+('workload-shared', 163840, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.298
+('workload-shared', 196608, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.829
+('workload-shared', 212992, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.085
+('workload-shared', 229376, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 14.421
+('workload-shared', 262144, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 16.029
+('workload-shared', 294912, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.173
+('workload-shared', 311296, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 15.608
+('workload-shared', 344064, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.164
+('workload-shared', 360448, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 53.014
+('workload-shared', 376832, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 16.21
+('workload-shared', 409600, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.151
+('workload-shared', 425984, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 14.565
+('workload-shared', 475136, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 17.204
+('workload-shared', 540672, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 15.515
+('workload-shared', 573440, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 19.513
+('workload-shared', 966656, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 19.404
+('workload-shared', 999424, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 18.583
+('workload-shared', 1015808, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.358
+('workload-shared', 1048576, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 26.806
+('workload-shared', 1064960, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.449
+('workload-shared', 1081344, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 29.765
+('workload-shared', 1097728, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 18.452
+('workload-shared', 1114112, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 2.351
+('workload-shared', 1130496, 23040) extra_calls 16 per_added_worker 1.0 total_service_ms 3.121
+
+Shared 15 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 24.523
+('workload-shared', 16384, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.645
+('workload-shared', 32768, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.17
+('workload-shared', 49152, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 12.183
+('workload-shared', 81920, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 25.739
+('workload-shared', 98304, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 13.411
+('workload-shared', 163840, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.089
+('workload-shared', 196608, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 12.906
+('workload-shared', 212992, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.067
+('workload-shared', 229376, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 12.892
+('workload-shared', 262144, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 15.107
+('workload-shared', 294912, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.359
+('workload-shared', 311296, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 14.221
+('workload-shared', 344064, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.322
+('workload-shared', 360448, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 42.582
+('workload-shared', 376832, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.079
+('workload-shared', 409600, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 14.475
+('workload-shared', 425984, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 13.315
+('workload-shared', 475136, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 15.206
+('workload-shared', 540672, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 14.382
+('workload-shared', 573440, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 17.135
+('workload-shared', 966656, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.617
+('workload-shared', 999424, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 15.989
+('workload-shared', 1015808, 32768) extra_calls 14 per_added_worker 1.0 total_service_ms 16.196
+('workload-shared', 1048576, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.496
+('workload-shared', 1064960, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 13.759
+('workload-shared', 1081344, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 29.605
+('workload-shared', 1097728, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 16.958
+('workload-shared', 1114112, 16384) extra_calls 14 per_added_worker 1.0 total_service_ms 2.169
+('workload-shared', 1130496, 23040) extra_calls 14 per_added_worker 1.0 total_service_ms 2.917
+
+Shared 16 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 21.344
+('workload-shared', 16384, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.901
+('workload-shared', 32768, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.131
+('workload-shared', 49152, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 11.251
+('workload-shared', 81920, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.646
+('workload-shared', 98304, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 13.936
+('workload-shared', 163840, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 16.863
+('workload-shared', 196608, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.009
+('workload-shared', 212992, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 17.347
+('workload-shared', 229376, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 13.814
+('workload-shared', 262144, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.329
+('workload-shared', 294912, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.546
+('workload-shared', 311296, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.125
+('workload-shared', 344064, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.718
+('workload-shared', 360448, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 38.865
+('workload-shared', 376832, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 15.469
+('workload-shared', 409600, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 15.326
+('workload-shared', 425984, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 11.602
+('workload-shared', 475136, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 16.741
+('workload-shared', 540672, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 14.985
+('workload-shared', 573440, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 28.52
+('workload-shared', 966656, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 17.657
+('workload-shared', 999424, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 17.701
+('workload-shared', 1015808, 32768) extra_calls 15 per_added_worker 1.0 total_service_ms 17.266
+('workload-shared', 1048576, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 17.472
+('workload-shared', 1064960, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 14.358
+('workload-shared', 1081344, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 20.371
+('workload-shared', 1097728, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 18.166
+('workload-shared', 1114112, 16384) extra_calls 15 per_added_worker 1.0 total_service_ms 2.053
+('workload-shared', 1130496, 23040) extra_calls 15 per_added_worker 1.0 total_service_ms 3.103
+
+Shared 17 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 26.456
+('workload-shared', 16384, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.469
+('workload-shared', 32768, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.808
+('workload-shared', 49152, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 10.083
+('workload-shared', 81920, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.584
+('workload-shared', 98304, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 14.321
+('workload-shared', 163840, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 16.501
+('workload-shared', 196608, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 14.818
+('workload-shared', 212992, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 29.183
+('workload-shared', 229376, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 15.15
+('workload-shared', 262144, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 16.28
+('workload-shared', 294912, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.498
+('workload-shared', 311296, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 16.286
+('workload-shared', 344064, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 15.995
+('workload-shared', 360448, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 25.732
+('workload-shared', 376832, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 15.913
+('workload-shared', 409600, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 16.233
+('workload-shared', 425984, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 10.862
+('workload-shared', 475136, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.154
+('workload-shared', 540672, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 16.094
+('workload-shared', 573440, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 19.205
+('workload-shared', 966656, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.261
+('workload-shared', 999424, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 18.545
+('workload-shared', 1015808, 32768) extra_calls 16 per_added_worker 1.0 total_service_ms 18.289
+('workload-shared', 1048576, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 19.024
+('workload-shared', 1064960, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 11.283
+('workload-shared', 1081344, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 22.348
+('workload-shared', 1097728, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 18.979
+('workload-shared', 1114112, 16384) extra_calls 16 per_added_worker 1.0 total_service_ms 1.918
+('workload-shared', 1130496, 23040) extra_calls 16 per_added_worker 1.0 total_service_ms 3.242
+
+Shared 8 extra ranges versus one worker:
+('workload-shared', 0, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 17.464
+('workload-shared', 16384, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.155
+('workload-shared', 32768, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.72
+('workload-shared', 49152, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 5.626
+('workload-shared', 81920, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.378
+('workload-shared', 98304, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.28
+('workload-shared', 163840, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.039
+('workload-shared', 196608, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.642
+('workload-shared', 212992, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.36
+('workload-shared', 229376, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.374
+('workload-shared', 262144, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 8.131
+('workload-shared', 294912, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 6.978
+('workload-shared', 311296, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.989
+('workload-shared', 344064, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.003
+('workload-shared', 360448, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 29.812
+('workload-shared', 376832, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.021
+('workload-shared', 409600, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.012
+('workload-shared', 425984, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 5.002
+('workload-shared', 475136, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.46
+('workload-shared', 540672, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 6.771
+('workload-shared', 573440, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.217
+('workload-shared', 966656, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.911
+('workload-shared', 999424, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.934
+('workload-shared', 1015808, 32768) extra_calls 7 per_added_worker 1.0 total_service_ms 7.995
+('workload-shared', 1048576, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 11.869
+('workload-shared', 1064960, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 7.408
+('workload-shared', 1081344, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 10.449
+('workload-shared', 1097728, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 8.306
+('workload-shared', 1114112, 16384) extra_calls 7 per_added_worker 1.0 total_service_ms 0.931
+('workload-shared', 1130496, 23040) extra_calls 7 per_added_worker 1.0 total_service_ms 1.778

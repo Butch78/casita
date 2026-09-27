@@ -1,0 +1,63 @@
+{
+  "imports": 60,
+  "pair": 0,
+  "variant": "before",
+  "reason": "host did not become quiet before the deadline",
+  "last_sample": {
+    "external_cpu_fraction": 0.09909596108153772,
+    "kernel_worker_cpu_fraction": 0.003021218325656638,
+    "top_external_processes": [
+      {
+        "pid": 3403223,
+        "name": "rustc",
+        "ticks": 102
+      },
+      {
+        "pid": 2001838,
+        "name": "codex",
+        "ticks": 17
+      },
+      {
+        "pid": 12406,
+        "name": "herdr",
+        "ticks": 10
+      },
+      {
+        "pid": 2879374,
+        "name": "codex",
+        "ticks": 9
+      },
+      {
+        "pid": 1281846,
+        "name": "codex",
+        "ticks": 6
+      },
+      {
+        "pid": 1975456,
+        "name": "codex",
+        "ticks": 3
+      },
+      {
+        "pid": 22504,
+        "name": "codex",
+        "ticks": 2
+      },
+      {
+        "pid": 2881089,
+        "name": "codex-code-mode",
+        "ticks": 2
+      }
+    ],
+    "competing_processes": [
+      {
+        "pid": 3403196,
+        "name": "cargo"
+      },
+      {
+        "pid": 3403223,
+        "name": "rustc"
+      }
+    ],
+    "interval_seconds": 1.0343509350059321
+  }
+}

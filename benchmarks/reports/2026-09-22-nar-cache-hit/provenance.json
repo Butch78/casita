@@ -1,0 +1,31 @@
+{
+  "baseline_revision": "1355e75f34c4ee06d4ce25aebe2b0732e062a5ce",
+  "candidate_revision": "baseline plus optimization.patch",
+  "benchmark_source_sha256": "73482cadb4551bbad6947acbb2a7a14ef2f3dc81c007d0612d6632c01e8ee872",
+  "fixture_sha256": "8fd2b2fb72b3300db8c5c8da1564e8f29b704f4df34020d5b07a0c4b221f2b57",
+  "cargo_lock_sha256": "986d83dc1511b115d405bd86bc1e828a4912e65de8b9abd8030e33ed43b4490b",
+  "dependency_lockfile": "../2026-09-22-nar-generation/dependencies.lock",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2\n",
+  "features": [
+    "default",
+    "native"
+  ],
+  "profile": {
+    "opt_level": 3,
+    "debuginfo": 0,
+    "debug_assertions": false,
+    "overflow_checks": false
+  },
+  "matching_dependency_artifact_count": 393,
+  "build_command": [
+    "cargo",
+    "bench",
+    "--locked",
+    "--bench",
+    "nar_associations",
+    "--no-run",
+    "--message-format=json"
+  ],
+  "build_procedure": "Built and copied baseline before editing production source in the same worktree. Rebuilt and copied candidate after editing. Binaries have distinct SHA-256 hashes. Both builds use identical benchmark source, fixtures, toolchain and dependency lock.",
+  "filesystem": "Filesystem                Type  1K-blocks      Used Available Use% Mounted on\n-                         -     999139328 703342204 253830500  74% /tmp\n/dev/mapper/encryptedroot btrfs 999139328 703342204 253830500  74% /\n"
+}

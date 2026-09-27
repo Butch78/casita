@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "7682b01b9bebe776f3994be25d2699ffc65f346a",
+  "diff": " benchmarks/README.md                       |  33 +++++++\n benchmarks/all.py                          |   1 +\n benchmarks/manifest.json                   |  11 +++\n benchmarks/revisions.py                    |   1 +\n benchmarks/tests/test_revisions.py         |   2 +-\n crates/casita/src/experimental.rs          |   4 +-\n crates/casita/src/filesystem/mod.rs        |  97 +++++++++++++++---\n crates/casita/src/filesystem/root.rs       |  48 +++++++++\n crates/casita/src/importers/filesystem.rs  |  77 +++++++++++++++\n crates/casita/src/importers/mod.rs         |   2 +-\n crates/casita/src/repository/filesystem.rs | 127 +++++++++++++++++-------\n crates/casita/src/repository/tests.rs      | 138 ++++++++++++++++++++++++++\n crates/casita/src/scale_benchmarks.rs      | 153 +++++++++++++++++++++++++++++\n crates/casita/tests/importers.rs           |  72 ++++++++++++++\n 14 files changed, 715 insertions(+), 51 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "filesystem-outputs",
+      "status": "passed",
+      "command": [
+        "/home/domen/dev/casita/.devenv/profile/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "filesystem-outputs",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-multiroot-all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-multiroot-all/filesystem-outputs.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 61.421405425993726,
+      "log": "/tmp/casita-multiroot-all/filesystem-outputs.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

@@ -1,0 +1,133 @@
+{
+  "fresh_readback": true,
+  "scope": "fresh audit after restarting the retained initial RustFS fixture; includes aborted 32-writer case",
+  "prefixes": [
+    {
+      "prefix": "protocol/078233b3ab6f4f338fc48f43f0430e7e",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/0b4f1644446840b2a375c9fcfcc181ea",
+      "durable_roots": 10,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/11174afe4ff24cbca00eba0a943c979e",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/128f7b2d46bf44c68069ca17eed5c208",
+      "durable_roots": 9,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/12d2d45d9f58454f8e6b5de473fd20ae",
+      "durable_roots": 1,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/319082ce3bfe47d9a492df4aa11591db",
+      "durable_roots": 9,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/373cd51bc3fc47f691f590894360efb2",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/4de8a6249d94417eb1fd39615a213c07",
+      "durable_roots": 9,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/553baccf69a0448285deab6ecd312eac",
+      "durable_roots": 1,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/5b3b7e6b15954816b776515a05094e74",
+      "durable_roots": 10,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/5f6c074cc5874655a6cd1c46a1381b39",
+      "durable_roots": 10,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/6152eb5927cf4a53a02800b2106f700a",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/7055efe6f7774a5bb949ed71c3317001",
+      "durable_roots": 9,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/798dd96a0b3b46c99b8303856b889beb",
+      "durable_roots": 1,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/79cc569647cf4fd298ec0194c220d2ff",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/b294b837a00644319eb68ce876942d47",
+      "durable_roots": 9,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/be71719316714a808145eea2f28c104d",
+      "durable_roots": 9,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/c7379edfeebe4d93b056eb046bbaf2f7",
+      "durable_roots": 1,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/c8c7e830bd4a42ff846ffa1042696a4c",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/d08ce9e322d84824b73a37a0371e39ed",
+      "durable_roots": 0,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/d7cd9495cdd944a9a510101ef9fc9f7f",
+      "durable_roots": 1,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/e6839d72d3f54a1d9b032d03750b759a",
+      "durable_roots": 10,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/eb880e2ee473410faa2662734173d3cf",
+      "durable_roots": 1,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/f49cd89d14db4346ac5213eefc644f53",
+      "durable_roots": 10,
+      "fresh_readback": true
+    },
+    {
+      "prefix": "protocol/f4d3bdf3f52d4ac2b27734d808bf5bc9",
+      "durable_roots": 10,
+      "fresh_readback": true
+    }
+  ],
+  "startup_list_503s": 6,
+  "durable_roots": 120
+}

@@ -1,0 +1,5 @@
+[workspace]
+resolver = "3"
+members = ["crates/casita", "crates/casita-fs", "crates/fskit-native"]
+default-members = ["crates/casita"]
+exclude = ["crates/casita-fskit", "crates/casita/examples/s3_sync", "fuzz", "benchmarks/experiments/slatedb"]

@@ -1,0 +1,97 @@
+decoded-seek-awk.json
+launch 0 {'elapsed_ns': 46.148, 'decode_calls': 153.0, 'decoded_bytes': 44285765.0, 'fetch_ns': 1.9162, 'admission_ns': 0.0303, 'decode_ns': 63.5891, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+launch 2097152 {'elapsed_ns': 3.6963, 'decode_calls': 7.0, 'decoded_bytes': 2015329.0, 'fetch_ns': 0.1942, 'admission_ns': 0.006, 'decode_ns': 3.2443, 'cache_bytes': 1153472.0, 'cache_entries': 4.0}
+sequential 0 {'elapsed_ns': 1.9645, 'decode_calls': 4.0, 'decoded_bytes': 1153472.0, 'fetch_ns': 0.0776, 'admission_ns': 0.0036, 'decode_ns': 1.9045, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+sequential 2097152 {'elapsed_ns': 1.9723, 'decode_calls': 4.0, 'decoded_bytes': 1153472.0, 'fetch_ns': 0.077, 'admission_ns': 0.0036, 'decode_ns': 1.9184, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+one-seek 0 {'elapsed_ns': 0.5557, 'decode_calls': 1.0, 'decoded_bytes': 281878.0, 'fetch_ns': 0.0684, 'admission_ns': 0.0032, 'decode_ns': 0.5213, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+one-seek 2097152 {'elapsed_ns': 0.5829, 'decode_calls': 1.0, 'decoded_bytes': 281878.0, 'fetch_ns': 0.0648, 'admission_ns': 0.0035, 'decode_ns': 0.5407, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+two-seeks 0 {'elapsed_ns': 1.0792, 'decode_calls': 2.0, 'decoded_bytes': 563756.0, 'fetch_ns': 0.1134, 'admission_ns': 0.0035, 'decode_ns': 1.0235, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+two-seeks 2097152 {'elapsed_ns': 1.0777, 'decode_calls': 2.0, 'decoded_bytes': 563756.0, 'fetch_ns': 0.0895, 'admission_ns': 0.0034, 'decode_ns': 1.0213, 'cache_bytes': 281878.0, 'cache_entries': 1.0}
+chunk-below 0 {'elapsed_ns': 47.7919, 'decode_calls': 34.0, 'decoded_bytes': 71303134.0, 'fetch_ns': 0.0763, 'admission_ns': 0.0072, 'decode_ns': 47.6182, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+chunk-below 2097152 {'elapsed_ns': 3.2579, 'decode_calls': 2.0, 'decoded_bytes': 4194302.0, 'fetch_ns': 0.0277, 'admission_ns': 0.0034, 'decode_ns': 3.1354, 'cache_bytes': 2097151.0, 'cache_entries': 1.0}
+chunk-at 0 {'elapsed_ns': 52.5355, 'decode_calls': 34.0, 'decoded_bytes': 71303168.0, 'fetch_ns': 0.111, 'admission_ns': 0.0082, 'decode_ns': 52.2564, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+chunk-at 2097152 {'elapsed_ns': 3.7451, 'decode_calls': 2.0, 'decoded_bytes': 4194304.0, 'fetch_ns': 0.0241, 'admission_ns': 0.0032, 'decode_ns': 3.6352, 'cache_bytes': 2097152.0, 'cache_entries': 1.0}
+chunk-above 0 {'elapsed_ns': 48.8843, 'decode_calls': 34.0, 'decoded_bytes': 71303202.0, 'fetch_ns': 0.0743, 'admission_ns': 0.0074, 'decode_ns': 48.7236, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+chunk-above 2097152 {'elapsed_ns': 48.3696, 'decode_calls': 34.0, 'decoded_bytes': 71303202.0, 'fetch_ns': 0.0645, 'admission_ns': 0.0067, 'decode_ns': 48.2421, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-below 0 {'elapsed_ns': 26.909, 'decode_calls': 138.0, 'decoded_bytes': 36175855.0, 'fetch_ns': 2.5011, 'admission_ns': 0.0717, 'decode_ns': 26.7746, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-below 2097152 {'elapsed_ns': 2.1321, 'decode_calls': 9.0, 'decoded_bytes': 2359295.0, 'fetch_ns': 0.204, 'admission_ns': 0.006, 'decode_ns': 1.872, 'cache_bytes': 2097151.0, 'cache_entries': 8.0}
+working-at 0 {'elapsed_ns': 26.832, 'decode_calls': 138.0, 'decoded_bytes': 36175872.0, 'fetch_ns': 2.4561, 'admission_ns': 0.0436, 'decode_ns': 27.4145, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-at 2097152 {'elapsed_ns': 2.0805, 'decode_calls': 9.0, 'decoded_bytes': 2359296.0, 'fetch_ns': 0.18, 'admission_ns': 0.0048, 'decode_ns': 1.8468, 'cache_bytes': 2097152.0, 'cache_entries': 8.0}
+working-above 0 {'elapsed_ns': 27.0993, 'decode_calls': 175.0, 'decoded_bytes': 36962338.0, 'fetch_ns': 2.8958, 'admission_ns': 0.0752, 'decode_ns': 27.4065, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-above 2097152 {'elapsed_ns': 14.4899, 'decode_calls': 89.0, 'decoded_bytes': 18874385.0, 'fetch_ns': 0.2953, 'admission_ns': 0.0135, 'decode_ns': 13.7733, 'cache_bytes': 1835009.0, 'cache_entries': 8.0}
+entries-below 0 {'elapsed_ns': 16.3484, 'decode_calls': 1071.0, 'decoded_bytes': 17547264.0, 'fetch_ns': 0.5871, 'admission_ns': 0.0641, 'decode_ns': 14.6812, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+entries-below 2097152 {'elapsed_ns': 1.951, 'decode_calls': 64.0, 'decoded_bytes': 1048576.0, 'fetch_ns': 0.0866, 'admission_ns': 0.0087, 'decode_ns': 0.9444, 'cache_bytes': 1032192.0, 'cache_entries': 63.0}
+entries-at 0 {'elapsed_ns': 16.2954, 'decode_calls': 1088.0, 'decoded_bytes': 17825792.0, 'fetch_ns': 0.5516, 'admission_ns': 0.0733, 'decode_ns': 14.6168, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+entries-at 2097152 {'elapsed_ns': 1.959, 'decode_calls': 65.0, 'decoded_bytes': 1064960.0, 'fetch_ns': 0.0905, 'admission_ns': 0.01, 'decode_ns': 0.9254, 'cache_bytes': 1048576.0, 'cache_entries': 64.0}
+entries-above 0 {'elapsed_ns': 16.5684, 'decode_calls': 1105.0, 'decoded_bytes': 18104320.0, 'fetch_ns': 0.5986, 'admission_ns': 0.0713, 'decode_ns': 14.8035, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+entries-above 2097152 {'elapsed_ns': 19.9965, 'decode_calls': 768.0, 'decoded_bytes': 12582912.0, 'fetch_ns': 6.2335, 'admission_ns': 0.071, 'decode_ns': 11.749, 'cache_bytes': 1048576.0, 'cache_entries': 64.0}
+Current sources match: True
+decoded-seek-synthetic.json
+launch 0 {'elapsed_ns': 5.0602, 'decode_calls': 25.0, 'decoded_bytes': 6494523.0, 'fetch_ns': 0.6163, 'admission_ns': 0.011, 'decode_ns': 6.4411, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+launch 2097152 {'elapsed_ns': 3.1629, 'decode_calls': 9.0, 'decoded_bytes': 2097030.0, 'fetch_ns': 0.2066, 'admission_ns': 0.0064, 'decode_ns': 3.4183, 'cache_bytes': 1153472.0, 'cache_entries': 5.0}
+sequential 0 {'elapsed_ns': 1.6076, 'decode_calls': 5.0, 'decoded_bytes': 1153472.0, 'fetch_ns': 0.0987, 'admission_ns': 0.0056, 'decode_ns': 1.5834, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+sequential 2097152 {'elapsed_ns': 1.3958, 'decode_calls': 5.0, 'decoded_bytes': 1153472.0, 'fetch_ns': 0.0986, 'admission_ns': 0.0067, 'decode_ns': 1.1938, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+one-seek 0 {'elapsed_ns': 0.2856, 'decode_calls': 2.0, 'decoded_bytes': 471779.0, 'fetch_ns': 0.0608, 'admission_ns': 0.0031, 'decode_ns': 0.4396, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+one-seek 2097152 {'elapsed_ns': 0.2919, 'decode_calls': 2.0, 'decoded_bytes': 471779.0, 'fetch_ns': 0.068, 'admission_ns': 0.003, 'decode_ns': 0.4393, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+two-seeks 0 {'elapsed_ns': 0.796, 'decode_calls': 3.0, 'decoded_bytes': 757408.0, 'fetch_ns': 0.1378, 'admission_ns': 0.0052, 'decode_ns': 0.886, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+two-seeks 2097152 {'elapsed_ns': 0.5464, 'decode_calls': 4.0, 'decoded_bytes': 943558.0, 'fetch_ns': 0.092, 'admission_ns': 0.0038, 'decode_ns': 0.8257, 'cache_bytes': 471779.0, 'cache_entries': 2.0}
+chunk-below 0 {'elapsed_ns': 9.0083, 'decode_calls': 6.0, 'decoded_bytes': 12582906.0, 'fetch_ns': 0.0408, 'admission_ns': 0.0051, 'decode_ns': 8.9234, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+chunk-below 2097152 {'elapsed_ns': 3.0957, 'decode_calls': 2.0, 'decoded_bytes': 4194302.0, 'fetch_ns': 0.022, 'admission_ns': 0.0031, 'decode_ns': 3.0103, 'cache_bytes': 2097151.0, 'cache_entries': 1.0}
+chunk-at 0 {'elapsed_ns': 9.8216, 'decode_calls': 6.0, 'decoded_bytes': 12582912.0, 'fetch_ns': 0.0387, 'admission_ns': 0.0042, 'decode_ns': 9.7423, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+chunk-at 2097152 {'elapsed_ns': 3.6789, 'decode_calls': 2.0, 'decoded_bytes': 4194304.0, 'fetch_ns': 0.0265, 'admission_ns': 0.0033, 'decode_ns': 3.5834, 'cache_bytes': 2097152.0, 'cache_entries': 1.0}
+chunk-above 0 {'elapsed_ns': 8.9466, 'decode_calls': 6.0, 'decoded_bytes': 12582918.0, 'fetch_ns': 0.0285, 'admission_ns': 0.0037, 'decode_ns': 8.8833, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+chunk-above 2097152 {'elapsed_ns': 8.9205, 'decode_calls': 6.0, 'decoded_bytes': 12582918.0, 'fetch_ns': 0.0297, 'admission_ns': 0.0033, 'decode_ns': 8.8653, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-below 0 {'elapsed_ns': 6.6112, 'decode_calls': 29.0, 'decoded_bytes': 7602172.0, 'fetch_ns': 0.7697, 'admission_ns': 0.0211, 'decode_ns': 7.5872, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-below 2097152 {'elapsed_ns': 1.7217, 'decode_calls': 9.0, 'decoded_bytes': 2359295.0, 'fetch_ns': 0.1326, 'admission_ns': 0.0045, 'decode_ns': 2.0053, 'cache_bytes': 2097151.0, 'cache_entries': 8.0}
+working-at 0 {'elapsed_ns': 4.9596, 'decode_calls': 24.0, 'decoded_bytes': 6291456.0, 'fetch_ns': 0.4667, 'admission_ns': 0.0102, 'decode_ns': 4.7978, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-at 2097152 {'elapsed_ns': 2.0383, 'decode_calls': 9.0, 'decoded_bytes': 2359296.0, 'fetch_ns': 0.2758, 'admission_ns': 0.0062, 'decode_ns': 1.8633, 'cache_bytes': 2097152.0, 'cache_entries': 8.0}
+working-above 0 {'elapsed_ns': 4.9524, 'decode_calls': 30.0, 'decoded_bytes': 6291462.0, 'fetch_ns': 0.5494, 'admission_ns': 0.0282, 'decode_ns': 4.7894, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+working-above 2097152 {'elapsed_ns': 3.5318, 'decode_calls': 19.0, 'decoded_bytes': 4194307.0, 'fetch_ns': 0.2348, 'admission_ns': 0.0071, 'decode_ns': 3.3112, 'cache_bytes': 1835009.0, 'cache_entries': 8.0}
+entries-below 0 {'elapsed_ns': 3.2249, 'decode_calls': 189.0, 'decoded_bytes': 3096576.0, 'fetch_ns': 0.2389, 'admission_ns': 0.0172, 'decode_ns': 2.7012, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+entries-below 2097152 {'elapsed_ns': 1.299, 'decode_calls': 64.0, 'decoded_bytes': 1048576.0, 'fetch_ns': 0.0766, 'admission_ns': 0.0088, 'decode_ns': 0.9671, 'cache_bytes': 1032192.0, 'cache_entries': 63.0}
+entries-at 0 {'elapsed_ns': 3.0235, 'decode_calls': 192.0, 'decoded_bytes': 3145728.0, 'fetch_ns': 0.1395, 'admission_ns': 0.0167, 'decode_ns': 2.6544, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+entries-at 2097152 {'elapsed_ns': 1.3325, 'decode_calls': 65.0, 'decoded_bytes': 1064960.0, 'fetch_ns': 0.0853, 'admission_ns': 0.01, 'decode_ns': 0.919, 'cache_bytes': 1048576.0, 'cache_entries': 64.0}
+entries-above 0 {'elapsed_ns': 3.0478, 'decode_calls': 195.0, 'decoded_bytes': 3194880.0, 'fetch_ns': 0.1612, 'admission_ns': 0.019, 'decode_ns': 2.6398, 'cache_bytes': 0.0, 'cache_entries': 0.0}
+entries-above 2097152 {'elapsed_ns': 3.4441, 'decode_calls': 152.0, 'decoded_bytes': 2490368.0, 'fetch_ns': 0.8066, 'admission_ns': 0.0137, 'decode_ns': 2.2765, 'cache_bytes': 1048576.0, 'cache_entries': 64.0}
+Current sources match: True
+Native source changes: ['src/blob/chunked_reader.rs', 'src/blob/pack/fetch.rs', 'src/blob/pack/seek_replay.rs']
+shared 1
+native-casita-repository first_ms [360.151, 356.542] repeat_ms [24.387, 24.257]
+fuser-casita-repository first_ms [1079.637, 987.833] repeat_ms [32.252, 28.443]
+host first_ms [225.768, 237.636] repeat_ms [22.815, 21.87]
+shared 8
+native-casita-repository first_ms [594.546, 396.286] repeat_ms [57.103, 42.279]
+fuser-casita-repository first_ms [1145.921, 1113.427] repeat_ms [40.966, 40.58]
+host first_ms [262.732, 240.842] repeat_ms [44.039, 41.937]
+shared 15
+native-casita-repository first_ms [828.605, 425.354] repeat_ms [82.522, 79.348]
+fuser-casita-repository first_ms [1152.668, 1095.686] repeat_ms [81.269, 77.557]
+host first_ms [270.991, 269.44] repeat_ms [80.904, 79.999]
+shared 16
+native-casita-repository first_ms [875.823, 423.504] repeat_ms [88.224, 85.76]
+fuser-casita-repository first_ms [1114.356, 1076.32] repeat_ms [88.215, 83.42]
+host first_ms [280.738, 270.326] repeat_ms [86.387, 85.257]
+shared 17
+native-casita-repository first_ms [903.279, 434.44] repeat_ms [91.497, 92.221]
+fuser-casita-repository first_ms [1152.937, 1117.102] repeat_ms [95.372, 87.05]
+host first_ms [284.948, 278.997] repeat_ms [92.683, 91.467]
+distinct 1
+native-casita-repository first_ms [351.309, 364.376] repeat_ms [27.415, 24.297]
+fuser-casita-repository first_ms [1015.077, 1023.941] repeat_ms [27.776, 27.684]
+host first_ms [228.468, 233.308] repeat_ms [21.618, 21.695]
+distinct 8
+native-casita-repository first_ms [1702.531, 1698.988] repeat_ms [67.266, 61.728]
+fuser-casita-repository first_ms [7971.442, 7945.873] repeat_ms [57.149, 53.099]
+host first_ms [1177.62, 1180.333] repeat_ms [63.834, 72.41]
+distinct 15
+native-casita-repository first_ms [3003.091, 2965.738] repeat_ms [94.987, 100.901]
+fuser-casita-repository first_ms [14407.365, 14474.111] repeat_ms [100.371, 96.956]
+host first_ms [2109.839, 2110.32] repeat_ms [103.109, 91.991]
+distinct 16
+native-casita-repository first_ms [3205.293, 3206.364] repeat_ms [113.082, 110.069]
+fuser-casita-repository first_ms [15873.051, 15268.133] repeat_ms [103.488, 89.322]
+host first_ms [2249.526, 2249.578] repeat_ms [101.876, 100.629]
+distinct 17
+native-casita-repository first_ms [3659.047, 3546.848] repeat_ms [117.533, 115.082]
+fuser-casita-repository first_ms [16806.936, 16790.218] repeat_ms [109.779, 91.159]
+host first_ms [2384.72, 2386.402] repeat_ms [117.507, 114.635]

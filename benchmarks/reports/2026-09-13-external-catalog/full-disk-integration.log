@@ -1,0 +1,7 @@
+
+running 3 tests
+test local_gc_fails_cleanly_when_traversal_state_cannot_spill ... ok
+test local_gc_preserves_roots_when_garbage_cannot_release_space ... ok
+test local_gc_succeeds_after_filesystem_returns_enospc ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.45s

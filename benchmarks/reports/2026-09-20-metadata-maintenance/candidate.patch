@@ -1,0 +1,204 @@
+diff --git a/src/repository.rs b/src/repository.rs
+index 77e6806..f77c1d3 100644
+--- a/src/repository.rs
++++ b/src/repository.rs
+@@ -2162,7 +2162,8 @@ trait MutationStart: Send + Sync {
+     fn collection_completed(&self) {}
+ }
+ 
+-/// The standard local profile's once-per-handle, pressure-driven collector.
++/// The standard local profile's bounded metadata maintenance and
++/// once-per-handle, pressure-driven collector.
+ ///
+ /// The cloned repository intentionally has no `mutation_start` hook of its
+ /// own, so entering collection here cannot recurse back into this policy.
+@@ -2170,11 +2171,13 @@ struct LocalMutationStart<PS, SS> {
+     repository: Repository<PS, SS>,
+     root: PathBuf,
+     completed: std::sync::atomic::AtomicBool,
++    reclaim_countdown: std::sync::atomic::AtomicUsize,
+     attempt: tokio::sync::Mutex<()>,
+ }
+ 
+ const PRESSURE_COLLECTION_STAMP: &str = ".casita-pressure-collection";
+ const PRESSURE_COLLECTION_COOLDOWN: Duration = Duration::from_secs(60 * 60);
++const METADATA_RECLAIM_INTERVAL: usize = 16;
+ 
+ impl<PS, SS> LocalMutationStart<PS, SS> {
+     fn new(repository: Repository<PS, SS>, root: PathBuf) -> Self {
+@@ -2182,6 +2185,7 @@ impl<PS, SS> LocalMutationStart<PS, SS> {
+             repository,
+             root,
+             completed: std::sync::atomic::AtomicBool::new(false),
++            reclaim_countdown: std::sync::atomic::AtomicUsize::new(0),
+             attempt: tokio::sync::Mutex::new(()),
+         }
+     }
+@@ -2218,13 +2222,28 @@ where
+     async fn before_mutation(&self, spill_limits: SpillLimits) -> Result<bool, RepositoryError> {
+         use std::sync::atomic::Ordering;
+ 
+-        // Rebase writes a persistent marker. Reclaim it at the next safe
+-        // mutation boundary, but never make a writer wait for a live reader or
+-        // another process.
+-        let mut discovery_refreshed = match self.repository.try_reclaim_metadata().await {
+-            Ok(refreshed) => refreshed,
+-            Err(RepositoryError::Busy(_)) => false,
+-            Err(error) => return Err(error),
++        // Historical catalog pins can keep the persistent reclaim marker set
++        // after a successful sweep. Share a bounded deferral across clones to
++        // avoid paying for the same sweep on every mutation. A busy or failed
++        // attempt does not start the deferral; reopen and vacuum bypass it.
++        let reclaim_due = self
++            .reclaim_countdown
++            .fetch_update(Ordering::AcqRel, Ordering::Acquire, |n| n.checked_sub(1))
++            .is_err();
++        let mut discovery_refreshed = if reclaim_due {
++            match self.repository.try_reclaim_metadata().await {
++                Ok(refreshed) => {
++                    if refreshed {
++                        self.reclaim_countdown
++                            .store(METADATA_RECLAIM_INTERVAL - 1, Ordering::Release);
++                    }
++                    refreshed
++                }
++                Err(RepositoryError::Busy(_)) => false,
++                Err(error) => return Err(error),
++            }
++        } else {
++            false
+         };
+ 
+         if self.completed.load(Ordering::Acquire) || self.collection_is_recent() {
+@@ -10802,41 +10821,46 @@ mod tests {
+             .unwrap();
+         drop(mutation);
+         crate::flush_repository_leases().await.unwrap();
+-        assert!(repository.try_reclaim_metadata().await.unwrap());
+-        assert!(!marker.exists());
++        let retry = repository.mutation_session().await.unwrap();
++        assert!(
++            !marker.exists(),
++            "busy maintenance must retry on the next start"
++        );
++        drop(retry);
++        crate::flush_repository_leases().await.unwrap();
+         assert!(repository.fsck().await.unwrap().is_clean());
+         drop(repository);
+         let reopened = Repository::local(temporary.path()).await.unwrap();
+         assert!(reopened.fsck().await.unwrap().is_clean());
+     }
+ 
++    fn install_catalog_garbage(root: &Path, seed: &[u8]) -> (PathBuf, PathBuf) {
++        let digest = Digest::from(blake3::hash(seed)).to_hex();
++        let object = root
++            .join("blobs/pack-indexes/b3")
++            .join(&digest[..2])
++            .join(digest.as_str());
++        std::fs::create_dir_all(object.parent().unwrap()).unwrap();
++        std::fs::write(&object, b"unreachable catalog object").unwrap();
++        let marker = root.join("blobs/pack-index-reclaim-needed");
++        std::fs::write(&marker, b"catalog garbage may be present\n").unwrap();
++        (object, marker)
++    }
++
+     #[tokio::test]
+     async fn local_catalog_reclamation_runs_before_mutation_and_during_reopen() {
+-        fn install_garbage(root: &Path, seed: &[u8]) -> (PathBuf, PathBuf) {
+-            let digest = Digest::from(blake3::hash(seed)).to_hex();
+-            let object = root
+-                .join("blobs/pack-indexes/b3")
+-                .join(&digest[..2])
+-                .join(digest.as_str());
+-            std::fs::create_dir_all(object.parent().unwrap()).unwrap();
+-            std::fs::write(&object, b"unreachable catalog object").unwrap();
+-            let marker = root.join("blobs/pack-index-reclaim-needed");
+-            std::fs::write(&marker, b"catalog garbage may be present\n").unwrap();
+-            (object, marker)
+-        }
+-
+         let temporary = tempfile::tempdir().unwrap();
+         let store_root = temporary.path().join("store");
+         let repository = Repository::local(&store_root).await.unwrap();
+ 
+-        let (object, marker) = install_garbage(&store_root, b"live handle garbage");
++        let (object, marker) = install_catalog_garbage(&store_root, b"live handle garbage");
+         let mutation = repository.mutation_session().await.unwrap();
+         assert!(!object.exists());
+         assert!(!marker.exists());
+         drop(mutation);
+         drop(repository);
+ 
+-        let (object, marker) = install_garbage(&store_root, b"restart garbage");
++        let (object, marker) = install_catalog_garbage(&store_root, b"restart garbage");
+         let reopened = Repository::local(&store_root).await.unwrap();
+         assert!(!object.exists());
+         assert!(!marker.exists());
+@@ -10844,7 +10868,7 @@ mod tests {
+ 
+         let reader = Repository::local(&store_root).await.unwrap();
+         let writer = Repository::local(&store_root).await.unwrap();
+-        let (object, marker) = install_garbage(&store_root, b"garbage unrelated to reader");
++        let (object, marker) = install_catalog_garbage(&store_root, b"garbage unrelated to reader");
+         let hold = reader.retention_hold().await.unwrap();
+         let mutation = writer.mutation_session().await.unwrap();
+         assert!(!object.exists());
+@@ -10853,10 +10877,54 @@ mod tests {
+         drop(mutation);
+         drop(hold);
+ 
+-        let mutation = writer.mutation_session().await.unwrap();
+-        assert!(!object.exists());
+-        assert!(!marker.exists());
+-        drop(mutation);
++        crate::flush_repository_leases().await.unwrap();
++        for start in 1..=METADATA_RECLAIM_INTERVAL {
++            let mutation = writer.mutation_session().await.unwrap();
++            assert!(!object.exists());
++            assert_eq!(marker.exists(), start < METADATA_RECLAIM_INTERVAL);
++            drop(mutation);
++            crate::flush_repository_leases().await.unwrap();
++        }
++    }
++
++    #[tokio::test]
++    async fn local_catalog_reclamation_has_a_shared_bounded_deferral() {
++        let temporary = tempfile::tempdir().unwrap();
++        let repository = Repository::local(temporary.path()).await.unwrap();
++        let clone = repository.clone();
++        // A start without pending work must not defer the first actual sweep.
++        drop(repository.mutation_session().await.unwrap());
++        crate::flush_repository_leases().await.unwrap();
++        let (first, _) = install_catalog_garbage(temporary.path(), b"first sweep");
++        drop(repository.mutation_session().await.unwrap());
++        assert!(!first.exists());
++        crate::flush_repository_leases().await.unwrap();
++
++        let (object, marker) = install_catalog_garbage(temporary.path(), b"deferred sweep");
++        for start in 1..=METADATA_RECLAIM_INTERVAL {
++            let handle = if start % 2 == 0 { &repository } else { &clone };
++            drop(handle.mutation_session().await.unwrap());
++            assert_eq!(object.exists(), start < METADATA_RECLAIM_INTERVAL);
++            assert_eq!(marker.exists(), start < METADATA_RECLAIM_INTERVAL);
++            crate::flush_repository_leases().await.unwrap();
++        }
++
++        let (object, _) = install_catalog_garbage(temporary.path(), b"explicit vacuum");
++        drop(clone.mutation_session().await.unwrap());
++        assert!(object.exists(), "the deferral must still be active");
++        crate::flush_repository_leases().await.unwrap();
++        repository.vacuum().await.unwrap();
++        assert!(!object.exists(), "vacuum must bypass admission deferral");
++
++        let (object, _) = install_catalog_garbage(temporary.path(), b"reopen during deferral");
++        drop(repository.mutation_session().await.unwrap());
++        assert!(object.exists());
++        drop(clone);
++        drop(repository);
++        crate::flush_repository_leases().await.unwrap();
++        let reopened = Repository::local(temporary.path()).await.unwrap();
++        assert!(!object.exists(), "reopen must bypass admission deferral");
++        assert!(reopened.fsck().await.unwrap().is_clean());
+     }
+ 
+     #[tokio::test]

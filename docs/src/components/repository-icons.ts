@@ -1,0 +1,15 @@
+export const repositoryIcons = {
+  object: 'M7 3h8l4 4v14H5V3z M14 3v5h5 M8 12h8 M8 16h6',
+  blob: 'M20 6c0 2-4 3-8 3S4 8 4 6s4-3 8-3 8 1 8 3z M4 6v12c0 2 4 3 8 3s8-1 8-3V6 M4 12c0 2 4 3 8 3s8-1 8-3',
+  terminal: 'M4 4h16v16H4z M8 9l3 3-3 3 M13 15h3',
+  package: 'M12 3l9 5v9l-9 5-9-5V8z M3 8l9 5 9-5 M12 13v9 M7.5 5.5l9 5',
+  edit: 'M14 5l5 5 M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14z',
+  sync: 'M4 8h15l-4-4 M20 16H5l4 4',
+  trash: 'M4 6h16 M9 6V3h6v3 M6 6l1 15h10l1-15 M10 10v7 M14 10v7',
+  server: 'M4 3h16v7H4z M4 14h16v7H4z M7 6h.01 M7 17h.01 M11 6h6 M11 17h6',
+  laptop: 'M5 4h14v12H5z M2 20h20l-3-4H5z',
+  check: 'M5 12l4 4L19 6',
+  play: 'M8 4l12 8-12 8z',
+  pause: 'M8 4v16 M16 4v16',
+  reset: 'M4 10a8 8 0 1 1 1 8 M4 4v6h6',
+} as const;

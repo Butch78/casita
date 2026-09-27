@@ -1,0 +1,135 @@
+{
+  "imports": 60,
+  "pair": 1,
+  "variant": "before",
+  "reason": "host did not become quiet before the deadline",
+  "last_sample": {
+    "external_cpu_fraction": 0.6936804838725287,
+    "kernel_worker_cpu_fraction": 0.007510848239919103,
+    "top_external_processes": [
+      {
+        "pid": 3415395,
+        "name": "rustc",
+        "ticks": 646
+      },
+      {
+        "pid": 3417127,
+        "name": "clippy-driver",
+        "ticks": 103
+      },
+      {
+        "pid": 3417131,
+        "name": "clippy-driver",
+        "ticks": 85
+      },
+      {
+        "pid": 3421720,
+        "name": "write_path",
+        "ticks": 75
+      },
+      {
+        "pid": 3422438,
+        "name": "rustc",
+        "ticks": 53
+      },
+      {
+        "pid": 3423078,
+        "name": "rustc",
+        "ticks": 44
+      },
+      {
+        "pid": 3423928,
+        "name": "rustc",
+        "ticks": 43
+      },
+      {
+        "pid": 3423343,
+        "name": "rustc",
+        "ticks": 38
+      }
+    ],
+    "competing_processes": [
+      {
+        "pid": 3405102,
+        "name": "cargo"
+      },
+      {
+        "pid": 3410321,
+        "name": "rustc"
+      },
+      {
+        "pid": 3415219,
+        "name": ".cargo-wrapped"
+      },
+      {
+        "pid": 3415395,
+        "name": "rustc"
+      },
+      {
+        "pid": 3415479,
+        "name": ".cargo-wrapped"
+      },
+      {
+        "pid": 3416462,
+        "name": "cargo"
+      },
+      {
+        "pid": 3420778,
+        "name": "rustc"
+      },
+      {
+        "pid": 3422331,
+        "name": "rustc"
+      },
+      {
+        "pid": 3422438,
+        "name": "rustc"
+      },
+      {
+        "pid": 3423078,
+        "name": "rustc"
+      },
+      {
+        "pid": 3423343,
+        "name": "rustc"
+      },
+      {
+        "pid": 3423365,
+        "name": "rustc"
+      },
+      {
+        "pid": 3423532,
+        "name": "rustc"
+      },
+      {
+        "pid": 3423928,
+        "name": "rustc"
+      },
+      {
+        "pid": 3424142,
+        "name": "rustc"
+      },
+      {
+        "pid": 3424149,
+        "name": "rustc"
+      },
+      {
+        "pid": 3424177,
+        "name": "rustc"
+      },
+      {
+        "pid": 3424218,
+        "name": "rustc"
+      },
+      {
+        "pid": 3424238,
+        "name": "rustc"
+      },
+      {
+        "pid": 3424273,
+        "name": "rustc"
+      }
+    ],
+    "interval_seconds": 1.1649816000135615
+  }
+}

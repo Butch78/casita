@@ -1,0 +1,102 @@
+{
+  "complete": true,
+  "method": "Median per-pair candidate/baseline minus one, pooled across the initial and follow-up runs; positive is slower.",
+  "cases": [
+    {
+      "count": 65,
+      "holds": 1,
+      "pairs": 8,
+      "sql_change_percent": -3.9049853734712148,
+      "whole_change_percent": -4.392593734463712,
+      "release_change_percent": -3.9217367764534936
+    },
+    {
+      "count": 65,
+      "holds": 8,
+      "pairs": 8,
+      "sql_change_percent": -20.38136599087127,
+      "whole_change_percent": 14.156111215535816,
+      "release_change_percent": -13.156648493064099
+    },
+    {
+      "count": 65,
+      "holds": 10,
+      "pairs": 8,
+      "sql_change_percent": -23.140136432741343,
+      "whole_change_percent": -1.6266186902744506,
+      "release_change_percent": 2.355883607370596
+    },
+    {
+      "count": 66,
+      "holds": 1,
+      "pairs": 8,
+      "sql_change_percent": -14.677385574510643,
+      "whole_change_percent": -23.959042671554847,
+      "release_change_percent": -12.052757819338183
+    },
+    {
+      "count": 66,
+      "holds": 8,
+      "pairs": 8,
+      "sql_change_percent": -18.282800914834308,
+      "whole_change_percent": 6.761492547577353,
+      "release_change_percent": 3.22510590590574
+    },
+    {
+      "count": 66,
+      "holds": 10,
+      "pairs": 8,
+      "sql_change_percent": -1.580200910642332,
+      "whole_change_percent": -3.3835626015137787,
+      "release_change_percent": 11.719077014651337
+    },
+    {
+      "count": 128,
+      "holds": 1,
+      "pairs": 3,
+      "sql_change_percent": -4.892021946307046,
+      "whole_change_percent": -2.9400364444767235,
+      "release_change_percent": -3.192684716091876
+    },
+    {
+      "count": 128,
+      "holds": 8,
+      "pairs": 3,
+      "sql_change_percent": 9.482824342956974,
+      "whole_change_percent": -1.17518557619829,
+      "release_change_percent": 3.4006856284505504
+    },
+    {
+      "count": 128,
+      "holds": 10,
+      "pairs": 3,
+      "sql_change_percent": 0.3602605380910173,
+      "whole_change_percent": 6.399890058507807,
+      "release_change_percent": -17.95586598569804
+    },
+    {
+      "count": 1024,
+      "holds": 1,
+      "pairs": 3,
+      "sql_change_percent": -17.86690140396766,
+      "whole_change_percent": -30.422259617944203,
+      "release_change_percent": 14.232943356445894
+    },
+    {
+      "count": 1024,
+      "holds": 8,
+      "pairs": 3,
+      "sql_change_percent": -31.935543893936813,
+      "whole_change_percent": 8.712103431830332,
+      "release_change_percent": -0.13839409730542762
+    },
+    {
+      "count": 1024,
+      "holds": 10,
+      "pairs": 3,
+      "sql_change_percent": -29.836830169659358,
+      "whole_change_percent": -22.952684929387026,
+      "release_change_percent": -10.355099027533864
+    }
+  ]
+}

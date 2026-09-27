@@ -1,0 +1,24 @@
+[package]
+name = "fskit-native"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.94.1"
+license = "MIT"
+publish = false
+description = "Filesystem contracts and lifecycle for native Rust FSKit extensions"
+repository = "https://github.com/cachix/casita"
+
+[features]
+setup = ["dep:tempfile", "dep:serde_json"]
+
+[target.'cfg(unix)'.dependencies]
+tempfile = { version = "3", optional = true }
+serde_json = { version = "1", optional = true }
+libc = "0.2"
+tracing = "0.1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6.4"
+objc2-foundation = { version = "0.3.2", default-features = false, features = ["std", "block2", "NSDictionary", "NSArray", "NSError", "NSString", "NSProgress", "NSURL"] }
+objc2-fs-kit = "0.3.2"
+block2 = "0.6.2"

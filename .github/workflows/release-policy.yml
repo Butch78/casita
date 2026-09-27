@@ -1,0 +1,41 @@
+name: Release policy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "41 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependencies:
+    name: advisories, licenses, and sources
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: EmbarkStudios/cargo-deny-action@v2.1.1
+        with:
+          rust-version: "1.96.0"
+          command: check
+          arguments: --all-features
+
+  # The pull request's actual base commit is the intended compatibility
+  # baseline. This also works before Casita has a published crates.io release.
+  semver:
+    if: github.event_name == 'pull_request'
+    name: public API compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: obi1kenobi/cargo-semver-checks-action@v2
+        with:
+          baseline-rev: ${{ github.event.pull_request.base.sha }}
+          feature-group: all-features
+          release-type: patch
+          rust-toolchain: "1.96.0"

@@ -1,0 +1,219 @@
+[
+  {
+    "run": "http-default",
+    "writers": 1,
+    "mode": "disjoint-put",
+    "statuses": {
+      "200": 8
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 8,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 1,
+    "mode": "hot-put",
+    "statuses": {
+      "200": 8
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 8,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 1,
+    "mode": "hot-cas",
+    "statuses": {
+      "200": 16
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 8,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 10,
+    "mode": "disjoint-put",
+    "statuses": {
+      "200": 80
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 80,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 10,
+    "mode": "hot-put",
+    "statuses": {
+      "200": 79,
+      "503": 1
+    },
+    "latency_503_median": 5.036024761968292,
+    "latency_503_min": 5.036024761968292,
+    "latency_503_max": 5.036024761968292,
+    "acknowledged": 79,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 10,
+    "mode": "hot-cas",
+    "statuses": {
+      "200": 90,
+      "412": 70
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 10,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 32,
+    "mode": "disjoint-put",
+    "statuses": {
+      "200": 256
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 256,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 32,
+    "mode": "hot-put",
+    "statuses": {
+      "200": 203,
+      "503": 53
+    },
+    "latency_503_median": 5.019534472026862,
+    "latency_503_min": 5.006154782953672,
+    "latency_503_max": 5.494611409027129,
+    "acknowledged": 203,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 32,
+    "mode": "hot-cas",
+    "statuses": {
+      "200": 265,
+      "412": 247
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 9,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 64,
+    "mode": "disjoint-put",
+    "statuses": {
+      "200": 512
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 512,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 64,
+    "mode": "hot-put",
+    "statuses": {
+      "200": 352,
+      "503": 160
+    },
+    "latency_503_median": 5.015161461487878,
+    "latency_503_min": 5.003682817099616,
+    "latency_503_max": 5.306092128972523,
+    "acknowledged": 352,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 64,
+    "mode": "hot-cas",
+    "statuses": {
+      "200": 525,
+      "412": 499
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 13,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 100,
+    "mode": "disjoint-put",
+    "statuses": {
+      "200": 800
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 800,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 100,
+    "mode": "hot-put",
+    "statuses": {
+      "200": 556,
+      "503": 244
+    },
+    "latency_503_median": 5.004685293533839,
+    "latency_503_min": 5.002330275950953,
+    "latency_503_max": 5.369528528070077,
+    "acknowledged": 556,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-default",
+    "writers": 100,
+    "mode": "hot-cas",
+    "statuses": {
+      "200": 812,
+      "412": 788
+    },
+    "latency_503_median": null,
+    "latency_503_min": null,
+    "latency_503_max": null,
+    "acknowledged": 12,
+    "fresh_readback": true
+  },
+  {
+    "run": "http-lock2",
+    "writers": 32,
+    "mode": "hot-put",
+    "statuses": {
+      "200": 237,
+      "503": 19
+    },
+    "latency_503_median": 2.005767483031377,
+    "latency_503_min": 2.0025581780355424,
+    "latency_503_max": 2.1005512150004506,
+    "acknowledged": 237,
+    "fresh_readback": true
+  }
+]

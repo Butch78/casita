@@ -1,0 +1,132 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 162  of event 'cpu-clock:u'
+# Event count (approx.): 324649296
+#
+# Overhead  Command          Shared Object          Symbol                                                                                                                                                                            
+# ........  ...............  .....................  ..................................................................................................................................................................................
+#
+     9.26%  tokio-rt-worker  libc.so.6              [.] __memmove_avx512_unaligned_erms
+     3.70%  obrador-reads-d  obrador-reads-durable  [.] _blake3_compress_in_place_avx512
+     3.09%  tokio-rt-worker  libc.so.6              [.] _int_malloc
+     1.85%  obrador-reads-d  libc.so.6              [.] __memmove_avx512_unaligned_erms
+     1.85%  obrador-reads-d  libc.so.6              [.] _int_free_chunk
+     1.85%  tokio-rt-worker  libc.so.6              [.] __syscall_cancel_arch_end
+     1.85%  tokio-rt-worker  libc.so.6              [.] malloc_consolidate
+     1.85%  tokio-rt-worker  libc.so.6              [.] syscall
+     1.85%  tokio-rt-worker  obrador-reads-durable  [.] _blake3_hash_many_avx512
+     1.23%  obrador-reads-d  libc.so.6              [.] __memcmp_evex_movbe
+     1.23%  obrador-reads-d  libc.so.6              [.] _int_malloc
+     1.23%  tokio-rt-worker  [vdso]                 [.] 0x0000000000000d9d
+     1.23%  tokio-rt-worker  libc.so.6              [.] __internal_syscall_cancel
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] _RNvCsGIExRX8pES_7___rustc13___rdl_dealloc
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::connection::SymbolTable::extend
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::stats::AnalyzeStats::table_stats
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::walk::walk_expr
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::walk::walk_expr_mut
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::find_select_plan_form
+     1.23%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::select::count_required_cursors_for_simple_select
+     0.62%  obrador-reads-d  libc.so.6              [.] __lll_lock_wait_private
+     0.62%  obrador-reads-d  libc.so.6              [.] __lll_lock_wake_private
+     0.62%  obrador-reads-d  libc.so.6              [.] cfree@GLIBC_2.2.5
+     0.62%  obrador-reads-d  libc.so.6              [.] syscall
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] <bytes::bytes::Bytes as core::convert::From<alloc::vec::Vec<u8>>>::from
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] <tokio::runtime::task::join::JoinHandle<T> as core::future::future::Future>::poll
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] <tokio::runtime::task::join::JoinHandle<T> as core::future::future::Future>::poll
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] <tokio::sync::oneshot::Receiver<T> as core::future::future::Future>::poll
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] ZSTD_decompressStream
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] ZSTD_getFrameHeader_advanced
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] _ZN71_$LT$core..hash..sip..Hasher$LT$S$GT$$u20$as$u20$core..hash..Hasher$GT$5write17h5d67d0edfc53212fE.llvm.2230335419650397542
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] _ZN83_$LT$casita..blob..chunked..ChunkedBlobStore$u20$as$u20$casita..blob..BlobStore$GT$9open_read28_$u7b$$u7b$closure$u7d$$u7d$17h542a644c2279fc42E.llvm.16496025516197346885
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] _ZN8arc_swap4debt4Debt7pay_all28_$u7b$$u7b$closure$u7d$$u7d$17h2b8d040e7bbdacdaE.llvm.6477581804857955307
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] casita::repository::Repository$LT$PS$C$SS$GT$::logical_collection_plan_with_recovery::_$u7b$$u7b$closure$u7d$$u7d$::hafed30c4b1e1b325
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] casita::repository::Repository$LT$PS$C$SS$GT$::retained_reader::_$u7b$$u7b$closure$u7d$$u7d$::h8040f602e15ef8c3
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] tokio::runtime::blocking::pool::Spawner::spawn_task
+     0.62%  obrador-reads-d  obrador-reads-durable  [.] zstd_safe::DCtx::in_size
+     0.62%  tokio-rt-worker  libc.so.6              [.] __libc_malloc2
+     0.62%  tokio-rt-worker  libc.so.6              [.] __memcmp_evex_movbe
+     0.62%  tokio-rt-worker  libc.so.6              [.] __memset_avx512_unaligned_erms
+     0.62%  tokio-rt-worker  libc.so.6              [.] malloc
+     0.62%  tokio-rt-worker  libc.so.6              [.] realloc
+     0.62%  tokio-rt-worker  libm.so.6              [.] __ieee754_log_fma
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <T as alloc::vec::spec_from_elem::SpecFromElem>::from_elem
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <alloc::vec::Vec<T,A> as core::clone::Clone>::clone
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <alloc::vec::drain::Drain<T,A> as core::ops::drop::Drop>::drop
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <alloc::vec::drain::Drain<T,A> as core::ops::drop::Drop>::drop
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <core::iter::adapters::map::Map<I,F> as core::iter::traits::iterator::Iterator>::try_fold
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <smallvec::SmallVec<A> as core::iter::traits::collect::Extend<<A as smallvec::Array>::Item>>::extend
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_core::storage::btree::BTreeCursor as turso_core::storage::btree::CursorTrait>::record
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_core::storage::btree::BTreeCursor as turso_core::storage::btree::CursorTrait>::seek
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_core::storage::wal::ShmWalCoordination as turso_core::storage::wal::WalCoordination>::ensure_local_frame_cache_covers
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_core::storage::wal::WalFile as turso_core::storage::wal::Wal>::find_frame
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_core::types::ValueIterator as core::iter::traits::iterator::Iterator>::fold
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_parser::ast::Expr as turso_core::translate::optimizer::Optimizable>::check_always_true_or_false
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] <turso_parser::ast::PragmaName as core::str::traits::FromStr>::from_str
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] ZSTD_decompressBlock_internal
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] _RNvMNtCs75vJTIYSa2J_3std4timeNtB2_7Instant7elapsed
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] _RNvNtNtCs27Vx93FoQ6z_4core3str8converts9from_utf8
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] _ZN10turso_core7storage5pager5Pager16read_header_page17h4f001faf95dc11ceE.llvm.6477581804857955307
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] _ZN4core3ptr65drop_in_place$LT$$LP$turso_core..vdbe..insn..Insn$C$usize$RP$$GT$17hdbc21100359879acE.llvm.8854206554899608120
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] _ZN62_$LT$turso_parser..ast..Expr$u20$as$u20$core..clone..Clone$GT$5clone17hb08a9d326ef757e1E.llvm.5123675434328947050
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] _blake3_compress_in_place_avx512
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] alloc::vec::Vec<T,A>::resize
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] alloc::vec::Vec<T,A>::retain
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] casita::blob::pack::Index::add_pack
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] casita::metadata::pins::persistent::journal::incremental::Changes::absorb
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] core::ops::function::FnOnce::call_once
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] core::ptr::drop_in_place<turso_core::translate::plan::TableReferences>
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] hashbrown::raw::RawTable<T,A>::reserve_rehash
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] tokio::runtime::scheduler::multi_thread::queue::Steal<T>::steal_into
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] tokio::runtime::task::core::Core<T,S>::set_stage
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] tokio::runtime::task::harness::Harness<T,S>::poll
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] tokio::runtime::task::harness::Harness<T,S>::poll
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] tokio::task::task_local::_::<impl core::ops::drop::Drop for tokio::task::task_local::TaskLocalFuture<T,F>>::drop
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso::Statement::step
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso::rows::Row::get
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::dialect::sqlite::parse
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::storage::btree::BTreeCursor::move_to_root_nonblock
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::storage::page_cache::PageCache::get
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::storage::pager::Pager::get_schema_cookie
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::storage::shared_wal_coordination::MappedSharedWalCoordination::find_frame
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::storage::shared_wal_coordination::MappedSharedWalCoordination::unregister_reader_for_snapshot
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::storage::sqlite3_ondisk::begin_read_wal_frame
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::emission::emit_literal
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::vectors::expr_vector_size
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::walk::walk_expr_mut
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::walk::walk_expr_mut
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::expr::walk::walk_expr_mut
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::main_loop::body::LoopBodyEmitter::emit
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::AvailableIndexes::for_table_references
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::base_row_estimate
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::constraints::Constraint::get_constraining_expr
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::constraints::constraints_from_where_clause
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::join::join_lhs_and_rhs
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::multi_index::consider_multi_index_intersection
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::optimizer::optimize_plan
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::plan::JoinedTable::index_covers_columns
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::plan::JoinedTable::open_cursors
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::plan::JoinedTable::resolve_cursors
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::plan::TableReferences::mark_column_used
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::planner::append_vtab_predicates_to_where_clause
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::planner::parse_from
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::select::prepare_one_select_plan
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::select::prepare_select_plan
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::select::translate_select
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::translate::translate_inner
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::types::IndexInfo::new_from_index
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::types::compare_records_generic
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::vdbe::execute::halt
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::vdbe::execute::op_affinity
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_core::vdbe::execute::op_copy
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_parser::parser::Parser::parse_eid_list
+     0.62%  tokio-rt-worker  obrador-reads-durable  [.] turso_parser::parser::Parser::parse_from_clause
+
+
+#
+# (Tip: For tracepoint events, try: perf report -s trace_fields)
+#

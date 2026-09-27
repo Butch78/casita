@@ -1,0 +1,6 @@
+{
+  "benchmarks/suites/pin_http.py": "5ee5f361b728d8b8c76c405960d171174cc1e3359b2e9b20de60af24c4e83ab5",
+  "benchmarks/suites/pin_protocol.py": "4e54d990eb086c639c464a8c041dc02d37e10a1aea01f05313bbea31da6baf3e",
+  "benchmarks/suites/pin_protocol_s3.py": "1c17bea48de14debfff0d071037e3e7bc8ef5e715b89ef8c7f0e546d59794c12",
+  "src/metadata/pins/persistent/remote_benchmark.rs": "8d74a960c74a1cb5d20ecc598943224fa81168f48d9b4dde73c7f499327c215b"
+}

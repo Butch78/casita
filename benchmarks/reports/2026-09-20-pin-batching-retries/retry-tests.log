@@ -1,0 +1,12 @@
+
+running 7 tests
+test repository::publication_retry_tests::ambiguous_commit_is_not_replayed ... ok
+test repository::publication_retry_tests::maintenance_retries_keep_staging_and_exact_revision ... ok
+test repository::publication_retry_tests::retry_window_does_not_start_an_attempt_after_its_deadline ... ok
+test repository::publication_retry_tests::cancelled_maintenance_attempt_keeps_protection_until_it_settles ... ok
+test repository::publication_retry_tests::maintenance_retry_rechecks_original_root_expectation ... ok
+test repository::publication_retry_tests::maintenance_and_stale_revision_share_one_attempt_budget ... ok
+test repository::publication_retry_tests::collection_preserves_staged_payload_during_maintenance_refusal ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 731 filtered out; finished in 0.02s
+

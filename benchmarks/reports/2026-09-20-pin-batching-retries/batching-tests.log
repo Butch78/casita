@@ -1,0 +1,7 @@
+
+running 2 tests
+test blob::chunked::tests::small_blob_waits_for_chunk_claim_without_partially_protecting_blob ... ok
+test blob::chunked::tests::small_blob_protects_both_identities_in_one_ledger_edit ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 736 filtered out; finished in 0.73s
+

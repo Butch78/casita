@@ -1,0 +1,1522 @@
+diff --git a/benchmarks/README.md b/benchmarks/README.md
+index 27f007b..36330b8 100644
+--- a/benchmarks/README.md
++++ b/benchmarks/README.md
+@@ -2643,3 +2643,42 @@ benchmark all --suites filesystem-outputs --repetitions 1 --output /tmp/filesyst
+ Use `--counts`, `--files`, and `--sizes` to select a matrix. `--probe-binary`
+ accepts a prebuilt release library test executable; add `--no-build` to require
+ it. These synthetic Casita timings do not measure Obrador end-to-end build time.
++
++## Casitar record protection and destination reuse
++
++The permanent Casitar scaling corpus measures archive creation, inspection, and
++imports into empty, half-seeded, and fully seeded repositories. Every import
++checks exact reuse counters, archive identity, root preservation, full checkout
++contents and executable bits, and fsck. Corrupted incoming bytes must fail even
++when the destination already has their payload.
++
++All four runners participate in `benchmark all`:
++
++- `casitar-scaling`: payload sizes around 64 KiB and object-count scaling.
++- `casitar-import-profile`: opt-in import phase timings.
++- `casitar-pin-profile`: pin-journal counts with a bounded append budget.
++- `casitar-quiet-import`: paired latency measurements without phase timing.
++
++The object-count cases include 254 and 256 files, giving 255 and 257 records
++including the directory, on opposite sides of the 256-record publication batch.
++The standard import matrix also includes 4,096 files.
++
++```sh
++benchmark run casitar-pin-profile --profile smoke --repetitions 1 \
++  --casita-bin /absolute/candidate --baseline-bin /absolute/baseline \
++  --output /absolute/boundary.json
++benchmark run casitar-quiet-import --profile standard --file-counts 4096 \
++  --repetitions 4 --max-external-cpu-percent 40 \
++  --casita-bin /absolute/candidate --baseline-bin /absolute/baseline \
++  --output /absolute/paired.json
++```
++
++The latency runner alternates binary and case order. It requires ten consecutive
++seconds under the external CPU ceiling before each case and samples activity
++through setup, timing, and verification. The default ceiling is 40% across all
++logical CPUs. Compiler activity is recorded without a separate rejection rule.
++This measures a shared host, with no disk-isolation claim. Incomplete or rejected
++runs retain their evidence and cannot be normalized as completed comparisons.
++
++See [the current-main comparison](reports/casitar-current-main-20260925/README.md)
++for exact source, binary, dependency, and result provenance.
+diff --git a/benchmarks/all.py b/benchmarks/all.py
+index d0bc4c7..df95b1b 100644
+--- a/benchmarks/all.py
++++ b/benchmarks/all.py
+@@ -108,6 +108,10 @@ SMOKE = {
+     "catalog-durability": ["--iterations", "10"],
+     "logical-state": ["--entries", "4096"],
+     "casitar": ["--profile", "smoke"],
++    "casitar-scaling": ["--profile", "smoke"],
++    "casitar-import-profile": ["--profile", "smoke"],
++    "casitar-pin-profile": ["--profile", "smoke"],
++    "casitar-quiet-import": ["--profile", "smoke"],
+     "fault-and-recovery": ["--profile", "smoke"],
+     "history-scale": ["--profile", "smoke"],
+     "pack-cache-scale": ["--profile", "smoke"],
+@@ -139,7 +143,7 @@ def build_commands(selected, build_dir):
+             names.add(SUITE_BUILD_SPECS[suite].artifact_name)
+         elif suite in {"state-publication", "catalog-maintenance", "catalog-durability", "logical-state", "s3-catalog-index"}:
+             names.add("casita-lib-test")
+-        elif suite in {"casitar", "fault-and-recovery", "generations", "process-contention"}:
++        elif suite in {"casitar", "casitar-scaling", "casitar-import-profile", "casitar-pin-profile", "casitar-quiet-import", "fault-and-recovery", "generations", "process-contention"}:
+             names.add("casita")
+     if "fsck" in selected:
+         names.add("casita-lib-test")
+@@ -203,8 +207,10 @@ def suite_arguments(identifier, binary_dir, profile, repetitions):
+         arguments += ["--seed-probe", str(binary_dir / "casita-lib-test")]
+     if identifier in {"state-publication", "catalog-maintenance", "catalog-durability", "logical-state", "s3-catalog-index"}:
+         arguments += ["--probe-binary", str(binary_dir / "casita-lib-test")]
+-    elif identifier in {"casitar", "fault-and-recovery", "generations", "process-contention"}:
++    elif identifier in {"casitar", "casitar-scaling", "casitar-import-profile", "casitar-pin-profile", "casitar-quiet-import", "fault-and-recovery", "generations", "process-contention"}:
+         arguments += ["--casita-bin", str(binary_dir / "casita")]
++        if identifier.startswith("casitar-") and profile == "standard":
++            arguments += ["--profile", "standard"]
+     else:
+         spec = SUITE_BUILD_SPECS[identifier]
+         arguments += [spec.artifact_option, str(binary_dir / spec.artifact_name)]
+diff --git a/benchmarks/dashboard.py b/benchmarks/dashboard.py
+index 228156b..bac6716 100644
+--- a/benchmarks/dashboard.py
++++ b/benchmarks/dashboard.py
+@@ -698,17 +698,39 @@ def normalize_lifecycle_result(path: pathlib.Path, result: dict[str, Any]) -> di
+             ("generations", "seed_batch_size", "operations", "working_set_bytes", "cache_bytes", "promotion_reads", "pack_target_bytes", "rtt_ms", "bandwidth_kib_per_connection", "subtree_files", "file_bytes", "path_depth", "concurrency", "variant", "spill_memory_objects", "reader_admission")
+             if name in sample})
+         scale.update({name: sample[name] for name in ("batch_width", "pattern", "requests", "ledger_context", "shape", "max_buffered_bytes") if name in sample})
++        if result.get("result_schema") == "casita.casitar-scaling.v1":
++            scale.update({name: sample[name] for name in ("family", "files", "seeded_file_percent")})
++            if config.get("import_profile"):
++                scale["import_profile"] = True
++            if config.get("pin_timing"):
++                scale["pin_timing"] = True
++            if config.get("require_quiet_host"):
++                scale["require_quiet_host"] = True
++                scale["max_external_cpu_percent"] = config.get("max_external_cpu_percent", 5)
++                scale["allow_competing_builds"] = config.get("allow_competing_builds", False)
+         groups[(sample["operation"], json.dumps(scale, sort_keys=True))].append(sample)
+     observations = []
+     for (operation, scale), samples in sorted(groups.items()):
+         successful = [sample for sample in samples if sample.get("status") == "ok"]
+         metrics = {}
+         metrics.update(aggregate_flat_metrics(successful, (("metrics", ""),)))
+-        for field in ("wall_seconds", "max_rss_bytes", "archive_bytes"):
++        for field in ("wall_seconds", "user_seconds", "system_seconds", "max_rss_bytes", "archive_bytes"):
+             median, p95 = aggregate_metric(successful, field)
+             if median is not None:
+                 metrics[field] = median
+                 if field == "wall_seconds": metrics["p95_wall_seconds"] = p95
++        phases = {phase["phase"] for sample in successful
++                  for phase in sample.get("import_profile", {}).get("phases", [])}
++        for phase in phases:
++            values = [entry["nanos"] / 1e9 for sample in successful
++                      for entry in sample.get("import_profile", {}).get("phases", [])
++                      if entry["phase"] == phase]
++            metrics[f"phase_{phase}_seconds"] = statistics.median(values)
++        pin_phases = {phase for sample in successful for phase in sample.get("pin_profile", {})}
++        for phase in pin_phases:
++            metrics[f"pin_{phase}_seconds"] = statistics.median(
++                sample["pin_profile"][phase]["seconds"] for sample in successful
++                if phase in sample.get("pin_profile", {}))
+         observations.append({"workload": operation + ":" + scale,
+             "profile": config.get("profile", "custom"), "cache_policy": "warm",
+             "operation": operation, "implementation": "casita", "metrics": metrics,
+@@ -744,6 +766,8 @@ def normalized_run(
+ 
+ def normalize_result(path: pathlib.Path) -> dict[str, Any]:
+     result = json.loads(path.read_text())
++    if result.get("result_schema") == "casita.casitar-scaling.v1" and result.get("complete") is False:
++        raise ValueError(f"incomplete Casitar benchmark: {path}")
+     result_schema = str(result.get("result_schema", ""))
+     if result_schema == "casita.filesystem-outputs.v1":
+         return normalize_filesystem_outputs(path, result)
+@@ -795,7 +819,7 @@ def normalize_result(path: pathlib.Path) -> dict[str, Any]:
+             if observation["operation"].endswith("-cold"):
+                 observation["cache_policy"] = "cold"
+         return normalized
+-    if result_schema.startswith(("casita.lifecycle.", "casita.native-probes.", "casita.process-contention.", "casita.core-primitives.")):
++    if result_schema.startswith(("casita.lifecycle.", "casita.casitar-scaling.", "casita.native-probes.", "casita.process-contention.", "casita.core-primitives.")):
+         return normalize_lifecycle_result(path, result)
+     if result_schema.startswith("casita.pack-limits."):
+         return normalize_pack_limits_result(path, result)
+diff --git a/benchmarks/manifest.json b/benchmarks/manifest.json
+index 82f7c18..abe5b9d 100644
+--- a/benchmarks/manifest.json
++++ b/benchmarks/manifest.json
+@@ -1642,6 +1642,64 @@
+         "standard"
+       ]
+     },
++    {
++      "id": "casitar-scaling",
++      "suite_id": "casitar",
++      "title": "Archive payload and object scaling with destination reuse",
++      "kind": "module",
++      "target": "benchmarks.suites.casitar_scaling",
++      "profiles": [
++        "smoke",
++        "standard"
++      ]
++    },
++    {
++      "id": "casitar-import-profile",
++      "suite_id": "casitar",
++      "title": "Casitar import phase accounting across publication boundaries",
++      "kind": "module",
++      "target": "benchmarks.suites.casitar_scaling",
++      "profiles": [
++        "smoke",
++        "standard"
++      ],
++      "default_arguments": [
++        "--investigate-import"
++      ]
++    },
++    {
++      "id": "casitar-pin-profile",
++      "suite_id": "casitar",
++      "title": "Casitar import pin-ledger diagnostics across publication boundaries",
++      "kind": "module",
++      "target": "benchmarks.suites.casitar_scaling",
++      "profiles": [
++        "smoke",
++        "standard"
++      ],
++      "default_arguments": [
++        "--investigate-import",
++        "--pin-timing",
++        "--file-counts",
++        "254,256"
++      ]
++    },
++    {
++      "id": "casitar-quiet-import",
++      "suite_id": "casitar",
++      "title": "Casitar import scaling with quiet-host admission and activity rejection",
++      "kind": "module",
++      "target": "benchmarks.suites.casitar_scaling",
++      "profiles": [
++        "smoke",
++        "standard"
++      ],
++      "default_arguments": [
++        "--investigate-import",
++        "--no-phase-timing",
++        "--require-quiet-host"
++      ]
++    },
+     {
+       "id": "fault-and-recovery",
+       "suite_id": "fault-and-recovery",
+@@ -2590,7 +2648,7 @@
+       "layer": "repository",
+       "status": "partial",
+       "runner": "benchmark run casitar",
+-      "summary": "Streaming export/import, duplicate catalogs, bounded decoding, and malformed input behavior.",
++      "summary": "Streaming export/import, inspection, payload-size and object-count memory scaling, partial and full destination reuse, duplicate catalogs, bounded decoding, and malformed input behavior.",
+       "dimensions": [
+         "correctness",
+         "latency",
+@@ -2607,6 +2665,11 @@
+         "round-trip",
+         "duplicate-import",
+         "duplicate-heavy",
++        "inspect",
++        "payload-size",
++        "object-count",
++        "partial-reuse",
++        "corrupt-reused-payload",
+         "malformed-stream"
+       ],
+       "comparators": [
+diff --git a/crates/casita/src/casitar/import.rs b/crates/casita/src/casitar/import.rs
+index 38335e5..9b49fee 100644
+--- a/crates/casita/src/casitar/import.rs
++++ b/crates/casita/src/casitar/import.rs
+@@ -16,6 +16,45 @@ use crate::{
+ 
+ const MEMBERSHIP_PAGE: usize = 256;
+ 
++/// Opt-in, exclusive wall-clock phase accounting for the permanent benchmark.
++/// No clock reads or per-frame allocations when disabled. Diagnostics never use stdout.
++#[derive(Default)]
++struct ImportProfile {
++    enabled: bool,
++    phases: std::collections::BTreeMap<&'static str, (u64, u64)>,
++}
++
++impl ImportProfile {
++    fn start(&self) -> Option<std::time::Instant> {
++        self.enabled.then(std::time::Instant::now)
++    }
++
++    fn finish(&mut self, phase: &'static str, start: Option<std::time::Instant>) {
++        if let Some(start) = start {
++            let entry = self.phases.entry(phase).or_default();
++            entry.0 += 1;
++            entry.1 = entry
++                .1
++                .saturating_add(start.elapsed().as_nanos().min(u64::MAX as u128) as u64);
++        }
++    }
++
++    fn emit(&self) {
++        if self.enabled {
++            // Phase names are fixed internal identifiers, never input strings.
++            let phases = self
++                .phases
++                .iter()
++                .map(|(phase, (calls, nanos))| {
++                    format!(r#"{{"phase":"{phase}","calls":{calls},"nanos":{nanos}}}"#)
++                })
++                .collect::<Vec<_>>()
++                .join(",");
++            eprintln!("casitar_import_profile {{\"schema_version\":1,\"phases\":[{phases}]}}");
++        }
++    }
++}
++
+ /// How an import treats destination names that already exist.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub enum CasitarRootConflictPolicy {
+@@ -187,11 +226,20 @@ where
+             .map(|(index, (root, name))| CasitarRootMapping { index, root, name })
+             .collect::<Vec<_>>();
+ 
++        let mut profile = ImportProfile {
++            enabled: std::env::var_os("CASITA_CASITAR_IMPORT_PROFILE")
++                .is_some_and(|value| value == "1"),
++            ..Default::default()
++        };
++        let start = profile.start();
+         let mutation = self.mutation_session().await?;
++        profile.finish("mutation_start", start);
+         mutation
+             .write_scope()
+             .run(async {
++                let start = profile.start();
+                 let expectations = preflight_roots(self, &mappings, conflict_policy).await?;
++                profile.finish("preflight", start);
+                 let area = self.spill_area();
+                 let mut archive_records = SpillSet::new(area.clone(), "casitar-import-records");
+                 let mut archive_payloads = SpillSet::new(area.clone(), "casitar-import-payloads");
+@@ -210,14 +258,22 @@ where
+                 let mut payloads_written = 0u64;
+                 let mut payloads_reused = 0u64;
+ 
+-                while let Some(frame) = reader.next_frame().await? {
++                loop {
++                    let start = profile.start();
++                    let frame = reader.next_frame().await?;
++                    profile.finish("frame_decode", start);
++                    let Some(frame) = frame else { break };
++
+                     match frame {
+                         CasitarReadFrame::Payload { payload, size } => {
++                            let start = profile.start();
+                             let reused = self
+                                 .payloads()
+                                 .has(&payload)
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("payload_lookup", start);
++                            let start = profile.start();
+                             if reused {
+                                 reader.read_payload_to(&mut tokio::io::sink()).await?;
+                                 payloads_reused = checked_increment(payloads_reused)?;
+@@ -236,10 +292,20 @@ where
+                                 }
+                                 payloads_written = checked_increment(payloads_written)?;
+                             }
++                            profile.finish(
++                                if reused {
++                                    "payload_reuse_verify"
++                                } else {
++                                    "payload_write"
++                                },
++                                start,
++                            );
++                            let start = profile.start();
+                             archive_payloads
+                                 .insert(payload)
+                                 .await
+                                 .map_err(RepositoryError::from)?;
++                            profile.finish("payload_membership_insert", start);
+                         }
+                         CasitarReadFrame::Record(record) => {
+                             if archive_records.len() >= self.limits().max_traversal_objects {
+@@ -249,6 +315,7 @@ where
+                                 ))
+                                 .into());
+                             }
++                            let start = profile.start();
+                             archive_records
+                                 .insert(record.key().clone())
+                                 .await
+@@ -257,31 +324,30 @@ where
+                                 .insert(record.payload())
+                                 .await
+                                 .map_err(RepositoryError::from)?;
+-                            let staged = mutation
+-                                .stage_existing(record.key().clone(), record.payload())
+-                                .await?;
+-                            if staged.record() != &record {
+-                                return Err(CasitarImportError::RecordMismatch {
+-                                    key: record.key().clone(),
+-                                });
+-                            }
+-                            pending.push(staged);
++                            profile.finish("record_membership_insert", start);
++                            pending.push(record);
+                             if pending.len() == batch_limit {
+-                                let result = mutation.publish_unrooted(pending).await?;
+-                                records_inserted =
+-                                    checked_add_usize(records_inserted, result.objects_inserted)?;
++                                let inserted = publish_records(
++                                    &mutation,
++                                    pending,
++                                    &mut profile,
++                                    "publish_batch",
++                                )
++                                .await?;
++                                records_inserted = checked_add_usize(records_inserted, inserted)?;
+                                 pending = Vec::with_capacity(batch_limit);
+                             }
+                         }
+                     }
+                 }
+                 if !pending.is_empty() {
+-                    let result = mutation.publish_unrooted(pending).await?;
+-                    records_inserted =
+-                        checked_add_usize(records_inserted, result.objects_inserted)?;
++                    let inserted =
++                        publish_records(&mutation, pending, &mut profile, "publish_tail").await?;
++                    records_inserted = checked_add_usize(records_inserted, inserted)?;
+                 }
+                 let (_, stats) = reader.into_inner()?;
+ 
++                let start = profile.start();
+                 let archive_records = archive_records
+                     .freeze()
+                     .await
+@@ -296,6 +362,8 @@ where
+                     .map_err(RepositoryError::from)?;
+                 validate_payload_membership(&archive_payloads, &referenced_payloads).await?;
+ 
++                profile.finish("freeze_and_payload_membership", start);
++                let start = profile.start();
+                 let hold = self.retention_hold().await?;
+                 let mut reachable = SpillSet::new(area.clone(), "casitar-import-reachable");
+                 for root in &roots {
+@@ -307,9 +375,12 @@ where
+                         });
+                     }
+                 }
++                profile.finish("verify_closure", start);
++                let start = profile.start();
+                 let reachable = reachable.freeze().await.map_err(RepositoryError::from)?;
+                 validate_record_membership(&archive_records, &reachable).await?;
+                 drop(hold);
++                profile.finish("record_membership", start);
+ 
+                 let changes = mappings
+                     .iter()
+@@ -318,6 +389,7 @@ where
+                         target: mapping.root.clone(),
+                     })
+                     .collect();
++                let start = profile.start();
+                 let destination_revision = match mutation
+                     .publish_if_roots_match(Vec::new(), expectations, changes)
+                     .await?
+@@ -336,6 +408,8 @@ where
+                     }
+                 };
+ 
++                profile.finish("publish_roots", start);
++                profile.emit();
+                 let records_reused = stats
+                     .records
+                     .checked_sub(records_inserted)
+@@ -366,6 +440,38 @@ where
+     }
+ }
+ 
++/// Protect each batch in one durable operation, then use the same receiver
++/// verification as individual staging. No record becomes visible until every
++/// record in this batch agrees with its verified payload.
++async fn publish_records<PS: BlobStore, SS: MetadataStore>(
++    mutation: &crate::repository::MutationSession<'_, PS, SS>,
++    records: Vec<crate::ObjectRecord>,
++    profile: &mut ImportProfile,
++    phase: &'static str,
++) -> Result<usize, CasitarImportError> {
++    let start = profile.start();
++    mutation.protect_existing_records(&records).await?;
++    profile.finish("protect_records", start);
++    let mut pending = Vec::with_capacity(records.len());
++    for record in records {
++        let start = profile.start();
++        let staged = mutation
++            .stage_existing(record.key().clone(), record.payload())
++            .await?;
++        profile.finish("stage_existing", start);
++        if staged.record() != &record {
++            return Err(CasitarImportError::RecordMismatch {
++                key: record.key().clone(),
++            });
++        }
++        pending.push(staged);
++    }
++    let start = profile.start();
++    let result = mutation.publish_unrooted(pending).await?;
++    profile.finish(phase, start);
++    Ok(result.objects_inserted)
++}
++
+ fn validate_destinations<PS, SS>(
+     repository: &Repository<PS, SS>,
+     roots: &[ObjectKey],
+@@ -647,6 +753,43 @@ mod tests {
+         (writer.0, roots)
+     }
+ 
++    #[tokio::test]
++    async fn a_forged_record_prevents_the_entire_protected_batch_from_publication() {
++        let repository = Repository::memory().unwrap();
++        let mutation = repository.mutation_session().await.unwrap();
++        let first = mutation.stage_blob(b"valid batch member").await.unwrap();
++        let second = mutation.stage_blob(b"forged batch member").await.unwrap();
++        let first_record = first.record().clone();
++        let second_record = second.record();
++        let forged = ObjectRecord::new(
++            second_record.key().clone(),
++            second_record.payload(),
++            second_record.payload_size() + 1,
++            vec![],
++        )
++        .unwrap();
++        let result = publish_records(
++            &mutation,
++            vec![first_record.clone(), forged],
++            &mut ImportProfile::default(),
++            "publish_tail",
++        )
++        .await;
++        assert!(matches!(
++            result,
++            Err(CasitarImportError::RecordMismatch { .. })
++        ));
++        let snapshot = repository.metadata().snapshot().await.unwrap();
++        assert!(snapshot.object(first_record.key()).await.unwrap().is_none());
++        assert!(
++            snapshot
++                .object(second_record.key())
++                .await
++                .unwrap()
++                .is_none()
++        );
++    }
++
+     #[tokio::test]
+     async fn imports_exact_multi_root_closure_atomically_and_reuses_on_retry() {
+         let (archive, roots) = graph_archive().await;
+diff --git a/crates/casita/src/cli/commands/mod.rs b/crates/casita/src/cli/commands/mod.rs
+index e50fce3..dfafc6c 100644
+--- a/crates/casita/src/cli/commands/mod.rs
++++ b/crates/casita/src/cli/commands/mod.rs
+@@ -554,15 +554,23 @@ async fn archive_verify(
+         .map(|(index, _)| RootName::try_from(format!("verify/{index}")))
+         .collect::<Result<Vec<_>, _>>()?;
+     let temporary = tempfile::tempdir()?;
+-    let repository = casita::experimental::Repository::local(temporary.path())
+-        .await?
+-        .with_spill_limits(spill_limits);
+-    let report = repository
+-        .import(casita::import::CasitarImport::from_reader(
+-            reader,
+-            destinations,
+-        ))
+-        .await?;
++    let report: Result<_, Error> = async {
++        let repository = casita::experimental::Repository::local(temporary.path())
++            .await?
++            .with_spill_limits(spill_limits);
++        Ok(repository
++            .import(casita::import::CasitarImport::from_reader(
++                reader,
++                destinations,
++            ))
++            .await?)
++    }
++    .await;
++    // Session drops schedule asynchronous pin releases. Keep the temporary
++    // repository alive until those complete, including when import fails.
++    let cleanup = casita::experimental::flush_repository_leases().await;
++    let report = report?;
++    cleanup?;
+     emit_archive_summary(
+         "verify",
+         "verified",
+diff --git a/crates/casita/src/repository/mutation.rs b/crates/casita/src/repository/mutation.rs
+index 9d73592..65fb700 100644
+--- a/crates/casita/src/repository/mutation.rs
++++ b/crates/casita/src/repository/mutation.rs
+@@ -555,6 +555,34 @@ where
+             .await
+     }
+ 
++    /// Durably protect a bounded set of existing records before staging them.
++    /// This grants no trust: callers must still verify every record through
++    /// `stage_existing`. Its repeated protection checks use the confirmed cache.
++    pub(crate) async fn protect_existing_records(
++        &self,
++        records: &[ObjectRecord],
++    ) -> Result<(), RepositoryError> {
++        if records.len() > self.repository.limits.max_batch_objects {
++            return Err(RepositoryError::LimitExceeded(
++                "existing-record protection exceeds mutation batch limit".to_owned(),
++            ));
++        }
++        self.pin
++            .protect(
++                records
++                    .iter()
++                    .flat_map(|record| {
++                        [
++                            crate::metadata::PinResource::Object(record.key().clone()),
++                            crate::metadata::PinResource::Blob(record.payload()),
++                        ]
++                    })
++                    .collect(),
++            )
++            .await?;
++        Ok(())
++    }
++
+     /// Verify an already durable payload under an exact logical key.
+     #[tracing::instrument(name = "repository.stage_existing", level = "debug", skip_all)]
+     pub async fn stage_existing<'hold>(
+diff --git a/crates/casita/src/repository/tests.rs b/crates/casita/src/repository/tests.rs
+index 34863b0..7969dab 100644
+--- a/crates/casita/src/repository/tests.rs
++++ b/crates/casita/src/repository/tests.rs
+@@ -5593,3 +5593,117 @@ async fn multi_root_pages_keep_equal_relative_names_separate_and_reuse_cache() {
+     drop(session);
+     assert!(repository.fsck().await.unwrap().is_clean());
+ }
++
++#[tokio::test]
++async fn batched_existing_protection_survives_collection_and_releases_after_drop() {
++    let repository = repository();
++    let seed = repository.mutation_session().await.unwrap();
++    let first = seed.stage_blob(b"first protected payload").await.unwrap();
++    let second = seed.stage_blob(b"second protected payload").await.unwrap();
++    let records = vec![first.record().clone(), second.record().clone()];
++    seed.publish_unrooted(vec![first, second]).await.unwrap();
++    drop(seed);
++    crate::flush_repository_leases().await.unwrap();
++
++    let mutation = repository.mutation_session().await.unwrap();
++    mutation.protect_existing_records(&records).await.unwrap();
++    // Force collection between durable batch protection and verification.
++    assert_eq!(
++        repository
++            .try_collect()
++            .await
++            .unwrap()
++            .removed
++            .logical_objects,
++        0
++    );
++    for record in &records {
++        let staged = mutation
++            .stage_existing(record.key().clone(), record.payload())
++            .await
++            .unwrap();
++        assert_eq!(staged.record(), record);
++    }
++    drop(mutation);
++    crate::flush_repository_leases().await.unwrap();
++    assert_eq!(
++        repository
++            .try_collect()
++            .await
++            .unwrap()
++            .removed
++            .logical_objects,
++        2
++    );
++    for record in records {
++        assert!(!repository.payloads().has(&record.payload()).await.unwrap());
++    }
++}
++
++#[tokio::test]
++async fn batched_existing_protection_obeys_limits_and_does_not_verify_claims() {
++    let mut repository = repository();
++    repository.limits.max_batch_objects = 1;
++    let mutation = repository.mutation_session().await.unwrap();
++    let staged = mutation.stage_blob(b"actual bytes").await.unwrap();
++    let record = staged.record().clone();
++    assert!(matches!(
++        mutation
++            .protect_existing_records(&[record.clone(), record.clone()])
++            .await,
++        Err(RepositoryError::LimitExceeded(_))
++    ));
++    let wrong = ObjectKey::blob(BlobId::new(Digest::hash(b"different bytes")));
++    let claimed = ObjectRecord::new(
++        wrong.clone(),
++        record.payload(),
++        record.payload_size(),
++        vec![],
++    )
++    .unwrap();
++    mutation.protect_existing_records(&[claimed]).await.unwrap();
++    assert!(
++        mutation
++            .stage_existing(wrong, record.payload())
++            .await
++            .is_err()
++    );
++}
++
++#[tokio::test]
++async fn batched_existing_protection_invalidates_a_stale_collection_plan() {
++    let repository = repository();
++    let seed = repository.mutation_session().await.unwrap();
++    let staged = seed.stage_blob(b"protected after marking").await.unwrap();
++    let record = staged.record().clone();
++    seed.publish_unrooted(vec![staged]).await.unwrap();
++    drop(seed);
++    crate::flush_repository_leases().await.unwrap();
++    let plan = repository
++        .collection_plan(
++            repository.coordination.clone().lock_owned().await,
++            None,
++            true,
++        )
++        .await
++        .unwrap();
++    assert_eq!(plan.preview.logical_objects, 1);
++    let mutation = repository.mutation_session().await.unwrap();
++    mutation
++        .protect_existing_records(std::slice::from_ref(&record))
++        .await
++        .unwrap();
++    assert!(matches!(
++        repository.execute_collection(plan, false).await,
++        Err(RepositoryError::Busy(_))
++    ));
++    assert!(repository.payloads().has(&record.payload()).await.unwrap());
++    assert_eq!(
++        mutation
++            .stage_existing(record.key().clone(), record.payload())
++            .await
++            .unwrap()
++            .record(),
++        &record
++    );
++}
+diff --git a/crates/casita/tests/casitar_cli_pipes.rs b/crates/casita/tests/casitar_cli_pipes.rs
+index b8682a3..3988ee4 100644
+--- a/crates/casita/tests/casitar_cli_pipes.rs
++++ b/crates/casita/tests/casitar_cli_pipes.rs
+@@ -155,3 +155,61 @@ async fn two_repositories_exchange_every_multi_root_archive_over_pipes() {
+         ));
+     }
+ }
++
++#[test]
++fn verification_drains_temporary_repository_cleanup_across_batches() {
++    let temporary = tempfile::tempdir().unwrap();
++    let source = temporary.path().join("source");
++    let tree = temporary.path().join("tree");
++    let archive = temporary.path().join("fixture.casitar");
++    std::fs::create_dir(&tree).unwrap();
++    for index in 0..256u32 {
++        std::fs::write(tree.join(format!("file-{index}")), index.to_le_bytes()).unwrap();
++    }
++    assert_success(
++        "seed",
++        casita()
++            .arg("--repository")
++            .arg(&source)
++            .arg("import")
++            .arg(&tree)
++            .args(["--root", "fixture"])
++            .output()
++            .unwrap(),
++    );
++    assert_success(
++        "export",
++        casita()
++            .arg("--repository")
++            .arg(&source)
++            .args(["archive", "create", "--root", "fixture", "--output"])
++            .arg(&archive)
++            .output()
++            .unwrap(),
++    );
++    for _ in 0..3 {
++        let verified = casita()
++            .args(["archive", "verify"])
++            .arg(&archive)
++            .arg("--json")
++            .output()
++            .unwrap();
++        assert_success("verify and drain", verified.clone());
++        let report: serde_json::Value = serde_json::from_slice(&verified.stdout).unwrap();
++        assert_eq!(report["validity"], "verified");
++        assert_eq!(report["stats"]["records"], 257);
++        assert!(!String::from_utf8_lossy(&verified.stderr).contains("background task failed"));
++    }
++    // Failure after ingesting frames must also drain before deleting the store.
++    let mut bytes = std::fs::read(&archive).unwrap();
++    bytes.pop();
++    std::fs::write(&archive, bytes).unwrap();
++    let failed = casita()
++        .args(["archive", "verify"])
++        .arg(&archive)
++        .arg("--json")
++        .output()
++        .unwrap();
++    assert!(!failed.status.success());
++    assert!(!String::from_utf8_lossy(&failed.stderr).contains("background task failed"));
++}
+diff --git a/benchmarks/suites/casitar_scaling.py b/benchmarks/suites/casitar_scaling.py
+new file mode 100644
+index 0000000..2adec12
+--- /dev/null
++++ b/benchmarks/suites/casitar_scaling.py
+@@ -0,0 +1,427 @@
++"""Casitar payload-size, object-count, inspection, and destination-reuse scaling."""
++from __future__ import annotations
++
++import argparse
++import collections
++import hashlib
++import json
++import math
++import os
++import pathlib
++import random
++import tempfile
++
++from benchmarks.suites import repository as common
++from benchmarks.suites.lifecycle import root_keys
++from benchmarks.host_activity import QuietHost
++
++
++PROFILES = {
++    "smoke": {"payload_bytes": [65535, 65537, 8 * 1024**2], "file_counts": [254, 256, 1024]},
++    "standard": {"payload_bytes": [65535, 65537, 64 * 1024**2, 512 * 1024**2],
++                 "file_counts": [254, 256, 4096, 65536]},
++}
++
++
++class ArchiveAdapter(common.CasitaAdapter):
++    import_profile = False
++
++    def env(self):
++        environment = super().env()
++        # Pack diagnostics append non-JSON text to stdout after archive reports.
++        environment.pop("CASITA_PACK_STATS", None)
++        environment.pop("CASITA_CASITAR_IMPORT_PROFILE", None)
++        if self.import_profile:
++            environment["CASITA_CASITAR_IMPORT_PROFILE"] = "1"
++        return environment
++
++
++def positive_sizes(value):
++    try:
++        values = [int(item) for item in value.split(",")]
++        if not values or min(values) < 1 or len(set(values)) != len(values):
++            raise ValueError
++        return values
++    except ValueError as error:
++        raise argparse.ArgumentTypeError("expected distinct positive comma-separated integers") from error
++
++
++def build_parser():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--casita-bin", type=pathlib.Path, default=pathlib.Path("target/release/casita"))
++    parser.add_argument("--profile", choices=PROFILES, default="smoke")
++    parser.add_argument("--payload-bytes", type=positive_sizes)
++    parser.add_argument("--file-counts", type=positive_sizes)
++    parser.add_argument("--repetitions", type=int, default=3)
++    parser.add_argument("--investigate-import", action="store_true",
++                        help="profile 254/256-file imports (plus 4096 in standard); alternate case order")
++    parser.add_argument("--pin-timing", action="store_true",
++                        help="also aggregate existing pin-ledger tracing for timed imports")
++    parser.add_argument("--baseline-bin", type=pathlib.Path,
++                        help="compare against this binary, reversing variant order each repetition")
++    parser.add_argument("--no-phase-timing", action="store_true",
++                        help="keep the bounded import matrix but disable instrumentation for latency comparisons")
++    parser.add_argument("--require-quiet-host", action="store_true",
++                        help="Linux: require ten seconds below the CPU ceiling and enforce it throughout each case")
++    parser.add_argument("--quiet-timeout", type=int, default=180,
++                        help="maximum seconds to wait for quiet admission per case")
++    parser.add_argument("--max-external-cpu-percent", type=float, default=40,
++                        help="maximum sampled external CPU across logical CPUs (default: 40)")
++    parser.add_argument("--output", type=pathlib.Path, required=True)
++    return parser
++
++
++def guarded_case(adapter, directory, family, count, size, repetitions, samples,
++                 repetition, quiet_timeout, activity, max_external_cpu_percent=40):
++    """Retain admission evidence and reject an entire contaminated case."""
++    entry = {"files": count, "file_bytes": size, "family": family,
++             "variant": getattr(adapter, "variant", "single"),
++             "repetition": repetition, "status": "pending", "intervals": []}
++    activity.append(entry)
++    monitor = QuietHost(timeout=quiet_timeout, max_cpu_fraction=max_external_cpu_percent / 100,
++                        allow_competing_builds=True)
++    original_sample = monitor.sample
++
++    def recorded_sample():
++        row = original_sample()
++        entry["intervals"].append(row)
++        return row
++
++    monitor.sample = recorded_sample
++    start = len(samples)
++    try:
++        with monitor:
++            run_case(adapter, directory, family, count, size, repetitions, samples, repetition)
++        entry["measurement"] = monitor.report()
++        if not entry["measurement"]["quiet"]:
++            raise common.BenchmarkError(
++                f"external CPU samples did not satisfy the {max_external_cpu_percent:g}% ceiling")
++        entry["status"] = "accepted"
++    except Exception as error:
++        entry.update(status="rejected", error=str(error))
++        for row in samples[start:]:
++            row["status"] = "rejected"
++        raise
++
++
++def fixture(tree, count, size):
++    """Unique deterministic bytes; generation and SHA256 never buffer a whole file."""
++    tree.mkdir()
++    manifest = {}
++    for index in range(count):
++        name = f"file-{index:08d}"
++        generator = random.Random(index)
++        digest = hashlib.sha256()
++        remaining = size
++        with (tree / name).open("wb") as output:
++            while remaining:
++                block = generator.randbytes(min(remaining, 64 * 1024))
++                output.write(block)
++                digest.update(block)
++                remaining -= len(block)
++        manifest[name] = {"size": size, "sha256": digest.hexdigest()}
++    return manifest
++
++
++def validate_checkout(tree, manifest):
++    if {path.name for path in tree.iterdir()} != set(manifest):
++        raise common.BenchmarkError("checkout membership differs from fixture")
++    for name, expected in manifest.items():
++        path = tree / name
++        if path.is_symlink() or not path.is_file() or path.stat().st_mode & 0o111:
++            raise common.BenchmarkError(f"checkout type or executable bit differs: {name}")
++        with path.open("rb") as source:
++            digest = hashlib.file_digest(source, "sha256").hexdigest()
++        if path.stat().st_size != expected["size"] or digest != expected["sha256"]:
++            raise common.BenchmarkError(f"checkout bytes differ: {name}")
++
++
++def validate_report(report, expected, key, operation, reuse=None):
++    validity = {"create": "verified", "inspect": "structural", "verify": "verified", "import": "imported"}[operation]
++    if (report.get("schema") != "casita.archive.v1" or report.get("operation") != operation
++            or report.get("validity") != validity or report.get("stats") != expected):
++        raise common.BenchmarkError(f"{operation} report differs from verified archive")
++    if operation != "import":
++        if report.get("roots") != [key]:
++            raise common.BenchmarkError(f"{operation} roots differ")
++        return
++    if report.get("mappings") != [{"index": 0, "name": "bench/received", "root": key}]:
++        raise common.BenchmarkError("import root mapping differs")
++    written, reused = report["payloads_written"], report["payloads_reused"]
++    if written + reused != expected["payloads"]:
++        raise common.BenchmarkError("import payload accounting differs")
++    if report["records_inserted"] + report["records_reused"] != expected["records"]:
++        raise common.BenchmarkError("import record accounting differs")
++    if ((reuse == 0 and (reused != 0 or report["records_reused"] != 0))
++            or (reuse == 50 and reused != (expected["payloads"] - 1) // 2)
++            or (reuse == 100 and (written != 0 or report["records_inserted"] != 0))):
++        raise common.BenchmarkError(f"destination does not exercise {reuse}% file reuse")
++
++
++def corrupt_payload(archive):
++    """Flip the first payload byte, retaining framing and all metadata."""
++    with archive.open("r+b") as handle:
++        if handle.read(8) != b"casitar1":
++            raise common.BenchmarkError("unexpected archive version")
++        header_bytes = int.from_bytes(handle.read(8), "little")
++        handle.seek(16 + header_bytes)
++        frame = handle.read(41)
++        if len(frame) != 41 or frame[0] != 1 or int.from_bytes(frame[33:], "little") == 0:
++            raise common.BenchmarkError("expected a nonempty first payload")
++        offset = handle.tell()
++        original = handle.read(1)
++        if not original:
++            raise common.BenchmarkError("truncated first payload")
++        handle.seek(offset)
++        handle.write(bytes([original[0] ^ 1]))
++    return offset, original
++
++
++def validate_profile(stderr, report):
++    lines = [line.removeprefix("casitar_import_profile ") for line in stderr.splitlines()
++             if line.startswith("casitar_import_profile ")]
++    if len(lines) != 1:
++        raise common.BenchmarkError("expected exactly one Casitar import phase profile")
++    profile = json.loads(lines[0])
++    phases = {row["phase"]: row for row in profile["phases"]}
++    if (profile.get("schema_version") != 1 or len(phases) != len(profile["phases"])
++            or any(row["calls"] < 1 or row["nanos"] < 0 for row in phases.values())):
++        raise common.BenchmarkError("invalid import phase accounting")
++    expected = {"payload_lookup": report["stats"]["payloads"],
++                "stage_existing": report["stats"]["records"],
++                "payload_write": report["payloads_written"],
++                "payload_reuse_verify": report["payloads_reused"],
++                "publish_batch": report["stats"]["records"] // 256,
++                "publish_tail": int(report["stats"]["records"] % 256 != 0),
++                "verify_closure": 1, "publish_roots": 1}
++    if "protect_records" in phases:
++        expected["protect_records"] = (report["stats"]["records"] + 255) // 256
++    if any(phases.get(name, {}).get("calls", 0) != count for name, count in expected.items()):
++        raise common.BenchmarkError("import phase counts differ from verified report")
++    return profile
++
++
++def pin_profile(stderr):
++    phases = collections.defaultdict(lambda: {"calls": 0, "seconds": 0.0, "max_seconds": 0.0})
++    for line in stderr.splitlines():
++        if not line.startswith("{"):
++            continue
++        event = json.loads(line)
++        if event.get("target") != "casita::pin_timing":
++            continue
++        fields = event["fields"]
++        seconds = fields["elapsed_seconds"]
++        if seconds < 0:
++            raise common.BenchmarkError("negative pin phase duration")
++        phase = phases[fields["phase"]]
++        phase["calls"] += 1
++        phase["seconds"] += seconds
++        phase["max_seconds"] = max(phase["max_seconds"], seconds)
++    if not phases or not phases["journal_append_sync"]["calls"]:
++        raise common.BenchmarkError("missing pin journal timing events")
++    return dict(phases)
++
++
++def validate_pin_budget(profile, pins, records, variant=None):
++    if variant == "baseline":
++        return
++    if not any(phase["phase"] == "protect_records" for phase in profile["phases"]):
++        raise common.BenchmarkError("candidate lacks batched record-protection profile")
++    batches = (records + 255) // 256
++    limit = 24 + 4 * batches
++    syncs = pins["journal_append_sync"]["calls"]
++    if syncs > limit:
++        raise common.BenchmarkError(f"fully reused import used {syncs} journal syncs; budget is {limit}")
++
++
++def run_case(adapter, work, family, count, size, repetitions, samples, first_repetition=1):
++    tree = work / "tree"
++    manifest = fixture(tree, count, size)
++    source = work / "source"
++    adapter.init(source)
++    adapter.import_tree(source, tree)
++    key = adapter.root_key(source)
++    archive = work / "fixture.casitar"
++    export = adapter.command(source, "archive", "create", "--root", "bench/current",
++                             "--output", str(archive), "--json")
++    created = json.loads(common.run_checked(export, env=adapter.env()))
++    expected = created["stats"]
++    if expected["payloads"] != count + 1 or expected["records"] != count + 1:
++        raise common.BenchmarkError("fixture must contain distinct files plus one directory")
++    verified = json.loads(common.run_checked(adapter.cli_command("archive", "verify", str(archive), "--json"), env=adapter.env()))
++    validate_report(verified, expected, key, "verify")
++    if not expected["archive_digest"] or expected["archive_bytes"] != archive.stat().st_size:
++        raise common.BenchmarkError("missing digest or incorrect archive size")
++
++    def measure(operation, command, repetition, reuse=None, check=True):
++        stdout, stderr = work / "stdout", work / "stderr"
++        if getattr(adapter, "pin_timing", False) and operation == "import":
++            command = [command[0], "--log-filter", "error,casita::pin_timing=debug",
++                       "--log-format", "json", *command[1:]]
++        metrics = common.measured_command(common.CommandSpec([command], work, adapter.env()), stdout, stderr, check=check)
++        row = {"status": "ok", "implementation": "casita", "operation": operation,
++               "family": family, "files": count, "file_bytes": size, "source_bytes": count * size,
++               "seeded_file_percent": reuse, "repetition": repetition,
++               "archive_bytes": expected["archive_bytes"], **metrics}
++        if hasattr(adapter, "variant"):
++            row["variant"] = adapter.variant
++        if check:
++            report = json.loads(stdout.read_text())
++            validate_report(report, expected, key, operation, reuse)
++            row["archive_report"] = report
++            if adapter.import_profile and operation == "import":
++                row["import_profile"] = validate_profile(stderr.read_text(), report)
++                if getattr(adapter, "pin_timing", False):
++                    row["pin_profile"] = pin_profile(stderr.read_text())
++                    if reuse == 100:
++                        validate_pin_budget(row["import_profile"], row["pin_profile"], report["stats"]["records"],
++                                            getattr(adapter, "variant", None))
++        elif metrics["exit_code"] == 0 or "payload identity mismatch" not in stderr.read_text():
++            raise common.BenchmarkError("corrupted reused payload was not rejected by identity verification")
++        return row
++
++    for repetition in range(first_repetition, first_repetition + repetitions):
++        archive.unlink()
++        for operation, command in [("create", export), ("inspect", adapter.cli_command("archive", "inspect", str(archive), "--json"))]:
++            row = measure(operation, command, repetition)
++            row["correctness"] = "verified-oracle roots+counts+archive-digest"
++            samples.append(row)
++        for reuse in (0, 50, 100):
++            with tempfile.TemporaryDirectory(prefix="destination-", dir=work) as temporary:
++                destination_work = pathlib.Path(temporary)
++                destination = destination_work / "repository"
++                adapter.init(destination)
++                if reuse == 100:
++                    common.run_checked(adapter.command(destination, "archive", "import", str(archive), "--root", "bench/seed"), env=adapter.env())
++                elif reuse == 50:
++                    seed = destination_work / "seed"
++                    seed.mkdir()
++                    for name in list(manifest)[:count // 2]:
++                        os.link(tree / name, seed / name)
++                    adapter.import_tree(destination, seed)
++                before = root_keys(adapter, destination)
++                command = adapter.command(destination, "archive", "import", str(archive), "--root", "bench/received", "--json")
++                row = measure("import", command, repetition, reuse)
++                if root_keys(adapter, destination) != {**before, "bench/received": key}:
++                    raise common.BenchmarkError("import changed unexpected roots")
++                restore = destination_work / "restore"
++                common.run_checked(adapter.command(destination, "checkout", key, str(restore), "--no-root"), env=adapter.env())
++                validate_checkout(restore, manifest)
++                common.run_checked(adapter.fsck_command(destination), env=adapter.env())
++                row["correctness"] = "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
++                samples.append(row)
++                if reuse == 100:
++                    before = root_keys(adapter, destination)
++                    offset, original = corrupt_payload(archive)
++                    try:
++                        row = measure("corrupt-reused-payload", adapter.command(destination, "archive", "import", str(archive), "--root", "bench/corrupt", "--json"), repetition, reuse, check=False)
++                    finally:
++                        with archive.open("r+b") as handle:
++                            handle.seek(offset)
++                            handle.write(original)
++                    if root_keys(adapter, destination) != before:
++                        raise common.BenchmarkError("corrupted archive changed roots")
++                    common.run_checked(adapter.fsck_command(destination), env=adapter.env())
++                    row["correctness"] = "payload-identity-rejection+unchanged-roots+fsck"
++                    row["expected_failure"] = True
++                    samples.append(row)
++
++
++def main(argv=None):
++    parser = build_parser()
++    args = parser.parse_args(argv)
++    if args.repetitions < 1:
++        parser.error("repetitions must be positive")
++    if args.quiet_timeout < 1:
++        parser.error("quiet-timeout must be positive")
++    if not math.isfinite(args.max_external_cpu_percent) or not 0 <= args.max_external_cpu_percent <= 100:
++        parser.error("max-external-cpu-percent must be finite and between 0 and 100")
++    if args.pin_timing and not args.investigate_import:
++        parser.error("--pin-timing requires --investigate-import")
++    if args.pin_timing and args.no_phase_timing:
++        parser.error("--pin-timing conflicts with --no-phase-timing")
++    if args.baseline_bin and not args.investigate_import:
++        parser.error("--baseline-bin requires --investigate-import")
++    payload_bytes = args.payload_bytes or PROFILES[args.profile]["payload_bytes"]
++    counts = args.file_counts or PROFILES[args.profile]["file_counts"]
++    if args.investigate_import:
++        payload_bytes = []
++        counts = args.file_counts or ([254, 256] if args.profile == "smoke" else [254, 256, 4096])
++    if any(count < 2 or count % 2 for count in counts):
++        parser.error("file counts must be positive even numbers for exactly half-file reuse")
++    adapter = ArchiveAdapter(str(args.casita_bin.resolve()))
++    adapter.import_profile = args.investigate_import and not args.no_phase_timing
++    adapter.pin_timing = args.pin_timing
++    with args.casita_bin.open("rb") as binary:
++        binary_digest = hashlib.file_digest(binary, "sha256").hexdigest()
++    adapters = [adapter]
++    baseline = None
++    if args.baseline_bin:
++        baseline_adapter = ArchiveAdapter(str(args.baseline_bin.resolve()))
++        baseline_adapter.import_profile = adapter.import_profile
++        baseline_adapter.pin_timing = adapter.pin_timing
++        baseline_adapter.variant = "baseline"
++        adapter.variant = "candidate"
++        with args.baseline_bin.open("rb") as binary:
++            baseline = {"path": baseline_adapter.executable,
++                        "sha256": hashlib.file_digest(binary, "sha256").hexdigest()}
++        adapters = [baseline_adapter, adapter]
++    samples = []
++    result = {
++        "schema_version": 1, "result_schema": "casita.casitar-scaling.v1", "suite_id": "casitar",
++        "complete": False,
++        "configuration": {"profile": args.profile, "payload_bytes": payload_bytes, "file_counts": counts,
++                          "repetitions": args.repetitions, "casita_bin": adapter.executable,
++                          "import_profile": adapter.import_profile,
++                          "pin_timing": args.pin_timing,
++                          "require_quiet_host": args.require_quiet_host,
++                          "quiet_timeout": args.quiet_timeout,
++                          "max_external_cpu_percent": args.max_external_cpu_percent,
++                          "allow_competing_builds": True,
++                          "baseline": baseline,
++                          "variant_order": "alternating" if baseline else "single",
++                          "case_order": "alternating" if args.investigate_import else "grouped",
++                          "binary_sha256": binary_digest},
++        "samples": samples,
++    }
++    if args.require_quiet_host:
++        result["host_activity"] = []
++        result["host_policy"] = ("10 seconds below the CPU ceiling before each case; "
++                                 "competing processes recorded without a separate veto; "
++                                 f"<={args.max_external_cpu_percent:g}% external CPU across "
++                                 "logical CPUs throughout setup, measurements and verification; "
++                                 "not physical host or disk isolation")
++
++    def checkpoint():
++        common.write_atomic(args.output, json.dumps(result, indent=2) + "\n")
++
++    try:
++        with tempfile.TemporaryDirectory(prefix="casita-archive-scaling-") as temporary:
++            work = pathlib.Path(temporary)
++            result["environment"] = common.environment_metadata(work)
++            cases = [("payload-size", 2, size) for size in payload_bytes]
++            cases += [("object-count", count, 128) for count in counts]
++            rounds = range(1, args.repetitions + 1) if args.investigate_import else [1]
++            for repetition in rounds:
++                ordered = list(reversed(cases)) if args.investigate_import and repetition % 2 == 0 else cases
++                for family, count, size in ordered:
++                    variants = list(reversed(adapters)) if repetition % 2 == 0 else adapters
++                    for selected in variants:
++                        print(f"casitar-scaling: round {repetition}, {getattr(selected, 'variant', 'single')}, {family}, {count} files x {size} bytes", flush=True)
++                        with tempfile.TemporaryDirectory(prefix="case-", dir=work) as case:
++                            arguments = (selected, pathlib.Path(case), family, count, size,
++                                         1 if args.investigate_import else args.repetitions, samples, repetition)
++                            if args.require_quiet_host:
++                                guarded_case(*arguments, args.quiet_timeout, result["host_activity"],
++                                             args.max_external_cpu_percent)
++                            else:
++                                run_case(*arguments)
++                        checkpoint()
++        result["complete"] = True
++    finally:
++        checkpoint()
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/benchmarks/tests/test_casitar_scaling.py b/benchmarks/tests/test_casitar_scaling.py
+new file mode 100644
+index 0000000..7bc6365
+--- /dev/null
++++ b/benchmarks/tests/test_casitar_scaling.py
+@@ -0,0 +1,291 @@
++import copy
++import json
++import pathlib
++import tempfile
++import unittest
++from unittest import mock
++
++from benchmarks import all as runner
++from benchmarks import dashboard
++from benchmarks.suites import casitar_scaling as suite
++from benchmarks.suites import repository as common
++
++
++class CasitarScalingTests(unittest.TestCase):
++    def test_all_builds_cli_for_each_archive_runner(self):
++        for identifier in ("casitar-scaling", "casitar-import-profile",
++                           "casitar-pin-profile", "casitar-quiet-import"):
++            commands = runner.build_commands([identifier], pathlib.Path("/build"))
++            self.assertEqual(len(commands), 1)
++            command = commands[0]
++            self.assertIn("--bin", command)
++            self.assertEqual(command[command.index("--bin") + 1], "casita")
++
++    def test_cpu_policy_accepts_compilers_below_ceiling(self):
++        monitor = suite.QuietHost(max_cpu_fraction=0.40, allow_competing_builds=True)
++        for fraction, expected in [(0.0545, True), (0.10, True), (0.40, True), (0.4001, False)]:
++            self.assertEqual(monitor.quiet({"external_cpu_fraction": fraction,
++                                          "competing_processes": []}), expected)
++        self.assertTrue(monitor.quiet({"external_cpu_fraction": 0.261,
++                                       "competing_processes": [{"name": "rustc"}]}))
++        self.assertFalse(monitor.quiet({"external_cpu_fraction": 0.401,
++                                       "competing_processes": [{"name": "rustc"}]}))
++
++    def test_cpu_ceiling_is_forwarded_and_invalid_values_are_rejected(self):
++        with mock.patch.object(suite, "QuietHost") as factory, mock.patch.object(suite, "run_case"):
++            factory.return_value.report.return_value = {"quiet": True}
++            suite.guarded_case(suite.ArchiveAdapter("candidate"), pathlib.Path("/tmp"),
++                               "object-count", 256, 128, 1, [], 1, 60, [], 7.5)
++            factory.assert_called_once_with(timeout=60, max_cpu_fraction=0.075,
++                                            allow_competing_builds=True)
++        for value in ("nan", "inf", "-1", "101"):
++            with self.subTest(value=value), mock.patch("sys.stderr"), self.assertRaises(SystemExit):
++                suite.main(["--max-external-cpu-percent", value, "--output", "/unused"])
++
++    def test_quiet_case_retains_rejected_measurements_and_admission_evidence(self):
++        adapter = suite.ArchiveAdapter("candidate")
++        for contaminated in (False, True):
++            samples, activity = [], []
++            monitor = mock.MagicMock()
++            monitor.report.return_value = {"quiet": not contaminated}
++            monitor.sample.return_value = {"competing_processes": []}
++            def run(*args):
++                monitor.sample()
++                args[6].append({"status": "ok"})
++            with mock.patch.object(suite, "QuietHost", return_value=monitor), mock.patch.object(suite, "run_case", side_effect=run):
++                if contaminated:
++                    with self.assertRaisesRegex(common.BenchmarkError, "external CPU samples"):
++                        suite.guarded_case(adapter, pathlib.Path("/tmp"), "object-count", 256, 128, 1, samples, 1, 60, activity)
++                else:
++                    suite.guarded_case(adapter, pathlib.Path("/tmp"), "object-count", 256, 128, 1, samples, 1, 60, activity)
++            self.assertEqual(activity[0]["status"], "rejected" if contaminated else "accepted")
++            self.assertEqual(samples[0]["status"], "rejected" if contaminated else "ok")
++            self.assertEqual(len(activity[0]["intervals"]), 1)
++
++    def test_quiet_timeout_saves_incomplete_evidence_without_running_case(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            work = pathlib.Path(temporary)
++            binary = work / "casita"
++            binary.write_bytes(b"binary")
++            monitor = mock.MagicMock()
++            monitor.__enter__.side_effect = common.BenchmarkError("host did not become quiet")
++            with mock.patch.object(suite, "QuietHost", return_value=monitor), mock.patch.object(suite, "run_case") as run, mock.patch.object(suite.common, "environment_metadata", return_value={}):
++                with self.assertRaisesRegex(common.BenchmarkError, "host did not become quiet"):
++                    suite.main(["--require-quiet-host", "--casita-bin", str(binary), "--output", str(work / "result.json")])
++                run.assert_not_called()
++            saved = json.loads((work / "result.json").read_text())
++            self.assertFalse(saved["complete"])
++            self.assertEqual(saved["host_activity"][0]["status"], "rejected")
++            with self.assertRaises(ValueError):
++                dashboard.normalize_result(work / "result.json")
++
++    def test_quiet_entrypoint_covers_boundary_cases_through_all(self):
++        from benchmarks.cli import entrypoints
++        entry = next(row for row in entrypoints() if row["id"] == "casitar-quiet-import")
++        for profile in ("smoke", "standard"):
++            args = suite.build_parser().parse_args([
++                *entry["default_arguments"],
++                *runner.suite_arguments(entry["id"], pathlib.Path("/bin"), profile, 4),
++                "--output", "/result.json"])
++            self.assertTrue(args.require_quiet_host)
++            self.assertTrue(args.no_phase_timing)
++            self.assertTrue(args.investigate_import)
++            self.assertEqual(args.profile, profile)
++            self.assertEqual(args.repetitions, 4)
++            self.assertEqual(args.max_external_cpu_percent, 40)
++
++    def test_pin_budget_rejects_missing_batching_and_per_record_syncs(self):
++        profile = {"phases": [{"phase": "protect_records", "calls": 2}]}
++        suite.validate_pin_budget(profile, {"journal_append_sync": {"calls": 32}}, 257)
++        for phases, calls in [({"phases": []}, 8), (profile, 33), (profile, 262)]:
++            with self.assertRaises(common.BenchmarkError):
++                suite.validate_pin_budget(phases, {"journal_append_sync": {"calls": calls}}, 257)
++        suite.validate_pin_budget({"phases": []}, {"journal_append_sync": {"calls": 262}}, 257, "baseline")
++
++    def test_paired_run_alternates_binaries_and_disables_phase_timing(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            work = pathlib.Path(temporary)
++            for name in ("baseline", "candidate"):
++                (work / name).write_bytes(name.encode())
++            seen = []
++            def record(adapter, directory, family, count, size, repetitions, samples, repetition):
++                seen.append((count, adapter.variant, repetition))
++                self.assertFalse(adapter.import_profile)
++                samples.append({"variant": adapter.variant, "repetition": repetition})
++            with mock.patch.object(suite.common, "environment_metadata", return_value={}), mock.patch.object(suite, "run_case", side_effect=record):
++                suite.main(["--investigate-import", "--no-phase-timing", "--file-counts", "254,256",
++                            "--baseline-bin", str(work / "baseline"), "--casita-bin", str(work / "candidate"),
++                            "--repetitions", "2", "--output", str(work / "result.json")])
++            self.assertEqual(seen, [(254, "baseline", 1), (254, "candidate", 1),
++                                    (256, "baseline", 1), (256, "candidate", 1),
++                                    (256, "candidate", 2), (256, "baseline", 2),
++                                    (254, "candidate", 2), (254, "baseline", 2)])
++            result = json.loads((work / "result.json").read_text())
++            self.assertTrue(result["complete"])
++            self.assertFalse(result["configuration"]["import_profile"])
++            self.assertNotEqual(result["configuration"]["binary_sha256"], result["configuration"]["baseline"]["sha256"])
++
++    def test_pin_trace_aggregation_preserves_counts_and_durations(self):
++        event = {"target": "casita::pin_timing", "fields": {
++            "phase": "journal_append_sync", "elapsed_seconds": 0.25}}
++        lines = "\n".join([json.dumps(event), "casitar_import_profile {}", json.dumps(event)])
++        self.assertEqual(suite.pin_profile(lines), {"journal_append_sync": {
++            "calls": 2, "seconds": 0.5, "max_seconds": 0.25}})
++        with self.assertRaises(common.BenchmarkError):
++            suite.pin_profile("casitar_import_profile {}")
++
++    def test_failed_run_retains_completed_samples_as_incomplete(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            output = pathlib.Path(temporary) / "result.json"
++            binary = pathlib.Path(temporary) / "casita"
++            binary.write_bytes(b"test binary")
++            def fail(*args):
++                args[6].append({"status": "ok", "operation": "create"})
++                raise common.BenchmarkError("gate failed")
++            with mock.patch.object(suite.common, "environment_metadata", return_value={}), mock.patch.object(suite, "run_case", side_effect=fail):
++                with self.assertRaises(common.BenchmarkError):
++                    suite.main(["--casita-bin", str(binary), "--output", str(output)])
++            saved = json.loads(output.read_text())
++            self.assertFalse(saved["complete"])
++            self.assertEqual(len(saved["samples"]), 1)
++            with self.assertRaises(ValueError):
++                dashboard.normalize_result(output)
++
++    def test_phase_profile_requires_exact_counts_and_single_report(self):
++        report = {"stats": {"payloads": 257, "records": 257},
++                  "payloads_written": 0, "payloads_reused": 257}
++        counts = {"payload_lookup": 257, "stage_existing": 257,
++                  "payload_reuse_verify": 257, "publish_batch": 1, "publish_tail": 1,
++                  "verify_closure": 1, "publish_roots": 1}
++        profile = {"schema_version": 1, "phases": [
++            {"phase": phase, "calls": count, "nanos": 10} for phase, count in counts.items()]}
++        line = "casitar_import_profile " + json.dumps(profile)
++        self.assertEqual(suite.validate_profile(line, report), profile)
++        batched = copy.deepcopy(profile)
++        batched["phases"].append({"phase": "protect_records", "calls": 2, "nanos": 1})
++        suite.validate_profile("casitar_import_profile " + json.dumps(batched), report)
++        batched["phases"][-1]["calls"] = 1
++        with self.assertRaises(common.BenchmarkError):
++            suite.validate_profile("casitar_import_profile " + json.dumps(batched), report)
++        for stderr in ("", line + "\n" + line,
++                       line.replace('"calls": 257', '"calls": 256', 1)):
++            with self.assertRaises(common.BenchmarkError):
++                suite.validate_profile(stderr, report)
++
++    def test_import_profiler_is_registered_for_all_profiles(self):
++        from benchmarks.cli import entrypoints
++        entries = {entry["id"]: entry for entry in entrypoints()}
++        for identifier in ("casitar-import-profile", "casitar-pin-profile"):
++            for profile in ("smoke", "standard"):
++                args = suite.build_parser().parse_args([
++                    *entries[identifier]["default_arguments"],
++                    *runner.suite_arguments(identifier, pathlib.Path("/bin"), profile, 3),
++                    "--output", "/result.json"])
++                self.assertTrue(args.investigate_import)
++                self.assertEqual(args.profile, profile)
++                self.assertEqual(args.pin_timing, identifier == "casitar-pin-profile")
++
++    def test_dashboard_keeps_pin_traces_separate_and_aggregates_phases(self):
++        row = {"status": "ok", "operation": "import", "family": "object-count",
++               "files": 256, "file_bytes": 128, "seeded_file_percent": 100,
++               "wall_seconds": 2, "import_profile": {"phases": [
++                   {"phase": "stage_existing", "calls": 257, "nanos": 1000000000}]},
++               "pin_profile": {"journal_append_sync": {"seconds": 0.5, "calls": 257}}}
++        with tempfile.TemporaryDirectory() as temporary:
++            path = pathlib.Path(temporary) / "result.json"
++            path.write_text(json.dumps({"result_schema": "casita.casitar-scaling.v1",
++                "suite_id": "casitar", "configuration": {"import_profile": True, "pin_timing": True, "require_quiet_host": True},
++                "samples": [row, row]}))
++            observation = dashboard.normalize_result(path)["observations"][0]
++        self.assertTrue(observation["scale"]["pin_timing"])
++        self.assertTrue(observation["scale"]["require_quiet_host"])
++        self.assertEqual(observation["scale"]["max_external_cpu_percent"], 5)
++        self.assertEqual(observation["metrics"]["phase_stage_existing_seconds"], 1)
++        self.assertEqual(observation["metrics"]["pin_journal_append_sync_seconds"], 0.5)
++
++    def test_normalization_keeps_size_and_reuse_cases_separate(self):
++        samples = [{"operation": "import", "status": "ok", "family": "object-count",
++                    "files": files, "file_bytes": 128, "seeded_file_percent": reuse,
++                    "repetition": repetition, "wall_seconds": 1, "max_rss_bytes": 100,
++                    "user_seconds": 0.1, "system_seconds": 0.2}
++                   for files in (254, 256) for reuse in (0, 50, 100) for repetition in (1, 2)]
++        with tempfile.TemporaryDirectory() as temporary:
++            result = pathlib.Path(temporary) / "result.json"
++            result.write_text(json.dumps({"result_schema": "casita.casitar-scaling.v1",
++                                         "suite_id": "casitar", "configuration": {"profile": "smoke"},
++                                         "samples": samples}))
++            observations = dashboard.normalize_result(result)["observations"]
++        self.assertEqual(len(observations), 6)
++        self.assertEqual({row["samples"] for row in observations}, {2})
++        self.assertEqual({(row["scale"]["files"], row["scale"]["seeded_file_percent"]) for row in observations},
++                         {(files, reuse) for files in (254, 256) for reuse in (0, 50, 100)})
++        self.assertEqual(observations[0]["metrics"]["user_seconds"], 0.1)
++
++    def test_archive_reports_are_not_polluted_by_pack_diagnostics(self):
++        with mock.patch.dict(suite.os.environ, {"CASITA_PACK_STATS": "1", "CASITA_CASITAR_IMPORT_PROFILE": "1"}):
++            adapter = suite.ArchiveAdapter("casita")
++            self.assertNotIn("CASITA_PACK_STATS", adapter.env())
++            self.assertNotIn("CASITA_CASITAR_IMPORT_PROFILE", adapter.env())
++            adapter.import_profile = True
++            self.assertEqual(adapter.env()["CASITA_CASITAR_IMPORT_PROFILE"], "1")
++
++    def test_profiles_reach_all_runner_and_cover_boundaries(self):
++        for profile in suite.PROFILES:
++            args = suite.build_parser().parse_args([
++                *runner.suite_arguments("casitar-scaling", pathlib.Path("/bin"), profile, 2),
++                "--output", "/result.json",
++            ])
++            self.assertEqual(args.profile, profile)
++            self.assertEqual(args.repetitions, 2)
++            sizes = suite.PROFILES[profile]["payload_bytes"]
++            counts = suite.PROFILES[profile]["file_counts"]
++            self.assertLess(min(sizes), 65536)
++            self.assertGreater(max(sizes), 65536)
++            self.assertIn(254, counts)
++            self.assertIn(256, counts)
++
++    def test_fixture_is_distinct_deterministic_and_restore_rejects_corruption(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            work = pathlib.Path(temporary)
++            first = suite.fixture(work / "first", 2, 65537)
++            second = suite.fixture(work / "second", 2, 65537)
++            self.assertEqual(first, second)
++            self.assertEqual(len({value["sha256"] for value in first.values()}), 2)
++            suite.validate_checkout(work / "first", first)
++            path = work / "first" / next(iter(first))
++            with path.open("r+b") as output:
++                output.write(b"corrupt")
++            with self.assertRaises(common.BenchmarkError):
++                suite.validate_checkout(work / "first", first)
++
++    def test_reuse_gate_rejects_wrong_destination_or_digest(self):
++        stats = {"payloads": 3, "records": 3, "archive_digest": "expected"}
++        report = {"schema": "casita.archive.v1", "operation": "import", "validity": "imported",
++                  "stats": stats, "mappings": [{"index": 0, "name": "bench/received", "root": "key"}],
++                  "payloads_written": 2, "payloads_reused": 1, "records_inserted": 2, "records_reused": 1}
++        suite.validate_report(report, stats, "key", "import", 50)
++        for reuse in (0, 100):
++            with self.assertRaises(common.BenchmarkError):
++                suite.validate_report(report, stats, "key", "import", reuse)
++        for field, value in [("stats", {**stats, "archive_digest": "wrong"}), ("mappings", [])]:
++            bad = copy.deepcopy(report)
++            bad[field] = value
++            with self.assertRaises(common.BenchmarkError):
++                suite.validate_report(bad, stats, "key", "import", 50)
++
++    def test_corruption_changes_only_payload_body(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            archive = pathlib.Path(temporary) / "fixture.casitar"
++            prefix = b"casitar1" + (3).to_bytes(8, "little") + b"hdr"
++            frame = b"\x01" + bytes(32) + (4).to_bytes(8, "little")
++            original = prefix + frame + b"body\x00"
++            archive.write_bytes(original)
++            offset, byte = suite.corrupt_payload(archive)
++            damaged = archive.read_bytes()
++            self.assertEqual(offset, len(prefix + frame))
++            self.assertEqual(byte, b"b")
++            self.assertEqual([i for i, pair in enumerate(zip(original, damaged)) if pair[0] != pair[1]], [offset])
++            with archive.open("r+b") as output:
++                output.seek(offset)
++                output.write(byte)
++            self.assertEqual(archive.read_bytes(), original)

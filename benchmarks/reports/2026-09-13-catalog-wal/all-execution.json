@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "62ea96d5f167a03233a50c0a97773d0f25ea4ce1",
+  "diff": " benchmarks/README.md               |  13 +++\n benchmarks/all.py                  |   1 +\n benchmarks/manifest.json           |   1 +\n benchmarks/revisions.py            |   1 +\n benchmarks/tests/test_revisions.py |   2 +-\n src/blob/pack/benchmarks.rs        | 225 +++++++++++++++++++++++++++++++++++++\n 6 files changed, 242 insertions(+), 1 deletion(-)\n",
+  "entries": [
+    {
+      "suite": "catalog-wal",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "catalog-wal",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-catalog-wal-all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-catalog-wal-all/catalog-wal.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 10.138420700001006,
+      "log": "/tmp/casita-catalog-wal-all/catalog-wal.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

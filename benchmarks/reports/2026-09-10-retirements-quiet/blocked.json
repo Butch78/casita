@@ -1,0 +1,63 @@
+{
+  "imports": 60,
+  "pair": 6,
+  "variant": "before",
+  "reason": "host did not become quiet before the deadline",
+  "last_sample": {
+    "external_cpu_fraction": 0.9087110230479211,
+    "kernel_worker_cpu_fraction": 0.007882251748866725,
+    "top_external_processes": [
+      {
+        "pid": 1591197,
+        "name": "rustc",
+        "ticks": 1554
+      },
+      {
+        "pid": 1430475,
+        "name": "chromium",
+        "ticks": 19
+      },
+      {
+        "pid": 12406,
+        "name": "herdr",
+        "ticks": 7
+      },
+      {
+        "pid": 15944,
+        "name": "chromium",
+        "ticks": 7
+      },
+      {
+        "pid": 10552,
+        "name": "wireplumber",
+        "ticks": 5
+      },
+      {
+        "pid": 15961,
+        "name": "pipewire-pulse",
+        "ticks": 3
+      },
+      {
+        "pid": 20650,
+        "name": "codex",
+        "ticks": 3
+      },
+      {
+        "pid": 10964,
+        "name": "chromium",
+        "ticks": 2
+      }
+    ],
+    "competing_processes": [
+      {
+        "pid": 1590646,
+        "name": "cargo"
+      },
+      {
+        "pid": 1591197,
+        "name": "rustc"
+      }
+    ],
+    "interval_seconds": 1.1100888779983507
+  }
+}

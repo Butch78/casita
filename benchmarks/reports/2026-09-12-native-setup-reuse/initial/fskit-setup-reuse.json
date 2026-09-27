@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "samples": [
+    {
+      "correctness": "passed",
+      "iterations": 1000000,
+      "native": true,
+      "native_first_ensure_ns": 8022916,
+      "ns_per_call": 14.612583,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "memory_reuse",
+      "schema_version": 1,
+      "repetition": 0
+    },
+    {
+      "correctness": "passed",
+      "iterations": 2000,
+      "ns_per_call": 58680.75,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "receipt_reuse",
+      "schema_version": 1,
+      "repetition": 0
+    },
+    {
+      "correctness": "passed",
+      "iterations": 2000,
+      "ns_per_call": 58352.6665,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "receipt_reuse_after_settings_replacement",
+      "schema_version": 1,
+      "repetition": 0
+    },
+    {
+      "correctness": "passed",
+      "iterations": 1000000,
+      "native": true,
+      "native_first_ensure_ns": 269000,
+      "ns_per_call": 15.103125,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "memory_reuse",
+      "schema_version": 1,
+      "repetition": 1
+    },
+    {
+      "correctness": "passed",
+      "iterations": 2000,
+      "ns_per_call": 59782.5835,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "receipt_reuse",
+      "schema_version": 1,
+      "repetition": 1
+    },
+    {
+      "correctness": "passed",
+      "iterations": 2000,
+      "ns_per_call": 58847.2295,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "receipt_reuse_after_settings_replacement",
+      "schema_version": 1,
+      "repetition": 1
+    },
+    {
+      "correctness": "passed",
+      "iterations": 1000000,
+      "native": true,
+      "native_first_ensure_ns": 270791,
+      "ns_per_call": 14.966458,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "memory_reuse",
+      "schema_version": 1,
+      "repetition": 2
+    },
+    {
+      "correctness": "passed",
+      "iterations": 2000,
+      "ns_per_call": 59541.354,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "receipt_reuse",
+      "schema_version": 1,
+      "repetition": 2
+    },
+    {
+      "correctness": "passed",
+      "iterations": 2000,
+      "ns_per_call": 60962.146,
+      "platform": "macos",
+      "profile": "test",
+      "scenario": "receipt_reuse_after_settings_replacement",
+      "schema_version": 1,
+      "repetition": 2
+    }
+  ]
+}

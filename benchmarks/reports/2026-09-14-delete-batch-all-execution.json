@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "c2c6eac0ae6812490101d112e790aeb7b3c0a023",
+  "diff": " benchmarks/README.md                 | 15 +++++++++++++--\n benchmarks/suites/held_catalog_gc.py |  8 ++++++--\n src/metadata/sqlite.rs               | 16 +++++++++++++++-\n 3 files changed, 34 insertions(+), 5 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "held-catalog-gc",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "held-catalog-gc",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-delete-batch-all-smoke/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-delete-batch-all-smoke/held-catalog-gc.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 19.56042171899753,
+      "log": "/tmp/casita-delete-batch-all-smoke/held-catalog-gc.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

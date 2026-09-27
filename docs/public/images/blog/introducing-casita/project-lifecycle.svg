@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" role="img" aria-labelledby="title desc">
+  <title id="title">Two project versions saved explicitly</title>
+  <desc id="desc">Two project versions saved through explicit imports point into a shared repository. Identical bytes are stored once beside bytes unique to each version. Collection can reclaim bytes no saved version needs, while sync sends missing content to a mirror and verifies it before making the version available there.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="m1 1 8 4-8 4" fill="none" stroke="#a23b20" stroke-width="1.5"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, sans-serif; fill: #222b32; }
+      .heading { font-size: 27px; font-weight: 700; }
+      .label { font-size: 20px; font-weight: 700; }
+      .body { font-size: 17px; fill: #56616a; }
+      .small { font-size: 16px; font-weight: 650; }
+      .root { fill: #fffdfa; stroke: #a7adb0; stroke-width: 1.5; }
+      .store { fill: #fff0e9; stroke: #d25a37; stroke-width: 1.5; }
+      .shared { fill: #ce422b; }
+      .unique { fill: #fffdfa; stroke: #d25a37; stroke-width: 1.5; }
+      .action { fill: #fffdfa; stroke: #a7adb0; stroke-width: 1.5; }
+      .arrow { fill: none; stroke: #a23b20; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="760" height="460" rx="20" fill="#f5f6f8"/>
+  <text x="32" y="52" class="heading">Two versions saved explicitly</text>
+
+  <rect x="42" y="86" width="310" height="84" rx="12" class="root"/>
+  <text x="62" y="119" class="label">projects/app/v1</text>
+  <text x="62" y="148" class="body">source + build artifacts</text>
+  <rect x="408" y="86" width="310" height="84" rx="12" class="root"/>
+  <text x="428" y="119" class="label">projects/app/v2</text>
+  <text x="428" y="148" class="body">source + build artifacts</text>
+
+  <path d="M197 170v20h103v14" class="arrow"/>
+  <path d="M563 170v20H460v14" class="arrow"/>
+  <rect x="150" y="214" width="460" height="112" rx="12" class="store"/>
+  <text x="380" y="245" text-anchor="middle" class="label">Casita repository</text>
+  <rect x="170" y="263" width="136" height="42" rx="8" class="shared"/>
+  <text x="238" y="290" text-anchor="middle" class="small" style="fill: #fff">shared bytes</text>
+  <rect x="312" y="263" width="136" height="42" rx="8" class="unique"/>
+  <text x="380" y="290" text-anchor="middle" class="small">v1 only</text>
+  <rect x="454" y="263" width="136" height="42" rx="8" class="unique"/>
+  <text x="522" y="290" text-anchor="middle" class="small">v2 only</text>
+
+  <path d="M300 326v19H197v11" class="arrow"/>
+  <path d="M460 326v19h103v11" class="arrow"/>
+  <rect x="42" y="366" width="310" height="70" rx="12" class="action"/>
+  <text x="62" y="395" class="label">Collect</text>
+  <text x="62" y="420" class="body">Reclaim bytes no version needs</text>
+  <rect x="408" y="366" width="310" height="70" rx="12" class="action"/>
+  <text x="428" y="395" class="label">Sync</text>
+  <text x="428" y="420" class="body">Send missing bytes, then verify</text>
+</svg>

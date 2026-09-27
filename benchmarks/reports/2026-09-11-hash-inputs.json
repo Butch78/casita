@@ -1,0 +1,1374 @@
+{
+  "schema": "casita.hash-corpus-investigation.v1",
+  "binary_sha256": "e3a7211a5e8536ad4a47a0f63dbf8ed8b0473cbe9960715abf443cb8f9222d52",
+  "binary": "/home/domen/.cargo/build/b8/e394383c25fd38/release/deps/hash_inputs-385626be65947811",
+  "command": [
+    "/home/domen/.cargo/build/b8/e394383c25fd38/release/deps/hash_inputs-385626be65947811",
+    "--test"
+  ],
+  "environment": {
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "cpu_count": 16
+  },
+  "reports": [
+    {
+      "name": "boundaries",
+      "repository": null,
+      "report": {
+        "additional_eof_digest_reuse_count": 7,
+        "chunking": {
+          "average": 262144,
+          "maximum": 524288,
+          "minimum": 131072
+        },
+        "correctness": "every cold write checks whole digest, exact reference chunk IDs/sizes, and complete readback",
+        "existing_small_file_digest_reuse_count": 10,
+        "predicted_independent_chunk_hash_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 1,
+              "count": 1,
+              "cumulative_byte_percent": 7.629393949173435e-06,
+              "cumulative_bytes": 1,
+              "cumulative_count": 1,
+              "cumulative_count_percent": 2.857142857142857,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 7.629393949173435e-06,
+              "cumulative_bytes": 1,
+              "cumulative_count": 1,
+              "cumulative_count_percent": 2.857142857142857,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 7.629393949173435e-06,
+              "cumulative_bytes": 1,
+              "cumulative_count": 1,
+              "cumulative_count_percent": 2.857142857142857,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 7.629393949173435e-06,
+              "cumulative_bytes": 1,
+              "cumulative_count": 1,
+              "cumulative_count_percent": 2.857142857142857,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 7.629393949173435e-06,
+              "cumulative_bytes": 1,
+              "cumulative_count": 1,
+              "cumulative_count_percent": 2.857142857142857,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 1119836,
+              "count": 6,
+              "cumulative_byte_percent": 8.543677631860533,
+              "cumulative_bytes": 1119837,
+              "cumulative_count": 7,
+              "cumulative_count_percent": 20.0,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 11987364,
+              "count": 28,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13107201,
+              "cumulative_count": 35,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13107201,
+              "cumulative_count": 35,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13107201,
+              "cumulative_count": 35,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13107201,
+              "cumulative_count": 35,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 13107201,
+          "count": 35
+        },
+        "reference_storage_chunks": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 129,
+              "count": 3,
+              "cumulative_byte_percent": 0.0008538396041784925,
+              "cumulative_bytes": 129,
+              "cumulative_count": 3,
+              "cumulative_count_percent": 5.769230769230769,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 2048,
+              "count": 2,
+              "cumulative_byte_percent": 0.014409370684469597,
+              "cumulative_bytes": 2177,
+              "cumulative_count": 5,
+              "cumulative_count_percent": 9.615384615384615,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 32768,
+              "count": 2,
+              "cumulative_byte_percent": 0.23129786796912727,
+              "cumulative_bytes": 34945,
+              "cumulative_count": 7,
+              "cumulative_count_percent": 13.461538461538462,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 131072,
+              "count": 2,
+              "cumulative_byte_percent": 1.098851857107758,
+              "cumulative_bytes": 166017,
+              "cumulative_count": 9,
+              "cumulative_count_percent": 17.307692307692307,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 524286,
+              "count": 4,
+              "cumulative_byte_percent": 4.56905457583896,
+              "cumulative_bytes": 690303,
+              "cumulative_count": 13,
+              "cumulative_count_percent": 25.0,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 1906270,
+              "count": 10,
+              "cumulative_byte_percent": 17.186487306515975,
+              "cumulative_bytes": 2596573,
+              "cumulative_count": 23,
+              "cumulative_count_percent": 44.23076923076923,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 12511651,
+              "count": 29,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 15108224,
+              "cumulative_count": 52,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 15108224,
+              "cumulative_count": 52,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 15108224,
+              "cumulative_count": 52,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 15108224,
+              "cumulative_count": 52,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 15108224,
+          "count": 52
+        },
+        "reuse_method": "derived from reference chunks and current writer EOF rules; not runtime call instrumentation",
+        "schema": "casita.hash-inputs.v1",
+        "scope": "cold payload writer inputs; excludes metadata, repository verification, readback verification, and incremental-import skip decisions",
+        "source": {
+          "kind": "synthetic-boundaries",
+          "seed": 83
+        },
+        "whole_file_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 2,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 2,
+              "cumulative_count_percent": 7.142857142857143,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 128,
+              "count": 2,
+              "cumulative_byte_percent": 0.000847220692518194,
+              "cumulative_bytes": 128,
+              "cumulative_count": 4,
+              "cumulative_count_percent": 14.285714285714286,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 2048,
+              "count": 2,
+              "cumulative_byte_percent": 0.0144027517728093,
+              "cumulative_bytes": 2176,
+              "cumulative_count": 6,
+              "cumulative_count_percent": 21.428571428571427,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 32768,
+              "count": 2,
+              "cumulative_byte_percent": 0.23129124905746698,
+              "cumulative_bytes": 34944,
+              "cumulative_count": 8,
+              "cumulative_count_percent": 28.571428571428573,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 131072,
+              "count": 2,
+              "cumulative_byte_percent": 1.0988452381960978,
+              "cumulative_bytes": 166016,
+              "cumulative_count": 10,
+              "cumulative_count_percent": 35.714285714285715,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 524286,
+              "count": 4,
+              "cumulative_byte_percent": 4.5690479569273,
+              "cumulative_bytes": 690302,
+              "cumulative_count": 14,
+              "cumulative_count_percent": 50.0,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 786434,
+              "count": 4,
+              "cumulative_byte_percent": 9.774385129582406,
+              "cumulative_bytes": 1476736,
+              "cumulative_count": 18,
+              "cumulative_count_percent": 64.28571428571429,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 2097150,
+              "count": 4,
+              "cumulative_byte_percent": 23.655235717977178,
+              "cumulative_bytes": 3573886,
+              "cumulative_count": 22,
+              "cumulative_count_percent": 78.57142857142857,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 3145730,
+              "count": 4,
+              "cumulative_byte_percent": 44.476544695127636,
+              "cumulative_bytes": 6719616,
+              "cumulative_count": 26,
+              "cumulative_count_percent": 92.85714285714286,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 8388608,
+              "count": 2,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 15108224,
+              "cumulative_count": 28,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 15108224,
+              "cumulative_count": 28,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 15108224,
+          "count": 28
+        }
+      }
+    },
+    {
+      "name": "casita",
+      "repository": "/home/domen/dev/casita3",
+      "report": {
+        "additional_eof_digest_reuse_count": 34,
+        "chunking": {
+          "average": 262144,
+          "maximum": 524288,
+          "minimum": 131072
+        },
+        "correctness": "every cold write checks whole digest, exact reference chunk IDs/sizes, and complete readback",
+        "existing_small_file_digest_reuse_count": 1207,
+        "predicted_independent_chunk_hash_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 34151,
+              "count": 5,
+              "cumulative_byte_percent": 0.08922008178381226,
+              "cumulative_bytes": 34151,
+              "cumulative_count": 5,
+              "cumulative_count_percent": 3.816793893129771,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 178668,
+              "count": 5,
+              "cumulative_byte_percent": 0.5559933409021446,
+              "cumulative_bytes": 212819,
+              "cumulative_count": 10,
+              "cumulative_count_percent": 7.633587786259542,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 803459,
+              "count": 8,
+              "cumulative_byte_percent": 2.6550439599159366,
+              "cumulative_bytes": 1016278,
+              "cumulative_count": 18,
+              "cumulative_count_percent": 13.740458015267176,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 6952168,
+              "count": 39,
+              "cumulative_byte_percent": 20.81770383912306,
+              "cumulative_bytes": 7968446,
+              "cumulative_count": 57,
+              "cumulative_count_percent": 43.51145038167939,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 30308811,
+              "count": 74,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 38277257,
+              "cumulative_count": 131,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 38277257,
+              "cumulative_count": 131,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 38277257,
+              "cumulative_count": 131,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 38277257,
+              "cumulative_count": 131,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 38277257,
+          "count": 131
+        },
+        "reference_storage_chunks": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 375,
+              "count": 12,
+              "cumulative_byte_percent": 0.0006623056108747544,
+              "cumulative_bytes": 375,
+              "cumulative_count": 12,
+              "cumulative_count_percent": 0.8746355685131195,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 78786,
+              "count": 217,
+              "cumulative_byte_percent": 0.13981006523321715,
+              "cumulative_bytes": 79161,
+              "cumulative_count": 229,
+              "cumulative_count_percent": 16.690962099125365,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 4587458,
+              "count": 797,
+              "cumulative_byte_percent": 8.241941193372627,
+              "cumulative_bytes": 4666619,
+              "cumulative_count": 1026,
+              "cumulative_count_percent": 74.78134110787173,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 4606035,
+              "count": 159,
+              "cumulative_byte_percent": 16.376882058400625,
+              "cumulative_bytes": 9272654,
+              "cumulative_count": 1185,
+              "cumulative_count_percent": 86.37026239067055,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 4010648,
+              "count": 40,
+              "cumulative_byte_percent": 23.460281188116923,
+              "cumulative_bytes": 13283302,
+              "cumulative_count": 1225,
+              "cumulative_count_percent": 89.28571428571429,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 11598034,
+              "count": 69,
+              "cumulative_byte_percent": 43.94412917029338,
+              "cumulative_bytes": 24881336,
+              "cumulative_count": 1294,
+              "cumulative_count_percent": 94.31486880466473,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 31739051,
+              "count": 78,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 56620387,
+              "cumulative_count": 1372,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 56620387,
+              "cumulative_count": 1372,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 56620387,
+              "cumulative_count": 1372,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 56620387,
+              "cumulative_count": 1372,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 56620387,
+          "count": 1372
+        },
+        "reuse_method": "derived from reference chunks and current writer EOF rules; not runtime call instrumentation",
+        "schema": "casita.hash-inputs.v1",
+        "scope": "cold payload writer inputs; excludes metadata, repository verification, readback verification, and incremental-import skip decisions",
+        "source": {
+          "kind": "git-committed-regular-files",
+          "revision": "c7a62d5a1943af6d35710c507f0c4cd81818f14d",
+          "selection": "every regular file occurrence, including duplicate contents; no working-tree reads",
+          "skipped_symlinks_and_submodules": 0,
+          "tree_listing_blake3": "565a9cf2f6b8c0e1cad10de51fd8f46fae45791748d87af4e9ff327a9dbfe8b6"
+        },
+        "whole_file_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 188,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 188,
+              "cumulative_count_percent": 12.850307587149693,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 375,
+              "count": 12,
+              "cumulative_byte_percent": 0.0006623056108747544,
+              "cumulative_bytes": 375,
+              "cumulative_count": 200,
+              "cumulative_count_percent": 13.67053998632946,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 78786,
+              "count": 217,
+              "cumulative_byte_percent": 0.13981006523321715,
+              "cumulative_bytes": 79161,
+              "cumulative_count": 417,
+              "cumulative_count_percent": 28.503075871496925,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 4553307,
+              "count": 792,
+              "cumulative_byte_percent": 8.181625462927338,
+              "cumulative_bytes": 4632468,
+              "cumulative_count": 1209,
+              "cumulative_count_percent": 82.63841421736159,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 4427367,
+              "count": 154,
+              "cumulative_byte_percent": 16.00101214426528,
+              "cumulative_bytes": 9059835,
+              "cumulative_count": 1363,
+              "cumulative_count_percent": 93.16473000683527,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 3207189,
+              "count": 32,
+              "cumulative_byte_percent": 21.66538353049406,
+              "cumulative_bytes": 12267024,
+              "cumulative_count": 1395,
+              "cumulative_count_percent": 95.35201640464798,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 5084002,
+              "count": 32,
+              "cumulative_byte_percent": 30.644484997956656,
+              "cumulative_bytes": 17351026,
+              "cumulative_count": 1427,
+              "cumulative_count_percent": 97.5393028024607,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 5299439,
+              "count": 13,
+              "cumulative_byte_percent": 40.00408015579265,
+              "cumulative_bytes": 22650465,
+              "cumulative_count": 1440,
+              "cumulative_count_percent": 98.4278879015721,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 9087796,
+              "count": 12,
+              "cumulative_byte_percent": 56.054475572553045,
+              "cumulative_bytes": 31738261,
+              "cumulative_count": 1452,
+              "cumulative_count_percent": 99.24812030075188,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 19770568,
+              "count": 10,
+              "cumulative_byte_percent": 90.97223055010204,
+              "cumulative_bytes": 51508829,
+              "cumulative_count": 1462,
+              "cumulative_count_percent": 99.93164730006835,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 5111558,
+              "count": 1,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 56620387,
+              "cumulative_count": 1463,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 56620387,
+          "count": 1463
+        }
+      }
+    },
+    {
+      "name": "devenv",
+      "repository": "/home/domen/dev/devenv",
+      "report": {
+        "additional_eof_digest_reuse_count": 6,
+        "chunking": {
+          "average": 262144,
+          "maximum": 524288,
+          "minimum": 131072
+        },
+        "correctness": "every cold write checks whole digest, exact reference chunk IDs/sizes, and complete readback",
+        "existing_small_file_digest_reuse_count": 1450,
+        "predicted_independent_chunk_hash_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 18198,
+              "count": 2,
+              "cumulative_byte_percent": 0.27484182398433654,
+              "cumulative_bytes": 18198,
+              "cumulative_count": 2,
+              "cumulative_count_percent": 7.6923076923076925,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 109985,
+              "count": 2,
+              "cumulative_byte_percent": 1.9359297463338943,
+              "cumulative_bytes": 128183,
+              "cumulative_count": 4,
+              "cumulative_count_percent": 15.384615384615385,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 181966,
+              "count": 2,
+              "cumulative_byte_percent": 4.684136546154412,
+              "cumulative_bytes": 310149,
+              "cumulative_count": 6,
+              "cumulative_count_percent": 23.076923076923077,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 1570197,
+              "count": 8,
+              "cumulative_byte_percent": 28.398600085814444,
+              "cumulative_bytes": 1880346,
+              "cumulative_count": 14,
+              "cumulative_count_percent": 53.84615384615385,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 4740917,
+              "count": 12,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 6621263,
+              "cumulative_count": 26,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 6621263,
+              "cumulative_count": 26,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 6621263,
+              "cumulative_count": 26,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 6621263,
+              "cumulative_count": 26,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 6621263,
+          "count": 26
+        },
+        "reference_storage_chunks": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 4978,
+              "count": 160,
+              "cumulative_byte_percent": 0.03801555735900776,
+              "cumulative_bytes": 4978,
+              "cumulative_count": 160,
+              "cumulative_count_percent": 10.796221322537113,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 218338,
+              "count": 703,
+              "cumulative_byte_percent": 1.7054002023270745,
+              "cumulative_bytes": 223316,
+              "cumulative_count": 863,
+              "cumulative_count_percent": 58.232118758434545,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 2175068,
+              "count": 517,
+              "cumulative_byte_percent": 18.31577029347659,
+              "cumulative_bytes": 2398384,
+              "cumulative_count": 1380,
+              "cumulative_count_percent": 93.11740890688259,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 1928353,
+              "count": 60,
+              "cumulative_byte_percent": 33.04204873460047,
+              "cumulative_bytes": 4326737,
+              "cumulative_count": 1440,
+              "cumulative_count_percent": 97.16599190283401,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 1446691,
+              "count": 16,
+              "cumulative_byte_percent": 44.09001271436349,
+              "cumulative_bytes": 5773428,
+              "cumulative_count": 1456,
+              "cumulative_count_percent": 98.24561403508773,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 2311881,
+              "count": 13,
+              "cumulative_byte_percent": 61.74518442241897,
+              "cumulative_bytes": 8085309,
+              "cumulative_count": 1469,
+              "cumulative_count_percent": 99.12280701754386,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 5009330,
+              "count": 13,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13094639,
+              "cumulative_count": 1482,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13094639,
+              "cumulative_count": 1482,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13094639,
+              "cumulative_count": 1482,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13094639,
+              "cumulative_count": 1482,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 13094639,
+          "count": 1482
+        },
+        "reuse_method": "derived from reference chunks and current writer EOF rules; not runtime call instrumentation",
+        "schema": "casita.hash-inputs.v1",
+        "scope": "cold payload writer inputs; excludes metadata, repository verification, readback verification, and incremental-import skip decisions",
+        "source": {
+          "kind": "git-committed-regular-files",
+          "revision": "0bf6765ce7071d98ed137ecfe02d1e435007c971",
+          "selection": "every regular file occurrence, including duplicate contents; no working-tree reads",
+          "skipped_symlinks_and_submodules": 2,
+          "tree_listing_blake3": "b89da02014a2596f25f774a13838a9d85663af6e3f32b20cd2cd4acd025c0bac"
+        },
+        "whole_file_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 6,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 6,
+              "cumulative_count_percent": 0.4078857919782461,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 4978,
+              "count": 160,
+              "cumulative_byte_percent": 0.03801555735900776,
+              "cumulative_bytes": 4978,
+              "cumulative_count": 166,
+              "cumulative_count_percent": 11.284840244731475,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 218338,
+              "count": 703,
+              "cumulative_byte_percent": 1.7054002023270745,
+              "cumulative_bytes": 223316,
+              "cumulative_count": 869,
+              "cumulative_count_percent": 59.07545887151598,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 2156870,
+              "count": 515,
+              "cumulative_byte_percent": 18.176797390138056,
+              "cumulative_bytes": 2380186,
+              "cumulative_count": 1384,
+              "cumulative_count_percent": 94.08565601631543,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 1818368,
+              "count": 58,
+              "cumulative_byte_percent": 32.06315195096253,
+              "cumulative_bytes": 4198554,
+              "cumulative_count": 1442,
+              "cumulative_count_percent": 98.02855200543847,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 1264725,
+              "count": 14,
+              "cumulative_byte_percent": 41.721493811322325,
+              "cumulative_bytes": 5463279,
+              "cumulative_count": 1456,
+              "cumulative_count_percent": 98.98028552005438,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 980080,
+              "count": 6,
+              "cumulative_byte_percent": 49.20608349722356,
+              "cumulative_bytes": 6443359,
+              "cumulative_count": 1462,
+              "cumulative_count_percent": 99.38817131203263,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 1867105,
+              "count": 5,
+              "cumulative_byte_percent": 63.46462853996968,
+              "cumulative_bytes": 8310464,
+              "cumulative_count": 1467,
+              "cumulative_count_percent": 99.72807613868117,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 657356,
+              "count": 1,
+              "cumulative_byte_percent": 68.48466765674105,
+              "cumulative_bytes": 8967820,
+              "cumulative_count": 1468,
+              "cumulative_count_percent": 99.79605710401087,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 4126819,
+              "count": 3,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13094639,
+              "cumulative_count": 1471,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 13094639,
+              "cumulative_count": 1471,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 13094639,
+          "count": 1471
+        }
+      }
+    },
+    {
+      "name": "nixpkgs",
+      "repository": "/home/domen/dev/nixpkgs",
+      "report": {
+        "additional_eof_digest_reuse_count": 50,
+        "chunking": {
+          "average": 262144,
+          "maximum": 524288,
+          "minimum": 131072
+        },
+        "correctness": "every cold write checks whole digest, exact reference chunk IDs/sizes, and complete readback",
+        "existing_small_file_digest_reuse_count": 54136,
+        "predicted_independent_chunk_hash_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 44851,
+              "count": 7,
+              "cumulative_byte_percent": 0.06921202500718994,
+              "cumulative_bytes": 44851,
+              "cumulative_count": 7,
+              "cumulative_count_percent": 3.167420814479638,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 626028,
+              "count": 17,
+              "cumulative_byte_percent": 1.0352699856145589,
+              "cumulative_bytes": 670879,
+              "cumulative_count": 24,
+              "cumulative_count_percent": 10.85972850678733,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 1248812,
+              "count": 12,
+              "cumulative_byte_percent": 2.962379913448473,
+              "cumulative_bytes": 1919691,
+              "cumulative_count": 36,
+              "cumulative_count_percent": 16.289592760180994,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 11003305,
+              "count": 57,
+              "cumulative_byte_percent": 19.942180159189665,
+              "cumulative_bytes": 12922996,
+              "cumulative_count": 93,
+              "cumulative_count_percent": 42.081447963800905,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 51879327,
+              "count": 128,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 64802323,
+              "cumulative_count": 221,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 64802323,
+              "cumulative_count": 221,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 64802323,
+              "cumulative_count": 221,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 64802323,
+              "cumulative_count": 221,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 64802323,
+          "count": 221
+        },
+        "reference_storage_chunks": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 0,
+              "cumulative_count_percent": 0.0,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 18934,
+              "count": 454,
+              "cumulative_byte_percent": 0.009634297014569287,
+              "cumulative_bytes": 18934,
+              "cumulative_count": 454,
+              "cumulative_count_percent": 0.8344514492620435,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 16383534,
+              "count": 23692,
+              "cumulative_byte_percent": 8.34616290714948,
+              "cumulative_bytes": 16402468,
+              "cumulative_count": 24146,
+              "cumulative_count_percent": 44.380318708989655,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 73479949,
+              "count": 29185,
+              "cumulative_byte_percent": 45.73539145269736,
+              "cumulative_bytes": 89882417,
+              "cumulative_count": 53331,
+              "cumulative_count_percent": 98.02231330527322,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 22080562,
+              "count": 712,
+              "cumulative_byte_percent": 56.97077185602534,
+              "cumulative_bytes": 111962979,
+              "cumulative_count": 54043,
+              "cumulative_count_percent": 99.33096844156083,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 11788334,
+              "count": 129,
+              "cumulative_byte_percent": 62.96909820349263,
+              "cumulative_bytes": 123751313,
+              "cumulative_count": 54172,
+              "cumulative_count_percent": 99.56807028507362,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 19006840,
+              "count": 101,
+              "cumulative_byte_percent": 72.64045881764685,
+              "cumulative_bytes": 142758153,
+              "cumulative_count": 54273,
+              "cumulative_count_percent": 99.75370816255261,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 53768900,
+              "count": 134,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 196527053,
+              "cumulative_count": 54407,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 196527053,
+              "cumulative_count": 54407,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 196527053,
+              "cumulative_count": 54407,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 0,
+              "count": 0,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 196527053,
+              "cumulative_count": 54407,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 196527053,
+          "count": 54407
+        },
+        "reuse_method": "derived from reference chunks and current writer EOF rules; not runtime call instrumentation",
+        "schema": "casita.hash-inputs.v1",
+        "scope": "cold payload writer inputs; excludes metadata, repository verification, readback verification, and incremental-import skip decisions",
+        "source": {
+          "kind": "git-committed-regular-files",
+          "revision": "89ea88681d92c564085254528206f7587912f0c1",
+          "selection": "every regular file occurrence, including duplicate contents; no working-tree reads",
+          "skipped_symlinks_and_submodules": 3,
+          "tree_listing_blake3": "dafed4103f501a015e6e949d90e4fb54ea0b065c8588060275afad91990180d3"
+        },
+        "whole_file_inputs": {
+          "buckets": [
+            {
+              "bytes": 0,
+              "count": 24,
+              "cumulative_byte_percent": 0.0,
+              "cumulative_bytes": 0,
+              "cumulative_count": 24,
+              "cumulative_count_percent": 0.04423147806855879,
+              "upper_bound_bytes": 0
+            },
+            {
+              "bytes": 18934,
+              "count": 454,
+              "cumulative_byte_percent": 0.009634297014569287,
+              "cumulative_bytes": 18934,
+              "cumulative_count": 478,
+              "cumulative_count_percent": 0.8809436048654626,
+              "upper_bound_bytes": 64
+            },
+            {
+              "bytes": 16383534,
+              "count": 23692,
+              "cumulative_byte_percent": 8.34616290714948,
+              "cumulative_bytes": 16402468,
+              "cumulative_count": 24170,
+              "cumulative_count_percent": 44.54478437154442,
+              "upper_bound_bytes": 1024
+            },
+            {
+              "bytes": 73435098,
+              "count": 29178,
+              "cumulative_byte_percent": 45.71256965828516,
+              "cumulative_bytes": 89837566,
+              "cumulative_count": 53348,
+              "cumulative_count_percent": 98.31920383339477,
+              "upper_bound_bytes": 16384
+            },
+            {
+              "bytes": 21454534,
+              "count": 695,
+              "cumulative_byte_percent": 56.629404604159,
+              "cumulative_bytes": 111292100,
+              "cumulative_count": 54043,
+              "cumulative_count_percent": 99.60007371913011,
+              "upper_bound_bytes": 65536
+            },
+            {
+              "bytes": 10539522,
+              "count": 117,
+              "cumulative_byte_percent": 61.992290700049324,
+              "cumulative_bytes": 121831622,
+              "cumulative_count": 54160,
+              "cumulative_count_percent": 99.81570217471433,
+              "upper_bound_bytes": 131072
+            },
+            {
+              "bytes": 10101747,
+              "count": 55,
+              "cumulative_byte_percent": 67.13242120411789,
+              "cumulative_bytes": 131933369,
+              "cumulative_count": 54215,
+              "cumulative_count_percent": 99.91706597862145,
+              "upper_bound_bytes": 262144
+            },
+            {
+              "bytes": 8857385,
+              "count": 24,
+              "cumulative_byte_percent": 71.63937577591417,
+              "cumulative_bytes": 140790754,
+              "cumulative_count": 54239,
+              "cumulative_count_percent": 99.96129745669,
+              "upper_bound_bytes": 524288
+            },
+            {
+              "bytes": 10239395,
+              "count": 13,
+              "cumulative_byte_percent": 76.84954651001661,
+              "cumulative_bytes": 151030149,
+              "cumulative_count": 54252,
+              "cumulative_count_percent": 99.98525617397715,
+              "upper_bound_bytes": 1048576
+            },
+            {
+              "bytes": 11972781,
+              "count": 5,
+              "cumulative_byte_percent": 82.94172609406604,
+              "cumulative_bytes": 163002930,
+              "cumulative_count": 54257,
+              "cumulative_count_percent": 99.99447106524143,
+              "upper_bound_bytes": 4194304
+            },
+            {
+              "bytes": 33524123,
+              "count": 3,
+              "cumulative_byte_percent": 100.0,
+              "cumulative_bytes": 196527053,
+              "cumulative_count": 54260,
+              "cumulative_count_percent": 100.0,
+              "upper_bound_bytes": null
+            }
+          ],
+          "bytes": 196527053,
+          "count": 54260
+        }
+      }
+    }
+  ],
+  "source_sha256": {
+    "benches/hash_inputs.rs": "0b6dbe93e59da9b9d24febb81ba2a94ffa72a7386f259b7cc3c34f9f9ea9f832",
+    "src/blob/chunked/writer.rs": "9c1353eb27e71e2309a27fbd42899738ae28a1bad7f50872a8506b02f0c15bd3",
+    "src/blob/hashing_reader.rs": "641e4f4ed9df57ec21c37b6b0d612eb6fae5abdd5e3cb2434b3eeed31dd49b2e",
+    "Cargo.lock": "a91e1538001c294cb154653e9fb1141eae3ece47fbccb8874b893c04c23f0e23"
+  }
+}

@@ -1,0 +1,3 @@
+   Compiling casita v0.1.0 (/home/domen/dev/casita)
+    Finished `bench` profile [optimized] target(s) in 59.06s
+  Executable benches/online_holds.rs (/tmp/casita-online-holds-build/release/deps/online_holds-4826253bdf8e7da0)

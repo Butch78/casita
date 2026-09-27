@@ -1,0 +1,18 @@
+# Uncompressed copies of the committed raw reports.
+/directory-controls-0.json
+/directory-controls-128.json
+/directory-controls-256.json
+/directory-controls-512.json
+/timestamps-default-density-0.json
+/timestamps-default-density-128.json
+/timestamps-default-density-256.json
+/timestamps-default-density-512.json
+/timestamps-store.json
+/timestamps-zero-density-0.json
+/timestamps-zero-density-128.json
+/timestamps-zero-density-256.json
+/timestamps-zero-density-512.json
+/timestamps-zero.json
+/directory-controls.json
+/timestamps-default-density.json
+/timestamps-zero-density.json

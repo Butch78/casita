@@ -1,0 +1,110 @@
+[
+  {
+    "platform": "linux",
+    "workload": "chain",
+    "source": "benchmarks/reports/2026-09-09-shared-pin-persistence/linux/obrador/trace-after/chain-round-1-jobs-8-diagnostics.json",
+    "trace_window_seconds": 24.829373,
+    "checkpoint": {
+      "count": 215,
+      "total_ms": 1948.548588,
+      "p50_ms": 8.741143999999998,
+      "p95_ms": 32.779747,
+      "max_ms": 56.212911
+    },
+    "append_sync": {
+      "count": 3929,
+      "total_ms": 12812.233254,
+      "p50_ms": 1.2226400000000002,
+      "p95_ms": 7.300124,
+      "max_ms": 91.741534
+    },
+    "flush": {
+      "count": 4915,
+      "total_ms": 15220.957611,
+      "p50_ms": 1.2535020000000001,
+      "p95_ms": 9.513951,
+      "max_ms": 91.961137
+    }
+  },
+  {
+    "platform": "linux",
+    "workload": "wide",
+    "source": "benchmarks/reports/2026-09-09-shared-pin-persistence/linux/obrador/trace-after/wide-round-1-jobs-8-diagnostics.json",
+    "trace_window_seconds": 11.320596,
+    "checkpoint": {
+      "count": 247,
+      "total_ms": 1338.507684,
+      "p50_ms": 3.8613079999999997,
+      "p95_ms": 14.841409,
+      "max_ms": 23.666407
+    },
+    "append_sync": {
+      "count": 1848,
+      "total_ms": 6509.583513,
+      "p50_ms": 1.294596,
+      "p95_ms": 14.367441999999999,
+      "max_ms": 69.14767099999999
+    },
+    "flush": {
+      "count": 2566,
+      "total_ms": 8249.894922,
+      "p50_ms": 1.343686,
+      "p95_ms": 13.775094,
+      "max_ms": 69.275867
+    }
+  },
+  {
+    "platform": "macos",
+    "workload": "chain",
+    "source": "benchmarks/reports/2026-09-09-shared-pin-persistence/macos/obrador/trace-after/chain-round-1-jobs-8-diagnostics.json",
+    "trace_window_seconds": 40.814242,
+    "checkpoint": {
+      "count": 215,
+      "total_ms": 2401.664553,
+      "p50_ms": 11.047417000000001,
+      "p95_ms": 13.335875,
+      "max_ms": 22.079042
+    },
+    "append_sync": {
+      "count": 3942,
+      "total_ms": 16196.797539,
+      "p50_ms": 4.036459,
+      "p95_ms": 5.531958,
+      "max_ms": 16.98175
+    },
+    "flush": {
+      "count": 4934,
+      "total_ms": 20735.835552,
+      "p50_ms": 4.3928329999999995,
+      "p95_ms": 9.771166,
+      "max_ms": 22.339791
+    }
+  },
+  {
+    "platform": "macos",
+    "workload": "wide",
+    "source": "benchmarks/reports/2026-09-09-shared-pin-persistence/macos/obrador/trace-after/wide-round-1-jobs-8-diagnostics.json",
+    "trace_window_seconds": 21.500399,
+    "checkpoint": {
+      "count": 241,
+      "total_ms": 3179.07768,
+      "p50_ms": 12.949874999999999,
+      "p95_ms": 17.112958000000003,
+      "max_ms": 23.03575
+    },
+    "append_sync": {
+      "count": 1787,
+      "total_ms": 8439.739556,
+      "p50_ms": 4.3803339999999995,
+      "p95_ms": 8.520209000000001,
+      "max_ms": 13.12825
+    },
+    "flush": {
+      "count": 2464,
+      "total_ms": 13302.804127,
+      "p50_ms": 4.858875,
+      "p95_ms": 14.283667,
+      "max_ms": 25.221917
+    }
+  }
+]

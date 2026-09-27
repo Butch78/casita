@@ -1,0 +1,14 @@
+--- a/src/blob/chunked/writer.rs
++++ b/src/blob/chunked/writer.rs
+@@ -260,3 +260,10 @@
+             let compressed = tokio::task::spawn_blocking(move || {
+-                crate::compression::compress(&data, zstd::DEFAULT_COMPRESSION_LEVEL)
++                static FRESH: std::sync::LazyLock<bool> = std::sync::LazyLock::new(|| {
++                    std::env::var("CASITA_EXPERIMENT_FRESH_CHUNKS").as_deref() == Ok("1")
++                });
++                if *FRESH {
++                    zstd::bulk::compress(&data, zstd::DEFAULT_COMPRESSION_LEVEL)
++                } else {
++                    crate::compression::compress(&data, zstd::DEFAULT_COMPRESSION_LEVEL)
++                }
+             })

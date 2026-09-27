@@ -1,0 +1,2707 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "id": "pr",
+      "purpose": "Fast correctness and gross-regression coverage on every change"
+    },
+    {
+      "id": "nightly",
+      "purpose": "Scaling curves, backend matrices, and contention"
+    },
+    {
+      "id": "release",
+      "purpose": "Pinned reproducible results used for public claims"
+    },
+    {
+      "id": "frontier",
+      "purpose": "Manual cliff finding at production-scale limits"
+    }
+  ],
+  "principles": [
+    "Correctness is a gate for every successful performance sample",
+    "Scaling curves matter more than isolated fastest points",
+    "Incremental work should track the delta rather than all retained state",
+    "Peak memory and backend request amplification must be explicit",
+    "Tail latency, contention, restart, and failure paths are first-class",
+    "Raw results and environment identity remain authoritative"
+  ],
+  "dimensions": [
+    "correctness",
+    "latency",
+    "throughput",
+    "memory",
+    "storage",
+    "scale",
+    "concurrency",
+    "recovery"
+  ],
+  "metrics": [
+    {
+      "id": "cached_edits",
+      "measure": "ledger-cached-edits",
+      "unit": "count",
+      "direction": "higher",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "inventory_copies",
+      "measure": "ledger-inventory-copies",
+      "unit": "count",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "inventory_diffs",
+      "measure": "ledger-inventory-diffs",
+      "unit": "count",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "replacement_updates",
+      "measure": "ledger-replacement-updates",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "max_group",
+      "measure": "ledger-max-group",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "operations",
+      "measure": "ledger-operations",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "groups",
+      "measure": "ledger-groups",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "journal_adoptions",
+      "measure": "ledger-journal-adoptions",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "checkpoints",
+      "measure": "ledger-checkpoints",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "journal_syncs",
+      "measure": "ledger-journal-syncs",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "journal_bytes",
+      "measure": "ledger-journal-bytes",
+      "unit": "bytes",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "journal_frames",
+      "measure": "ledger-journal-frames",
+      "unit": "count",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "durable_revision_changed",
+      "measure": "scale-durable-revision-changed",
+      "unit": "boolean",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "release_durable_revision_changed",
+      "measure": "scale-release-durable-revision-changed",
+      "unit": "boolean",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "open_durable_revision_changed",
+      "measure": "scale-open-durable-revision-changed",
+      "unit": "boolean",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "open_ledger_updates",
+      "measure": "reader-open-ledger-updates",
+      "unit": "updates",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "release_ledger_updates",
+      "measure": "reader-release-ledger-updates",
+      "unit": "updates",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "gc_removed",
+      "measure": "reader-gc-removed-objects",
+      "unit": "objects",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "pack_bytes_before",
+      "measure": "reader-pack-bytes-before-gc",
+      "unit": "bytes",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "pack_bytes_after",
+      "measure": "reader-pack-bytes-after-gc",
+      "unit": "bytes",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "wall_seconds",
+      "measure": "wall-seconds",
+      "unit": "seconds",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "p95_wall_seconds",
+      "measure": "p95-wall-seconds",
+      "unit": "seconds",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": false
+    },
+    {
+      "id": "max_rss_bytes",
+      "measure": "max-rss-bytes",
+      "unit": "bytes",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "throughput_bytes_per_second",
+      "measure": "throughput-bytes-per-second",
+      "unit": "bytes/second",
+      "direction": "higher",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "repository_allocated_bytes",
+      "measure": "repository-allocated-bytes",
+      "unit": "bytes",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "pack_chunk_range_requests",
+      "measure": "pack-chunk-range-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "pack_whole_requests",
+      "measure": "pack-whole-requests",
+      "unit": "requests",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "wal_manifest_refresh_requests",
+      "measure": "wal-manifest-refresh-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "request_ledger_total",
+      "measure": "request-ledger-total",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "cold_wall_seconds",
+      "measure": "cold-wall-seconds",
+      "unit": "seconds",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "warm_wall_seconds",
+      "measure": "warm-wall-seconds",
+      "unit": "seconds",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "warm_open_total_requests",
+      "measure": "warm-open-total-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "warm_first_snapshot_total_requests",
+      "measure": "warm-first-snapshot-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "warm_repeat_snapshot_total_requests",
+      "measure": "warm-repeat-snapshot-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "warm_index_pointer_requests",
+      "measure": "warm-index-pointer-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "warm_index_requests",
+      "measure": "warm-index-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "warm_list_requests",
+      "measure": "warm-list-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "warm_footer_range_requests",
+      "measure": "warm-footer-range-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": true
+    },
+    {
+      "id": "decode_catalog_peak_rss_kib",
+      "measure": "catalog-decode-peak-rss-kib",
+      "unit": "KiB",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "generate_catalog_peak_rss_kib",
+      "measure": "catalog-generate-peak-rss-kib",
+      "unit": "KiB",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "rebase_catalog_rebase_peak_rss_kib",
+      "measure": "catalog-rebase-peak-rss-kib",
+      "unit": "KiB",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "operations_index_lookup_hit_nanos_per_op",
+      "measure": "catalog-lookup-hit-nanos",
+      "unit": "nanoseconds/operation",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "operations_index_lookup_miss_nanos_per_op",
+      "measure": "catalog-lookup-miss-nanos",
+      "unit": "nanoseconds/operation",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "operations_index_gc_median_nanos",
+      "measure": "catalog-gc-nanos",
+      "unit": "nanoseconds",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": true
+    },
+    {
+      "id": "p50_nanos",
+      "measure": "scale-p50-nanos",
+      "unit": "nanoseconds/operation",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": false
+    },
+    {
+      "id": "p95_nanos",
+      "measure": "scale-p95-nanos",
+      "unit": "nanoseconds/operation",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": false
+    },
+    {
+      "id": "p99_nanos",
+      "measure": "scale-p99-nanos",
+      "unit": "nanoseconds/operation",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": false
+    },
+    {
+      "id": "max_nanos",
+      "measure": "scale-max-nanos",
+      "unit": "nanoseconds/operation",
+      "direction": "lower",
+      "comparison": "statistical",
+      "gate": false
+    },
+    {
+      "id": "backend_read_bytes",
+      "measure": "scale-backend-read-bytes",
+      "unit": "bytes",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "pack_range_requests",
+      "measure": "scale-pack-range-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "whole_pack_requests",
+      "measure": "scale-whole-pack-requests",
+      "unit": "requests",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "cache_hits",
+      "measure": "scale-cache-hits",
+      "unit": "hits",
+      "direction": "higher",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "cache_evictions",
+      "measure": "scale-cache-evictions",
+      "unit": "evictions",
+      "direction": "lower",
+      "comparison": "informational",
+      "gate": false
+    },
+    {
+      "id": "repository_bytes",
+      "measure": "scale-repository-bytes",
+      "unit": "bytes",
+      "direction": "lower",
+      "comparison": "exact",
+      "gate": false
+    },
+    {
+      "id": "window_storage_growth_bytes",
+      "measure": "scale-window-storage-growth-bytes",
+      "unit": "bytes",
+      "direction": "neutral",
+      "comparison": "informational",
+      "gate": false
+    }
+  ],
+  "entrypoints": [
+    {
+      "id": "pin-protocol-s3",
+      "suite_id": "state-and-publication",
+      "title": "Pin protocol prototypes on RustFS with independent writers, GC and fault readback gates",
+      "kind": "module",
+      "target": "benchmarks.suites.pin_protocol_s3",
+      "profiles": ["smoke", "standard"]
+    },
+    {
+      "id": "pin-http",
+      "suite_id": "state-and-publication",
+      "title": "Independent S3 clients: disjoint writes, hot writes, CAS and raw 503 evidence",
+      "kind": "module",
+      "target": "benchmarks.suites.pin_http",
+      "profiles": ["smoke", "standard"]
+    },
+    {
+      "id": "pin-protocol",
+      "suite_id": "state-and-publication",
+      "title": "Independent-process pin protocol model with GC, crash, ambiguity and fresh readback",
+      "kind": "module",
+      "target": "benchmarks.suites.pin_protocol",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "remote-pin-cost",
+      "suite_id": "state-and-publication",
+      "title": "Production remote pin edit and wire-codec request accounting",
+      "kind": "command",
+      "target": [
+        "cargo",
+        "test",
+        "--release",
+        "--features",
+        "experimental",
+        "--lib",
+        "metadata::pins::persistent::remote_benchmark::benchmark_remote_pin_cost",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture"
+      ]
+    },
+    {
+      "id": "filesystem-reuse",
+      "suite_id": "state-and-publication",
+      "title": "Filesystem import reuse and directory pin-journal profiling",
+      "kind": "module",
+      "target": "benchmarks.suites.filesystem_reuse",
+      "profiles": ["smoke", "standard"],
+      "directory_counts": [1, 14, 15, 16, 17, 64, 511, 512, 513, 1024, 2047, 2048, 2049, 4095, 4096, 4097],
+      "boundaries": {"directory_concurrency": 16, "walk_page_entries": 1024, "publication_objects": 4096},
+      "correctness": ["canonical tree identity", "all warm file cache hits", "no warm blob staging", "byte-for-byte restoration", "source unchanged"]
+    },
+    {
+      "id": "memory-publication",
+      "suite_id": "state-and-publication",
+      "title": "Memory commits across mutation kinds and reader lifetimes",
+      "kind": "module",
+      "target": "benchmarks.suites.memory_publication",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "memory-index-lifecycle",
+      "suite_id": "state-and-publication",
+      "title": "Memory ordered reads, collection density and last-owner destruction",
+      "kind": "module",
+      "target": "benchmarks.suites.memory_index_lifecycle",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "mutation-catalog",
+      "suite_id": "state-and-publication",
+      "title": "Scoped mutation catalogs below and above the former 64 MiB history bound",
+      "kind": "module",
+      "target": "benchmarks.suites.mutation_catalog",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "filesystem-outputs",
+      "suite_id": "state-and-publication",
+      "title": "Separate filesystem roots through shared traversal and publication",
+      "kind": "module",
+      "target": "benchmarks.suites.filesystem_outputs",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "output-import",
+      "suite_id": "state-and-publication",
+      "title": "Casita output staging with per-output and batched mutation publication",
+      "kind": "module",
+      "target": "benchmarks.suites.output_import",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "git-import-profile",
+      "suite_id": "native-git",
+      "title": "Stage-level profiling of git-scale initial, unchanged and incremental imports",
+      "kind": "module",
+      "target": "benchmarks.suites.git_import_profile",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "git-ingest-scheduling",
+      "suite_id": "native-git",
+      "title": "Native Git staging with controlled upload latency and resource-bound gates",
+      "kind": "module",
+      "target": "benchmarks.suites.git_ingest_scheduling",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "git-pack-boundary",
+      "suite_id": "native-git",
+      "title": "Zero-delay streaming threshold and compression controls",
+      "kind": "module",
+      "target": "benchmarks.suites.git_pack_boundary",
+      "profiles": ["smoke", "standard"],
+      "corpora": ["small", "boundary", "buffered", "below", "at", "above"],
+      "blob_sizes": [65536, 1048575, 1048576, 1048577],
+      "compression_levels": [0, 6],
+      "read_modes": ["serial", "batch-8", "pipeline-8"],
+      "correctness": ["balanced mode order", "identical production pack bytes", "independent blob decoding and pack trailer validation", "exact payload reads", "all permits released", "identical output chunk count"]
+    },
+    {
+      "id": "git-pack-delayed",
+      "suite_id": "native-git",
+      "title": "Local simulated read delays, constrained storage permits and output backpressure",
+      "kind": "module",
+      "target": "benchmarks.suites.git_pack_delayed",
+      "profiles": ["smoke", "standard"],
+      "read_modes": ["serial", "batch-8", "pipeline-8"],
+      "read_delay_ms": [0, 5],
+      "output_delay_ms": [0, 2],
+      "backend_permits": [1, 2, 8],
+      "blob_sizes": [65536, 1048575, 1048576, 1048577],
+      "correctness": ["30-second liveness deadline", "bounded active readers", "all permits released", "exact payload read count", "identical production pack bytes", "independent native blob decoding and pack trailer validation"]
+    },
+    {
+      "id": "git-pack-cached",
+      "suite_id": "native-git",
+      "title": "Direct cached pack generation without networking, serial and batches 2/4/8",
+      "kind": "module",
+      "target": "benchmarks.suites.git_pack_cached",
+      "profiles": ["smoke", "standard"],
+      "read_batches": [1, 2, 4, 8],
+      "read_modes": ["serial", "batch-2", "batch-4", "batch-8", "pipeline-8"],
+      "blob_sizes": [1048575, 1048576, 1048577, 4194304, 16777216],
+      "correctness": ["zero cached payload reads", "identical pack bytes across batches", "strict Git index-pack", "exact tree and reachable object count", "git fsck --full --strict"]
+    },
+    {
+      "id": "git-fetch-s3",
+      "suite_id": "native-git",
+      "title": "Git HTTP fetch from S3 with boundary blobs and optional pinned nixpkgs tree",
+      "kind": "module",
+      "target": "benchmarks.suites.git_fetch_s3",
+      "repeat_fetches": 3,
+      "profiles": ["smoke", "standard"],
+      "blob_sizes": [1048575, 1048576, 1048577, 4194304, 16777216],
+      "cache_mib": [0, 16, 64, 128],
+      "correctness": ["exact commit and tree", "reachable object count", "git fsck --full --strict", "nonzero S3 payload reads"]
+    },
+    {
+      "id": "git-fetch-local",
+      "suite_id": "native-git",
+      "title": "Local-storage control for Git HTTP fetch, cache boundaries, and streaming-entry timing",
+      "kind": "module",
+      "target": "benchmarks.suites.git_fetch_local",
+      "repeat_fetches": 3,
+      "profiles": ["smoke", "standard"],
+      "blob_sizes": [1048575, 1048576, 1048577, 4194304, 16777216],
+      "cache_mib": [0, 16, 64, 128],
+      "correctness": ["exact commit and tree", "reachable object count", "git fsck --full --strict", "nonzero local payload reads"]
+    },
+    {
+      "id": "git-ingest-concurrency",
+      "suite_id": "native-git",
+      "title": "Bounded initial and incremental native Git ingestion",
+      "kind": "module",
+      "target": "benchmarks.suites.git_ingest_concurrency",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "ingest-scheduling",
+      "suite_id": "repository-e2e",
+      "title": "Ordered and ready-first file ingestion across window and page boundaries with controlled I/O delays",
+      "kind": "module",
+      "target": "benchmarks.suites.ingest_scheduling",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "ingest-concurrency",
+      "suite_id": "repository-e2e",
+      "title": "File and chunk upload concurrency with identity, checkout and fsck gates",
+      "kind": "module",
+      "target": "benchmarks.suites.ingest_concurrency",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "snapshot-connections",
+      "suite_id": "state-and-publication",
+      "title": "Fresh and reused query-only snapshots below and above the idle connection bound",
+      "kind": "module",
+      "target": "benchmarks.suites.snapshot_connections",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit",
+      "suite_id": "repository-e2e",
+      "title": "Native Rust FSKit versus host reads with a memory backend, boundary reads and metadata",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-portable",
+      "suite_id": "repository-e2e",
+      "title": "Native Rust FSKit versus host reads, identical portable-name memory fixture",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_portable",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-repository",
+      "suite_id": "repository-e2e",
+      "title": "Native FSKit repository reads versus the host filesystem",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_repository",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch",
+      "suite_id": "repository-e2e",
+      "title": "Native FSKit and host executable launch phases, host controls, wait modes and repository counters",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-uncached",
+      "suite_id": "repository-e2e",
+      "title": "Native FSKit launch regression control with immutable-directory cache disabled",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--directory-cache",
+        "disabled",
+        "--xattr-mode",
+        "emulated"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-enumeration-uncached",
+      "suite_id": "repository-e2e",
+      "title": "Native FSKit shared enumeration entries disabled, same-binary regression control",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--enumeration-cache",
+        "disabled"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-eager",
+      "suite_id": "repository-e2e",
+      "title": "Native FSKit launch control with eager enumeration attribute allocation",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--enumeration-attributes",
+        "eager",
+        "--xattr-mode",
+        "emulated"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-profile",
+      "suite_id": "repository-e2e",
+      "title": "Rootless native FSKit extension stack sample during launch and code-object controls",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--sample-extension-seconds",
+        "20",
+        "--metadata-files",
+        "512",
+        "--repetitions",
+        "10"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-density-filename-bytes",
+      "suite_id": "repository-e2e",
+      "title": "Direct-byte FSKit filename construction versus directory size",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch_density",
+      "default_arguments": [
+        "--filename-construction",
+        "bytes"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-workloads",
+      "suite_id": "repository-e2e",
+      "title": "Real awk/sort/gzip launches at 1/8/15/16/17/31/32/33 workers",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_workloads",
+      "default_arguments": [
+        "--metadata-files",
+        "0"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-workloads-readers-16",
+      "suite_id": "repository-e2e",
+      "title": "Same-binary 16-reader control at 17 concurrent launches",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_workloads",
+      "default_arguments": [
+        "--metadata-files",
+        "0",
+        "--reader-cache-capacity",
+        "16",
+        "--workload-workers",
+        "17"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-workloads-read-trace",
+      "suite_id": "repository-e2e",
+      "title": "Read-range and FSKit callback-phase diagnostics for concurrent real-tool launches",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_workloads",
+      "default_arguments": [
+        "--metadata-files",
+        "0",
+        "--trace-read-ranges"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-workloads-uncached",
+      "suite_id": "repository-e2e",
+      "title": "Real awk/sort/gzip launches at 1/8/15/16/17/31/32/33 workers without reader reuse",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_workloads",
+      "default_arguments": [
+        "--metadata-files",
+        "0",
+        "--reader-cache",
+        "disabled"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-first-launch-uncached",
+      "suite_id": "repository-e2e",
+      "title": "First-launch regression without reader reuse, including 15/16/17-file pressure",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_first_launch",
+      "default_arguments": [
+        "--metadata-files",
+        "512",
+        "--reader-cache",
+        "disabled"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-first-launch",
+      "suite_id": "repository-e2e",
+      "title": "Fresh-mount first launch with preparation and 15/16/17-file reader-cache controls",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_first_launch",
+      "default_arguments": [
+        "--metadata-files",
+        "512"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-zero-times",
+      "suite_id": "repository-e2e",
+      "title": "Native launch regression control with zero immutable timestamps",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--item-timestamps",
+        "zero",
+        "--metadata-files",
+        "512"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-capabilities",
+      "suite_id": "repository-e2e",
+      "title": "Native launch with explicit supported volume capabilities and VFS verification",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--volume-capabilities",
+        "explicit",
+        "--metadata-files",
+        "512"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-density-phases",
+      "suite_id": "repository-e2e",
+      "title": "Native enumeration filename construction and packing phase attribution across directory sizes",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch_density",
+      "default_arguments": [
+        "--enumeration-timing",
+        "detailed"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-density",
+      "suite_id": "repository-e2e",
+      "title": "Native Native FSKit and host launch, directory reads and public CFBundle discovery versus sibling count",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch_density",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-density-enumeration-uncached",
+      "suite_id": "repository-e2e",
+      "title": "Directory-size launch sweep with shared enumeration entries disabled",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch_density",
+      "default_arguments": [
+        "--enumeration-cache",
+        "disabled"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-explicit-xattrs",
+      "suite_id": "repository-e2e",
+      "title": "Experimental native FSKit launch with explicit empty xattr callbacks",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch",
+      "default_arguments": [
+        "--xattr-mode",
+        "explicit"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "native-fskit-launch-density-explicit-xattrs",
+      "suite_id": "repository-e2e",
+      "title": "Experimental explicit-xattr launch scaling with sibling count",
+      "kind": "module",
+      "target": "benchmarks.suites.native_fskit_launch_density",
+      "default_arguments": [
+        "--xattr-mode",
+        "explicit"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "filesystem-transports",
+      "suite_id": "repository-e2e",
+      "title": "Mounted Casita baseline, cached open/read controls, direct repository reads and isolation",
+      "kind": "module",
+      "target": "benchmarks.suites.filesystem_transports",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "erofs-transports",
+      "suite_id": "repository-e2e",
+      "title": "Kernel EROFS, LZ4 EROFS, Casita FUSE and ext4 in the same KVM guest",
+      "kind": "module",
+      "target": "benchmarks.suites.erofs_transports",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "memory-snapshots",
+      "suite_id": "state-and-publication",
+      "title": "Memory snapshot and publication scaling with retained readers",
+      "kind": "module",
+      "target": "benchmarks.suites.memory_snapshots",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "ledger-boundaries",
+      "suite_id": "state-and-publication",
+      "title": "Linux/macOS ledger checkpoint, oversized-record edits, single/grouped batch and full-space migration boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.ledger_boundaries",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "small-blob-pins",
+      "suite_id": "state-and-publication",
+      "title": "Loose and packed durable pin batching across chunker minimum and maximum boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.small_blob_pins",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "durable-ledger",
+      "suite_id": "state-and-publication",
+      "title": "Linux/macOS durable staging, publication protection, deletion claims and group commit",
+      "kind": "module",
+      "target": "benchmarks.suites.durable_ledger",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "pin-growth",
+      "suite_id": "state-and-publication",
+      "title": "Growing staging pins across record-size and periodic checkpoint boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.pin_growth",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "reader-coordination",
+      "suite_id": "state-and-publication",
+      "title": "Local process readers and durable revision reservation boundary",
+      "kind": "module",
+      "target": "benchmarks.suites.reader_coordination",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "decoded-seek-replay",
+      "suite_id": "repository-e2e",
+      "title": "Measured launch ranges, parked sequential reads, changing working sets, and decoded-cache capacity boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.decoded_seek_replay",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "object-reads",
+      "suite_id": "repository-e2e",
+      "title": "Local object-scoped and snapshot reader admission, release, and GC progress",
+      "kind": "module",
+      "target": "benchmarks.suites.object_reads",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "metadata-kv",
+      "suite_id": "state-and-publication",
+      "title": "Local metadata short reads and snapshot controls across idle-pool limits, prefix scans, and checked commits",
+      "kind": "module",
+      "target": "benchmarks.suites.metadata_kv",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "metadata-primitives",
+      "suite_id": "state-and-publication",
+      "title": "Existing object reads, ordered inventory, and atomic revision commits",
+      "kind": "module",
+      "target": "benchmarks.suites.metadata_primitives",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "metadata-batch",
+      "suite_id": "state-and-publication",
+      "title": "Metadata batch reads across the bounded-query cutoff",
+      "kind": "module",
+      "target": "benchmarks.suites.metadata_batch",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "metadata-scan",
+      "suite_id": "state-and-publication",
+      "title": "Ordered metadata inventory scaling",
+      "kind": "module",
+      "target": "benchmarks.suites.metadata_collection",
+      "default_arguments": [
+        "--probe",
+        "ordered-scan"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "metadata-collection",
+      "suite_id": "collection-and-fsck",
+      "title": "Metadata collection across the inline/streamed cutoff",
+      "kind": "module",
+      "target": "benchmarks.suites.metadata_collection",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "repository",
+      "suite_id": "repository-e2e",
+      "title": "Repository workflow comparison",
+      "kind": "module",
+      "target": "benchmarks.suites.repository",
+      "profiles": [
+        "smoke",
+        "standard",
+        "pack-tuning"
+      ]
+    },
+    {
+      "id": "nixpkgs",
+      "suite_id": "repository-e2e",
+      "title": "Nixpkgs packed-backend acceptance",
+      "kind": "module",
+      "target": "benchmarks.suites.nixpkgs",
+      "profiles": [
+        "standard",
+        "release"
+      ]
+    },
+    {
+      "id": "cdcs-corpus",
+      "suite_id": "core-primitives",
+      "title": "Content-defined chunk slicing on rebuilt store paths",
+      "kind": "module",
+      "target": "benchmarks.suites.cdcs",
+      "profiles": [
+        "standard"
+      ]
+    },
+    {
+      "id": "core-primitives",
+      "suite_id": "core-primitives",
+      "title": "Criterion storage, codec, metadata, and verified-repair primitives",
+      "kind": "command",
+      "target": [
+        "cargo",
+        "bench",
+        "--features",
+        "experimental,git-fetch",
+        "--bench",
+        "write_path",
+        "--bench",
+        "hash_inputs",
+        "--bench",
+        "tar_import",
+        "--bench",
+        "filesystem_import",
+        "--bench",
+        "dedup",
+        "--bench",
+        "repairing",
+        "--bench",
+        "optimization",
+        "--bench",
+        "compression_handoff",
+        "--bench",
+        "git_fetch_fairness",
+        "--bench",
+        "verified_io",
+        "--bench",
+        "overwrite_pages",
+        "--bench",
+        "manifest_reads",
+        "--bench",
+        "nar_associations",
+        "--bench",
+        "nar_import",
+        "--bench",
+        "bao_packing",
+        "--bench",
+        "cdcs",
+        "--bench",
+        "sliced_transfer"
+      ],
+      "profiles": [
+        "criterion"
+      ]
+    },
+    {
+      "id": "obrador-reads",
+      "suite_id": "repository-e2e",
+      "title": "Obrador shared-DAG NAR reads and p95 latency during collection",
+      "kind": "module",
+      "target": "benchmarks.suites.obrador_reads",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "retained-readers",
+      "suite_id": "repository-e2e",
+      "title": "Process-owned retained sessions versus durable holds, reader fanout and GC",
+      "kind": "command",
+      "target": [
+        "cargo",
+        "bench",
+        "--features",
+        "experimental",
+        "--bench",
+        "retained_readers"
+      ],
+      "profiles": [
+        "experiment"
+      ]
+    },
+    {
+      "id": "held-catalog-gc",
+      "suite_id": "collection-and-fsck",
+      "title": "End-to-end local GC with overlapping historical holds",
+      "kind": "module",
+      "target": "benchmarks.suites.held_catalog_gc",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "catalog-marking",
+      "suite_id": "blob-backends",
+      "title": "Historical catalog marking with overlapping holds",
+      "kind": "module",
+      "target": "benchmarks.suites.catalog_marking",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "cleanup-batches",
+      "suite_id": "blob-backends",
+      "title": "Physical cleanup boundaries and 100,000-path retirement queue memory",
+      "kind": "module",
+      "target": "benchmarks.suites.cleanup_batches",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "transfer-holds",
+      "suite_id": "transfer",
+      "title": "Selected versus snapshot transfer holds: acquisition, throughput and live GC",
+      "kind": "command",
+      "target": [
+        "cargo",
+        "bench",
+        "--features",
+        "ssh,experimental",
+        "--bench",
+        "transfer_holds"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "online-holds",
+      "suite_id": "repository-e2e",
+      "title": "Local import, application-reader, and online GC contention",
+      "kind": "command",
+      "target": [
+        "cargo",
+        "bench",
+        "--features",
+        "experimental",
+        "--bench",
+        "online_holds"
+      ],
+      "import_counts": {
+        "smoke": [
+          3
+        ],
+        "standard": [
+          60,
+          300
+        ]
+      },
+      "profiles": [
+        "experiment"
+      ]
+    },
+    {
+      "id": "pack-limits",
+      "suite_id": "blob-backends",
+      "title": "Local pack target sweep",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.limits",
+      "profiles": [
+        "smoke",
+        "standard",
+        "pack-tuning"
+      ]
+    },
+    {
+      "id": "pack-index",
+      "suite_id": "blob-backends",
+      "title": "Local persistent pack catalog reopen",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.index",
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "catalog-index",
+      "suite_id": "blob-backends",
+      "title": "Catalog codec, RSS, lookup, and GC scaling",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.catalog",
+      "profiles": [
+        "frontier"
+      ],
+      "budgets": {
+        "scale_entries": 1000000,
+        "max_reader_rss_bytes": 268435456,
+        "max_lazy_reader_rss_bytes": 268435456,
+        "max_rebase_rss_bytes": 268435456,
+        "max_lookup_hit_nanos_per_op": 1000,
+        "max_lookup_miss_nanos_per_op": 1000,
+        "gc_percent": 10,
+        "max_gc_nanos": 100000000
+      }
+    },
+    {
+      "id": "pack-gc",
+      "suite_id": "collection-and-fsck",
+      "title": "Local pack collection density sweep",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.gc",
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "s3-pack",
+      "suite_id": "blob-backends",
+      "title": "S3 pack cache and request sweep",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.s3",
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "s3-pack-gc",
+      "suite_id": "collection-and-fsck",
+      "title": "RustFS pack collection request sweep",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.s3_gc",
+      "profiles": [
+        "custom"
+      ],
+      "budgets": {
+        "gc_wal_requests": 12,
+        "gc_inventory_list_requests": 0,
+        "gc_catalog_put_requests": 0,
+        "gc_survivor_range_requests": 0,
+        "gc_unexpected_catalog_read_requests": 0,
+        "max_gc_tombstone_put_requests": 1,
+        "gc_logical_shard_barrier_get_requests": 2,
+        "gc_logical_shard_barrier_put_requests": 3,
+        "gc_logical_shard_inventory_list_requests": 0,
+        "max_gc_logical_shard_put_requests": 2
+      }
+    },
+    {
+      "id": "s3-pack-index",
+      "suite_id": "blob-backends",
+      "title": "RustFS/wal3 persistent catalog reopen",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.s3_index",
+      "profiles": [
+        "custom"
+      ],
+      "budgets": {
+        "warm_catalog_get_requests": 0,
+        "warm_sharded_catalog_get_requests": 1,
+        "warm_list_requests": 0,
+        "warm_footer_range_requests": 0,
+        "warm_open_total_requests": 3,
+        "warm_sharded_open_total_requests": 4,
+        "warm_first_snapshot_total_requests": 1,
+        "warm_repeat_snapshot_total_requests": 1
+      }
+    },
+    {
+      "id": "s3-path-transfer",
+      "suite_id": "transfer",
+      "title": "RustFS path-selected transfer depth and request sweep",
+      "kind": "module",
+      "target": "benchmarks.suites.transfer.s3_path",
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "fsck",
+      "suite_id": "collection-and-fsck",
+      "title": "Full repository fsck under sustained spill and at the metadata-cache cutoff",
+      "kind": "module",
+      "target": "benchmarks.suites.fsck",
+      "profiles": [
+        "smoke",
+        "standard",
+        "frontier"
+      ]
+    },
+    {
+      "id": "graph-traversal",
+      "suite_id": "graph-traversal",
+      "title": "Forced-spill verification and collection",
+      "kind": "module",
+      "target": "benchmarks.suites.graph",
+      "profiles": [
+        "smoke",
+        "standard",
+        "frontier"
+      ]
+    },
+    {
+      "id": "git-scale",
+      "suite_id": "native-git",
+      "title": "Native Git object and history scaling",
+      "kind": "module",
+      "target": "benchmarks.suites.git",
+      "profiles": [
+        "smoke",
+        "standard",
+        "huge"
+      ]
+    },
+    {
+      "id": "gix-odb",
+      "suite_id": "native-git",
+      "title": "Gix object-database compatibility path",
+      "kind": "module",
+      "target": "benchmarks.suites.gix_odb",
+      "profiles": [
+        "smoke",
+        "standard",
+        "huge",
+        "below-cache",
+        "cache-pressure"
+      ]
+    },
+    {
+      "id": "state-publication",
+      "suite_id": "state-and-publication",
+      "title": "State snapshots and concurrent publication",
+      "kind": "module",
+      "target": "benchmarks.suites.native_probes",
+      "default_arguments": [
+        "--probe",
+        "state-publication"
+      ],
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "catalog-maintenance",
+      "suite_id": "blob-backends",
+      "title": "Catalog reclamation marker",
+      "kind": "module",
+      "target": "benchmarks.suites.native_probes",
+      "default_arguments": [
+        "--probe",
+        "catalog-maintenance"
+      ],
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "catalog-durability",
+      "suite_id": "blob-backends",
+      "title": "Durable catalog publication batching",
+      "kind": "module",
+      "target": "benchmarks.suites.native_probes",
+      "default_arguments": [
+        "--probe",
+        "catalog-durability"
+      ],
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "logical-state",
+      "suite_id": "state-and-publication",
+      "title": "Logical state shard scaling",
+      "kind": "module",
+      "target": "benchmarks.suites.native_probes",
+      "default_arguments": [
+        "--probe",
+        "logical-state"
+      ],
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "casitar",
+      "suite_id": "casitar",
+      "title": "Archive round trips and malformed streams",
+      "kind": "module",
+      "target": "benchmarks.suites.lifecycle",
+      "default_arguments": [
+        "--mode",
+        "casitar"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "casitar-scaling",
+      "suite_id": "casitar",
+      "title": "Archive payload and object scaling with destination reuse",
+      "kind": "module",
+      "target": "benchmarks.suites.casitar_scaling",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "casitar-import-profile",
+      "suite_id": "casitar",
+      "title": "Casitar import phase accounting across publication boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.casitar_scaling",
+      "profiles": [
+        "smoke",
+        "standard"
+      ],
+      "default_arguments": [
+        "--investigate-import"
+      ]
+    },
+    {
+      "id": "casitar-pin-profile",
+      "suite_id": "casitar",
+      "title": "Casitar import pin-ledger diagnostics across publication boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.casitar_scaling",
+      "profiles": [
+        "smoke",
+        "standard"
+      ],
+      "default_arguments": [
+        "--investigate-import",
+        "--pin-timing",
+        "--file-counts",
+        "254,256"
+      ]
+    },
+    {
+      "id": "casitar-quiet-import",
+      "suite_id": "casitar",
+      "title": "Casitar import scaling with quiet-host admission and activity rejection",
+      "kind": "module",
+      "target": "benchmarks.suites.casitar_scaling",
+      "profiles": [
+        "smoke",
+        "standard"
+      ],
+      "default_arguments": [
+        "--investigate-import",
+        "--no-phase-timing",
+        "--require-quiet-host"
+      ]
+    },
+    {
+      "id": "fault-and-recovery",
+      "suite_id": "fault-and-recovery",
+      "title": "Interrupted receiver restart and truncation",
+      "kind": "module",
+      "target": "benchmarks.suites.lifecycle",
+      "default_arguments": [
+        "--mode",
+        "recovery"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "generations",
+      "suite_id": "huge-repositories",
+      "title": "Retained history with tiny deltas",
+      "kind": "module",
+      "target": "benchmarks.suites.lifecycle",
+      "default_arguments": [
+        "--mode",
+        "generations"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "process-contention",
+      "suite_id": "state-and-publication",
+      "title": "Independent processes publishing beside snapshot readers",
+      "kind": "module",
+      "target": "benchmarks.suites.contention",
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "s3-catalog-index",
+      "suite_id": "blob-backends",
+      "title": "Authenticated sharded catalog reads over RustFS",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.s3_catalog",
+      "profiles": [
+        "custom"
+      ]
+    },
+    {
+      "id": "history-scale",
+      "suite_id": "huge-repositories",
+      "title": "Retained histories at 100, 1,000 and 10,000 generations",
+      "kind": "module",
+      "target": "benchmarks.suites.scale",
+      "default_arguments": [
+        "--mode",
+        "history"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "pack-cache-scale",
+      "suite_id": "huge-repositories",
+      "title": "Working sets below and above physical pack-cache capacity",
+      "kind": "module",
+      "target": "benchmarks.suites.scale",
+      "default_arguments": [
+        "--mode",
+        "pack-cache"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "pack-cache-network",
+      "suite_id": "huge-repositories",
+      "title": "Physical cache pressure crossed with real S3 latency, bandwidth and read concurrency",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.cache_network",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "network-scale",
+      "suite_id": "transfer",
+      "title": "Combined RTT and bandwidth matrix for S3 and RPC transfer",
+      "kind": "module",
+      "target": "benchmarks.suites.scale",
+      "default_arguments": [
+        "--mode",
+        "network"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "s3-fetch-lookahead",
+      "suite_id": "blob-backends",
+      "title": "Owned look-ahead scheduling versus current and demand-driven readers",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.fragmentation_network",
+      "default_arguments": [
+        "--candidate-read-strategy",
+        "lookahead",
+        "--compare-current",
+        "--include-pipeline-control",
+        "--read-bytes",
+        "0,1"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "s3-fetch-pipeline",
+      "suite_id": "blob-backends",
+      "title": "Compressed planning through the existing verified reader",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.fragmentation_network",
+      "default_arguments": [
+        "--candidate-read-strategy",
+        "pipeline",
+        "--compare-current",
+        "--read-bytes",
+        "0,1"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "s3-read-planning",
+      "suite_id": "blob-backends",
+      "title": "Actual S3 compressed fetch-stream prototype versus current reader",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.fragmentation_network",
+      "default_arguments": [
+        "--candidate-read-strategy",
+        "planned",
+        "--compare-current",
+        "--read-bytes",
+        "0,1"
+      ],
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "pack-read-planning",
+      "suite_id": "blob-backends",
+      "title": "Bounded read planning over audited physical traces (I/O model only)",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.read_planning",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "s3-fragmentation",
+      "suite_id": "blob-backends",
+      "title": "Production pack fragmentation over latency-shaped S3",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.fragmentation_network",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "pack-fragmentation",
+      "suite_id": "blob-backends",
+      "title": "Repeated edits and cold/warm pack reconstruction",
+      "kind": "module",
+      "target": "benchmarks.suites.pack.fragmentation",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "catalog-wal",
+      "suite_id": "state-and-publication",
+      "title": "Catalog WAL footprint across inline thresholds and reader lifetimes",
+      "kind": "module",
+      "target": "benchmarks.suites.catalog_wal",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    },
+    {
+      "id": "scoped-catalog",
+      "suite_id": "state-and-publication",
+      "title": "Scoped catalog replay across count and byte carry boundaries",
+      "kind": "module",
+      "target": "benchmarks.suites.scoped_catalog",
+      "profiles": [
+        "smoke",
+        "standard"
+      ]
+    }
+  ],
+  "frontiers": [
+    {
+      "id": "physical-500tb",
+      "title": "500 TB physical repository",
+      "axis": "physical_bytes",
+      "target": 500000000000000,
+      "purpose": "Prove that catalog publication, open, lookup, sync, fsck, and collection remain sharded and bounded-memory at roughly two billion 256 KiB chunks; payload materialization is not required for catalog-only runs."
+    },
+    {
+      "id": "physical-30gib",
+      "title": "30 GiB physical repository",
+      "axis": "physical_bytes",
+      "target": 32212254720,
+      "purpose": "Exercise sustained ingest, clone, verification, compaction, collection, and cold restoration against bytes that cannot be compressed away."
+    },
+    {
+      "id": "objects-10m",
+      "title": "10 million objects",
+      "axis": "objects",
+      "target": 10000000,
+      "purpose": "Expose per-object metadata, lookup, traversal, publication, and backend-request amplification independently of payload bytes."
+    },
+    {
+      "id": "paths-5m",
+      "title": "5 million paths",
+      "axis": "paths",
+      "target": 5000000,
+      "purpose": "Stress very wide trees, checkout, directory encoding, query, and lazy workspace behavior."
+    },
+    {
+      "id": "history-1m",
+      "title": "1 million revisions",
+      "axis": "revisions",
+      "target": 1000000,
+      "purpose": "Measure deep-history traversal, reachability, commit graphs, incremental import, and retention metadata."
+    },
+    {
+      "id": "generations-10k",
+      "title": "10,000 incremental generations",
+      "axis": "generations",
+      "target": 10000,
+      "purpose": "Measure manifest, MIDX, WAL replay, compaction debt, startup, and point-lookup degradation."
+    },
+    {
+      "id": "delta-10ppm",
+      "title": "0.001% incremental change",
+      "axis": "change_ratio_ppm",
+      "target": 10,
+      "purpose": "Prove that unchanged import, warm sync, incremental fetch, and indexing follow the delta instead of total retained state."
+    },
+    {
+      "id": "memory-1gib",
+      "title": "1 GiB process budget",
+      "axis": "memory_budget_bytes",
+      "target": 1073741824,
+      "purpose": "Exercise spill, streaming, pack resolution, verification, and collection while total repository state is much larger than RAM."
+    },
+    {
+      "id": "cold-restore",
+      "title": "Cold node restoration",
+      "axis": "restoration",
+      "target": 1,
+      "purpose": "Restore a serving node from authoritative object storage and indexes, then verify time to first correct read and full readiness."
+    }
+  ],
+  "suites": [
+    {
+      "id": "core-primitives",
+      "title": "Core primitives",
+      "layer": "primitives",
+      "status": "partial",
+      "runner": "benchmark run core-primitives",
+      "summary": "Hashing, verification, chunking, compression, write admission, deduplication, and verified replica repair.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "blob-write",
+        "hash-inputs",
+        "sliced-encode",
+        "sliced-sync",
+        "tar-import",
+        "hash-write-boundaries",
+        "packed-write",
+        "edited-write",
+        "deduplicated-write",
+        "chunk-read",
+        "verified-read",
+        "repair",
+        "bao-rebuild",
+        "bao-ingest",
+        "verified-first-byte",
+        "verified-stream",
+        "proof-verified-overwrite",
+        "paged-metadata-overwrite",
+        "concurrent-repair",
+        "canonical-encode",
+        "canonical-decode",
+        "directory-lookup"
+      ],
+      "cases": {
+        "nar-partial-hit": {
+          "runner": "cargo bench --bench nar_associations -- nar_partial",
+          "correctness_runner": "cargo bench --bench nar_associations -- nar_partial --test",
+          "backends": [
+            "local",
+            "memory"
+          ],
+          "files": [
+            1,
+            256
+          ],
+          "bytes_per_file": 1024,
+          "purpose": "Enrich a SHA-256-only association with canonical SHA-512; create and warm a fresh repository outside timing for every iteration.",
+          "correctness": [
+            "independent SHA-256, SHA-512 and size",
+            "one encoding pass and full payload hashing",
+            "subsequent complete association hit",
+            "independent stored-content scrub"
+          ],
+          "included_in": "benchmark all --suites core-primitives"
+        },
+        "nar-invalidation-generation": {
+          "runner": "cargo bench --bench nar_associations -- nar_generation",
+          "correctness_runner": "cargo bench --bench nar_associations -- nar_generation --test",
+          "backends": [
+            "local",
+            "memory"
+          ],
+          "files": [
+            1,
+            256
+          ],
+          "bytes_per_file": 1024,
+          "operations": [
+            "cached",
+            "raw-dedup",
+            "second-handle-cached",
+            "scrub"
+          ],
+          "purpose": "Measure steady-state overhead of durable NAR invalidation generations; the memory control uses one file and no second handle.",
+          "correctness": [
+            "canonical SHA-256 and NAR size",
+            "zero encoding passes except explicit scrub",
+            "expected payload hashing or association hit",
+            "independent stored-content scrub"
+          ],
+          "included_in": "benchmark all --suites core-primitives"
+        },
+        "verification-buffers": {
+          "runner": "cargo bench --features experimental --bench optimization -- verification_buffers",
+          "payload_sizes_bytes": [
+            0,
+            1,
+            1024,
+            16384,
+            65535,
+            65536,
+            65537,
+            262144
+          ],
+          "length_hints": [
+            "known",
+            "unknown"
+          ],
+          "metrics": [
+            "verification latency",
+            "largest read scratch buffer in bytes, emitted as JSON"
+          ],
+          "correctness": [
+            "whole-payload identity",
+            "complete payload size",
+            "EOF observed",
+            "configured buffer cap"
+          ]
+        },
+        "sliced-transfer": {
+          "runner": "cargo bench --features ssh,experimental --bench sliced_transfer",
+          "blob_bytes": 8388608,
+          "edit_spacing_bytes": [
+            512,
+            65536,
+            1048576
+          ],
+          "cases": [
+            "index",
+            "encode",
+            "decode",
+            "sync cold",
+            "sync rebuild",
+            "pipeline overlapped",
+            "pipeline sequential"
+          ],
+          "metrics": [
+            "index, encode, and decode throughput",
+            "frame bytes and wire bytes with copy and literal counts, emitted as JSON",
+            "stdio sync wall time, transport requests"
+          ],
+          "correctness": [
+            "every decoded frame equals the original bytes",
+            "every synced closure verifies complete at the destination",
+            "rebuild syncs above the discovery chunk copy at least 95 percent and use under 5 percent of the cold wire bytes",
+            "a whole closure rebuild sends under a quarter of its cold sync's bytes",
+            "a whole closure rebuild costs at most one request per root plus a fixed handshake"
+          ]
+        },
+        "chunk-slicing": {
+          "runner": "cargo bench --features experimental --bench cdcs -- chunk_slicing",
+          "corpus_runner": "benchmark run cdcs-corpus --store-name NAME",
+          "closure_runner": "benchmark run cdcs-corpus --closure-base OLD --closure-rebuilt NEW",
+          "wire_runner": "benchmark run cdcs-corpus --wire --links 0:0,12800:5,2560:50 --store-name NAME",
+          "closure_wire_runner": "benchmark run cdcs-corpus --closure-base OLD --closure-rebuilt NEW --closure-wire --links 2560:50",
+          "wire_example": "cargo build --profile bench --features ssh,experimental --example sliced_wire",
+          "closure_wire_example": "cargo build --profile bench --features ssh,experimental --example sliced_closure",
+          "edit_spacing_bytes": [
+            512,
+            4096,
+            65536,
+            1048576
+          ],
+          "strategies": [
+            "exact/256KiB",
+            "exact/64KiB",
+            "exact/8KiB",
+            "exact/1KiB",
+            "slices/8KiB/16",
+            "slices/2KiB/16",
+            "slices/1KiB/16",
+            "slices/1KiB/4",
+            "slices/1KiB/1"
+          ],
+          "metrics": [
+            "encode latency",
+            "physical bytes (new payload plus manifest or token metadata), emitted as JSON",
+            "literal and copy bytes, token counts, index entries, reference depth",
+            "distinct sources per 16 KiB verified group"
+          ],
+          "correctness": [
+            "every rebuilt blob reconstructed through its compressed frames",
+            "whole-blob BLAKE3 identity",
+            "rebuilt sources resolved through their own verified decodes"
+          ]
+        },
+        "chunk-decompression": {
+          "runner": "cargo bench --features experimental --bench optimization -- chunk_decompression",
+          "sizes_bytes": [
+            1024,
+            65535,
+            65536,
+            65537,
+            131071,
+            131072,
+            131073,
+            262144,
+            524288
+          ],
+          "corpora": [
+            "deterministic random",
+            "structured text"
+          ],
+          "frames": [
+            "sized single",
+            "unsized single",
+            "concatenated"
+          ],
+          "variants": [
+            "former streaming chunk decoder",
+            "shared bounded reusable decoder"
+          ],
+          "metrics": [
+            "decode time with validation outside the timer",
+            "output Vec capacity in preflight JSON"
+          ],
+          "correctness": [
+            "complete decoded bytes on every iteration",
+            "output-cap enforcement",
+            "truncated-frame rejection"
+          ]
+        },
+        "git-fetch-fairness": {
+          "runner": "cargo bench --features experimental,git-fetch --bench git_fetch_fairness",
+          "object_sizes_bytes": [1048575, 1048576, 1048577, 4194304],
+          "streaming_batch": {
+            "max_input_bytes": 1048576,
+            "max_read_bytes": 65536,
+            "max_reads": 16,
+            "max_output_bytes": 1114091,
+            "output_chunks_between_yields": 4
+          },
+          "runtime_workers": [1, 4],
+          "concurrency": [1, 4],
+          "corpora": ["repeated byte", "deterministic random"],
+          "metrics": ["batch completion time", "longest production fetch poll", "longest competing ready-task scheduling gap"],
+          "correctness": ["pack version and object count", "native SHA1 trailer", "blob entry type and size", "complete zlib consumption", "byte-for-byte original content"]
+        },
+        "compression-handoff": {
+          "runner": "cargo bench --features experimental --bench compression_handoff",
+          "chunk_sizes_bytes": [
+            1024,
+            4095,
+            4096,
+            4097,
+            16384,
+            65536
+          ],
+          "chunks_per_batch": 64,
+          "corpora": [
+            "deterministic random",
+            "structured text"
+          ],
+          "runtime_workers": [
+            1,
+            4
+          ],
+          "concurrency": [
+            1,
+            16
+          ],
+          "variants": [
+            "inline",
+            "blocking",
+            "inline_4k_yield"
+          ],
+          "metrics": [
+            "batch completion time without a competing task",
+            "paired completion time with a ready Tokio task",
+            "longest compression-task poll",
+            "longest competing ready-task scheduling gap"
+          ],
+          "correctness": [
+            "all indexed chunks present exactly once",
+            "zstd frame content length",
+            "complete roundtrip for every chunk"
+          ]
+        },
+        "paged-metadata-overwrite": {
+          "runner": "cargo bench --features experimental --bench overwrite_pages",
+          "chunk_bytes": 16384,
+          "chunk_counts": [
+            63,
+            64,
+            65,
+            66,
+            4095,
+            4096,
+            4097,
+            4098,
+            4099,
+            16384
+          ],
+          "replacement_bytes": 300,
+          "offsets": [
+            "within a chunk",
+            "across a chunk boundary"
+          ],
+          "metrics": [
+            "edit latency",
+            "payload bytes read and written",
+            "metadata bytes read and written",
+            "extra peak Rust heap"
+          ],
+          "correctness": [
+            "fresh content identity per iteration",
+            "full rehash",
+            "full readback",
+            "bounded I/O and heap"
+          ]
+        },
+        "hash-inputs": {
+          "runner": "cargo bench --features experimental --bench hash_inputs",
+          "corpora": [
+            "default random/zero boundary fixtures",
+            "all committed regular files from CASITA_HASH_REPOSITORY at HEAD"
+          ],
+          "report": "CASITA_HASH_REPORT JSON: whole-file, reference chunk, and predicted independent chunk-hash distributions",
+          "sizes_bytes": [
+            0,
+            64,
+            1024,
+            16384,
+            65536,
+            131071,
+            131072,
+            131073,
+            262144,
+            524287,
+            524288,
+            524289,
+            1048576,
+            4194304
+          ],
+          "correctness": [
+            "whole-blob digest",
+            "exact reference FastCDC chunk identities and sizes",
+            "full readback for every file"
+          ]
+        },
+        "tar-import-pipeline": {
+          "runner": "cargo bench --features experimental --bench tar_import",
+          "paired_runner": "python3 -m benchmarks.tar_compare --baseline-binary BASELINE_PATH --binary CANDIDATE_PATH --output NEW_DIRECTORY --repetitions 4",
+          "background_cpu_limit": "--max-external-cpu-percent PERCENT (0..100, default 5); applies before and during measurement and is retained in each report",
+          "build_activity_policy": "--allow-competing-builds records compiler/benchmark activity without a separate process veto; the CPU limit still applies",
+          "reserved_runner": "python3 benchmarks/reports/2026-09-12-tar-reserved/run.py BINARY NEW_DIRECTORY",
+          "reserved_runner_authorization": "requires explicit permission to pause other local builds; restores them on exit with a watchdog fallback",
+          "profile_runner": "python3 -m benchmarks.tar_profile --binary PATH --perf PERF_PATH --output NEW_DIRECTORY",
+          "profile_scope": "tar import including repository verification/publication; excludes benchmark setup and readback; small-256, large, mixed at concurrency 1 and 16",
+          "paired_controls": [
+            "alternating binary and concurrency order",
+            "Linux quiet-host admission and activity samples",
+            "immutable binaries",
+            "fresh Criterion directories per variant",
+            "all 16 cases required",
+            "paired summaries require every matrix to be accepted"
+          ],
+          "concurrency": [
+            1,
+            16
+          ],
+          "small_file_counts": [
+            0,
+            1,
+            15,
+            16,
+            17,
+            256
+          ],
+          "small_file_bytes": 1024,
+          "large_file_count": 4,
+          "large_file_bytes": 4194304,
+          "mixed_small_file_count": 32,
+          "correctness": [
+            "canonical root including executable bits",
+            "published root",
+            "file and entry counts",
+            "total logical bytes",
+            "full payload readback"
+          ]
+        },
+        "hash-write-boundaries": {
+          "runner": "cargo bench --features experimental --bench write_path -- hash_write_boundaries",
+          "sizes_bytes": [
+            0,
+            64,
+            1024,
+            16384,
+            65536,
+            131071,
+            131072,
+            131073,
+            262144,
+            524287,
+            524288,
+            524289,
+            1048576,
+            4194304
+          ],
+          "corpora": [
+            "random",
+            "zeros"
+          ],
+          "correctness": [
+            "whole-blob digest",
+            "reference FastCDC chunk identities and sizes",
+            "full readback"
+          ]
+        }
+      },
+      "comparators": []
+    },
+    {
+      "id": "repository-e2e",
+      "title": "Repository workflows",
+      "layer": "repository",
+      "status": "implemented",
+      "runner": "benchmark run repository",
+      "summary": "Fresh filesystem import, incremental import, checkout, sync, verification, and collection over deterministic synthetic corpora plus an opt-in committed nixpkgs tree.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale"
+      ],
+      "operations": [
+        "cold-import",
+        "unchanged-import",
+        "edited-import",
+        "edited-import-in-place",
+        "checkout",
+        "sync-cold",
+        "sync-warm",
+        "verify",
+        "collect"
+      ],
+      "comparators": [
+        "git",
+        "tar-zstd",
+        "restic",
+        "borg"
+      ]
+    },
+    {
+      "id": "blob-backends",
+      "title": "Blob and object-store backends",
+      "layer": "primitives",
+      "status": "partial",
+      "runner": "benchmark run pack-index",
+      "summary": "Local, memory, and S3-compatible request amplification, range reads, multipart writes, caching, and byte budgets.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "put",
+        "get",
+        "range-get",
+        "dedup-put",
+        "multipart-put",
+        "cold-read"
+      ],
+      "comparators": []
+    },
+    {
+      "id": "state-and-publication",
+      "title": "State, publication, and CAS",
+      "layer": "repository",
+      "status": "partial",
+      "runner": "benchmark run state-publication",
+      "summary": "Object point/batch reads, ordered inventory, atomic object/root commits, snapshot reads, unrelated-writer retries, competing roots, and multi-process coordination. Local mutable index records, bounded prefix cursors, expected-value commits, atomic Obrador registration, and same-key/disjoint contention are covered by metadata-kv.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "get-hit",
+        "get-miss",
+        "get-batch-hit",
+        "get-batch-miss",
+        "get-batch-mixed",
+        "scan-all",
+        "commit-insert-root",
+        "commit-stale",
+        "commit-repoint-root",
+        "commit-remove-root",
+        "snapshot",
+        "publish",
+        "publish-if-roots-match",
+        "output-import",
+        "competing-root",
+        "many-readers"
+      ],
+      "comparators": []
+    },
+    {
+      "id": "graph-traversal",
+      "title": "Graph traversal and spill",
+      "layer": "scale",
+      "status": "implemented",
+      "runner": "benchmark run graph-traversal",
+      "summary": "Forced-spill closure verification and collection across wide-tree object-count and spill-budget sweeps; depth and restart sweeps remain future work.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "recovery"
+      ],
+      "operations": [
+        "verify-closure",
+        "collect"
+      ],
+      "comparators": []
+    },
+    {
+      "id": "transfer",
+      "title": "Transfer and synchronization",
+      "layer": "repository",
+      "status": "partial",
+      "runner": "benchmark --operations sync-cold,sync-warm",
+      "summary": "Local, SSH, and S3 transfer with path depth, deduplication, batching, RTT, bandwidth, chunk reuse, and interrupted receivers.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "sync-cold",
+        "sync-warm",
+        "sync-path",
+        "sync-high-rtt",
+        "sync-interrupted",
+        "sync-resume"
+      ],
+      "comparators": [
+        "git",
+        "restic"
+      ]
+    },
+    {
+      "id": "native-git",
+      "title": "Native Git",
+      "layer": "scale",
+      "status": "implemented",
+      "runner": "benchmark run git-scale; benchmark run gix-odb",
+      "summary": "Many-object, delta-heavy, physical-pack, and wide-tree workflows plus the synchronous Gix ODB compatibility path.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "cold-import",
+        "unchanged-import",
+        "bind",
+        "full-clone",
+        "incremental-import",
+        "incremental-bind",
+        "incremental-fetch",
+        "write",
+        "cold-find",
+        "warm-find",
+        "header",
+        "missing-header",
+        "distinct-missing-header",
+        "reopened-first-header",
+        "reopened-header"
+      ],
+      "comparators": [
+        "git"
+      ]
+    },
+    {
+      "id": "huge-repositories",
+      "title": "Huge repository frontier",
+      "layer": "scale",
+      "status": "partial",
+      "runner": "benchmark run git-scale --profile huge",
+      "summary": "Cross-suite lifecycle runs at 30+ GiB physical bytes, 10M+ objects, 5M paths, 1M revisions, and 10k incremental generations.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "ingest",
+        "unchanged-update",
+        "tiny-delta-update",
+        "lookup",
+        "checkout",
+        "clone",
+        "sync",
+        "verify",
+        "collect",
+        "compact",
+        "cold-restore"
+      ],
+      "comparators": [
+        "git"
+      ]
+    },
+    {
+      "id": "collection-and-fsck",
+      "title": "Collection and integrity",
+      "layer": "resilience",
+      "status": "partial",
+      "runner": "benchmark run fsck; benchmark --operations verify,collect",
+      "summary": "Mark/sweep, physical reclamation, corruption discovery, concurrent holds, spill, and ENOSPC recovery.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "fsck",
+        "collect",
+        "collect-with-reader",
+        "corruption-scan",
+        "enospc-recovery"
+      ],
+      "comparators": [
+        "git",
+        "restic",
+        "borg"
+      ]
+    },
+    {
+      "id": "casitar",
+      "title": "Casitar streaming format",
+      "layer": "repository",
+      "status": "partial",
+      "runner": "benchmark run casitar",
+      "summary": "Streaming export/import, inspection, payload-size and object-count memory scaling, partial and full destination reuse, duplicate catalogs, bounded decoding, and malformed input behavior.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "throughput",
+        "memory",
+        "storage",
+        "scale",
+        "recovery"
+      ],
+      "operations": [
+        "export",
+        "import",
+        "tar-import",
+        "round-trip",
+        "duplicate-import",
+        "duplicate-heavy",
+        "inspect",
+        "payload-size",
+        "object-count",
+        "partial-reuse",
+        "corrupt-reused-payload",
+        "malformed-stream"
+      ],
+      "comparators": [
+        "tar-zstd"
+      ]
+    },
+    {
+      "id": "fault-and-recovery",
+      "title": "Fault injection and recovery",
+      "layer": "resilience",
+      "status": "partial",
+      "runner": "benchmark run fault-and-recovery",
+      "summary": "Crash points, backend failures, stale processes, partial writes, retries, and deterministic recovery time.",
+      "dimensions": [
+        "correctness",
+        "latency",
+        "memory",
+        "storage",
+        "scale",
+        "concurrency",
+        "recovery"
+      ],
+      "operations": [
+        "crash-during-stage",
+        "crash-before-root",
+        "backend-timeout",
+        "restart",
+        "restart-and-reimport",
+        "truncated-stream",
+        "repair"
+      ],
+      "comparators": []
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+benchmarks/reports/*/*.log whitespace=-blank-at-eol,-blank-at-eof
+benchmarks/reports/*/*.patch whitespace=-blank-at-eol,-blank-at-eof

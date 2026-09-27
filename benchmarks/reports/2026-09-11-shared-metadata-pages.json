@@ -1,0 +1,314 @@
+{
+  "command": "cargo bench --features experimental --bench overwrite_pages -- --quick",
+  "baseline_commit": "d69a9c4b348fb0eaeb403fafd209df38267febbe",
+  "source": "working tree with shared metadata pages",
+  "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+  "kernel": "Linux 7.2.2",
+  "cpu": "AMD Ryzen 7 7840S",
+  "backend": "in-memory object store, explicit 16 KiB compressed chunks",
+  "corpus_seed": 91,
+  "edit_bytes": 300,
+  "timing_caveat": "Quick local run overlapped compilation and tests; includes Rust allocator accounting (native codec workspace excluded). Not an isolated latency comparison. I/O and correctness gates are deterministic.",
+  "cases": [
+    {
+      "direction": "within",
+      "chunk_count": 63,
+      "file_bytes": 1032192,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 16131,
+      "max_payload_write_bytes": 16109,
+      "max_metadata_write_bytes": 13184,
+      "max_extra_rust_heap_bytes": 204403,
+      "time_interval_ns": [
+        587500.0,
+        690070.0,
+        1100300.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 63,
+      "file_bytes": 1032192,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 16131,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 13184,
+      "max_extra_rust_heap_bytes": 253077,
+      "time_interval_ns": [
+        514010.0,
+        609800.0,
+        633750.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 64,
+      "file_bytes": 1048576,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 16379,
+      "max_payload_write_bytes": 16109,
+      "max_metadata_write_bytes": 13392,
+      "max_extra_rust_heap_bytes": 204547,
+      "time_interval_ns": [
+        277220.0,
+        279790.0,
+        290040.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 64,
+      "file_bytes": 1048576,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 16699,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 13392,
+      "max_extra_rust_heap_bytes": 269989,
+      "time_interval_ns": [
+        443040.0,
+        461530.0,
+        466150.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 65,
+      "file_bytes": 1064960,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 14210,
+      "max_payload_write_bytes": 16109,
+      "max_metadata_write_bytes": 11040,
+      "max_extra_rust_heap_bytes": 202087,
+      "time_interval_ns": [
+        274520.0,
+        287020.0,
+        336990.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 65,
+      "file_bytes": 1064960,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 14530,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 11040,
+      "max_extra_rust_heap_bytes": 267593,
+      "time_interval_ns": [
+        480500.0,
+        480810.0,
+        482060.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 66,
+      "file_bytes": 1081344,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 13992,
+      "max_payload_write_bytes": 16109,
+      "max_metadata_write_bytes": 7024,
+      "max_extra_rust_heap_bytes": 197877,
+      "time_interval_ns": [
+        282130.0,
+        282800.0,
+        285460.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 66,
+      "file_bytes": 1081344,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 13992,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 7024,
+      "max_extra_rust_heap_bytes": 246989,
+      "time_interval_ns": [
+        471900.0,
+        479280.0,
+        481130.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 4095,
+      "file_bytes": 67092480,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 65112,
+      "max_payload_write_bytes": 16108,
+      "max_metadata_write_bytes": 32584,
+      "max_extra_rust_heap_bytes": 204693,
+      "time_interval_ns": [
+        547970.0,
+        552360.0,
+        569940.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 4095,
+      "file_bytes": 67092480,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 65112,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 32584,
+      "max_extra_rust_heap_bytes": 253613,
+      "time_interval_ns": [
+        809490.0,
+        1001300.0000000001,
+        1768600.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 4096,
+      "file_bytes": 67108864,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 32152,
+      "max_payload_write_bytes": 16108,
+      "max_metadata_write_bytes": 16104,
+      "max_extra_rust_heap_bytes": 204341,
+      "time_interval_ns": [
+        535500.0,
+        876040.0,
+        961170.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 4096,
+      "file_bytes": 67108864,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 78520,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 39288,
+      "max_extra_rust_heap_bytes": 273325,
+      "time_interval_ns": [
+        804740.0,
+        804910.0,
+        805630.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 4097,
+      "file_bytes": 67125248,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 32360,
+      "max_payload_write_bytes": 16108,
+      "max_metadata_write_bytes": 16208,
+      "max_extra_rust_heap_bytes": 204437,
+      "time_interval_ns": [
+        474650.0,
+        533250.0,
+        767630.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 4097,
+      "file_bytes": 67125248,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 78728,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 39392,
+      "max_extra_rust_heap_bytes": 273549,
+      "time_interval_ns": [
+        827590.0,
+        841370.0,
+        896460.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 4098,
+      "file_bytes": 67141632,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 32568,
+      "max_payload_write_bytes": 16108,
+      "max_metadata_write_bytes": 16312,
+      "max_extra_rust_heap_bytes": 204533,
+      "time_interval_ns": [
+        483850.0,
+        494660.0,
+        537880.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 4098,
+      "file_bytes": 67141632,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 32568,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 16312,
+      "max_extra_rust_heap_bytes": 253517,
+      "time_interval_ns": [
+        688080.0,
+        691520.0,
+        705290.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 4099,
+      "file_bytes": 67158016,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 32568,
+      "max_payload_write_bytes": 16108,
+      "max_metadata_write_bytes": 16312,
+      "max_extra_rust_heap_bytes": 204533,
+      "time_interval_ns": [
+        436650.0,
+        440750.0,
+        457140.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 4099,
+      "file_bytes": 67158016,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 32568,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 16312,
+      "max_extra_rust_heap_bytes": 253517,
+      "time_interval_ns": [
+        632870.0,
+        638800.0,
+        640290.0
+      ]
+    },
+    {
+      "direction": "within",
+      "chunk_count": 16384,
+      "file_bytes": 268435456,
+      "max_payload_read_bytes": 32786,
+      "max_metadata_read_bytes": 38056,
+      "max_payload_write_bytes": 16108,
+      "max_metadata_write_bytes": 19056,
+      "max_extra_rust_heap_bytes": 208149,
+      "time_interval_ns": [
+        609120.0,
+        610070.0,
+        610310.0
+      ]
+    },
+    {
+      "direction": "across",
+      "chunk_count": 16384,
+      "file_bytes": 268435456,
+      "max_payload_read_bytes": 65572,
+      "max_metadata_read_bytes": 111240,
+      "max_payload_write_bytes": 32788,
+      "max_metadata_write_bytes": 55648,
+      "max_extra_rust_heap_bytes": 284237,
+      "time_interval_ns": [
+        1018200.0,
+        1061000.0,
+        1232500.0
+      ]
+    }
+  ]
+}

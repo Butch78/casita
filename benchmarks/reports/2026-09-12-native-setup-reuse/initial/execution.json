@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "ca10387316babfc111c4897b3592e8b6bc89ebda",
+  "diff": "",
+  "entries": [
+    {
+      "suite": "fskit-setup-reuse",
+      "status": "passed",
+      "runs": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "casita-fs",
+            "--all-features",
+            "--lib",
+            "darwin::setup::tests::benchmark_reuse",
+            "--",
+            "--ignored",
+            "--nocapture"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "elapsed_seconds": 186.71553420787677,
+          "log": "/Users/hetzner/final-setup-reuse-results-20260912/fskit-setup-reuse-0.log"
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "casita-fs",
+            "--all-features",
+            "--lib",
+            "darwin::setup::tests::benchmark_reuse",
+            "--",
+            "--ignored",
+            "--nocapture"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "elapsed_seconds": 1.06387645797804,
+          "log": "/Users/hetzner/final-setup-reuse-results-20260912/fskit-setup-reuse-1.log"
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "casita-fs",
+            "--all-features",
+            "--lib",
+            "darwin::setup::tests::benchmark_reuse",
+            "--",
+            "--ignored",
+            "--nocapture"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "elapsed_seconds": 0.6254029169213027,
+          "log": "/Users/hetzner/final-setup-reuse-results-20260912/fskit-setup-reuse-2.log"
+        }
+      ]
+    }
+  ],
+  "artifacts_unchanged": true
+}

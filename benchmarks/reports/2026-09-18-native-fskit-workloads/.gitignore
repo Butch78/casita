@@ -1,0 +1,4 @@
+# Uncompressed copies of the committed raw reports.
+/workloads-disabled.json
+/workloads-enabled.json
+/workloads-apple-rejected.json

@@ -1,0 +1,63 @@
+{
+  "pairs": [
+    [
+      "round-1-baseline",
+      "round-1-after"
+    ],
+    [
+      "round-2-baseline",
+      "round-2-after"
+    ],
+    [
+      "round-3-retry-baseline",
+      "round-3-retry-after"
+    ]
+  ],
+  "excluded": [
+    "round-3-baseline",
+    "round-3-after"
+  ],
+  "reason": "The original third-after invocation timed out during input preparation. Its unmatched baseline is retained but excluded from the matched timing summary. A new pair ran after a host reboot.",
+  "observations": [
+    {
+      "workload": "chain",
+      "variant": "baseline",
+      "seconds": [
+        15.404403988039121,
+        31.901267098030075,
+        15.851716589000034
+      ],
+      "median_seconds": 15.851716589000034
+    },
+    {
+      "workload": "chain",
+      "variant": "after",
+      "seconds": [
+        28.303892837953754,
+        22.787812425987795,
+        25.377752722999958
+      ],
+      "median_seconds": 25.377752722999958
+    },
+    {
+      "workload": "wide",
+      "variant": "baseline",
+      "seconds": [
+        19.571477805962786,
+        19.17244816198945,
+        11.340739691999943
+      ],
+      "median_seconds": 19.17244816198945
+    },
+    {
+      "workload": "wide",
+      "variant": "after",
+      "seconds": [
+        14.506048553041182,
+        18.91661782702431,
+        17.759064621000107
+      ],
+      "median_seconds": 17.759064621000107
+    }
+  ]
+}

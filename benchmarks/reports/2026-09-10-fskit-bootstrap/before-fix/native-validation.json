@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "phases": [
+    {
+      "name": "interrupted-install",
+      "exit_code": -15,
+      "wall_seconds": 2.3376463330350816,
+      "samples": []
+    },
+    {
+      "name": "concurrent-bootstrap",
+      "exit_code": 0,
+      "wall_seconds": 3.5099999168887734,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 3296044958,
+          "ns_per_call": 18.270833,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 39326.5205,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "simultaneous-mounts",
+      "exit_code": 0,
+      "wall_seconds": 5.485637249890715,
+      "samples": []
+    },
+    {
+      "name": "new-process-reuse-0",
+      "exit_code": 0,
+      "wall_seconds": 1.076431917026639,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 923746500,
+          "ns_per_call": 16.216042,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 39002.083,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "new-process-reuse-1",
+      "exit_code": 0,
+      "wall_seconds": 0.14504879107698798,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 181542,
+          "ns_per_call": 19.509667,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 39133.1665,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "new-process-reuse-2",
+      "exit_code": 0,
+      "wall_seconds": 0.14839800004847348,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 145292,
+          "ns_per_call": 16.321958,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 38698.625,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "explicit-reuse",
+      "exit_code": 0,
+      "wall_seconds": 0.004547124961391091,
+      "samples": []
+    },
+    {
+      "name": "explicit-repair",
+      "exit_code": 0,
+      "wall_seconds": 0.963703207904473,
+      "samples": []
+    },
+    {
+      "name": "post-repair-reuse",
+      "exit_code": 0,
+      "wall_seconds": 0.13487279182299972,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 195125,
+          "ns_per_call": 19.417958,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 38901.125,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "obrador-build-reuse-isolation",
+      "exit_code": 0,
+      "wall_seconds": 6.604468625038862,
+      "samples": []
+    }
+  ],
+  "platform": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+  "interrupted_installer_sha256": "6a29c747e61a86a405a189efc3de42812d73147135f93a1bb0624c1e7b90e654",
+  "abandoned_staging": [
+    "/Users/hetzner/.local/share/casita/fuse-t/.install-YU4STj"
+  ],
+  "receipt": {
+    "helper": "6031b7d9011528d31082a26f7dd6bbbde83af5a0482ff5ed96d0d366666663c6",
+    "helper_state": [
+      16777235,
+      15417756696,
+      20341696,
+      1789141710,
+      179615387,
+      1789141710,
+      179717262
+    ],
+    "library_state": [
+      16777235,
+      15417756567,
+      571968,
+      1780488717,
+      0,
+      1789141708,
+      590638191
+    ],
+    "package": "6a29c747e61a86a405a189efc3de42812d73147135f93a1bb0624c1e7b90e654",
+    "schema": 1,
+    "settings_state": [
+      16777235,
+      15417756714,
+      599,
+      1789141710,
+      508483980,
+      1789141710,
+      508832353
+    ],
+    "version": "1.2.7"
+  },
+  "status": "passed",
+  "remaining_fskit_mounts": [],
+  "final_modules": [
+    "com.apple.fskit.apfs",
+    "com.apple.fskit.exfat",
+    "com.apple.fskit.msdos",
+    "com.apple.filesystems.util.ntfs",
+    "com.apple.fskit.ftp",
+    "com.obrador.fskit.passthrough.AppEx",
+    "io.macfuse.app.fsmodule.macfuse",
+    "network.debox.fskitbridge.fskitext",
+    "org.fuset.fskit-srv.module"
+  ]
+}

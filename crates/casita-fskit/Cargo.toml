@@ -1,0 +1,59 @@
+[package]
+name = "casita-fskit"
+version = "0.0.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[features]
+portable-names = []
+repository = ["dep:casita", "dep:casita-fs", "dep:tokio", "dep:anyhow", "dep:async-trait", "dep:serde", "dep:serde_json"]
+production = ["repository"]
+
+[[bin]]
+name = "casita-repository-fixture"
+path = "fixtures/main.rs"
+required-features = ["repository"]
+
+[[bin]]
+name = "casita-exec-fixture"
+path = "fixtures/executable.rs"
+required-features = ["repository"]
+
+[dependencies]
+fskit-native = { path = "../fskit-native", features = ["setup"] }
+casita = { path = "../casita", default-features = false, features = ["native"], optional = true }
+casita-fs = { path = "../casita-fs", default-features = false, features = ["darwin-fskit"], optional = true }
+tokio = { version = "1", features = ["rt-multi-thread", "io-util"], optional = true }
+anyhow = { version = "1", optional = true }
+async-trait = { version = "0.1", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
+
+# Development and benchmark bundle setup.
+[[bin]]
+name = "fskit-native-setup"
+path = "setup/main.rs"
+
+# The host application.
+[[bin]]
+name = "casita-native-fskit"
+path = "host/main.rs"
+
+# The app extension.
+[[bin]]
+name = "casita-native-fskit-extension"
+path = "extension/main.rs"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+ctor = "1.0.3"
+libc = "0.2"
+tracing = { version = "0.1.44", features = ["release_max_level_off"] }
+
+[workspace]
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+panic = "abort"

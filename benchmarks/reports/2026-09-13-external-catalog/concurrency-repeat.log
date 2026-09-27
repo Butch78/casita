@@ -1,0 +1,13 @@
+Concurrent publication trial 2
+
+running 1 test
+test independent_processes_can_publish_concurrently ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 15.93s
+
+Concurrent publication trial 3
+
+running 1 test
+test independent_processes_can_publish_concurrently ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 18.76s

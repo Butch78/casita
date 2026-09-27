@@ -1,0 +1,73 @@
+{
+  "paths": [
+    {
+      "nar_bytes": 2078944,
+      "path": "fp6wnyklwzdncp0nvhdy9d5fnir0mjq5-libunistring-1.4.2",
+      "sha256": "074b2fb35a6c6ec8ccb3ceec5b1e297d9294c6edc69f7a55be916900f599ff9d"
+    },
+    {
+      "nar_bytes": 197672,
+      "path": "rdw0n35z6xhipyiq6sc8qv0mg7vrldaj-xgcc-15.2.0-libgcc",
+      "sha256": "bb680342acc24ea164c86e6fbf8964ff534934de4a5f4f342126331d255abe26"
+    },
+    {
+      "nar_bytes": 368176,
+      "path": "xidgjdv05b8yz6w6qrhk4mmjxm4l2zjf-libidn2-2.3.8",
+      "sha256": "599227435004e12c550061b1576801528a9209683124ffe5b94eb0fb6bd305e9"
+    },
+    {
+      "nar_bytes": 35085432,
+      "path": "m07h00fl6538s4gavrp66a20ka4hg7fy-glibc-2.42-67",
+      "sha256": "f7f52945cde749f960069c606773a47c6bc1ff286f8a43449be70059d5b4078d"
+    },
+    {
+      "nar_bytes": 2057672,
+      "path": "j5m1y5k6qp5iwb23j5k6w2y8ffv9lxvl-pcre2-10.46",
+      "sha256": "72af27d1c2e6d4e7d761243cae5dea25fb40efc9505d209b52bbce00ad2517d3"
+    },
+    {
+      "nar_bytes": 954768,
+      "path": "sacz532zgiacvg7mva9v6gbfmyw427i3-gnugrep-3.12",
+      "sha256": "c5093ecd677638bb58b28d242b8547df8da87e55f5a5e085e7c6455fca1ae958"
+    }
+  ],
+  "rows": [
+    {
+      "cold_import_ms": 11216.726026,
+      "imports": [
+        {
+          "ms": 978.925253,
+          "path": "fp6wnyklwzdncp0nvhdy9d5fnir0mjq5-libunistring-1.4.2"
+        },
+        {
+          "ms": 729.090919,
+          "path": "rdw0n35z6xhipyiq6sc8qv0mg7vrldaj-xgcc-15.2.0-libgcc"
+        },
+        {
+          "ms": 1152.175086,
+          "path": "xidgjdv05b8yz6w6qrhk4mmjxm4l2zjf-libidn2-2.3.8"
+        },
+        {
+          "ms": 5869.49927,
+          "path": "m07h00fl6538s4gavrp66a20ka4hg7fy-glibc-2.42-67"
+        },
+        {
+          "ms": 1044.397805,
+          "path": "j5m1y5k6qp5iwb23j5k6w2y8ffv9lxvl-pcre2-10.46"
+        },
+        {
+          "ms": 1435.5483159999999,
+          "path": "sacz532zgiacvg7mva9v6gbfmyw427i3-gnugrep-3.12"
+        }
+      ],
+      "round": 0,
+      "warm_registration_ms": [
+        296.50003000000004,
+        200.93889000000001,
+        211.15561799999998,
+        213.168094,
+        201.796121
+      ]
+    }
+  ]
+}

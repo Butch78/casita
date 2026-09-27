@@ -1,0 +1,46 @@
+{
+  "baseline_casita": "f3ad3d831b4dc039790688d4a04a46425c036a58",
+  "obrador_benchmark_source": "56c1780",
+  "counts": {
+    "before": {
+      "partition": {
+        "outside_writer_stages": 94,
+        "repository.stage_blob": 222,
+        "repository.stage_directory": 252,
+        "put_path_info": 90,
+        "repository.stage_blob & put_path_info": 6,
+        "repository.stage_directory & put_path_info": 13
+      },
+      "ledger_syncs": 677,
+      "all_syncs": 1368
+    },
+    "after": {
+      "partition": {
+        "outside_writer_stages": 91,
+        "repository.stage_blob": 220,
+        "repository.stage_directory": 46,
+        "put_path_info": 90,
+        "repository.stage_blob & put_path_info": 6,
+        "repository.stage_directory & put_path_info": 13
+      },
+      "ledger_syncs": 466,
+      "all_syncs": 1159
+    }
+  },
+  "binaries": {
+    "before": {
+      "path": "/tmp/obrador-nar-ready-final-closure-20260920",
+      "sha256": "ec89e951bc91aaa3c2587ee634d14cfa0c68a621e1791f4e90bb07fa5f28bd39"
+    },
+    "after": {
+      "path": "/tmp/obrador-directory-final-closure-20260920",
+      "sha256": "281f2be5b31e36ced3683c7f167ff94217c05c98a732415cb9802996eb4505fd"
+    }
+  },
+  "heap_growth_bytes": {
+    "512_files": 8124931,
+    "2048_files": 11282529,
+    "ceiling": 25165824
+  },
+  "directory_micro_syncs": 56
+}

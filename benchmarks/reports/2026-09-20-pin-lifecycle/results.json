@@ -1,0 +1,48 @@
+{
+  "baseline_casita": "5791357997e932d6e6b7ee210bba1710288f9328",
+  "obrador_source": "56c1780291fe6b72f7e4e694b8af41c81a3817ed",
+  "binary": {
+    "path": "/tmp/obrador-lifecycle-closure-20260920",
+    "sha256": "25c24983d6cdffcbe1a82c228bab0d966be627f361e2075568c683183c774bfb"
+  },
+  "traces": {
+    "existing-trace": {
+      "writer_partition": {
+        "outside_writer_stages": 91,
+        "repository.stage_blob": 220,
+        "repository.stage_directory": 46,
+        "put_path_info": 90,
+        "repository.stage_blob & put_path_info": 6,
+        "repository.stage_directory & put_path_info": 13
+      },
+      "outside_lifecycle_partition": {
+        "repository.mutation_session": 48,
+        "repository.publish.commit": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": 19,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": 6,
+        "outside_lifecycle_stages": 6
+      }
+    },
+    "lifecycle-trace": {
+      "writer_partition": {
+        "outside_writer_stages": 86,
+        "repository.stage_blob": 228,
+        "repository.stage_directory": 46,
+        "put_path_info": 96,
+        "repository.stage_blob & put_path_info": 6,
+        "repository.stage_directory & put_path_info": 13
+      },
+      "outside_lifecycle_partition": {
+        "repository.mutation_session & repository.mutation.prepare": 36,
+        "repository.mutation_session & pin.acquire": 6,
+        "repository.mutation_session & repository.mutation.admit": 6,
+        "repository.publish.commit": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare": 19,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.put": 6,
+        "repository.publish.commit & blob.catalog.prepare_commit & blob.pack_index.prepare & blob.local_durability.prepare": 6,
+        "pin.release": 1
+      }
+    }
+  }
+}

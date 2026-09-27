@@ -1,0 +1,4400 @@
+{
+  "schema": "casita.tar-paired.v2",
+  "binary": "/home/domen/dev/casita3/benchmarks/results/2026-09-13-chunk-decode/tar-candidate",
+  "binary_sha256": "a50a46f4886c778978fff73cb1528614fb56c662ea435d1011db4f700493d522",
+  "binaries": {
+    "baseline": {
+      "path": "/home/domen/dev/casita3/benchmarks/results/2026-09-12-tar-baseline/tar-baseline",
+      "sha256": "f9e9461faf98ccf2d54d6a3d0091ceb465979e8f2e3ec4cebd632dc478f11c02"
+    },
+    "candidate": {
+      "path": "/home/domen/dev/casita3/benchmarks/results/2026-09-13-chunk-decode/tar-candidate",
+      "sha256": "a50a46f4886c778978fff73cb1528614fb56c662ea435d1011db4f700493d522"
+    }
+  },
+  "environment": {
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "cpu_count": 16,
+    "cpuinfo": "processor\t: 0\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3788.199\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 0\ncpu cores\t: 8\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 1\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3346.623\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 0\ncpu cores\t: 8\napicid\t\t: 1\ninitial apicid\t: 1\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 2\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3027.403\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 1\ncpu cores\t: 8\napicid\t\t: 2\ninitial apicid\t: 2\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 3\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3052.542\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 1\ncpu cores\t: 8\napicid\t\t: 3\ninitial apicid\t: 3\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 4\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3026.326\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 2\ncpu cores\t: 8\napicid\t\t: 4\ninitial apicid\t: 4\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 5\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3023.964\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 2\ncpu cores\t: 8\napicid\t\t: 5\ninitial apicid\t: 5\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 6\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 4561.948\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 3\ncpu cores\t: 8\napicid\t\t: 6\ninitial apicid\t: 6\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 7\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 4541.513\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 3\ncpu cores\t: 8\napicid\t\t: 7\ninitial apicid\t: 7\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 8\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 1100.334\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 4\ncpu cores\t: 8\napicid\t\t: 8\ninitial apicid\t: 8\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 9\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3943.638\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 4\ncpu cores\t: 8\napicid\t\t: 9\ninitial apicid\t: 9\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 10\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3110.192\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 5\ncpu cores\t: 8\napicid\t\t: 10\ninitial apicid\t: 10\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 11\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 4587.984\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 5\ncpu cores\t: 8\napicid\t\t: 11\ninitial apicid\t: 11\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 12\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3059.489\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 6\ncpu cores\t: 8\napicid\t\t: 12\ninitial apicid\t: 12\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 13\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3027.427\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 6\ncpu cores\t: 8\napicid\t\t: 13\ninitial apicid\t: 13\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 14\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3745.476\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 7\ncpu cores\t: 8\napicid\t\t: 14\ninitial apicid\t: 14\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\nprocessor\t: 15\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 116\nmodel name\t: AMD Ryzen 7 7840S with Radeon 780M Graphics\nstepping\t: 1\nmicrocode\t: 0xa704108\ncpu MHz\t\t: 3548.140\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 16\ncore id\t\t: 7\ncpu cores\t: 8\napicid\t\t: 15\ninitial apicid\t: 15\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 16\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d amd_lbr_pmc_freeze\nbugs\t\t: sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape\nbogomips\t: 6587.68\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 48 bits physical, 48 bits virtual\npower management: ts ttp tm hwpstate cpb eff_freq_ro [13] [14] [15]\n\n"
+  },
+  "configuration": {
+    "binary": "benchmarks/results/2026-09-13-chunk-decode/tar-candidate",
+    "baseline_binary": "benchmarks/results/2026-09-12-tar-baseline/tar-baseline",
+    "output": "benchmarks/results/2026-09-13-chunk-decode/tar-retry-2",
+    "repetitions": 2,
+    "quiet_timeout": 60,
+    "max_external_cpu_percent": 30.0,
+    "allow_competing_builds": true,
+    "warm_up_time": 0.2,
+    "measurement_time": 1.0
+  },
+  "host_policy": "10 quiet seconds before each matrix; <=30% sampled external CPU during the matrix; competing processes recorded without a separate veto",
+  "runs": [
+    {
+      "repetition": 0,
+      "variant": "baseline",
+      "order": [
+        1,
+        16
+      ],
+      "status": "failed",
+      "command": [
+        "/home/domen/dev/casita3/benchmarks/results/2026-09-12-tar-baseline/tar-baseline",
+        "--bench",
+        "--warm-up-time",
+        "0.2",
+        "--measurement-time",
+        "1.0",
+        "--noplot"
+      ],
+      "activity_intervals": [
+        {
+          "external_cpu_fraction": 0.10596302961080542,
+          "kernel_worker_cpu_fraction": 0.001806188004729638,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 11
+            },
+            {
+              "pid": 2537100,
+              "name": "chromium",
+              "ticks": 10
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 8
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 6
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 4
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0380979139990814
+        },
+        {
+          "external_cpu_fraction": 0.1343564780044988,
+          "kernel_worker_cpu_fraction": 0.006627449587665859,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 23
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 20
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 8
+            },
+            {
+              "pid": 2537100,
+              "name": "chromium",
+              "ticks": 8
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 7
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0373522890004097
+        },
+        {
+          "external_cpu_fraction": 0.1354949317251767,
+          "kernel_worker_cpu_fraction": 0.010283097497000017,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 26
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 15
+            },
+            {
+              "pid": 1010720,
+              "name": "chromium",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 8
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 7
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0332489799984614
+        },
+        {
+          "external_cpu_fraction": 0.2576382139172548,
+          "kernel_worker_cpu_fraction": 0.005443060857406791,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 79
+            },
+            {
+              "pid": 808587,
+              "name": "chromium",
+              "ticks": 66
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 56
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 12
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0334258879993286
+        },
+        {
+          "external_cpu_fraction": 0.1232196151232955,
+          "kernel_worker_cpu_fraction": 0.00604017721192625,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo",
+              "ticks": 33
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 11
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 7
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 54530,
+              "name": "codex",
+              "ticks": 5
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.03473785299866
+        },
+        {
+          "external_cpu_fraction": 0.2561540772358988,
+          "kernel_worker_cpu_fraction": 0.027724911889061985,
+          "top_external_processes": [
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 109
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 86
+            },
+            {
+              "pid": 3199464,
+              "name": "chromium",
+              "ticks": 36
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 811905,
+              "name": "chromium",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0369735389976995
+        },
+        {
+          "external_cpu_fraction": 0.1754602892849458,
+          "kernel_worker_cpu_fraction": 0.020571206329959162,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 98
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 17
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 8
+            },
+            {
+              "pid": 3199464,
+              "name": "chromium",
+              "ticks": 7
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 6
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0329972709987487
+        },
+        {
+          "external_cpu_fraction": 0.2053749802350475,
+          "kernel_worker_cpu_fraction": 0.010268749011752376,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 99
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 32
+            },
+            {
+              "pid": 811905,
+              "name": "chromium",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 10
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 10
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0346927350001351
+        },
+        {
+          "external_cpu_fraction": 0.1920159440065426,
+          "kernel_worker_cpu_fraction": 0.012680298189111303,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 100
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 17
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 14
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 12
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0350702960022318
+        },
+        {
+          "external_cpu_fraction": 0.3078265623997682,
+          "kernel_worker_cpu_fraction": 0.008417132565618662,
+          "top_external_processes": [
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 157
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 46
+            },
+            {
+              "pid": 3024,
+              "name": "chromium",
+              "ticks": 18
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 17
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 15
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 11
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0395464169996558
+        },
+        {
+          "external_cpu_fraction": 0.1932758225274955,
+          "kernel_worker_cpu_fraction": 0.006021053661292695,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 17
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 17
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 11
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 7
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0380242980027106
+        },
+        {
+          "external_cpu_fraction": 0.2159536293320321,
+          "kernel_worker_cpu_fraction": 0.017493450420751205,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 51
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 24
+            },
+            {
+              "pid": 3024,
+              "name": "chromium",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 11
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0361020590025873
+        },
+        {
+          "external_cpu_fraction": 0.20518685586297963,
+          "kernel_worker_cpu_fraction": 0.010259342793148982,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 32
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 23
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 9
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 8
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0356413869994867
+        },
+        {
+          "external_cpu_fraction": 0.28950918894803784,
+          "kernel_worker_cpu_fraction": 0.010274856392727858,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 96
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 78
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 8
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0340777130004426
+        },
+        {
+          "external_cpu_fraction": 0.2924633746858339,
+          "kernel_worker_cpu_fraction": 0.007855421220900497,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 72
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 58
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 44
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 19
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0343175460002385
+        },
+        {
+          "external_cpu_fraction": 0.16179283695506227,
+          "kernel_worker_cpu_fraction": 0.007848160001551528,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 8
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 8
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 6
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0352745099989988
+        },
+        {
+          "external_cpu_fraction": 0.19533774129864484,
+          "kernel_worker_cpu_fraction": 0.009646308212278758,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 19
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 10
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 10
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0366660260006029
+        },
+        {
+          "external_cpu_fraction": 0.16513496537125963,
+          "kernel_worker_cpu_fraction": 0.012656329462760775,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 7
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 7
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 7
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 7
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0370305260003079
+        },
+        {
+          "external_cpu_fraction": 0.35061376967653396,
+          "kernel_worker_cpu_fraction": 0.025086504815016057,
+          "top_external_processes": [
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 333
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo",
+              "ticks": 44
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 11
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205848,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205866,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205880,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0463793259987142
+        },
+        {
+          "external_cpu_fraction": 0.41791389889286434,
+          "kernel_worker_cpu_fraction": 0.028534661659825728,
+          "top_external_processes": [
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 424
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 40
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 17
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 16
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 14
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 14
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 13
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205964,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206012,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0513529250019928
+        },
+        {
+          "external_cpu_fraction": 0.41221916293543276,
+          "kernel_worker_cpu_fraction": 0.011896656938973528,
+          "top_external_processes": [
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 388
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3206012,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 21
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 11
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 11
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206012,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206093,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.050715345001663
+        },
+        {
+          "external_cpu_fraction": 0.43296942431543317,
+          "kernel_worker_cpu_fraction": 0.0167910580066927,
+          "top_external_processes": [
+            {
+              "pid": 3205283,
+              "name": "rustc",
+              "ticks": 326
+            },
+            {
+              "pid": 3206012,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3206093,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 94
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 23
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 16
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 8
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205283,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206012,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206093,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0422214009995514
+        },
+        {
+          "external_cpu_fraction": 0.3208360888981581,
+          "kernel_worker_cpu_fraction": 0.08755526911987119,
+          "top_external_processes": [
+            {
+              "pid": 3206012,
+              "name": "rustc",
+              "ticks": 104
+            },
+            {
+              "pid": 3206093,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 55
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 54
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 23
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 11
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206012,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206093,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206317,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206318,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206319,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0421988409980258
+        },
+        {
+          "external_cpu_fraction": 0.3901807505474046,
+          "kernel_worker_cpu_fraction": 0.015488090861423694,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3206319,
+              "name": "rustc",
+              "ticks": 99
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 85
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 67
+            },
+            {
+              "pid": 3206317,
+              "name": "rustc",
+              "ticks": 36
+            },
+            {
+              "pid": 3206318,
+              "name": "rustc",
+              "ticks": 35
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 17
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206317,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206318,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206319,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206468,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3206469,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3206558,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206845,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206887,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0491932250006357
+        },
+        {
+          "external_cpu_fraction": 0.2605913087810819,
+          "kernel_worker_cpu_fraction": 0.027709935549119567,
+          "top_external_processes": [
+            {
+              "pid": 3206316,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 54
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 43
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 35
+            },
+            {
+              "pid": 3206887,
+              "name": "ld.lld",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206317,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206318,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206319,
+              "name": "rustc"
+            },
+            {
+              "pid": 3206468,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3206469,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3206887,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3207214,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3207216,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3207251,
+              "name": "rustc"
+            },
+            {
+              "pid": 3207429,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3207431,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.060089077000157
+        },
+        {
+          "external_cpu_fraction": 0.21575439474863928,
+          "kernel_worker_cpu_fraction": 0.028529506743621723,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 49
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 14
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 12
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 11
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc"
+            },
+            {
+              "pid": 3207683,
+              "name": "rustc"
+            },
+            {
+              "pid": 3207706,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.051542891000281
+        },
+        {
+          "external_cpu_fraction": 0.2528837901763943,
+          "kernel_worker_cpu_fraction": 0.05733642020705837,
+          "top_external_processes": [
+            {
+              "pid": 3206316,
+              "name": "rustc",
+              "ticks": 253
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 9
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 5
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 5
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc"
+            },
+            {
+              "pid": 3207871,
+              "name": "rustc"
+            },
+            {
+              "pid": 3208098,
+              "name": "rustc"
+            },
+            {
+              "pid": 3208165,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3208178,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0355547100007243
+        },
+        {
+          "external_cpu_fraction": 0.14555832565807125,
+          "kernel_worker_cpu_fraction": 0.01623997848251208,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 23
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 16
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 11
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            },
+            {
+              "pid": 3208165,
+              "name": "ld.lld",
+              "ticks": 10
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3204867,
+              "name": "cargo"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3206316,
+              "name": "rustc"
+            },
+            {
+              "pid": 3208165,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3208520,
+              "name": "rustc"
+            },
+            {
+              "pid": 3208540,
+              "name": "ld.lld"
+            },
+            {
+              "pid": 3208564,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0391023619995394
+        },
+        {
+          "external_cpu_fraction": 0.16270132413574617,
+          "kernel_worker_cpu_fraction": 0.006025974967990599,
+          "top_external_processes": [
+            {
+              "pid": 3208520,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 8
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo",
+              "ticks": 4
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208520,
+              "name": "rustc"
+            },
+            {
+              "pid": 3208773,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208875,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0371765620002407
+        },
+        {
+          "external_cpu_fraction": 0.17794776225255154,
+          "kernel_worker_cpu_fraction": 0.004222489273789359,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3208875,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3208773,
+              "name": "cargo",
+              "ticks": 31
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 9
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 9
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 8
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 6
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208773,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208875,
+              "name": "rustc"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0361186769987398
+        },
+        {
+          "external_cpu_fraction": 0.16722963139571906,
+          "kernel_worker_cpu_fraction": 0.006037170808509714,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 6
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 2545,
+              "name": ".quickshell-wra",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209065,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209197,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.035253133999504
+        },
+        {
+          "external_cpu_fraction": 0.17837539349735593,
+          "kernel_worker_cpu_fraction": 0.004820956581009619,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 10
+            },
+            {
+              "pid": 64522,
+              "name": "codex",
+              "ticks": 9
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 7
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 7
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.037138567000511
+        },
+        {
+          "external_cpu_fraction": 0.3721582948388593,
+          "kernel_worker_cpu_fraction": 0.07765742909960147,
+          "top_external_processes": [
+            {
+              "pid": 3208959,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 89
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 67
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo",
+              "ticks": 39
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 20
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 16
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209384,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209419,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.04626178000035
+        },
+        {
+          "external_cpu_fraction": 0.46848182851112363,
+          "kernel_worker_cpu_fraction": 0.20735101338438763,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205384,
+              "name": "chromium",
+              "ticks": 102
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 78
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 69
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 67
+            },
+            {
+              "pid": 3024,
+              "name": "chromium",
+              "ticks": 38
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0459317100030603
+        },
+        {
+          "external_cpu_fraction": 0.44479456880032125,
+          "kernel_worker_cpu_fraction": 0.030013128798942055,
+          "top_external_processes": [
+            {
+              "pid": 3205384,
+              "name": "chromium",
+              "ticks": 133
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc",
+              "ticks": 108
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 80
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 70
+            },
+            {
+              "pid": 3024,
+              "name": "chromium",
+              "ticks": 47
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 27
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209314,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0412110050019692
+        },
+        {
+          "external_cpu_fraction": 0.22867708298057857,
+          "kernel_worker_cpu_fraction": 0.0077822043946270195,
+          "top_external_processes": [
+            {
+              "pid": 3208959,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 99
+            },
+            {
+              "pid": 3205384,
+              "name": "chromium",
+              "ticks": 29
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 5
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3208959,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209841,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0440486509978655
+        },
+        {
+          "external_cpu_fraction": 0.16538699385614358,
+          "kernel_worker_cpu_fraction": 0.0102612368450892,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 100
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 11
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 67344,
+              "name": "codex",
+              "ticks": 10
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 2545,
+              "name": ".quickshell-wra",
+              "ticks": 3
+            },
+            {
+              "pid": 54530,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209910,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209915,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209930,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0354502249974757
+        },
+        {
+          "external_cpu_fraction": 0.22591000521830393,
+          "kernel_worker_cpu_fraction": 0.06112153987338727,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 23
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 22
+            },
+            {
+              "pid": 67344,
+              "name": "codex",
+              "ticks": 19
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 17
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 13
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210079,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0430038269987563
+        },
+        {
+          "external_cpu_fraction": 0.18657698595254485,
+          "kernel_worker_cpu_fraction": 0.02819652199282832,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 38
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 10
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 9
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 8
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210329,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210418,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0417951550007274
+        },
+        {
+          "external_cpu_fraction": 0.29240003569864026,
+          "kernel_worker_cpu_fraction": 0.007234640058523058,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3210329,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 69
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 20
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 15
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 12
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210329,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210520,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0366790799998853
+        },
+        {
+          "external_cpu_fraction": 0.301668254990148,
+          "kernel_worker_cpu_fraction": 0.0036200190598817757,
+          "top_external_processes": [
+            {
+              "pid": 3210520,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3210329,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 13
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 11
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210329,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210520,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0359061479975935
+        },
+        {
+          "external_cpu_fraction": 0.2801520347426595,
+          "kernel_worker_cpu_fraction": 0.02831644222130107,
+          "top_external_processes": [
+            {
+              "pid": 3210520,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 48
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 36
+            },
+            {
+              "pid": 68521,
+              "name": "codex",
+              "ticks": 12
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 10
+            },
+            {
+              "pid": 1557,
+              "name": "cachix",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210520,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.037383148999652
+        },
+        {
+          "external_cpu_fraction": 0.38589210791256506,
+          "kernel_worker_cpu_fraction": 0.005426607767520446,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3210520,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 93
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 78
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 10
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210520,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.036559161999321
+        },
+        {
+          "external_cpu_fraction": 0.21381612918634,
+          "kernel_worker_cpu_fraction": 0.002409195821817915,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 4
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 3
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 65748,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210804,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210862,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.037690658999054
+        },
+        {
+          "external_cpu_fraction": 0.2205708846391233,
+          "kernel_worker_cpu_fraction": 0.003615916141624972,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 100
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 14
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 10
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 7
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 5
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210956,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0370815730020695
+        },
+        {
+          "external_cpu_fraction": 0.23296773066010593,
+          "kernel_worker_cpu_fraction": 0.0036212600620741855,
+          "top_external_processes": [
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 11
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 7
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 6
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211014,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.035551143999328
+        },
+        {
+          "external_cpu_fraction": 0.2409540440056456,
+          "kernel_worker_cpu_fraction": 0.002409540440056456,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 16
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 12
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 10
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 9
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 7
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211038,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211081,
+              "name": "ld.lld"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0375422459983383
+        },
+        {
+          "external_cpu_fraction": 0.2721300304138506,
+          "kernel_worker_cpu_fraction": 0.00965428045814104,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 153
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 105
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 2500349,
+              "name": "chromium",
+              "ticks": 27
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 22
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 9
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 9
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo",
+              "ticks": 4
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0358099750010297
+        },
+        {
+          "external_cpu_fraction": 0.34280761724533954,
+          "kernel_worker_cpu_fraction": 0.007191768193958172,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 196
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 103
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 12
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 10
+            },
+            {
+              "pid": 2565792,
+              "name": "codex",
+              "ticks": 6
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo",
+              "ticks": 5
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211601,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.04285897400041
+        },
+        {
+          "external_cpu_fraction": 0.5274106340070871,
+          "kernel_worker_cpu_fraction": 0.016819473521866104,
+          "top_external_processes": [
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 526
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2565792,
+              "name": "codex",
+              "ticks": 4
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 3
+            },
+            {
+              "pid": 5453,
+              "name": ".ghostty-wrappe",
+              "ticks": 3
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211621,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0404606289994263
+        },
+        {
+          "external_cpu_fraction": 0.5233400491476005,
+          "kernel_worker_cpu_fraction": 0.0012003212136412855,
+          "top_external_processes": [
+            {
+              "pid": 3209731,
+              "name": "rustc",
+              "ticks": 424
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3211621,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 13
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 3
+            },
+            {
+              "pid": 56043,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3205626,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3209731,
+              "name": "rustc"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211621,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0413879099978658
+        },
+        {
+          "external_cpu_fraction": 0.3236035227990289,
+          "kernel_worker_cpu_fraction": 0.025215858919404845,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 207
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 77
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 68
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 15
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 10
+            },
+            {
+              "pid": 2545,
+              "name": ".quickshell-wra",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0410115349986881
+        },
+        {
+          "external_cpu_fraction": 0.3964085988576912,
+          "kernel_worker_cpu_fraction": 0.10043936013035953,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 76
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 61
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc",
+              "ticks": 50
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 47
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc",
+              "ticks": 34
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 14
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3210729,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.051629558998684
+        },
+        {
+          "external_cpu_fraction": 0.3881879577263102,
+          "kernel_worker_cpu_fraction": 0.06239806430221988,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 204
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 87
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc",
+              "ticks": 81
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 72
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 68
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc",
+              "ticks": 52
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 15
+            },
+            {
+              "pid": 1314,
+              "name": "dbus-broker",
+              "ticks": 13
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0416989810000814
+        },
+        {
+          "external_cpu_fraction": 0.27605629420183286,
+          "kernel_worker_cpu_fraction": 0.05352725530275191,
+          "top_external_processes": [
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc",
+              "ticks": 102
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc",
+              "ticks": 51
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 30
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 13
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 12
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 9
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 9
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0391902160008613
+        },
+        {
+          "external_cpu_fraction": 0.255146758306747,
+          "kernel_worker_cpu_fraction": 0.009026418336323597,
+          "top_external_processes": [
+            {
+              "pid": 3211975,
+              "name": "rustc",
+              "ticks": 131
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 119
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc",
+              "ticks": 100
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 17
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 10
+            },
+            {
+              "pid": 2385,
+              "name": "niri",
+              "ticks": 8
+            },
+            {
+              "pid": 3020,
+              "name": "chromium",
+              "ticks": 8
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 5
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0386179380002432
+        },
+        {
+          "external_cpu_fraction": 0.3815179234528159,
+          "kernel_worker_cpu_fraction": 0.060176328620317965,
+          "top_external_processes": [
+            {
+              "pid": 3211975,
+              "name": "rustc",
+              "ticks": 203
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 192
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc",
+              "ticks": 101
+            },
+            {
+              "pid": 2501,
+              "name": ".dms-wrapped",
+              "ticks": 27
+            },
+            {
+              "pid": 3205375,
+              "name": "chromium",
+              "ticks": 22
+            },
+            {
+              "pid": 1428,
+              "name": "NetworkManager",
+              "ticks": 19
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 13
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0386143760006235
+        },
+        {
+          "external_cpu_fraction": 0.33770658313896873,
+          "kernel_worker_cpu_fraction": 0.04901228286264679,
+          "top_external_processes": [
+            {
+              "pid": 3211975,
+              "name": "rustc",
+              "ticks": 206
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc",
+              "ticks": 205
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc",
+              "ticks": 98
+            },
+            {
+              "pid": 5580,
+              "name": "herdr",
+              "ticks": 11
+            },
+            {
+              "pid": 2922,
+              "name": "chromium",
+              "ticks": 8
+            },
+            {
+              "pid": 57925,
+              "name": "codex",
+              "ticks": 7
+            },
+            {
+              "pid": 2565792,
+              "name": "codex",
+              "ticks": 3
+            },
+            {
+              "pid": 2878163,
+              "name": "factorseal-desk",
+              "ticks": 3
+            }
+          ],
+          "competing_processes": [
+            {
+              "pid": 3203358,
+              "name": "cargo"
+            },
+            {
+              "pid": 3203486,
+              "name": "rustc"
+            },
+            {
+              "pid": 3209332,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211953,
+              "name": "cargo"
+            },
+            {
+              "pid": 3211961,
+              "name": "rustc"
+            },
+            {
+              "pid": 3211975,
+              "name": "rustc"
+            }
+          ],
+          "paused_build_processes": [],
+          "interval_seconds": 1.0456562519975705
+        }
+      ],
+      "error": "host did not become quiet before the deadline"
+    }
+  ],
+  "complete": false
+}

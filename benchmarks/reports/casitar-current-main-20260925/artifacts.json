@@ -1,0 +1,34 @@
+{
+  "base_revision": "e50179d3f73be902d4d42befb86ac9b6c4eebb43",
+  "build_command": [
+    "cargo",
+    "build",
+    "--locked",
+    "--release",
+    "--features",
+    "cli",
+    "--bin",
+    "casita"
+  ],
+  "rustc": "1.96.0 (ac68faa20 2026-05-25)",
+  "binaries": {
+    "baseline": {
+      "path": "/home/domen/dev/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/baseline",
+      "sha256": "e5507de0ceb93139288c350319c1d4bd66aca55cf60d2366f46801db973a601b",
+      "original_path": "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/baseline"
+    },
+    "candidate": {
+      "path": "/home/domen/dev/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/candidate",
+      "sha256": "8ded761d2ab0817be38391a5cd6e8c5641204ea027a4c426f7226287347f8b50",
+      "original_path": "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/candidate"
+    }
+  },
+  "source": {
+    "Cargo.lock.txt": "c5519412f6a2d9ad14eb7d61ed5fc2ce26777eea6787a6402e74460364f4d32b",
+    "baseline.patch": "128af80c56ae45cd42617d02ad720a669a0c7ae9896114598f022ae646d94c6d",
+    "candidate.patch": "a25b4f401c8aec55eeca62eb8c458764d9ea32a30ca0bfdbd7941c9553e86363",
+    "casitar_scaling.py": "bac217076ea6e7dc6534f70de12189e9bc3b3ca4c39631878fb2cd2638c1b26b",
+    "host_activity.py": "eacc6e16d62c90d5f58ba12677fe1fc27fe148d56f517e06e433390d099d59bb",
+    "port.patch": "fb80354a189611c215d481da371a51b1ed7597326897c28728a2929527c70b0d"
+  }
+}

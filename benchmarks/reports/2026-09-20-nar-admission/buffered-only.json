@@ -1,0 +1,27 @@
+[
+  {
+    "syncs": 41,
+    "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 1.30s\n\n",
+    "stderr": "256-file raw NAR: 41 journal syncs\n"
+  },
+  {
+    "syncs": 41,
+    "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.52s\n\n",
+    "stderr": "256-file raw NAR: 41 journal syncs\n"
+  },
+  {
+    "syncs": 41,
+    "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.85s\n\n",
+    "stderr": "256-file raw NAR: 41 journal syncs\n"
+  },
+  {
+    "syncs": 41,
+    "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.45s\n\n",
+    "stderr": "256-file raw NAR: 41 journal syncs\n"
+  },
+  {
+    "syncs": 41,
+    "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.48s\n\n",
+    "stderr": "256-file raw NAR: 41 journal syncs\n"
+  }
+]

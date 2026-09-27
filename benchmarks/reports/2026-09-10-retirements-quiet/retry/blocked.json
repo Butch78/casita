@@ -1,0 +1,54 @@
+{
+  "imports": 60,
+  "pair": 0,
+  "variant": "after",
+  "reason": "host did not become quiet before the deadline",
+  "last_sample": {
+    "external_cpu_fraction": 0.04787652105021135,
+    "kernel_worker_cpu_fraction": 0.004848255296223934,
+    "top_external_processes": [
+      {
+        "pid": 1998714,
+        "name": "chromium",
+        "ticks": 15
+      },
+      {
+        "pid": 1257,
+        "name": "NetworkManager",
+        "ticks": 11
+      },
+      {
+        "pid": 10430,
+        "name": ".dms-wrapped",
+        "ticks": 8
+      },
+      {
+        "pid": 12406,
+        "name": "herdr",
+        "ticks": 8
+      },
+      {
+        "pid": 1817834,
+        "name": "codex",
+        "ticks": 4
+      },
+      {
+        "pid": 10267,
+        "name": "niri",
+        "ticks": 3
+      },
+      {
+        "pid": 10833,
+        "name": "chromium",
+        "ticks": 3
+      },
+      {
+        "pid": 10960,
+        "name": "chromium",
+        "ticks": 3
+      }
+    ],
+    "competing_processes": [],
+    "interval_seconds": 1.0312988270015921
+  }
+}

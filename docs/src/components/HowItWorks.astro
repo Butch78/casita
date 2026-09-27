@@ -1,0 +1,210 @@
+---
+const steps = [
+  { name: 'Import', title: 'Your objects. Their original identities.', description: 'Import files, Git objects, and IPLD blocks as immutable graphs. Casita checks each object’s identity and links before publishing it.', note: 'Git keeps Git IDs. IPLD keeps CIDs.', href: '/concepts/imports/', link: 'How imports work' },
+  { name: 'Reuse', title: 'Changed content. Shared bytes.', description: 'Identical payloads share storage. For larger payloads, content-defined chunking lets a new version reuse unchanged pieces. Only new chunks need storing.', note: 'Chunking never changes an object’s identity.', href: '/concepts/deduplication/', link: 'How deduplication works' },
+  { name: 'Sync', title: 'Send what’s missing. Verify it again.', description: 'The destination reuses objects it already has and verifies incoming content. Its named root updates only when the complete graph is verified.', note: 'Compatible stores also reuse chunks during transfer.', href: '/concepts/sync/', link: 'How sync works' },
+  { name: 'Retain', title: 'Name a root. Keep everything it reaches.', description: 'A named root keeps its entire graph alive. When you run collection, Casita removes unreachable objects and reclaims bytes no retained graph needs.', note: 'Shared data stays while any retained graph needs it.', href: '/concepts/roots-and-retention/', link: 'How retention works' },
+];
+---
+<section class="how-section" aria-labelledby="how-title" id="how-it-works">
+  <div class="landing-container">
+    <casita-explainer data-step="0" data-running="false">
+      <div class="explainer-top"><h2 id="how-title">One Graph. Less work.</h2><button class="playback" type="button" aria-label="Play animation">Play <span aria-hidden="true">▶</span></button></div>
+      <div class="scenes">
+        {steps.map((step, index) => (
+          <div class="scene" id={`casita-step-${index}`} role="tabpanel" aria-labelledby={`casita-tab-${index}`} hidden={index !== 0} tabindex="0">
+            <div class="scene-copy">
+              <span class="scene-count">0{index + 1} / 04</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+              <a href={step.href}>{step.link} <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="scene-art">
+              {index === 0 && <svg viewBox="0 0 560 320" role="img" aria-label="Files, Git, and IPLD are imported as a graph of objects, with identities and links verified before publication.">
+                <path class="wire draw" d="M126 72H182Q206 72 206 96V160M126 160H225M126 248H182Q206 248 206 224V160M329 160H378M402 160L467 91M402 160L467 229" />
+                <g class="node"><rect x="20" y="49" width="106" height="46" rx="9"/><text x="73" y="77">Files</text><rect x="20" y="137" width="106" height="46" rx="9"/><text x="73" y="165">Git</text><rect x="20" y="225" width="106" height="46" rx="9"/><text x="73" y="253">IPLD</text></g>
+                <g class="verifier appear"><rect x="225" y="118" width="104" height="84" rx="14"/><path d="m263 146 10 10 19-21"/><text x="277" y="183">import</text></g>
+                <g class="objects appear later"><rect x="378" y="143" width="34" height="34" rx="8"/><rect x="460" y="68" width="46" height="46" rx="10"/><rect x="460" y="206" width="46" height="46" rx="10"/></g>
+                <text class="annotation" x="444" y="293">native identities</text>
+              </svg>}
+              {index === 1 && <svg viewBox="0 0 560 320" role="img" aria-label="Two different payloads share chunks A and C. The second payload adds chunk D in place of B.">
+                <text class="annotation start" x="36" y="43">PAYLOAD 01</text><text class="annotation start" x="36" y="220">PAYLOAD 02</text>
+                <path class="wire shared-wire draw" d="M110 107V242M446 107V242"/>
+                <g class="chunks"><rect x="36" y="62" width="148" height="58" rx="9"/><text x="110" y="97">A</text><rect x="204" y="62" width="148" height="58" rx="9"/><text x="278" y="97">B</text><rect x="372" y="62" width="148" height="58" rx="9"/><text x="446" y="97">C</text></g>
+                <g class="chunks appear"><rect x="36" y="240" width="148" height="58" rx="9"/><text x="110" y="275">A</text><rect x="372" y="240" width="148" height="58" rx="9"/><text x="446" y="275">C</text></g>
+                <g class="new-chunk appear later"><rect x="204" y="240" width="148" height="58" rx="9"/><text x="278" y="275">D</text></g>
+                <g class="reuse-label"><rect x="65" y="159" width="90" height="25" rx="12"/><text x="110" y="176">reuse</text><rect x="401" y="159" width="90" height="25" rx="12"/><text x="446" y="176">reuse</text></g>
+                <text class="accent-text" x="278" y="177">+ new bytes</text>
+              </svg>}
+              {index === 2 && <svg viewBox="0 0 560 320" role="img" aria-label="A source sends missing content to a destination that already has shared content. The destination verifies before updating its root.">
+                <g class="store"><rect x="22" y="55" width="166" height="205" rx="14"/><rect x="372" y="55" width="166" height="205" rx="14"/></g>
+                <text class="annotation" x="105" y="86">SOURCE</text><text class="annotation" x="455" y="86">DESTINATION</text>
+                <g class="chunks"><rect x="48" y="114" width="42" height="40" rx="7"/><text x="69" y="140">A</text><rect x="120" y="114" width="42" height="40" rx="7"/><text x="141" y="140">C</text><rect x="398" y="114" width="42" height="40" rx="7"/><text x="419" y="140">A</text><rect x="470" y="114" width="42" height="40" rx="7"/><text x="491" y="140">C</text></g>
+                <path class="wire" d="M164 204H395"/>
+                <g class="new-chunk"><rect x="48" y="184" width="114" height="40" rx="7"/><text x="105" y="210">D</text></g>
+                <g class="transfer"><rect x="190" y="192" width="24" height="24" rx="5"/></g>
+                <g class="new-chunk appear later"><rect x="398" y="184" width="114" height="40" rx="7"/><text x="455" y="210">D ✓</text></g>
+                <text class="annotation" x="280" y="170">only missing</text><text class="accent-text appear later" x="455" y="293">verified → root updated</text>
+              </svg>}
+              {index === 3 && <svg viewBox="0 0 560 320" role="img" aria-label="The named root release retains its connected objects. A separate unreachable object is collected.">
+                <path class="wire retained draw" d="M220 77V110M220 142L121 207M220 142L319 207M121 239L220 289M319 239L220 289"/>
+                <g class="root-label"><rect x="157" y="27" width="126" height="50" rx="25"/><text x="220" y="58">release</text></g>
+                <g class="objects"><rect x="202" y="110" width="36" height="36" rx="8"/><rect x="103" y="207" width="36" height="36" rx="8"/><rect x="301" y="207" width="36" height="36" rx="8"/><rect x="202" y="271" width="36" height="36" rx="8"/></g>
+                <g class="orphan"><rect x="432" y="138" width="40" height="40" rx="8"/><text class="annotation" x="452" y="208">unreachable</text></g>
+                <path class="collection-mark" d="m443 151 18 18m0-18-18 18"/>
+                <text class="accent-text" x="85" y="131">retained</text><text class="annotation appear later" x="452" y="247">collected</text>
+              </svg>}
+              <p class="art-note">{step.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="step-tabs" role="tablist" aria-label="How Casita works">
+        {steps.map((step, index) => <button id={`casita-tab-${index}`} type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} aria-controls={`casita-step-${index}`} tabindex={index === 0 ? 0 : -1} data-index={index}><span class="tab-number">0{index + 1}</span>{step.name}<span class="step-progress" aria-hidden="true"></span></button>)}
+      </div>
+      <span class="sr-only" data-announcement aria-live="polite"></span>
+    </casita-explainer>
+    <p class="illustration-note">A simplified view of the repository lifecycle. Chunk reuse shown for compatible stores.</p>
+  </div>
+</section>
+
+<style>
+  .how-section { padding-block: 6rem; background: var(--landing-panel); border-block: 1px solid var(--landing-line); }
+  casita-explainer { --accent: var(--sl-color-text-accent); display: block; border: 1px solid var(--landing-line); border-radius: 1rem; overflow: hidden; background: var(--sl-color-bg); }
+  .explainer-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding: 1rem 1.6rem; border-bottom: 1px solid var(--landing-line); }
+  .explainer-top h2 { grid-column: 2; margin: 0; color: var(--sl-color-white); font: 700 1.25rem var(--sl-font); letter-spacing: -0.03em; text-align: center; }
+  .explainer-top .playback { grid-column: 3; justify-self: end; }
+  .playback { display: flex; gap: 0.8rem; align-items: center; padding: 0.5rem 0.7rem; border: 1px solid var(--landing-line); border-radius: 5px; background: transparent; color: var(--sl-color-text); font: 0.75rem var(--sl-font); cursor: pointer; min-width: 6rem; justify-content: space-between; }
+  button:focus-visible, .scene:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+  .scene { display: grid; grid-template-columns: 0.85fr 1.15fr; align-items: center; min-height: 430px; }
+  .scene[hidden] { display: none; }
+  .scene-copy { padding: 2.7rem 1rem 2.7rem 3rem; }
+  .scene-count { font: 0.7rem var(--sl-font-mono); color: var(--accent); }
+  .scene-copy h3 { color: var(--sl-color-white); font-size: clamp(1.65rem, 2.7vw, 2.4rem); letter-spacing: -0.045em; line-height: 1.16; margin: 1.3rem 0 1rem; max-width: 12em; }
+  .scene-copy p { color: var(--sl-color-gray-2); font-size: 0.94rem; line-height: 1.8; max-width: 33em; margin: 0 0 1.5rem; }
+  .scene-copy a { color: var(--accent); font-size: 0.8rem; text-decoration: none; }
+  .scene-copy a:hover { text-decoration: underline; }
+  .scene-copy a span { padding-left: 0.5rem; }
+  .scene-art { min-width: 0; padding: 2rem; }
+  svg { display: block; width: 100%; overflow: visible; }
+  svg text { fill: var(--sl-color-white); font: 15px var(--sl-font-mono); text-anchor: middle; }
+  svg .annotation { font-size: 11px; fill: var(--sl-color-gray-2); }
+  svg .start { text-anchor: start; letter-spacing: 1px; }
+  .wire { fill: none; stroke: var(--sl-color-gray-4); stroke-width: 1.5; }
+  .node rect, .store rect { fill: var(--landing-panel); stroke: var(--landing-line); }
+  .verifier rect, .root-label rect, .new-chunk rect { fill: color-mix(in srgb, var(--accent) 8%, var(--sl-color-bg)); stroke: var(--accent); }
+  .verifier path { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .verifier text, .new-chunk text, .root-label text, svg .accent-text { fill: var(--accent); font-size: 12px; }
+  .objects rect, .chunks rect { fill: var(--sl-color-gray-6); stroke: var(--sl-color-gray-3); }
+  .shared-wire, .retained { stroke: var(--accent); }
+  .reuse-label rect { fill: var(--sl-color-bg); }
+  .reuse-label text { fill: var(--sl-color-gray-2); font-size: 11px; }
+  .transfer rect { fill: var(--accent); }
+  .orphan rect { fill: none; stroke: var(--sl-color-gray-3); stroke-dasharray: 4 4; }
+  .collection-mark { fill: none; stroke: var(--sl-color-gray-3); stroke-width: 1.5; }
+  .art-note { text-align: center; color: var(--sl-color-gray-2); font-size: 0.72rem; margin: 1.1rem 0 0; line-height: 1.6; }
+  .step-tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--landing-line); }
+  .step-tabs button { position: relative; display: flex; align-items: center; justify-content: center; gap: 0.8rem; padding: 1.5rem 0.5rem; border: 0; border-right: 1px solid var(--landing-line); background: transparent; color: var(--sl-color-gray-2); font: 600 0.85rem var(--sl-font); cursor: pointer; }
+  .step-tabs button:last-child { border-right: 0; }
+  .step-tabs button:hover { background: var(--landing-panel); }
+  .step-tabs button[aria-selected='true'] { color: var(--accent); background: color-mix(in srgb, var(--accent) 4%, var(--sl-color-bg)); }
+  .tab-number { font: 0.68rem var(--sl-font-mono); opacity: 0.7; }
+  .step-progress { position: absolute; bottom: 0; left: 0; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+  [aria-selected='true'] .step-progress { transform: scaleX(var(--progress, 0)); }
+  .illustration-note { color: var(--sl-color-gray-3); text-align: center; font-size: 0.72rem; margin: 1.2rem 0 0; }
+  .draw { stroke-dasharray: 600; animation: trace 2.4s ease both; }
+  .appear { animation: arrive 0.8s 0.6s both; }
+  .later { animation-delay: 2s; }
+  .transfer { animation: transfer 2s 0.5s both; }
+  .orphan { animation: collect 1s 2s both; }
+  [data-running='false'] svg * { animation-play-state: paused; }
+  [data-static] svg * { animation: none !important; }
+  [data-static] .transfer { display: none; }
+  @keyframes trace { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
+  @keyframes arrive { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes transfer { 0% { opacity: 0; transform: translateX(0); } 15%, 75% { opacity: 1; } 100% { opacity: 0; transform: translateX(190px); } }
+  @keyframes collect { to { opacity: 0.18; } }
+  @media (max-width: 52rem) { .how-section { padding-block: 4rem; } .scene { grid-template-columns: 1fr; } .scene-copy { padding: 2rem 2rem 0; min-height: 270px; } .scene-copy h3 { max-width: 20em; font-size: 1.8rem; } .scene-art { padding: 1.3rem 2rem 2rem; max-width: 600px; width: 100%; margin-inline: auto; } }
+  @media (max-width: 34rem) { .explainer-top { grid-template-columns: 1fr; padding-inline: 1rem; } .explainer-top h2, .explainer-top .playback { grid-column: 1; } .explainer-top .playback { justify-self: center; } .scene-copy { padding-inline: 1.3rem; min-height: 315px; } .scene-art { padding-inline: 1rem; } .step-tabs button { gap: 0.35rem; font-size: 0.75rem; padding-block: 1.2rem; } .tab-number { font-size: 0.6rem; } }
+  @media (prefers-reduced-motion: reduce) { svg * { animation: none !important; } .transfer { display: none; } }
+</style>
+
+<script>
+  class CasitaExplainer extends HTMLElement {
+    private cleanup?: () => void;
+    connectedCallback() {
+      this.cleanup?.();
+      const tabs = Array.from(this.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+      const panels = Array.from(this.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+      const playback = this.querySelector<HTMLButtonElement>('.playback')!;
+      const announcement = this.querySelector<HTMLElement>('[data-announcement]')!;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      const events = new AbortController();
+      let current = 0, elapsed = 0, last = 0, frame = 0;
+      let playing = !reduced.matches, visible = false, finished = false, manualSelection = false;
+      const duration = 8000;
+      const update = () => {
+        const running = playing && visible && !document.hidden;
+        this.dataset.running = String(running);
+        this.toggleAttribute('data-static', reduced.matches || manualSelection);
+        playback.textContent = finished ? 'Replay ↺' : playing ? 'Pause Ⅱ' : 'Play ▶';
+        playback.setAttribute('aria-label', finished ? 'Replay animation' : playing ? 'Pause animation' : 'Play animation');
+        cancelAnimationFrame(frame);
+        last = 0;
+        if (running) frame = requestAnimationFrame(tick);
+      };
+      const select = (index: number, manual = false) => {
+        current = index;
+        manualSelection = manual;
+        elapsed = 0;
+        finished = false;
+        this.dataset.step = String(index);
+        this.style.setProperty('--progress', '0');
+        tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
+        panels.forEach((panel, i) => { panel.hidden = i !== index; });
+        // Restart the scene even when replaying or selecting its current tab.
+        panels[index].querySelectorAll('svg *').forEach(element => {
+          element.getAnimations().forEach(animation => { animation.currentTime = 0; });
+        });
+        if (manual) { playing = false; announcement.textContent = `Step ${index + 1}: ${tabs[index].textContent?.trim()}`; }
+      };
+      const tick = (now: number) => {
+        if (last) elapsed += now - last;
+        last = now;
+        if (elapsed >= duration) {
+          if (current === tabs.length - 1) { finished = true; playing = false; this.style.setProperty('--progress', '1'); update(); return; }
+          select(current + 1);
+        }
+        this.style.setProperty('--progress', String(Math.min(elapsed / duration, 1)));
+        frame = requestAnimationFrame(tick);
+      };
+      tabs.forEach((tab, index) => {
+        const activate = () => { select(index, true); update(); };
+        tab.addEventListener('click', activate, { signal: events.signal });
+        tab.addEventListener('keydown', event => {
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabs.length - 1;
+          else return;
+          event.preventDefault(); tabs[next].focus(); tabs[next].click();
+        }, { signal: events.signal });
+      });
+      playback.addEventListener('click', () => {
+        if (finished) { select(0); playing = true; }
+        else playing = !playing;
+        if (playing) manualSelection = false;
+        update();
+      }, { signal: events.signal });
+      reduced.addEventListener('change', () => { if (reduced.matches) playing = false; update(); }, { signal: events.signal });
+      document.addEventListener('visibilitychange', update, { signal: events.signal });
+      const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; update(); }, { threshold: 0.25 });
+      observer.observe(this);
+      update();
+      this.cleanup = () => { events.abort(); observer.disconnect(); cancelAnimationFrame(frame); };
+    }
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+  if (!customElements.get('casita-explainer')) customElements.define('casita-explainer', CasitaExplainer);
+</script>

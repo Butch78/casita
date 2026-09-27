@@ -1,0 +1,11 @@
+
+running 7 tests
+test blob::pack::external::tests::external_root_reads_fail_closed ... ok
+test blob::pack::external::tests::external_roots_follow_publication_abort_and_retention ... ok
+test object_read_tests::physical_plan_uses_protected_catalog_even_if_shared_catalog_changes ... ok
+test repository::tests::full_disk_crash::local_emergency_sweep_recovers_after_abort_without_a_mount ... ok
+test repository::tests::full_disk_crash::local_emergency_sweep_recovers_after_real_process_abort ... ok
+test repository::tests::storage_full_detection_preserves_typed_nested_errors ... ok
+test sqlite::tests::catalog_schema_migration_fences_an_already_prepared_legacy_writer ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 48.90s

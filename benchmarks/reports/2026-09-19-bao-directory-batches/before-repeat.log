@@ -1,0 +1,26 @@
+Benchmarking nar_import/bytes-16385/32
+Benchmarking nar_import/bytes-16385/32: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 3.4s.
+Benchmarking nar_import/bytes-16385/32: Collecting 10 samples in estimated 3.3613 s (10 iterations)
+Benchmarking nar_import/bytes-16385/32: Analyzing
+nar_import/bytes-16385/32
+                        time:   [122.24 ms 130.84 ms 138.47 ms]
+Benchmarking nar_import/bytes-65535/32
+Benchmarking nar_import/bytes-65535/32: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 4.8s.
+Benchmarking nar_import/bytes-65535/32: Collecting 10 samples in estimated 4.7769 s (10 iterations)
+Benchmarking nar_import/bytes-65535/32: Analyzing
+nar_import/bytes-65535/32
+                        time:   [364.79 ms 385.71 ms 402.69 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) low mild
+Benchmarking nar_import/bytes-131073/16
+Benchmarking nar_import/bytes-131073/16: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 7.5s.
+Benchmarking nar_import/bytes-131073/16: Collecting 10 samples in estimated 7.4761 s (10 iterations)
+Benchmarking nar_import/bytes-131073/16: Analyzing
+nar_import/bytes-131073/16
+                        time:   [314.45 ms 340.37 ms 366.28 ms]

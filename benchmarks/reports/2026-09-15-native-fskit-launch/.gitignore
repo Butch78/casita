@@ -1,0 +1,7 @@
+# Uncompressed copies of the committed raw reports.
+/after-initial.json
+/before.json
+/cache-off.json
+/cache-on.json
+/probe-names.json
+/tracing-registration-blocked.json

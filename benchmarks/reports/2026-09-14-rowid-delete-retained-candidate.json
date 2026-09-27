@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.metadata-collection.v1",
+  "suite_id": "collection-and-fsck",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-14T20:47:46.357651+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "c2c6eac0ae6812490101d112e790aeb7b3c0a023",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "profile": "standard",
+    "counts": [
+      65536,
+      65537
+    ],
+    "iterations": 2,
+    "repetitions": 3,
+    "fixture": "all-retained-blobs",
+    "seed_batch_size": 1024
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita-rowid-delete-bin/casita-lib-test",
+      "sha256": "8b79511b7838023d940ce69b955e02dfbe5b9a47dcdb69ad380e83026e2bd166"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65537,
+      "repetition": 1,
+      "wall_seconds": 0.807763755,
+      "max_rss_bytes": 68681728,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 807763755,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65537,
+      "repetition": 1,
+      "wall_seconds": 0.899805719,
+      "max_rss_bytes": 68681728,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 897496418,
+          "warm": true
+        },
+        {
+          "iteration": 2,
+          "nanos": 902115020,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65536,
+      "repetition": 1,
+      "wall_seconds": 0.285407027,
+      "max_rss_bytes": 73027584,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 285407027,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65536,
+      "repetition": 1,
+      "wall_seconds": 0.285694353,
+      "max_rss_bytes": 73027584,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 274314071,
+          "warm": true
+        },
+        {
+          "iteration": 2,
+          "nanos": 297074635,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65536,
+      "repetition": 3,
+      "wall_seconds": 0.320714989,
+      "max_rss_bytes": 73441280,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 320714989,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65536,
+      "repetition": 3,
+      "wall_seconds": 0.293301392,
+      "max_rss_bytes": 73441280,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 294047017,
+          "warm": true
+        },
+        {
+          "iteration": 2,
+          "nanos": 292555767,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65536,
+      "repetition": 2,
+      "wall_seconds": 0.34742333,
+      "max_rss_bytes": 73785344,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 347423330,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65536,
+      "repetition": 2,
+      "wall_seconds": 0.321562723,
+      "max_rss_bytes": 73785344,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 307850581,
+          "warm": true
+        },
+        {
+          "iteration": 2,
+          "nanos": 335274865,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65537,
+      "repetition": 3,
+      "wall_seconds": 0.791025183,
+      "max_rss_bytes": 68104192,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 791025183,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65537,
+      "repetition": 3,
+      "wall_seconds": 0.9450549555,
+      "max_rss_bytes": 68104192,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 930018973,
+          "warm": true
+        },
+        {
+          "iteration": 2,
+          "nanos": 960090938,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-first",
+      "entries": 65537,
+      "repetition": 2,
+      "wall_seconds": 0.805618302,
+      "max_rss_bytes": 68841472,
+      "commits": [
+        {
+          "iteration": 0,
+          "nanos": 805618302,
+          "warm": false
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "collect-warm",
+      "entries": 65537,
+      "repetition": 2,
+      "wall_seconds": 0.898893872,
+      "max_rss_bytes": 68841472,
+      "commits": [
+        {
+          "iteration": 1,
+          "nanos": 913565353,
+          "warm": true
+        },
+        {
+          "iteration": 2,
+          "nanos": 884222391,
+          "warm": true
+        }
+      ],
+      "correctness": "zero removals, exact reopened inventory and revision"
+    }
+  ],
+  "processes": [
+    {
+      "wall_seconds": 6.504819638,
+      "user_seconds": 3.99,
+      "system_seconds": 1.41,
+      "max_rss_bytes": 68681728,
+      "exit_code": 0,
+      "entries": 65537,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65537,\"iterations\":2,\"samples\":[{\"iteration\":0,\"nanos\":807763755,\"warm\":false},{\"iteration\":1,\"nanos\":897496418,\"warm\":true},{\"iteration\":2,\"nanos\":902115020,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 671 filtered out; finished in 6.49s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 4.677981008,
+      "user_seconds": 2.21,
+      "system_seconds": 1.32,
+      "max_rss_bytes": 73027584,
+      "exit_code": 0,
+      "entries": 65536,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65536,\"iterations\":2,\"samples\":[{\"iteration\":0,\"nanos\":285407027,\"warm\":false},{\"iteration\":1,\"nanos\":274314071,\"warm\":true},{\"iteration\":2,\"nanos\":297074635,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 671 filtered out; finished in 4.67s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 4.760915185,
+      "user_seconds": 2.28,
+      "system_seconds": 1.38,
+      "max_rss_bytes": 73441280,
+      "exit_code": 0,
+      "entries": 65536,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65536,\"iterations\":2,\"samples\":[{\"iteration\":0,\"nanos\":320714989,\"warm\":false},{\"iteration\":1,\"nanos\":294047017,\"warm\":true},{\"iteration\":2,\"nanos\":292555767,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 671 filtered out; finished in 4.75s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 5.430931816,
+      "user_seconds": 2.31,
+      "system_seconds": 1.44,
+      "max_rss_bytes": 73785344,
+      "exit_code": 0,
+      "entries": 65536,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65536,\"iterations\":2,\"samples\":[{\"iteration\":0,\"nanos\":347423330,\"warm\":false},{\"iteration\":1,\"nanos\":307850581,\"warm\":true},{\"iteration\":2,\"nanos\":335274865,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 671 filtered out; finished in 5.42s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 6.825715097,
+      "user_seconds": 4.1,
+      "system_seconds": 1.5,
+      "max_rss_bytes": 68104192,
+      "exit_code": 0,
+      "entries": 65537,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65537,\"iterations\":2,\"samples\":[{\"iteration\":0,\"nanos\":791025183,\"warm\":false},{\"iteration\":1,\"nanos\":930018973,\"warm\":true},{\"iteration\":2,\"nanos\":960090938,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 671 filtered out; finished in 6.81s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 6.587510418,
+      "user_seconds": 4.01,
+      "system_seconds": 1.45,
+      "max_rss_bytes": 68841472,
+      "exit_code": 0,
+      "entries": 65537,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\ncollection_sample {\"correctness\":\"zero removals, exact reopened inventory and revision\",\"count\":65537,\"iterations\":2,\"samples\":[{\"iteration\":0,\"nanos\":805618302,\"warm\":false},{\"iteration\":1,\"nanos\":913565353,\"warm\":true},{\"iteration\":2,\"nanos\":884222391,\"warm\":true}]}\ntest metadata::benchmarks::benchmark_metadata_collection ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 671 filtered out; finished in 6.58s\n\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "4be9276041e3ee82adf3e05ae76f1a5824e9bc0c",
+  "diff": " benchmarks/README.md               |  5 ++++\n benchmarks/all.py                  |  1 +\n benchmarks/manifest.json           |  1 +\n benchmarks/revisions.py            |  1 +\n benchmarks/tests/test_revisions.py |  1 +\n src/repository.rs                  | 56 +++++++++++++++++---------------------\n 6 files changed, 34 insertions(+), 31 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "mutation-catalog",
+      "status": "passed",
+      "command": [
+        "/nix/store/01kf8mxidik2ggmwfb1hy6ysrrhk65gx-python3-3.13.9-env/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "mutation-catalog",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-catalog-all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-catalog-all/mutation-catalog.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.2721864160000678,
+      "log": "/tmp/casita-catalog-all/mutation-catalog.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

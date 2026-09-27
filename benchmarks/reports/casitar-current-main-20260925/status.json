@@ -1,0 +1,138 @@
+{
+  "complete": false,
+  "status": "timing_blocked_by_external_cpu",
+  "base_revision": "e50179d3f73be902d4d42befb86ac9b6c4eebb43",
+  "cpu_ceiling_percent": 40,
+  "compiler_veto": false,
+  "accepted_latency_pairs": 0,
+  "attempts": [
+    {
+      "attempt": 1,
+      "complete": false,
+      "samples": 6,
+      "accepted_cases": 0,
+      "peak_external_cpu_percent": 85.67913043752043,
+      "over_ceiling_intervals": 156,
+      "measured_intervals": 222,
+      "peak_external_processes": [
+        {
+          "pid": 1850238,
+          "name": "rustc",
+          "ticks": 816
+        },
+        {
+          "pid": 1867825,
+          "name": "rustc",
+          "ticks": 105
+        },
+        {
+          "pid": 1864396,
+          "name": "rustc",
+          "ticks": 102
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "complete": false,
+      "samples": 6,
+      "accepted_cases": 0,
+      "peak_external_cpu_percent": 84.06979109111823,
+      "over_ceiling_intervals": 36,
+      "measured_intervals": 162,
+      "peak_external_processes": [
+        {
+          "pid": 1887156,
+          "name": "wasm-opt",
+          "ticks": 1171
+        },
+        {
+          "pid": 1881874,
+          "name": "clippy-driver",
+          "ticks": 80
+        },
+        {
+          "pid": 1881670,
+          "name": "rustc",
+          "ticks": 72
+        }
+      ]
+    },
+    {
+      "attempt": 3,
+      "complete": false,
+      "samples": 6,
+      "accepted_cases": 0,
+      "peak_external_cpu_percent": 40.34788689127623,
+      "over_ceiling_intervals": 1,
+      "measured_intervals": 138,
+      "peak_external_processes": [
+        {
+          "pid": 1902795,
+          "name": "rustc",
+          "ticks": 518
+        },
+        {
+          "pid": 1902034,
+          "name": "rustc",
+          "ticks": 102
+        },
+        {
+          "pid": 5580,
+          "name": "herdr",
+          "ticks": 9
+        }
+      ]
+    },
+    {
+      "attempt": 4,
+      "complete": false,
+      "samples": 6,
+      "accepted_cases": 0,
+      "peak_external_cpu_percent": 85.330904166517,
+      "over_ceiling_intervals": 115,
+      "measured_intervals": 240,
+      "peak_external_processes": [
+        {
+          "pid": 1947189,
+          "name": "rustc",
+          "ticks": 434
+        },
+        {
+          "pid": 1940953,
+          "name": "rustc",
+          "ticks": 317
+        },
+        {
+          "pid": 1948328,
+          "name": "rustc",
+          "ticks": 105
+        }
+      ]
+    }
+  ],
+  "boundary_pin_appends": [
+    {
+      "files": 254,
+      "records": 255,
+      "baseline": 260,
+      "candidate": 7,
+      "reduction_percent": 97.3076923076923
+    },
+    {
+      "files": 256,
+      "records": 257,
+      "baseline": 262,
+      "candidate": 8,
+      "reduction_percent": 96.94656488549617
+    }
+  ],
+  "validation": {
+    "rust_tests_passed": 11,
+    "python_tests_run": 406,
+    "python_tests_skipped": 2,
+    "boundary_samples_passed": 24,
+    "scaling_smoke_samples_passed": 36,
+    "all_features_clippy": "passed: library and CLI"
+  }
+}

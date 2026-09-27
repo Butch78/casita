@@ -1,0 +1,6 @@
+.....Failed protocol case: {'writers': 1, 'objects': 9, 'fault': 'none', 'variant': 'current-shape', 'status': 'failed', 'error': "RuntimeError('indeterminate PUT')", 'fresh_readback': False}
+.
+----------------------------------------------------------------------
+Ran 6 tests in 0.198s
+
+OK

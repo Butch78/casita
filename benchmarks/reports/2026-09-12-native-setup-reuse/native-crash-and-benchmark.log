@@ -1,0 +1,64 @@
+• Validating lock
+✓ Validating lock in 13.1ms
+• Configuring shell
+• Configuring cachix
+  [35;1mwarning:[0m Substituter '[35;1mhttps://devenv.cachix.org[0m' is already present in the substituters list
+✓ Configuring cachix in 91.9ms
+• Evaluating shell
+✓ Evaluating shell in 92.3ms (cached)
+✓ Configuring shell in 197ms
+• Loading tasks
+• Evaluating devenv.config.task.config
+✓ Evaluating devenv.config.task.config in 11.9ms (cached)
+✓ Loading tasks in 15.2ms
+• Running tasks
+• Running devenv:files:cleanup
+✓ Running devenv:files:cleanup in 48.7ms
+• Running devenv:enterShell
+✓ Running devenv:enterShell in 68.0ms
+• Running devenv:enterTest
+✓ Running devenv:enterTest in 1.17µs (no command)
+✓ Running tasks in 120ms
+   Compiling anyhow v1.0.104
+   Compiling half v2.7.1
+   Compiling clap_lex v1.1.0
+   Compiling anstyle v1.0.14
+   Compiling ciborium-io v0.2.2
+   Compiling clap_builder v4.6.6
+   Compiling itertools v0.10.5
+   Compiling ciborium-ll v0.2.2
+   Compiling prost-derive v0.14.4
+   Compiling wait-timeout v0.2.1
+   Compiling bit-vec v0.8.0
+   Compiling fnv v1.0.7
+   Compiling quick-error v1.2.3
+   Compiling cast v0.3.0
+   Compiling rusty-fork v0.3.1
+   Compiling criterion-plot v0.5.0
+   Compiling clap v4.6.6
+   Compiling bit-set v0.8.0
+   Compiling ciborium v0.2.2
+   Compiling prost v0.14.4
+   Compiling tinytemplate v1.2.1
+   Compiling rand_xorshift v0.4.0
+   Compiling is-terminal v0.4.17
+   Compiling turso_sync_engine v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling unarray v0.1.4
+   Compiling oorandom v11.1.5
+   Compiling anes v0.1.6
+   Compiling proptest v1.11.0
+   Compiling criterion v0.5.1
+   Compiling turso_sync_sdk_kit v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling turso v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling casita v0.1.0 (/Users/hetzner/casita-final-pins-20260912)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 19s
+     Running unittests src/lib.rs (/Users/hetzner/native-final-build-20260912/debug/deps/casita-aebc4601a19884c4)
+
+running 1 test
+test blob::crash_tests::paged_overwrite_survives_process_death_at_metadata_publication_boundaries has been running for over 60 seconds
+test blob::crash_tests::paged_overwrite_survives_process_death_at_metadata_publication_boundaries ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 638 filtered out; finished in 162.81s
+
+running fskit-setup-reuse
+completion ledger: /Users/hetzner/merged-setup-reuse-results-20260912/execution.json

@@ -1,0 +1,11 @@
+  warning: Skip selectors from environment variables `SKIP` are ignored during installing hooks.
+  error: No hooks found after filtering with the given selectors
+✖ execute command in 47.0ms (failed)
+✖ Running devenv:git-hooks:run in 47.1ms (failed)
+✖ Running devenv:enterTest in 2.38µs (dependency failed)
+✖ Running tasks in 229ms (failed)
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on build directory
+    Checking casita v0.1.0 (/home/domen/dev/casita6)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 36s

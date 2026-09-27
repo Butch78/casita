@@ -1,0 +1,9 @@
+# Uncompressed copies of the committed raw reports.
+/workloads-stable-cache-phases.json
+/cache-phase-awk.json
+/cache-phase-run.log
+/cache-phase-synthetic.json
+/cache-phase-tests.log
+/launch-phase-profile.log
+/replay-summary.txt
+/workloads-stable-cache-phases-missing-tools.json

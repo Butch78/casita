@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "ade46e004c58354e4ffbd959642a0eccd48ce4c7",
+  "diff": " README.md                          |   7 +++\n benchmarks/README.md               |  22 +++++++\n benchmarks/all.py                  |   1 +\n benchmarks/dashboard.py            |   4 +-\n benchmarks/manifest.json           |   8 +++\n benchmarks/revisions.py            |   1 +\n benchmarks/tests/test_revisions.py |   1 +\n src/api.rs                         |  28 ++++++---\n src/blob/chunked.rs                | 121 ++++++++++++++++++++++++++++++++++++-\n src/blob/memory.rs                 |  10 +++\n src/blob/mod.rs                    |  18 ++++++\n src/blob/pack.rs                   |  34 +++++++++++\n src/lib.rs                         |   2 +\n src/repository.rs                  |  88 ++++++++++++++++++++++++++-\n 14 files changed, 333 insertions(+), 12 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "object-reads",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "object-reads",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/home/domen/dev/casita4/benchmarks/results/object-reads-all-20260908/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/home/domen/dev/casita4/benchmarks/results/object-reads-all-20260908/object-reads.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 7.2813688749447465,
+      "log": "/home/domen/dev/casita4/benchmarks/results/object-reads-all-20260908/object-reads.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

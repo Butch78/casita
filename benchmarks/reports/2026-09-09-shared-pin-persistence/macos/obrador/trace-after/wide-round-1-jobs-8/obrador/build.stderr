@@ -1,0 +1,161 @@
+@nix {"action":"msg","level":3,"msg":"these 32 derivations will be built:"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/1m5iarnkvkbzi7nzaq2v1c5h47s3i7ir-leaf-16.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/2c1ak9zjsd14z7p27idb9kr53sr8fs1h-leaf-24.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/3lm0000rciyxdc08hz59m24ik0cafqa5-leaf-12.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/3m85i62qhq141b79azpffg20dn86kcvn-leaf-10.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/4qcmmygqk6v7whqxnkrb7lzkdy0b1d77-leaf-15.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/56mjxlq63gyx0dl5dg16n3fd21j722xd-leaf-27.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/5hw5id593rg9z26rxfrhmnar7gk6x5n3-leaf-0.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/6cgg2grlbh78shaygw23kz3mw8l61srs-leaf-20.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/70ylsz8izlfh2r87wnxngnd8r696kfhp-leaf-3.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/8y4lng8y7qrdm58m7gs0bd24h1kpna0a-leaf-8.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/9g0ng8x9lkgbjap55d8hy0zc2klc9zf6-leaf-7.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ap60ykafgn0dzalk0knlpcgmcxg22j9x-leaf-23.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/b6fbpdlhlyrbwpby05v4mj5zpf029ff1-leaf-21.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/bbggfilrxq76b4h8rxkib69l90ak22f0-leaf-29.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/crk2j19hyvgk4zpvl4bg45s7nsw00rrz-leaf-14.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/gq8qgf43yx8239nk25hax33z5z14bkj8-leaf-2.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/hgm38x0zkcvv3np6hjhm8p4gvfahnvzn-leaf-26.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ik3nhn1iq45q8qndrrkwhh1mmlmz1c3v-leaf-22.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/j2ddlimfxsba90zwp3s047paw0v5ssfw-leaf-6.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/jx6mrxmc819rr73riz8n4i2c3x4sk1fv-leaf-28.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/kl09aadjdh7ylrpimnjkj052k0jw01g6-leaf-31.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ky9cbri324fi01w1395w4iapb6s6lmnb-leaf-1.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/lpd3y1s67iz235n4fsll45npqn73hkr6-leaf-18.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/lyfmaa6gsq1m96hkjk04s20bm8z9mcik-leaf-17.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ncv4rdqznwkh21qbxqiyca246i69ym6n-leaf-13.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/nz05dmaismpibyw4w78b5fgsxnwz8k05-leaf-9.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/pnibpmldh7hliplca66z7d87wrgcsxb2-leaf-19.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/qpm3ydca9bxamxpbz2qh7anjl1g7sx4k-leaf-25.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/qzn8q34sg5gmyv5d6a98m777jizqc0xz-leaf-30.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/vj1q2m0p3cvpdb2cal9rj9h7icpxv6px-leaf-5.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/wbnvhj3scmg0vz7lndr1vi7yiz3xmf3b-leaf-11.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/zgs1qkmnxmc77ipx6mpbmccz9mi9sg44-leaf-4.drv.drv"}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/5hw5id593rg9z26rxfrhmnar7gk6x5n3-leaf-0.drv.drv","",1,1],"id":248773095718912,"level":3,"parent":0,"text":"building 'leaf-0.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ky9cbri324fi01w1395w4iapb6s6lmnb-leaf-1.drv.drv","",1,1],"id":248773095718913,"level":3,"parent":0,"text":"building 'leaf-1.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/gq8qgf43yx8239nk25hax33z5z14bkj8-leaf-2.drv.drv","",1,1],"id":248773095718914,"level":3,"parent":0,"text":"building 'leaf-2.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/70ylsz8izlfh2r87wnxngnd8r696kfhp-leaf-3.drv.drv","",1,1],"id":248773095718915,"level":3,"parent":0,"text":"building 'leaf-3.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/zgs1qkmnxmc77ipx6mpbmccz9mi9sg44-leaf-4.drv.drv","",1,1],"id":248773095718916,"level":3,"parent":0,"text":"building 'leaf-4.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/vj1q2m0p3cvpdb2cal9rj9h7icpxv6px-leaf-5.drv.drv","",1,1],"id":248773095718917,"level":3,"parent":0,"text":"building 'leaf-5.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/j2ddlimfxsba90zwp3s047paw0v5ssfw-leaf-6.drv.drv","",1,1],"id":248773095718918,"level":3,"parent":0,"text":"building 'leaf-6.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/9g0ng8x9lkgbjap55d8hy0zc2klc9zf6-leaf-7.drv.drv","",1,1],"id":248773095718919,"level":3,"parent":0,"text":"building 'leaf-7.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718919}
+@nix {"action":"stop","id":248773095718912}
+@nix {"action":"stop","id":248773095718914}
+@nix {"action":"stop","id":248773095718915}
+@nix {"action":"stop","id":248773095718913}
+@nix {"action":"stop","id":248773095718917}
+@nix {"action":"stop","id":248773095718918}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/a1af7fsscpxj8zk3az6zjamphawar085-leaf-7.drv","",1,1],"id":248773095718920,"level":3,"parent":0,"text":"building 'leaf-7.drv'","type":105}
+@nix {"action":"stop","id":248773095718916}
+@nix {"action":"stop","id":248773095718920}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/8d087ha0xz3gmxi05c40ap0psadp7pdb-leaf-0.drv","",1,1],"id":248773095718921,"level":3,"parent":0,"text":"building 'leaf-0.drv'","type":105}
+@nix {"action":"stop","id":248773095718921}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/d77hym5hg6igrznxcp038lwnalpg64mb-leaf-2.drv","",1,1],"id":248773095718922,"level":3,"parent":0,"text":"building 'leaf-2.drv'","type":105}
+@nix {"action":"stop","id":248773095718922}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/aga374b9c3nidimbdw1yg47sif4mf344-leaf-3.drv","",1,1],"id":248773095718923,"level":3,"parent":0,"text":"building 'leaf-3.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/llz9fr8jzjaxd4c86d79lhr2qn9m5smn-leaf-1.drv","",1,1],"id":248773095718924,"level":3,"parent":0,"text":"building 'leaf-1.drv'","type":105}
+@nix {"action":"stop","id":248773095718923}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/1pbdbc7p37zz4yhk4lzrr2sxv17l19mh-leaf-5.drv","",1,1],"id":248773095718925,"level":3,"parent":0,"text":"building 'leaf-5.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ayh67mhrc43wh8n84ndkw7znlgzf7jad-leaf-6.drv","",1,1],"id":248773095718926,"level":3,"parent":0,"text":"building 'leaf-6.drv'","type":105}
+@nix {"action":"stop","id":248773095718924}
+@nix {"action":"stop","id":248773095718925}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/i4asjw4yhx2spldl0x11542m61msmmdj-leaf-4.drv","",1,1],"id":248773095718927,"level":3,"parent":0,"text":"building 'leaf-4.drv'","type":105}
+@nix {"action":"stop","id":248773095718926}
+@nix {"action":"stop","id":248773095718927}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/8y4lng8y7qrdm58m7gs0bd24h1kpna0a-leaf-8.drv.drv","",1,1],"id":248773095718928,"level":3,"parent":0,"text":"building 'leaf-8.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/nz05dmaismpibyw4w78b5fgsxnwz8k05-leaf-9.drv.drv","",1,1],"id":248773095718929,"level":3,"parent":0,"text":"building 'leaf-9.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/3m85i62qhq141b79azpffg20dn86kcvn-leaf-10.drv.drv","",1,1],"id":248773095718930,"level":3,"parent":0,"text":"building 'leaf-10.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/wbnvhj3scmg0vz7lndr1vi7yiz3xmf3b-leaf-11.drv.drv","",1,1],"id":248773095718931,"level":3,"parent":0,"text":"building 'leaf-11.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718928}
+@nix {"action":"stop","id":248773095718931}
+@nix {"action":"stop","id":248773095718929}
+@nix {"action":"stop","id":248773095718930}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/3lm0000rciyxdc08hz59m24ik0cafqa5-leaf-12.drv.drv","",1,1],"id":248773095718932,"level":3,"parent":0,"text":"building 'leaf-12.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ncv4rdqznwkh21qbxqiyca246i69ym6n-leaf-13.drv.drv","",1,1],"id":248773095718933,"level":3,"parent":0,"text":"building 'leaf-13.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/crk2j19hyvgk4zpvl4bg45s7nsw00rrz-leaf-14.drv.drv","",1,1],"id":248773095718934,"level":3,"parent":0,"text":"building 'leaf-14.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/4qcmmygqk6v7whqxnkrb7lzkdy0b1d77-leaf-15.drv.drv","",1,1],"id":248773095718935,"level":3,"parent":0,"text":"building 'leaf-15.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/jjydfqim9ijx646gijj70cpq9apzm7x9-leaf-8.drv","",1,1],"id":248773095718936,"level":3,"parent":0,"text":"building 'leaf-8.drv'","type":105}
+@nix {"action":"stop","id":248773095718933}
+@nix {"action":"stop","id":248773095718932}
+@nix {"action":"stop","id":248773095718934}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/d6l341yy15xibmlbvc4g0va3v1fvaqp0-leaf-11.drv","",1,1],"id":248773095718937,"level":3,"parent":0,"text":"building 'leaf-11.drv'","type":105}
+@nix {"action":"stop","id":248773095718935}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/yf5lf2bh97fqn1nq3irgzfxhihi7krd9-leaf-9.drv","",1,1],"id":248773095718938,"level":3,"parent":0,"text":"building 'leaf-9.drv'","type":105}
+@nix {"action":"stop","id":248773095718936}
+@nix {"action":"stop","id":248773095718937}
+@nix {"action":"stop","id":248773095718938}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/wvijx1ca900ckjgyyrd2xm2l12n1rrd6-leaf-10.drv","",1,1],"id":248773095718939,"level":3,"parent":0,"text":"building 'leaf-10.drv'","type":105}
+@nix {"action":"stop","id":248773095718939}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/gs9ifwdq3xwl37kv9axw5ybax1z2g060-leaf-13.drv","",1,1],"id":248773095718940,"level":3,"parent":0,"text":"building 'leaf-13.drv'","type":105}
+@nix {"action":"stop","id":248773095718940}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ww4yhicyz5v6sqnla43bh76svv7z2252-leaf-12.drv","",1,1],"id":248773095718941,"level":3,"parent":0,"text":"building 'leaf-12.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/lga79qngpl1pb9cjn00411xa934c8igy-leaf-14.drv","",1,1],"id":248773095718942,"level":3,"parent":0,"text":"building 'leaf-14.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/8w5q53yx89d6z72gg13m642jv8ln30x8-leaf-15.drv","",1,1],"id":248773095718943,"level":3,"parent":0,"text":"building 'leaf-15.drv'","type":105}
+@nix {"action":"stop","id":248773095718941}
+@nix {"action":"stop","id":248773095718942}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/1m5iarnkvkbzi7nzaq2v1c5h47s3i7ir-leaf-16.drv.drv","",1,1],"id":248773095718944,"level":3,"parent":0,"text":"building 'leaf-16.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718943}
+@nix {"action":"stop","id":248773095718944}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/lyfmaa6gsq1m96hkjk04s20bm8z9mcik-leaf-17.drv.drv","",1,1],"id":248773095718945,"level":3,"parent":0,"text":"building 'leaf-17.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/lpd3y1s67iz235n4fsll45npqn73hkr6-leaf-18.drv.drv","",1,1],"id":248773095718946,"level":3,"parent":0,"text":"building 'leaf-18.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/pnibpmldh7hliplca66z7d87wrgcsxb2-leaf-19.drv.drv","",1,1],"id":248773095718947,"level":3,"parent":0,"text":"building 'leaf-19.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718945}
+@nix {"action":"stop","id":248773095718946}
+@nix {"action":"stop","id":248773095718947}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/6cgg2grlbh78shaygw23kz3mw8l61srs-leaf-20.drv.drv","",1,1],"id":248773095718948,"level":3,"parent":0,"text":"building 'leaf-20.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/b6fbpdlhlyrbwpby05v4mj5zpf029ff1-leaf-21.drv.drv","",1,1],"id":248773095718949,"level":3,"parent":0,"text":"building 'leaf-21.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718948}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ik3nhn1iq45q8qndrrkwhh1mmlmz1c3v-leaf-22.drv.drv","",1,1],"id":248773095718950,"level":3,"parent":0,"text":"building 'leaf-22.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718949}
+@nix {"action":"stop","id":248773095718950}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/ap60ykafgn0dzalk0knlpcgmcxg22j9x-leaf-23.drv.drv","",1,1],"id":248773095718951,"level":3,"parent":0,"text":"building 'leaf-23.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718951}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/lah56hgnrbnpsyj5p2mg0nw7xz6c5l0p-leaf-16.drv","",1,1],"id":248773095718952,"level":3,"parent":0,"text":"building 'leaf-16.drv'","type":105}
+@nix {"action":"stop","id":248773095718952}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/s6j235x09rxhhbi8rn0lrmkqad3wcd04-leaf-17.drv","",1,1],"id":248773095718953,"level":3,"parent":0,"text":"building 'leaf-17.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/zasnis1xb1q8g8xfn6f6i8r6sf241m0a-leaf-18.drv","",1,1],"id":248773095718954,"level":3,"parent":0,"text":"building 'leaf-18.drv'","type":105}
+@nix {"action":"stop","id":248773095718953}
+@nix {"action":"stop","id":248773095718954}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/pjrh77a746hjlp8avvjd0syrqd86xsb3-leaf-19.drv","",1,1],"id":248773095718955,"level":3,"parent":0,"text":"building 'leaf-19.drv'","type":105}
+@nix {"action":"stop","id":248773095718955}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/rl3nccgd97w4kah3n5cdbam5wldp1xvy-leaf-20.drv","",1,1],"id":248773095718956,"level":3,"parent":0,"text":"building 'leaf-20.drv'","type":105}
+@nix {"action":"stop","id":248773095718956}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/blkj6apj54aw3w79jrgrbg89alri3g8z-leaf-21.drv","",1,1],"id":248773095718957,"level":3,"parent":0,"text":"building 'leaf-21.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/5zaap485r01s6pbm9ml7ahy67p1a0as7-leaf-22.drv","",1,1],"id":248773095718958,"level":3,"parent":0,"text":"building 'leaf-22.drv'","type":105}
+@nix {"action":"stop","id":248773095718957}
+@nix {"action":"stop","id":248773095718958}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/l4ky27ywalxzx048i1i5x2mx9xqg4fi6-leaf-23.drv","",1,1],"id":248773095718959,"level":3,"parent":0,"text":"building 'leaf-23.drv'","type":105}
+@nix {"action":"stop","id":248773095718959}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/2c1ak9zjsd14z7p27idb9kr53sr8fs1h-leaf-24.drv.drv","",1,1],"id":248773095718960,"level":3,"parent":0,"text":"building 'leaf-24.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718960}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/qpm3ydca9bxamxpbz2qh7anjl1g7sx4k-leaf-25.drv.drv","",1,1],"id":248773095718961,"level":3,"parent":0,"text":"building 'leaf-25.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718961}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/hgm38x0zkcvv3np6hjhm8p4gvfahnvzn-leaf-26.drv.drv","",1,1],"id":248773095718962,"level":3,"parent":0,"text":"building 'leaf-26.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/56mjxlq63gyx0dl5dg16n3fd21j722xd-leaf-27.drv.drv","",1,1],"id":248773095718963,"level":3,"parent":0,"text":"building 'leaf-27.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718962}
+@nix {"action":"stop","id":248773095718963}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/jx6mrxmc819rr73riz8n4i2c3x4sk1fv-leaf-28.drv.drv","",1,1],"id":248773095718964,"level":3,"parent":0,"text":"building 'leaf-28.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718964}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/bbggfilrxq76b4h8rxkib69l90ak22f0-leaf-29.drv.drv","",1,1],"id":248773095718965,"level":3,"parent":0,"text":"building 'leaf-29.drv.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/qzn8q34sg5gmyv5d6a98m777jizqc0xz-leaf-30.drv.drv","",1,1],"id":248773095718966,"level":3,"parent":0,"text":"building 'leaf-30.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718965}
+@nix {"action":"stop","id":248773095718966}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/kl09aadjdh7ylrpimnjkj052k0jw01g6-leaf-31.drv.drv","",1,1],"id":248773095718967,"level":3,"parent":0,"text":"building 'leaf-31.drv.drv'","type":105}
+@nix {"action":"stop","id":248773095718967}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/n32iz8cd13m63s0zng22d05m7n3wx5n3-leaf-24.drv","",1,1],"id":248773095718968,"level":3,"parent":0,"text":"building 'leaf-24.drv'","type":105}
+@nix {"action":"stop","id":248773095718968}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/cxzimzl5r3yvhpcxbwn5058jsf16vxxp-leaf-25.drv","",1,1],"id":248773095718969,"level":3,"parent":0,"text":"building 'leaf-25.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/n89093qgg64p2klqqxwiz248g436qm1x-leaf-26.drv","",1,1],"id":248773095718970,"level":3,"parent":0,"text":"building 'leaf-26.drv'","type":105}
+@nix {"action":"stop","id":248773095718969}
+@nix {"action":"stop","id":248773095718970}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/18i0g109226k1sjbzzmzfdym87k3rvyf-leaf-27.drv","",1,1],"id":248773095718971,"level":3,"parent":0,"text":"building 'leaf-27.drv'","type":105}
+@nix {"action":"stop","id":248773095718971}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/gvzcl0yjdi0d0kaxc27fng4vw5xmja4h-leaf-28.drv","",1,1],"id":248773095718972,"level":3,"parent":0,"text":"building 'leaf-28.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/42igyzclxx98fqybaqh93mb2iai5sqsl-leaf-29.drv","",1,1],"id":248773095718973,"level":3,"parent":0,"text":"building 'leaf-29.drv'","type":105}
+@nix {"action":"stop","id":248773095718972}
+@nix {"action":"stop","id":248773095718973}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/f53hhsn747mnhfkc6js21g9cqq72z88j-leaf-30.drv","",1,1],"id":248773095718974,"level":3,"parent":0,"text":"building 'leaf-30.drv'","type":105}
+@nix {"action":"start","fields":["/Users/hetzner/obrador-shared-pins-20260909/trace-after/wide-round-1-jobs-8/store/h6fyqdj2kszzp3rlrp2ajww7mmin0s36-leaf-31.drv","",1,1],"id":248773095718975,"level":3,"parent":0,"text":"building 'leaf-31.drv'","type":105}
+@nix {"action":"stop","id":248773095718974}
+@nix {"action":"stop","id":248773095718975}

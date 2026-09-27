@@ -1,0 +1,64 @@
+    Blocking waiting for file lock on build directory
+   Compiling zerocopy v0.8.58
+   Compiling zerocopy-derive v0.8.58
+   Compiling tokio v1.53.1
+   Compiling ciborium-io v0.2.2
+   Compiling itertools v0.10.5
+   Compiling wait-timeout v0.2.1
+   Compiling quick-error v1.2.3
+   Compiling cast v0.3.0
+   Compiling fnv v1.0.7
+   Compiling bit-vec v0.8.0
+   Compiling tinytemplate v1.2.1
+   Compiling rusty-fork v0.3.1
+   Compiling bit-set v0.8.0
+   Compiling rand_xorshift v0.4.0
+   Compiling is-terminal v0.4.17
+   Compiling oorandom v11.1.5
+   Compiling anes v0.1.6
+   Compiling unarray v0.1.4
+   Compiling criterion-plot v0.5.0
+   Compiling tokio-util v0.7.19
+   Compiling iroh-io v0.6.2
+   Compiling object_store v0.14.2
+   Compiling async-compression v0.4.48
+   Compiling ppv-lite86 v0.2.21
+   Compiling half v2.7.1
+   Compiling tokio-stream v0.1.19
+   Compiling rand_chacha v0.9.0
+   Compiling ciborium-ll v0.2.2
+   Compiling rand v0.9.5
+   Compiling ciborium v0.2.2
+   Compiling bao-tree v0.16.1
+   Compiling fastcdc v5.0.0
+   Compiling astral-tokio-tar v0.6.4
+   Compiling turso_core v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling criterion v0.5.1
+   Compiling proptest v1.11.0
+   Compiling turso_sync_engine v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling turso_sdk_kit v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling turso_sync_sdk_kit v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling turso v0.8.0-pre.7 (https://github.com/cachix/turso.git?rev=dca55133caa690f90dcdd58d3c4329fb0703659c#dca55133)
+   Compiling casita v0.1.0 (/tmp/casita-current-main-20260925/crates/casita)
+warning: function `fuzz_decode` is never used
+   --> crates/casita/src/sync/sliced.rs:952:8
+    |
+952 | pub fn fuzz_decode(bytes: &[u8]) {
+    |        ^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `casita` (lib test) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 7m 34s
+     Running unittests src/lib.rs (/home/domen/dev/casita7/target/release/deps/casita-20517d70d0d1c6ad)
+
+running 6 tests
+test casitar::import::tests::a_forged_record_prevents_the_entire_protected_batch_from_publication ... ok
+test casitar::import::tests::unreachable_records_and_payloads_publish_no_root ... ok
+test casitar::import::tests::ambient_destination_objects_cannot_conceal_an_omitted_record ... ok
+test casitar::import::tests::import_admits_collection_before_final_root_publication ... ok
+test casitar::import::tests::root_conflicts_are_preflighted_and_replacement_is_conditional ... ok
+test casitar::import::tests::imports_exact_multi_root_closure_atomically_and_reuses_on_retry ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 802 filtered out; finished in 0.28s
+

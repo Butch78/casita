@@ -1,0 +1,18 @@
+{
+  "before": {
+    "path": "/tmp/casita-admission-yield-before-20260920",
+    "sha256": "d5ec5e7ccb7d5e7220649dc137176a81dd946402932130a022bc459bfc0d90e4"
+  },
+  "yield-only": {
+    "path": "/tmp/casita-admission-yield-after-20260920",
+    "sha256": "96917e9c14397ddc1462b3d43084b40d45d1073d4a9b6c5ced3b82284e1f8041"
+  },
+  "buffered-only": {
+    "path": "/tmp/casita-nar-buffered-only-20260920",
+    "sha256": "864e16626f3aaff18023a288dfb28e0d74bc0ba759a4e366e394c040c5533011"
+  },
+  "ready-window": {
+    "path": "/tmp/casita-nar-ready-window-20260920",
+    "sha256": "83dbe4c208bef7a3d6594d528ae93d1cde83925bdc61c271689b1c1468d54625"
+  }
+}

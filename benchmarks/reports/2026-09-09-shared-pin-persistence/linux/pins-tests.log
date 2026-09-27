@@ -1,0 +1,76 @@
+   Compiling casita v0.1.0 (/home/domen/dev/casita4)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 37.31s
+     Running unittests src/lib.rs (/home/domen/.cargo/build/72/b52283b34cb0c3/debug/deps/casita-7f49213fc7b2e4d3)
+
+running 69 tests
+test metadata::pins::persistent::benchmarks::benchmark_durable_ledger ... ignored, permanent durable ledger benchmark; run benchmark durable-ledger
+test metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ignored, permanent journal checkpoint, batch, and space boundaries; run benchmark ledger-boundaries
+test metadata::pins::persistent::journal::tests::ledger_process_worker ... ignored, subprocess worker for killed ledger publishers
+test metadata::pins::persistent::journal::tests::physically_full_volume_preserves_acknowledged_state_and_recovers ... ignored, requires CASITA_LEDGER_FULL_DIR on a disposable filesystem smaller than 512 MiB
+test metadata::pins::persistent::readers::tests::benchmark_reader_coordination ... ignored, permanent reader coordination benchmark; run benchmark reader-coordination
+test metadata::pins::persistent::journal::tests::encoded_size_matches_the_wire_codec ... ok
+test metadata::pins::persistent::journal::tests::corrupt_frame_epoch_does_not_silently_discard_acknowledged_protection ... ok
+test metadata::pins::persistent::readers::tests::fork_inherited_store_cannot_release_parent_protection ... ok
+test metadata::pins::persistent::journal::tests::appends_replay_exactly_and_reject_complete_corruption ... ok
+test metadata::pins::persistent::journal::tests::ordered_group_has_one_barrier_and_checked_operations_keep_one_winner ... ok
+test metadata::pins::persistent::journal::tests::full_inventory_gc_transitions_share_the_journal_and_replay ... ok
+test metadata::pins::persistent::readers::tests::reader_format_fences_legacy_collectors_and_survives_empty_owners ... ok
+test metadata::pins::persistent::readers::tests::reader_inventory_encoding_is_bounded_and_rejects_durable_recovery_records ... ok
+test metadata::pins::persistent::journal::incremental::tests::grouped_net_changes_and_shared_resources_keep_exact_counts ... ok
+test metadata::pins::persistent::journal::incremental::tests::indexed_edits_match_memory_arbitration_and_exact_replay ... ok
+test metadata::pins::persistent::tests::cancelled_claim_keeps_protection_when_remote_commit_finishes_late ... ok
+test metadata::pins::persistent::tests::cancelled_runtime_admission_releases_its_late_pin ... ok
+test metadata::pins::persistent::tests::conditional_write_loser_reloads_and_preserves_the_winner ... ok
+test metadata::pins::persistent::journal::tests::unsupported_exchange_preserves_legacy_and_active_journal ... ok
+test metadata::pins::persistent::journal::tests::full_legacy_ledger_can_collect_before_journal_upgrade ... ok
+test metadata::pins::persistent::tests::file_slots_migrate_the_existing_ledger_without_losing_pins ... ok
+test metadata::pins::runtime::tests::a_cancelled_writer_keeps_its_pin_until_storage_settles ... ok
+test metadata::pins::runtime::tests::last_owner_releases_only_its_pin ... ok
+test metadata::pins::runtime::tests::nested_writer_scope_selects_its_owner_and_restores_the_parent ... ok
+test metadata::pins::runtime::tests::storage_is_not_called_until_a_conflicting_deletion_settles ... ok
+test metadata::pins::runtime::tests::write_scope_is_backend_specific_and_inherited_by_tracked_tasks ... ok
+test metadata::pins::persistent::tests::independent_file_handles_preserve_concurrent_pin_updates ... ok
+test metadata::pins::tests::codec_roundtrip_and_all_truncations_fail_closed ... ok
+test metadata::pins::persistent::tests::file_slots_reuse_inodes_and_ignore_an_interrupted_spare_write ... ok
+test metadata::pins::persistent::journal::tests::cancelled_acquisition_waits_for_journal_sync_before_releasing_its_token ... ok
+test metadata::pins::tests::covered_roots_do_not_authorize_new_snapshot_generations ... ok
+test metadata::pins::tests::deletion_and_pin_registration_have_one_winner ... ok
+test metadata::pins::tests::atomic_collector_takeover_keeps_history_and_requires_the_exact_previous_owner ... ok
+test metadata::pins::persistent::journal::tests::failed_append_invalidates_tentative_cache_and_retains_all_acknowledged_pins ... ok
+test metadata::pins::persistent::readers::tests::reader_and_durable_transitions_share_the_prune_and_delete_fences ... ok
+test metadata::pins::tests::identical_path_cannot_be_recreated_until_deletion_has_settled ... ok
+test metadata::pins::tests::identities_in_different_storage_namespaces_do_not_alias ... ok
+test metadata::pins::tests::collector_admission_ignores_duplicate_pin_churn ... ok
+test metadata::pins::tests::independent_object_store_clients_share_arbitration ... ok
+test metadata::pins::tests::collector_history_keeps_released_writes_live_until_the_pass_finishes ... ok
+test metadata::pins::tests::duplicate_pins_preserve_marks_but_new_protection_invalidates_them ... ok
+test metadata::pins::tests::independent_file_clients_share_arbitration ... ok
+test metadata::pins::tests::new_pin_invalidates_mark_and_only_protects_its_own_data ... ok
+test metadata::pins::tests::object_store_cas_loser_rechecks_the_winning_pin ... ok
+test metadata::pins::tests::empty_writer_churn_does_not_hide_first_protection_or_catalogs ... ok
+test metadata::pins::tests::persisted_metadata_scope_cannot_hide_payload_resources ... ok
+test metadata::pins::tests::post_prune_read_scopes_do_not_wait_for_unrelated_physical_deletion ... ok
+test metadata::pins::persistent::readers::tests::last_owner_exit_fences_an_intact_but_stale_reader_clock ... ok
+test metadata::pins::tests::pruning_fences_new_scope_and_resources_but_existing_data_stays_usable ... ok
+test metadata::pins::tests::released_pin_cannot_be_extended_or_release_another_pin ... ok
+test metadata::pins::tests::revision_exhaustion_never_partially_changes_protection ... ok
+test metadata::pins::tests::snapshot_generation_codec_round_trips_and_preserves_legacy_protection ... ok
+test metadata::pins::tests::emergency_deletion_requires_the_exact_collector_and_prune_fence ... ok
+test metadata::pins::persistent::readers::tests::owners_share_across_handles_and_reader_drop_never_retires_a_broad_scope ... ok
+test metadata::pins::persistent::readers::tests::missing_reader_inventory_fails_closed_until_owner_stops_then_fences_old_revisions ... ok
+test metadata::pins::persistent::readers::tests::warm_reader_admission_protection_and_release_do_not_rewrite_durable_ledger ... ok
+test metadata::pins::persistent::readers::tests::reader_revision_reservation_boundary_preserves_protection ... ok
+test metadata::pins::tests::logical_mark_ignores_physical_growth_but_tracks_generations_and_objects ... ok
+test metadata::pins::persistent::journal::tests::independent_processes_replay_and_append_without_losing_updates ... ok
+test metadata::pins::tests::persisted_deletion_survives_owner_drop_and_requires_exact_token ... ok
+test metadata::pins::tests::metadata_handles_share_online_pins_without_logical_commits ... ok
+test metadata::pins::tests::metadata_pins_enter_prune_without_admitting_payloads_or_claimed_files ... ok
+test metadata::pins::tests::recovery_prune_requires_every_exact_claim_and_keeps_admission_closed ... ok
+test metadata::pins::persistent::readers::tests::cancelled_reader_publication_finishes_and_releases_its_late_token ... ok
+test metadata::pins::tests::validating_prune_captures_current_pins_with_exact_collector_and_claims ... ok
+test metadata::pins::tests::validated_claims_accept_churn_but_reject_unchecked_or_overlapping_protection ... ok
+test metadata::pins::persistent::journal::tests::checkpoint_and_group_boundaries_match_the_production_limits ... ok
+test metadata::pins::persistent::journal::tests::checkpoint_and_gc_reuse_capacity_when_growth_is_denied ... ok
+test metadata::pins::persistent::journal::tests::killed_publishers_preserve_acknowledged_pins_and_deletion_claims ... ok
+
+test result: ok. 64 passed; 0 failed; 5 ignored; 0 measured; 512 filtered out; finished in 12.69s

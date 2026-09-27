@@ -1,0 +1,17 @@
+{
+  "captured_at_utc": "2026-09-12T15:38:43.211949+00:00",
+  "hostname": "macos",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "kernel": "25.6.0",
+  "architecture": "arm64",
+  "cpu": "arm",
+  "logical_cpus": 8,
+  "memory_bytes": 17179869184,
+  "cpu_governor": null,
+  "filesystem": null,
+  "python": "3.13.15",
+  "rustc": "rustc 1.95.0 (59807616e 2026-04-14) (built from a source tarball)",
+  "cargo": "cargo 1.95.0 (f2d3ce0bd 2026-03-21)",
+  "casita_revision": "ca10387316babfc111c4897b3592e8b6bc89ebda",
+  "casita_worktree_dirty": false
+}

@@ -1,0 +1,16 @@
+Benchmarking bao_packing/packed-16385/32
+Benchmarking bao_packing/packed-16385/32: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-16385/32: Collecting 10 samples in estimated 1.2796 s (165 iterations)
+Benchmarking bao_packing/packed-16385/32: Analyzing
+bao_packing/packed-16385/32
+                        time:   [6.3242 ms 6.5276 ms 6.6700 ms]
+Benchmarking bao_packing/packed-16385/585
+Benchmarking bao_packing/packed-16385/585: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 1.8s or enable flat sampling.
+Benchmarking bao_packing/packed-16385/585: Collecting 10 samples in estimated 1.8472 s (55 iterations)
+Benchmarking bao_packing/packed-16385/585: Analyzing
+bao_packing/packed-16385/585
+                        time:   [7.8887 ms 14.144 ms 23.012 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe

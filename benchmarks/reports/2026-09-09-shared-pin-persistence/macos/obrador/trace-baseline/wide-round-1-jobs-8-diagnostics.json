@@ -1,0 +1,351 @@
+{
+  "spans": {
+    "blob.catalog.prepare_commit": {
+      "count": 448,
+      "inclusive_ms": 12271.820720000003
+    },
+    "blob.catalog.synchronize": {
+      "count": 1651,
+      "inclusive_ms": 249.82000199999996
+    },
+    "blob.pack.read_chunk": {
+      "count": 1028,
+      "inclusive_ms": 10.315075999999996
+    },
+    "blob.pack.stage_chunk": {
+      "count": 320,
+      "inclusive_ms": 1580.4125749999992
+    },
+    "blob.pack_index.open": {
+      "count": 1,
+      "inclusive_ms": 0.339832
+    },
+    "blob.pack_index.prepare": {
+      "count": 448,
+      "inclusive_ms": 12210.104050999998
+    },
+    "blob.packed.open": {
+      "count": 1,
+      "inclusive_ms": 0.35762
+    },
+    "blob.read": {
+      "count": 1029,
+      "inclusive_ms": 66.74302899999995
+    },
+    "build_paths": {
+      "count": 1,
+      "inclusive_ms": 46540.0
+    },
+    "build_slot_wait": {
+      "count": 64,
+      "inclusive_ms": 0.10459400000000003
+    },
+    "builder_run": {
+      "count": 64,
+      "inclusive_ms": 51548.40000000001
+    },
+    "byte_budget.reserve": {
+      "count": 384,
+      "inclusive_ms": 14.32517399999999
+    },
+    "casita_adapter.compose_root": {
+      "count": 64,
+      "inclusive_ms": 35113.58
+    },
+    "casita_adapter.directories": {
+      "count": 128,
+      "inclusive_ms": 1857.6222149999994
+    },
+    "casita_adapter.has": {
+      "count": 64,
+      "inclusive_ms": 1752.6319999999998
+    },
+    "casita_adapter.lease": {
+      "count": 192,
+      "inclusive_ms": 5904.149999999999
+    },
+    "casita_adapter.metadata_snapshot": {
+      "count": 1,
+      "inclusive_ms": 1.123
+    },
+    "casita_adapter.read": {
+      "count": 450,
+      "inclusive_ms": 5563.382999999992
+    },
+    "casita_import": {
+      "count": 64,
+      "inclusive_ms": 31715.12800000001
+    },
+    "collection.disk_pressure": {
+      "count": 266,
+      "inclusive_ms": 23.765709999999977
+    },
+    "compose_path_closure": {
+      "count": 64,
+      "inclusive_ms": 39707.20000000001
+    },
+    "coordination.exclusive": {
+      "count": 1,
+      "inclusive_ms": 0.03763
+    },
+    "coordination.initialize": {
+      "count": 1,
+      "inclusive_ms": 0.067
+    },
+    "ensure_reference_closures": {
+      "count": 64,
+      "inclusive_ms": 913.8839770000001
+    },
+    "fixed_output_hash": {
+      "count": 32,
+      "inclusive_ms": 3.278888999999999
+    },
+    "fskit_cleanup": {
+      "count": 1,
+      "inclusive_ms": 13.800208000000001
+    },
+    "fskit_detach": {
+      "count": 1,
+      "inclusive_ms": 13.7005
+    },
+    "fskit_join": {
+      "count": 1,
+      "inclusive_ms": 0.07187500000000001
+    },
+    "fskit_mount": {
+      "count": 1,
+      "inclusive_ms": 156.00179
+    },
+    "load_casita_paths": {
+      "count": 1,
+      "inclusive_ms": 6.460000000000001
+    },
+    "local_build": {
+      "count": 64,
+      "inclusive_ms": 34857.32
+    },
+    "nar_scan": {
+      "count": 64,
+      "inclusive_ms": 4.425819000000001
+    },
+    "open_local_store": {
+      "count": 1,
+      "inclusive_ms": 47.49
+    },
+    "persistence.compose_metadata_root": {
+      "count": 64,
+      "inclusive_ms": 43543.959999999985
+    },
+    "persistence.load": {
+      "count": 1,
+      "inclusive_ms": 8.879999999999999
+    },
+    "persistence.load_indirect_roots": {
+      "count": 1,
+      "inclusive_ms": 1.131
+    },
+    "persistence.load_realisations": {
+      "count": 1,
+      "inclusive_ms": 1.274
+    },
+    "persistence.metadata_root_record": {
+      "count": 32,
+      "inclusive_ms": 219.09799999999996
+    },
+    "persistence.persist_realisation": {
+      "count": 96,
+      "inclusive_ms": 45282.897
+    },
+    "plugin.build_paths": {
+      "count": 1,
+      "inclusive_ms": 46540.0
+    },
+    "plugin.get_store_dir": {
+      "count": 1,
+      "inclusive_ms": 0.00075
+    },
+    "plugin.query_missing": {
+      "count": 1,
+      "inclusive_ms": 35.45
+    },
+    "plugin.query_path_info": {
+      "count": 32,
+      "inclusive_ms": 0.08276599999999999
+    },
+    "plugin.query_realisation": {
+      "count": 32,
+      "inclusive_ms": 0.05648699999999998
+    },
+    "plugin.register_realisation": {
+      "count": 32,
+      "inclusive_ms": 299.25796000000014
+    },
+    "plugin.shutdown": {
+      "count": 1,
+      "inclusive_ms": 1.395
+    },
+    "plugin.write_file": {
+      "count": 64,
+      "inclusive_ms": 85.22646100000003
+    },
+    "prepare_seatbelt": {
+      "count": 64,
+      "inclusive_ms": 1368.9245
+    },
+    "prepare_workspace": {
+      "count": 64,
+      "inclusive_ms": 61.2183
+    },
+    "put_path_info": {
+      "count": 64,
+      "inclusive_ms": 81878.52000000002
+    },
+    "realise_derivation": {
+      "count": 64,
+      "inclusive_ms": 359382.5
+    },
+    "register_output": {
+      "count": 64,
+      "inclusive_ms": 81887.58
+    },
+    "release_inputs": {
+      "count": 64,
+      "inclusive_ms": 0.04736900000000002
+    },
+    "repository.mutation_session": {
+      "count": 266,
+      "inclusive_ms": 27183.836999999992
+    },
+    "repository.open": {
+      "count": 1,
+      "inclusive_ms": 1.662
+    },
+    "repository.publish": {
+      "count": 448,
+      "inclusive_ms": 58757.864000000016
+    },
+    "repository.publish.commit": {
+      "count": 448,
+      "inclusive_ms": 58729.429000000004
+    },
+    "repository.stage_blob": {
+      "count": 256,
+      "inclusive_ms": 22833.789
+    },
+    "repository.stage_directory": {
+      "count": 192,
+      "inclusive_ms": 19287.4048
+    },
+    "sandbox_execute": {
+      "count": 64,
+      "inclusive_ms": 1562.3985999999995
+    },
+    "sandbox_spawn": {
+      "count": 64,
+      "inclusive_ms": 1037.38294
+    },
+    "singleflight_wait": {
+      "count": 64,
+      "inclusive_ms": 0.19808000000000003
+    },
+    "state.commit": {
+      "count": 448,
+      "inclusive_ms": 618.1508000000003
+    },
+    "state.snapshot": {
+      "count": 3791,
+      "inclusive_ms": 1617.7595799999995
+    },
+    "state.turso.open": {
+      "count": 1,
+      "inclusive_ms": 0.642667
+    }
+  },
+  "trace_window_seconds": 47.005351,
+  "pin_phases": {
+    "exclusive_lock_wait": {
+      "count": 2250,
+      "total_ms": 2712.738319,
+      "p50_ms": 0.002417,
+      "p95_ms": 5.911542,
+      "max_ms": 16.922375
+    },
+    "group_total": {
+      "count": 2250,
+      "total_ms": 44954.890754,
+      "p50_ms": 17.000583,
+      "p95_ms": 42.798417,
+      "max_ms": 103.92725
+    },
+    "group_wait": {
+      "count": 3646,
+      "total_ms": 153145.046433,
+      "p50_ms": 42.441834,
+      "p95_ms": 75.035875,
+      "max_ms": 129.443625
+    },
+    "read_decode": {
+      "count": 4707,
+      "total_ms": 7786.637009,
+      "p50_ms": 1.63225,
+      "p95_ms": 3.224625,
+      "max_ms": 10.150291000000001
+    },
+    "replacement_write_total": {
+      "count": 2589,
+      "total_ms": 27592.930444,
+      "p50_ms": 10.331332999999999,
+      "p95_ms": 14.151959,
+      "max_ms": 30.477542
+    }
+  },
+  "pin_phases_by_plugin_call": {
+    "plugin.build_paths": {
+      "group_wait": {
+        "count": 1825,
+        "total_ms": 86003.514812,
+        "p50_ms": 47.376709000000005,
+        "p95_ms": 78.879542,
+        "max_ms": 129.443625
+      }
+    },
+    "unscoped": {
+      "exclusive_lock_wait": {
+        "count": 2250,
+        "total_ms": 2712.738319,
+        "p50_ms": 0.002417,
+        "p95_ms": 5.911542,
+        "max_ms": 16.922375
+      },
+      "group_total": {
+        "count": 2250,
+        "total_ms": 44954.890754,
+        "p50_ms": 17.000583,
+        "p95_ms": 42.798417,
+        "max_ms": 103.92725
+      },
+      "group_wait": {
+        "count": 1821,
+        "total_ms": 67141.531621,
+        "p50_ms": 38.3045,
+        "p95_ms": 70.548166,
+        "max_ms": 124.63566700000001
+      },
+      "read_decode": {
+        "count": 4707,
+        "total_ms": 7786.637009,
+        "p50_ms": 1.63225,
+        "p95_ms": 3.224625,
+        "max_ms": 10.150291000000001
+      },
+      "replacement_write_total": {
+        "count": 2589,
+        "total_ms": 27592.930444,
+        "p50_ms": 10.331332999999999,
+        "p95_ms": 14.151959,
+        "max_ms": 30.477542
+      }
+    }
+  },
+  "timing_note": "Spans and pin phases nest and overlap; totals are not additive wall time. Unscoped pin events may run on workers without propagated span context."
+}

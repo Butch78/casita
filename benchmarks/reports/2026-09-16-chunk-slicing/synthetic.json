@@ -1,0 +1,1429 @@
+{
+  "samples": [
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 15,
+        "compression_seconds": 0.016300391,
+        "copies": 16,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.001482932,
+        "encode_seconds": 0.017808252,
+        "index_entries": 31,
+        "literal_bytes": 4194304,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 2.4929e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.04296875,
+        "metadata_bytes": 640,
+        "new_chunks": 16,
+        "payload_bytes": 2983858,
+        "physical_bytes": 2984498,
+        "physical_percent": 71.15597724914551,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/256KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 262144,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 51,
+        "compression_seconds": 0.016480857,
+        "copies": 52,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.003912143,
+        "encode_seconds": 0.0204773,
+        "index_entries": 103,
+        "literal_bytes": 4194304,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 8.43e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.1875,
+        "metadata_bytes": 2080,
+        "new_chunks": 52,
+        "payload_bytes": 3054177,
+        "physical_bytes": 3056257,
+        "physical_percent": 72.86684513092041,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/64KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 65536,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 404,
+        "compression_seconds": 0.015823105,
+        "copies": 396,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.00224399,
+        "encode_seconds": 0.018661931,
+        "index_entries": 800,
+        "literal_bytes": 4194304,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000594836,
+        "max_depth": 0,
+        "max_sources_per_group": 4,
+        "mean_sources_per_group": 2.53125,
+        "metadata_bytes": 15840,
+        "new_chunks": 396,
+        "payload_bytes": 3128374,
+        "physical_bytes": 3144214,
+        "physical_percent": 74.96390342712402,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/8KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 8192,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3211,
+        "compression_seconds": 0.023527416,
+        "copies": 3230,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.004515289,
+        "encode_seconds": 0.032714701,
+        "index_entries": 6441,
+        "literal_bytes": 4194304,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.004671996,
+        "max_depth": 0,
+        "max_sources_per_group": 17,
+        "mean_sources_per_group": 13.6015625,
+        "metadata_bytes": 129200,
+        "new_chunks": 3230,
+        "payload_bytes": 3447136,
+        "physical_bytes": 3576336,
+        "physical_percent": 85.26649475097656,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/1KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 1024,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 26,
+        "compression_seconds": 0.015067981,
+        "copies": 0,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.004195905,
+        "encode_seconds": 0.019398052,
+        "index_entries": 46,
+        "literal_bytes": 4194304,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000134166,
+        "max_depth": 0,
+        "max_sources_per_group": 1,
+        "mean_sources_per_group": 1.0,
+        "metadata_bytes": 16,
+        "new_chunks": 0,
+        "payload_bytes": 2818265,
+        "physical_bytes": 2818281,
+        "physical_percent": 67.19305515289307,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/8KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 8192,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 106,
+        "compression_seconds": 0.015229454,
+        "copies": 0,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.009116064,
+        "encode_seconds": 0.024625719,
+        "index_entries": 209,
+        "literal_bytes": 4194304,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000280201,
+        "max_depth": 0,
+        "max_sources_per_group": 1,
+        "mean_sources_per_group": 1.0,
+        "metadata_bytes": 16,
+        "new_chunks": 0,
+        "payload_bytes": 2818265,
+        "physical_bytes": 2818281,
+        "physical_percent": 67.19305515289307,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/2KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 2048,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 186,
+        "compression_seconds": 0.014721291,
+        "copies": 0,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.00902939,
+        "encode_seconds": 0.023893158,
+        "index_entries": 391,
+        "literal_bytes": 4194304,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000142477,
+        "max_depth": 0,
+        "max_sources_per_group": 1,
+        "mean_sources_per_group": 1.0,
+        "metadata_bytes": 16,
+        "new_chunks": 0,
+        "payload_bytes": 2818265,
+        "physical_bytes": 2818281,
+        "physical_percent": 67.19305515289307,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 749,
+        "compression_seconds": 0.015792232,
+        "copies": 0,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.011649756,
+        "encode_seconds": 0.027719816,
+        "index_entries": 1564,
+        "literal_bytes": 4194304,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000277828,
+        "max_depth": 0,
+        "max_sources_per_group": 1,
+        "mean_sources_per_group": 1.0,
+        "metadata_bytes": 16,
+        "new_chunks": 0,
+        "payload_bytes": 2818265,
+        "physical_bytes": 2818281,
+        "physical_percent": 67.19305515289307,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/4",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 4
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-512B",
+      "corpus_description": {
+        "edit_spacing_bytes": 512,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3211,
+        "compression_seconds": 0.015826665,
+        "copies": 0,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.010868514,
+        "encode_seconds": 0.027082238,
+        "index_entries": 6441,
+        "literal_bytes": 4194304,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000387059,
+        "max_depth": 0,
+        "max_sources_per_group": 1,
+        "mean_sources_per_group": 1.0,
+        "metadata_bytes": 16,
+        "new_chunks": 0,
+        "payload_bytes": 2818265,
+        "physical_bytes": 2818281,
+        "physical_percent": 67.19305515289307,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/1",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 1
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 14,
+        "compression_seconds": 0.013837941,
+        "copies": 14,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.001640844,
+        "encode_seconds": 0.015501342,
+        "index_entries": 28,
+        "literal_bytes": 4194304,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 2.2557e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.03515625,
+        "metadata_bytes": 560,
+        "new_chunks": 14,
+        "payload_bytes": 3225447,
+        "physical_bytes": 3226007,
+        "physical_percent": 76.91400051116943,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/256KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 262144,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 49,
+        "compression_seconds": 0.009634915,
+        "copies": 49,
+        "copy_bytes": 1692,
+        "discovery_seconds": 0.001647968,
+        "encode_seconds": 0.011362427,
+        "index_entries": 97,
+        "literal_bytes": 4192612,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 7.9544e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.16796875,
+        "metadata_bytes": 1960,
+        "new_chunks": 48,
+        "payload_bytes": 3427712,
+        "physical_bytes": 3429672,
+        "physical_percent": 81.7697525024414,
+        "reused_chunks": 1
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/64KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 65536,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 401,
+        "compression_seconds": 0.010821015,
+        "copies": 399,
+        "copy_bytes": 1692,
+        "discovery_seconds": 0.002248742,
+        "encode_seconds": 0.013634895,
+        "index_entries": 799,
+        "literal_bytes": 4192612,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000565138,
+        "max_depth": 0,
+        "max_sources_per_group": 4,
+        "mean_sources_per_group": 2.54296875,
+        "metadata_bytes": 15960,
+        "new_chunks": 398,
+        "payload_bytes": 3314386,
+        "physical_bytes": 3330346,
+        "physical_percent": 79.40163612365723,
+        "reused_chunks": 1
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/8KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 8192,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3211,
+        "compression_seconds": 0.007665178,
+        "copies": 3211,
+        "copy_bytes": 2462981,
+        "discovery_seconds": 0.004527161,
+        "encode_seconds": 0.01737249,
+        "index_entries": 4436,
+        "literal_bytes": 1731323,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.005180151,
+        "max_depth": 0,
+        "max_sources_per_group": 17,
+        "mean_sources_per_group": 13.52734375,
+        "metadata_bytes": 128440,
+        "new_chunks": 1225,
+        "payload_bytes": 1405741,
+        "physical_bytes": 1534181,
+        "physical_percent": 36.577725410461426,
+        "reused_chunks": 1986
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/1KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 1024,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 26,
+        "compression_seconds": 0.012271898,
+        "copies": 0,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.00431701,
+        "encode_seconds": 0.016771752,
+        "index_entries": 61,
+        "literal_bytes": 4194304,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000182844,
+        "max_depth": 0,
+        "max_sources_per_group": 1,
+        "mean_sources_per_group": 1.0,
+        "metadata_bytes": 16,
+        "new_chunks": 0,
+        "payload_bytes": 3066458,
+        "physical_bytes": 3066474,
+        "physical_percent": 73.11043739318848,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/8KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 8192,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 98,
+        "compression_seconds": 0.012038001,
+        "copies": 32,
+        "copy_bytes": 127989,
+        "discovery_seconds": 0.006936187,
+        "encode_seconds": 0.019489474,
+        "index_entries": 158,
+        "literal_bytes": 4066315,
+        "literals": 35,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000515286,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.16015625,
+        "metadata_bytes": 520,
+        "new_chunks": 0,
+        "payload_bytes": 3040536,
+        "physical_bytes": 3041056,
+        "physical_percent": 72.50442504882812,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/2KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 2048,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 180,
+        "compression_seconds": 0.011470472,
+        "copies": 117,
+        "copy_bytes": 475488,
+        "discovery_seconds": 0.00927991,
+        "encode_seconds": 0.021585051,
+        "index_entries": 249,
+        "literal_bytes": 3718816,
+        "literals": 121,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000834669,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.4609375,
+        "metadata_bytes": 1480,
+        "new_chunks": 0,
+        "payload_bytes": 2784874,
+        "physical_bytes": 2786354,
+        "physical_percent": 66.43185615539551,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 764,
+        "compression_seconds": 0.007241321,
+        "copies": 421,
+        "copy_bytes": 1706826,
+        "discovery_seconds": 0.008989023,
+        "encode_seconds": 0.017442575,
+        "index_entries": 1031,
+        "literal_bytes": 2487478,
+        "literals": 423,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.001212231,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.9140625,
+        "metadata_bytes": 4636,
+        "new_chunks": 0,
+        "payload_bytes": 1895866,
+        "physical_bytes": 1900502,
+        "physical_percent": 45.31149864196777,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/4",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 4
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-4KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 4096,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3211,
+        "compression_seconds": 0.000687447,
+        "copies": 972,
+        "copy_bytes": 3933952,
+        "discovery_seconds": 0.009275161,
+        "encode_seconds": 0.011994073,
+        "index_entries": 4436,
+        "literal_bytes": 260352,
+        "literals": 968,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002031465,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.99609375,
+        "metadata_bytes": 9861,
+        "new_chunks": 0,
+        "payload_bytes": 195762,
+        "physical_bytes": 205623,
+        "physical_percent": 4.902434349060059,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/1",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 1
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 14,
+        "compression_seconds": 0.010452959,
+        "copies": 14,
+        "copy_bytes": 0,
+        "discovery_seconds": 0.001710894,
+        "encode_seconds": 0.012185224,
+        "index_entries": 28,
+        "literal_bytes": 4194304,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 2.1371e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.03515625,
+        "metadata_bytes": 560,
+        "new_chunks": 14,
+        "payload_bytes": 3368254,
+        "physical_bytes": 3368814,
+        "physical_percent": 80.31878471374512,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/256KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 262144,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 50,
+        "compression_seconds": 0.007711492,
+        "copies": 50,
+        "copy_bytes": 112416,
+        "discovery_seconds": 0.001729891,
+        "encode_seconds": 0.009514993,
+        "index_entries": 95,
+        "literal_bytes": 4081888,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 7.361e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.17578125,
+        "metadata_bytes": 2000,
+        "new_chunks": 45,
+        "payload_bytes": 3403199,
+        "physical_bytes": 3405199,
+        "physical_percent": 81.18627071380615,
+        "reused_chunks": 5
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/64KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 65536,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 401,
+        "compression_seconds": 0.002374593,
+        "copies": 401,
+        "copy_bytes": 3399585,
+        "discovery_seconds": 0.002498072,
+        "encode_seconds": 0.005588615,
+        "index_entries": 465,
+        "literal_bytes": 794719,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.00071595,
+        "max_depth": 0,
+        "max_sources_per_group": 4,
+        "mean_sources_per_group": 2.55078125,
+        "metadata_bytes": 16040,
+        "new_chunks": 64,
+        "payload_bytes": 626406,
+        "physical_bytes": 642446,
+        "physical_percent": 15.317106246948242,
+        "reused_chunks": 337
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/8KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 8192,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3206,
+        "compression_seconds": 0.000758684,
+        "copies": 3207,
+        "copy_bytes": 4054677,
+        "discovery_seconds": 0.005292969,
+        "encode_seconds": 0.011674688,
+        "index_entries": 3306,
+        "literal_bytes": 139627,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.005623035,
+        "max_depth": 0,
+        "max_sources_per_group": 17,
+        "mean_sources_per_group": 13.51171875,
+        "metadata_bytes": 128280,
+        "new_chunks": 100,
+        "payload_bytes": 118903,
+        "physical_bytes": 247183,
+        "physical_percent": 5.893301963806152,
+        "reused_chunks": 3107
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/1KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 1024,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 16,
+        "compression_seconds": 0.008816866,
+        "copies": 11,
+        "copy_bytes": 720544,
+        "discovery_seconds": 0.004337194,
+        "encode_seconds": 0.013769081,
+        "index_entries": 19,
+        "literal_bytes": 3473760,
+        "literals": 15,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000615021,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.08203125,
+        "metadata_bytes": 285,
+        "new_chunks": 0,
+        "payload_bytes": 2599223,
+        "physical_bytes": 2599508,
+        "physical_percent": 61.97710037231445,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/8KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 8192,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 102,
+        "compression_seconds": 0.002602555,
+        "copies": 51,
+        "copy_bytes": 3176917,
+        "discovery_seconds": 0.0068507,
+        "encode_seconds": 0.01135293,
+        "index_entries": 107,
+        "literal_bytes": 1017387,
+        "literals": 50,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.001899675,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.23828125,
+        "metadata_bytes": 711,
+        "new_chunks": 0,
+        "payload_bytes": 823694,
+        "physical_bytes": 824405,
+        "physical_percent": 19.655346870422363,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/2KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 2048,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 196,
+        "compression_seconds": 0.000482041,
+        "copies": 63,
+        "copy_bytes": 3897515,
+        "discovery_seconds": 0.011531025,
+        "encode_seconds": 0.014525385,
+        "index_entries": 202,
+        "literal_bytes": 296789,
+        "literals": 60,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002512319,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.25,
+        "metadata_bytes": 817,
+        "new_chunks": 0,
+        "payload_bytes": 255988,
+        "physical_bytes": 256805,
+        "physical_percent": 6.122708320617676,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 779,
+        "compression_seconds": 5.2241e-05,
+        "copies": 68,
+        "copy_bytes": 4192256,
+        "discovery_seconds": 0.009143371,
+        "encode_seconds": 0.01171743,
+        "index_entries": 807,
+        "literal_bytes": 2048,
+        "literals": 64,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002521818,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.25,
+        "metadata_bytes": 860,
+        "new_chunks": 0,
+        "payload_bytes": 840,
+        "physical_bytes": 1700,
+        "physical_percent": 0.040531158447265625,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/4",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 4
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-64KiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 65536,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3206,
+        "compression_seconds": 4.6305e-05,
+        "copies": 68,
+        "copy_bytes": 4192256,
+        "discovery_seconds": 0.009392706,
+        "encode_seconds": 0.011997635,
+        "index_entries": 3306,
+        "literal_bytes": 2048,
+        "literals": 64,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002558624,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.25,
+        "metadata_bytes": 860,
+        "new_chunks": 0,
+        "payload_bytes": 840,
+        "physical_bytes": 1700,
+        "physical_percent": 0.040531158447265625,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/1",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 1
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 14,
+        "compression_seconds": 0.004804989,
+        "copies": 14,
+        "copy_bytes": 2778616,
+        "discovery_seconds": 0.003937076,
+        "encode_seconds": 0.008783622,
+        "index_entries": 18,
+        "literal_bytes": 1415688,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 4.1557e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.03515625,
+        "metadata_bytes": 560,
+        "new_chunks": 4,
+        "payload_bytes": 1186617,
+        "physical_bytes": 1187177,
+        "physical_percent": 28.304505348205566,
+        "reused_chunks": 10
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/256KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 262144,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 51,
+        "compression_seconds": 0.000458297,
+        "copies": 51,
+        "copy_bytes": 3829521,
+        "discovery_seconds": 0.001741763,
+        "encode_seconds": 0.002284358,
+        "index_entries": 55,
+        "literal_bytes": 364783,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 8.4298e-05,
+        "max_depth": 0,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.1796875,
+        "metadata_bytes": 2040,
+        "new_chunks": 4,
+        "payload_bytes": 332744,
+        "physical_bytes": 334784,
+        "physical_percent": 7.98187255859375,
+        "reused_chunks": 47
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/64KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 65536,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 401,
+        "compression_seconds": 0.00019353,
+        "copies": 401,
+        "copy_bytes": 4143584,
+        "discovery_seconds": 0.002356784,
+        "encode_seconds": 0.003217587,
+        "index_entries": 405,
+        "literal_bytes": 50720,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.000667273,
+        "max_depth": 0,
+        "max_sources_per_group": 4,
+        "mean_sources_per_group": 2.55078125,
+        "metadata_bytes": 16040,
+        "new_chunks": 4,
+        "payload_bytes": 38965,
+        "physical_bytes": 55005,
+        "physical_percent": 1.3114213943481445,
+        "reused_chunks": 397
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/8KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 8192,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3206,
+        "compression_seconds": 6.6488e-05,
+        "copies": 3206,
+        "copy_bytes": 4188508,
+        "discovery_seconds": 0.005187299,
+        "encode_seconds": 0.010704635,
+        "index_entries": 3210,
+        "literal_bytes": 5796,
+        "literals": 0,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.005450848,
+        "max_depth": 0,
+        "max_sources_per_group": 17,
+        "mean_sources_per_group": 13.5078125,
+        "metadata_bytes": 128240,
+        "new_chunks": 4,
+        "payload_bytes": 5508,
+        "physical_bytes": 133748,
+        "physical_percent": 3.188800811767578,
+        "reused_chunks": 3202
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "exact/1KiB",
+      "strategy_description": {
+        "avg_chunk_bytes": 1024,
+        "kind": "exact"
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 14,
+        "compression_seconds": 0.001386763,
+        "copies": 7,
+        "copy_bytes": 3669877,
+        "discovery_seconds": 0.005154056,
+        "encode_seconds": 0.0089914,
+        "index_entries": 14,
+        "literal_bytes": 524427,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002450581,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.015625,
+        "metadata_bytes": 195,
+        "new_chunks": 0,
+        "payload_bytes": 387878,
+        "physical_bytes": 388073,
+        "physical_percent": 9.252381324768066,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/8KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 8192,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 104,
+        "compression_seconds": 2.4933e-05,
+        "copies": 8,
+        "copy_bytes": 4194176,
+        "discovery_seconds": 0.006888693,
+        "encode_seconds": 0.009326213,
+        "index_entries": 105,
+        "literal_bytes": 128,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002412587,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.015625,
+        "metadata_bytes": 200,
+        "new_chunks": 0,
+        "payload_bytes": 164,
+        "physical_bytes": 364,
+        "physical_percent": 0.008678436279296875,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/2KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 2048,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 190,
+        "compression_seconds": 2.2559e-05,
+        "copies": 8,
+        "copy_bytes": 4194176,
+        "discovery_seconds": 0.008844175,
+        "encode_seconds": 0.011338687,
+        "index_entries": 190,
+        "literal_bytes": 128,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002471953,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.015625,
+        "metadata_bytes": 200,
+        "new_chunks": 0,
+        "payload_bytes": 164,
+        "physical_bytes": 364,
+        "physical_percent": 0.008678436279296875,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/16",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 16
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 771,
+        "compression_seconds": 2.7308e-05,
+        "copies": 8,
+        "copy_bytes": 4194176,
+        "discovery_seconds": 0.009874747,
+        "encode_seconds": 0.012637586,
+        "index_entries": 771,
+        "literal_bytes": 128,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.002735531,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.015625,
+        "metadata_bytes": 200,
+        "new_chunks": 0,
+        "payload_bytes": 164,
+        "physical_bytes": 364,
+        "physical_percent": 0.008678436279296875,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/4",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 4
+      }
+    },
+    {
+      "base_bytes": 4194304,
+      "corpus": "synthetic/spacing-1MiB",
+      "corpus_description": {
+        "edit_spacing_bytes": 1048576,
+        "file_bytes": 1048576,
+        "files": 4,
+        "kind": "synthetic"
+      },
+      "correctness": "passed",
+      "outcome": {
+        "base_index_entries": 3206,
+        "compression_seconds": 2.8497e-05,
+        "copies": 8,
+        "copy_bytes": 4194176,
+        "discovery_seconds": 0.009409328,
+        "encode_seconds": 0.011800545,
+        "index_entries": 3210,
+        "literal_bytes": 128,
+        "literals": 4,
+        "logical_bytes": 4194304,
+        "matching_seconds": 0.00236272,
+        "max_depth": 1,
+        "max_sources_per_group": 2,
+        "mean_sources_per_group": 1.015625,
+        "metadata_bytes": 200,
+        "new_chunks": 0,
+        "payload_bytes": 164,
+        "physical_bytes": 364,
+        "physical_percent": 0.008678436279296875,
+        "reused_chunks": 0
+      },
+      "schema": "casita.cdcs.v1",
+      "strategy": "slices/1KiB/1",
+      "strategy_description": {
+        "discovery_bytes": 1024,
+        "kind": "slices",
+        "sample": 1
+      }
+    }
+  ],
+  "schema": "casita.cdcs.v1"
+}

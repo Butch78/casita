@@ -1,0 +1,26 @@
+{
+  "candidate_revision": "372713101126d8886324dfc6ebf1490ff06e0c93",
+  "baseline": "candidate with only measure() replaced by baseline-measure.rs from 1355e75",
+  "benchmark_source_sha256": "c58bcebe7a5649b56991a92c2913731d0b6831849995babd3c677dc5966dc0cb",
+  "cargo_lock_sha256": "986d83dc1511b115d405bd86bc1e828a4912e65de8b9abd8030e33ed43b4490b",
+  "dependency_lockfile": "../2026-09-22-nar-generation/dependencies.lock",
+  "build_command": [
+    "cargo",
+    "bench",
+    "--locked",
+    "--bench",
+    "nar_associations",
+    "--no-run",
+    "--message-format=json"
+  ],
+  "timing_command": "taskset -c 4,8 python3 benchmarks/tools/compare_nar_generation.py --case-set partial --baseline-binary /tmp/casita-nar-partial-20260922/baseline-bin --candidate-binary /tmp/casita-nar-partial-20260922/candidate-bin --repetitions 4 --output /tmp/casita-nar-partial-20260922/comparison",
+  "build_procedure": "Sequential builds in the same worktree; retained baseline executable before restoring candidate source and rebuilding.",
+  "binaries": {
+    "baseline": "c0fb889d09123e045fc2caada07e4fb3ec6f05bd7f13bc3759070f8e3f4fc729",
+    "candidate": "3e052ad180e20203a4d664ea2a3febd9358d2dfc74f00b367b9b801d67ac5577"
+  },
+  "matching_dependency_artifact_count": 381,
+  "fixture_sha256": "8fd2b2fb72b3300db8c5c8da1564e8f29b704f4df34020d5b07a0c4b221f2b57",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2\n",
+  "quieter_host_timing_command": "taskset -c 4,8 python3 benchmarks/tools/compare_nar_generation.py --case-set partial --baseline-binary /tmp/casita-nar-partial-20260922/baseline-bin --candidate-binary /tmp/casita-nar-partial-20260922/candidate-bin --repetitions 6 --output /tmp/casita-nar-partial-20260922/idle-20260923"
+}

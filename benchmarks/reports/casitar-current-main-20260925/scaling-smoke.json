@@ -1,0 +1,1490 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.casitar-scaling.v1",
+  "suite_id": "casitar",
+  "complete": true,
+  "configuration": {
+    "profile": "smoke",
+    "payload_bytes": [
+      65535,
+      65537,
+      8388608
+    ],
+    "file_counts": [
+      254,
+      256,
+      1024
+    ],
+    "repetitions": 1,
+    "casita_bin": "/tmp/casita-current-main-20260925/benchmarks/results/casitar-current-main-binaries/candidate",
+    "import_profile": false,
+    "pin_timing": false,
+    "require_quiet_host": false,
+    "quiet_timeout": 180,
+    "max_external_cpu_percent": 40,
+    "allow_competing_builds": true,
+    "baseline": null,
+    "variant_order": "single",
+    "case_order": "grouped",
+    "binary_sha256": "8ded761d2ab0817be38391a5cd6e8c5641204ea027a4c426f7226287347f8b50"
+  },
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65535,
+      "source_bytes": 131070,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 131913,
+      "wall_seconds": 0.048388686,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 30543872,
+      "exit_code": 0,
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:_337joMufwLsVpG1jnyCl_QrDSSnodf_IdJgoC3fYtY"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:_337joMufwLsVpG1jnyCl_QrDSSnodf_IdJgoC3fYtY"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-6BWaATTCVj7zQw_CwGOlbHa4zTLTWnvuLmveECX_pZY",
+        "stats": {
+          "archive_bytes": 131913,
+          "archive_digest": "blake3-3zwuRLjTcaoZcL8Y63OpkQtDnyIfalK8uVjy8TlXLUc",
+          "header_bytes": 99,
+          "payload_bytes": 131204,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65535,
+      "source_bytes": 131070,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 131913,
+      "wall_seconds": 0.00883,
+      "user_seconds": 0.0,
+      "system_seconds": 0.0,
+      "max_rss_bytes": 12423168,
+      "exit_code": 0,
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:_337joMufwLsVpG1jnyCl_QrDSSnodf_IdJgoC3fYtY"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 131913,
+          "archive_digest": "blake3-3zwuRLjTcaoZcL8Y63OpkQtDnyIfalK8uVjy8TlXLUc",
+          "header_bytes": 99,
+          "payload_bytes": 131204,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65535,
+      "source_bytes": 131070,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 131913,
+      "wall_seconds": 0.236758504,
+      "user_seconds": 0.01,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 37609472,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-0URWX6BAf5psuzZeXKP_Vpm3wZeF2RK_UfeLUkZ7sfs",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:_337joMufwLsVpG1jnyCl_QrDSSnodf_IdJgoC3fYtY"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 3,
+        "records_inserted": 3,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 131913,
+          "archive_digest": "blake3-3zwuRLjTcaoZcL8Y63OpkQtDnyIfalK8uVjy8TlXLUc",
+          "header_bytes": 99,
+          "payload_bytes": 131204,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65535,
+      "source_bytes": 131070,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 131913,
+      "wall_seconds": 0.203730022,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 37629952,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-pvve2WkHto7ZcXFGslZymwJmGjAdllINt--jkiPY6wA",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:_337joMufwLsVpG1jnyCl_QrDSSnodf_IdJgoC3fYtY"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 1,
+        "payloads_written": 2,
+        "records_inserted": 2,
+        "records_reused": 1,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 131913,
+          "archive_digest": "blake3-3zwuRLjTcaoZcL8Y63OpkQtDnyIfalK8uVjy8TlXLUc",
+          "header_bytes": 99,
+          "payload_bytes": 131204,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65535,
+      "source_bytes": 131070,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 131913,
+      "wall_seconds": 0.100598171,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 31567872,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-O4xJ8tKW8K53GFPc7fA1h-tZq78Pzj4pcNSf8ejIGWk",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:_337joMufwLsVpG1jnyCl_QrDSSnodf_IdJgoC3fYtY"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 3,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 3,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 131913,
+          "archive_digest": "blake3-3zwuRLjTcaoZcL8Y63OpkQtDnyIfalK8uVjy8TlXLUc",
+          "header_bytes": 99,
+          "payload_bytes": 131204,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65535,
+      "source_bytes": 131070,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 131913,
+      "wall_seconds": 0.038327466,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 29532160,
+      "exit_code": 1,
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65537,
+      "source_bytes": 131074,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 131917,
+      "wall_seconds": 0.036468159,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 30752768,
+      "exit_code": 0,
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:aYRRzpTAzTJuUrm5teFBrmof9wAGRJ9jTzKLOl6jwlI"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:aYRRzpTAzTJuUrm5teFBrmof9wAGRJ9jTzKLOl6jwlI"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-zZtz5j-HIcuAbz3rZdUvQ6wf0qLcpmOvuWSWnxwYeUY",
+        "stats": {
+          "archive_bytes": 131917,
+          "archive_digest": "blake3-050liEATyQQ_QBaoen_m1j2cG9f-EYO88QtS5PUxeKY",
+          "header_bytes": 99,
+          "payload_bytes": 131208,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65537,
+      "source_bytes": 131074,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 131917,
+      "wall_seconds": 0.009743048,
+      "user_seconds": 0.0,
+      "system_seconds": 0.0,
+      "max_rss_bytes": 12828672,
+      "exit_code": 0,
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:aYRRzpTAzTJuUrm5teFBrmof9wAGRJ9jTzKLOl6jwlI"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 131917,
+          "archive_digest": "blake3-050liEATyQQ_QBaoen_m1j2cG9f-EYO88QtS5PUxeKY",
+          "header_bytes": 99,
+          "payload_bytes": 131208,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65537,
+      "source_bytes": 131074,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 131917,
+      "wall_seconds": 0.200019821,
+      "user_seconds": 0.01,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 31928320,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-UA9VKh8mPJxMK8ImeTW0t0-uFWpoR0yEWQzd0VX8j9g",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:aYRRzpTAzTJuUrm5teFBrmof9wAGRJ9jTzKLOl6jwlI"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 3,
+        "records_inserted": 3,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 131917,
+          "archive_digest": "blake3-050liEATyQQ_QBaoen_m1j2cG9f-EYO88QtS5PUxeKY",
+          "header_bytes": 99,
+          "payload_bytes": 131208,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65537,
+      "source_bytes": 131074,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 131917,
+      "wall_seconds": 0.248533259,
+      "user_seconds": 0.01,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 30961664,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-_F-kkcoc1clTYObNASa3B7njfCx37x-XC2fp8Ir3e-Q",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:aYRRzpTAzTJuUrm5teFBrmof9wAGRJ9jTzKLOl6jwlI"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 1,
+        "payloads_written": 2,
+        "records_inserted": 2,
+        "records_reused": 1,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 131917,
+          "archive_digest": "blake3-050liEATyQQ_QBaoen_m1j2cG9f-EYO88QtS5PUxeKY",
+          "header_bytes": 99,
+          "payload_bytes": 131208,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65537,
+      "source_bytes": 131074,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 131917,
+      "wall_seconds": 0.076171764,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 30474240,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-AYDAuAwB6IshvWsJgfV5dElTkFrt36q41HXVmQIF51E",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:aYRRzpTAzTJuUrm5teFBrmof9wAGRJ9jTzKLOl6jwlI"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 3,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 3,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 131917,
+          "archive_digest": "blake3-050liEATyQQ_QBaoen_m1j2cG9f-EYO88QtS5PUxeKY",
+          "header_bytes": 99,
+          "payload_bytes": 131208,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 65537,
+      "source_bytes": 131074,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 131917,
+      "wall_seconds": 0.034702647,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 27545600,
+      "exit_code": 1,
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 8388608,
+      "source_bytes": 16777216,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 16778059,
+      "wall_seconds": 0.158426211,
+      "user_seconds": 0.05,
+      "system_seconds": 0.11,
+      "max_rss_bytes": 60387328,
+      "exit_code": 0,
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:DeJYghYjetbqQ10TVkSnXgMhURwrqh35sHl3IGynE5I"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:DeJYghYjetbqQ10TVkSnXgMhURwrqh35sHl3IGynE5I"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-MA2Z0Je4vJ-waT2yy7DfkIGukKT442TdkRpT5t29iR4",
+        "stats": {
+          "archive_bytes": 16778059,
+          "archive_digest": "blake3-LJaWPw1BToHq1BQzZTnbRtC7miqO3dn74h_RlMi1XcE",
+          "header_bytes": 99,
+          "payload_bytes": 16777350,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 8388608,
+      "source_bytes": 16777216,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 16778059,
+      "wall_seconds": 0.022728658,
+      "user_seconds": 0.01,
+      "system_seconds": 0.0,
+      "max_rss_bytes": 12853248,
+      "exit_code": 0,
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:DeJYghYjetbqQ10TVkSnXgMhURwrqh35sHl3IGynE5I"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 16778059,
+          "archive_digest": "blake3-LJaWPw1BToHq1BQzZTnbRtC7miqO3dn74h_RlMi1XcE",
+          "header_bytes": 99,
+          "payload_bytes": 16777350,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 8388608,
+      "source_bytes": 16777216,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 16778059,
+      "wall_seconds": 0.868339854,
+      "user_seconds": 0.1,
+      "system_seconds": 0.3,
+      "max_rss_bytes": 84090880,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-F39XiVwQ7Mrtdy8VGS-cjPKbFDDoFE-8KHBwVl8N04E",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:DeJYghYjetbqQ10TVkSnXgMhURwrqh35sHl3IGynE5I"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 3,
+        "records_inserted": 3,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 16778059,
+          "archive_digest": "blake3-LJaWPw1BToHq1BQzZTnbRtC7miqO3dn74h_RlMi1XcE",
+          "header_bytes": 99,
+          "payload_bytes": 16777350,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 8388608,
+      "source_bytes": 16777216,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 16778059,
+      "wall_seconds": 0.538275198,
+      "user_seconds": 0.08,
+      "system_seconds": 0.18,
+      "max_rss_bytes": 86241280,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-WZyC4H71QpSSNO0bSKT3psuBmqo7YedvceAWaIqRNoA",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:DeJYghYjetbqQ10TVkSnXgMhURwrqh35sHl3IGynE5I"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 1,
+        "payloads_written": 2,
+        "records_inserted": 2,
+        "records_reused": 1,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 16778059,
+          "archive_digest": "blake3-LJaWPw1BToHq1BQzZTnbRtC7miqO3dn74h_RlMi1XcE",
+          "header_bytes": 99,
+          "payload_bytes": 16777350,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 8388608,
+      "source_bytes": 16777216,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 16778059,
+      "wall_seconds": 0.136804262,
+      "user_seconds": 0.04,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 59957248,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-ftjScZE8iMFWgBW75fzrGG_pR8u5MRCtXrBLWnrsmic",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:DeJYghYjetbqQ10TVkSnXgMhURwrqh35sHl3IGynE5I"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 3,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 3,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 16778059,
+          "archive_digest": "blake3-LJaWPw1BToHq1BQzZTnbRtC7miqO3dn74h_RlMi1XcE",
+          "header_bytes": 99,
+          "payload_bytes": 16777350,
+          "payloads": 3,
+          "record_bytes": 459,
+          "records": 3
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "payload-size",
+      "files": 2,
+      "file_bytes": 8388608,
+      "source_bytes": 16777216,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 16778059,
+      "wall_seconds": 0.026315545,
+      "user_seconds": 0.0,
+      "system_seconds": 0.0,
+      "max_rss_bytes": 29601792,
+      "exit_code": 1,
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.116377849,
+      "user_seconds": 0.04,
+      "system_seconds": 0.05,
+      "max_rss_bytes": 30908416,
+      "exit_code": 0,
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-JGwx1atwjUR1ekvPhrlUwJapfswRFsqRaN9vHRHCjlg",
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.044977715,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 12730368,
+      "exit_code": 0,
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 1.478142029,
+      "user_seconds": 0.11,
+      "system_seconds": 0.37,
+      "max_rss_bytes": 38223872,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-odMYsaNH3hlv7PTwkGTy54uwjkw42CyxzVcoGEPR8rA",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 255,
+        "records_inserted": 255,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.857470579,
+      "user_seconds": 0.08,
+      "system_seconds": 0.18,
+      "max_rss_bytes": 37871616,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-g25IuZ-tjUmMi3lcF3aom0mXeqdV0NLZIj1o_qD_HNk",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 127,
+        "payloads_written": 128,
+        "records_inserted": 128,
+        "records_reused": 127,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.165772552,
+      "user_seconds": 0.03,
+      "system_seconds": 0.07,
+      "max_rss_bytes": 37150720,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-34eHLgVpDjq8jmsZmw89mwauiUBsTkpmJ2ldnyqhD_o",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:bWRFp-96D_JbhW3jQ9a9CfsV5nrlJ0FRck6N6mcaflQ"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 255,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 255,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 105175,
+          "archive_digest": "blake3-aPEJhmInKVUx5yAul4ssxVhuZ8GNqTBFsxTVYIipwCA",
+          "header_bytes": 99,
+          "payload_bytes": 48522,
+          "payloads": 255,
+          "record_bytes": 43803,
+          "records": 255
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 254,
+      "file_bytes": 128,
+      "source_bytes": 32512,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 105175,
+      "wall_seconds": 0.037254307,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 29962240,
+      "exit_code": 1,
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.119295276,
+      "user_seconds": 0.03,
+      "system_seconds": 0.05,
+      "max_rss_bytes": 31506432,
+      "exit_code": 0,
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-_EBrVWl_8zK6bcjc40P0dX_c5OW9JHho8NrU3Y6Z4fA",
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.041263877,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 12472320,
+      "exit_code": 0,
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 1.671386935,
+      "user_seconds": 0.12,
+      "system_seconds": 0.43,
+      "max_rss_bytes": 35061760,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-HWxiezSWYt0Lwd9MH-JZVEn8BbL85B-vFud_e5OZgi8",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 257,
+        "records_inserted": 257,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 1.157809071,
+      "user_seconds": 0.1,
+      "system_seconds": 0.25,
+      "max_rss_bytes": 38862848,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-4AZIR0UeOM8R3Houj-DlHhZAmtzV_rLPfsdBqeWTkDQ",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 128,
+        "payloads_written": 129,
+        "records_inserted": 129,
+        "records_reused": 128,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.180177351,
+      "user_seconds": 0.05,
+      "system_seconds": 0.06,
+      "max_rss_bytes": 34885632,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-2n1VMiN8CEZ6KUiasJaENO5RSAtjSGGCptykPDEGG30",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:ODdn4DOxfsci6Co0K3V2NZkajezTLNYhkxYEXcQiC-A"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 257,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 257,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 106001,
+          "archive_digest": "blake3-CTLgAtuS_8OaGOOVR6mhMHntGccsw6w9T9PT5mBJBh4",
+          "header_bytes": 99,
+          "payload_bytes": 48904,
+          "payloads": 257,
+          "record_bytes": 44147,
+          "records": 257
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 256,
+      "file_bytes": 128,
+      "source_bytes": 32768,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 106001,
+      "wall_seconds": 0.029855024,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 30265344,
+      "exit_code": 1,
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "create",
+      "family": "object-count",
+      "files": 1024,
+      "file_bytes": 128,
+      "source_bytes": 131072,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 423185,
+      "wall_seconds": 0.531801739,
+      "user_seconds": 0.12,
+      "system_seconds": 0.28,
+      "max_rss_bytes": 32489472,
+      "exit_code": 0,
+      "archive_report": {
+        "named_roots": [
+          {
+            "name": "bench/current",
+            "root": "casita.directory.v1:51JckzSjd2__rz9ttG19NxPHu2aUyrpjLSjoDO8wEFY"
+          }
+        ],
+        "operation": "create",
+        "roots": [
+          "casita.directory.v1:51JckzSjd2__rz9ttG19NxPHu2aUyrpjLSjoDO8wEFY"
+        ],
+        "schema": "casita.archive.v1",
+        "source_revision": "rev-y0GdAmRo9CeX-h1gM5gBA_PyIO1w35fr9H8dgIeFIxc",
+        "stats": {
+          "archive_bytes": 423185,
+          "archive_digest": "blake3-xgDKMhTPYE64USzXs9AKkK4YkninNYLZw7186r6Xdqs",
+          "header_bytes": 99,
+          "payload_bytes": 195592,
+          "payloads": 1025,
+          "record_bytes": 176243,
+          "records": 1025
+        },
+        "validity": "verified"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "inspect",
+      "family": "object-count",
+      "files": 1024,
+      "file_bytes": 128,
+      "source_bytes": 131072,
+      "seeded_file_percent": null,
+      "repetition": 1,
+      "archive_bytes": 423185,
+      "wall_seconds": 0.119250581,
+      "user_seconds": 0.02,
+      "system_seconds": 0.08,
+      "max_rss_bytes": 13176832,
+      "exit_code": 0,
+      "archive_report": {
+        "operation": "inspect",
+        "roots": [
+          "casita.directory.v1:51JckzSjd2__rz9ttG19NxPHu2aUyrpjLSjoDO8wEFY"
+        ],
+        "schema": "casita.archive.v1",
+        "stats": {
+          "archive_bytes": 423185,
+          "archive_digest": "blake3-xgDKMhTPYE64USzXs9AKkK4YkninNYLZw7186r6Xdqs",
+          "header_bytes": 99,
+          "payload_bytes": 195592,
+          "payloads": 1025,
+          "record_bytes": 176243,
+          "records": 1025
+        },
+        "validity": "structural"
+      },
+      "correctness": "verified-oracle roots+counts+archive-digest"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 1024,
+      "file_bytes": 128,
+      "source_bytes": 131072,
+      "seeded_file_percent": 0,
+      "repetition": 1,
+      "archive_bytes": 423185,
+      "wall_seconds": 6.402974099,
+      "user_seconds": 0.43,
+      "system_seconds": 1.93,
+      "max_rss_bytes": 43032576,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-8tigWXK6lkPitpIXK6-bmhIrHb1LqBUKhXl_HvXl9WQ",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:51JckzSjd2__rz9ttG19NxPHu2aUyrpjLSjoDO8wEFY"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 0,
+        "payloads_written": 1025,
+        "records_inserted": 1025,
+        "records_reused": 0,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 423185,
+          "archive_digest": "blake3-xgDKMhTPYE64USzXs9AKkK4YkninNYLZw7186r6Xdqs",
+          "header_bytes": 99,
+          "payload_bytes": 195592,
+          "payloads": 1025,
+          "record_bytes": 176243,
+          "records": 1025
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 1024,
+      "file_bytes": 128,
+      "source_bytes": 131072,
+      "seeded_file_percent": 50,
+      "repetition": 1,
+      "archive_bytes": 423185,
+      "wall_seconds": 3.047207221,
+      "user_seconds": 0.3,
+      "system_seconds": 0.75,
+      "max_rss_bytes": 40210432,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-pUgb-1Isxr53e3-S-YJ1n1EaeEvxzVEVDvxI_Ll4ExE",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:51JckzSjd2__rz9ttG19NxPHu2aUyrpjLSjoDO8wEFY"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 512,
+        "payloads_written": 513,
+        "records_inserted": 513,
+        "records_reused": 512,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 423185,
+          "archive_digest": "blake3-xgDKMhTPYE64USzXs9AKkK4YkninNYLZw7186r6Xdqs",
+          "header_bytes": 99,
+          "payload_bytes": 195592,
+          "payloads": 1025,
+          "record_bytes": 176243,
+          "records": 1025
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "family": "object-count",
+      "files": 1024,
+      "file_bytes": 128,
+      "source_bytes": 131072,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 423185,
+      "wall_seconds": 0.411633397,
+      "user_seconds": 0.15,
+      "system_seconds": 0.16,
+      "max_rss_bytes": 37892096,
+      "exit_code": 0,
+      "archive_report": {
+        "destination_revision": "rev-2lhTpNHjbb4RIS8R2p3LdtlLjD5lwob1geuSzEdIZ4E",
+        "mappings": [
+          {
+            "index": 0,
+            "name": "bench/received",
+            "root": "casita.directory.v1:51JckzSjd2__rz9ttG19NxPHu2aUyrpjLSjoDO8wEFY"
+          }
+        ],
+        "operation": "import",
+        "payloads_reused": 1025,
+        "payloads_written": 0,
+        "records_inserted": 0,
+        "records_reused": 1025,
+        "schema": "casita.archive.v1",
+        "spill": {
+          "files_opened": 0,
+          "peak_bytes": 0
+        },
+        "stats": {
+          "archive_bytes": 423185,
+          "archive_digest": "blake3-xgDKMhTPYE64USzXs9AKkK4YkninNYLZw7186r6Xdqs",
+          "header_bytes": 99,
+          "payload_bytes": 195592,
+          "payloads": 1025,
+          "record_bytes": 176243,
+          "records": 1025
+        },
+        "validity": "imported"
+      },
+      "correctness": "roots+fsck+streaming-SHA256-restore+archive-digest+reuse-counters"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "corrupt-reused-payload",
+      "family": "object-count",
+      "files": 1024,
+      "file_bytes": 128,
+      "source_bytes": 131072,
+      "seeded_file_percent": 100,
+      "repetition": 1,
+      "archive_bytes": 423185,
+      "wall_seconds": 0.031860567,
+      "user_seconds": 0.01,
+      "system_seconds": 0.0,
+      "max_rss_bytes": 31150080,
+      "exit_code": 1,
+      "correctness": "payload-identity-rejection+unchanged-roots+fsck",
+      "expected_failure": true
+    }
+  ],
+  "environment": {
+    "captured_at_utc": "2026-09-25T15:56:29.779597+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "e50179d3f73be902d4d42befb86ac9b6c4eebb43",
+    "casita_worktree_dirty": true
+  }
+}

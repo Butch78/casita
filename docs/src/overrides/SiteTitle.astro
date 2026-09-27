@@ -1,0 +1,19 @@
+---
+import BrandLogo from '../components/BrandLogo.astro';
+
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<a href={siteTitleHref} class="casita-site-title" aria-label={`${siteTitle} home`}>
+  <BrandLogo label="" />
+</a>
+
+<style>
+  .casita-site-title {
+    align-items: center;
+    display: flex;
+    min-width: 0;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+</style>

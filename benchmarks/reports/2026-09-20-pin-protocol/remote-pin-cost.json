@@ -1,0 +1,411 @@
+{
+  "complete": true,
+  "evidence": "production optimistic edits and codec; counted in-memory backend; no network",
+  "binary": {
+    "path": "/home/domen/.cargo/build/10/2ec6a8be83bf77/release/deps/casita-d049be568b9cfb0d",
+    "sha256": "022dac1f769e7304722736d35408e0dc6dbb08418f8e942c3bf3804253d159ca"
+  },
+  "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+  "samples": [
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 9,
+      "puts": 9,
+      "read_bytes": 1590,
+      "resources": 7,
+      "write_bytes": 1590,
+      "writers": 1
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 3,
+      "puts": 3,
+      "read_bytes": 444,
+      "resources": 7,
+      "write_bytes": 444,
+      "writers": 1
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 10,
+      "puts": 10,
+      "read_bytes": 1898,
+      "resources": 8,
+      "write_bytes": 1898,
+      "writers": 1
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 3,
+      "puts": 3,
+      "read_bytes": 470,
+      "resources": 8,
+      "write_bytes": 470,
+      "writers": 1
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 11,
+      "puts": 11,
+      "read_bytes": 2232,
+      "resources": 9,
+      "write_bytes": 2232,
+      "writers": 1
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 4,
+      "puts": 4,
+      "read_bytes": 804,
+      "resources": 9,
+      "write_bytes": 804,
+      "writers": 1
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 66,
+      "puts": 66,
+      "read_bytes": 60642,
+      "resources": 64,
+      "write_bytes": 60642,
+      "writers": 1
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 10,
+      "puts": 10,
+      "read_bytes": 8450,
+      "resources": 64,
+      "write_bytes": 8450,
+      "writers": 1
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 90,
+      "puts": 90,
+      "read_bytes": 108780,
+      "resources": 7,
+      "write_bytes": 108780,
+      "writers": 10
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 30,
+      "puts": 30,
+      "read_bytes": 27660,
+      "resources": 7,
+      "write_bytes": 27660,
+      "writers": 10
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 100,
+      "puts": 100,
+      "read_bytes": 134000,
+      "resources": 8,
+      "write_bytes": 134000,
+      "writers": 10
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 30,
+      "puts": 30,
+      "read_bytes": 30260,
+      "resources": 8,
+      "write_bytes": 30260,
+      "writers": 10
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 110,
+      "puts": 110,
+      "read_bytes": 161820,
+      "resources": 9,
+      "write_bytes": 161820,
+      "writers": 10
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 40,
+      "puts": 40,
+      "read_bytes": 58080,
+      "resources": 9,
+      "write_bytes": 58080,
+      "writers": 10
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 660,
+      "puts": 660,
+      "read_bytes": 5695920,
+      "resources": 64,
+      "write_bytes": 5695920,
+      "writers": 10
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 100,
+      "puts": 100,
+      "read_bytes": 789200,
+      "resources": 64,
+      "write_bytes": 789200,
+      "writers": 10
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 288,
+      "puts": 288,
+      "read_bytes": 1074624,
+      "resources": 7,
+      "write_bytes": 1074624,
+      "writers": 32
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 96,
+      "puts": 96,
+      "read_bytes": 270144,
+      "resources": 7,
+      "write_bytes": 270144,
+      "writers": 32
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 320,
+      "puts": 320,
+      "read_bytes": 1328512,
+      "resources": 8,
+      "write_bytes": 1328512,
+      "writers": 32
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 96,
+      "puts": 96,
+      "read_bytes": 296768,
+      "resources": 8,
+      "write_bytes": 296768,
+      "writers": 32
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 352,
+      "puts": 352,
+      "read_bytes": 1609024,
+      "resources": 9,
+      "write_bytes": 1609024,
+      "writers": 32
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 128,
+      "puts": 128,
+      "read_bytes": 577280,
+      "resources": 9,
+      "write_bytes": 577280,
+      "writers": 32
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 2112,
+      "puts": 2112,
+      "read_bytes": 58038144,
+      "resources": 64,
+      "write_bytes": 58038144,
+      "writers": 32
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 320,
+      "puts": 320,
+      "read_bytes": 8037760,
+      "resources": 64,
+      "write_bytes": 8037760,
+      "writers": 32
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 576,
+      "puts": 576,
+      "read_bytes": 4262784,
+      "resources": 7,
+      "write_bytes": 4262784,
+      "writers": 64
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 192,
+      "puts": 192,
+      "read_bytes": 1068672,
+      "resources": 7,
+      "write_bytes": 1068672,
+      "writers": 64
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 640,
+      "puts": 640,
+      "read_bytes": 5274368,
+      "resources": 8,
+      "write_bytes": 5274368,
+      "writers": 64
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 192,
+      "puts": 192,
+      "read_bytes": 1175168,
+      "resources": 8,
+      "write_bytes": 1175168,
+      "writers": 64
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 704,
+      "puts": 704,
+      "read_bytes": 6392448,
+      "resources": 9,
+      "write_bytes": 6392448,
+      "writers": 64
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 256,
+      "puts": 256,
+      "read_bytes": 2293248,
+      "resources": 9,
+      "write_bytes": 2293248,
+      "writers": 64
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 4224,
+      "puts": 4224,
+      "read_bytes": 231890688,
+      "resources": 64,
+      "write_bytes": 231890688,
+      "writers": 64
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 640,
+      "puts": 640,
+      "read_bytes": 32111360,
+      "resources": 64,
+      "write_bytes": 32111360,
+      "writers": 64
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 900,
+      "puts": 900,
+      "read_bytes": 10375800,
+      "resources": 7,
+      "write_bytes": 10375800,
+      "writers": 100
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 300,
+      "puts": 300,
+      "read_bytes": 2598600,
+      "resources": 7,
+      "write_bytes": 2598600,
+      "writers": 100
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 1000,
+      "puts": 1000,
+      "read_bytes": 12842000,
+      "resources": 8,
+      "write_bytes": 12842000,
+      "writers": 100
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 300,
+      "puts": 300,
+      "read_bytes": 2858600,
+      "resources": 8,
+      "write_bytes": 2858600,
+      "writers": 100
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 1100,
+      "puts": 1100,
+      "read_bytes": 15568200,
+      "resources": 9,
+      "write_bytes": 15568200,
+      "writers": 100
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 400,
+      "puts": 400,
+      "read_bytes": 5584800,
+      "resources": 9,
+      "write_bytes": 5584800,
+      "writers": 100
+    },
+    {
+      "batch": 1,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 6600,
+      "puts": 6600,
+      "read_bytes": 565909200,
+      "resources": 64,
+      "write_bytes": 565909200,
+      "writers": 100
+    },
+    {
+      "batch": 8,
+      "correctness": "production codec roundtrip; complete inventory; release",
+      "gets": 1000,
+      "puts": 1000,
+      "read_bytes": 78362000,
+      "resources": 64,
+      "write_bytes": 78362000,
+      "writers": 100
+    }
+  ]
+}

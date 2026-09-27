@@ -1,0 +1,15 @@
+
+running 10 tests
+test metadata::pins::runtime::tests::batched_ledger_error_is_returned_without_a_second_attempt ... ok
+test metadata::pins::runtime::tests::concurrent_protection_is_one_durable_update_and_ignores_cancelled_waiters ... ok
+test metadata::pins::runtime::tests::batched_conflict_does_not_block_an_unrelated_protection ... ok
+test metadata::pins::runtime::tests::a_cancelled_writer_keeps_its_pin_until_storage_settles ... ok
+test metadata::pins::runtime::tests::misattributed_suspects_still_protect_through_their_own_requester ... ok
+test metadata::pins::runtime::tests::last_owner_releases_only_its_pin ... ok
+test metadata::pins::runtime::tests::write_scope_is_backend_specific_and_inherited_by_tracked_tasks ... ok
+test metadata::pins::runtime::tests::nested_writer_scope_selects_its_owner_and_restores_the_parent ... ok
+test metadata::pins::runtime::tests::refused_waiter_is_left_out_of_later_batches_until_it_succeeds ... ok
+test metadata::pins::runtime::tests::storage_is_not_called_until_a_conflicting_deletion_settles ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 721 filtered out; finished in 0.32s
+

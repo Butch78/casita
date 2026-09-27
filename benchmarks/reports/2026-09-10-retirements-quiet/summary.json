@@ -1,0 +1,217 @@
+{
+  "runs": 13,
+  "correctness_passed": 13,
+  "quiet_runs": 1,
+  "complete_pairs": 5,
+  "accepted_pairs": 0,
+  "imports_300_attempted": false,
+  "peak_external_cpu_fraction": 0.2525873342003676,
+  "blocking_condition": {
+    "imports": 60,
+    "pair": 6,
+    "variant": "before",
+    "reason": "host did not become quiet before the deadline",
+    "last_sample": {
+      "external_cpu_fraction": 0.9087110230479211,
+      "kernel_worker_cpu_fraction": 0.007882251748866725,
+      "top_external_processes": [
+        {
+          "pid": 1591197,
+          "name": "rustc",
+          "ticks": 1554
+        },
+        {
+          "pid": 1430475,
+          "name": "chromium",
+          "ticks": 19
+        },
+        {
+          "pid": 12406,
+          "name": "herdr",
+          "ticks": 7
+        },
+        {
+          "pid": 15944,
+          "name": "chromium",
+          "ticks": 7
+        },
+        {
+          "pid": 10552,
+          "name": "wireplumber",
+          "ticks": 5
+        },
+        {
+          "pid": 15961,
+          "name": "pipewire-pulse",
+          "ticks": 3
+        },
+        {
+          "pid": 20650,
+          "name": "codex",
+          "ticks": 3
+        },
+        {
+          "pid": 10964,
+          "name": "chromium",
+          "ticks": 2
+        }
+      ],
+      "competing_processes": [
+        {
+          "pid": 1590646,
+          "name": "cargo"
+        },
+        {
+          "pid": 1591197,
+          "name": "rustc"
+        }
+      ],
+      "interval_seconds": 1.1100888779983507
+    }
+  },
+  "runs_detail": [
+    {
+      "imports": 60,
+      "pair": 0,
+      "variant": "after",
+      "warmup": true,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 46.49344657199981,
+      "import_seconds": 3.5745444969999998,
+      "reader_p99_ms": 71.068825
+    },
+    {
+      "imports": 60,
+      "pair": 0,
+      "variant": "before",
+      "warmup": true,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 28.921172007001587,
+      "import_seconds": 3.793424104,
+      "reader_p99_ms": 82.824439
+    },
+    {
+      "imports": 60,
+      "pair": 1,
+      "variant": "after",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 6.193499512002745,
+      "import_seconds": 3.587960121,
+      "reader_p99_ms": 66.292213
+    },
+    {
+      "imports": 60,
+      "pair": 1,
+      "variant": "before",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 66.21867402399948,
+      "import_seconds": 3.533226751,
+      "reader_p99_ms": 73.11687599999999
+    },
+    {
+      "imports": 60,
+      "pair": 2,
+      "variant": "after",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 6.198708743999305,
+      "import_seconds": 3.515225192,
+      "reader_p99_ms": 65.939577
+    },
+    {
+      "imports": 60,
+      "pair": 2,
+      "variant": "before",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 46.71457360399654,
+      "import_seconds": 3.481767417,
+      "reader_p99_ms": 69.96333200000001
+    },
+    {
+      "imports": 60,
+      "pair": 3,
+      "variant": "after",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 6.194962770001439,
+      "import_seconds": 5.13245852,
+      "reader_p99_ms": 88.632526
+    },
+    {
+      "imports": 60,
+      "pair": 3,
+      "variant": "before",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 34.11519474600209,
+      "import_seconds": 3.672064348,
+      "reader_p99_ms": 60.023165000000006
+    },
+    {
+      "imports": 60,
+      "pair": 4,
+      "variant": "after",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 55.923296424996806,
+      "import_seconds": 3.499356453,
+      "reader_p99_ms": 77.79593
+    },
+    {
+      "imports": 60,
+      "pair": 4,
+      "variant": "before",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 6.192059713997878,
+      "import_seconds": 3.583875829,
+      "reader_p99_ms": 91.14837800000001
+    },
+    {
+      "imports": 60,
+      "pair": 5,
+      "variant": "after",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 85.9301411070046,
+      "import_seconds": 3.807404052,
+      "reader_p99_ms": 75.005679
+    },
+    {
+      "imports": 60,
+      "pair": 5,
+      "variant": "before",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": false,
+      "wait_seconds": 53.84983607100003,
+      "import_seconds": 4.4316172,
+      "reader_p99_ms": 117.69176900000001
+    },
+    {
+      "imports": 60,
+      "pair": 6,
+      "variant": "after",
+      "warmup": false,
+      "correctness_passed": true,
+      "quiet": true,
+      "wait_seconds": 15.471425643998373,
+      "import_seconds": 3.608626082,
+      "reader_p99_ms": 81.86829900000001
+    }
+  ]
+}

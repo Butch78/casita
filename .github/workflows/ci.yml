@@ -1,0 +1,207 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+permissions:
+  contents: read
+
+jobs:
+  docs:
+    name: docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
+        with:
+          name: devenv
+      - name: Install devenv
+        run: nix profile add nixpkgs#devenv
+      - name: Build docs
+        shell: devenv shell bash -- -euo pipefail {0}
+        run: |
+          npm --prefix docs ci
+          npm --prefix docs run build
+          RUSTDOCFLAGS="-D warnings" cargo doc --no-deps
+          RUSTDOCFLAGS="-D warnings" cargo doc --no-default-features --no-deps
+          RUSTDOCFLAGS="-D warnings" cargo doc --all-features --no-deps
+      - name: Check documentation links
+        uses: cachix/site-kit/check-links@59a4fbfbe8e105aeb7f6e32c90055342f10d2b8a
+        with:
+          working-directory: docs
+          site: https://casita.rs
+
+  # Linux and macOS run on the same self-hosted builders as devenv's own PR
+  # pipeline. Both run through devenv (Nix): the clippy git-hook, then the
+  # all-features, default-feature, and portable test suites. macOS is unix, so
+  # the native store code compiles and its tests run there too.
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            runs-on: [self-hosted, linux, X64]
+          - system: aarch64-darwin
+            runs-on: [self-hosted, macOS, ARM64]
+    name: test (${{ matrix.system }})
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
+        with:
+          name: devenv
+      - name: Install devenv
+        run: nix profile add nixpkgs#devenv
+      # put the devenv toolchain on PATH for later steps (this also builds the
+      # shell once, which the cachix cache keeps cheap), so rust-cache keys the
+      # crate cache on the pinned rustc rather than whatever the image ships.
+      - name: Expose the devenv rust toolchain
+        run: devenv shell -- bash -c 'dirname "$(command -v rustc)"' | tail -1 >> "$GITHUB_PATH"
+      # cache ~/.cargo and ./target: the clippy hook plus the two test builds
+      # recompile the whole dependency graph on every run otherwise. cachix
+      # above caches the toolchain, not crate builds.
+      - uses: Swatinem/rust-cache@v2
+      # run the hook and tests directly in the devenv shell. `devenv test`
+      # runs the same steps, but wraps them in process-compose, which swallows
+      # cargo's stdout in CI; running them in the shell keeps the test output
+      # in the logs. prek is devenv's git-hook runner, so clippy still runs as
+      # the configured hook.
+      # the tests that need a genuinely full filesystem mount a private tmpfs
+      # inside an unprivileged user namespace, and skip where the kernel or a
+      # container profile forbids that. A skipped Rust test still reports `ok`
+      # and its reason is captured, so without this the run looks like it
+      # verified something it did not. Probed in the devenv shell because that
+      # is where the tests resolve `unshare` from.
+      - name: Filesystem transports
+        shell: devenv shell bash -- -euo pipefail {0}
+        run: |
+          cargo test -p casita-fs --all-features --all-targets
+          cargo clippy -p casita-fs --all-features --all-targets -- -D warnings
+          cargo test -p fskit-native --all-features
+          cargo clippy -p fskit-native --all-features --all-targets -- -D warnings
+          cargo check -p casita-fs --no-default-features
+          RUSTDOCFLAGS="-D warnings" cargo doc -p casita-fs -p fskit-native --all-features --no-deps
+      - name: Native FSKit extension
+        if: runner.os == 'macOS'
+        shell: devenv shell bash -- -euo pipefail {0}
+        run: |
+          cargo test --locked --manifest-path crates/casita-fskit/Cargo.toml --features repository --lib
+          cargo build --locked --manifest-path crates/casita-fskit/Cargo.toml --features production --bin casita-native-fskit --bin casita-native-fskit-extension --bin fskit-native-setup
+      - name: Report whether full-disk coverage can run here
+        if: runner.os == 'Linux'
+        shell: devenv shell bash -- {0}
+        run: |
+          if unshare --user --map-root-user --mount true 2>/dev/null; then
+            echo "full-disk tests: unprivileged namespaces available, they will run"
+          else
+            echo "::warning title=Full-disk tests skipped::This runner forbids unprivileged user and mount namespaces, so the tests that need a genuinely full filesystem did not run. Crash recovery is still covered by local_emergency_sweep_recovers_after_abort_without_a_mount; what goes unverified here is that a kernel ENOSPC arrives as StorageFull."
+          fi
+
+      - name: Run git-hooks and tests
+        shell: devenv shell bash -- -euo pipefail {0}
+        run: |
+          prek run --all-files
+          cargo test --all-features
+          cargo check --features s3 --example s3_sync --test s3_application_api --test s3_multi_owner
+          cargo check --manifest-path crates/casita/examples/s3_sync/Cargo.toml
+          cargo test
+          cargo build --no-default-features
+          cargo test --no-default-features
+          cargo test --no-default-features --features experimental
+          python3 -m unittest discover -s benchmarks -p 'test_*.py'
+      - name: Smoke-test end-to-end benchmark adapters
+        if: runner.os == 'Linux'
+        shell: devenv shell bash -- -euo pipefail {0}
+        run: |
+          cargo build --bin casita
+          benchmark \
+            --profile smoke \
+            --repetitions 1 \
+            --cache-policies warm \
+            --operations cold-import,unchanged-import,edited-import-in-place,checkout,verify \
+            --implementations casita,git \
+            --casita-bin target/debug/casita \
+            --no-build \
+            --require-all \
+            --output "$RUNNER_TEMP/casita-benchmark-smoke.json" \
+            --report "$RUNNER_TEMP/casita-benchmark-smoke.md"
+          benchmark run casitar --casita-bin target/debug/casita --repetitions 1 \
+            --output "$RUNNER_TEMP/casita-archive-smoke.json"
+          benchmark run fault-and-recovery --casita-bin target/debug/casita --repetitions 1 \
+            --output "$RUNNER_TEMP/casita-recovery-smoke.json"
+
+  # windows can't run Nix, so it uses the native rustup toolchain pinned to the
+  # same 1.96.0. Windows is a supported platform for the whole feature set:
+  # unix-only test fixtures (symlinks, mode bits) are cfg-gated, everything
+  # else runs, including the cross-platform digest golden vectors and the
+  # two-process Turso test. The no-default-features suite guards the portable
+  # core the wasm worker consumes.
+  windows:
+    runs-on: windows-latest
+    env:
+      # aws-lc-sys (rustls's crypto provider, via iroh/reqwest/gix) assembles
+      # with NASM on MSVC; the runners have none, so use its prebuilt objects.
+      AWS_LC_SYS_PREBUILT_NASM: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@1.96.0
+      - uses: arduino/setup-protoc@v3
+        with:
+          version: "36.1"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install pinned RustFS fixture
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'rustfs.zip'
+          $destination = Join-Path $env:RUNNER_TEMP 'rustfs'
+          Invoke-WebRequest 'https://github.com/rustfs/rustfs/releases/download/1.0.0-rc.1/rustfs-windows-x86_64-v1.0.0-rc.1.zip' -OutFile $archive
+          $expected = 'b651331be114a4907e499f851fcf0cfd22c790a61a2af3354c7b9850ead38dc6'
+          if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) {
+            throw 'RustFS archive checksum mismatch'
+          }
+          Expand-Archive $archive -DestinationPath $destination
+          $binary = @(Get-ChildItem $destination -Recurse -Filter rustfs.exe)
+          if ($binary.Count -ne 1) { throw 'Expected exactly one RustFS executable' }
+          $binary[0].DirectoryName | Out-File -FilePath $env:GITHUB_PATH -Append
+          & $binary[0].FullName --version
+          if ($LASTEXITCODE -ne 0) { throw 'RustFS could not start' }
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+      - run: cargo test --all-features
+      - run: cargo build --no-default-features
+      - run: cargo test --no-default-features
+      - run: cargo test --no-default-features --features experimental
+
+  # reformat with the pinned toolchain and commit any changes back, so a
+  # contributor without the local git-hook still lands formatted code.
+  fmt:
+    runs-on: [self-hosted, linux, X64]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
+        with:
+          name: devenv
+      - name: Install devenv
+        run: nix profile add nixpkgs#devenv
+      - run: devenv shell -- cargo fmt --all
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: cargo fmt"
+          # the commit runs outside the devenv shell, so the prek pre-commit
+          # hook (clippy) has no cc on PATH and fails the commit. clippy is
+          # already gated in the test job; skip hooks for this formatting commit.
+          commit_options: "--no-verify"

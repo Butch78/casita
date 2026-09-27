@@ -1,0 +1,7 @@
+822422 1789830926.095200 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=822423, si_uid=1000, si_status=127, si_utime=0, si_stime=0} ---
+822440 1789830926.108765 fsync(9</tmp/.tmpHnix76/bao-packs>) = 0 <0.002265>
+822440 1789830926.111201 fsync(9</tmp/.tmpHnix76>) = 0 <0.001773>
+822440 1789830926.113185 fsync(9</tmp/.tmpHnix76/bao-packs/b7732057bcf15c463cb8aed16704d32dd9fe4751bc49a9b33d653f1f3270a834#1>) = 0 <0.001609>
+822440 1789830926.114968 fsync(9</tmp/.tmpHnix76/bao-packs>) = 0 <0.000846>
+822440 1789830926.116152 fsync(9</tmp/.tmpHnix76/bao-index#1>) = 0 <0.001461>
+822440 1789830926.117827 fsync(9</tmp/.tmpHnix76>) = 0 <0.000838>

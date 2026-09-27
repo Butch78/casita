@@ -1,0 +1,31 @@
+diff --git a/crates/casita/src/nar.rs b/crates/casita/src/nar.rs
+index 0ee4370..9a2356d 100644
+--- a/crates/casita/src/nar.rs
++++ b/crates/casita/src/nar.rs
+@@ -524,4 +523,0 @@ async fn measure(
+-    let generation = match store {
+-        Some(store) => store.generation().await.map_err(NarError::storage)?,
+-        None => 0,
+-    };
+@@ -535,3 +531,3 @@ async fn measure(
+-    let old = match store {
+-        Some(store) => store.get(&key).await?,
+-        None => None,
++    let mut old = match store {
++        Some(store) if !scrub => store.get(&key).await?,
++        _ => None,
+@@ -554,0 +551,14 @@ async fn measure(
++    // Cache hits write nothing, so only measurement needs a generation fence.
++    // A partial hit may have been invalidated since the lookup above. Reload
++    // any facts we will reuse after capturing the generation, or a newer
++    // generation could allow those retired facts to be published again.
++    let generation = match store {
++        Some(store) => {
++            let generation = store.generation().await.map_err(NarError::storage)?;
++            if scrub || old.is_some() {
++                old = store.get(&key).await?;
++            }
++            generation
++        }
++        None => 0,
++    };

@@ -1,0 +1,448 @@
+"""Executable pin protocol experiment, not a Casita end-to-end benchmark.
+
+Independent spawned processes use durable, per-key conditional file objects.
+JSON wire bytes and local timings must not be reported as Casita/S3 results.
+"""
+from __future__ import annotations
+
+import argparse
+import fcntl
+import hashlib
+import json
+import multiprocessing as mp
+import os
+import pathlib
+import random
+import tempfile
+import time
+
+from benchmarks.suites import repository as common
+from benchmarks import cli
+
+
+class Ambiguous(Exception):
+    pass
+
+
+class Store:
+    """Linearizable object fixture. Locks implement the server, not the client."""
+
+    def __init__(self, root):
+        self.root = pathlib.Path(root)
+        self.metrics = dict(get=0, put=0, conflicts=0, read_bytes=0, write_bytes=0,
+                            ambiguous=0, blocked=0, pin_get=0, pin_put=0,
+                            pin_read_bytes=0, pin_write_bytes=0)
+
+    @staticmethod
+    def is_pin(key):
+        return key in ("ledger", "registry") or key.startswith("writers/")
+
+    def path(self, key):
+        return self.root / key
+
+    def get(self, key):
+        self.metrics["get"] += 1
+        self.metrics["pin_get"] += int(self.is_pin(key))
+        try:
+            raw = self.path(key).read_bytes()
+        except FileNotFoundError:
+            return None, None
+        self.metrics["read_bytes"] += len(raw)
+        self.metrics["pin_read_bytes"] += len(raw) * self.is_pin(key)
+        obj = json.loads(raw)
+        return obj["value"], obj["version"]
+
+    def cas(self, key, version, value, ambiguous=False):
+        self.metrics["put"] += 1
+        self.metrics["pin_put"] += int(self.is_pin(key))
+        path = self.path(key)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        raw = json.dumps(dict(version=(version or 0) + 1, value=value),
+                         sort_keys=True, separators=(",", ":")).encode()
+        self.metrics["write_bytes"] += len(raw)
+        self.metrics["pin_write_bytes"] += len(raw) * self.is_pin(key)
+        with path.with_suffix(".lock").open("a+b") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            try:
+                current = json.loads(path.read_bytes())["version"]
+            except FileNotFoundError:
+                current = None
+            if current != version:
+                self.metrics["conflicts"] += 1
+                return False
+            with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".pending-", delete=False) as output:
+                output.write(raw)
+                output.flush()
+                os.fsync(output.fileno())
+                temporary = output.name
+            os.replace(temporary, path)
+            fd = os.open(path.parent, os.O_RDONLY)
+            try:
+                os.fsync(fd)
+            finally:
+                os.close(fd)
+        if ambiguous:
+            self.metrics["ambiguous"] += 1
+            raise Ambiguous("committed response lost")
+        return True
+
+    def edit(self, key, mutate, ambiguous=False):
+        # Mutation functions must be idempotent. Absence is not proof that a
+        # timed-out write cannot still arrive. This fixture settles it first.
+        deadline = time.monotonic() + 60
+        attempts = 0
+        while time.monotonic() < deadline:
+            value, version = self.get(key)
+            changed = mutate(value)
+            if changed is None:
+                self.metrics["blocked"] += 1
+            elif changed == value:
+                return value
+            else:
+                try:
+                    if self.cas(key, version, changed, ambiguous):
+                        return changed
+                except Ambiguous:
+                    ambiguous = False
+                    continue
+            attempts += 1
+            time.sleep(random.uniform(0.0001, min(0.032, 0.001 * 2 ** min(attempts, 5))))
+        raise TimeoutError(f"bounded edit exhausted: {key}")
+
+
+def modify(value, **updates):
+    return {**value, **updates}
+
+
+class Protocol:
+    def __init__(self, store, variant):
+        self.store, self.variant = store, variant
+
+    def register(self, owner):
+        if self.variant == "owned":
+            # Create before admission, but no protected I/O before admission.
+            self.store.edit(f"writers/{owner}", lambda v: v or dict(frozen=False, resources=[]))
+            def admit(v):
+                if v["closed"]:
+                    return None
+                return modify(v, members=sorted(set(v["members"]) | {owner}))
+            self.store.edit("registry", admit)
+        else:
+            def admit(v):
+                if v["closed"]:
+                    return None
+                return modify(v, pins={**v["pins"], owner: v["pins"].get(owner, [])})
+            self.store.edit("ledger", admit)
+
+    def protect(self, owner, resources, ambiguous=False):
+        def update(v):
+            if self.variant == "owned":
+                if v["frozen"]:
+                    return None
+                return modify(v, resources=sorted(set(v["resources"]) | set(resources)))
+            if v["closed"]:
+                return None
+            return modify(v, pins={**v["pins"], owner: sorted(set(v["pins"][owner]) | set(resources))})
+        self.store.edit(f"writers/{owner}" if self.variant == "owned" else "ledger", update, ambiguous)
+
+    def release(self, owner):
+        def update(v):
+            if self.variant == "owned":
+                return None if v["frozen"] else modify(v, resources=[])
+            return None if v["closed"] else modify(v, pins={k: r for k, r in v["pins"].items() if k != owner})
+        self.store.edit(f"writers/{owner}" if self.variant == "owned" else "ledger", update)
+        # Keep the empty record and membership. GC can discover it; identity
+        # reuse, record deletion, and compacting the registry are out of scope.
+
+    def collect(self):
+        key = "registry" if self.variant == "owned" else "ledger"
+        state = self.store.edit(key, lambda v: modify(v, closed=True))
+        protected = set()
+        if self.variant == "owned":
+            for owner in state["members"]:
+                record = self.store.edit(f"writers/{owner}", lambda v: modify(v, frozen=True))
+                protected.update(record["resources"])
+        else:
+            for resources in state["pins"].values():
+                protected.update(resources)
+        # Root installation only references already protected immutable data.
+        # A release is blocked until sweep completes, so roots may advance here.
+        roots = self.store.path("roots")
+        for path in roots.glob("*"):
+            if path.suffix != ".lock" and not path.name.startswith("."):
+                value, _ = self.store.get(f"roots/{path.name}")
+                protected.update(value)
+        deleted = 0
+        for path in self.store.path("objects").glob("*"):
+            if path.name not in protected and path.suffix != ".lock" and not path.name.startswith("."):
+                path.unlink()
+                deleted += 1
+        if self.variant == "owned":
+            for owner in state["members"]:
+                self.store.edit(f"writers/{owner}", lambda v: modify(v, frozen=False))
+        self.store.edit(key, lambda v: modify(v, closed=False))
+        return deleted
+
+
+def payload(owner, index):
+    return (f"{owner}:{index}:" + "x" * 128).encode()
+
+
+def worker(root, variant, index, count, batch, fault, ready, start, result):
+    store = Store(root)
+    protocol = Protocol(store, variant)
+    owner = f"owner-{index:04}"
+    ready.put(index)
+    start.wait(60)
+    begin = time.monotonic()
+    try:
+        protocol.register(owner)
+        keys = [hashlib.sha256(payload(owner, i)).hexdigest() for i in range(count)]
+        width = 1 if variant == "current-shape" else batch
+        for offset in range(0, count, width):
+            group = keys[offset:offset + width]
+            protocol.protect(owner, group, ambiguous=fault == "ambiguous" and offset == 0)
+            for i, key in enumerate(group, offset):
+                # Protection is durable before any upload, including the
+                # first upload in a batch. Contents are immutable.
+                store.edit(f"objects/{key}", lambda v, i=i: payload(owner, i).hex())
+            if offset == 0 and fault in ("crash", "cancel") and index == 0:
+                result.put(dict(owner=owner, fault=fault, keys=group, metrics=store.metrics))
+                if fault == "crash":
+                    # Coordinator kills this owner at a known durable boundary.
+                    while True:
+                        time.sleep(1)
+                protocol.release(owner)
+                result.put(dict(owner=owner, cancelled=True, metrics=store.metrics))
+                return
+        store.edit(f"roots/{owner}", lambda v: keys, ambiguous=fault == "ambiguous")
+        result.put(dict(owner=owner, acknowledged=keys, seconds=time.monotonic() - begin,
+                        metrics=dict(store.metrics), pid=os.getpid()))
+        protocol.release(owner)
+        result.put(dict(owner=owner, released=True, metrics=store.metrics))
+    except BaseException as error:
+        result.put(dict(owner=owner, error=repr(error), metrics=store.metrics))
+        raise
+
+
+def collector(root, variant, stop, ready, result):
+    store = Store(root)
+    protocol = Protocol(store, variant)
+    passes = deleted = 0
+    ready.set()
+    try:
+        while not stop.is_set():
+            deleted += protocol.collect()
+            passes += 1
+            time.sleep(0.01)
+        result.put(dict(passes=passes, deleted=deleted, metrics=store.metrics))
+    except BaseException as error:
+        result.put(dict(error=repr(error)))
+        raise
+
+
+def audit(root, acknowledgments):
+    """Fresh spawned reader, independent of all writer caches."""
+    store = Store(root)
+    for ack in acknowledgments:
+        roots, _ = store.get(f"roots/{ack['owner']}")
+        assert roots == ack["acknowledged"], "acknowledged root changed"
+        for index, key in enumerate(roots):
+            value, _ = store.get(f"objects/{key}")
+            assert value is not None, "acknowledged object reclaimed"
+            raw = bytes.fromhex(value)
+            assert raw == payload(ack["owner"], index)
+            assert hashlib.sha256(raw).hexdigest() == key
+
+
+def audit_all_roots(root, writers, count, fault):
+    """On a failed run, audit durable roots even if an ACK queue was interrupted."""
+    store = Store(root)
+    expected_owners = {f"owner-{i:04}" for i in range(writers)}
+    if fault in ("crash", "cancel"):
+        expected_owners.remove("owner-0000")
+    acknowledgments = []
+    for path in store.path("roots").glob("*"):
+        if path.suffix == ".lock" or path.name.startswith("."):
+            continue
+        assert path.name in expected_owners
+        acknowledgments.append(dict(owner=path.name, acknowledged=[
+            hashlib.sha256(payload(path.name, i)).hexdigest() for i in range(count)]))
+    audit(root, acknowledgments)
+
+
+def sample(ctx, variant, writers, count, batch, fault):
+    with tempfile.TemporaryDirectory(prefix="casita-pin-protocol-") as root:
+        store = Store(root)
+        store.cas("registry", None, dict(closed=False, members=[]))
+        store.cas("ledger", None, dict(closed=False, pins={}))
+        store.cas("objects/unreachable", None, "garbage")
+        ready, result, gc_result, crash_result = ctx.Queue(), ctx.Queue(), ctx.Queue(), ctx.Queue()
+        start, stop, gc_ready = ctx.Event(), ctx.Event(), ctx.Event()
+        children = [ctx.Process(target=worker, args=(root, variant, i, count, batch, fault,
+                    ready, start, crash_result if fault == "crash" and i == 0 else result)) for i in range(writers)]
+        gc = ctx.Process(target=collector, args=(root, variant, stop, gc_ready, gc_result))
+        audit_process = None
+        rows = []
+        begin = time.monotonic()
+        try:
+            for child in children:
+                child.start()
+            for _ in children:
+                ready.get(timeout=60)
+            gc.start()
+            assert gc_ready.wait(60)
+            begin = time.monotonic()
+            start.set()
+            completed = 0
+            if fault == "crash":
+                row = crash_result.get(timeout=90)
+                rows.append(row)
+                if "error" in row:
+                    raise RuntimeError(row)
+                assert row.get("fault") == "crash"
+                # Killing a producer can poison a multiprocessing.Queue lock.
+                # Its crash notification therefore has a dedicated channel.
+                children[0].kill()
+                children[0].join(10)
+                completed = 1
+            while completed < writers:
+                row = result.get(timeout=90)
+                rows.append(row)
+                if "error" in row:
+                    raise RuntimeError(row)
+                if row.get("released") or row.get("cancelled"):
+                    completed += 1
+            for i, child in enumerate(children):
+                child.join(60)
+                assert child.exitcode == (-9 if fault == "crash" and i == 0 else 0), child.exitcode
+            seconds = time.monotonic() - begin
+            stop.set()
+            gc.join(60)
+            assert gc.exitcode == 0
+            collection = gc_result.get(timeout=10)
+            assert collection["passes"] > 0 and collection["deleted"] > 0
+            protocol = Protocol(store, variant)
+            protocol.collect()
+            if fault == "crash":
+                crashed = next(row for row in rows if row.get("fault"))
+                for key in crashed["keys"]:
+                    assert store.get(f"objects/{key}")[0] is not None, "crash protection lost"
+                # Owner has been killed and joined; the local fixture has no
+                # unsettled requests. This is evidence, not a timeout lease.
+                protocol.release(crashed["owner"])
+                protocol.collect()
+                for key in crashed["keys"]:
+                    assert store.get(f"objects/{key}")[0] is None, "recovery leaked data"
+            if fault == "cancel":
+                cancelled = next(row for row in rows if row.get("fault"))
+                for key in cancelled["keys"]:
+                    assert store.get(f"objects/{key}")[0] is None, "cancellation leaked data"
+            acks = [row for row in rows if "acknowledged" in row]
+            assert len(acks) == writers - (fault in ("crash", "cancel"))
+            assert len({row["pid"] for row in acks}) == len(acks)
+            audit_process = ctx.Process(target=audit, args=(root, acks))
+            audit_process.start()
+            audit_process.join(60)
+            assert audit_process.exitcode == 0, "fresh readback failed"
+            # Last metrics include release. Do not count intermediate ACK twice.
+            final = {row["owner"]: row["metrics"] for row in rows}
+            totals = {key: sum(m[key] for m in final.values()) for key in store.metrics}
+            return dict(variant=variant, writers=writers, objects=count, batch=batch, fault=fault,
+                        seconds=seconds, writer_metrics=totals, gc=collection,
+                        acknowledgments=len(acks), fresh_readback=True,
+                        latency_seconds=[row["seconds"] for row in acks], status="ok")
+        except Exception as error:
+            # No failed case may silently discard already published outputs.
+            # Quiesce the fixture's clients, then use a new process to enumerate
+            # and verify all durable roots, including interrupted ACK messages.
+            stop.set()
+            for child in [*children, gc, audit_process]:
+                if child is not None and child.pid is not None:
+                    if child.is_alive():
+                        child.kill()
+                    child.join(10)
+            audit_process = ctx.Process(target=audit_all_roots, args=(root, writers, count, fault))
+            audit_process.start()
+            audit_process.join(60)
+            error.diagnostics = dict(fresh_readback=audit_process.exitcode == 0,
+                                     audit_scope="all durable roots after failed case; not a successful performance sample")
+            raise
+        finally:
+            stop.set()
+            for child in [*children, gc, audit_process]:
+                if child is not None and child.pid is not None:
+                    if child.is_alive():
+                        child.kill()
+                    child.join(10)
+            for queue in (ready, result, gc_result, crash_result):
+                queue.close()
+
+
+def csv_int(value):
+    values = [int(part) for part in value.split(",")]
+    if not values or min(values) < 1:
+        raise argparse.ArgumentTypeError("positive integers required")
+    return values
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--profile", choices=("smoke", "standard"), default="standard")
+    parser.add_argument("--writers", type=csv_int, default=[1, 10, 32, 64, 100])
+    parser.add_argument("--objects", type=csv_int)
+    parser.add_argument("--batch", type=int, default=8)
+    parser.add_argument("--repetitions", type=int, default=1)
+    parser.add_argument("--faults", default="none,crash,ambiguous,cancel")
+    parser.add_argument("--output", type=pathlib.Path, required=True)
+    parser.add_argument("--report", type=pathlib.Path)
+    args = parser.parse_args(argv)
+    if args.batch < 1 or args.repetitions < 1:
+        parser.error("positive batch and repetitions required")
+    faults = args.faults.split(",")
+    if not set(faults) <= {"none", "crash", "ambiguous", "cancel"}:
+        parser.error("unknown fault")
+    counts = args.objects or ([7, 8, 9] if args.profile == "smoke" else [7, 8, 9, 64])
+    result = dict(schema_version=1, suite_id="state-and-publication", complete=False,
+                  evidence="protocol-model-only; JSON/file CAS, not Casita or S3 measurements",
+                  environment=common.environment_metadata(cli.ROOT),
+                  source_sha256=hashlib.sha256(pathlib.Path(__file__).read_bytes()).hexdigest(),
+                  configuration=dict(writers=args.writers, objects=counts, batch=args.batch,
+                                     faults=faults, repetitions=args.repetitions), samples=[])
+    def save():
+        common.write_atomic(args.output, json.dumps(result, indent=2) + "\n")
+        if args.report:
+            lines = ["# Pin protocol experiment", "", result["evidence"], "",
+                     f"Complete: {result['complete']}", "",
+                     "| Design | Processes | Objects | Fault | GET | PUT | Conflicts | Seconds |",
+                     "|---|---:|---:|---|---:|---:|---:|---:|"]
+            for row in result["samples"]:
+                m = row["writer_metrics"]
+                lines.append(f"| {row['variant']} | {row['writers']} | {row['objects']} | {row['fault']} | {m['get']} | {m['put']} | {m['conflicts']} | {row['seconds']:.3f} |")
+            common.write_atomic(args.report, "\n".join(lines) + "\n")
+    save()
+    try:
+        ctx = mp.get_context("spawn")
+        for repetition in range(args.repetitions):
+            for writers in args.writers:
+                for count in counts:
+                    for fault in faults:
+                        variants = ["current-shape", "batched", "owned"]
+                        if repetition % 2:
+                            variants.reverse()
+                        for variant in variants:
+                            row = sample(ctx, variant, writers, count, args.batch, fault)
+                            row["repetition"] = repetition + 1
+                            result["samples"].append(row)
+                            save()
+        result["complete"] = True
+    except BaseException as error:
+        result["error"] = repr(error)
+        raise
+    finally:
+        save()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

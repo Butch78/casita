@@ -1,0 +1,6 @@
+# Uncompressed copies of the committed raw reports.
+/packer-profile.json
+/packer-preparation.stacks.txt
+/packer-profile.log
+/packer-profile.sample.log
+/packer-profile.stacks.txt

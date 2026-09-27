@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "822268666753536d137796541bf7853daef9df0a",
+  "diff": " benchmarks/reports/2026-09-21-current-metadata-reads/README.md  | 4 ++++\n benchmarks/reports/2026-09-21-current-metadata-reads/SHA256SUMS | 2 +-\n 2 files changed, 5 insertions(+), 1 deletion(-)\n",
+  "entries": [
+    {
+      "suite": "metadata-kv",
+      "status": "passed",
+      "command": [
+        "/home/domen/dev/casita-metadata-reads/.devenv/profile/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "metadata-kv",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-validated-corpus-46jc3ycv/all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-validated-corpus-46jc3ycv/all/metadata-kv.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.873545659938827,
+      "log": "/tmp/casita-validated-corpus-46jc3ycv/all/metadata-kv.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

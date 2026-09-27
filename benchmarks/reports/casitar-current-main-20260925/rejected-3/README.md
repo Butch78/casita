@@ -1,0 +1,1 @@
+Third attempt: one of 138 measured activity intervals reached 40.348% external CPU, above the 40% ceiling. The peak was led by rustc PID 1902795. Six baseline samples are retained but excluded. All other measured intervals were below the ceiling.

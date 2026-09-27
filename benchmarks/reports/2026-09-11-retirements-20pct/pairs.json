@@ -1,0 +1,47 @@
+[
+  {
+    "imports": 60,
+    "attempt": 1,
+    "accepted": true
+  },
+  {
+    "imports": 60,
+    "attempt": 2,
+    "accepted": true
+  },
+  {
+    "imports": 60,
+    "attempt": 3,
+    "accepted": true
+  },
+  {
+    "imports": 300,
+    "attempt": 1,
+    "accepted": false
+  },
+  {
+    "imports": 300,
+    "attempt": 2,
+    "accepted": false
+  },
+  {
+    "imports": 300,
+    "attempt": 3,
+    "accepted": false
+  },
+  {
+    "imports": 300,
+    "attempt": 4,
+    "accepted": true
+  },
+  {
+    "imports": 300,
+    "attempt": 5,
+    "accepted": false
+  },
+  {
+    "imports": 300,
+    "attempt": 6,
+    "accepted": false
+  }
+]

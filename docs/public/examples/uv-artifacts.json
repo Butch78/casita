@@ -1,0 +1,46 @@
+{
+  "project": "uv",
+  "version": "0.12.7",
+  "source": "https://codeload.github.com/astral-sh/uv/tar.gz/61291a8ca5477a9ca653f14d2ac5665587c263fa",
+  "source_commit": "61291a8ca5477a9ca653f14d2ac5665587c263fa",
+  "source_sha256": "082a770752bf1f58e2bc46cd797817a15b1f494b3aa3f7fc313d209125b7151e",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+  "command": "cargo build --locked -p uv --bin uv --message-format=json",
+  "profile": "dev",
+  "primary_artifact": "target/debug/uv",
+  "files": [
+    {
+      "label": "uv",
+      "kind": "Executable",
+      "path": "uv",
+      "bytes": 258541968,
+      "sha256": "a30871a3697eb454cfff17d61226e6b07cb8a4b583fe2549a18c0250d735baa9"
+    },
+    {
+      "label": "libuv.rlib",
+      "kind": "Supporting library",
+      "path": "libuv-7872c67b79c6bf1c.rlib",
+      "bytes": 169779784,
+      "sha256": "b99667a8c8a7278fa963b77ceae142eccf79a42676446753b0c2450bed5239a6"
+    },
+    {
+      "label": "uv.d",
+      "kind": "Dependency information",
+      "path": "uv.d",
+      "bytes": 54096,
+      "sha256": "566b3e87e10ac987131ad2e699d2a2489eca663d2ca7ed8e8db8617357962948"
+    }
+  ],
+  "run": {
+    "command": "./target/debug/uv --version",
+    "stdout": "uv 0.12.7 (x86_64-unknown-linux-gnu)",
+    "exit_code": 0
+  },
+  "verified": {
+    "source_checksum": true,
+    "built_uv_itself": true,
+    "all_output_files_exist": true,
+    "executable_runs": true
+  },
+  "illustration": "Real build outputs; supporting-library labels omit Cargo hash suffixes. Chunk boundaries, counts and sharing are schematic. This ordinary Cargo build does not implement or validate the proposed Casita integration."
+}

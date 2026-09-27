@@ -1,0 +1,1114 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.ledger-boundaries.v1",
+  "suite_id": "state-and-publication",
+  "complete": true,
+  "environment": {
+    "captured_at_utc": "2026-09-09T13:27:31.563592+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.0.10-x86_64-with-glibc2.42",
+    "kernel": "7.0.10",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29178875904,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "54da616d4dca2aae23cc41cf7f5318d9b7a5168f",
+    "casita_worktree_dirty": true
+  },
+  "configuration": {
+    "profile": "standard",
+    "cases": {
+      "checkpoint-operations": [
+        255,
+        256,
+        257
+      ],
+      "checkpoint-bytes": [
+        3,
+        4,
+        5
+      ],
+      "group-size": [
+        63,
+        64,
+        65
+      ],
+      "migration-space": [
+        0,
+        1
+      ]
+    },
+    "repetitions": 3
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/casita4-journal-bin/casita-lib-test",
+      "sha256": "7bff317bb1ac73422f491238051f0ab0341e54ea2c6193a055b3a38abfcf6582"
+    }
+  ],
+  "samples": [
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 256,
+      "repetition": 2,
+      "wall_seconds": 0.00370201,
+      "max_rss_bytes": 17686528,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "migration-space",
+      "entries": 1,
+      "repetition": 3,
+      "wall_seconds": 0.032720881,
+      "max_rss_bytes": 18264064,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4373,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "migration-space",
+      "entries": 0,
+      "repetition": 2,
+      "wall_seconds": 0.027632101,
+      "max_rss_bytes": 17018880,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 0,
+        "journal_frames": 0,
+        "journal_syncs": 0,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 1
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 3,
+      "repetition": 3,
+      "wall_seconds": 0.004649478,
+      "max_rss_bytes": 21643264,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 266376,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 257,
+      "repetition": 1,
+      "wall_seconds": 0.007097696,
+      "max_rss_bytes": 18210816,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 7831,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 255,
+      "repetition": 1,
+      "wall_seconds": 0.003608214,
+      "max_rss_bytes": 18120704,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 64,
+      "repetition": 3,
+      "wall_seconds": 0.004958177,
+      "max_rss_bytes": 17801216,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 64,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 64,
+      "repetition": 2,
+      "wall_seconds": 0.005459219,
+      "max_rss_bytes": 17956864,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 64,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 63,
+      "repetition": 3,
+      "wall_seconds": 0.005336927,
+      "max_rss_bytes": 17555456,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 63,
+        "operations": 63,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 256,
+      "repetition": 1,
+      "wall_seconds": 0.003788684,
+      "max_rss_bytes": 18198528,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 65,
+      "repetition": 3,
+      "wall_seconds": 0.009056746,
+      "max_rss_bytes": 18116608,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 2,
+        "journal_adoptions": 0,
+        "journal_bytes": 8464,
+        "journal_frames": 2,
+        "journal_syncs": 2,
+        "max_group": 64,
+        "operations": 65,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 3,
+      "repetition": 1,
+      "wall_seconds": 0.005491276,
+      "max_rss_bytes": 21041152,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 266376,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 255,
+      "repetition": 2,
+      "wall_seconds": 0.003963217,
+      "max_rss_bytes": 17825792,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 4,
+      "repetition": 2,
+      "wall_seconds": 0.010499319,
+      "max_rss_bytes": 22269952,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 1053125,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 65,
+      "repetition": 1,
+      "wall_seconds": 0.009098302,
+      "max_rss_bytes": 18087936,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 2,
+        "journal_adoptions": 0,
+        "journal_bytes": 8464,
+        "journal_frames": 2,
+        "journal_syncs": 2,
+        "max_group": 64,
+        "operations": 65,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 63,
+      "repetition": 2,
+      "wall_seconds": 0.005494838,
+      "max_rss_bytes": 17211392,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 63,
+        "operations": 63,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 5,
+      "repetition": 3,
+      "wall_seconds": 0.004905936,
+      "max_rss_bytes": 23941120,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 266376,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 63,
+      "repetition": 1,
+      "wall_seconds": 0.005785727,
+      "max_rss_bytes": 17518592,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 63,
+        "operations": 63,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "migration-space",
+      "entries": 1,
+      "repetition": 1,
+      "wall_seconds": 0.034770166,
+      "max_rss_bytes": 18501632,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4373,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 65,
+      "repetition": 2,
+      "wall_seconds": 0.009245527,
+      "max_rss_bytes": 18104320,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 2,
+        "journal_adoptions": 0,
+        "journal_bytes": 8464,
+        "journal_frames": 2,
+        "journal_syncs": 2,
+        "max_group": 64,
+        "operations": 65,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "group-size",
+      "entries": 64,
+      "repetition": 1,
+      "wall_seconds": 0.007044268,
+      "max_rss_bytes": 18120704,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 64,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 3,
+      "repetition": 2,
+      "wall_seconds": 0.006716573,
+      "max_rss_bytes": 21336064,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 266376,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 256,
+      "repetition": 3,
+      "wall_seconds": 0.006900605,
+      "max_rss_bytes": 17285120,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 257,
+      "repetition": 3,
+      "wall_seconds": 0.013994739,
+      "max_rss_bytes": 17952768,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 7831,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 5,
+      "repetition": 1,
+      "wall_seconds": 0.005682432,
+      "max_rss_bytes": 23785472,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 266376,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 257,
+      "repetition": 2,
+      "wall_seconds": 0.013879571,
+      "max_rss_bytes": 17629184,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 7831,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 5,
+      "repetition": 2,
+      "wall_seconds": 0.00592108,
+      "max_rss_bytes": 23818240,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 266376,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 4,
+      "repetition": 1,
+      "wall_seconds": 0.020184149,
+      "max_rss_bytes": 22626304,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 1053125,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "migration-space",
+      "entries": 1,
+      "repetition": 2,
+      "wall_seconds": 0.052246077,
+      "max_rss_bytes": 18206720,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4373,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-operations",
+      "entries": 255,
+      "repetition": 3,
+      "wall_seconds": 0.006498109,
+      "max_rss_bytes": 17526784,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 4232,
+        "journal_frames": 1,
+        "journal_syncs": 1,
+        "max_group": 64,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "migration-space",
+      "entries": 0,
+      "repetition": 1,
+      "wall_seconds": 0.051952813,
+      "max_rss_bytes": 17485824,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 0,
+        "journal_frames": 0,
+        "journal_syncs": 0,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 1
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "migration-space",
+      "entries": 0,
+      "repetition": 3,
+      "wall_seconds": 0.056019325,
+      "max_rss_bytes": 17137664,
+      "metrics": {
+        "checkpoints": 0,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 0,
+        "journal_frames": 0,
+        "journal_syncs": 0,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 1
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    },
+    {
+      "status": "ok",
+      "operation": "checkpoint-bytes",
+      "entries": 4,
+      "repetition": 3,
+      "wall_seconds": 0.016616304,
+      "max_rss_bytes": 22720512,
+      "metrics": {
+        "checkpoints": 1,
+        "groups": 1,
+        "journal_adoptions": 0,
+        "journal_bytes": 1053125,
+        "journal_frames": 0,
+        "journal_syncs": 2,
+        "max_group": 1,
+        "operations": 1,
+        "replacement_updates": 0
+      },
+      "correctness": "exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection"
+    }
+  ],
+  "processes": [
+    {
+      "wall_seconds": 0.087555279,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17686528,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 256,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":3702010,\"position\":256}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.08s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.073651962,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 18264064,
+      "exit_code": 0,
+      "boundary": "migration-space",
+      "position": 1,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"migration-space\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4373,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":32720881,\"position\":1}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.07s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.119614833,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17018880,
+      "exit_code": 0,
+      "boundary": "migration-space",
+      "position": 0,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"migration-space\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":0,\"journal_frames\":0,\"journal_syncs\":0,\"max_group\":1,\"operations\":1,\"replacement_updates\":1},\"nanos\":27632101,\"position\":0}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.11s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.101414666,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 21643264,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 3,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":266376,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":4649478,\"position\":3}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.09s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.084642825,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 18210816,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 257,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":7831,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":7097696,\"position\":257}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.08s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.079359327,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 18120704,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 255,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":3608214,\"position\":255}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.07s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.313661684,
+      "user_seconds": 0.0,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 17801216,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 64,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":64,\"replacement_updates\":0},\"nanos\":4958177,\"position\":64}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.30s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.32015267,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 17956864,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 64,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":64,\"replacement_updates\":0},\"nanos\":5459219,\"position\":64}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.31s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.322746926,
+      "user_seconds": 0.0,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 17555456,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 63,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":63,\"operations\":63,\"replacement_updates\":0},\"nanos\":5336927,\"position\":63}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.31s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.095620628,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 18198528,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 256,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":3788684,\"position\":256}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.09s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.321034835,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 18116608,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 65,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":2,\"journal_adoptions\":0,\"journal_bytes\":8464,\"journal_frames\":2,\"journal_syncs\":2,\"max_group\":64,\"operations\":65,\"replacement_updates\":0},\"nanos\":9056746,\"position\":65}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.31s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.099791622,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 21041152,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 3,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":266376,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":5491276,\"position\":3}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.09s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.086111518,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17825792,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 255,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":3963217,\"position\":255}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.08s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.124464965,
+      "user_seconds": 0.0,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 22269952,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 4,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":1053125,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":10499319,\"position\":4}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.314213779,
+      "user_seconds": 0.0,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 18087936,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 65,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":2,\"journal_adoptions\":0,\"journal_bytes\":8464,\"journal_frames\":2,\"journal_syncs\":2,\"max_group\":64,\"operations\":65,\"replacement_updates\":0},\"nanos\":9098302,\"position\":65}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.31s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.3124352,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 17211392,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 63,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":63,\"operations\":63,\"replacement_updates\":0},\"nanos\":5494838,\"position\":63}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.30s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.122121228,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 23941120,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 5,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":266376,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":4905936,\"position\":5}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.11s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.334659135,
+      "user_seconds": 0.01,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 17518592,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 63,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":63,\"operations\":63,\"replacement_updates\":0},\"nanos\":5785727,\"position\":63}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.33s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.080642801,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 18501632,
+      "exit_code": 0,
+      "boundary": "migration-space",
+      "position": 1,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"migration-space\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4373,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":34770166,\"position\":1}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.07s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.576618407,
+      "user_seconds": 0.01,
+      "system_seconds": 0.05,
+      "max_rss_bytes": 18104320,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 65,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":2,\"journal_adoptions\":0,\"journal_bytes\":8464,\"journal_frames\":2,\"journal_syncs\":2,\"max_group\":64,\"operations\":65,\"replacement_updates\":0},\"nanos\":9245527,\"position\":65}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.57s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.57137409,
+      "user_seconds": 0.02,
+      "system_seconds": 0.04,
+      "max_rss_bytes": 18120704,
+      "exit_code": 0,
+      "boundary": "group-size",
+      "position": 64,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"group-size\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":64,\"replacement_updates\":0},\"nanos\":7044268,\"position\":64}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.56s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.148406927,
+      "user_seconds": 0.0,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 21336064,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 3,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":266376,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":6716573,\"position\":3}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.14s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.137796,
+      "user_seconds": 0.01,
+      "system_seconds": 0.02,
+      "max_rss_bytes": 17285120,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 256,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":6900605,\"position\":256}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.13s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.132012648,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17952768,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 257,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":7831,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":13994739,\"position\":257}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.176795339,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 23785472,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 5,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":266376,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":5682432,\"position\":5}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.17s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.127211196,
+      "user_seconds": 0.01,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17629184,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 257,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":7831,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":13879571,\"position\":257}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.12s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.176193377,
+      "user_seconds": 0.01,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 23818240,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 5,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":266376,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":5921080,\"position\":5}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.17s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.169867426,
+      "user_seconds": 0.0,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 22626304,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 4,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":1053125,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":20184149,\"position\":4}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.16s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.121971628,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 18206720,
+      "exit_code": 0,
+      "boundary": "migration-space",
+      "position": 1,
+      "repetition": 2,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"migration-space\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4373,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":52246077,\"position\":1}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.11s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.112680982,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17526784,
+      "exit_code": 0,
+      "boundary": "checkpoint-operations",
+      "position": 255,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-operations\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":4232,\"journal_frames\":1,\"journal_syncs\":1,\"max_group\":64,\"operations\":1,\"replacement_updates\":0},\"nanos\":6498109,\"position\":255}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.10s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.204692208,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17485824,
+      "exit_code": 0,
+      "boundary": "migration-space",
+      "position": 0,
+      "repetition": 1,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"migration-space\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":0,\"journal_frames\":0,\"journal_syncs\":0,\"max_group\":1,\"operations\":1,\"replacement_updates\":1},\"nanos\":51952813,\"position\":0}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.20s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.212636452,
+      "user_seconds": 0.0,
+      "system_seconds": 0.01,
+      "max_rss_bytes": 17137664,
+      "exit_code": 0,
+      "boundary": "migration-space",
+      "position": 0,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"migration-space\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":0,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":0,\"journal_frames\":0,\"journal_syncs\":0,\"max_group\":1,\"operations\":1,\"replacement_updates\":1},\"nanos\":56019325,\"position\":0}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.20s\n\n",
+      "stderr": ""
+    },
+    {
+      "wall_seconds": 0.175178232,
+      "user_seconds": 0.0,
+      "system_seconds": 0.03,
+      "max_rss_bytes": 22720512,
+      "exit_code": 0,
+      "boundary": "checkpoint-bytes",
+      "position": 4,
+      "repetition": 3,
+      "stdout": "\nrunning 1 test\nledger_boundary_sample {\"boundary\":\"checkpoint-bytes\",\"correctness\":\"exact replay, bounded groups, exact checkpoint and migration boundaries, no leaked protection\",\"metrics\":{\"checkpoints\":1,\"groups\":1,\"journal_adoptions\":0,\"journal_bytes\":1053125,\"journal_frames\":0,\"journal_syncs\":2,\"max_group\":1,\"operations\":1,\"replacement_updates\":0},\"nanos\":16616304,\"position\":4}\ntest metadata::pins::persistent::journal::tests::benchmark_journal_boundaries ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 654 filtered out; finished in 0.16s\n\n",
+      "stderr": ""
+    }
+  ]
+}

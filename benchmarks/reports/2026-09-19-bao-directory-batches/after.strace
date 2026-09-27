@@ -1,0 +1,190 @@
+790000 1789830180.903527 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=790001, si_uid=1000, si_status=127, si_utime=0, si_stime=0} ---
+790030 1789830181.175116 fsync(10</tmp/.tmpZiCYgE/casita.sqlite>) = 0 <0.003838>
+790030 1789830181.182385 fsync(13</tmp/.tmpxlX003/tursodb-temp.db>) = 0 <0.002209>
+790030 1789830181.191934 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002203>
+790030 1789830181.195044 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002298>
+790030 1789830181.197649 fsync(14</tmp/.tmpxlX003/tursodb-temp.db-wal>) = 0 <0.002154>
+790030 1789830181.202753 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002187>
+790030 1789830181.208505 fsync(15</tmp/.tmpZiCYgE/blobs/pack-index-reclaim-needed#3393024163840000>) = 0 <0.002213>
+790030 1789830181.211052 fsync(15</tmp/.tmpZiCYgE/blobs>) = 0 <0.002176>
+790031 1789830181.214126 fsync(15</tmp/.tmpZiCYgE/blobs/pack-indexes/b3/aa/aa04c2264ed1b5e861e27f9bf05321e9456d4aa7c9c329cf215b88bc929bd482#3393024163840001>) = 0 <0.002223>
+790030 1789830181.216952 fsync(15</tmp/.tmpZiCYgE/blobs/pack-indexes/b3/aa>) = 0 <0.002160>
+790030 1789830181.219235 fsync(15</tmp/.tmpZiCYgE/blobs/pack-indexes/b3>) = 0 <0.002206>
+790030 1789830181.221567 fsync(15</tmp/.tmpZiCYgE/blobs/pack-indexes>) = 0 <0.002262>
+790030 1789830181.223984 fsync(15</tmp/.tmpZiCYgE/blobs>) = 0 <0.002248>
+790031 1789830181.229340 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002466>
+790030 1789830181.236123 fsync(16</tmp/.tmpZiCYgE/.tmpleSpYa>) = 0 <0.002469>
+790030 1789830181.239534 fsync(16</tmp/.tmpZiCYgE>) = 0 <0.003672>
+790030 1789830181.244162 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins.spare>) = 0 <0.003240>
+790030 1789830181.247690 fsync(17</tmp/.tmpZiCYgE>) = 0 <0.003897>
+790030 1789830181.259505 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.028871>
+790030 1789830181.294998 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins.spare>) = 0 <0.002849>
+790030 1789830181.298231 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins.spare>) = 0 <0.002359>
+790030 1789830181.300862 fsync(17</tmp/.tmpZiCYgE>) = 0 <0.002170>
+790030 1789830181.310145 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.006883>
+790031 1789830181.317867 fsync(15</tmp/.tmpZiCYgE/blobs>) = 0 <0.002220>
+790030 1789830181.323087 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002463>
+790031 1789830181.326938 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002242>
+790031 1789830181.332433 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002223>
+790030 1789830181.344009 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002346>
+790031 1789830181.346942 fsync(15</tmp/.tmpZiCYgE/blobs>) = 0 <0.000015>
+790030 1789830181.348033 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002194>
+790031 1789830181.351492 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002203>
+790031 1789830181.355475 fsync(9</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002191>
+790030 1789830181.359881 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002172>
+790030 1789830181.367327 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002347>
+790034 1789830181.371173 fsync(16</tmp/.tmpZiCYgE/blobs/bao/b3/87/87e83cb693c0a4342e2b19ee26fcd3e24f0c6c71b1bd99dd60da15a35573e9c7#3393024163840002> <unfinished ...>
+790030 1789830181.371316 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins> <unfinished ...>
+790034 1789830181.373474 <... fsync resumed>) = 0 <0.002240>
+790034 1789830181.373944 fsync(16</tmp/.tmpZiCYgE/blobs/bao/b3/87> <unfinished ...>
+790030 1789830181.375494 <... fsync resumed>) = 0 <0.004156>
+790034 1789830181.377526 <... fsync resumed>) = 0 <0.003557>
+790034 1789830181.377666 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3> <unfinished ...>
+790035 1789830181.378579 fsync(17</tmp/.tmpZiCYgE/blobs/bao/b3/61/61f14b3b5b684d723ca4e6c53bc089adcc2fb7042dc241749eb3eddef98a5675#3393024163840003> <unfinished ...>
+790037 1789830181.378651 fsync(18</tmp/.tmpZiCYgE/blobs/bao/b3/be/be6ce281d7a10d77e88f1aaa7fabb3e9fe871e360bea63f14c82922acb48f8fb#3393024163840004> <unfinished ...>
+790036 1789830181.378727 fsync(19</tmp/.tmpZiCYgE/blobs/bao/b3/d7/d7d2dc1589b0da4a295715bd729b9d2bde6a1b2cf1127ec650d757aa2b91382a#3393024163840005> <unfinished ...>
+790030 1789830181.379095 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins> <unfinished ...>
+790038 1789830181.379175 fsync(20</tmp/.tmpZiCYgE/blobs/bao/b3/84/84c5d7dc3e430e3323c2e173eae0946d72ca5d6fab43f1c65b26c621cdc41d69#3393024163840006> <unfinished ...>
+790034 1789830181.379890 <... fsync resumed>) = 0 <0.002192>
+790034 1789830181.379988 fsync(9</tmp/.tmpZiCYgE/blobs/bao> <unfinished ...>
+790036 1789830181.381939 <... fsync resumed>) = 0 <0.003176>
+790035 1789830181.381963 <... fsync resumed>) = 0 <0.003320>
+790038 1789830181.382067 <... fsync resumed>) = 0 <0.002873>
+790037 1789830181.382081 <... fsync resumed>) = 0 <0.003392>
+790030 1789830181.382097 <... fsync resumed>) = 0 <0.002982>
+790037 1789830181.383712 fsync(15</tmp/.tmpZiCYgE/blobs/bao/b3/39/39b136864af92b6251e9ed15c36239c5935614c39cd9950e031809b25cc26b9a#3393024163840007> <unfinished ...>
+790030 1789830181.383748 fsync(16</tmp/.tmpZiCYgE/blobs/bao/b3/fb/fbc71d5c5a35efb1f2f808fe640c912db63a77dce257c119c0fce1dcd0c16c62#3393024163840008> <unfinished ...>
+790036 1789830181.383824 fsync(17</tmp/.tmpZiCYgE/blobs/bao/b3/fd/fd349cb70f15dfa5ede837c96d2373d4e755f6586dbeb9d364ce8890a341263b#3393024163840009> <unfinished ...>
+790038 1789830181.383897 fsync(18</tmp/.tmpZiCYgE/blobs/bao/b3/72/72b8105eeae42c0e4ddbebd620a686f8ab3fc51789ffc21e3a99067027e7b181#3393024163840010> <unfinished ...>
+790035 1789830181.383918 fsync(19</tmp/.tmpZiCYgE/blobs/bao/b3/9c/9c19f65b07cbcc64338cf0bf66fd349e1961d92a6cde45fd38d748c8772b1ec1#3393024163840011> <unfinished ...>
+790034 1789830181.383968 <... fsync resumed>) = 0 <0.003963>
+790034 1789830181.384073 fsync(9</tmp/.tmpZiCYgE/blobs> <unfinished ...>
+790039 1789830181.384493 fsync(20</tmp/.tmpZiCYgE/blobs/bao/b3/1a/1a877aab251be339b8500830e1a5db879decfc8332c0f0fde9e16bd373d15aa6#3393024163840012> <unfinished ...>
+790040 1789830181.384781 fsync(21</tmp/.tmpZiCYgE/blobs/bao/b3/52/52527be93984ebf91e2d38a08c2a7cd77a271470149bfdd61c07fe98d0c31a25#3393024163840013> <unfinished ...>
+790042 1789830181.385368 fsync(22</tmp/.tmpZiCYgE/blobs/bao/b3/95/958cbfb18cef9fa816aca24198cb4a6dcb4589a57b4d318083d7d49440702e30#3393024163840014> <unfinished ...>
+790043 1789830181.385569 fsync(23</tmp/.tmpZiCYgE/blobs/bao/b3/64/6454e1d7b88cc7d637d075849fed5bb227846468e6430f2475905f1489fd11c8#3393024163840015> <unfinished ...>
+790041 1789830181.385632 fsync(24</tmp/.tmpZiCYgE/blobs/bao/b3/4d/4dc248e4e69bba86c95d787871b6fc84e2b9ceff93f17ae4aeb133e16c0b0ad9#3393024163840016> <unfinished ...>
+790037 1789830181.386026 <... fsync resumed>) = 0 <0.002278>
+790035 1789830181.386044 <... fsync resumed>) = 0 <0.002105>
+790038 1789830181.386188 <... fsync resumed>) = 0 <0.002270>
+790036 1789830181.386204 <... fsync resumed>) = 0 <0.002357>
+790030 1789830181.386219 <... fsync resumed>) = 0 <0.002448>
+790043 1789830181.388143 <... fsync resumed>) = 0 <0.002550>
+790042 1789830181.388168 <... fsync resumed>) = 0 <0.002778>
+790041 1789830181.388182 <... fsync resumed>) = 0 <0.002526>
+790040 1789830181.388195 <... fsync resumed>) = 0 <0.003389>
+790039 1789830181.388208 <... fsync resumed>) = 0 <0.003675>
+790034 1789830181.388221 <... fsync resumed>) = 0 <0.004123>
+790037 1789830181.389780 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/1a>) = 0 <0.002055>
+790037 1789830181.391962 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/39>) = 0 <0.002178>
+790037 1789830181.394257 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/4d>) = 0 <0.002050>
+790037 1789830181.396419 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/52>) = 0 <0.002088>
+790037 1789830181.398662 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/61>) = 0 <0.002037>
+790037 1789830181.400844 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/64>) = 0 <0.002045>
+790037 1789830181.403035 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/72>) = 0 <0.002055>
+790037 1789830181.405240 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/84>) = 0 <0.002211>
+790037 1789830181.407579 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/95>) = 0 <0.002071>
+790037 1789830181.409788 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/9c>) = 0 <0.002044>
+790037 1789830181.411969 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/be>) = 0 <0.002037>
+790037 1789830181.414143 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/d7>) = 0 <0.002195>
+790037 1789830181.416488 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/fb>) = 0 <0.002061>
+790037 1789830181.418709 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/fd>) = 0 <0.002179>
+790037 1789830181.421039 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3>) = 0 <0.002185>
+790037 1789830181.423372 fsync(9</tmp/.tmpZiCYgE/blobs/bao>) = 0 <0.000016>
+790037 1789830181.423521 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.000015>
+790035 1789830181.426415 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002276>
+790030 1789830181.430003 fsync(15</tmp/.tmpZiCYgE/blobs/bao/b3/c3/c35198ec39a219a0f888ce9537b112342393c350ce555ea8ab2be2af12a5bc9c#3393024163840017> <unfinished ...>
+790036 1789830181.430525 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins> <unfinished ...>
+790030 1789830181.432287 <... fsync resumed>) = 0 <0.002246>
+790043 1789830181.433318 fsync(15</tmp/.tmpZiCYgE/blobs/bao/b3/c3> <unfinished ...>
+790036 1789830181.434298 <... fsync resumed>) = 0 <0.003728>
+790035 1789830181.435366 fsync(17</tmp/.tmpZiCYgE/blobs/bao/b3/c8/c8d19eac09f862cf5025acacbaca33c4b22736c6f8cd301d0cab44005fd9a6aa#3393024163840018> <unfinished ...>
+790038 1789830181.435445 fsync(18</tmp/.tmpZiCYgE/blobs/bao/b3/a7/a7bc2b2043b19c3f66d16f1407359aa518b6f37a63a4270cdf2ac0a79b25663a#3393024163840019> <unfinished ...>
+790036 1789830181.435846 fsync(19</tmp/.tmpZiCYgE/blobs/bao/b3/af/af54e4a0eef3b785753697d57d0a3a17fde76899a1e4e156c36584e22f55df2d#3393024163840020> <unfinished ...>
+790041 1789830181.435889 fsync(20</tmp/.tmpZiCYgE/blobs/bao/b3/5a/5adabe13a708422aafa46cbde0694bfb646e6e6782be6418a7b610bd990c94fc#3393024163840021> <unfinished ...>
+790030 1789830181.435967 fsync(21</tmp/.tmpZiCYgE/blobs/bao/b3/72/7299e5b43f1540fab0c55b9e4787b48da7e4cd2bf3d0113f118edc85c4110109#3393024163840022> <unfinished ...>
+790040 1789830181.436108 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins> <unfinished ...>
+790043 1789830181.436475 <... fsync resumed>) = 0 <0.003129>
+790043 1789830181.436575 fsync(15</tmp/.tmpZiCYgE/blobs/bao/b3> <unfinished ...>
+790041 1789830181.438755 <... fsync resumed>) = 0 <0.002844>
+790035 1789830181.438767 <... fsync resumed>) = 0 <0.003374>
+790030 1789830181.438779 <... fsync resumed>) = 0 <0.002793>
+790038 1789830181.439147 <... fsync resumed>) = 0 <0.003681>
+790036 1789830181.439172 <... fsync resumed>) = 0 <0.003297>
+790040 1789830181.439192 <... fsync resumed>) = 0 <0.003065>
+790037 1789830181.440808 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/b1/b1fb4c09d081a3f476b4e5bbcf29f113edad6d5602054af54fe893bebc999433#3393024163840023> <unfinished ...>
+790040 1789830181.440855 fsync(16</tmp/.tmpZiCYgE/blobs/bao/b3/97/97d391c5dc39d13c1baed2720be6642d2fc4b9951704985bf76f0ad52f96fab0#3393024163840024> <unfinished ...>
+790042 1789830181.440885 fsync(17</tmp/.tmpZiCYgE/blobs/bao/b3/cd/cd3d337db42922f3d7048ed5984cb2d70ea54ac535e33efabaf136a0d7a00245#3393024163840025> <unfinished ...>
+790039 1789830181.440919 fsync(18</tmp/.tmpZiCYgE/blobs/bao/b3/52/52dec710222d62897eaf67de732015ea99afa64449921d4a88a15063dba707ff#3393024163840026> <unfinished ...>
+790035 1789830181.440954 fsync(19</tmp/.tmpZiCYgE/blobs/bao/b3/ac/ac881bcc7a0d4fc467cfe67d28f8fa6190e4a3e1d09f00b24614509d9c4b71ba#3393024163840027> <unfinished ...>
+790041 1789830181.440981 fsync(20</tmp/.tmpZiCYgE/blobs/bao/b3/41/41819c729960713f0066da249e1264111a4508f44aa0b030859ec580ed83f33a#3393024163840028> <unfinished ...>
+790034 1789830181.441044 fsync(21</tmp/.tmpZiCYgE/blobs/bao/b3/2c/2c69ae72275ec1dc50a2928957815fb45896ea7a4734813d013529cee2127864#3393024163840029> <unfinished ...>
+790043 1789830181.441095 <... fsync resumed>) = 0 <0.004502>
+790043 1789830181.441210 fsync(15</tmp/.tmpZiCYgE/blobs/bao>) = 0 <0.000017>
+790043 1789830181.441322 fsync(15</tmp/.tmpZiCYgE/blobs>) = 0 <0.000009>
+790036 1789830181.441425 fsync(22</tmp/.tmpZiCYgE/blobs/bao/b3/d9/d9e9d6eaebf24f7b5cf497b6df496fe83d996cedb7dd576bfd7955d04d8554bc#3393024163840030> <unfinished ...>
+790038 1789830181.441464 fsync(15</tmp/.tmpZiCYgE/blobs/bao/b3/c2/c2f54346363aab648131f9eb7bfba3ee7a847604b7a6223dd0ab28ba0f9939ad#3393024163840031> <unfinished ...>
+790043 1789830181.441701 fsync(23</tmp/.tmpZiCYgE/blobs/bao/b3/fb/fb0a22ba3bba3ff333f61debf57818c129ea81bacc401c919160440c80029050#3393024163840032> <unfinished ...>
+790030 1789830181.442142 fsync(24</tmp/.tmpZiCYgE/blobs/bao/b3/5a> <unfinished ...>
+790037 1789830181.443293 <... fsync resumed>) = 0 <0.002452>
+790042 1789830181.443743 <... fsync resumed>) = 0 <0.002838>
+790041 1789830181.443761 <... fsync resumed>) = 0 <0.002762>
+790040 1789830181.443776 <... fsync resumed>) = 0 <0.002904>
+790039 1789830181.443791 <... fsync resumed>) = 0 <0.002854>
+790035 1789830181.443807 <... fsync resumed>) = 0 <0.002838>
+790043 1789830181.445740 <... fsync resumed>) = 0 <0.004009>
+790038 1789830181.445760 <... fsync resumed>) = 0 <0.004274>
+790036 1789830181.445771 <... fsync resumed>) = 0 <0.004321>
+790034 1789830181.445783 <... fsync resumed>) = 0 <0.004720>
+790030 1789830181.445793 <... fsync resumed>) = 0 <0.003633>
+790030 1789830181.445897 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/72>) = 0 <0.002577>
+790030 1789830181.448632 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/a7>) = 0 <0.002369>
+790030 1789830181.451144 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/af>) = 0 <0.002187>
+790030 1789830181.453469 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/c8>) = 0 <0.002365>
+790030 1789830181.455983 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3>) = 0 <0.002168>
+790030 1789830181.458320 fsync(9</tmp/.tmpZiCYgE/blobs/bao>) = 0 <0.000018>
+790030 1789830181.458480 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.000016>
+790037 1789830181.460059 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/2c>) = 0 <0.002448>
+790037 1789830181.462643 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/41>) = 0 <0.002325>
+790037 1789830181.465085 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/52>) = 0 <0.002525>
+790037 1789830181.467756 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/97>) = 0 <0.002406>
+790037 1789830181.470315 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/ac>) = 0 <0.002683>
+790037 1789830181.473714 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/b1>) = 0 <0.002954>
+790037 1789830181.476959 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/c2>) = 0 <0.002277>
+790037 1789830181.479357 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/cd>) = 0 <0.002225>
+790037 1789830181.481702 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/d9>) = 0 <0.002190>
+790037 1789830181.484021 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/fb>) = 0 <0.002179>
+790037 1789830181.486331 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3>) = 0 <0.000015>
+790037 1789830181.486470 fsync(9</tmp/.tmpZiCYgE/blobs/bao>) = 0 <0.000015>
+790037 1789830181.486623 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.000015>
+790042 1789830181.490278 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002705>
+790040 1789830181.494395 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/1f/1f8ca49e0869c121cd3668afef41d5e87e9bc7e271acb1a80d3851c1313ef868#3393024163840033>) = 0 <0.002277>
+790039 1789830181.497227 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3/1f>) = 0 <0.002423>
+790039 1789830181.499802 fsync(9</tmp/.tmpZiCYgE/blobs/bao/b3>) = 0 <0.002208>
+790039 1789830181.502168 fsync(9</tmp/.tmpZiCYgE/blobs/bao>) = 0 <0.000015>
+790039 1789830181.502312 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.000015>
+790035 1789830181.503868 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002508>
+790038 1789830181.508759 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002479>
+790030 1789830181.513903 fsync(15</tmp/.tmpZiCYgE/casita.sqlite.online-pins.reader-a0c989fda5f5eb86aea5c860fa05f0b30157213066f3d54f996f2acb996e2e2c.lock>) = 0 <0.002420>
+790030 1789830181.517009 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002804>
+790042 1789830181.524492 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002555>
+790041 1789830181.528156 fsync(9</tmp/.tmpZiCYgE/blobs/packs/b3/b8>) = 0 <0.002576>
+790041 1789830181.530884 fsync(9</tmp/.tmpZiCYgE/blobs/packs/b3>) = 0 <0.002210>
+790041 1789830181.533219 fsync(9</tmp/.tmpZiCYgE/blobs/packs>) = 0 <0.002233>
+790041 1789830181.535605 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.002346>
+790041 1789830181.538220 fsync(9</tmp/.tmpZiCYgE/blobs/packs/b3/b8/b83b5e38b8de028754c68e8b7f98338470d78df79ef574489a9553f690ff0d8f#1>) = 0 <0.002576>
+790041 1789830181.541031 fsync(9</tmp/.tmpZiCYgE/blobs/packs/b3/b8>) = 0 <0.002330>
+790040 1789830181.545367 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002494>
+790040 1789830181.548470 fsync(9</tmp/.tmpZiCYgE/blobs/pack-index-reclaim-needed#3393024163840034>) = 0 <0.002416>
+790040 1789830181.551142 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.002324>
+790035 1789830181.555204 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002561>
+790043 1789830181.558399 fsync(9</tmp/.tmpZiCYgE/blobs/pack-indexes/b3/3f/3f9cfaf86ebd9452d4cbbc5192e10daeb75c6dc3d3dde35d363e0797b3bc12fb#3393024163840035>) = 0 <0.002457>
+790038 1789830181.561442 fsync(9</tmp/.tmpZiCYgE/blobs/pack-indexes/b3/3f>) = 0 <0.002302>
+790038 1789830181.563934 fsync(9</tmp/.tmpZiCYgE/blobs/pack-indexes/b3>) = 0 <0.002368>
+790038 1789830181.566440 fsync(9</tmp/.tmpZiCYgE/blobs/pack-indexes>) = 0 <0.000014>
+790038 1789830181.566573 fsync(9</tmp/.tmpZiCYgE/blobs>) = 0 <0.000014>
+790036 1789830181.577834 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002602>
+790040 1789830181.586536 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002555>
+790043 1789830181.590861 fsync(16</tmp/.tmpZiCYgE/casita.sqlite.online-pins>) = 0 <0.002594>
+790031 1789830181.597276 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.002492>
+790031 1789830181.669028 fsync(12</tmp/.tmpZiCYgE/casita.sqlite-wal>) = 0 <0.032787>

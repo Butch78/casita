@@ -1,0 +1,15 @@
+Benchmarking nar_import/bytes-16385/32
+Benchmarking nar_import/bytes-16385/32: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 8.2s.
+Benchmarking nar_import/bytes-16385/32: Collecting 10 samples in estimated 8.1896 s (10 iterations)
+Benchmarking nar_import/bytes-16385/32: Analyzing
+nar_import/bytes-16385/32
+                        time:   [447.38 ms 480.36 ms 518.18 ms]
+                        change: [+59.888% +92.757% +137.19%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Benchmarking nar_import/bytes-16385/15
+
+thread 'main' (787061) panicked at /home/domen/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/criterion-0.5.1/src/analysis/mod.rs:56:13:
+Baseline 'bao-before' must exist before comparison is allowed; try --save-baseline bao-before
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

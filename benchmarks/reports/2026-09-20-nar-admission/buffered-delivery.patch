@@ -1,0 +1,199 @@
+diff --git a/src/nar/stream.rs b/src/nar/stream.rs
+index 6903cc0..68cf4ee 100644
+--- a/src/nar/stream.rs
++++ b/src/nar/stream.rs
+@@ -4,7 +4,8 @@ use futures::{FutureExt, StreamExt};
+ const MAX_DEPTH: usize = 64;
+ const MAX_NODES: u64 = 1_000_000;
+ const BUFFER: usize = 64 * 1024;
+-// Each in-flight file retains only its bounded pipe and the blob writer buffers.
++// File delivery retains at most this many active payloads, this many queued
++// payloads, and one in the decoder. Each buffer or pipe is at most BUFFER.
+ const FILE_CONCURRENCY: usize = 16;
+ 
+ enum Hasher {
+@@ -214,12 +215,31 @@ impl<R: AsyncRead + Unpin> AsyncRead for FileReader<'_, R> {
+         }
+     }
+ }
+-// nix-archive owns wire validation. Bounded pipes adapt its synchronous
+-// visitor to async storage without buffering an archive or a whole file.
++enum FilePayload {
++    Buffered(std::io::Cursor<Vec<u8>>),
++    Streaming(tokio::io::DuplexStream),
++}
++
++impl AsyncRead for FilePayload {
++    fn poll_read(
++        self: Pin<&mut Self>,
++        cx: &mut Context<'_>,
++        buf: &mut ReadBuf<'_>,
++    ) -> Poll<std::io::Result<()>> {
++        match self.get_mut() {
++            Self::Buffered(bytes) => Pin::new(bytes).poll_read(cx, buf),
++            Self::Streaming(pipe) => Pin::new(pipe).poll_read(cx, buf),
++        }
++    }
++}
++
++// nix-archive owns wire validation. Small files are complete before staging,
++// so sibling admissions can overlap without waiting for per-file pipe EOF.
++// Larger files use bounded pipes and are never buffered whole.
+ enum ImportEvent {
+     Directory(Option<Vec<u8>>),
+     End,
+-    File(Option<Vec<u8>>, bool, u64, tokio::io::DuplexStream),
++    File(Option<Vec<u8>>, bool, u64, FilePayload),
+     Symlink(Option<Vec<u8>>, Vec<u8>),
+ }
+ fn archive_error(error: nix_archive::nar::Error) -> NarError {
+@@ -235,7 +255,7 @@ async fn decode<R: AsyncRead + Unpin + Send>(
+     batch_limit: usize,
+ ) -> Result<(Node, GitHashes, Facts, u64), NarError> {
+     let (mut input, wire) = tokio::io::duplex(BUFFER);
+-    let (events, receiver) = tokio::sync::mpsc::channel(1);
++    let (events, receiver) = tokio::sync::mpsc::channel(FILE_CONCURRENCY);
+     let mut receiver = tokio_stream::wrappers::ReceiverStream::new(receiver);
+     // The first stage to fail names the cause. The others then see a closed
+     // pipe or a missing root, which are consequences; each stage records its
+@@ -270,12 +290,23 @@ async fn decode<R: AsyncRead + Unpin + Send>(
+                         executable,
+                         mut contents,
+                     } => {
++                        let size = contents.size();
++                        if size <= BUFFER as u64 {
++                            let mut bytes = Vec::with_capacity(size as usize);
++                            contents.copy_to(&mut bytes)?;
++                            return send(ImportEvent::File(
++                                name.map(<[u8]>::to_vec),
++                                executable,
++                                size,
++                                FilePayload::Buffered(std::io::Cursor::new(bytes)),
++                            ));
++                        }
+                         let (output, payload) = tokio::io::duplex(BUFFER);
+                         send(ImportEvent::File(
+                             name.map(<[u8]>::to_vec),
+                             executable,
+-                            contents.size(),
+-                            payload,
++                            size,
++                            FilePayload::Streaming(payload),
+                         ))?;
+                         contents.copy_to(&mut tokio_util::io::SyncIoBridge::new(output))?;
+                         Ok(())
+diff --git a/src/nar/tests.rs b/src/nar/tests.rs
+index 7e2dca6..79aa8a4 100644
+--- a/src/nar/tests.rs
++++ b/src/nar/tests.rs
+@@ -1356,7 +1356,14 @@ mod import_fixture;
+ 
+ #[tokio::test]
+ async fn concurrent_intake_preserves_order_across_windows_and_pipe_boundaries() {
+-    for (files, size) in [(15, 0), (16, 1024), (17, 65535), (33, 65537), (17, 131073)] {
++    for (files, size) in [
++        (15, 0),
++        (16, 1024),
++        (17, 65535),
++        (17, 65536),
++        (33, 65537),
++        (17, 131073),
++    ] {
+         let bytes = import_fixture::archive(files, size);
+         // A directory ending after a full staging window, followed by a sibling,
+         // catches accidental attachment of completed files to the wrong frame.
+@@ -1428,50 +1435,52 @@ async fn concurrent_intake_input_failure_does_not_hang_or_create_an_association(
+ #[tokio::test]
+ async fn cancelled_concurrent_intake_releases_staged_files() {
+     use tokio::io::AsyncWriteExt;
+-    let bytes = import_fixture::archive(64, 1024);
+-    let source = Repository::memory().unwrap();
+-    let expected = source
+-        .import(NarImport::new(bytes.as_slice()))
++    for size in [1024, 65536, 65537] {
++        let bytes = import_fixture::archive(64, size);
++        let source = Repository::memory().unwrap();
++        let expected = source
++            .import(NarImport::new(bytes.as_slice()))
++            .await
++            .unwrap();
++        let root = expected.root().clone();
++        let repo = memory_with_batch_limit(1);
++        let (mut writer, reader) = tokio::io::duplex(1024);
++        let task = tokio::spawn({
++            let repo = repo.clone();
++            async move { repo.import(NarImport::new(reader)).await }
++        });
++        // Leave the final directory frame incomplete with multiple file stages
++        // already through the bounded pipeline.
++        tokio::time::timeout(
++            Duration::from_secs(30),
++            writer.write_all(&bytes[..bytes.len() - 16]),
++        )
+         .await
++        .unwrap()
+         .unwrap();
+-    let root = expected.root().clone();
+-    let repo = memory_with_batch_limit(1);
+-    let (mut writer, reader) = tokio::io::duplex(1024);
+-    let task = tokio::spawn({
+-        let repo = repo.clone();
+-        async move { repo.import(NarImport::new(reader)).await }
+-    });
+-    // Leave the final directory frame incomplete with multiple file stages
+-    // already through the bounded pipeline.
+-    tokio::time::timeout(
+-        Duration::from_secs(30),
+-        writer.write_all(&bytes[..bytes.len() - 16]),
+-    )
+-    .await
+-    .unwrap()
+-    .unwrap();
+-    task.abort();
+-    assert!(matches!(task.await, Err(error) if error.is_cancelled()));
+-    drop(writer);
+-    assert!(
+-        repo.inner
+-            .nar_store
+-            .as_ref()
+-            .unwrap()
+-            .get(&identity(&root))
+-            .await
+-            .unwrap()
+-            .is_none()
+-    );
+-    repo.collect().await.unwrap();
+-    let held = repo.retained_reader().await.unwrap();
+-    let hash = blake3::hash(&0u64.to_le_bytes());
+-    let payload: Vec<_> = (0..1024).map(|i| hash.as_bytes()[i % 32]).collect();
+-    let key = ObjectKey::blob(crate::BlobId::new(blake3::hash(&payload).into()));
+-    assert!(
+-        held.object(&key).await.unwrap().is_none(),
+-        "cancelled stages retained a file after collection"
+-    );
++        task.abort();
++        assert!(matches!(task.await, Err(error) if error.is_cancelled()));
++        drop(writer);
++        assert!(
++            repo.inner
++                .nar_store
++                .as_ref()
++                .unwrap()
++                .get(&identity(&root))
++                .await
++                .unwrap()
++                .is_none()
++        );
++        repo.collect().await.unwrap();
++        let held = repo.retained_reader().await.unwrap();
++        let hash = blake3::hash(&0u64.to_le_bytes());
++        let payload: Vec<_> = (0..size).map(|i| hash.as_bytes()[i % 32]).collect();
++        let key = ObjectKey::blob(crate::BlobId::new(blake3::hash(&payload).into()));
++        assert!(
++            held.object(&key).await.unwrap().is_none(),
++            "cancelled stages retained a file after collection"
++        );
++    }
+ }
+ 
+ #[tokio::test]

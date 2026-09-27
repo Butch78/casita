@@ -1,0 +1,29 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling casita v0.1.0 (/home/domen/dev/casita-small-file-import)
+    Finished `bench` profile [optimized] target(s) in 2m 10s
+     Running benches/filesystem_import.rs (/tmp/obrador-memory-publication-build/release/deps/filesystem_import-a76d4b6116372939)
+Testing filesystem_import/bytes-0-files-48/1
+Success
+Testing filesystem_import/bytes-0-files-48/16
+Success
+Testing filesystem_import/bytes-1024-files-48/1
+Success
+Testing filesystem_import/bytes-1024-files-48/16
+Success
+Testing filesystem_import/bytes-262143-files-16/1
+Success
+Testing filesystem_import/bytes-262143-files-16/16
+Success
+Testing filesystem_import/bytes-262144-files-16/1
+Success
+Testing filesystem_import/bytes-262144-files-16/16
+Success
+Testing filesystem_import/bytes-262145-files-16/1
+Success
+Testing filesystem_import/bytes-262145-files-16/16
+Success
+Testing filesystem_import/bytes-1048576-files-16/1
+Success
+Testing filesystem_import/bytes-1048576-files-16/16
+Success

@@ -1,0 +1,13 @@
+...running online-holds
+.completion ledger: /tmp/tmpswxx_jnq/results/execution.json
+running online-holds
+..completion ledger: /tmp/tmp194shkbf/results/execution.json
+running fskit-setup-reuse
+completion ledger: /tmp/tmp2d8qdx8w/results/execution.json
+running fskit-setup-reuse
+.
+----------------------------------------------------------------------
+Ran 7 tests in 1.259s
+
+OK
+completion ledger: /tmp/tmpms4s4ynl/results/execution.json

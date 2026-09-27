@@ -1,0 +1,310 @@
+---
+import RepositoryIcon from './RepositoryIcon.astro';
+import RepositoryFullGraph from './RepositoryFullGraph.astro';
+import build from '../../public/examples/uv-artifacts.json';
+import { artifactWrites } from './repository-flow';
+interface Props { embedded?: boolean; }
+const { embedded = false } = Astro.props;
+const chunks = ['A','B','C'];
+---
+<section class:list={['repository-section', { embedded }]} id={embedded ? undefined : 'how-it-works'} aria-labelledby={embedded ? 'blog-repository-title' : 'repository-title'}>
+  <div class="landing-container">
+    <header class="intro">{embedded ? <h3 id="blog-repository-title">Cargo using Casita</h3> : <h2 id="repository-title">Cargo using Casita</h2>}</header>
+    <casita-file-flow>
+      <div class="toolbar">
+        <div class="steps" role="group" aria-label="Explore the artifact lifecycle">
+          <button type="button" data-scene="0" aria-pressed="true"><RepositoryIcon name="terminal" />Write</button>
+          <button type="button" data-scene="1" aria-pressed="false"><RepositoryIcon name="terminal" />Run</button>
+        </div>
+        <button class="play" type="button" data-play><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path data-play-icon d="M8 4v16 M16 4v16" /></svg><span data-play-label>Pause</span></button>
+      </div>
+      <p class="story" data-story aria-live="polite">Cargo writes all three outputs directly into Casita.</p>
+      <div class="diagram">
+        <svg class="connections" aria-hidden="true"><path data-metadata-edge />{artifactWrites.map((artifact,i)=><><path data-payload-edge={i} />{artifact.chunks.map(chunk=><path data-chunk-edge={chunk} data-artifact={i} />)}</>)}</svg>
+        <div class="motion" aria-hidden="true">
+          {artifactWrites.map((artifact,i)=>artifact.chunks.map(chunk=><span class="packet" data-write={chunk} data-artifact={i} data-tone={chunk}>{chunk}</span>))}
+          {chunks.map(chunk=><span class="packet" data-read={chunk} data-tone={chunk}>{chunk}</span>)}
+          <span class="packet metadata" data-metadata><RepositoryIcon name="object" /></span>
+        </div>
+        <article class="cargo">
+          <header><RepositoryIcon name="terminal" /><h3>Cargo</h3></header>
+          <div class="producer">
+            <span class="command">$ cargo build --bin uv</span>
+            <div class="outputs">{[1,0,2].map(i=><div class="output" data-output={i}>
+              <div class="output-heading"><RepositoryIcon name="object" /><strong class="filename">{build.files[i].label}</strong><span class="output-check"><RepositoryIcon name="check" /></span></div>
+              <div class="stream"><span data-emitter={i}><RepositoryIcon name="terminal" /></span><i></i>{artifactWrites[i].chunks.map(chunk=><span class="token" data-source={chunk} data-artifact={i} data-tone={chunk}>{chunk}</span>)}<span class="arrow">→</span></div>
+              <p class="status" data-output-status={i}>Waiting</p>
+            </div>)}</div>
+            <p class="status build-status" data-source-status>Writing outputs</p>
+          </div>
+        </article>
+        <article class="store">
+          <header><i class="house" aria-hidden="true"></i><h3>Casita</h3></header>
+          <RepositoryFullGraph files={build.files} rootName="cargo/builds/uv" />
+        </article>
+        <article class="destination">
+          <header><RepositoryIcon name="laptop" /><h3>Run uv</h3></header>
+          <div class="file" data-file>
+            <div class="file-heading"><RepositoryIcon name="object" /><strong class="filename">uv</strong><span class="check"><RepositoryIcon name="check" /></span></div>
+            <div class="bytes">{chunks.map(chunk=><span data-byte={chunk} data-tone={chunk}>{chunk}</span>)}</div>
+            <p class="status" data-file-status>Awaiting metadata</p>
+          </div>
+          <div class="run-result" data-run-result aria-hidden="true"><span class="run-command">$ casita run cargo/builds/uv -- --version</span><samp>{build.run.stdout}</samp></div>
+        </article>
+      </div>
+      <div class="bottom"><span>Output tree prepared. Executable discovered and run.</span><button type="button" data-reset><RepositoryIcon name="reset" />Replay</button></div>
+    </casita-file-flow>
+    <p class="footnote">Proposed Cargo integration · uv {build.version} · executable reconstruction shown; chunks are illustrative. <a href="/guides/run/">Run applications →</a> · <a href="/examples/uv-artifacts.json">Verified artifact ↗</a></p>
+  </div>
+</section>
+<style>
+  .repository-section { padding-block: 4rem; border-block-end: 1px solid var(--landing-line); background: var(--landing-panel); }
+  .repository-section.embedded { padding-block: 1.5rem; border: 0; background: transparent; }
+  .embedded .landing-container { max-width: none; padding-inline: 0; }
+  .embedded .intro { margin-bottom: 1rem; }
+  .embedded * { box-sizing: border-box; }
+  .intro { text-align: center; margin-bottom: 2rem; }
+  .intro :is(h2,h3) { color: var(--sl-color-white); font-size: clamp(1.8rem,4vw,3rem); letter-spacing: -.045em; line-height: 1.15; margin: 0; }
+  casita-file-flow { --accent: var(--sl-color-text-accent); display: block; border: 1px solid var(--landing-line); border-radius: 14px; background: var(--sl-color-bg); overflow: hidden; container-type: inline-size; }
+  .toolbar,.steps,.bottom { display: flex; align-items: center; }
+  .toolbar { justify-content: space-between; padding-right: 1rem; border-bottom: 1px solid var(--landing-line); }
+  button { display: flex; align-items: center; justify-content: center; gap: .5rem; border: 0; background: transparent; color: var(--sl-color-gray-2); font: 600 .8rem var(--sl-font); cursor: pointer; }
+  button:focus-visible { outline: 2px solid var(--sl-color-text-accent); outline-offset: -3px; }
+  .steps button { padding: 1.1rem 1.4rem; border-bottom: 2px solid transparent; }
+  .steps button[aria-pressed='true'] { border-bottom-color: var(--accent); color: var(--accent); background: color-mix(in srgb,var(--accent) 4%,transparent); }
+  .play { min-width: 88px; padding: .5rem .7rem; border: 1px solid var(--landing-line); border-radius: 6px; }
+  .story { text-align: center; color: var(--sl-color-white); margin: 0; padding: 1.8rem 1.5rem; font-size: .95rem; min-height: 84px; }
+  .diagram { display: grid; grid-template-columns: 1fr 1.85fr 1fr; align-items: center; gap: 1.2rem; padding: 0 1.5rem 1.5rem; position: relative; }
+  article { min-width: 0; border: 1px solid var(--landing-line); border-radius: 10px; background: var(--landing-panel); }
+  article header { display: flex; align-items: center; justify-content: center; gap: .6rem; height: 58px; border-bottom: 1px solid var(--landing-line); color: var(--accent); }
+  h3 { margin: 0; color: var(--sl-color-white); font-size: .95rem; }
+  .destination h3 { font-family: var(--sl-font-mono); font-size: .8rem; }
+  .house { width: 26px; height: 26px; background: var(--accent); mask: url('/brand/mark.svg') center/contain no-repeat; }
+  .producer { padding: 1.25rem 1rem; }
+  .command { display: block; font: .72rem var(--sl-font-mono); color: var(--sl-color-gray-2); margin-bottom: 1.25rem; background: transparent; padding: 0; border: 0; }
+  .outputs { display: grid; gap: .9rem; }
+  .output { border: 1px solid var(--landing-line); border-radius: 6px; padding: .75rem; opacity: var(--output-opacity,.45); }
+  .output-heading { display: flex; align-items: center; gap: .45rem; }
+  .output-heading > :global(svg) { width: 16px; height: 16px; color: var(--sl-color-gray-2); }
+  .output .filename { font-size: .78rem; }
+  .output-check { display: flex; margin-left: auto; color: var(--accent); opacity: var(--output-complete,0); }
+  .output-check :global(svg) { width: 15px; height: 15px; }
+  .output .stream { margin-top: .6rem; gap: .25rem; }
+  .output .status { margin-top: .55rem; font-size: .66rem; }
+  .build-status { font-size: .68rem; }
+  .filename { font: .95rem var(--sl-font-mono); color: var(--sl-color-white); white-space: nowrap; }
+  .stream { display: flex; align-items: center; gap: .4rem; margin-top: 1rem; }
+  [data-emitter] { display: grid; place-items: center; color: var(--accent); }
+  .stream i { flex: 1; min-width: 4px; height: 1px; background: var(--landing-line); }
+  .token { display: grid; place-items: center; height: 27px; width: 25px; border: 1px solid var(--chunk-color); color: var(--chunk-color); border-radius: 4px; font: .65rem var(--sl-font-mono); }
+  .arrow { color: var(--accent); }
+  .status { color: var(--sl-color-gray-2); font-size: .72rem; margin: 1rem 0 0; min-height: 1.4em; }
+  .store { border-color: color-mix(in srgb,var(--accent) 35%,var(--landing-line)); }
+  .file { position: relative; isolation: isolate; overflow: hidden; margin: 1.25rem .9rem 1rem; padding: 1rem .7rem; border: 1px dashed var(--landing-line); border-radius: 7px; opacity: var(--file-opacity,.3); }
+  .file::before { content: ''; position: absolute; inset: 0; background: color-mix(in srgb,var(--accent) 8%,var(--sl-color-bg)); transform: scaleX(var(--filled,0)); transform-origin: left; z-index: -1; }
+  .file[data-mapped='true'] { border-color: var(--sl-color-gray-2); }
+  .file[data-complete='true'] { border-style: solid; border-color: var(--accent); }
+  .run-result { margin: 0 .9rem 1rem; padding: .8rem; border: 1px solid var(--landing-line); border-radius: 6px; background: var(--sl-color-bg); opacity: var(--run-opacity,0); transition: none; }
+  .run-result .run-command,.run-result samp { display: block; font: .65rem var(--sl-font-mono); overflow-wrap: anywhere; }
+  .run-result .run-command { border: 0; background: transparent; padding: 0; color: var(--sl-color-gray-2); }
+  .run-result samp { color: var(--accent); margin-top: .6rem; }
+  .file-heading { display: flex; align-items: center; gap: .4rem; }
+  .file-heading > :global(svg) { width: 17px; height: 17px; color: var(--sl-color-gray-2); }
+  .check { display: flex; margin-left: auto; color: var(--accent); opacity: var(--checked,0); }
+  .check :global(svg) { width: 15px; height: 15px; }
+  .bytes { display: flex; gap: .3rem; margin-top: 1.1rem; }
+  .bytes span { display: grid; place-items: center; flex: 1; height: 31px; border: 1px solid var(--chunk-color); background: color-mix(in srgb,var(--chunk-color) 15%,var(--sl-color-bg)); color: var(--chunk-color); border-radius: 4px; font: .65rem var(--sl-font-mono); opacity: var(--received,0); }
+  [data-tone='A'] { --chunk-color: var(--accent); }
+  [data-tone='B'] { --chunk-color: light-dark(#2865b0,#81b4f0); }
+  [data-tone='C'] { --chunk-color: light-dark(#15766c,#6ac8b7); }
+  [data-tone='D'],[data-tone='E'] { --chunk-color: var(--sl-color-gray-2); }
+  .connections,.motion { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .connections { z-index: 1; overflow: visible; }
+  .connections path { fill: none; stroke: var(--sl-color-gray-2); stroke-width: 1; opacity: .15; }
+  .motion { z-index: 3; }
+  .packet { position: absolute; left: 0; top: 0; width: 27px; height: 27px; display: grid; place-items: center; border: 1px solid var(--sl-color-bg); border-radius: 4px; background: var(--chunk-color); color: var(--sl-color-bg); font: .72rem var(--sl-font-mono); opacity: 0; }
+  .connections [data-metadata-edge] { stroke-dasharray: 4 5; }
+  .metadata { background: var(--sl-color-bg); border-color: var(--sl-color-gray-2); color: var(--sl-color-white); border-radius: 50%; }
+  .metadata :global(svg) { width: 17px; height: 17px; }
+  .output,.output-check,.file,.file::before,.packet,.token,.bytes span,.check,.connections path { transition: none; }
+  .bottom { justify-content: space-between; padding: 1rem 1.5rem; border-top: 1px solid var(--landing-line); }
+  .bottom > span { font-size: .75rem; color: var(--sl-color-gray-2); }
+  .bottom button { font-size: .75rem; }
+  .bottom :global(svg) { width: 16px; height: 16px; }
+  .footnote { font-size: .68rem; color: var(--sl-color-gray-2); text-align: center; margin: 1rem 0 0; }
+  .footnote a { color: var(--sl-color-text-accent); }
+  @container (min-width:761px) and (max-width:1050px) {
+    .diagram { grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); gap: 1rem; padding-inline: .75rem; }
+    .cargo { grid-column: 1; grid-row: 1; }
+    .store { grid-column: 2; grid-row: 1 / span 2; }
+    .destination { grid-column: 1; grid-row: 2; }
+    article { min-height: 0; }
+    .file { margin-inline: .5rem; padding-inline: .5rem; }
+    .file-heading { flex-wrap: wrap; }
+    .producer { padding-inline: .7rem; }
+    .stream { gap: .2rem; }
+  }
+  @media(max-width:760px) { .repository-section { padding-block: 3rem; } }
+  @container (max-width:760px) {
+    .diagram { grid-template-columns: 1fr; gap: 1rem; padding-inline: 1rem; }
+    article { min-height: 0; }
+    article header { height: 55px; }
+    .producer { padding: 1rem 1.5rem; }
+    .command { margin-bottom: .8rem; }
+    .file { margin: 1.3rem; }
+    .steps button { padding: .9rem .7rem; font-size: .75rem; }
+    .steps :global(svg) { width: 17px; height: 17px; }
+    .toolbar { padding-right: .6rem; }
+    .play { min-width: 68px; padding-inline: .5rem; font-size: .7rem; }
+    .story { font-size: .85rem; padding: 1.3rem; }
+  }
+  @container (min-width:680px) {
+    .embedded .diagram { grid-template-columns: minmax(0,1.1fr) minmax(0,1.7fr) minmax(0,.95fr); gap: .55rem; padding: 0 .6rem 1.25rem; }
+    .embedded :is(.cargo,.store,.destination) { grid-column: auto; grid-row: auto; }
+    .embedded .producer { padding: 1rem .55rem; }
+    .embedded .output { padding: .5rem; }
+    .embedded .stream { gap: .2rem; }
+    .embedded .file { margin: .75rem .45rem; padding: .6rem .4rem; }
+    .embedded .run-result { margin-inline: .45rem; }
+    .embedded .file-heading,.embedded .bytes { gap: .2rem; }
+  }
+  @media(prefers-reduced-motion:reduce) { .packet { display: none; } }
+</style>
+<script>
+  import { repositoryIcons } from './repository-icons';
+  import { artifactWrites, bytesReady, writeTravel, writeStagger } from './repository-flow';
+  class CasitaFileFlow extends HTMLElement {
+    cleanup?:()=>void;
+    connectedCallback() {
+      this.cleanup?.();
+      const events=new AbortController(),reduced=matchMedia('(prefers-reduced-motion: reduce)');
+      const stage=this.querySelector<HTMLElement>('.diagram')!;
+      const nodes=(selector:string)=>[...this.querySelectorAll<HTMLElement>(selector)];
+      const writes=nodes('[data-write]'),reads=nodes('[data-read]'),stored=nodes('[data-chunk]'),bytes=nodes('[data-byte]'),source=nodes('[data-source]');
+      const tabs=nodes('[data-scene]'),play=this.querySelector<HTMLButtonElement>('[data-play]')!,file=this.querySelector<HTMLElement>('[data-file]')!,metadata=nodes('[data-metadata]')[0];
+      const objects=nodes('[data-object]'),blobs=nodes('[data-blob]'),outputs=nodes('[data-output]');
+      const payloadEdges=[...this.querySelectorAll<SVGPathElement>('[data-payload-edge]')],chunkEdges=[...this.querySelectorAll<SVGPathElement>('[data-chunk-edge]')];
+      const metadataEdge=this.querySelector<SVGPathElement>('[data-metadata-edge]')!;
+      const duration=[11000,6600],playbackRate=1.3;
+      let step=0,elapsed=reduced.matches?duration[0]:0,playing=!reduced.matches,finished=false,visible=false,frame=0,last=0;
+      const clamp=(n:number)=>Math.max(0,Math.min(1,n));
+      const ease=(n:number)=>{const t=clamp(n);return t<.5?4*t*t*t:1-(-2*t+2)**3/2;};
+      const out=(n:number)=>1-(1-clamp(n))**3;
+      const text=(selector:string,value:string)=>{const el=this.querySelector(selector)!;if(el.textContent!==value)el.textContent=value;};
+      type Point={x:number,y:number};
+      type Curve={a:Point,b:Point,c:Point,d:Point};
+      const curve=(a:Point,d:Point):Curve=>({a,b:{x:a.x,y:(a.y+d.y)/2},c:{x:d.x,y:(a.y+d.y)/2},d});
+      const reverse=(q:Curve):Curve=>({a:q.d,b:q.c,c:q.b,d:q.a});
+      const routes=new Map<HTMLElement,Curve[]>();
+      const draw=(q:Curve)=>`M${q.a.x} ${q.a.y} C${q.b.x} ${q.b.y} ${q.c.x} ${q.c.y} ${q.d.x} ${q.d.y}`;
+      const measure=()=>{
+        const box=stage.getBoundingClientRect();
+        const point=(selector:string,anchor:'top'|'bottom'|'center'='center'):Point=>{const r=this.querySelector(selector)!.getBoundingClientRect();return{x:r.left+r.width/2-box.left,y:(anchor==='top'?r.top:anchor==='bottom'?r.bottom:r.top+r.height/2)-box.top};};
+        payloadEdges.forEach((edge,i)=>edge.setAttribute('d',draw(curve(point(`[data-object="${i}"]`,'bottom'),point(`[data-blob="${i}"]`,'top')))));
+        chunkEdges.forEach(edge=>{
+          const id=edge.dataset.chunkEdge!,artifact=edge.dataset.artifact!;
+          const link=curve(point(`[data-blob="${artifact}"]`,'bottom'),point(`[data-chunk="${id}"]`,'top'));
+          edge.setAttribute('d',draw(link));
+          const writer=writes.find(node=>node.dataset.artifact===artifact&&node.dataset.write===id)!;
+          routes.set(writer,[curve(point(`[data-emitter="${artifact}"]`),link.a),link]);
+          if(artifact==='0') {
+            const up=reverse(link),reader=reads.find(node=>node.dataset.read===id)!;
+            routes.set(reader,[up,curve(up.d,point(`[data-byte="${id}"]`))]);
+          }
+        });
+        // Keep metadata in the gaps between rows and outside the store on narrow screens.
+        const origin=point('[data-object="0"]','bottom'),target=point('.file-heading');
+        const storeBox=this.querySelector('.store')!.getBoundingClientRect();
+        const lane={x:target.x<origin.x-20?storeBox.left-box.left-8:Math.min(storeBox.right-box.left+8,box.width-15),y:origin.y+20};
+        const metadataRoute=[curve(origin,{x:origin.x,y:lane.y}),curve({x:origin.x,y:lane.y},lane),curve(lane,{x:lane.x,y:target.y}),curve({x:lane.x,y:target.y},target)];
+        routes.set(metadata,metadataRoute);metadataEdge.setAttribute('d',metadataRoute.map(draw).join(' '));
+      };
+      const packet=(node:HTMLElement,t:number,active:boolean)=>{
+        const opacity=active&&!reduced.matches?ease(t/.18)*ease((1-t)/.18):0;
+        node.style.opacity=String(opacity);if(!opacity)return;
+        const route=routes.get(node);if(!route)return;
+        const travel=ease(t)*route.length,i=Math.min(route.length-1,Math.floor(travel)),u=travel-i,v=1-u,q=route[i];
+        const x=v*v*v*q.a.x+3*v*v*u*q.b.x+3*v*u*u*q.c.x+u*u*u*q.d.x,y=v*v*v*q.a.y+3*v*v*u*q.b.y+3*v*u*u*q.c.y+u*u*u*q.d.y;
+        node.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;
+      };
+      const render=()=>{
+        this.dataset.ready='true';this.dataset.step=String(step);
+        tabs.forEach((tab,i)=>tab.setAttribute('aria-pressed',String(i===step)));
+        text('[data-story]',step===0?'Cargo writes all three outputs directly into Casita.':'Casita prepares the stored output tree, finds uv, and runs it.');
+        const active=elapsed<3300?1:elapsed<6600?0:2;
+        text('[data-source-status]',step>0||elapsed>=10500?'All 3 outputs retained':elapsed>=9350?'Publishing build root':'Writing outputs');
+        artifactWrites.forEach((artifact,i)=>{
+          const ready=bytesReady(artifact),blob=step>0?1:out((elapsed-ready)/350),object=step>0?1:out((elapsed-ready-400)/350);
+          const emphasis=i===0||step===0&&active===i?1:.65;
+          objects[i].style.opacity=String(.18+(emphasis-.18)*object);
+          blobs[i].style.opacity=String(.18+(emphasis-.18)*blob);
+          objects[i].dataset.published=String(object===1);blobs[i].dataset.published=String(blob===1);
+          payloadEdges[i].style.opacity=String(.12+.4*object);
+          const output=outputs.find(node=>Number(node.dataset.output)===i)!;
+          output.style.setProperty('--output-opacity',String(step>0||elapsed>=artifact.start?1:.45));
+          output.style.setProperty('--output-complete',String(object));
+          text(`[data-output-status="${i}"]`,object===1?'Stored':step===0&&elapsed<artifact.start?'Waiting':blob>0?'Publishing file object':'Writing chunks');
+        });
+        const directory=step>0?1:out((elapsed-9700)/350),root=step>0?1:out((elapsed-10150)/350);
+        this.style.setProperty('--directory-opacity',String(.18+.82*directory));
+        this.style.setProperty('--root-opacity',String(.18+.82*root));
+        this.style.setProperty('--retention-edge-opacity',String(.12+.4*root));
+        this.dataset.retained=String(root===1);
+        let received=0,progress=0,count=0;
+        // Shared chunks keep their first arrival; a later file references the same stored bytes.
+        stored.forEach(node=>{
+          const id=node.dataset.chunk!,arrivals=artifactWrites.flatMap(artifact=>{
+            const index=artifact.chunks.indexOf(id);
+            return index<0?[]:[artifact.start+index*writeStagger+writeTravel];
+          });
+          const a=step>0?1:out((elapsed-Math.min(...arrivals))/300);
+          node.style.setProperty('--stored',String(.15+.85*a));node.dataset.present=String(a===1);if(a===1)count++;
+        });
+        writes.forEach(node=>{
+          const artifact=artifactWrites[Number(node.dataset.artifact)],index=artifact.chunks.indexOf(node.dataset.write!);
+          packet(node,(elapsed-artifact.start-index*writeStagger)/writeTravel,step===0);
+        });
+        source.forEach(node=>{
+          const artifact=artifactWrites[Number(node.dataset.artifact)],index=artifact.chunks.indexOf(node.dataset.source!);
+          node.style.opacity=String(step>0?.3:1-.7*out((elapsed-artifact.start-index*writeStagger)/600));
+        });
+        chunkEdges.forEach(edge=>{
+          const artifact=artifactWrites[Number(edge.dataset.artifact)];
+          edge.style.opacity=String(.12+.4*(step>0?1:out((elapsed-bytesReady(artifact))/350)));
+        });
+        bytes.forEach((node,i)=>{
+          const b=step===1?out((elapsed-(3700+i*550))/300):0;
+          node.style.setProperty('--received',String(b));progress+=b/3;if(b===1)received++;
+          packet(reads[i],(elapsed-(2100+i*550))/1600,step===1);
+        });
+        const mapped=step===1?out((elapsed-1100)/300):0,complete=received===3;
+        file.style.setProperty('--file-opacity',String(.3+.7*mapped));file.style.setProperty('--filled',String(progress));file.style.setProperty('--checked',String(complete?out((elapsed-5100)/300):0));file.dataset.complete=String(complete);file.dataset.mapped=String(mapped===1);
+        metadataEdge.style.opacity=String(step===1?.3*ease(elapsed/600)*(1-ease((elapsed-1400)/600)):0);
+        this.dataset.stored=String(count);this.dataset.received=String(received);this.dataset.projected=String(mapped===1);
+        const executed=complete?out((elapsed-5300)/500):0;
+        this.style.setProperty('--run-opacity',String(executed));
+        this.querySelector('[data-run-result]')!.setAttribute('aria-hidden',String(executed<1));
+        this.dataset.executed=String(executed===1);
+        text('[data-file-status]',complete?'Executable ready':step===0||mapped<1?'Awaiting metadata':received===0?(elapsed<2100?'Path defined · awaiting bytes':'Receiving stored bytes'):`${received} / 3 chunks received`);
+        packet(metadata,(elapsed-200)/900,step===1);
+        text('[data-play-label]',finished?'Replay':reduced.matches?'Next':playing?'Pause':'Play');
+        this.querySelector('[data-play-icon]')!.setAttribute('d',finished?repositoryIcons.reset:reduced.matches?repositoryIcons.sync:playing?repositoryIcons.pause:repositoryIcons.play);
+        play.setAttribute('aria-label',finished?'Replay animation':reduced.matches?'Show next step':playing?'Pause animation':'Play animation');
+      };
+      const tick=(now:number)=>{if(last)elapsed+=Math.min(now-last,100)*playbackRate;last=now;if(elapsed>=duration[step]){if(step===1){elapsed=duration[1];playing=false;finished=true;sync();return;}step=1;elapsed=0;}render();frame=requestAnimationFrame(tick);};
+      const sync=()=>{cancelAnimationFrame(frame);last=0;render();const running=playing&&visible&&!document.hidden&&!reduced.matches;this.dataset.running=String(running);if(running)frame=requestAnimationFrame(tick);};
+      const select=(i:number)=>{step=i;elapsed=reduced.matches?duration[i]:0;playing=!reduced.matches;finished=reduced.matches&&i===1;sync();measure();};
+      tabs.forEach((tab,i)=>tab.addEventListener('click',()=>select(i),{signal:events.signal}));
+      play.addEventListener('click',()=>{if(finished){select(0);return;}if(reduced.matches){select(1);return;}playing=!playing;sync();},{signal:events.signal});
+      this.querySelector('[data-reset]')!.addEventListener('click',()=>select(0),{signal:events.signal});
+      reduced.addEventListener('change',()=>{playing=false;if(reduced.matches)elapsed=duration[step];sync();},{signal:events.signal});
+      document.addEventListener('visibilitychange',sync,{signal:events.signal});
+      const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.1});observer.observe(this);
+      const resize=new ResizeObserver(()=>{measure();render();});resize.observe(stage);
+      this.cleanup=()=>{events.abort();observer.disconnect();resize.disconnect();cancelAnimationFrame(frame);};
+      sync();measure();
+    }
+    disconnectedCallback(){this.cleanup?.();}
+  }
+  if(!customElements.get('casita-file-flow'))customElements.define('casita-file-flow',CasitaFileFlow);
+</script>

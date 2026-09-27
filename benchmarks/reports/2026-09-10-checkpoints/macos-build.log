@@ -1,0 +1,68 @@
+• Found secretspec.toml but secretspec integration is not enabled.
+
+To enable, add to devenv.yaml:
+  secretspec:
+    enable: true
+
+To disable this message:
+  secretspec:
+    enable: false
+
+Learn more: https://devenv.sh/integrations/secretspec/
+
+• Validating lock
+✓ Validating lock in 9.45ms
+• Configuring shell
+• Configuring cachix
+  [35;1mwarning:[0m Substituter '[35;1mhttps://devenv.cachix.org[0m' is already present in the substituters list
+✓ Configuring cachix in 6.79ms
+• Evaluating shell
+• Downloading devenv-nixpkgs-patched
+• Downloading https://devenv.cachix.org/nar/d4eb7465-1d25-4a55-8f85-e89d35ea5135.nar.zst
+✓ Downloading https://devenv.cachix.org/nar/d4eb7465-1d25-4a55-8f85-e89d35ea5135.nar.zst in 5.48s
+✓ Downloading devenv-nixpkgs-patched in 11.5s
+• [35;1mevaluation warning:[0m stdenv.isDarwin is deprecated, use stdenv.hostPlatform.isDarwin instead
+• [35;1mevaluation warning:[0m stdenv.isLinux is deprecated, use stdenv.hostPlatform.isLinux instead
+• Building devenv-shell-env
+✓ Building devenv-shell-env in 475ms
+✓ Evaluating shell in 19.4s
+✓ Configuring shell in 58.6s
+• Loading tasks
+• Evaluating devenv.config.task.config
+✓ Evaluating devenv.config.task.config in 2.40ms
+✓ Loading tasks in 3.86ms
+• Running tasks
+• Running devenv:files:cleanup
+✓ Running devenv:files:cleanup in 170ms
+• Running devenv:files
+✓ Running devenv:files in 101ms
+• Running devenv:git-hooks:install
+✓ Running devenv:git-hooks:install in 164ms
+• Running devenv:enterShell
+✓ Running devenv:enterShell in 78.2ms
+• Running devenv:enterTest
+✓ Running devenv:enterTest in 667ns (no command)
+✓ Running tasks in 514ms
+   Compiling simsimd v6.5.16
+   Compiling turso_core v0.8.0-pre.10
+   Compiling zstd-sys v2.1.0+zstd.1.5.7
+   Compiling blake3 v1.8.7
+   Compiling bao-tree v0.16.1
+   Compiling zstd-safe v7.3.0
+   Compiling zstd v0.13.3
+   Compiling turso_sync_engine v0.8.0-pre.10
+   Compiling turso_sdk_kit v0.8.0-pre.10
+   Compiling turso_sync_sdk_kit v0.8.0-pre.10
+   Compiling turso v0.8.0-pre.4
+   Compiling casita v0.1.0 (/Users/hetzner/casita-shared-20260909)
+warning: struct `CountingCompactState` is never constructed
+    --> src/git_repository.rs:1033:12
+     |
+1033 |     struct CountingCompactState {
+     |            ^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `casita` (lib test) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 4m 20s
+  Executable unittests src/lib.rs (target/release/deps/casita-b4474b4d14527ee7)

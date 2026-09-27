@@ -1,0 +1,57 @@
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 0, "variant": "before"}
+{"imports": 60, "pair": 0, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 0, "variant": "after"}
+{"imports": 60, "pair": 0, "variant": "after", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 1, "variant": "before"}
+{"imports": 60, "pair": 1, "variant": "before", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 1, "variant": "after"}
+{"imports": 60, "pair": 1, "variant": "after", "complete": true, "quiet": true}
+{"event": "pair_finished", "imports": 60, "attempt": 1, "accepted": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 2, "variant": "after"}
+{"imports": 60, "pair": 2, "variant": "after", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 2, "variant": "before"}
+{"imports": 60, "pair": 2, "variant": "before", "complete": true, "quiet": true}
+{"event": "pair_finished", "imports": 60, "attempt": 2, "accepted": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 3, "variant": "before"}
+{"imports": 60, "pair": 3, "variant": "before", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 3, "variant": "after"}
+{"imports": 60, "pair": 3, "variant": "after", "complete": true, "quiet": true}
+{"event": "pair_finished", "imports": 60, "attempt": 3, "accepted": true}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 0, "variant": "before"}
+{"imports": 300, "pair": 0, "variant": "before", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 0, "variant": "after"}
+{"imports": 300, "pair": 0, "variant": "after", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 1, "variant": "before"}
+{"imports": 300, "pair": 1, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 1, "variant": "after"}
+{"imports": 300, "pair": 1, "variant": "after", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 300, "attempt": 1, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 2, "variant": "after"}
+{"imports": 300, "pair": 2, "variant": "after", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 2, "variant": "before"}
+{"imports": 300, "pair": 2, "variant": "before", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 300, "attempt": 2, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 3, "variant": "before"}
+{"imports": 300, "pair": 3, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 3, "variant": "after"}
+{"imports": 300, "pair": 3, "variant": "after", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 300, "attempt": 3, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 4, "variant": "after"}
+{"imports": 300, "pair": 4, "variant": "after", "complete": true, "quiet": true}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 4, "variant": "before"}
+{"imports": 300, "pair": 4, "variant": "before", "complete": true, "quiet": true}
+{"event": "pair_finished", "imports": 300, "attempt": 4, "accepted": true}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 5, "variant": "before"}
+{"imports": 300, "pair": 5, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 5, "variant": "after"}
+{"imports": 300, "pair": 5, "variant": "after", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 300, "attempt": 5, "accepted": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 6, "variant": "after"}
+{"imports": 300, "pair": 6, "variant": "after", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 300, "pair": 6, "variant": "before"}
+{"imports": 300, "pair": 6, "variant": "before", "complete": true, "quiet": false}
+{"event": "pair_finished", "imports": 300, "attempt": 6, "accepted": false}
+Traceback (most recent call last):
+  File "/home/domen/dev/casita/benchmarks/results/publication-retirements-cpu20-2026-09-11/run.py", line 116, in <module>
+    raise RuntimeError(f'Only {accepted} uncontaminated pairs at {imports} imports; retained all attempts')
+RuntimeError: Only 1 uncontaminated pairs at 300 imports; retained all attempts

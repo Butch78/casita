@@ -1,0 +1,26 @@
+Benchmarking nar_partial/local/1
+Benchmarking nar_partial/local/1: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 500.0ms. You may wish to increase target time to 4.9s.
+Benchmarking nar_partial/local/1: Collecting 10 samples in estimated 4.9310 s (10 iterations)
+Benchmarking nar_partial/local/1: Analyzing
+nar_partial/local/1     time:   [5.3891 ms 5.6534 ms 5.9488 ms]
+Benchmarking nar_partial/local/256
+Benchmarking nar_partial/local/256: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 500.0ms. You may wish to increase target time to 6.5s.
+Benchmarking nar_partial/local/256: Collecting 10 samples in estimated 6.5223 s (10 iterations)
+Benchmarking nar_partial/local/256: Analyzing
+nar_partial/local/256   time:   [36.270 ms 39.071 ms 42.267 ms]
+Benchmarking nar_partial/memory/1
+Benchmarking nar_partial/memory/1: Warming up for 100.00 ms
+Benchmarking nar_partial/memory/1: Collecting 10 samples in estimated 504.03 ms (935 iterations)
+Benchmarking nar_partial/memory/1: Analyzing
+nar_partial/memory/1    time:   [47.899 µs 50.338 µs 53.300 µs]
+Benchmarking nar_partial/memory/256
+Benchmarking nar_partial/memory/256: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 500.0ms. You may wish to increase target time to 738.5ms or enable flat sampling.
+Benchmarking nar_partial/memory/256: Collecting 10 samples in estimated 738.52 ms (55 iterations)
+Benchmarking nar_partial/memory/256: Analyzing
+nar_partial/memory/256  time:   [3.0135 ms 3.1058 ms 3.2627 ms]

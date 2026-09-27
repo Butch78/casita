@@ -1,0 +1,21 @@
+casitar-scaling: round 1, baseline, object-count, 4096 files x 128 bytes
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/casita-current-main-20260925/benchmarks/cli.py", line 147, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/tmp/casita-current-main-20260925/benchmarks/cli.py", line 126, in main
+    return run_entrypoint(entry, arguments[2:])
+  File "/tmp/casita-current-main-20260925/benchmarks/cli.py", line 72, in run_entrypoint
+    return int(main(list(arguments)))
+               ~~~~^^^^^^^^^^^^^^^^^
+  File "/tmp/casita-current-main-20260925/benchmarks/suites/casitar_scaling.py", line 415, in main
+    guarded_case(*arguments, args.quiet_timeout, result["host_activity"],
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 args.max_external_cpu_percent)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/casita-current-main-20260925/benchmarks/suites/casitar_scaling.py", line 97, in guarded_case
+    raise common.BenchmarkError(
+        f"external CPU samples did not satisfy the {max_external_cpu_percent:g}% ceiling")
+benchmarks.suites.repository.BenchmarkError: external CPU samples did not satisfy the 40% ceiling

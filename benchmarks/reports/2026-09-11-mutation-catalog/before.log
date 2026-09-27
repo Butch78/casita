@@ -1,0 +1,17 @@
+running 1 test
+test repository::mutation_catalog_tests::repeated_publication_does_not_accumulate_catalogs ... FAILED
+
+failures:
+
+---- repository::mutation_catalog_tests::repeated_publication_does_not_accumulate_catalogs stdout ----
+
+thread 'repository::mutation_catalog_tests::repeated_publication_does_not_accumulate_catalogs' (140369) panicked at src/repository/mutation_catalog_tests.rs:20:9:
+mutation retains 2 catalog versions
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    repository::mutation_catalog_tests::repeated_publication_does_not_accumulate_catalogs
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 633 filtered out; finished in 0.77s
+

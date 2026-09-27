@@ -1,0 +1,322 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1K of event 'cpu-clock:u'
+# Event count (approx.): 2402805592
+#
+# Overhead  Command          Shared Object                Symbol                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+# ........  ...............  ...........................  ........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+#
+     9.59%  tar_import-1b4c  libc.so.6                    [.] __memmove_avx512_unaligned_erms
+     8.17%  tar_import-1b4c  libc.so.6                    [.] __memcmp_evex_movbe
+     5.67%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compressBlock_doubleFast
+     5.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _blake3_compress_in_place_avx512
+     4.42%  tar_import-1b4c  libc.so.6                    [.] __memset_avx512_unaligned_erms
+     4.25%  tar_import-1b4c  libc.so.6                    [.] _int_malloc
+     1.92%  tar_import-1b4c  libc.so.6                    [.] unlink_chunk.isra.0
+     1.67%  tar_import-1b4c  libc.so.6                    [.] cfree@GLIBC_2.2.5
+     1.67%  tokio-rt-worker  libc.so.6                    [.] syscall
+     1.58%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN70_$LT$casita..metadata..pins..PinResource$u20$as$u20$core..cmp..Ord$GT$3cmp17ha6b65efbedc74450E.llvm.15235584030598365771
+     1.42%  tar_import-1b4c  libc.so.6                    [.] malloc
+     1.00%  tar_import-1b4c  libc.so.6                    [.] _int_free_chunk
+     1.00%  tar_import-1b4c  libc.so.6                    [.] malloc_consolidate
+     1.00%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <futures_util::stream::futures_unordered::FuturesUnordered<Fut> as futures_core::stream::Stream>::poll_next
+     0.92%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::writer::chunk_and_upload::_$u7b$$u7b$closure$u7d$$u7d$::h8085f94dd7582a10
+     0.83%  tar_import-1b4c  [vdso]                       [.] 0x0000000000000d9d
+     0.83%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5bytes5bytes11shared_drop17hd5a4af8fe06316eeE.llvm.1225898164112329532
+     0.83%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] percent_encoding::<impl core::convert::From<percent_encoding::PercentEncode> for alloc::borrow::Cow<str>>::from
+     0.75%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN70_$LT$casita..metadata..pins..PinResource$u20$as$u20$core..cmp..Ord$GT$3cmp17ha6b65efbedc74450E.llvm.8755488500332370702
+     0.67%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::tar::ensure_no_conflict
+     0.58%  tar_import-1b4c  libc.so.6                    [.] __libc_malloc2
+     0.58%  tar_import-1b4c  libc.so.6                    [.] _int_free_create_chunk
+     0.58%  tar_import-1b4c  libc.so.6                    [.] realloc
+     0.58%  tar_import-1b4c  libc.so.6                    [.] syscall
+     0.58%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_decompressStream
+     0.58%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_getFrameContentSize
+     0.58%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::pins::runtime::WritePins::protect::_$u7b$$u7b$closure$u7d$$u7d$::hca3bd0165a4a1ad8
+     0.50%  tar_import-1b4c  libc.so.6                    [.] _int_free_merge_chunk
+     0.50%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5alloc7raw_vec20RawVecInner$LT$A$GT$11finish_grow17hfdd89f647685c51eE.llvm.4006883385804418096
+     0.50%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5bytes5bytes12shared_clone17h4bc83eab163a32c5E.llvm.1225898164112329532
+     0.50%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN6casita8metadata4pins7runtime9WritePins3run28_$u7b$$u7b$closure$u7d$$u7d$17hc35dabb87a1a8977E.llvm.17854240780734399702
+     0.50%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN91_$LT$casita..metadata..pins..MemoryPinStore$u20$as$u20$casita..metadata..pins..PinStore$GT$7protect28_$u7b$$u7b$closure$u7d$$u7d$17hec90f98bbb5500fcE.llvm.17854240780734399702
+     0.50%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::iter::traits::iterator::Iterator::try_fold
+     0.50%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compressBlock_internal
+     0.50%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] _RNvMNtNtNtNtCs75vJTIYSa2J_3std3sys4sync5mutex5futexNtB2_5Mutex14lock_contended
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::collections::btree::set::Difference<T,A> as core::iter::traits::iterator::Iterator>::next
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::future::maybe_done::MaybeDone<Fut> as core::future::future::Future>::poll
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5alloc11collections5btree4node173Handle$LT$alloc..collections..btree..node..NodeRef$LT$alloc..collections..btree..node..marker..Dying$C$K$C$V$C$NodeType$GT$$C$alloc..collections..btree..node..marker..KV$GT$12drop_key_val17h964e9d21a93fa9ebE.llvm.13900537582125781692
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN71_$LT$alloc..sync..Arc$LT$T$GT$$u20$as$u20$object_store..ObjectStore$GT$8put_opts28_$u7b$$u7b$closure$u7d$$u7d$17h858fd9ac4258b407E.llvm.13335396243184931383
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::search::<impl alloc::collections::btree::node::NodeRef<BorrowType,K,V,alloc::collections::btree::node::marker::LeafOrInternal>>::search_tree
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::set::BTreeSet<T,A>::difference
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::repository::verify_closure_with::_$u7b$$u7b$closure$u7d$$u7d$::h1f1370ca51b1745d
+     0.42%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio_tar::header::octal_from
+     0.42%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] HIST_count_wksp
+     0.42%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] HUF_buildCTable_wksp
+     0.42%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_CCtx_init_compressStream2
+     0.42%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_resetCCtx_internal
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <zstd::stream::zio::reader::Reader<R,D> as std::io::Read>::read
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvMsa_NtCs27Vx93FoQ6z_4core3fmtNtB5_9Formatter3pad
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5alloc11collections5btree3map25IntoIter$LT$K$C$V$C$A$GT$10dying_next17hc031a8858c0be903E.llvm.3137014026342818148
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN6casita10repository30MutationSession$LT$PS$C$SS$GT$27publish_inner_with_metadata28_$u7b$$u7b$closure$u7d$$u7d$28_$u7b$$u7b$closure$u7d$$u7d$28_$u7b$$u7b$closure$u7d$$u7d$17hb9c552ea7334e25cE.llvm.17817928914668979865
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN83_$LT$casita..blob..chunked..ChunkedBlobStore$u20$as$u20$casita..blob..BlobStore$GT$9open_read28_$u7b$$u7b$closure$u7d$$u7d$17hf9b063aae83a6dcfE.llvm.12600987336099724343
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _blake3_hash_many_avx512
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::append::<impl alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Owned,K,V,alloc::collections::btree::node::marker::LeafOrInternal>>::bulk_push
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::repository::overlay_records::_$u7b$$u7b$closure$u7d$$u7d$::hb17aa570a342b6c5
+     0.33%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] std::io::default_read_to_end
+     0.33%  tokio-rt-worker  libc.so.6                    [.] __memmove_avx512_unaligned_erms
+     0.33%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] _RNvMNtNtNtNtCs75vJTIYSa2J_3std3sys4sync7condvar5futexNtB2_7Condvar21wait_optional_timeout
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::collections::btree::set::Difference<T,A> as core::iter::traits::iterator::Iterator>::next
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::task::task_local::TaskLocalFuture<T,F> as core::future::future::Future>::poll
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_decompressContinueStream
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$casita..repository..BlobPayloadReader$LT$R$GT$$u20$as$u20$casita..format..PayloadReader$GT$::read::_$u7b$$u7b$closure$u7d$$u7d$::h5fc47716f9f58f07
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvXs4_NtCsgW8esjfipvk_5alloc6stringNtB5_6StringNtNtCs27Vx93FoQ6z_4core5clone5Clone5clone
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr56drop_in_place$LT$casita..metadata..pins..PinResource$GT$17hc23a73130b5707d0E.llvm.3137014026342818148
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN6casita8metadata5lease16spawn_lease_task28_$u7b$$u7b$closure$u7d$$u7d$17heac02f29c522c6ffE.llvm.432429928075723770
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::search::<impl alloc::collections::btree::node::NodeRef<BorrowType,K,V,alloc::collections::btree::node::marker::LeafOrInternal>>::search_tree
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] blake3::Hasher::final_output
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] blake3::Hasher::update
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::writer::ChunkedBlobWriter::finalize_storage::_$u7b$$u7b$closure$u7d$$u7d$::ha90166af3869221f
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::pins::runtime::DataPinLease::protect::_$u7b$$u7b$closure$u7d$$u7d$::hd929dc22141b2ce3
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::tar::_$LT$impl$u20$casita..repository..Repository$LT$PS$C$SS$GT$$GT$::import_tar::_$u7b$$u7b$closure$u7d$$u7d$::_$u7b$$u7b$closure$u7d$$u7d$::h687a41e488e7e329
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::tar::add_to_parent
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] data_encoding::Encoding::encode_len
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] futures_util::stream::stream::StreamExt::poll_next_unpin
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] object_store::GetResult::bytes::_$u7b$$u7b$closure$u7d$$u7d$::h04a2b8419f74efbd
+     0.25%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] object_store::path::Path::join
+     0.25%  tokio-rt-worker  [vdso]                       [.] 0x0000000000000d9d
+     0.25%  tokio-rt-worker  libc.so.6                    [.] __libc_malloc2
+     0.17%  tar_import-1b4c  libc.so.6                    [.] _int_realloc
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <&mut T as tokio::io::async_read::AsyncRead>::poll_read
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::vec::Vec<T,A> as core::ops::drop::Drop>::drop
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <core::future::poll_fn::PollFn<F> as core::future::future::Future>::poll
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <core::iter::adapters::cloned::Cloned<I> as core::iter::traits::iterator::Iterator>::next
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::copy::Copy<R,W> as core::future::future::Future>::poll
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::mem::DuplexStream as core::ops::drop::Drop>::drop
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::mem::SimplexStream as tokio::io::async_read::AsyncRead>::poll_read
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::read_to_end::ReadToEnd<A> as core::future::future::Future>::poll
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::sync::batch_semaphore::Acquire as core::future::future::Future>::poll
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::task::coop::RestoreOnPending as core::ops::drop::Drop>::drop
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::task::task_local::TaskLocalFuture<T,F> as core::future::future::Future>::poll
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$T$u20$as$u20$object_store..ObjectStoreExt$GT$::put::_$u7b$$u7b$closure$u7d$$u7d$::hf70a60f019bbdef6
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$casita..blob..chunked..writer..ChunkedBlobWriter$u20$as$u20$casita..blob..BlobWriter$GT$::close::_$u7b$$u7b$closure$u7d$$u7d$::h6670802ba2ed8c97
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$casita..blob..pinned_store..PinnedObjectStore$u20$as$u20$object_store..ObjectStore$GT$::put_opts::_$u7b$$u7b$closure$u7d$$u7d$::h1ea6ddd9d5bf3836
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$object_store..memory..InMemory$u20$as$u20$object_store..ObjectStore$GT$::get_opts::_$u7b$$u7b$closure$u7d$$u7d$::h2a28b3985cb530cf
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$object_store..memory..InMemory$u20$as$u20$object_store..ObjectStore$GT$::put_opts::_$u7b$$u7b$closure$u7d$$u7d$::h0f01f68b7253c49b
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc12___rust_alloc
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc35___rust_no_alloc_shim_is_unstable_v2
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvNtCs27Vx93FoQ6z_4core3fmt5write
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvNvNtCsgW8esjfipvk_5alloc3fmt6format12format_inner
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvXsZ_NtCsgW8esjfipvk_5alloc6stringNtB5_6StringNtNtCs27Vx93FoQ6z_4core3fmt5Write9write_str.llvm.16073303365254008373
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvXsi_NtNtNtCs27Vx93FoQ6z_4core3fmt3num3impjNtB9_7Display3fmt
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN136_$LT$casita..importer..TarImport$LT$R$GT$$u20$as$u20$casita..importer..Importer$LT$casita..repository..Repository$LT$PS$C$SS$GT$$GT$$GT$6import28_$u7b$$u7b$closure$u7d$$u7d$17hc9f20a69c11760b2E.llvm.3833418459367132774
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ops8function6FnOnce9call_once17h5c59c7ae1a7a7a30E.llvm.17854240780734399702
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr150drop_in_place$LT$$LT$casita..blob..pinned_store..PinnedObjectStore$u20$as$u20$object_store..ObjectStore$GT$..get_opts..$u7b$$u7b$closure$u7d$$u7d$$GT$17h8dc00141a2cab50dE.llvm.432429928075723770
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr313drop_in_place$LT$alloc..boxed..Box$LT$tokio..runtime..task..core..Cell$LT$tokio..runtime..blocking..task..BlockingTask$LT$casita..blob..chunked..upload..ChunkUploader..upload_prehashed..$u7b$$u7b$closure$u7d$$u7d$..$u7b$$u7b$closure$u7d$$u7d$$GT$$C$tokio..runtime..blocking..schedule..BlockingSchedule$GT$$GT$$GT$17h7ef711a448458782E.llvm.18273428712071848529
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr40drop_in_place$LT$object_store..Error$GT$17h68deec28d4da6121E.llvm.12600987336099724343
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr56drop_in_place$LT$casita..repository..RepositoryError$GT$17h327f900c5973f78dE.llvm.17817928914668979865
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core4hash11BuildHasher8hash_one17h79b09660d45ba84bE.llvm.6704660512532193130
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5alloc11collections5btree3map25IntoIter$LT$K$C$V$C$A$GT$10dying_next17h9e550c7bd1822341E.llvm.13900537582125781692
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN70_$LT$casita..metadata..pins..PinResource$u20$as$u20$core..cmp..Ord$GT$3cmp17ha6b65efbedc74450E.llvm.13161456344472634852
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN96_$LT$alloc..collections..btree..map..BTreeMap$LT$K$C$V$C$A$GT$$u20$as$u20$core..clone..Clone$GT$5clone13clone_subtree17h07c47704519d5644E.llvm.3137014026342818148
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::set::BTreeSet<T,A>::difference
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::decompress_verified_chunk
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::put_object::_$u7b$$u7b$closure$u7d$$u7d$::he990bd0b72ae2d16
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::writer::ChunkedBlobWriter::drive_upload
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::writer::ChunkedBlobWriter::failed
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::format::VerificationContext::read::_$u7b$$u7b$closure$u7d$$u7d$::hc40c6629201f9c2a
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::pins::runtime::DataPinLease::protect::_$u7b$$u7b$closure$u7d$$u7d$::h25fb8f36b5123b70
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] data_encoding::Encoding::encode
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] futures_util::stream::futures_unordered::FuturesUnordered<Fut>::push
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] futures_util::stream::stream::StreamExt::poll_next_unpin
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] object_store::memory::InMemory::entry
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::blocking::pool::spawn_blocking
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::context::scoped::Scoped<T>::with
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::notify::Notify::notify_waiters
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::task::atomic_waker::AtomicWaker::wake
+     0.17%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] zstd_safe::DCtx::decompress_stream
+     0.17%  tokio-rt-worker  libc.so.6                    [.] __memset_avx512_unaligned_erms
+     0.17%  tokio-rt-worker  libc.so.6                    [.] _int_malloc
+     0.17%  tokio-rt-worker  libc.so.6                    [.] cfree@GLIBC_2.2.5
+     0.17%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] FSE_buildCTable_wksp
+     0.17%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compressLiterals
+     0.17%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ops8function6FnOnce9call_once17h21bc51cffb804df0E.llvm.6871894531513830109
+     0.08%  tar_import-1b4c  [vdso]                       [.] 0x0000000000000cc1
+     0.08%  tar_import-1b4c  [vdso]                       [.] 0x0000000000000da2
+     0.08%  tar_import-1b4c  libc.so.6                    [.] __libc_calloc
+     0.08%  tar_import-1b4c  libc.so.6                    [.] __libc_calloc2
+     0.08%  tar_import-1b4c  libc.so.6                    [.] __lll_lock_wake_private
+     0.08%  tar_import-1b4c  libc.so.6                    [.] _int_memalign
+     0.08%  tar_import-1b4c  libc.so.6                    [.] clock_gettime@@GLIBC_2.17
+     0.08%  tar_import-1b4c  libc.so.6                    [.] memcpy@@GLIBC_2.14@plt
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <A as core::slice::cmp::SlicePartialEq<B>>::equal_same_length
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <T as alloc::string::ToString>::to_string
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::collections::btree::map::Iter<K,V> as core::iter::traits::iterator::Iterator>::next
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::collections::btree::set::BTreeSet<T> as core::iter::traits::collect::FromIterator<T>>::from_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::vec::Vec<T,A> as core::clone::Clone>::clone
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <alloc::vec::into_iter::IntoIter<T,A> as core::ops::drop::Drop>::drop
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <bytes::bytes::Bytes as core::convert::From<alloc::vec::Vec<u8>>>::from
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::blob::chunked::ChunkedBlobStore as casita::blob::BlobStore>::write_scope
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::blob::pinned_store::PinnedObjectStore as object_store::ObjectStore>::get_opts
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::format::BlobFormat as casita::format::ObjectFormat>::verify
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::metadata::pins::MemoryPinStore as casita::metadata::pins::PinStore>::protect
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::metadata::pins::PinResource as core::clone::Clone>::clone
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::path::PathComponent as core::convert::TryFrom<bytes::bytes::Bytes>>::try_from
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::repository::RepositoryDirectLinkView<PS> as casita::format::DirectLinkView>::record
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <casita::tar::LimitedReader<R> as tokio::io::async_read::AsyncRead>::poll_read
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <core::panic::unwind_safe::AssertUnwindSafe<F> as core::future::future::Future>::poll
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <object_store::memory::InMemory as object_store::ObjectStore>::get_opts
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <object_store::path::Path as core::fmt::Display>::fmt
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::mem::DuplexStream as tokio::io::async_read::AsyncRead>::poll_read
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::mem::DuplexStream as tokio::io::async_write::AsyncWrite>::poll_flush
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::mem::SimplexStream as tokio::io::async_write::AsyncWrite>::poll_write
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::io::util::take::Take<R> as tokio::io::async_read::AsyncRead>::poll_read
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::runtime::task::join::JoinHandle<T> as core::future::future::Future>::poll
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::sync::batch_semaphore::Acquire as core::ops::drop::Drop>::drop
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::task::coop::with_budget::ResetGuard as core::ops::drop::Drop>::drop
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::task::task_local::TaskLocalFuture<T,F> as core::future::future::Future>::poll
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio::task::task_local::TaskLocalFuture<T,F> as core::future::future::Future>::poll
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <tokio_tar::archive::Archive<R> as tokio::io::async_read::AsyncRead>::poll_read
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <zstd_safe::DCtx as core::ops::drop::Drop>::drop
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] <zstd_safe::InBufferWrapper as core::ops::drop::Drop>::drop
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_decompressBegin_usingDDict
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_decompressContinue.part.0
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_decompressSequences_bmi2.constprop.0
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] ZSTD_getFrameHeader_advanced
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$casita..blob..pinned_store..PinnedObjectStore$u20$as$u20$object_store..ObjectStore$GT$::put_opts::_$u7b$$u7b$closure$u7d$$u7d$::_$u7b$$u7b$closure$u7d$$u7d$::h92c45185874938af
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$casita..format..BlobFormat$u20$as$u20$casita..format..ObjectFormat$GT$::verify::_$u7b$$u7b$closure$u7d$$u7d$::h2fa5f851a55c5d06
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _$LT$casita..repository..RepositoryDirectLinkView$LT$PS$GT$$u20$as$u20$casita..format..DirectLinkView$GT$::record::_$u7b$$u7b$closure$u7d$$u7d$::h9e2fe538a400c957
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc11___rdl_alloc
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc13___rdl_dealloc
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc14___rust_dealloc
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc18___rdl_alloc_zeroed
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvCsGIExRX8pES_7___rustc19___rust_alloc_zeroed
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvMs5_NtCs75vJTIYSa2J_3std4timeNtB5_10SystemTime3now
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _RNvNtNtCs27Vx93FoQ6z_4core5slice6memchr14memchr_aligned
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN10tar_import12tar_pipeline28_$u7b$$u7b$closure$u7d$$u7d$28_$u7b$$u7b$closure$u7d$$u7d$28_$u7b$$u7b$closure$u7d$$u7d$17h396be821b98d3609E.llvm.13269938707841692289
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN3std4sync4once4Once15call_once_force28_$u7b$$u7b$closure$u7d$$u7d$17hc063669a9905ccefE.llvm.17854240780734399702
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN3std4sync9once_lock17OnceLock$LT$T$GT$10initialize17h46027a4e9ffec40dE.llvm.17854240780734399702
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr162drop_in_place$LT$$LT$alloc..sync..Arc$LT$dyn$u20$object_store..ObjectStore$GT$$u20$as$u20$object_store..ObjectStore$GT$..get_opts..$u7b$$u7b$closure$u7d$$u7d$$GT$17heb00cf1b603c2f5aE.llvm.13335396243184931383
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr162drop_in_place$LT$$LT$alloc..sync..Arc$LT$dyn$u20$object_store..ObjectStore$GT$$u20$as$u20$object_store..ObjectStore$GT$..put_opts..$u7b$$u7b$closure$u7d$$u7d$$GT$17h5e26dd3fd9e3fe25E.llvm.13335396243184931383
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr172drop_in_place$LT$futures_util..stream..once..Once$LT$futures_util..future..ready..Ready$LT$core..result..Result$LT$bytes..bytes..Bytes$C$object_store..Error$GT$$GT$$GT$$GT$17hff108540e4b57377E.llvm.6257476511090056400
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr408drop_in_place$LT$core..option..Option$LT$casita..tar..$LT$impl$u20$casita..repository..Repository$LT$casita..blob..chunked..ChunkedBlobStore$C$casita..metadata..MemoryMetadataStore$GT$$GT$..import_tar$LT$std..io..cursor..Cursor$LT$$RF$$u5b$u8$u5d$$GT$$GT$..$u7b$$u7b$closure$u7d$$u7d$..$u7b$$u7b$closure$u7d$$u7d$..$u7b$$u7b$closure$u7d$$u7d$..$u7b$$u7b$closure$u7d$$u7d$..$u7b$$u7b$closure$u7d$$u7d$$GT$$GT$17hcd18f18d41f4f9f3E.llvm.6108817910618816164
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr63drop_in_place$LT$casita..metadata..pins..runtime..WritePins$GT$17ha6238fbf497cc611E.llvm.10831706809921916587
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN4core3ptr80drop_in_place$LT$object_store..GetResult..bytes..$u7b$$u7b$closure$u7d$$u7d$$GT$17hd9ac95bfd041f56cE.llvm.12600987336099724343
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5alloc11collections5btree4node173Handle$LT$alloc..collections..btree..node..NodeRef$LT$alloc..collections..btree..node..marker..Dying$C$K$C$V$C$NodeType$GT$$C$alloc..collections..btree..node..marker..KV$GT$12drop_key_val17h062bb4af26096e9fE.llvm.13900537582125781692
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN5tokio4sync15batch_semaphore9Semaphore18add_permits_locked17h4b57a6ac851d88c9E.llvm.5428289910276537288
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN74_$LT$casita..metadata..pins..PinResource$u20$as$u20$core..clone..Clone$GT$5clone17hebae7df4ed99f215E.llvm.16073303365254008373
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _ZN96_$LT$alloc..collections..btree..map..BTreeMap$LT$K$C$V$C$A$GT$$u20$as$u20$core..clone..Clone$GT$5clone13clone_subtree17h563507beebbe239dE.llvm.13900537582125781692
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::append::<impl alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Owned,K,V,alloc::collections::btree::node::marker::LeafOrInternal>>::bulk_push
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::bulk_build_from_sorted_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::bulk_build_from_sorted_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::bulk_build_from_sorted_iter
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::search::<impl alloc::collections::btree::node::NodeRef<BorrowType,K,V,alloc::collections::btree::node::marker::LeafOrInternal>>::search_tree
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::collections::btree::set::BTreeSet<T,A>::is_subset
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] blake3::ChunkState::update
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] blake3::Hasher::finalize
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] blake3::Hasher::merge_cv_stack
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] blake3::hash
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] bytes::bytes::Bytes::copy_from_slice
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] bytes::bytes::promotable_even_clone
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunk_index::ChunkIndex::insert
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::ChunkedBlobStore::manifest::_$u7b$$u7b$closure$u7d$$u7d$::h125a2a9eb85f8c7c
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::ChunkedBlobStore::open_bare_chunk_from::_$u7b$$u7b$closure$u7d$$u7d$::hcebddbe5384298fd
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::head_exists::_$u7b$$u7b$closure$u7d$$u7d$::hc1f0dc06bec33e24
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::manifest::decompress_capped
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::blob::chunked::sharded_path
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::byte_budget::ByteBudget::reserve::_$u7b$$u7b$closure$u7d$$u7d$::h3f27d19013d32f96
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::directory::Directory::add
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::encode::decode_directory
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::format::DirectoryFormat::seal_written
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::format::FormatRegistry::get
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::lease::spawn_lease_task
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::pins::runtime::BackendWriteScope::current
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::pins::runtime::BackendWriteScope::with_pin
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::metadata::pins::runtime::WritePins::protect::_$u7b$$u7b$closure$u7d$$u7d$::hca3bd0165a4a1ad8
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::spill::SpillSet$LT$K$GT$::insert::_$u7b$$u7b$closure$u7d$$u7d$::hba0ce5fd700d5090
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] casita::tar::insert_parent_directories
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] chrono::naive::date::NaiveDate::from_num_days_from_ce_opt
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::ptr::drop_in_place$LT$casita..metadata..pins..runtime..DataPinLease..protect..$u7b$$u7b$closure$u7d$$u7d$$GT$::h11080dd1b3280db9
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::ptr::drop_in_place$LT$casita..metadata..pins..runtime..DataPinLease..protect..$u7b$$u7b$closure$u7d$$u7d$$GT$::h88be25f09b595e7a
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::ptr::drop_in_place$LT$casita..metadata..pins..runtime..DataPinLease..try_protect..$u7b$$u7b$closure$u7d$$u7d$$GT$::ha24b7cdd988194b9
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::ptr::drop_in_place$LT$object_store..util..collect_bytes$LT$core..pin..Pin$LT$alloc..boxed..Box$LT$dyn$u20$futures_core..stream..Stream$u2b$Item$u20$$u3d$$u20$core..result..Result$LT$bytes..bytes..Bytes$C$object_store..Error$GT$$u2b$core..marker..Send$GT$$GT$$C$object_store..Error$GT$..$u7b$$u7b$closure$u7d$$u7d$$GT$::hefcc926d4987c820
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::ptr::drop_in_place<casita::blob::chunked::writer::ChunkedBlobWriter>
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::ptr::drop_in_place<casita::tar::TarImportError>
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] core::slice::sort::shared::smallsort::insertion_sort_shift_left
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] hashbrown::map::HashMap<K,V,S,A>::insert
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] object_store::payload::<impl core::convert::From<object_store::payload::PutPayload> for bytes::bytes::Bytes>::from
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] std::io::default_read_to_end::small_probe_read
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tar_import::bench_util::perf::PerfControl::command
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::context::defer
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::metrics::batch::MetricsBatch::start_processing_scheduled_tasks
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::scheduler::current_thread::<impl tokio::runtime::task::Schedule for alloc::sync::Arc<tokio::runtime::scheduler::current_thread::Handle>>::release
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::scheduler::current_thread::Context::park_internal
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::scheduler::current_thread::Context::run_task
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::scheduler::current_thread::Handle::spawn
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::task::core::Core<T,S>::set_stage
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::task::harness::Harness<T,S>::poll
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::task::raw::poll
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::batch_semaphore::Semaphore::release
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::batch_semaphore::Semaphore::try_acquire
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::mpsc::chan::Rx<T,S>::recv
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::mpsc::list::Rx<T>::pop
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::mutex::Mutex$LT$T$GT$::lock::_$u7b$$u7b$closure$u7d$$u7d$::h7f4ca63ad8112388
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::notify::NotifyGuard::notify_waiters
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::oneshot::State::load
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::sync::oneshot::State::set_complete
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::util::sharded_list::ShardedList<L>::remove
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::util::wake::clone_arc_raw
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio::util::wake::wake_arc_raw
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio_tar::header::Header::new_old
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] tokio_tar::header::Header::size
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] zstd_safe::DCtx::init
+     0.08%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] zstd_safe::parse_code
+     0.08%  tokio-rt-worker  libc.so.6                    [.] clock_gettime@@GLIBC_2.17
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] <futures_util::stream::futures_unordered::task::Task<Fut> as futures_util::stream::futures_unordered::task::ArcWake>::wake_by_ref
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] <tokio::runtime::blocking::task::BlockingTask<T> as core::future::future::Future>::poll
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] HIST_count_parallel_wksp
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] HUF_compress1X_usingCTable_internal_bmi2
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] HUF_writeCTable_wksp
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_buildSeqStore
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compress2
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compressBound
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compressStream_generic
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_compress_frameChunk
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] ZSTD_ldm_getTableSize
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] futures_core::task::__internal::atomic_waker::AtomicWaker::wake
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] futures_util::stream::futures_unordered::task::waker_ref::wake_by_ref_arc_raw
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::task::core::TaskIdGuard::enter
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] tokio::runtime::task::harness::Harness<T,S>::poll
+     0.08%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] zstd_safe::compress_bound
+
+
+#
+# (Tip: List events using substring match: perf list <keyword>)
+#

@@ -1,0 +1,309 @@
+789935 1789830179.163165 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=789936, si_uid=1000, si_status=127, si_utime=0, si_stime=0} ---
+789941 1789830179.430308 fsync(10</tmp/.tmpZOiMdM/casita.sqlite>) = 0 <0.003900>
+789941 1789830179.437294 fsync(13</tmp/.tmpMdgA5U/tursodb-temp.db>) = 0 <0.002716>
+789941 1789830179.450581 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.004237>
+789941 1789830179.455791 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.002657>
+789941 1789830179.458948 fsync(14</tmp/.tmpMdgA5U/tursodb-temp.db-wal>) = 0 <0.002588>
+789941 1789830179.466354 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.002707>
+789941 1789830179.473247 fsync(15</tmp/.tmpZOiMdM/blobs/pack-index-reclaim-needed#3392744990965760>) = 0 <0.002561>
+789941 1789830179.476201 fsync(15</tmp/.tmpZOiMdM/blobs>) = 0 <0.002403>
+789942 1789830179.479415 fsync(15</tmp/.tmpZOiMdM/blobs/pack-indexes/b3/aa/aa04c2264ed1b5e861e27f9bf05321e9456d4aa7c9c329cf215b88bc929bd482#3392744990965761>) = 0 <0.002556>
+789941 1789830179.483169 fsync(15</tmp/.tmpZOiMdM/blobs/pack-indexes/b3/aa>) = 0 <0.002488>
+789941 1789830179.485838 fsync(15</tmp/.tmpZOiMdM/blobs/pack-indexes/b3>) = 0 <0.002283>
+789941 1789830179.488369 fsync(15</tmp/.tmpZOiMdM/blobs/pack-indexes>) = 0 <0.002292>
+789941 1789830179.490828 fsync(15</tmp/.tmpZOiMdM/blobs>) = 0 <0.002391>
+789942 1789830179.496340 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.002682>
+789942 1789830179.503100 fsync(16</tmp/.tmpZOiMdM/.tmpfh4kii>) = 0 <0.002932>
+789942 1789830179.506350 fsync(16</tmp/.tmpZOiMdM>) = 0 <0.002534>
+789942 1789830179.510182 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins.spare>) = 0 <0.002441>
+789942 1789830179.512901 fsync(17</tmp/.tmpZOiMdM>) = 0 <0.002753>
+789942 1789830179.523345 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.627550>
+789942 1789830180.157439 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins.spare>) = 0 <0.003472>
+789942 1789830180.161270 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins.spare>) = 0 <0.003451>
+789942 1789830180.165060 fsync(17</tmp/.tmpZOiMdM>) = 0 <0.002201>
+789941 1789830180.173426 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.055754>
+789942 1789830180.230247 fsync(15</tmp/.tmpZOiMdM/blobs>) = 0 <0.002327>
+789941 1789830180.233996 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002215>
+789942 1789830180.237553 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002178>
+789941 1789830180.242954 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002325>
+789941 1789830180.254829 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002505>
+789942 1789830180.258056 fsync(15</tmp/.tmpZOiMdM/blobs>) = 0 <0.000020>
+789941 1789830180.259361 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002271>
+789942 1789830180.263142 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002467>
+789942 1789830180.267359 fsync(9</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002232>
+789941 1789830180.271862 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002173>
+789941 1789830180.279249 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002283>
+789941 1789830180.284059 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins> <unfinished ...>
+789977 1789830180.284139 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/87>) = 0 <0.002190>
+789977 1789830180.286452 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789941 1789830180.288390 <... fsync resumed>) = 0 <0.004281>
+789979 1789830180.289919 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/be> <unfinished ...>
+789980 1789830180.289984 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/61> <unfinished ...>
+789978 1789830180.290321 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/d7> <unfinished ...>
+789977 1789830180.290543 <... fsync resumed>) = 0 <0.004072>
+789941 1789830180.290669 fsync(19</tmp/.tmpZOiMdM/casita.sqlite.online-pins> <unfinished ...>
+789977 1789830180.290705 fsync(16</tmp/.tmpZOiMdM/blobs/bao> <unfinished ...>
+789982 1789830180.290943 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/39> <unfinished ...>
+789981 1789830180.291016 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3/84> <unfinished ...>
+789980 1789830180.292647 <... fsync resumed>) = 0 <0.002639>
+789979 1789830180.292678 <... fsync resumed>) = 0 <0.002734>
+789978 1789830180.292690 <... fsync resumed>) = 0 <0.002323>
+789980 1789830180.292812 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789979 1789830180.292837 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789978 1789830180.292869 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789982 1789830180.294687 <... fsync resumed>) = 0 <0.003685>
+789977 1789830180.294702 <... fsync resumed>) = 0 <0.003975>
+789982 1789830180.294799 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789981 1789830180.294824 <... fsync resumed>) = 0 <0.003756>
+789941 1789830180.294837 <... fsync resumed>) = 0 <0.004141>
+789982 1789830180.294850 <... fsync resumed>) = 0 <0.000032>
+789977 1789830180.294862 fsync(20</tmp/.tmpZOiMdM/blobs> <unfinished ...>
+789981 1789830180.294954 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3>) = 0 <0.000013>
+789982 1789830180.295201 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/39/39b136864af92b6251e9ed15c36239c5935614c39cd9950e031809b25cc26b9a#1> <unfinished ...>
+789981 1789830180.295269 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/84/84c5d7dc3e430e3323c2e173eae0946d72ca5d6fab43f1c65b26c621cdc41d69#1> <unfinished ...>
+789980 1789830180.296724 <... fsync resumed>) = 0 <0.003884>
+789979 1789830180.296886 <... fsync resumed>) = 0 <0.004027>
+789978 1789830180.296902 <... fsync resumed>) = 0 <0.004011>
+789980 1789830180.296989 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/61/61f14b3b5b684d723ca4e6c53bc089adcc2fb7042dc241749eb3eddef98a5675#1> <unfinished ...>
+789979 1789830180.297109 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/be/be6ce281d7a10d77e88f1aaa7fabb3e9fe871e360bea63f14c82922acb48f8fb#1> <unfinished ...>
+789978 1789830180.297189 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/d7/d7d2dc1589b0da4a295715bd729b9d2bde6a1b2cf1127ec650d757aa2b91382a#1> <unfinished ...>
+789983 1789830180.297518 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/fb> <unfinished ...>
+789986 1789830180.297598 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3/72> <unfinished ...>
+789941 1789830180.297681 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3/1a> <unfinished ...>
+789984 1789830180.297747 fsync(23</tmp/.tmpZOiMdM/blobs/bao/b3/fd> <unfinished ...>
+789985 1789830180.297818 fsync(24</tmp/.tmpZOiMdM/blobs/bao/b3/9c> <unfinished ...>
+789987 1789830180.298510 fsync(25</tmp/.tmpZOiMdM/blobs/bao/b3/52> <unfinished ...>
+789977 1789830180.298871 <... fsync resumed>) = 0 <0.003990>
+789988 1789830180.298941 fsync(26</tmp/.tmpZOiMdM/blobs/bao/b3/95> <unfinished ...>
+789989 1789830180.299023 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/64> <unfinished ...>
+789982 1789830180.299060 <... fsync resumed>) = 0 <0.003811>
+789981 1789830180.299076 <... fsync resumed>) = 0 <0.003780>
+789977 1789830180.299225 fsync(27</tmp/.tmpZOiMdM/blobs/bao/b3/87/87e83cb693c0a4342e2b19ee26fcd3e24f0c6c71b1bd99dd60da15a35573e9c7#1> <unfinished ...>
+789981 1789830180.299383 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/84> <unfinished ...>
+789990 1789830180.299472 fsync(28</tmp/.tmpZOiMdM/blobs/bao/b3/4d> <unfinished ...>
+789982 1789830180.299525 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/39> <unfinished ...>
+789984 1789830180.301117 <... fsync resumed>) = 0 <0.003343>
+789980 1789830180.301151 <... fsync resumed>) = 0 <0.004137>
+789987 1789830180.301254 <... fsync resumed>) = 0 <0.002701>
+789986 1789830180.301267 <... fsync resumed>) = 0 <0.003633>
+789985 1789830180.301278 <... fsync resumed>) = 0 <0.003439>
+789983 1789830180.301291 <... fsync resumed>) = 0 <0.003739>
+789979 1789830180.301305 <... fsync resumed>) = 0 <0.004173>
+789978 1789830180.301320 <... fsync resumed>) = 0 <0.004111>
+789941 1789830180.301332 <... fsync resumed>) = 0 <0.003631>
+789984 1789830180.301352 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789980 1789830180.301426 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/61> <unfinished ...>
+789987 1789830180.301478 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789986 1789830180.301497 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789983 1789830180.301520 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789985 1789830180.301547 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789941 1789830180.301575 fsync(23</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789979 1789830180.301610 fsync(24</tmp/.tmpZOiMdM/blobs/bao/b3/be> <unfinished ...>
+789978 1789830180.301635 fsync(25</tmp/.tmpZOiMdM/blobs/bao/b3/d7> <unfinished ...>
+789988 1789830180.303150 <... fsync resumed>) = 0 <0.004174>
+789988 1789830180.303275 fsync(26</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789990 1789830180.303302 <... fsync resumed>) = 0 <0.003780>
+789989 1789830180.303314 <... fsync resumed>) = 0 <0.004262>
+789982 1789830180.303326 <... fsync resumed>) = 0 <0.003772>
+789981 1789830180.303338 <... fsync resumed>) = 0 <0.003889>
+789977 1789830180.303350 <... fsync resumed>) = 0 <0.004087>
+789988 1789830180.303369 <... fsync resumed>) = 0 <0.000074>
+789990 1789830180.303458 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789989 1789830180.303480 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789990 1789830180.303505 <... fsync resumed>) = 0 <0.000024>
+789989 1789830180.303523 <... fsync resumed>) = 0 <0.000022>
+789977 1789830180.303580 fsync(26</tmp/.tmpZOiMdM/blobs/bao/b3/87> <unfinished ...>
+789988 1789830180.303645 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/95/958cbfb18cef9fa816aca24198cb4a6dcb4589a57b4d318083d7d49440702e30#1> <unfinished ...>
+789990 1789830180.303766 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/4d/4dc248e4e69bba86c95d787871b6fc84e2b9ceff93f17ae4aeb133e16c0b0ad9#1> <unfinished ...>
+789989 1789830180.303790 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/64/6454e1d7b88cc7d637d075849fed5bb227846468e6430f2475905f1489fd11c8#1> <unfinished ...>
+789985 1789830180.305210 <... fsync resumed>) = 0 <0.003636>
+789984 1789830180.305235 <... fsync resumed>) = 0 <0.003853>
+789979 1789830180.305249 <... fsync resumed>) = 0 <0.003615>
+789978 1789830180.305265 <... fsync resumed>) = 0 <0.003611>
+789941 1789830180.305280 <... fsync resumed>) = 0 <0.003686>
+789987 1789830180.305380 <... fsync resumed>) = 0 <0.003882>
+789986 1789830180.305395 <... fsync resumed>) = 0 <0.003880>
+789980 1789830180.305409 <... fsync resumed>) = 0 <0.003963>
+789983 1789830180.305424 <... fsync resumed>) = 0 <0.003881>
+789985 1789830180.305550 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/9c/9c19f65b07cbcc64338cf0bf66fd349e1961d92a6cde45fd38d748c8772b1ec1#1> <unfinished ...>
+789984 1789830180.305580 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3/fd/fd349cb70f15dfa5ede837c96d2373d4e755f6586dbeb9d364ce8890a341263b#1> <unfinished ...>
+789941 1789830180.305641 fsync(23</tmp/.tmpZOiMdM/blobs/bao/b3/1a/1a877aab251be339b8500830e1a5db879decfc8332c0f0fde9e16bd373d15aa6#1> <unfinished ...>
+789987 1789830180.305700 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/52/52527be93984ebf91e2d38a08c2a7cd77a271470149bfdd61c07fe98d0c31a25#1> <unfinished ...>
+789986 1789830180.305717 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/72/72b8105eeae42c0e4ddbebd620a686f8ab3fc51789ffc21e3a99067027e7b181#1> <unfinished ...>
+789983 1789830180.305738 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/fb/fbc71d5c5a35efb1f2f808fe640c912db63a77dce257c119c0fce1dcd0c16c62#1> <unfinished ...>
+789990 1789830180.307332 <... fsync resumed>) = 0 <0.003539>
+789989 1789830180.307361 <... fsync resumed>) = 0 <0.003547>
+789988 1789830180.307378 <... fsync resumed>) = 0 <0.003706>
+789977 1789830180.307396 <... fsync resumed>) = 0 <0.003795>
+789988 1789830180.307580 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/95> <unfinished ...>
+789989 1789830180.307633 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/64> <unfinished ...>
+789990 1789830180.307659 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/4d> <unfinished ...>
+789986 1789830180.309398 <... fsync resumed>) = 0 <0.003660>
+789985 1789830180.309420 <... fsync resumed>) = 0 <0.003845>
+789987 1789830180.309594 <... fsync resumed>) = 0 <0.003877>
+789984 1789830180.309605 <... fsync resumed>) = 0 <0.004007>
+789983 1789830180.309627 <... fsync resumed>) = 0 <0.003874>
+789941 1789830180.309639 <... fsync resumed>) = 0 <0.003981>
+789986 1789830180.309684 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/72> <unfinished ...>
+789985 1789830180.309723 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/9c> <unfinished ...>
+789987 1789830180.309772 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/52> <unfinished ...>
+789983 1789830180.309845 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/fb> <unfinished ...>
+789984 1789830180.309902 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3/fd> <unfinished ...>
+789941 1789830180.309919 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3/1a> <unfinished ...>
+789988 1789830180.311497 <... fsync resumed>) = 0 <0.003871>
+789990 1789830180.311642 <... fsync resumed>) = 0 <0.003959>
+789989 1789830180.311654 <... fsync resumed>) = 0 <0.003998>
+789986 1789830180.313538 <... fsync resumed>) = 0 <0.003826>
+789987 1789830180.313554 <... fsync resumed>) = 0 <0.003768>
+789985 1789830180.313566 <... fsync resumed>) = 0 <0.003823>
+789984 1789830180.313579 <... fsync resumed>) = 0 <0.003661>
+789983 1789830180.313591 <... fsync resumed>) = 0 <0.003730>
+789941 1789830180.313602 <... fsync resumed>) = 0 <0.003667>
+789982 1789830180.315427 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002247>
+789979 1789830180.319872 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins> <unfinished ...>
+789980 1789830180.320582 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/c3> <unfinished ...>
+789979 1789830180.322117 <... fsync resumed>) = 0 <0.002197>
+789987 1789830180.323515 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/c8> <unfinished ...>
+789985 1789830180.323573 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/5a> <unfinished ...>
+789982 1789830180.323702 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3/af> <unfinished ...>
+789986 1789830180.323740 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/a7> <unfinished ...>
+789979 1789830180.323815 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/72/7299e5b43f1540fab0c55b9e4787b48da7e4cd2bf3d0113f118edc85c4110109#1> <unfinished ...>
+789990 1789830180.323876 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/b1> <unfinished ...>
+789978 1789830180.323943 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3/97> <unfinished ...>
+789984 1789830180.324101 fsync(23</tmp/.tmpZOiMdM/blobs/bao/b3/cd> <unfinished ...>
+789980 1789830180.324145 <... fsync resumed>) = 0 <0.003542>
+789980 1789830180.324250 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789983 1789830180.324372 fsync(24</tmp/.tmpZOiMdM/casita.sqlite.online-pins> <unfinished ...>
+789987 1789830180.326801 <... fsync resumed>) = 0 <0.003260>
+789987 1789830180.326933 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3>) = 0 <0.000013>
+789987 1789830180.327161 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/c8/c8d19eac09f862cf5025acacbaca33c4b22736c6f8cd301d0cab44005fd9a6aa#1> <unfinished ...>
+789990 1789830180.327236 <... fsync resumed>) = 0 <0.003342>
+789986 1789830180.327252 <... fsync resumed>) = 0 <0.003493>
+789985 1789830180.327268 <... fsync resumed>) = 0 <0.003668>
+789984 1789830180.327282 <... fsync resumed>) = 0 <0.003162>
+789982 1789830180.327297 <... fsync resumed>) = 0 <0.003574>
+789979 1789830180.327315 <... fsync resumed>) = 0 <0.003477>
+789978 1789830180.327331 <... fsync resumed>) = 0 <0.003369>
+789986 1789830180.327439 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789990 1789830180.327458 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789985 1789830180.327473 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789984 1789830180.327493 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789990 1789830180.327515 <... fsync resumed>) = 0 <0.000042>
+789986 1789830180.327527 <... fsync resumed>) = 0 <0.000070>
+789985 1789830180.327537 <... fsync resumed>) = 0 <0.000045>
+789982 1789830180.327548 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789978 1789830180.327565 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789984 1789830180.327588 <... fsync resumed>) = 0 <0.000080>
+789982 1789830180.327600 <... fsync resumed>) = 0 <0.000037>
+789978 1789830180.327631 <... fsync resumed>) = 0 <0.000051>
+789979 1789830180.327664 fsync(23</tmp/.tmpZOiMdM/blobs/bao/b3/72> <unfinished ...>
+789990 1789830180.327784 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/b1/b1fb4c09d081a3f476b4e5bbcf29f113edad6d5602054af54fe893bebc999433#1> <unfinished ...>
+789986 1789830180.327810 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/a7/a7bc2b2043b19c3f66d16f1407359aa518b6f37a63a4270cdf2ac0a79b25663a#1> <unfinished ...>
+789985 1789830180.327829 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/5a/5adabe13a708422aafa46cbde0694bfb646e6e6782be6418a7b610bd990c94fc#1> <unfinished ...>
+789984 1789830180.327872 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/cd/cd3d337db42922f3d7048ed5984cb2d70ea54ac535e33efabaf136a0d7a00245#1> <unfinished ...>
+789982 1789830180.327889 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3/af/af54e4a0eef3b785753697d57d0a3a17fde76899a1e4e156c36584e22f55df2d#1> <unfinished ...>
+789978 1789830180.327917 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3/97/97d391c5dc39d13c1baed2720be6642d2fc4b9951704985bf76f0ad52f96fab0#1> <unfinished ...>
+789983 1789830180.329182 <... fsync resumed>) = 0 <0.004790>
+789980 1789830180.329442 <... fsync resumed>) = 0 <0.005176>
+789980 1789830180.329649 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/c3/c35198ec39a219a0f888ce9537b112342393c350ce555ea8ab2be2af12a5bc9c#1> <unfinished ...>
+789988 1789830180.330528 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/52/52dec710222d62897eaf67de732015ea99afa64449921d4a88a15063dba707ff#1> <unfinished ...>
+789941 1789830180.330749 fsync(25</tmp/.tmpZOiMdM/blobs/bao/b3/ac> <unfinished ...>
+789981 1789830180.330802 fsync(24</tmp/.tmpZOiMdM/blobs/bao/b3/41> <unfinished ...>
+789989 1789830180.330825 fsync(26</tmp/.tmpZOiMdM/blobs/bao/b3/2c> <unfinished ...>
+789983 1789830180.330957 fsync(27</tmp/.tmpZOiMdM/blobs/bao/b3/d9> <unfinished ...>
+789977 1789830180.331003 fsync(28</tmp/.tmpZOiMdM/blobs/bao/b3/c2> <unfinished ...>
+789987 1789830180.331365 <... fsync resumed>) = 0 <0.004182>
+789990 1789830180.331655 <... fsync resumed>) = 0 <0.003848>
+789986 1789830180.331673 <... fsync resumed>) = 0 <0.003843>
+789985 1789830180.331686 <... fsync resumed>) = 0 <0.003842>
+789984 1789830180.331700 <... fsync resumed>) = 0 <0.003811>
+789982 1789830180.331713 <... fsync resumed>) = 0 <0.003808>
+789979 1789830180.331728 <... fsync resumed>) = 0 <0.004046>
+789978 1789830180.331741 <... fsync resumed>) = 0 <0.003810>
+789991 1789830180.331787 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/fb/fb0a22ba3bba3ff333f61debf57818c129ea81bacc401c919160440c80029050#1> <unfinished ...>
+789987 1789830180.331853 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/c8> <unfinished ...>
+789986 1789830180.332145 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/a7> <unfinished ...>
+789985 1789830180.332175 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/5a> <unfinished ...>
+789990 1789830180.332199 fsync(20</tmp/.tmpZOiMdM/blobs/bao/b3/b1> <unfinished ...>
+789984 1789830180.332251 fsync(21</tmp/.tmpZOiMdM/blobs/bao/b3/cd> <unfinished ...>
+789982 1789830180.332269 fsync(22</tmp/.tmpZOiMdM/blobs/bao/b3/af> <unfinished ...>
+789978 1789830180.332309 fsync(23</tmp/.tmpZOiMdM/blobs/bao/b3/97> <unfinished ...>
+789983 1789830180.333571 <... fsync resumed>) = 0 <0.002593>
+789980 1789830180.333595 <... fsync resumed>) = 0 <0.003926>
+789983 1789830180.333705 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789989 1789830180.333952 <... fsync resumed>) = 0 <0.003109>
+789988 1789830180.333971 <... fsync resumed>) = 0 <0.003403>
+789981 1789830180.333989 <... fsync resumed>) = 0 <0.003168>
+789977 1789830180.334006 <... fsync resumed>) = 0 <0.002984>
+789941 1789830180.334022 <... fsync resumed>) = 0 <0.003252>
+789980 1789830180.334127 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/c3> <unfinished ...>
+789989 1789830180.334160 fsync(26</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789981 1789830180.334184 fsync(24</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789989 1789830180.334212 <... fsync resumed>) = 0 <0.000032>
+789981 1789830180.334235 <... fsync resumed>) = 0 <0.000030>
+789977 1789830180.334259 fsync(25</tmp/.tmpZOiMdM/blobs/bao/b3> <unfinished ...>
+789988 1789830180.334292 fsync(27</tmp/.tmpZOiMdM/blobs/bao/b3/52> <unfinished ...>
+789977 1789830180.334319 <... fsync resumed>) = 0 <0.000035>
+789941 1789830180.334333 fsync(28</tmp/.tmpZOiMdM/blobs/bao/b3>) = 0 <0.000013>
+789989 1789830180.334535 fsync(24</tmp/.tmpZOiMdM/blobs/bao/b3/2c/2c69ae72275ec1dc50a2928957815fb45896ea7a4734813d013529cee2127864#1> <unfinished ...>
+789981 1789830180.334595 fsync(25</tmp/.tmpZOiMdM/blobs/bao/b3/41/41819c729960713f0066da249e1264111a4508f44aa0b030859ec580ed83f33a#1> <unfinished ...>
+789977 1789830180.334636 fsync(26</tmp/.tmpZOiMdM/blobs/bao/b3/c2/c2f54346363aab648131f9eb7bfba3ee7a847604b7a6223dd0ab28ba0f9939ad#1> <unfinished ...>
+789941 1789830180.334675 fsync(28</tmp/.tmpZOiMdM/blobs/bao/b3/ac/ac881bcc7a0d4fc467cfe67d28f8fa6190e4a3e1d09f00b24614509d9c4b71ba#1> <unfinished ...>
+789991 1789830180.336693 <... fsync resumed>) = 0 <0.004870>
+789982 1789830180.336706 <... fsync resumed>) = 0 <0.004415>
+789990 1789830180.337236 <... fsync resumed>) = 0 <0.005017>
+789987 1789830180.337258 <... fsync resumed>) = 0 <0.005382>
+789986 1789830180.337279 <... fsync resumed>) = 0 <0.005106>
+789985 1789830180.337296 <... fsync resumed>) = 0 <0.005101>
+789984 1789830180.337312 <... fsync resumed>) = 0 <0.005043>
+789978 1789830180.337329 <... fsync resumed>) = 0 <0.004997>
+789991 1789830180.337407 fsync(17</tmp/.tmpZOiMdM/blobs/bao/b3/fb> <unfinished ...>
+789983 1789830180.339430 <... fsync resumed>) = 0 <0.005691>
+789989 1789830180.339454 <... fsync resumed>) = 0 <0.004878>
+789988 1789830180.339466 <... fsync resumed>) = 0 <0.005151>
+789981 1789830180.339479 <... fsync resumed>) = 0 <0.004844>
+789980 1789830180.339492 <... fsync resumed>) = 0 <0.005341>
+789977 1789830180.339505 <... fsync resumed>) = 0 <0.004847>
+789941 1789830180.339516 <... fsync resumed>) = 0 <0.004820>
+789983 1789830180.339759 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/d9/d9e9d6eaebf24f7b5cf497b6df496fe83d996cedb7dd576bfd7955d04d8554bc#1> <unfinished ...>
+789989 1789830180.340508 fsync(15</tmp/.tmpZOiMdM/blobs/bao/b3/2c> <unfinished ...>
+789981 1789830180.340543 fsync(16</tmp/.tmpZOiMdM/blobs/bao/b3/41> <unfinished ...>
+789977 1789830180.340573 fsync(18</tmp/.tmpZOiMdM/blobs/bao/b3/c2> <unfinished ...>
+789941 1789830180.340603 fsync(19</tmp/.tmpZOiMdM/blobs/bao/b3/ac> <unfinished ...>
+789991 1789830180.342583 <... fsync resumed>) = 0 <0.005149>
+789983 1789830180.344954 <... fsync resumed>) = 0 <0.005162>
+789989 1789830180.344975 <... fsync resumed>) = 0 <0.004434>
+789981 1789830180.344988 <... fsync resumed>) = 0 <0.004419>
+789977 1789830180.345000 <... fsync resumed>) = 0 <0.004400>
+789941 1789830180.345011 <... fsync resumed>) = 0 <0.004375>
+789983 1789830180.345167 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/d9>) = 0 <0.002628>
+789979 1789830180.349779 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002487>
+789990 1789830180.353607 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/1f>) = 0 <0.002830>
+789990 1789830180.356625 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3>) = 0 <0.002441>
+789990 1789830180.359357 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/1f/1f8ca49e0869c121cd3668afef41d5e87e9bc7e271acb1a80d3851c1313ef868#1>) = 0 <0.002247>
+789990 1789830180.361845 fsync(9</tmp/.tmpZOiMdM/blobs/bao/b3/1f>) = 0 <0.002403>
+789984 1789830180.366195 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002612>
+789978 1789830180.371453 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002613>
+789988 1789830180.377489 fsync(15</tmp/.tmpZOiMdM/casita.sqlite.online-pins.reader-faa7afbf1eaadaffa26dff7a65787d119d0f641b6dff433664a0a4558f33912d.lock>) = 0 <0.002410>
+789988 1789830180.380680 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002745>
+789989 1789830180.387973 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002551>
+789981 1789830180.391761 fsync(9</tmp/.tmpZOiMdM/blobs/packs/b3/32>) = 0 <0.002407>
+789981 1789830180.394316 fsync(9</tmp/.tmpZOiMdM/blobs/packs/b3>) = 0 <0.002207>
+789981 1789830180.396696 fsync(9</tmp/.tmpZOiMdM/blobs/packs>) = 0 <0.002412>
+789981 1789830180.399260 fsync(9</tmp/.tmpZOiMdM/blobs>) = 0 <0.002359>
+789981 1789830180.401928 fsync(9</tmp/.tmpZOiMdM/blobs/packs/b3/32/32d27430346b5c0c3ae252d244cb0871be521aa3a8110a38c1129c354e144b64#1>) = 0 <0.002393>
+789981 1789830180.404562 fsync(9</tmp/.tmpZOiMdM/blobs/packs/b3/32>) = 0 <0.002223>
+789977 1789830180.409245 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002528>
+789941 1789830180.412635 fsync(9</tmp/.tmpZOiMdM/blobs/pack-index-reclaim-needed#3392744990965762>) = 0 <0.002327>
+789941 1789830180.415555 fsync(9</tmp/.tmpZOiMdM/blobs>) = 0 <0.002633>
+789983 1789830180.420127 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002501>
+789942 1789830180.423225 fsync(9</tmp/.tmpZOiMdM/blobs/pack-indexes/b3/63/63ee44ffeccb496a6b800689fa131913e65cf730f16f3ac1520b55aecc103de8#3392744990965763>) = 0 <0.002659>
+789979 1789830180.426368 fsync(9</tmp/.tmpZOiMdM/blobs/pack-indexes/b3/63>) = 0 <0.002179>
+789979 1789830180.428715 fsync(9</tmp/.tmpZOiMdM/blobs/pack-indexes/b3>) = 0 <0.002394>
+789979 1789830180.431265 fsync(9</tmp/.tmpZOiMdM/blobs/pack-indexes>) = 0 <0.000016>
+789979 1789830180.431419 fsync(9</tmp/.tmpZOiMdM/blobs>) = 0 <0.000014>
+789982 1789830180.444083 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.002638>
+789991 1789830180.453684 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.002526>
+789989 1789830180.458265 fsync(16</tmp/.tmpZOiMdM/casita.sqlite.online-pins>) = 0 <0.002545>
+789979 1789830180.464985 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.002551>
+789986 1789830180.539880 fsync(12</tmp/.tmpZOiMdM/casita.sqlite-wal>) = 0 <0.032716>

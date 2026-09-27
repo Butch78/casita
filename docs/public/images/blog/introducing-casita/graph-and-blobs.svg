@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" role="img" aria-labelledby="title desc">
+  <title id="title">Object Store and Blob Store for src/main.rs</title>
+  <desc id="desc">The Object Store holds the src directory and main.rs file records, with a link from the directory to the file. Each record points to bytes in the Blob Store: encoded directory entries or file source. Each blob has a BLAKE3 hash of its complete contents.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="m1 1 8 4-8 4" fill="none" stroke="#a23b20" stroke-width="1.5"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, sans-serif; fill: #222b32; }
+      .heading { font-size: 27px; font-weight: 700; }
+      .column { font-size: 16px; font-weight: 700; letter-spacing: 1px; fill: #a23b20; }
+      .label { font-size: 21px; font-weight: 700; }
+      .body { font-size: 17px; fill: #56616a; }
+      .small { font-size: 15px; fill: #56616a; }
+      .code { font-family: monospace; font-size: 17px; }
+      .record { fill: #fff0e9; stroke: #d25a37; stroke-width: 1.5; }
+      .blob { fill: #fffdfa; stroke: #a7adb0; stroke-width: 1.5; }
+      .arrow { fill: none; stroke: #a23b20; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="760" height="420" rx="20" fill="#f5f6f8"/>
+  <text x="32" y="50" class="heading">One file, two kinds of data</text>
+  <text x="42" y="96" class="column">Object Store</text>
+  <text x="420" y="96" class="column">Blob Store</text>
+
+  <rect x="42" y="116" width="298" height="116" rx="12" class="record"/>
+  <text x="62" y="151" class="label">src/</text>
+  <text x="62" y="180" class="body">Directory record</text>
+  <text x="62" y="207" class="small">Links to main.rs</text>
+
+  <rect x="420" y="116" width="298" height="116" rx="12" class="blob"/>
+  <text x="440" y="151" class="label">Directory entries</text>
+  <text x="440" y="180" class="small">main.rs · file · child ID</text>
+  <text x="440" y="207" class="small">BLAKE3 hash of these bytes</text>
+
+  <path d="M340 174h70" class="arrow"/>
+  <path d="M191 232v42" class="arrow"/>
+  <text x="210" y="261" class="small">child link</text>
+
+  <rect x="42" y="278" width="298" height="116" rx="12" class="record"/>
+  <text x="62" y="313" class="label">main.rs</text>
+  <text x="62" y="342" class="body">File record</text>
+  <text x="62" y="369" class="small">No child links</text>
+
+  <rect x="420" y="278" width="298" height="116" rx="12" class="blob"/>
+  <text x="440" y="313" class="label">Source bytes</text>
+  <text x="440" y="342" class="code">fn main() {}</text>
+  <text x="440" y="369" class="small">BLAKE3 hash of these bytes</text>
+  <path d="M340 336h70" class="arrow"/>
+</svg>

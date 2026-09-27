@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "host": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "cpu_count": 8,
+    "count": 64,
+    "jobs": [
+      8
+    ],
+    "rounds": 1,
+    "workloads": [
+      "chain",
+      "wide"
+    ],
+    "dynamic_expression": "# Shared Linux/macOS workload: N generators + N floating builds.\n# Give the leaf a different output name so the generator does not rewrite its\n# placeholder while substituting its own $out into the serialized payload.\n{ nodes, shape, shell }:\nassert builtins.isInt nodes && nodes > 0;\nassert builtins.elem shape [ \"chain\" \"wide\" ];\nlet\n  seed = builtins.toFile \"seed\" \"seed\\n\";\n  make = index: previous:\n    let\n      leaf = derivation {\n        name = \"leaf-${toString index}\";\n        system = builtins.currentSystem;\n        builder = shell;\n        outputs = [ \"result\" ];\n        __contentAddressed = true;\n        outputHashMode = \"recursive\";\n        outputHashAlgo = \"sha256\";\n        inherit seed;\n        args = [ \"-c\" ''set -eu; read -r value < \"$seed\"; test \"$value\" = seed; printf 'value-${toString index}' > \"$result\"'' ];\n      };\n    in derivation {\n      name = \"leaf-${toString index}.drv\";\n      system = builtins.currentSystem;\n      builder = shell;\n      __contentAddressed = true;\n      outputHashMode = \"text\";\n      outputHashAlgo = \"sha256\";\n      inherit seed previous;\n      payload = builtins.unsafeDiscardStringContext (builtins.readFile leaf.drvPath);\n      args = [ \"-c\" ''set -eu; read -r value < \"$seed\"; test \"$value\" = seed; if test -n \"$previous\"; then test -s \"$previous\"; fi; printf '%s' \"$payload\" > \"$out\"'' ];\n    };\n  generators = builtins.genList (index: make index (\n    if shape == \"chain\" && index > 0\n    then builtins.outputOf (builtins.elemAt generators (index - 1)).outPath \"result\"\n    else \"\"\n  )) nodes;\n  targets = if shape == \"chain\" then [ (builtins.elemAt generators (nodes - 1)) ] else generators;\nin map (generator: generator.drvPath + \"^out^result\") targets\n",
+    "shared_expression": "# Each output retains references to its two predecessors, forming overlapping\n# transitive closures. Request every node so verification checks every byte.\n{ count ? 64, nonce ? \"manual\", system ? builtins.currentSystem }:\nassert builtins.isInt count && count > 0;\nlet\n  graph = builtins.genList (index:\n    let\n      dependencies = builtins.genList\n        (offset: builtins.elemAt graph (index - offset - 1))\n        (if index < 2 then index else 2);\n    in derivation {\n      name = \"shared-${nonce}-${toString index}\";\n      inherit system;\n      builder = \"/bin/sh\";\n      previous = dependencies;\n      value = \"value-${toString index}\";\n      args = [ \"-c\" ''\n        set -eu\n        printf '%s\\n' \"$value\" > \"$out\"\n        for dependency in $previous; do\n          test -s \"$dependency\"\n          printf '%s\\n' \"$dependency\" >> \"$out\"\n        done\n      '' ];\n      preferLocalBuild = true;\n      allowSubstitutes = false;\n    }) count;\nin graph\n",
+    "shell": "/bin/sh",
+    "build_counting": "Nix build activities; Obrador local_build trace completions",
+    "sandbox": true,
+    "base_command": [
+      "/nix/store/p805hs6b93ij2xz2axvb7b1xyds58yln-nix-2.36.0pre20260901_f8cd4ce/bin/nix",
+      "--extra-experimental-features",
+      "nix-command ca-derivations dynamic-derivations",
+      "--option",
+      "substituters",
+      "",
+      "--option",
+      "builders",
+      "",
+      "--option",
+      "build-users-group",
+      "",
+      "--option",
+      "cores",
+      "1",
+      "--option",
+      "sandbox",
+      "true",
+      "--option",
+      "sandbox-fallback",
+      "false",
+      "--option",
+      "require-sigs",
+      "false"
+    ],
+    "expression": "# No nixpkgs dependency: the host /bin/sh reads one declared store input and\n# writes one output. Distinct names ensure these are separate derivations.\n{ count ? 64, nonce ? \"manual\", system ? builtins.currentSystem }:\nassert builtins.isInt count && count > 0;\nlet\n  input = builtins.toFile \"build-benchmark-input\" \"casita\\n\";\n  script = builtins.toFile \"build-benchmark.sh\" ''\n    set -eu\n    read value < \"$input\"\n    printf '%s' \"$value\" > \"$out\"\n  '';\nin\nbuiltins.genList (index: derivation {\n  name = \"build-benchmark-${nonce}-${toString index}\";\n  inherit system input;\n  builder = \"/bin/sh\";\n  args = [ script ];\n  preferLocalBuild = true;\n  allowSubstitutes = false;\n}) count\n",
+    "timing": "build CLI including startup/shutdown; preparation and verification excluded",
+    "plugin": "/Users/hetzner/obrador-shared-pins-20260909/baseline.dylib",
+    "plugin_sha256": "487370759ad5c8c17dcdbec4efbef54d9eeeee2a373d4a2380bfbfcbc5fedc38",
+    "extra_trace_filter": null,
+    "nix_version": "nix (Nix) 2.36.0pre20260901_f8cd4ce\n"
+  },
+  "trials": [
+    {
+      "backend": "nix",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "chain",
+      "verified_builds": 64,
+      "wall_seconds": 1.5909847500734031,
+      "amortized_ms": 24.859136719896924,
+      "preparation_seconds": 0.08226370788179338,
+      "verification_copy_seconds": 0.08996583404950798,
+      "verified_outputs": 1
+    },
+    {
+      "backend": "obrador",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "chain",
+      "verified_builds": 64,
+      "wall_seconds": 70.91811458300799,
+      "amortized_ms": 1108.0955403594999,
+      "preparation_seconds": 9.630049708066508,
+      "verification_copy_seconds": 3.8002060828730464,
+      "verified_outputs": 1
+    },
+    {
+      "backend": "nix",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "wide",
+      "verified_builds": 64,
+      "wall_seconds": 1.2906962919514626,
+      "amortized_ms": 20.167129561741604,
+      "preparation_seconds": 0.09002604079432786,
+      "verification_copy_seconds": 0.09000804205425084,
+      "verified_outputs": 32
+    },
+    {
+      "backend": "obrador",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "wide",
+      "verified_builds": 64,
+      "wall_seconds": 45.91727020777762,
+      "amortized_ms": 717.4573469965253,
+      "preparation_seconds": 9.31511141709052,
+      "verification_copy_seconds": 3.8454272500239313,
+      "verified_outputs": 32
+    }
+  ]
+}

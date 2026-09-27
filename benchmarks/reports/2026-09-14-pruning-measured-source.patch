@@ -1,0 +1,244 @@
+diff --git a/benchmarks/suites/held_catalog_gc.py b/benchmarks/suites/held_catalog_gc.py
+index ae335b1..409bfcf 100644
+--- a/benchmarks/suites/held_catalog_gc.py
++++ b/benchmarks/suites/held_catalog_gc.py
+@@ -119,7 +119,9 @@ def main(argv=None):
+     args = parser.parse_args(argv)
+     if args.repetitions < 1 or (args.no_build and args.probe_binary is None):
+         parser.error("positive repetitions and a binary for --no-build are required")
+-    counts = args.counts or ([128] if args.profile == "smoke" else [128, 1024])
++    # With one hold these remove 64 and 65 objects, crossing the inline
++    # deletion batch boundary. Keep both cases in benchmark all's smoke run.
++    counts = args.counts or ([65, 66, 128] if args.profile == "smoke" else [65, 66, 128, 1024])
+     if min(counts) < 2:
+         parser.error("counts must include at least one held and one garbage object")
+     binary = args.probe_binary
+@@ -150,7 +152,9 @@ def main(argv=None):
+                   artifacts=artifacts,
+                   source_sha256={name: hashlib.sha256((cli.ROOT / name).read_bytes()).hexdigest()
+                                  for name in ("src/blob/pack.rs", "src/blob/pack/shard.rs",
+-                                              "src/blob/pack/gc_benchmark.rs", "src/repository/collection_timing.rs",
++                                              "src/blob/pack/gc_benchmark.rs", "src/metadata/sqlite.rs",
++                                              "src/sqlite.rs", "src/repository/publication.rs",
++                                              "src/repository/collection_timing.rs",
+                                               "benches/bench_util/gc_timing.rs", "benchmarks/suites/held_catalog_gc.py")},
+                   samples=[], processes=[])
+
+diff --git a/src/metadata/sqlite.rs b/src/metadata/sqlite.rs
+index ae2d572..f5a0289 100644
+--- a/src/metadata/sqlite.rs
++++ b/src/metadata/sqlite.rs
+@@ -695,15 +695,23 @@ impl TursoMetadataStore {
+         expected: Option<RepositoryRevision>,
+         mutation: MetadataMutation,
+     ) -> Result<CommitResult, MetadataError> {
++        use crate::repository::CollectionPhase;
++
++        let collecting = mutation.retained_objects.is_some();
++        let writer_wait = collecting.then(|| CollectionPhase::new("prune_db_wait"));
+         let validated = self.validated.clone();
+         let result = self
+             .db
+             .write(move |connection| {
++                drop(writer_wait);
+                 Box::pin(async move {
++                    let begin = collecting.then(|| CollectionPhase::new("prune_db_begin"));
+                     // Beginning the transaction also rolls back a previously
+                     // abandoned transaction. prepare_cached alone does not
+                     // perform that cleanup, so keep it inside this boundary.
+                     let transaction = connection.transaction().await?;
++                    drop(begin);
++                    let prepare = collecting.then(|| CollectionPhase::new("prune_db_prepare"));
+                     let actual = read_revision_tx(&transaction)
+                         .await
+                         .map_err(state_as_database)?;
+@@ -741,8 +749,9 @@ impl TursoMetadataStore {
+                         objects_removed: 0,
+                         roots_changed: 0,
+                     };
+-                    let collecting = mutation.retained_objects.is_some();
++                    drop(prepare);
+                     if let Some(retained) = mutation.retained_objects {
++                        let _retained = CollectionPhase::new("prune_db_retained");
+                         result.objects_removed =
+                             install_retained_tx(&transaction, retained.as_ref())
+                                 .await
+@@ -807,6 +816,7 @@ impl TursoMetadataStore {
+                             }
+                         }
+                     }
++                    let state = collecting.then(|| CollectionPhase::new("prune_db_state"));
+                     apply_metadata_tx(&transaction, mutation.records)
+                         .await
+                         .map_err(state_as_database)?;
+@@ -824,10 +834,14 @@ impl TursoMetadataStore {
+                         .await?;
+                     #[cfg(test)]
+                     crate::blob::crash_tests::checkpoint("before-state-commit");
++                    drop(state);
++                    let commit = collecting.then(|| CollectionPhase::new("prune_db_commit"));
+                     transaction.commit().await?;
++                    drop(commit);
+                     #[cfg(test)]
+                     crate::blob::crash_tests::checkpoint("after-state-commit");
+                     if collecting {
++                        let _checkpoint = CollectionPhase::new("prune_db_checkpoint");
+                         // Committed pages otherwise accumulate in the log for
+                         // the life of the repository: the database file stays
+                         // one page wide while the log grows with every commit,
+@@ -1337,7 +1351,7 @@ async fn install_retained_inline_tx(
+     drop(roots);
+
+     let mut rows = transaction
+-        .prepare_cached("SELECT namespace, native_id, record FROM objects")
++        .prepare_cached("SELECT rowid, namespace, native_id, record FROM objects")
+         .await?
+         .query(())
+         .await?;
+@@ -1345,16 +1359,18 @@ async fn install_retained_inline_tx(
+     let mut stale = Vec::new();
+     let mut live_blob_digests = BTreeSet::new();
+     while let Some(row) = rows.next().await? {
+-        let key = decode_key(row.get(0)?, row.get(1)?)?;
++        let key = decode_key(row.get(1)?, row.get(2)?)?;
+         if !retained_keys.contains(&key) {
+-            stale.push(key);
++            // Physical IDs stay inside the transaction that scanned them;
++            // all retained-set validation finishes before the first delete.
++            stale.push(row.get::<i64>(0)?);
+             continue;
+         }
+         unseen.remove(&key);
+         if key.namespace().as_str() == "casita.blob.v1" {
+             live_blob_digests.insert(key.native_id().to_vec());
+         }
+-        let stored: Vec<u8> = row.get(2)?;
++        let stored: Vec<u8> = row.get(3)?;
+         let record = decode_stored_record(&key, &stored)?;
+         if let Some(target) = record
+             .links()
+@@ -1374,12 +1390,10 @@ async fn install_retained_inline_tx(
+     }
+
+     let mut delete_object = transaction
+-        .prepare_cached("DELETE FROM objects WHERE namespace = ?1 AND native_id = ?2")
++        .prepare_cached("DELETE FROM objects WHERE rowid = ?1")
+         .await?;
+-    for key in &stale {
+-        delete_object
+-            .execute(params![key.namespace().as_str(), key.native_id()])
+-            .await?;
++    for rowid in &stale {
++        delete_object.execute([*rowid]).await?;
+     }
+
+     let mut cache_rows = transaction
+@@ -2866,6 +2880,108 @@ mod tests {
+         assert!(roots.windows(2).all(|pair| pair[0].name() < pair[1].name()));
+     }
+
++    #[tokio::test]
++    async fn inline_collection_preserves_composite_keys_and_rejects_unknown_retained() {
++        for garbage in [0, 1, 2, 3, 63, 64, 65, 127, 128, 129] {
++            let directory = tempfile::tempdir().unwrap();
++            let path = directory.path().join("collection.sqlite");
++            let store = TursoMetadataStore::open(&path).await.unwrap();
++            let mut expected = BTreeMap::new();
++            let mut seed = Vec::new();
++            for index in 0..garbage.max(1) {
++                // Include empty and zero-containing native IDs, and identical
++                // native IDs in live/dead namespaces. Physical row IDs must
++                // not remove an unrelated live record.
++                let native = if index == 0 {
++                    vec![]
++                } else {
++                    (index as u64).to_le_bytes().to_vec()
++                };
++                for namespace in ["test.live.v1", "test.dead.v1"] {
++                    if namespace == "test.dead.v1" && index >= garbage {
++                        continue;
++                    }
++                    let key = ObjectKey::new(namespace.parse().unwrap(), native.clone()).unwrap();
++                    let record = ObjectRecord::new(
++                        key.clone(),
++                        BlobId::new(Digest::hash(&key.encode())),
++                        0,
++                        vec![],
++                    )
++                    .unwrap();
++                    if namespace == "test.live.v1" {
++                        expected.insert(key, record.clone());
++                    }
++                    seed.push(record);
++                }
++            }
++            let original = seed.clone();
++            store
++                .db
++                .write(move |connection| {
++                    Box::pin(async move {
++                        let transaction = connection.transaction().await?;
++                        for record in seed {
++                            insert_record_tx(&transaction, &record, 0)
++                                .await
++                                .map_err(state_as_database)?;
++                        }
++                        transaction.commit().await?;
++                        Ok(())
++                    })
++                })
++                .await
++                .unwrap();
++            let revision = store.snapshot().await.unwrap().revision();
++            let retained: BTreeSet<_> = expected.keys().cloned().collect();
++            let mut invalid = retained.clone();
++            invalid.insert(ObjectKey::new("test.missing.v1".parse().unwrap(), vec![]).unwrap());
++            assert!(matches!(
++                store
++                    .commit(
++                        &revision,
++                        MetadataMutation::install_retained_objects(invalid)
++                    )
++                    .await,
++                Err(MetadataError::InvalidRetainedSet(_))
++            ));
++            let snapshot = store.snapshot().await.unwrap();
++            assert_eq!(snapshot.revision(), revision);
++            let actual = snapshot
++                .objects_unordered()
++                .try_collect::<Vec<_>>()
++                .await
++                .unwrap();
++            assert_eq!(actual.len(), original.len());
++            for record in &original {
++                assert_eq!(
++                    snapshot.object(record.key()).await.unwrap().as_ref(),
++                    Some(record)
++                );
++            }
++            drop(snapshot);
++            let committed = store
++                .commit(
++                    &revision,
++                    MetadataMutation::install_retained_objects(retained),
++                )
++                .await
++                .unwrap();
++            assert_eq!(committed.objects_removed, garbage);
++            drop(store);
++            let reopened = TursoMetadataStore::open(&path).await.unwrap();
++            let snapshot = reopened.snapshot().await.unwrap();
++            assert_eq!(snapshot.revision(), committed.revision);
++            let actual: BTreeMap<_, _> = snapshot
++                .objects_unordered()
++                .map_ok(|record| (record.key().clone(), record))
++                .try_collect()
++                .await
++                .unwrap();
++            assert_eq!(actual, expected);
++        }
++    }
++
+     #[tokio::test]
+     async fn stale_commit_and_atomic_collection() {
+         let directory = tempfile::tempdir().unwrap();

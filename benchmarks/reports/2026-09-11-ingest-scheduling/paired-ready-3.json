@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.ingest-concurrency.v1",
+  "suite_id": "repository-e2e",
+  "complete": true,
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "import",
+      "variant": "files-16-chunks-32",
+      "corpus": "mixed",
+      "file_concurrency": 16,
+      "chunk_concurrency": 32,
+      "repetition": 0,
+      "logical_bytes": 134709248,
+      "root": "casita.directory.v1:GlMFA8Va9WLiK1jVYugEHqbTEPHbRZoPZQsdW1dN0KY",
+      "correctness": "reopened root identity, exact checkout manifest, fsck",
+      "command": [
+        "/tmp/casita-ingest-scheduling/bin/ready",
+        "--repository",
+        "/tmp/casita-ingest-concurrency-e3x2tsha/repository-0",
+        "import",
+        "/tmp/casita-ingest-concurrency-e3x2tsha/mixed",
+        "-i",
+        "filesystem",
+        "--root",
+        "bench/input",
+        "--filesystem-rehash",
+        "--filesystem-concurrency",
+        "16",
+        "--chunk-upload-concurrency",
+        "32"
+      ],
+      "wall_seconds": 2.163026535,
+      "user_seconds": 0.73,
+      "system_seconds": 1.41,
+      "max_rss_bytes": 142950400,
+      "exit_code": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/tmp/casita-ingest-scheduling/bin/ready",
+      "sha256": "29a3f1fae15ac1a39da5e81cca16eb7c8f909c07c237f6da59017bac7df26c68"
+    }
+  ],
+  "configuration": {
+    "profile": "standard",
+    "corpora": [
+      "mixed"
+    ],
+    "file_concurrency": [
+      16
+    ],
+    "chunk_concurrency": [
+      32
+    ],
+    "repetitions": 1,
+    "measurement_note": "Alternating mixed-size repeat, pair 3, ready; shared host, no builds launched by this investigation.",
+    "timing": "fresh durable CLI import; source generation, init, fsck and checkout excluded; warm OS cache"
+  },
+  "environment": {
+    "captured_at_utc": "2026-09-11T18:23:19.402299+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177954304,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "898257bb94837c59d71b579c8803862dbbf2c4c7",
+    "casita_worktree_dirty": true
+  }
+}

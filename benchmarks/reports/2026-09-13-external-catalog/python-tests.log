@@ -1,0 +1,97 @@
+  warning: Skip selectors from environment variables `SKIP` are ignored during installing hooks.
+  error: No hooks found after filtering with the given selectors
+✖ execute command in 51.4ms (failed)
+✖ Running devenv:git-hooks:run in 52.4ms (failed)
+✖ Running devenv:enterTest in 21.4µs (dependency failed)
+✖ Running tasks in 251ms (failed)
+...running online-holds
+.completion ledger: /tmp/tmp_xyw5wv7/results/execution.json
+running online-holds
+..completion ledger: /tmp/tmpvl5bsf5s/results/execution.json
+running fskit-setup-reuse
+completion ledger: /tmp/tmpk0otds9w/results/execution.json
+running fskit-setup-reuse
+.completion ledger: /tmp/tmpcnxdsxa8/results/execution.json
+running transfer-holds
+completion ledger: /tmp/tmp8g752hhf/results/execution.json
+running transfer-holds
+.........................................................................completion ledger: /tmp/tmpd7cssjxv/results/execution.json
+fsck benchmark failed: checkout mismatch
+..usage: python3 -m unittest [-h] [--casita CASITA]
+                           [--baseline-casita BASELINE_CASITA]
+                           [--seed-probe SEED_PROBE]
+                           [--profile {smoke,standard,frontier}]
+                           [--files FILES] [--memory-objects MEMORY_OBJECTS]
+                           [--repetitions REPETITIONS]
+                           [--spill-bytes SPILL_BYTES] [--work-dir WORK_DIR |
+                           --reuse-work-dir REUSE_WORK_DIR] --output OUTPUT
+python3 -m unittest: error: baseline and candidate binaries must have distinct hashes
+....wrote /tmp/tmppt9l0se7/result.json
+fsck baseline files=256 records=321 memory=322 repetition=1
+fsck candidate files=256 records=321 memory=322 repetition=1
+fsck baseline files=256 records=321 memory=128 repetition=1
+fsck candidate files=256 records=321 memory=128 repetition=1
+fsck baseline files=256 records=321 memory=32 repetition=1
+fsck candidate files=256 records=321 memory=32 repetition=1
+fsck baseline files=256 records=321 memory=321 repetition=1
+fsck candidate files=256 records=321 memory=321 repetition=1
+fsck baseline files=256 records=321 memory=320 repetition=1
+fsck candidate files=256 records=321 memory=320 repetition=1
+.............................metadata-batch: 512 objects, repetition 1
+..metadata-batch: 512 objects, repetition 1
+.metadata-collection: 65536 objects, repetition 1
+....metadata-ordered-scan: 256 objects, repetition 1
+metadata-ordered-scan: 8192 objects, repetition 1
+metadata-ordered-scan: 257 objects, repetition 1
+.metadata-collection: 65536 objects, repetition 1
+metadata-collection: 65537 objects, repetition 1
+.....metadata-primitives: 256 records, batch 1, repetition 1
+metadata-primitives: 256 records, batch 16, repetition 1
+metadata-primitives: 257 records, batch 1, repetition 1
+metadata-primitives: 257 records, batch 16, repetition 1
+metadata-primitives: 256 records, batch 1, repetition 1
+metadata-primitives: 256 records, batch 16, repetition 1
+..............rebuilding durable benchmark
+rebuilding process benchmark
+...running obrador-reads
+.completion ledger: /tmp/tmp1tlblpwu/results/execution.json
+Obrador durable: paths=1, workers=1, gc=False
+timeout during competing host activity; retaining failure and retrying
+Obrador process: paths=1, workers=1, gc=False
+Obrador process: paths=1, workers=1, gc=True
+Obrador durable: paths=1, workers=1, gc=True
+............[1/1] pack target 4 MiB
+...............summary: /tmp/tmpp63r77en/limits.json
+report: /tmp/tmpp63r77en/limits.md
++ cargo bench --features git --bench gix_odb --no-run --message-format=json
+.round 1/3: before (aaaaaaaaaaaa)
+error: benchmark interrupted
+..building a (aaaaaaaaaaaa)
+building b (bbbbbbbbbbbb)
+building c (cccccccccccc)
+round 1/3: a (aaaaaaaaaaaa)
+round 1/3: b (bbbbbbbbbbbb)
+round 1/3: c (cccccccccccc)
+round 2/3: b (bbbbbbbbbbbb)
+round 2/3: c (cccccccccccc)
+round 2/3: a (aaaaaaaaaaaa)
+round 3/3: c (cccccccccccc)
+round 3/3: a (aaaaaaaaaaaa)
+round 3/3: b (bbbbbbbbbbbb)
+......................................................revision series: /tmp/tmpeqbb9mde/output/series.json
+report: /tmp/tmpeqbb9mde/output/series.md
+tar matrix 1/2, candidate, order [1, 16]
+tar matrix 2/2, candidate, order [16, 1]
+report: /tmp/tmpbv0j1fkh/report/report.json; complete=False
+...tar matrix 1/2, baseline, order [1, 16]
+tar matrix 1/2, candidate, order [1, 16]
+tar matrix 2/2, candidate, order [16, 1]
+tar matrix 2/2, baseline, order [16, 1]
+report: /tmp/tmpzrz0rv3m/report/report.json; complete=True
+.tar matrix 1/4, candidate, order [1, 16]
+report: /tmp/tmpjond_is6/report/report.json; complete=False
+......
+----------------------------------------------------------------------
+Ran 240 tests in 7.137s
+
+OK

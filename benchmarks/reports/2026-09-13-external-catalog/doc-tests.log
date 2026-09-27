@@ -1,0 +1,36 @@
+  warning: Skip selectors from environment variables `SKIP` are ignored during installing hooks.
+  error: No hooks found after filtering with the given selectors
+✖ execute command in 32.3ms (failed)
+✖ Running devenv:git-hooks:run in 32.3ms (failed)
+✖ Running devenv:enterTest in 3.56µs (dependency failed)
+✖ Running tasks in 281ms (failed)
+    Blocking waiting for file lock on build directory
+    Finished `release` profile [optimized] target(s) in 5m 51s
+   Doc-tests casita
+
+running 7 tests
+test src/lib.rs - ReadmeDoctests (line 407) - compile ... ok
+test src/lib.rs - ReadmeDoctests (line 601) - compile ... ok
+test src/lib.rs - ReadmeDoctests (line 430) - compile ... ok
+test src/importer.rs - importer::Importer (line 26) - compile ... ok
+test src/lib.rs - (line 7) - compile ... ok
+test src/lib.rs - ReadmeDoctests (line 545) - compile ... ok
+test src/blob/combined.rs - blob::combined::CombinedBlobStore (line 18) ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 9 tests
+test src/lib.rs - (line 35) - compile fail ... ok
+test src/importer.rs - importer::UnrootedFilesystemImport (line 134) - compile fail ... ok
+test src/lib.rs - (line 55) - compile fail ... ok
+test src/importer.rs - importer::UnrootedFilesystemImport (line 126) - compile fail ... ok
+test src/lib.rs - (line 49) - compile fail ... ok
+test src/lib.rs - (line 43) - compile fail ... ok
+test src/lib.rs - (line 29) - compile fail ... ok
+test src/blob/mod.rs - blob::BlobStore (line 102) - compile fail ... ok
+test src/api.rs - api::Repository::import (line 552) - compile fail ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.49s
+
+all doctests ran in 25.10s; merged doctests compilation took 23.57s

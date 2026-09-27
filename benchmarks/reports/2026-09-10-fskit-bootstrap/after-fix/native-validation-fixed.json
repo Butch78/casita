@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "phases": [
+    {
+      "name": "fixed-schema-upgrade",
+      "exit_code": 0,
+      "wall_seconds": 0.00456224987283349,
+      "samples": []
+    },
+    {
+      "name": "fixed-new-process-0",
+      "exit_code": 0,
+      "wall_seconds": 0.26863858406431973,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 219417,
+          "ns_per_call": 14.083375,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54929.8545,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54747.1875,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse_after_settings_replacement",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "fixed-new-process-1",
+      "exit_code": 0,
+      "wall_seconds": 0.26865920796990395,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 241333,
+          "ns_per_call": 14.313125,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54846.125,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54722.3335,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse_after_settings_replacement",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "fixed-new-process-2",
+      "exit_code": 0,
+      "wall_seconds": 0.26868287520483136,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 219083,
+          "ns_per_call": 14.2185,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54955.3125,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54779.9165,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse_after_settings_replacement",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "fixed-after-settings-replacement",
+      "exit_code": 0,
+      "wall_seconds": 0.2686709158588201,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 239583,
+          "ns_per_call": 14.088417,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54983.2085,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54732.6875,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse_after_settings_replacement",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "fixed-darwin_fskit_simultaneous_mounts",
+      "exit_code": 0,
+      "wall_seconds": 1.472507958067581,
+      "samples": []
+    },
+    {
+      "name": "fixed-after-darwin_fskit_simultaneous_mounts",
+      "exit_code": 0,
+      "wall_seconds": 0.2686524579767138,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 297458,
+          "ns_per_call": 14.267333,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 55036.2085,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54961.9585,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse_after_settings_replacement",
+          "schema_version": 1
+        }
+      ]
+    },
+    {
+      "name": "fixed-darwin_fskit_build_reuse_and_isolation",
+      "exit_code": 0,
+      "wall_seconds": 6.294133290881291,
+      "samples": []
+    },
+    {
+      "name": "fixed-after-darwin_fskit_build_reuse_and_isolation",
+      "exit_code": 0,
+      "wall_seconds": 0.26867904094979167,
+      "samples": [
+        {
+          "correctness": "passed",
+          "iterations": 1000000,
+          "native": true,
+          "native_first_ensure_ns": 299709,
+          "ns_per_call": 15.989459,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "memory_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54919.646,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse",
+          "schema_version": 1
+        },
+        {
+          "correctness": "passed",
+          "iterations": 2000,
+          "ns_per_call": 54796.8125,
+          "platform": "macos",
+          "profile": "test",
+          "scenario": "receipt_reuse_after_settings_replacement",
+          "schema_version": 1
+        }
+      ]
+    }
+  ],
+  "platform": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+  "status": "passed",
+  "receipt_unchanged_after_mounts_and_settings_replacement": true
+}

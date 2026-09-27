@@ -1,0 +1,91 @@
+...running online-holds
+.completion ledger: /tmp/tmpn3prl2fx/results/execution.json
+running online-holds
+..completion ledger: /tmp/tmpzccl36ca/results/execution.json
+running fskit-setup-reuse
+completion ledger: /tmp/tmpp2fw153t/results/execution.json
+running fskit-setup-reuse
+.completion ledger: /tmp/tmpypwbj2um/results/execution.json
+running transfer-holds
+completion ledger: /tmp/tmpe9re9rjn/results/execution.json
+running transfer-holds
+..............................................s.........................completion ledger: /tmp/tmp_o76_z7e/results/execution.json
+fsck benchmark failed: checkout mismatch
+..usage: python3 -m unittest [-h] [--casita CASITA]
+                           [--baseline-casita BASELINE_CASITA]
+                           [--seed-probe SEED_PROBE]
+                           [--profile {smoke,standard,frontier}]
+                           [--files FILES] [--memory-objects MEMORY_OBJECTS]
+                           [--repetitions REPETITIONS]
+                           [--spill-bytes SPILL_BYTES] [--work-dir WORK_DIR |
+                           --reuse-work-dir REUSE_WORK_DIR] --output OUTPUT
+python3 -m unittest: error: baseline and candidate binaries must have distinct hashes
+....wrote /tmp/tmpzldxinp3/result.json
+fsck baseline files=256 records=321 memory=322 repetition=1
+fsck candidate files=256 records=321 memory=322 repetition=1
+fsck baseline files=256 records=321 memory=128 repetition=1
+fsck candidate files=256 records=321 memory=128 repetition=1
+fsck baseline files=256 records=321 memory=32 repetition=1
+fsck candidate files=256 records=321 memory=32 repetition=1
+fsck baseline files=256 records=321 memory=321 repetition=1
+fsck candidate files=256 records=321 memory=321 repetition=1
+fsck baseline files=256 records=321 memory=320 repetition=1
+fsck candidate files=256 records=321 memory=320 repetition=1
+.............................metadata-batch: 512 objects, repetition 1
+..metadata-batch: 512 objects, repetition 1
+.metadata-collection: 65536 objects, repetition 1
+....metadata-ordered-scan: 256 objects, repetition 1
+metadata-ordered-scan: 8192 objects, repetition 1
+metadata-ordered-scan: 257 objects, repetition 1
+.metadata-collection: 65536 objects, repetition 1
+metadata-collection: 65537 objects, repetition 1
+.....metadata-primitives: 256 records, batch 1, repetition 1
+metadata-primitives: 256 records, batch 16, repetition 1
+metadata-primitives: 257 records, batch 1, repetition 1
+metadata-primitives: 257 records, batch 16, repetition 1
+metadata-primitives: 256 records, batch 1, repetition 1
+metadata-primitives: 256 records, batch 16, repetition 1
+..............rebuilding durable benchmark
+rebuilding process benchmark
+...running obrador-reads
+.completion ledger: /tmp/tmpawsohf11/results/execution.json
+Obrador durable: paths=1, workers=1, gc=False
+timeout during competing host activity; retaining failure and retrying
+Obrador process: paths=1, workers=1, gc=False
+Obrador process: paths=1, workers=1, gc=True
+Obrador durable: paths=1, workers=1, gc=True
+............[1/1] pack target 4 MiB
+...............summary: /tmp/tmpbe_gdjz1/limits.json
+report: /tmp/tmpbe_gdjz1/limits.md
++ cargo bench --features git --bench gix_odb --no-run --message-format=json
+.round 1/3: before (aaaaaaaaaaaa)
+error: benchmark interrupted
+..building a (aaaaaaaaaaaa)
+building b (bbbbbbbbbbbb)
+building c (cccccccccccc)
+round 1/3: a (aaaaaaaaaaaa)
+round 1/3: b (bbbbbbbbbbbb)
+round 1/3: c (cccccccccccc)
+round 2/3: b (bbbbbbbbbbbb)
+round 2/3: c (cccccccccccc)
+round 2/3: a (aaaaaaaaaaaa)
+round 3/3: c (cccccccccccc)
+round 3/3: a (aaaaaaaaaaaa)
+round 3/3: b (bbbbbbbbbbbb)
+.................s....................................revision series: /tmp/tmpt9svaa8c/output/series.json
+report: /tmp/tmpt9svaa8c/output/series.md
+tar matrix 1/2, candidate, order [1, 16]
+tar matrix 2/2, candidate, order [16, 1]
+report: /tmp/tmpjgud1e8g/report/report.json; complete=False
+...tar matrix 1/2, baseline, order [1, 16]
+tar matrix 1/2, candidate, order [1, 16]
+tar matrix 2/2, candidate, order [16, 1]
+tar matrix 2/2, baseline, order [16, 1]
+report: /tmp/tmpu0ljr8w_/report/report.json; complete=True
+.tar matrix 1/4, candidate, order [1, 16]
+report: /tmp/tmp7z3ir7lo/report/report.json; complete=False
+......
+----------------------------------------------------------------------
+Ran 239 tests in 1.926s
+
+OK (skipped=2)

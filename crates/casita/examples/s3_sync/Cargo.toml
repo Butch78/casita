@@ -1,0 +1,17 @@
+[package]
+name = "casita-s3-sync"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+# Keep this consumer separate so workspace feature unification cannot enable
+# Casita's experimental API or supply extra direct dependencies.
+[workspace]
+
+[dependencies]
+casita = { path = "../..", features = ["s3"] }
+tokio = { version = "1", features = ["macros", "rt"] }
+
+[[bin]]
+name = "casita-s3-sync"
+path = "../s3_sync.rs"

@@ -1,0 +1,350 @@
+[package]
+name = "casita"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.94.1"
+license = "Apache-2.0"
+repository = "https://github.com/cachix/casita"
+readme = "README.md"
+description = "Generic verified object repository with content-addressed payload deduplication."
+keywords = ["content-addressed", "blake3", "merkle", "dedup", "storage"]
+categories = ["filesystem", "data-structures"]
+
+# docs.rs builds every feature so native Git APIs appear with their cfg badges.
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[dependencies]
+blake3 = "1.8"
+sha2 = "0.10"
+md-5 = { version = "0.11", optional = true }
+nix-archive = { version = "0.6.0", optional = true }
+sha1-checked = "0.10"
+bytes = "1"
+bstr = "1"
+thiserror = "2"
+data-encoding = "2"
+async-trait = "0.1"
+async-compression = { version = "0.4", default-features = false, features = ["tokio", "gzip", "zlib"], optional = true }
+auto_impl = "1"
+futures = "0.3"
+# Everything below is the native repository profile.
+tokio = { version = "1", features = [
+  "io-util",
+  "io-std",
+  "fs",
+  "rt",
+  "macros",
+  "signal",
+  "sync",
+  "time",
+], optional = true }
+object_store = { version = "0.14", optional = true }
+# Chroma's object-store WAL is not yet released as the non-placeholder crate
+# on crates.io. Pin wal3-conditional-manifest-refresh from domenkozar/chroma
+# to an exact integration revision containing
+# chroma-core/chroma#7644, #7645, and #7658 plus typed append outcomes so the
+# durable wire, contention, and storage timing contracts cannot drift.
+wal3 = { version = "=0.1.0", git = "https://github.com/domenkozar/chroma", rev = "888ddd2e69c74a5539a9144dafeefc917334b45d", package = "wal3", optional = true }
+chroma-storage = { version = "=0.1.0", git = "https://github.com/domenkozar/chroma", rev = "888ddd2e69c74a5539a9144dafeefc917334b45d", package = "chroma-storage", optional = true }
+chroma-config = { version = "=0.1.0", git = "https://github.com/domenkozar/chroma", rev = "888ddd2e69c74a5539a9144dafeefc917334b45d", package = "chroma-config", optional = true }
+aws-sdk-s3 = { version = "=1.144.0", optional = true }
+fastcdc = { version = "5", features = ["tokio"], optional = true }
+zstd = { version = "0.13", optional = true }
+tokio-util = { version = "0.7", features = ["io", "io-util"], optional = true }
+tokio-stream = { version = "0.1", features = ["sync"], optional = true }
+async-stream = { version = "0.3", optional = true }
+tracing = { version = "0.1", optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "json"], optional = true }
+# Turso is the native state engine. Its experimental multi-process WAL keeps
+# separate casita processes on one SQLite-format database coordinated without
+# enabling MVCC (casita deliberately serializes writes). Keep the exact
+# integration revision containing tursodatabase/turso#8476 and #8851 until
+# those WAL fixes are available upstream. Downstream consumers inherit this
+# engine directly without needing a Cargo patch or a version wrapper.
+turso = { git = "https://github.com/cachix/turso.git", rev = "dca55133caa690f90dcdd58d3c4329fb0703659c", default-features = false, optional = true }
+# Handle-rooted filesystem access for import and materialization. Every
+# descendant is resolved relative to an already open directory handle
+# (`openat`/`openat2` on Unix, handle-relative reparse-aware opens on Windows),
+# which is what contains a checkout or an import beneath its selected root.
+# Casita denies unsafe code, so the raw syscalls live here rather than inline.
+cap-std = { version = "4", optional = true }
+cap-fs-ext = { version = "4", optional = true }
+bao-tree = { version = "0.16", optional = true }
+iroh-io = { version = "0.6", optional = true }
+# Zlib encoding for native Git pack serving.
+flate2 = { version = "1", optional = true }
+# Strict Git pkt-line framing for the native fetch service. The protocol
+# negotiation remains Casita-owned because gix-protocol is client-side.
+gix-packetline = { version = "0.21", default-features = false, features = ["blocking-io"], optional = true }
+# Canonical pack headers and Git-compatible incremental SHA-1/SHA-256 hashing.
+# The high-level gix pack generator is intentionally disabled because it
+# buffers each compressed object before writing it.
+gix-hash = { version = "0.25", default-features = false, features = ["sha1", "sha256"], optional = true }
+gix-pack = { version = "0.72", default-features = false, features = ["sha1", "sha256"], optional = true }
+astral-tokio-tar = { version = "=0.6.4", default-features = false, optional = true }
+clap = { version = "4", features = ["derive"], optional = true }
+gix = { version = "0.85", default-features = false, features = ["revision", "sha1", "sha256", "parallel", "pack-cache-lru-dynamic"], optional = true }
+crossbeam-channel = { version = "0.5", optional = true }
+dirs = { version = "6", optional = true }
+serde_json = { version = "1", optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+toml = { version = "0.9", default-features = false, features = ["parse", "serde"], optional = true }
+jsonrpc-core = { version = "18", default-features = false, optional = true }
+tempfile = { version = "3", optional = true }
+getrandom = { version = "0.3", optional = true }
+# Memory metadata revisions share B+tree nodes and copy only changed paths.
+imbl = { version = "7", optional = true }
+fs4 = { version = "1.1", default-features = false, optional = true }
+
+# unix-only: the O_NONBLOCK open flag the importer adds so a fifo or device that
+# slipped past the file-type check cannot block the open. Not following links is
+# cap-std's job on both platforms (see `fs_root`).
+[target.'cfg(unix)'.dependencies]
+libc = { version = "0.2", optional = true }
+rustix = { version = "1.1", features = ["fs"], optional = true }
+
+[features]
+default = ["cli"]
+# Unstable backend, format, tuning, and transport APIs under casita::experimental.
+experimental = []
+# Internal parser access for cargo-fuzz; not an application compatibility surface.
+fuzzing = ["native", "experimental"]
+# Persistent payloads/state, repository orchestration, sync, collection, and
+# verified filesystem and Git views.
+native = [
+  "dep:nix-archive",
+  "dep:md-5",
+  "dep:tokio",
+  "dep:object_store",
+  "dep:fastcdc",
+  "dep:zstd",
+  "dep:tokio-util",
+  "dep:tokio-stream",
+  "dep:async-stream",
+  "dep:tracing",
+  "dep:turso",
+  "dep:cap-std",
+  "dep:cap-fs-ext",
+  "dep:bao-tree",
+  "dep:iroh-io",
+  "dep:astral-tokio-tar",
+  "dep:libc",
+  "dep:rustix",
+  "dep:getrandom",
+  "dep:imbl",
+  "dep:fs4",
+  "dep:tempfile",
+]
+# the `casita` command-line tool, including its local JSON-RPC/NDJSON service
+# for thin synchronous clients (`casita ipc`). Library consumers that do not
+# need the CLI can select `native` with `default-features = false`.
+cli = [
+  "native",
+  "experimental",
+  "dep:clap",
+  "dep:dirs",
+  "dep:tracing-subscriber",
+  "dep:toml",
+  "dep:async-compression",
+  "dep:jsonrpc-core",
+  "dep:serde",
+  "dep:serde_json",
+  "tokio/net",
+  "tokio/process",
+  "rustix?/process",
+]
+# Native-object Git import from local working trees and bare repositories.
+git = ["native", "dep:gix", "dep:crossbeam-channel"]
+# Read-only native Git fetch planning and pack generation. Kept separate from
+# the default native repository surface while its resource-planning contract
+# remains experimental.
+git-fetch = [
+  "native",
+  "dep:flate2",
+  "dep:gix-packetline",
+  "dep:gix-hash",
+  "dep:gix-pack",
+]
+# read-only native Git smart-HTTP serving; kept separate so embedded importers
+# do not pull Tokio networking into deployments that never listen on sockets.
+git-http = ["git", "git-fetch", "tokio/net"]
+# authenticated machine-to-machine transfer through the system OpenSSH client.
+ssh = ["native", "tokio/process"]
+# Object-store-authoritative repository state.  The wal3 implementation is
+# pinned above until Chroma publishes its full implementation independently.
+s3 = [
+  "native",
+  "object_store/aws",
+  "dep:wal3",
+  "dep:chroma-storage",
+  "dep:chroma-config",
+  "dep:aws-sdk-s3",
+]
+
+[[bin]]
+name = "casita"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[[example]]
+name = "gix_casita_odb"
+required-features = ["git", "experimental"]
+
+[dev-dependencies]
+tracing-subscriber = { version = "0.3", default-features = false, features = ["registry"] }
+proptest = "1"
+tempfile = "3"
+bytes = "1"
+serde_json = "1"
+# a multi-threaded runtime for the coordination concurrency test; the library
+# itself needs only the current-thread runtime, so this feature is test-only.
+# `process` lets integration tests spawn helper processes without `cli` or `ssh`.
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "test-util", "process"] }
+# default features (plotters/rayon HTML report) are dropped so benches build
+# without pulling the whole plotting stack; async_tokio drives the async paths.
+criterion = { version = "0.5", default-features = false, features = ["cargo_bench_support", "async_tokio"] }
+
+# Both benches measure the local payload store, so they only exist in the
+# native profile; without this the portable profile fails to build its targets.
+[[bench]]
+name = "write_path"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "hash_inputs"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "tar_import"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "dedup"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "repairing"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "gix_odb"
+harness = false
+required-features = ["git", "experimental"]
+
+[[bench]]
+name = "optimization"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "compression_handoff"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "verified_io"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "git_fetch_fairness"
+harness = false
+required-features = ["git-fetch", "experimental"]
+
+[[bench]]
+name = "online_holds"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "transfer_holds"
+harness = false
+required-features = ["ssh", "experimental"]
+
+[[example]]
+name = "s3_path_transfer"
+required-features = ["s3", "experimental"]
+
+[[example]]
+name = "git_fetch_s3"
+required-features = ["s3", "git-http", "experimental"]
+
+[[example]]
+name = "git_pack_cached"
+required-features = ["git", "git-fetch", "experimental"]
+
+[[example]]
+name = "s3_sync"
+required-features = ["s3"]
+
+[[example]]
+name = "pack_cache_network"
+required-features = ["s3", "experimental"]
+
+[[example]]
+name = "pack_index_rustfs"
+required-features = ["s3", "experimental"]
+
+[[example]]
+name = "pack_gc_rustfs"
+required-features = ["s3", "experimental"]
+
+[[bench]]
+name = "retained_readers"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "overwrite_pages"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "filesystem_import"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "manifest_reads"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "nar_associations"
+harness = false
+required-features = ["native"]
+
+[[bench]]
+name = "nar_import"
+harness = false
+required-features = ["native"]
+
+[[bench]]
+name = "bao_packing"
+harness = false
+required-features = ["native", "experimental"]
+
+[[example]]
+name = "sliced_closure"
+required-features = ["ssh", "experimental"]
+
+[[example]]
+name = "sliced_wire"
+required-features = ["ssh", "experimental"]
+
+[[bench]]
+name = "cdcs"
+harness = false
+required-features = ["native", "experimental"]
+
+[[bench]]
+name = "sliced_transfer"
+harness = false
+required-features = ["ssh", "experimental"]

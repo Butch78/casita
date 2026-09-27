@@ -1,0 +1,56 @@
+{
+  "binary_sha256": {
+    "before": "d5ec5e7ccb7d5e7220649dc137176a81dd946402932130a022bc459bfc0d90e4",
+    "after": "83dbe4c208bef7a3d6594d528ae93d1cde83925bdc61c271689b1c1468d54625"
+  },
+  "runs": [
+    {
+      "variant": "before",
+      "syncs": 41,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 2.52s\n\n",
+      "stderr": "256-file raw NAR: 41 journal syncs\n"
+    },
+    {
+      "variant": "after",
+      "syncs": 25,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 744 filtered out; finished in 0.88s\n\n",
+      "stderr": "256-file raw NAR: 25 journal syncs\n"
+    },
+    {
+      "variant": "after",
+      "syncs": 25,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 744 filtered out; finished in 0.78s\n\n",
+      "stderr": "256-file raw NAR: 25 journal syncs\n"
+    },
+    {
+      "variant": "before",
+      "syncs": 40,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 0.95s\n\n",
+      "stderr": "256-file raw NAR: 40 journal syncs\n"
+    },
+    {
+      "variant": "before",
+      "syncs": 41,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 1.49s\n\n",
+      "stderr": "256-file raw NAR: 41 journal syncs\n"
+    },
+    {
+      "variant": "after",
+      "syncs": 25,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 744 filtered out; finished in 1.05s\n\n",
+      "stderr": "256-file raw NAR: 25 journal syncs\n"
+    },
+    {
+      "variant": "after",
+      "syncs": 25,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 744 filtered out; finished in 0.95s\n\n",
+      "stderr": "256-file raw NAR: 25 journal syncs\n"
+    },
+    {
+      "variant": "before",
+      "syncs": 41,
+      "stdout": "\nrunning 1 test\ntest nar::tests::concurrent_raw_intake_groups_durable_pin_admissions ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 743 filtered out; finished in 1.84s\n\n",
+      "stderr": "256-file raw NAR: 41 journal syncs\n"
+    }
+  ]
+}

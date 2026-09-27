@@ -1,0 +1,35 @@
+Diff in /home/domen/dev/casita9/src/repository/publication_retry_tests.rs:73:
+             }
+             return match self.script.failure {
+                 Failure::Fenced => Err(MetadataError::MaintenanceFenced),
+[31m-                Failure::Mixed if attempt.is_multiple_of(2) => Err(MetadataError::MaintenanceFenced),
+(B[m[32m+                Failure::Mixed if attempt.is_multiple_of(2) => {
+(B[m[32m+                    Err(MetadataError::MaintenanceFenced)
+(B[m[32m+                }
+(B[m                 Failure::Mixed => {
+                     let result = self.inner.commit(expected, MetadataMutation::new()).await?;
+                     Err(MetadataError::StaleRevision {
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.
+Warning: can't set `imports_granularity = Item`, unstable features are only available in nightly channel.
+Warning: can't set `group_imports = StdExternalCrate`, unstable features are only available in nightly channel.

@@ -1,0 +1,6 @@
+casitar-scaling: round 1, single, payload-size, 2 files x 65535 bytes
+casitar-scaling: round 1, single, payload-size, 2 files x 65537 bytes
+casitar-scaling: round 1, single, payload-size, 2 files x 8388608 bytes
+casitar-scaling: round 1, single, object-count, 254 files x 128 bytes
+casitar-scaling: round 1, single, object-count, 256 files x 128 bytes
+casitar-scaling: round 1, single, object-count, 1024 files x 128 bytes

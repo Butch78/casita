@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="704" viewBox="0 0 720 704" role="img" aria-labelledby="title desc">
+  <title id="title">Sync verifies received objects before updating destination roots</title>
+  <desc id="desc">A stable source snapshot supplies discovery records and missing payloads. Across the trust boundary, the destination reruns its namespace verifier to check native identity, canonical bytes, and exact links. It publishes verified records in bounded batches, then verifies the complete closure before updating the requested root. Failed or incomplete transfers leave the requested root unchanged; completed object batches can be reused on retry.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="m1 1 8 4-8 4" fill="none" stroke="#a23b20" stroke-width="1.5"/></marker>
+    <style>
+      text { font-family: system-ui, sans-serif; fill: #222b32; }
+      .heading { font-size: 27px; font-weight: 700; }
+      .label { font-size: 20px; font-weight: 650; }
+      .body { font-size: 18px; }
+      .small { font-size: 17px; fill: #56616a; }
+      .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; fill: #a23b20; }
+      .flow { fill: none; stroke: #a23b20; stroke-width: 2; marker-end: url(#arrow); }
+      .number { font-size: 18px; font-weight: 700; fill: #a23b20; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect width="720" height="704" rx="20" fill="#faf8f4"/>
+  <text x="32" y="38" class="eyebrow">03 / RECEIVER-VERIFIED SYNC</text>
+  <text x="32" y="77" class="heading">The destination checks the proof.</text>
+  <rect x="32" y="108" width="656" height="88" rx="12" fill="#fffdfa" stroke="#d5d6d2" stroke-width="1.5"/>
+  <text x="56" y="143" class="label">Source · stable snapshot</text>
+  <text x="56" y="173" class="body">Discover the selected graph; transfer missing payloads.</text>
+  <path d="M360 196v86" class="flow"/>
+  <path d="M32 240h294 M394 240h294" stroke="#727b80" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <rect x="432" y="225" width="192" height="30" fill="#faf8f4"/>
+  <text x="446" y="246" class="small">Trust boundary</text>
+  <rect x="32" y="286" width="656" height="324" rx="12" fill="#fffdfa" stroke="#d25a37" stroke-width="1.5"/>
+  <text x="56" y="320" class="eyebrow">DESTINATION REPOSITORY</text>
+  <circle cx="76" cy="364" r="20" fill="#fff0e9"/>
+  <text x="76" y="371" class="number">1</text>
+  <text x="112" y="358" class="label">Rerun the namespace verifier</text>
+  <text x="112" y="386" class="small">Check native identity, canonical bytes, and exact links.</text>
+  <path d="M76 388v33" class="flow"/>
+  <circle cx="76" cy="450" r="20" fill="#fff0e9"/>
+  <text x="76" y="457" class="number">2</text>
+  <text x="112" y="444" class="label">Publish verified object records</text>
+  <text x="112" y="472" class="small">Bounded atomic batches; completed batches survive.</text>
+  <path d="M76 474v33" class="flow"/>
+  <circle cx="76" cy="536" r="20" fill="#fff0e9"/>
+  <text x="76" y="543" class="number">3</text>
+  <text x="112" y="530" class="label">Verify the closure, then update the root</text>
+  <text x="112" y="558" class="small">The named graph must be complete and valid.</text>
+  <text x="112" y="586" class="small">Root changes publish atomically.</text>
+  <text x="32" y="649" class="body">Verification fails or transfer stops before completion?</text>
+  <text x="32" y="679" class="small">The requested root stays unchanged. Retry reuses completed batches.</text>
+</svg>

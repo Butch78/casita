@@ -1,0 +1,32 @@
+{
+  "before_commit": "450a633",
+  "after_commit": "b279897",
+  "lockfile_sha256": "9f3db84574ee23763d68a4fdb724ccd2bdc4003084fa5d7d9638a9181b8c1802",
+  "binaries": {
+    "before": "/home/domen/dev/casita/benchmarks/results/publication-retirements-quiet-2026-09-10/bin/before",
+    "after": "/home/domen/dev/casita/benchmarks/results/publication-retirements-quiet-2026-09-10/bin/after"
+  },
+  "sha256": {
+    "before": "92c08b6fe5acff00853a3183b70ea968bb82c1cf09525ceff5b5ee3e9c1870c3",
+    "after": "c4a5a8a5ed4eb6b89e32ce3aed2ca8c06e3b67c0bd3c20225c7798cfe5285c86"
+  },
+  "cpus": "8,10,12,14",
+  "imports": [
+    60,
+    300
+  ],
+  "pairs": 3,
+  "warmups": "one per variant and size",
+  "files_per_import": 16,
+  "reader_scope": "application",
+  "gc_delay_ms": 5,
+  "baseline_harness": "identical tracked benchmark source and copied Cargo.lock; both builds use --locked",
+  "host": "shared; paired timing accepted only when BOTH runs pass all quiet-host samples",
+  "quiet_host": {
+    "timeout": 90,
+    "quiet_seconds": 5,
+    "max_cpu_fraction": 0.05
+  },
+  "max_pair_attempts_per_size": 6,
+  "target_clean_pairs_per_size": 3
+}

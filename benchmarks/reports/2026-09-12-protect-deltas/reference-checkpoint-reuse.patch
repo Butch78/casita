@@ -1,0 +1,94 @@
+--- a/src/metadata/pins/persistent/journal.rs
++++ b/src/metadata/pins/persistent/journal.rs
+@@ -389,8 +389,7 @@
+         if snapshot.operations + cache.pending_operations > CHECKPOINT_OPERATIONS
+             || snapshot.cursor - snapshot.start + total > WINDOW
+         {
+-            let state = snapshot.state.clone();
+-            return self.checkpoint_journal(cache, &state);
++            return self.checkpoint_cached_journal(cache);
+         }
+         let state_bytes = snapshot.index.bytes;
+         self.ensure_journal_capacity(align(BLOCK + state_bytes) + WINDOW + BLOCK)?;
+@@ -491,6 +490,22 @@
+         Ok(self.parent().join(name))
+     }
+
++    fn checkpoint_cached_journal(&self, cache: &mut Cache) -> Result<(), MetadataError> {
++        let _phase = LedgerPhase::new("journal_checkpoint");
++        let snapshot = cache.snapshot.as_mut().unwrap();
++        let bytes = codec::encode(&snapshot.state)?;
++        let (epoch, start) = self.write_checkpoint(&bytes)?;
++        // Edits already updated and validated this index. Retain both it and
++        // the inventory, advancing journal positions only after durability.
++        snapshot.epoch = epoch;
++        snapshot.cursor = start;
++        snapshot.start = start;
++        snapshot.operations = 0;
++        cache.pending = None;
++        cache.pending_operations = 0;
++        Ok(())
++    }
++
+     fn checkpoint_journal(
+         &self,
+         cache: &mut Cache,
+@@ -502,6 +517,21 @@
+             let before = self.read_replacement_locked()?;
+             self.exchange_slot(&codec::encode(&before)?)?;
+         }
++        let (epoch, start) = self.write_checkpoint(&bytes)?;
++        cache.snapshot = Some(Snapshot {
++            epoch,
++            state: state.clone(),
++            index: Index::new(state)?,
++            cursor: start,
++            start,
++            operations: 0,
++        });
++        cache.pending = None;
++        cache.pending_operations = 0;
++        Ok(())
++    }
++
++    fn write_checkpoint(&self, bytes: &[u8]) -> Result<([u8; 32], usize), MetadataError> {
+         let start = align(BLOCK + bytes.len());
+         self.ensure_journal_capacity(start + WINDOW + BLOCK)?;
+         let epoch = PinToken::fresh()?.0;
+@@ -509,7 +539,7 @@
+         header[..8].copy_from_slice(MAGIC);
+         header[8..40].copy_from_slice(&epoch);
+         header[40..48].copy_from_slice(&(bytes.len() as u64).to_le_bytes());
+-        header[48..80].copy_from_slice(blake3::hash(&bytes).as_bytes());
++        header[48..80].copy_from_slice(blake3::hash(bytes).as_bytes());
+         let checksum = *blake3::hash(&header[..80]).as_bytes();
+         header[80..112].copy_from_slice(&checksum);
+         let spare = self.spare_path()?;
+@@ -518,7 +548,7 @@
+             .open(&spare)
+             .map_err(io)?;
+         file.write_all(&header).map_err(io)?;
+-        file.write_all(&bytes).map_err(io)?;
++        file.write_all(bytes).map_err(io)?;
+         file.seek(SeekFrom::Start(start as u64)).map_err(io)?;
+         file.write_all(&[0; HEADER]).map_err(io)?;
+         #[cfg(test)]
+@@ -545,17 +575,7 @@
+             .fetch_add(2, std::sync::atomic::Ordering::Relaxed);
+         #[cfg(test)]
+         self.ledger_checkpoint("checkpoint-after-directory-sync")?;
+-        cache.snapshot = Some(Snapshot {
+-            epoch,
+-            state: state.clone(),
+-            index: Index::new(state)?,
+-            cursor: start,
+-            start,
+-            operations: 0,
+-        });
+-        cache.pending = None;
+-        cache.pending_operations = 0;
+-        Ok(())
++        Ok((epoch, start))
+     }
+ }
+ fn local_stats(store: &FilePinStore) -> Result<Arc<super::group::Stats>, MetadataError> {

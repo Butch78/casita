@@ -1,0 +1,30 @@
+{
+  "obrador-small-file-baseline": {
+    "sha256": "46aab8e490dd06dac34cd855d56abf4503fdb9f0bd75c3825f4c5b24d1c1fe3b",
+    "bytes": 35832592
+  },
+  "obrador-small-file-candidate": {
+    "sha256": "6c1ba5aa6e95547b59da8b7816a162616cfffb1e4c2d446a78b0edac006a1f01",
+    "bytes": 35851456
+  },
+  "obrador-small-file-v2": {
+    "sha256": "2cf12dc5e38d08629359fea5c5d458c5862a95558107ac978fbbae84778e94e7",
+    "bytes": 35842944
+  },
+  "casita-small-file-baseline-bench": {
+    "sha256": "8f147fdd0cf5f60d9c43e726deac09fb55320083486f95cb8938ace45bc805f1",
+    "bytes": 27208216
+  },
+  "casita-small-file-candidate-bench": {
+    "sha256": "5226d0cc8eefb2372f83fedcd78f6e72464339141ebcc34d74e8e6624f14a00e",
+    "bytes": 27250104
+  },
+  "casita-small-file-v2-bench": {
+    "sha256": "50798ba3c27a2ec747e748eb725e710dce36e5f5fc7c076ae12d0adfa1063542",
+    "bytes": 27245976
+  },
+  "obrador-concurrency-timer": {
+    "sha256": "990734c2fcd61a8dce2f546b8464358608c4e64fc2028a9cf4f26a62e978ecaa",
+    "bytes": 70080
+  }
+}

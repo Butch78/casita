@@ -1,0 +1,13 @@
+[package]
+name = "casita"
+version = "0.0.0-placeholder"
+edition = "2024"
+rust-version = "1.94.1"
+license = "Apache-2.0"
+description = "Name reservation for the actively developed Casita object repository"
+repository = "https://github.com/cachix/casita"
+readme = "README.md"
+
+# Keep this package independent of the main workspace until Casita's
+# dependency graph can be published to crates.io.
+[workspace]

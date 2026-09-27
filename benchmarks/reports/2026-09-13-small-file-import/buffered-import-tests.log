@@ -1,0 +1,20 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.17s
+     Running unittests src/lib.rs (/tmp/obrador-memory-publication-build/debug/deps/casita-770cd278f45f3b38)
+
+running 14 tests
+test filesystem::scheduling_tests::benchmark_ingest_scheduling ... ignored, run through benchmark run ingest-scheduling
+test repository::tests::generic_formats_cannot_claim_a_filesystem_construction_proof ... ok
+test collection::tests::filesystem_probe_accepts_a_missing_descendant ... ok
+test repository::tests::filesystem_construction_proof_survives_a_stale_revision_retry ... ok
+test filesystem::scheduling_tests::slow_first_file_does_not_block_admission_but_blocks_page_publication ... ok
+test casitar::export::tests::cancelled_filesystem_export_removes_its_temporary_file ... ok
+test repository::tests::filesystem_construction_proof_avoids_a_second_payload_walk ... ok
+test casitar::export::tests::filesystem_export_create_new_never_clobbers ... ok
+test casitar::export::tests::filesystem_export_publishes_only_a_complete_archive ... ok
+test tar::tests::links_preserve_their_canonical_filesystem_meaning ... ok
+test filesystem::scheduling_tests::failed_or_cancelled_page_drops_outstanding_ingests ... ok
+test filesystem::concurrency_tests::file_concurrency_bounds_active_ingests_and_preserves_order ... ok
+test repository::tests::filesystem_import_checkout_and_reimport_preserve_identity ... ok
+test filesystem::scheduling_tests::cached_files_directories_and_exclusions_keep_post_order_across_pages ... ok
+
+test result: ok. 13 passed; 0 failed; 1 ignored; 0 measured; 634 filtered out; finished in 0.37s

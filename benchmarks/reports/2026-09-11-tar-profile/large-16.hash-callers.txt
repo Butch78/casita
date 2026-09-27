@@ -1,0 +1,32 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1K of event 'cpu-clock:u'
+# Event count (approx.): 3797595160
+#
+# Overhead  Command          Shared Object                Symbol                      
+# ........  ...............  ...........................  ............................
+#
+    15.15%  tar_import-1b4c  tar_import-1b4c701ef695d0ec  [.] _blake3_hash_many_avx512
+            |          
+            |--13.67%--0x1
+            |          _blake3_hash_many_avx512
+            |          
+             --1.42%--0xffffffffffffffff
+                       _blake3_hash_many_avx512
+
+    14.72%  tokio-rt-worker  tar_import-1b4c701ef695d0ec  [.] _blake3_hash_many_avx512
+            |          
+            |--14.09%--0x1
+            |          _blake3_hash_many_avx512
+            |          
+             --0.63%--0xffffffffffffffff
+                       _blake3_hash_many_avx512
+
+
+
+#
+# (Tip: To separate samples by time use perf report --sort time,overhead,sym)
+#

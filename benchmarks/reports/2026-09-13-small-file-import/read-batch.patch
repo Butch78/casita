@@ -1,0 +1,191 @@
+diff --git a/src/filesystem/scheduling_tests.rs b/src/filesystem/scheduling_tests.rs
+index 30b5161..576ad08 100644
+--- a/src/filesystem/scheduling_tests.rs
++++ b/src/filesystem/scheduling_tests.rs
+@@ -295,3 +295,11 @@ async fn benchmark_ingest_scheduling() {
+-                let (mut file, _) = root.open_file(&path).await?;
+-                let mut bytes = Vec::new();
+-                file.read_to_end(&mut bytes).await?;
++                let (contents, _) = root.open_file(&path).await?;
++                let bytes = match contents {
++                    crate::fs_root::FileContents::Buffered(bytes) => bytes,
++                    crate::fs_root::FileContents::Streaming {
++                        mut prefix,
++                        mut file,
++                    } => {
++                        file.read_to_end(&mut prefix).await?;
++                        prefix
++                    }
++                };
+diff --git a/src/fs_root.rs b/src/fs_root.rs
+index b07928d..5cf0d77 100644
+--- a/src/fs_root.rs
++++ b/src/fs_root.rs
+@@ -45,0 +46,32 @@ pub(crate) struct FsRoot {
++/// Largest fully buffered file. One extra byte detects growth into streaming.
++pub(crate) const SMALL_FILE_READ_LIMIT: usize = 256 * 1024;
++
++pub(crate) enum FileContents {
++    Buffered(Vec<u8>),
++    Streaming {
++        prefix: Vec<u8>,
++        file: tokio::fs::File,
++    },
++}
++
++/// Read through EOF in the open task when the size hint is small. The extra
++/// byte distinguishes EOF from a file that grew past the bounded read window.
++/// In that case the caller consumes the prefix and resumes the same open file.
++fn read_file_contents(mut file: std::fs::File, size_hint: u64) -> Result<FileContents, Error> {
++    use std::io::Read;
++    let mut prefix = Vec::new();
++    if size_hint <= SMALL_FILE_READ_LIMIT as u64 {
++        prefix.reserve(size_hint as usize + 1);
++        file.by_ref()
++            .take(SMALL_FILE_READ_LIMIT as u64 + 1)
++            .read_to_end(&mut prefix)?;
++        if prefix.len() <= SMALL_FILE_READ_LIMIT {
++            return Ok(FileContents::Buffered(prefix));
++        }
++    }
++    Ok(FileContents::Streaming {
++        prefix,
++        file: tokio::fs::File::from_std(file),
++    })
++}
++
+@@ -200 +232 @@ impl FsRoot {
+-    /// component, returning the open file and its metadata.
++    /// component, returning buffered contents or a stream and its metadata.
+@@ -207 +239 @@ impl FsRoot {
+-    ) -> Result<(tokio::fs::File, std::fs::Metadata), Error> {
++    ) -> Result<(FileContents, std::fs::Metadata), Error> {
+@@ -210,21 +242,20 @@ impl FsRoot {
+-        let (file, metadata) =
+-            tokio::task::spawn_blocking(move || -> Result<(std::fs::File, _), Error> {
+-                let mut options = OpenOptions::new();
+-                options.read(true);
+-                options.follow(FollowSymlinks::No);
+-                // A fifo or device that survived the file-type check would
+-                // otherwise block the open until a writer appears.
+-                #[cfg(unix)]
+-                options.custom_flags(libc::O_NONBLOCK);
+-                let file = dir.open_with(&relative, &options)?.into_std();
+-                let metadata = file.metadata()?;
+-                if !metadata.is_file() {
+-                    return Err(Error::from(format!(
+-                        "{} is not a regular file",
+-                        relative.display()
+-                    )));
+-                }
+-                Ok((file, metadata))
+-            })
+-            .await??;
+-        Ok((tokio::fs::File::from_std(file), metadata))
++        tokio::task::spawn_blocking(move || -> Result<_, Error> {
++            let mut options = OpenOptions::new();
++            options.read(true);
++            options.follow(FollowSymlinks::No);
++            // A fifo or device that survived the file-type check would
++            // otherwise block the open until a writer appears.
++            #[cfg(unix)]
++            options.custom_flags(libc::O_NONBLOCK);
++            let file = dir.open_with(&relative, &options)?.into_std();
++            let metadata = file.metadata()?;
++            if !metadata.is_file() {
++                return Err(Error::from(format!(
++                    "{} is not a regular file",
++                    relative.display()
++                )));
++            }
++            let contents = read_file_contents(file, metadata.len())?;
++            Ok((contents, metadata))
++        })
++        .await?
+@@ -575,0 +607,57 @@ mod tests {
++    #[tokio::test]
++    async fn bounded_reads_preserve_eof_and_stream_after_stale_size_hints() {
++        use tokio::io::AsyncReadExt;
++        let temp = tempfile::tempdir().unwrap();
++        let path = temp.path().join("data");
++        for size in [
++            0,
++            1,
++            SMALL_FILE_READ_LIMIT - 1,
++            SMALL_FILE_READ_LIMIT,
++            SMALL_FILE_READ_LIMIT + 1,
++            SMALL_FILE_READ_LIMIT * 2 + 13,
++        ] {
++            let bytes: Vec<_> = (0..size).map(|i| (i % 251) as u8).collect();
++            std::fs::write(&path, &bytes).unwrap();
++            // A file may grow or shrink between fstat and the read. A stale
++            // hint must never truncate the payload or lose a buffered prefix.
++            for hint in [0, size as u64, (SMALL_FILE_READ_LIMIT + 1) as u64] {
++                let contents =
++                    read_file_contents(std::fs::File::open(&path).unwrap(), hint).unwrap();
++                let actual = match contents {
++                    FileContents::Buffered(bytes) => bytes,
++                    FileContents::Streaming { prefix, file } => {
++                        assert!(prefix.len() <= SMALL_FILE_READ_LIMIT + 1);
++                        let mut bytes = Vec::new();
++                        prefix
++                            .as_slice()
++                            .chain(file)
++                            .read_to_end(&mut bytes)
++                            .await
++                            .unwrap();
++                        bytes
++                    }
++                };
++                assert_eq!(actual, bytes, "size={size}, hint={hint}");
++            }
++        }
++    }
++
++    #[cfg(unix)]
++    #[tokio::test]
++    async fn buffered_opens_refuse_links_directories_and_fifos() {
++        let temp = tempfile::tempdir().unwrap();
++        std::fs::write(temp.path().join("data"), b"private").unwrap();
++        std::os::unix::fs::symlink("data", temp.path().join("link")).unwrap();
++        rustix::fs::mkfifoat(
++            rustix::fs::CWD,
++            temp.path().join("fifo"),
++            rustix::fs::Mode::RUSR | rustix::fs::Mode::WUSR,
++        )
++        .unwrap();
++        let root = FsRoot::open_read(temp.path()).await.unwrap();
++        for name in ["link", "fifo", "."] {
++            assert!(root.open_file(name).await.is_err(), "{name}");
++        }
++    }
++
+diff --git a/src/repository.rs b/src/repository.rs
+index bcd7f11..bf0f3d9 100644
+--- a/src/repository.rs
++++ b/src/repository.rs
+@@ -5193 +5193 @@ where
+-    let (file, metadata) = root.open_file(path).await?;
++    let (contents, metadata) = root.open_file(path).await?;
+@@ -5195,8 +5195,13 @@ where
+-    // Most trees are mostly small files, and a fixed read buffer would allocate
+-    // orders of magnitude more than each one needs. The cap still applies; only
+-    // the floor moves.
+-    let capacity = usize::try_from(metadata.len())
+-        .unwrap_or(crate::filesystem::FILE_READ_BUFFER_SIZE)
+-        .clamp(1, crate::filesystem::FILE_READ_BUFFER_SIZE);
+-    let mut file = tokio::io::BufReader::with_capacity(capacity, file);
+-    let object = mutation.stage_blob_reader(&mut file).await?;
++    let object = match contents {
++        crate::fs_root::FileContents::Buffered(bytes) => {
++            mutation.stage_blob_reader(&mut bytes.as_slice()).await?
++        }
++        crate::fs_root::FileContents::Streaming { prefix, file } => {
++            let capacity = usize::try_from(metadata.len())
++                .unwrap_or(crate::filesystem::FILE_READ_BUFFER_SIZE)
++                .clamp(1, crate::filesystem::FILE_READ_BUFFER_SIZE);
++            let file = tokio::io::BufReader::with_capacity(capacity, file);
++            let mut reader = prefix.as_slice().chain(file);
++            mutation.stage_blob_reader(&mut reader).await?
++        }
++    };

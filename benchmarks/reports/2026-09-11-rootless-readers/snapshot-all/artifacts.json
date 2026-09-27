@@ -1,0 +1,10 @@
+{
+  "casita-lib-test": {
+    "path": "/home/domen/dev/casita5/benchmarks/reports/2026-09-11-rootless-readers/snapshot-all/bin/casita-lib-test",
+    "sha256": "260a5511db52c01b06bb63993a416ebc6d5ec49fd78ed0d4480b1c48d93f7593"
+  },
+  "transport_server": {
+    "path": "/home/domen/dev/casita5/benchmarks/reports/2026-09-11-rootless-readers/snapshot-all/bin/transport_server",
+    "sha256": "dd1b71532cbdecb5248a499d607c90ac5b449e904940b6520a4ec6909aac7666"
+  }
+}

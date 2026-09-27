@@ -1,0 +1,217 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+import { formatPostDate, latestBlogEntry } from '@cachix/site-kit/blog';
+import Button from '@cachix/site-kit/ui/Button.astro';
+import ButtonGroup from '@cachix/site-kit/ui/ButtonGroup.astro';
+import LandingHero from '@cachix/site-kit/ui/LandingHero.astro';
+import LatestPostBanner from '@cachix/site-kit/ui/LatestPostBanner.astro';
+import LatestPostRegion from '@cachix/site-kit/ui/LatestPostRegion.astro';
+import TerminalFrame from '@cachix/site-kit/ui/TerminalFrame.astro';
+import RepositoryFlow from '../components/RepositoryFlow.astro';
+import Benchmarks from '../components/Benchmarks.astro';
+
+const docs = await getCollection('docs');
+const latestPost = latestBlogEntry(docs);
+
+const latestPostDate = latestPost?.data.date
+  ? formatPostDate(latestPost.data.date)
+  : null;
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Store once. Sync the difference. Verify the bytes.',
+    description: 'Casita deduplicates files and shared chunks, verifies content integrity, and syncs only missing data. Use it from the command line or embed it in Rust.',
+    template: 'splash',
+    hero: { tagline: '' },
+  }}
+  hasSidebar={false}
+>
+  <div class="not-content landing">
+    <LandingHero class="hero-section">
+      {latestPost && (
+        <LatestPostRegion>
+          <LatestPostBanner
+            class="landing-blog-banner"
+            href={`/blog/${latestPost.id.replace(/^blog\//, '')}/`}
+            title={latestPost.data.title}
+            date={latestPostDate ?? undefined}
+          />
+        </LatestPostRegion>
+      )}
+      <div class="landing-container hero-inner">
+        <div class="hero-copy">
+          <h1 id="_top"><span>Store</span> once.<br /><span>Sync</span> the difference.<br /><span>Verify</span> the bytes.</h1>
+          <p class="hero-lead">
+            Built in Rust. Apache 2.0.
+          </p>
+          <ButtonGroup class="hero-actions">
+            <Button href="/getting-started/" arrow>Get started</Button>
+            <Button href="/library/" variant="secondary" arrow>Embed in Rust</Button>
+          </ButtonGroup>
+        </div>
+
+        <div class="hero-demo" aria-label="Casita command sequence">
+          <TerminalFrame class="terminal terminal-hero" title="terminal" status="casita">
+            <Fragment slot="body">
+            <pre is:raw class="csk-terminal__body"><code><span class="comment"># Attach this project to Casita</span>
+<span class="prompt">$</span> casita init
+
+<span class="comment"># Import and name a directory</span>
+<span class="prompt">$</span> casita import ./project --root demo
+<span class="digest">casita.directory.v1:...</span>
+root demo
+
+<span class="comment"># Audit stored content</span>
+<span class="prompt">$</span> casita fsck --audit-only</code></pre>
+            </Fragment>
+          </TerminalFrame>
+          <div class="platform-support" aria-label="Supported operating systems">
+            <span class="platform-label">Supported platforms</span>
+            <strong>Linux</strong><strong>macOS</strong><strong>Windows</strong>
+          </div>
+          <div class="demo-shadow" aria-hidden="true"></div>
+        </div>
+      </div>
+    </LandingHero>
+
+    <RepositoryFlow />
+
+    <section class="importers-section" aria-labelledby="importers-title">
+      <div class="landing-container">
+        <div class="section-heading centered narrow">
+          <span class="section-kicker">Bring your data in</span>
+          <h2 id="importers-title">Choose an importer.</h2>
+          <p>Files, archives, NAR inputs, Git history, and application data all enter through the same verified repository API.</p>
+        </div>
+
+        <div class="importer-grid">
+          <a class="importer-card csk-interactive-surface" href="/guides/filesystem/">
+            <h3>Filesystem</h3>
+            <p>Capture a directory as a canonical graph of files, links, and subdirectories.</p>
+            <span>Filesystem guide <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="importer-card csk-interactive-surface" href="/guides/tar/">
+            <h3>Tar</h3>
+            <p>Stream a tar archive into a filesystem graph without extracting it first.</p>
+            <span>Tar guide <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="importer-card csk-interactive-surface" href="/integrations/ipc/#nar-and-filesystem-nar">
+            <h3>NAR <small>Rust API · IPC</small></h3>
+            <p>Import one canonical Nix archive and retain its measured filesystem tree.</p>
+            <span>NAR API <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="importer-card csk-interactive-surface" href="/guides/casitar/">
+            <h3>Casitar</h3>
+            <p>Import a portable Casita graph archive and verify its contents before publishing roots.</p>
+            <span>Casitar guide <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="importer-card csk-interactive-surface" href="/guides/git/">
+            <h3>Git <small>git feature</small></h3>
+            <p>Keep native Git object IDs while importing local branches and tags.</p>
+            <span>Git guide <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="importer-card csk-interactive-surface" href="/guides/adding-an-importer/">
+            <h3>Add your own importer</h3>
+            <p>Implement the <code>Importer</code> trait for a new source and publish through the same repository workflow.</p>
+            <span>Read the guide <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities-section" aria-labelledby="capabilities-title">
+      <div class="landing-container">
+        <div class="section-heading centered narrow">
+          <h2 id="capabilities-title">What can you build with Casita?</h2>
+          <p>Bring deduplicated storage and content verification to your files, repositories, and application objects.</p>
+        </div>
+
+        <div class="capability-grid">
+          <a class="capability-card csk-interactive-surface" href="/guides/filesystem/">
+            <div class="capability-head"><h3>Filesystem graphs</h3></div>
+            <p>Save a directory, keep it under a name, and restore its files wherever you need them.</p>
+            <span class="capability-link">Filesystem workflow <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="capability-card csk-interactive-surface" href="/guides/sync/">
+            <div class="capability-head"><h3>Repository sync</h3></div>
+            <p>Mirror a named graph between repositories. Reuse existing content and verify everything that arrives.</p>
+            <span class="capability-link">Sync workflow <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="capability-card csk-interactive-surface" href="/guides/git/">
+            <div class="capability-head"><h3>Native Git</h3></div>
+            <p>Store branches and tags with their original Git IDs. Check out a tree or serve it over read-only HTTP with the <code>git</code> features.</p>
+            <span class="capability-link">Git workflow <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="capability-card csk-interactive-surface" href="/guides/custom-formats/">
+            <div class="capability-head"><h3>IPLD and custom formats</h3></div>
+            <p>Bring IPLD blocks or your own object format. Define identity and links; reuse Casita’s sync and collection through the experimental API.</p>
+            <span class="capability-link">Extend Casita <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="capability-card csk-interactive-surface" href="/guides/casitar/">
+            <div class="capability-head"><h3>Casitar archives</h3></div>
+            <p>Package a complete object graph in a portable archive. Import it elsewhere, verify its contents, and publish its roots together.</p>
+            <span class="capability-link">Archive workflow <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="capability-card csk-interactive-surface" href="/guides/s3-maintenance/">
+            <div class="capability-head"><h3>Shared S3 storage</h3></div>
+            <p>Let multiple runners share a repository in an S3 bucket, with coordinated writes and collection. Requires the experimental <code>s3</code> feature.</p>
+            <span class="capability-link">S3 operations <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="paths-section" aria-labelledby="paths-title">
+      <div class="landing-container">
+        <div class="section-heading centered narrow">
+          <span class="section-kicker">Two ways to use it</span>
+          <h2 id="paths-title">Use the CLI or embed it in Rust.</h2>
+          <p>Both share the same deduplication, content verification, and sync workflows.</p>
+        </div>
+
+        <div class="path-grid">
+          <a class="path-card csk-interactive-surface" href="/getting-started/">
+            <div class="path-card-head"><span class="path-icon">$</span><div><span class="path-label">Command line</span><h3>Import, inspect, sync, restore</h3></div></div>
+            <pre is:raw><code><span class="prompt">$</span> casita init
+<span class="prompt">$</span> casita import ./src --root app/source
+<span class="prompt">$</span> casita fsck</code></pre>
+            <p>Start with the filesystem workflow, then add only the features required for SSH or native Git.</p>
+            <span class="arrow-link">Follow the Quick Start <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="path-card path-card-rust csk-interactive-surface" href="/library/">
+            <div class="path-card-head"><span class="path-icon">rs</span><div><span class="path-label">Rust library</span><h3>Embed the repository</h3></div></div>
+            <pre is:raw><code><span class="kw">use</span> casita::{Repository, RootName};
+
+<span class="kw">let</span> repository = Repository::local(<span class="str">"./data"</span>).await?;
+repository.import(casita::import::FilesystemImport::new(<span class="str">"./src"</span>, RootName::try_from(<span class="str">"app/source"</span>)?)).await?;
+
+<span class="kw">for</span> root <span class="kw">in</span> repository.roots().await? {
+    println!(<span class="str">"{} -&gt; {}"</span>, root.name(), root.target());
+}
+repository.flush().await?;</code></pre>
+            <p>One concrete handle supports memory, local disk, and optional S3 storage. Custom backend composition lives in <code>casita::experimental</code>; the S3 storage profile remains experimental.</p>
+            <span class="arrow-link">Read the Library guide <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Benchmarks />
+
+    <section class="final-section">
+      <div class="landing-container final-card">
+        <div>
+          <h2>Get started with Casita.</h2>
+          <p>Follow the quick start or explore the Rust library.</p>
+        </div>
+        <ButtonGroup class="final-actions">
+          <Button href="/getting-started/" arrow>Get started</Button>
+          <Button href="/library/" variant="secondary">Rust library</Button>
+        </ButtonGroup>
+      </div>
+    </section>
+  </div>
+</StarlightPage>

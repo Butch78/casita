@@ -1,0 +1,20 @@
+    Blocking waiting for file lock on build directory
+   Compiling casita v0.1.0 (/home/domen/dev/casita4)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4m 16s
+     Running tests/publication_snapshot.rs (/home/domen/.cargo/build/72/b52283b34cb0c3/debug/deps/publication_snapshot-662a000502e28ae7)
+
+running 2 tests
+test releasing_the_snapshot_preserves_exact_revision_conflicts ... ok
+test publication_releases_its_snapshot_before_commit_and_each_retry ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/retained_process_pins.rs (/home/domen/.cargo/build/72/b52283b34cb0c3/debug/deps/retained_process_pins-62f250de2f9349bf)
+
+running 4 tests
+test retained_process_crash_child ... ok
+test retained_pin_releases_after_its_runtime_shuts_down ... ok
+test process_crashes_release_retained_protection_but_preserve_durable_writes ... ok
+test retained_readers_share_one_process_pin_through_concurrent_gc ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.06s

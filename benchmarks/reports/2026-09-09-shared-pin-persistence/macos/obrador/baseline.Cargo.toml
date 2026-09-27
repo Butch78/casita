@@ -1,0 +1,113 @@
+[workspace]
+members = [
+    "nix-binary-cache",
+    "nix-builtins",
+    "nix-dynbuilder",
+    "nix-path-info",
+    "obrador",
+    "obrador-build",
+    "obrador-core",
+    "obrador-macho",
+    "obrador-vsock",
+    "obrador-storefs",
+    "obrador-vz",
+    "vendor/nix-bindings-logger",
+    "vendor/nix-bindings-store-plugin",
+]
+exclude = [
+    "experiments/macfuse-union",
+    "experiments/swift-vz-reference",
+    "fuzz",
+    "nix-derivation",
+    "vendor/nono",
+    "vendor/fuser",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/cachix/obrador"
+
+[workspace.dependencies]
+anyhow = "1"
+base64 = "0.22"
+ed25519-dalek = "2"
+blake3 = "1"
+bytes = "1"
+async-trait = "0.1"
+futures = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+rust-netrc = "0.1.2"
+rustix = { version = "1", default-features = false }
+async-compression = { version = "0.4", default-features = false }
+md-5 = "0.10"
+sha1 = "0.10"
+sha2 = "0.10"
+tempfile = "3"
+filetime = "0.2"
+tar = "0.4"
+thiserror = "2"
+tokio = { version = "1", default-features = false }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = { package = "serde_yaml_ng", version = "0.10" }
+libc = "0.2"
+percent-encoding = "2"
+url = "2"
+tokio-util = { version = "0.7", default-features = false }
+varlink = "13"
+
+# Portable contract for the builder-scoped Varlink interface used by dynamic
+# derivations. Store implementations supply policy and persistence separately.
+nix-dynbuilder = { version = "0.1.0", path = "nix-dynbuilder" }
+
+# Derivation parsing, canonical ATerm serialization, and store path identity.
+# One version for the whole workspace: every crate that speaks the Nix formats
+# agrees on the same types.
+nix-derivation = "0.6.1"
+
+# Nix valid-path metadata, fingerprints, content-address checks, and the
+# versioned store-object-info JSON representation.
+nix-path-info = { version = "0.1.0", path = "nix-path-info" }
+
+# Pure narinfo parsing, canonical encoding, and signature/content-address
+# validation.
+nix-narinfo = "0.4.0"
+
+# HTTP binary-cache lookup and streamed NAR transport. Store mutation and
+# substitution-source policy remain with each store implementation.
+nix-binary-cache = { version = "0.1.0", path = "nix-binary-cache" }
+
+# Store-neutral implementations of Nix's buildenv and unpack-channel
+# derivation builtins. Stores provide tree access and output registration.
+nix-builtins = { version = "0.1.0", path = "nix-builtins" }
+
+# Byte-safe NAR encoding, decoding, hashing, restoration, and reference scans.
+# Keep every crate on the same implementation of the identity-bearing format.
+nix-archive = "0.5.0"
+
+# Legacy data-model, NAR-import, and worker-wire interfaces. Persistent storage
+# is implemented through casita below; no old store is opened.
+casita-legacy = { package = "casita", git = "https://github.com/cachix/casita.git", rev = "680aa9f78c346a695ad1a9ed8bc3cb35c121e9be", default-features = false }
+# Native revisioned repository: verified objects, atomic roots/catalogs, and GC.
+casita = { git = "https://github.com/cachix/casita.git", rev = "59c2fbdcb1f10b0df607e5976c797f39e776ce3f", default-features = false, features = ["native", "experimental"] }
+goblin = "0.10"
+
+[patch.crates-io]
+# Casita pins the public 0.8.0-pre.4 API. Re-export the engine from Turso
+# PRs #8476 and #8851 through that version so every storage path uses the same commit.
+turso = { path = "vendor/turso-repository-compat" }
+# `NetworkMode::Blocked` normally keeps macOS DNS working through
+# mDNSResponder. Obrador needs a stronger mode for dynamic derivations, so its
+# local nono patch adds an explicit DNS capability switch.
+nono = { path = "vendor/nono" }
+fuser = { path = "vendor/fuser" }
+
+# Legacy wire/import interfaces still compile their old database module.
+# Use one Turso implementation: linking two engines duplicates C symbols.
+[patch."https://github.com/awakecoding/turso"]
+turso = { path = "vendor/turso-compat" }

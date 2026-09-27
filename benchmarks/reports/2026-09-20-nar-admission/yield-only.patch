@@ -1,0 +1,47 @@
+diff --git a/src/metadata/pins/runtime.rs b/src/metadata/pins/runtime.rs
+index e683668..a88b2cd 100644
+--- a/src/metadata/pins/runtime.rs
++++ b/src/metadata/pins/runtime.rs
+@@ -299,6 +299,10 @@ impl DataPinLease {
+             pending.retain(|request| request.strong_count() != 0);
+             pending.push(Arc::downgrade(&request));
+         }
++        // Let already-ready sibling writes enqueue their identities before
++        // the first caller starts a durable update. This adds no payload
++        // buffering and never waits for another request or a timer.
++        tokio::task::yield_now().await;
+         // Waiters keep their own requests alive. Cancellation drops the weak
+         // queue entry's owner; cancellation of this leader releases the gate
+         // without losing other callers' requests or confirming unwritten data.
+@@ -553,6 +557,31 @@ mod tests {
+         BTreeSet::from([PinResource::StorageObject(path.into())])
+     }
+ 
++    #[tokio::test]
++    async fn ready_sibling_protections_coalesce_without_an_existing_gate_holder() {
++        for count in [1, 15, 16, 17] {
++            let store = Arc::new(MemoryPinStore::default());
++            let pin = DataPinLease::acquire(store.clone(), staging())
++                .await
++                .unwrap();
++            let before = store.inventory().await.unwrap().revision;
++            let requests = (0..count)
++                .map(|index| pin.try_protect(path(&format!("object-{index}"))));
++            for result in futures::future::join_all(requests).await {
++                assert!(result.unwrap());
++            }
++            let inventory = store.inventory().await.unwrap();
++            assert_eq!(inventory.revision, before + 1);
++            assert_eq!(inventory.pins[pin.token()].resources.len(), count);
++            assert!(matches!(
++                pin.try_protect(path("object-0")).now_or_never(),
++                Some(Ok(true))
++            ));
++            drop(pin);
++            flush_repository_leases().await.unwrap();
++        }
++    }
++
+     #[tokio::test]
+     async fn concurrent_protection_is_one_durable_update_and_ignores_cancelled_waiters() {
+         let store = Arc::new(MemoryPinStore::default());

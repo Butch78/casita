@@ -1,0 +1,75 @@
+warning: struct `cuse_init_in` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:539:19
+    |
+539 | pub(crate) struct cuse_init_in {
+    |                   ^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `cuse_init_out` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:548:19
+    |
+548 | pub(crate) struct cuse_init_out {
+    |                   ^^^^^^^^^^^^^
+
+warning: struct `fuse_ioctl_iovec` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:593:19
+    |
+593 | pub(crate) struct fuse_ioctl_iovec {
+    |                   ^^^^^^^^^^^^^^^^
+
+warning: struct `fuse_notify_retrieve_out` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:714:19
+    |
+714 | pub(crate) struct fuse_notify_retrieve_out {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `fuse_notify_retrieve_in` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:724:19
+    |
+724 | pub(crate) struct fuse_notify_retrieve_in {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `fuser` (lib) generated 5 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (/Users/hetzner/casita-shared-20260909/target/debug/deps/casita_fs-33615b5712958708)
+
+running 17 tests
+test darwin::setup::tests::benchmark_reuse ... ignored, performance corpus; run benchmark run fskit-setup-reuse
+test darwin::setup::tests::concurrent_first_calls_initialize_only_once ... ok
+test darwin::setup::tests::helper_patch_is_pinned_length_preserving_and_idempotent ... ok
+test darwin::setup::tests::active_mounts_block_settings_changes_and_agent_restart ... ok
+test darwin::setup::tests::corrupt_local_installer_never_downloads_or_extracts ... ok
+test darwin::setup::tests::failed_activation_retries_without_duplicate_registration ... ok
+test darwin::setup::tests::invalid_overrides_fail_without_becoming_automatic_downloads ... ok
+test darwin::setup::tests::fresh_enablement_creates_the_settings_array ... ok
+test darwin::setup::tests::interrupted_and_corrupt_downloads_never_become_cached_installers ... ok
+test darwin::setup::tests::warm_cache_never_reinitializes_and_failures_remain_retryable ... ok
+test darwin::setup::tests::enablement_preserves_other_modules_and_does_not_restart_twice ... ok
+test darwin::setup::tests::malformed_settings_fail_without_replacing_them ... ok
+test darwin::frontend::tests::publication_keeps_inodes_and_repository_readers_stable ... ok
+test darwin::setup::tests::installed_runtime_is_registered_without_downloading_or_restarting_an_enabled_agent ... ok
+test darwin::setup::tests::altered_artifacts_settings_and_pending_activation_invalidate_receipts ... ok
+test darwin::setup::tests::receipt_reuses_setup_without_commands_and_explicit_repair_rechecks ... ok
+test darwin::setup::tests::signature_failure_never_promotes_a_partial_runtime_and_can_retry ... ok
+
+test result: ok. 16 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src/bin/setup.rs (/Users/hetzner/casita-shared-20260909/target/debug/deps/casita_fs_setup-e6d049e7aca79ba4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running unittests examples/bench.rs (/Users/hetzner/casita-shared-20260909/target/debug/examples/bench-3598650cfcefc719)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests examples/transport_server.rs (/Users/hetzner/casita-shared-20260909/target/debug/examples/transport_server-da2a5e2dfde3052a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

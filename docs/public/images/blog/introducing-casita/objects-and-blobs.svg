@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="562" viewBox="0 0 720 562" role="img" aria-labelledby="title desc">
+  <title id="title">How src/main.rs is stored</title>
+  <desc id="desc">Importing src with the root projects/app creates a directory record for src and a file record for main.rs. The root selects the directory. The directory's verified link points to the file, labeled contains main.rs. Each record also references its payload blob by BLAKE3 digest. The directory blob contains the encoded main.rs entry, including its kind and child ID. The file blob contains the source code fn main() {}. Digest A and digest B are placeholders; the diagram omits payload lengths.</desc>
+  <defs>
+    <marker id="link" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="m1 1 8 4-8 4" fill="none" stroke="#a23b20" stroke-width="1.5"/></marker>
+    <marker id="payload" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="m1 1 8 4-8 4" fill="none" stroke="#56616a" stroke-width="1.5"/></marker>
+    <style>
+      text { font-family: system-ui, sans-serif; fill: #222b32; }
+      .heading { font-size: 27px; font-weight: 700; }
+      .label { font-size: 20px; font-weight: 650; }
+      .body { font-size: 17px; }
+      .small { font-size: 16px; fill: #56616a; }
+      .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; fill: #a23b20; }
+      .object { fill: #fff0e9; stroke: #d25a37; stroke-width: 1.5; }
+      .blob { fill: #fffdfa; stroke: #a7adb0; stroke-width: 1.5; }
+      .link { fill: none; stroke: #a23b20; stroke-width: 2; marker-end: url(#link); }
+      .payload { fill: none; stroke: #56616a; stroke-width: 2; stroke-dasharray: 5 4; marker-end: url(#payload); }
+    </style>
+  </defs>
+  <rect width="720" height="562" rx="20" fill="#faf8f4"/>
+  <text x="32" y="38" class="eyebrow">EXAMPLE / IMPORTING A DIRECTORY</text>
+  <text x="32" y="77" class="heading">How src/main.rs is stored</text>
+  <text x="64" y="124" class="label">Object records</text>
+  <text x="448" y="124" class="label">Blobs</text>
+  <rect x="64" y="150" width="296" height="44" rx="10" fill="#222b32"/>
+  <text x="212" y="178" text-anchor="middle" style="font-size: 18px; fill: #fffdfa">Root: projects/app</text>
+  <path d="M212 194v32" class="link"/>
+
+  <rect x="64" y="230" width="296" height="122" rx="12" class="object"/>
+  <text x="84" y="261" class="label">src/</text>
+  <text x="84" y="289" class="body">Key: directory ID</text>
+  <text x="84" y="314" class="small">Payload: BLAKE3 digest A</text>
+  <text x="84" y="338" class="small">Links: [main.rs file ID]</text>
+  <text x="402" y="280" text-anchor="middle" class="small">bytes</text>
+  <path d="M360 291h84" class="payload"/>
+  <rect x="448" y="230" width="240" height="122" rx="12" class="blob"/>
+  <text x="468" y="261" class="label">Directory blob</text>
+  <text x="468" y="289" class="body">BLAKE3 digest A</text>
+  <text x="468" y="314" class="small">Encoded entry:</text>
+  <text x="468" y="338" class="small">main.rs · file · child ID</text>
+
+  <path d="M212 352v52" class="link"/>
+  <text x="230" y="384" style="font-size: 16px; fill: #a23b20">contains main.rs</text>
+  <rect x="64" y="408" width="296" height="122" rx="12" class="object"/>
+  <text x="84" y="439" class="label">main.rs</text>
+  <text x="84" y="467" class="body">Key: file ID</text>
+  <text x="84" y="492" class="small">Payload: BLAKE3 digest B</text>
+  <text x="84" y="516" class="small">Links: []</text>
+  <text x="402" y="458" text-anchor="middle" class="small">bytes</text>
+  <path d="M360 469h84" class="payload"/>
+  <rect x="448" y="408" width="240" height="122" rx="12" class="blob"/>
+  <text x="468" y="439" class="label">File blob</text>
+  <text x="468" y="467" class="body">BLAKE3 digest B</text>
+  <text x="468" y="503" style="font-family: monospace; font-size: 18px">fn main() {}</text>
+</svg>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  mark?: boolean;
+  label?: string;
+}
+
+const { mark = false, label = 'Casita' } = Astro.props;
+const asset = mark ? 'mark' : 'logo';
+---
+
+<span class:list={['brand-logo', { 'brand-logo--mark': mark }]}>
+  <img class="brand-logo-light" src={`/brand/${asset}.svg`} alt={label} width={mark ? 120 : 354} height={120} />
+  <img class="brand-logo-dark" src={`/brand/${asset}-dark.svg`} alt={label} width={mark ? 120 : 354} height={120} />
+</span>
+
+<style>
+  .brand-logo { display: inline-flex; flex: 0 0 auto; width: 10rem; vertical-align: middle; }
+  .brand-logo--mark { width: 5rem; }
+  .brand-logo img { display: block; width: 100%; height: auto; }
+  .brand-logo .brand-logo-dark { display: none; }
+  :global([data-theme='dark']) .brand-logo-light { display: none; }
+  :global([data-theme='dark']) .brand-logo .brand-logo-dark { display: block; }
+  @media print {
+    :global([data-theme]) .brand-logo .brand-logo-light { display: block; }
+    :global([data-theme]) .brand-logo .brand-logo-dark { display: none; }
+  }
+</style>

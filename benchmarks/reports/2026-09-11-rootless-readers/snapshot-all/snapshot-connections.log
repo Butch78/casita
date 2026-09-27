@@ -1,0 +1,10 @@
+snapshot-connections: width 16, fresh, repetition 1
+snapshot-connections: width 7, fresh, repetition 1
+snapshot-connections: width 1, fresh, repetition 1
+snapshot-connections: width 7, reused, repetition 1
+snapshot-connections: width 1, reused, repetition 1
+snapshot-connections: width 16, reused, repetition 1
+snapshot-connections: width 8, reused, repetition 1
+snapshot-connections: width 8, fresh, repetition 1
+snapshot-connections: width 9, reused, repetition 1
+snapshot-connections: width 9, fresh, repetition 1

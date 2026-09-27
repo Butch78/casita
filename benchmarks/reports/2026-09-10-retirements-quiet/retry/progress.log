@@ -1,0 +1,13 @@
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 0, "variant": "before"}
+{"imports": 60, "pair": 0, "variant": "before", "complete": true, "quiet": false}
+{"event": "waiting_for_quiet_host", "imports": 60, "pair": 0, "variant": "after"}
+Traceback (most recent call last):
+  File "/home/domen/dev/casita/benchmarks/results/publication-retirements-quiet-retry-2026-09-10/run.py", line 97, in <module>
+    run(imports, 0, variant)
+    ~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/domen/dev/casita/benchmarks/results/publication-retirements-quiet-retry-2026-09-10/run.py", line 47, in run
+    with guard:
+         ^^^^^
+  File "/home/domen/dev/casita/benchmarks/host_activity.py", line 87, in __enter__
+    raise BenchmarkError('host did not become quiet before the deadline')
+benchmarks.suites.repository.BenchmarkError: host did not become quiet before the deadline

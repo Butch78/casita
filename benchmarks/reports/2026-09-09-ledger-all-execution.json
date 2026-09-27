@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "54da616d4dca2aae23cc41cf7f5318d9b7a5168f",
+  "diff": " README.md                               | 12 ++++-\n benchmarks/README.md                    | 38 ++++++++++++++\n benchmarks/all.py                       |  2 +\n benchmarks/dashboard.py                 |  2 +-\n benchmarks/manifest.json                | 11 +++++\n benchmarks/revisions.py                 |  2 +\n benchmarks/tests/test_revisions.py      |  2 +-\n src/metadata/pins/codec.rs              | 53 ++++++++++++++++++++\n src/metadata/pins/persistent.rs         | 88 ++++++++++++++++++++++++++++-----\n src/metadata/pins/persistent/readers.rs | 16 +++---\n 10 files changed, 204 insertions(+), 22 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "durable-ledger",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "durable-ledger",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita4-journal-all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita4-journal-all/durable-ledger.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.478691538097337,
+      "log": "/tmp/casita4-journal-all/durable-ledger.log"
+    },
+    {
+      "suite": "ledger-boundaries",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "ledger-boundaries",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita4-journal-all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita4-journal-all/ledger-boundaries.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.1710129969287664,
+      "log": "/tmp/casita4-journal-all/ledger-boundaries.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

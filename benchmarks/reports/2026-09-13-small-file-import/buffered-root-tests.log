@@ -1,0 +1,19 @@
+   Compiling casita v0.1.0 (/home/domen/dev/casita-small-file-import)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 06s
+     Running unittests src/lib.rs (/tmp/obrador-memory-publication-build/debug/deps/casita-770cd278f45f3b38)
+
+running 12 tests
+test fs_root::tests::a_root_swapped_before_handle_acquisition_is_refused ... ok
+test fs_root::tests::a_file_root_is_refused ... ok
+test fs_root::tests::a_linked_root_is_refused ... ok
+test fs_root::tests::a_walk_can_exclude_one_control_path ... ok
+test fs_root::tests::buffered_opens_refuse_links_directories_and_fifos ... ok
+test fs_root::tests::an_ancestor_replaced_after_creation_cannot_redirect_a_write ... ok
+test fs_root::tests::an_ancestor_replaced_after_the_walk_cannot_redirect_a_read ... ok
+test fs_root::tests::escaping_paths_are_refused ... ok
+test fs_root::tests::a_walk_reports_a_linked_directory_without_descending ... ok
+test fs_root::tests::empty_reporting_and_file_modes_survive_the_handle ... ok
+test fs_root::tests::a_walk_is_post_order_and_bounded ... ok
+test fs_root::tests::bounded_reads_preserve_eof_and_stream_after_stale_size_hints ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 636 filtered out; finished in 0.09s

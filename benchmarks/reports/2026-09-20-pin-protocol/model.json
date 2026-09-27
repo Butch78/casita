@@ -1,0 +1,2490 @@
+{
+  "schema_version": 1,
+  "suite_id": "state-and-publication",
+  "complete": false,
+  "evidence": "protocol-model-only; JSON/file CAS, not Casita or S3 measurements",
+  "environment": {
+    "captured_at_utc": "2026-09-20T16:06:30.380826+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+    "kernel": "7.2.2",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29177946112,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.13.12",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "casita_revision": "1f741ea03328690bd42b8e923f562c5f31c55190",
+    "casita_worktree_dirty": true
+  },
+  "source_sha256": "0c9652af2fd4a5ec21ef8d6c3a8d2c7eac55967c276fe7ea95c160a8a35bc033",
+  "configuration": {
+    "writers": [
+      1,
+      10,
+      32,
+      64,
+      100
+    ],
+    "objects": [
+      7,
+      8,
+      9
+    ],
+    "batch": 8,
+    "faults": [
+      "none",
+      "crash",
+      "ambiguous",
+      "cancel"
+    ],
+    "repetitions": 1
+  },
+  "samples": [
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 1.3187305739847943,
+      "writer_metrics": {
+        "get": 41,
+        "put": 18,
+        "conflicts": 1,
+        "read_bytes": 10476,
+        "write_bytes": 5256,
+        "ambiguous": 0,
+        "blocked": 23,
+        "pin_get": 33,
+        "pin_put": 10,
+        "pin_read_bytes": 10476,
+        "pin_write_bytes": 2622
+      },
+      "gc": {
+        "passes": 8,
+        "deleted": 1,
+        "metrics": {
+          "get": 25,
+          "put": 24,
+          "conflicts": 8,
+          "read_bytes": 7574,
+          "write_bytes": 7075,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 24,
+          "pin_put": 24,
+          "pin_read_bytes": 7082,
+          "pin_write_bytes": 7075
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.242708460893482
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 0.6073054049629718,
+      "writer_metrics": {
+        "get": 16,
+        "put": 11,
+        "conflicts": 0,
+        "read_bytes": 3298,
+        "write_bytes": 3277,
+        "ambiguous": 0,
+        "blocked": 5,
+        "pin_get": 8,
+        "pin_put": 3,
+        "pin_read_bytes": 3298,
+        "pin_write_bytes": 643
+      },
+      "gc": {
+        "passes": 6,
+        "deleted": 1,
+        "metrics": {
+          "get": 17,
+          "put": 14,
+          "conflicts": 2,
+          "read_bytes": 6495,
+          "write_bytes": 5018,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 5019,
+          "pin_write_bytes": 5018
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.46533548703882843
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 0.3885606180410832,
+      "writer_metrics": {
+        "get": 16,
+        "put": 12,
+        "conflicts": 0,
+        "read_bytes": 825,
+        "write_bytes": 3324,
+        "ambiguous": 0,
+        "blocked": 4,
+        "pin_get": 8,
+        "pin_put": 4,
+        "pin_read_bytes": 825,
+        "pin_write_bytes": 690
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 1,
+        "metrics": {
+          "get": 17,
+          "put": 16,
+          "conflicts": 2,
+          "read_bytes": 3727,
+          "write_bytes": 3234,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 16,
+          "pin_put": 16,
+          "pin_read_bytes": 3235,
+          "pin_write_bytes": 3234
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.3052733719814569
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.1191641129553318,
+      "writer_metrics": {
+        "get": 7,
+        "put": 4,
+        "conflicts": 1,
+        "read_bytes": 300,
+        "write_bytes": 561,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 6,
+        "pin_put": 3,
+        "pin_read_bytes": 300,
+        "pin_write_bytes": 255
+      },
+      "gc": {
+        "passes": 2,
+        "deleted": 1,
+        "metrics": {
+          "get": 5,
+          "put": 5,
+          "conflicts": 1,
+          "read_bytes": 415,
+          "write_bytes": 414,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 5,
+          "pin_put": 5,
+          "pin_read_bytes": 415,
+          "pin_write_bytes": 414
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.22666649101302028,
+      "writer_metrics": {
+        "get": 9,
+        "put": 9,
+        "conflicts": 0,
+        "read_bytes": 111,
+        "write_bytes": 2736,
+        "ambiguous": 0,
+        "blocked": 0,
+        "pin_get": 2,
+        "pin_put": 2,
+        "pin_read_bytes": 111,
+        "pin_write_bytes": 594
+      },
+      "gc": {
+        "passes": 3,
+        "deleted": 1,
+        "metrics": {
+          "get": 8,
+          "put": 8,
+          "conflicts": 2,
+          "read_bytes": 3294,
+          "write_bytes": 3292,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 8,
+          "pin_put": 8,
+          "pin_read_bytes": 3294,
+          "pin_write_bytes": 3292
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.7090849339729175,
+      "writer_metrics": {
+        "get": 15,
+        "put": 10,
+        "conflicts": 0,
+        "read_bytes": 354,
+        "write_bytes": 2779,
+        "ambiguous": 0,
+        "blocked": 5,
+        "pin_get": 8,
+        "pin_put": 3,
+        "pin_read_bytes": 354,
+        "pin_write_bytes": 637
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 1,
+        "metrics": {
+          "get": 14,
+          "put": 14,
+          "conflicts": 0,
+          "read_bytes": 3599,
+          "write_bytes": 3600,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 3599,
+          "pin_write_bytes": 3600
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 0.7052214239956811,
+      "writer_metrics": {
+        "get": 47,
+        "put": 18,
+        "conflicts": 1,
+        "read_bytes": 10547,
+        "write_bytes": 5124,
+        "ambiguous": 2,
+        "blocked": 27,
+        "pin_get": 38,
+        "pin_put": 10,
+        "pin_read_bytes": 10055,
+        "pin_write_bytes": 2490
+      },
+      "gc": {
+        "passes": 10,
+        "deleted": 1,
+        "metrics": {
+          "get": 28,
+          "put": 26,
+          "conflicts": 6,
+          "read_bytes": 7613,
+          "write_bytes": 6624,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 26,
+          "pin_put": 26,
+          "pin_read_bytes": 6629,
+          "pin_write_bytes": 6624
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.5879950009984896
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 0.8360021350672469,
+      "writer_metrics": {
+        "get": 14,
+        "put": 12,
+        "conflicts": 1,
+        "read_bytes": 1714,
+        "write_bytes": 3340,
+        "ambiguous": 2,
+        "blocked": 0,
+        "pin_get": 5,
+        "pin_put": 4,
+        "pin_read_bytes": 1222,
+        "pin_write_bytes": 706
+      },
+      "gc": {
+        "passes": 6,
+        "deleted": 1,
+        "metrics": {
+          "get": 15,
+          "put": 13,
+          "conflicts": 1,
+          "read_bytes": 4505,
+          "write_bytes": 3521,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 13,
+          "pin_put": 13,
+          "pin_read_bytes": 3521,
+          "pin_write_bytes": 3521
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.7576018529944122
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 1.2079404069809243,
+      "writer_metrics": {
+        "get": 15,
+        "put": 12,
+        "conflicts": 0,
+        "read_bytes": 1688,
+        "write_bytes": 3324,
+        "ambiguous": 2,
+        "blocked": 1,
+        "pin_get": 6,
+        "pin_put": 4,
+        "pin_read_bytes": 1196,
+        "pin_write_bytes": 690
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 1,
+        "metrics": {
+          "get": 15,
+          "put": 14,
+          "conflicts": 0,
+          "read_bytes": 3155,
+          "write_bytes": 2664,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 2663,
+          "pin_write_bytes": 2664
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.1293988371035084
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.1659357009921223,
+      "writer_metrics": {
+        "get": 8,
+        "put": 4,
+        "conflicts": 0,
+        "read_bytes": 752,
+        "write_bytes": 546,
+        "ambiguous": 0,
+        "blocked": 4,
+        "pin_get": 7,
+        "pin_put": 3,
+        "pin_read_bytes": 752,
+        "pin_write_bytes": 240
+      },
+      "gc": {
+        "passes": 2,
+        "deleted": 2,
+        "metrics": {
+          "get": 6,
+          "put": 6,
+          "conflicts": 2,
+          "read_bytes": 529,
+          "write_bytes": 527,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 6,
+          "pin_put": 6,
+          "pin_read_bytes": 529,
+          "pin_write_bytes": 527
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.3284293960314244,
+      "writer_metrics": {
+        "get": 14,
+        "put": 11,
+        "conflicts": 1,
+        "read_bytes": 832,
+        "write_bytes": 2848,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 7,
+        "pin_put": 4,
+        "pin_read_bytes": 832,
+        "pin_write_bytes": 706
+      },
+      "gc": {
+        "passes": 5,
+        "deleted": 8,
+        "metrics": {
+          "get": 13,
+          "put": 13,
+          "conflicts": 3,
+          "read_bytes": 4019,
+          "write_bytes": 4017,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 13,
+          "pin_put": 13,
+          "pin_read_bytes": 4019,
+          "pin_write_bytes": 4017
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 7,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.3634917630115524,
+      "writer_metrics": {
+        "get": 12,
+        "put": 11,
+        "conflicts": 0,
+        "read_bytes": 675,
+        "write_bytes": 2832,
+        "ambiguous": 0,
+        "blocked": 1,
+        "pin_get": 5,
+        "pin_put": 4,
+        "pin_read_bytes": 675,
+        "pin_write_bytes": 690
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 8,
+        "metrics": {
+          "get": 14,
+          "put": 14,
+          "conflicts": 0,
+          "read_bytes": 2663,
+          "write_bytes": 2664,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 2663,
+          "pin_write_bytes": 2664
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 0.820753485080786,
+      "writer_metrics": {
+        "get": 49,
+        "put": 21,
+        "conflicts": 2,
+        "read_bytes": 12449,
+        "write_bytes": 6895,
+        "ambiguous": 0,
+        "blocked": 28,
+        "pin_get": 40,
+        "pin_put": 12,
+        "pin_read_bytes": 12449,
+        "pin_write_bytes": 3888
+      },
+      "gc": {
+        "passes": 11,
+        "deleted": 1,
+        "metrics": {
+          "get": 30,
+          "put": 28,
+          "conflicts": 6,
+          "read_bytes": 9762,
+          "write_bytes": 8639,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 28,
+          "pin_put": 28,
+          "pin_read_bytes": 8644,
+          "pin_write_bytes": 8639
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.7029084860114381
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 0.3855744820320979,
+      "writer_metrics": {
+        "get": 12,
+        "put": 12,
+        "conflicts": 0,
+        "read_bytes": 710,
+        "write_bytes": 3717,
+        "ambiguous": 0,
+        "blocked": 0,
+        "pin_get": 3,
+        "pin_put": 3,
+        "pin_read_bytes": 710,
+        "pin_write_bytes": 710
+      },
+      "gc": {
+        "passes": 6,
+        "deleted": 1,
+        "metrics": {
+          "get": 16,
+          "put": 14,
+          "conflicts": 2,
+          "read_bytes": 6740,
+          "write_bytes": 5621,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 5622,
+          "pin_write_bytes": 5621
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.28384005604311824
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 1.2376574099762365,
+      "writer_metrics": {
+        "get": 18,
+        "put": 13,
+        "conflicts": 0,
+        "read_bytes": 942,
+        "write_bytes": 3764,
+        "ambiguous": 0,
+        "blocked": 5,
+        "pin_get": 9,
+        "pin_put": 4,
+        "pin_read_bytes": 942,
+        "pin_write_bytes": 757
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 1,
+        "metrics": {
+          "get": 17,
+          "put": 16,
+          "conflicts": 2,
+          "read_bytes": 4129,
+          "write_bytes": 3569,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 16,
+          "pin_put": 16,
+          "pin_read_bytes": 3570,
+          "pin_write_bytes": 3569
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.1400821240385994
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.4425390959950164,
+      "writer_metrics": {
+        "get": 7,
+        "put": 4,
+        "conflicts": 1,
+        "read_bytes": 300,
+        "write_bytes": 561,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 6,
+        "pin_put": 3,
+        "pin_read_bytes": 300,
+        "pin_write_bytes": 255
+      },
+      "gc": {
+        "passes": 2,
+        "deleted": 1,
+        "metrics": {
+          "get": 5,
+          "put": 5,
+          "conflicts": 1,
+          "read_bytes": 400,
+          "write_bytes": 399,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 5,
+          "pin_put": 5,
+          "pin_read_bytes": 400,
+          "pin_write_bytes": 399
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.8166667190380394,
+      "writer_metrics": {
+        "get": 14,
+        "put": 11,
+        "conflicts": 1,
+        "read_bytes": 300,
+        "write_bytes": 3172,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 6,
+        "pin_put": 3,
+        "pin_read_bytes": 300,
+        "pin_write_bytes": 724
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 1,
+        "metrics": {
+          "get": 10,
+          "put": 10,
+          "conflicts": 2,
+          "read_bytes": 3792,
+          "write_bytes": 3791,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 10,
+          "pin_put": 10,
+          "pin_read_bytes": 3792,
+          "pin_write_bytes": 3791
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.3847172160167247,
+      "writer_metrics": {
+        "get": 14,
+        "put": 11,
+        "conflicts": 0,
+        "read_bytes": 254,
+        "write_bytes": 3152,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 6,
+        "pin_put": 3,
+        "pin_read_bytes": 254,
+        "pin_write_bytes": 704
+      },
+      "gc": {
+        "passes": 3,
+        "deleted": 1,
+        "metrics": {
+          "get": 11,
+          "put": 11,
+          "conflicts": 1,
+          "read_bytes": 2752,
+          "write_bytes": 2751,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 11,
+          "pin_put": 11,
+          "pin_read_bytes": 2752,
+          "pin_write_bytes": 2751
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 1.0677370100747794,
+      "writer_metrics": {
+        "get": 51,
+        "put": 21,
+        "conflicts": 2,
+        "read_bytes": 13069,
+        "write_bytes": 6292,
+        "ambiguous": 2,
+        "blocked": 28,
+        "pin_get": 41,
+        "pin_put": 12,
+        "pin_read_bytes": 12510,
+        "pin_write_bytes": 3285
+      },
+      "gc": {
+        "passes": 12,
+        "deleted": 1,
+        "metrics": {
+          "get": 33,
+          "put": 31,
+          "conflicts": 7,
+          "read_bytes": 9854,
+          "write_bytes": 8730,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 31,
+          "pin_put": 31,
+          "pin_read_bytes": 8736,
+          "pin_write_bytes": 8730
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.9793693009996787
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 0.4361026519909501,
+      "writer_metrics": {
+        "get": 16,
+        "put": 13,
+        "conflicts": 1,
+        "read_bytes": 2513,
+        "write_bytes": 3780,
+        "ambiguous": 2,
+        "blocked": 1,
+        "pin_get": 6,
+        "pin_put": 4,
+        "pin_read_bytes": 1954,
+        "pin_write_bytes": 773
+      },
+      "gc": {
+        "passes": 7,
+        "deleted": 1,
+        "metrics": {
+          "get": 18,
+          "put": 15,
+          "conflicts": 1,
+          "read_bytes": 6797,
+          "write_bytes": 5120,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 15,
+          "pin_put": 15,
+          "pin_read_bytes": 5120,
+          "pin_write_bytes": 5120
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.32226602104492486
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 1.8136934919748455,
+      "writer_metrics": {
+        "get": 21,
+        "put": 13,
+        "conflicts": 0,
+        "read_bytes": 2139,
+        "write_bytes": 3764,
+        "ambiguous": 2,
+        "blocked": 6,
+        "pin_get": 11,
+        "pin_put": 4,
+        "pin_read_bytes": 1580,
+        "pin_write_bytes": 757
+      },
+      "gc": {
+        "passes": 5,
+        "deleted": 1,
+        "metrics": {
+          "get": 21,
+          "put": 19,
+          "conflicts": 1,
+          "read_bytes": 4333,
+          "write_bytes": 3216,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 19,
+          "pin_put": 19,
+          "pin_read_bytes": 3215,
+          "pin_write_bytes": 3216
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.6956787300296128
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.19338500895537436,
+      "writer_metrics": {
+        "get": 7,
+        "put": 4,
+        "conflicts": 0,
+        "read_bytes": 624,
+        "write_bytes": 546,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 6,
+        "pin_put": 3,
+        "pin_read_bytes": 624,
+        "pin_write_bytes": 240
+      },
+      "gc": {
+        "passes": 3,
+        "deleted": 2,
+        "metrics": {
+          "get": 8,
+          "put": 8,
+          "conflicts": 2,
+          "read_bytes": 624,
+          "write_bytes": 623,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 8,
+          "pin_put": 8,
+          "pin_read_bytes": 624,
+          "pin_write_bytes": 623
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 1.6969110559439287,
+      "writer_metrics": {
+        "get": 12,
+        "put": 12,
+        "conflicts": 1,
+        "read_bytes": 758,
+        "write_bytes": 3221,
+        "ambiguous": 0,
+        "blocked": 0,
+        "pin_get": 4,
+        "pin_put": 4,
+        "pin_read_bytes": 758,
+        "pin_write_bytes": 773
+      },
+      "gc": {
+        "passes": 6,
+        "deleted": 9,
+        "metrics": {
+          "get": 14,
+          "put": 14,
+          "conflicts": 2,
+          "read_bytes": 4522,
+          "write_bytes": 4521,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 4522,
+          "pin_write_bytes": 4521
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 8,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.6029667160473764,
+      "writer_metrics": {
+        "get": 16,
+        "put": 12,
+        "conflicts": 0,
+        "read_bytes": 892,
+        "write_bytes": 3205,
+        "ambiguous": 0,
+        "blocked": 4,
+        "pin_get": 8,
+        "pin_put": 4,
+        "pin_read_bytes": 892,
+        "pin_write_bytes": 757
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 9,
+        "metrics": {
+          "get": 15,
+          "put": 15,
+          "conflicts": 1,
+          "read_bytes": 3519,
+          "write_bytes": 3519,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 15,
+          "pin_put": 15,
+          "pin_read_bytes": 3519,
+          "pin_write_bytes": 3519
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 1.898620103020221,
+      "writer_metrics": {
+        "get": 53,
+        "put": 24,
+        "conflicts": 3,
+        "read_bytes": 15340,
+        "write_bytes": 7931,
+        "ambiguous": 0,
+        "blocked": 29,
+        "pin_get": 43,
+        "pin_put": 14,
+        "pin_read_bytes": 15340,
+        "pin_write_bytes": 4551
+      },
+      "gc": {
+        "passes": 13,
+        "deleted": 1,
+        "metrics": {
+          "get": 34,
+          "put": 30,
+          "conflicts": 4,
+          "read_bytes": 11216,
+          "write_bytes": 8709,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 30,
+          "pin_put": 30,
+          "pin_read_bytes": 8712,
+          "pin_write_bytes": 8709
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.750476257991977
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 0.769503080053255,
+      "writer_metrics": {
+        "get": 17,
+        "put": 16,
+        "conflicts": 2,
+        "read_bytes": 2070,
+        "write_bytes": 5485,
+        "ambiguous": 0,
+        "blocked": 1,
+        "pin_get": 7,
+        "pin_put": 6,
+        "pin_read_bytes": 2070,
+        "pin_write_bytes": 2105
+      },
+      "gc": {
+        "passes": 8,
+        "deleted": 1,
+        "metrics": {
+          "get": 21,
+          "put": 19,
+          "conflicts": 3,
+          "read_bytes": 8983,
+          "write_bytes": 7729,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 19,
+          "pin_put": 19,
+          "pin_read_bytes": 7731,
+          "pin_write_bytes": 7729
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.5271488159196451
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 0.7459742019418627,
+      "writer_metrics": {
+        "get": 17,
+        "put": 15,
+        "conflicts": 0,
+        "read_bytes": 1447,
+        "write_bytes": 4793,
+        "ambiguous": 0,
+        "blocked": 2,
+        "pin_get": 7,
+        "pin_put": 5,
+        "pin_read_bytes": 1447,
+        "pin_write_bytes": 1413
+      },
+      "gc": {
+        "passes": 6,
+        "deleted": 1,
+        "metrics": {
+          "get": 26,
+          "put": 24,
+          "conflicts": 2,
+          "read_bytes": 6494,
+          "write_bytes": 5241,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 24,
+          "pin_put": 24,
+          "pin_read_bytes": 5242,
+          "pin_write_bytes": 5241
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.5263770530000329
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 0.18758735293522477,
+      "writer_metrics": {
+        "get": 4,
+        "put": 4,
+        "conflicts": 1,
+        "read_bytes": 159,
+        "write_bytes": 561,
+        "ambiguous": 0,
+        "blocked": 0,
+        "pin_get": 3,
+        "pin_put": 3,
+        "pin_read_bytes": 159,
+        "pin_write_bytes": 255
+      },
+      "gc": {
+        "passes": 2,
+        "deleted": 1,
+        "metrics": {
+          "get": 5,
+          "put": 5,
+          "conflicts": 1,
+          "read_bytes": 400,
+          "write_bytes": 399,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 5,
+          "pin_put": 5,
+          "pin_read_bytes": 400,
+          "pin_write_bytes": 399
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 3.9798226529965177,
+      "writer_metrics": {
+        "get": 14,
+        "put": 11,
+        "conflicts": 1,
+        "read_bytes": 300,
+        "write_bytes": 3172,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 6,
+        "pin_put": 3,
+        "pin_read_bytes": 300,
+        "pin_write_bytes": 724
+      },
+      "gc": {
+        "passes": 6,
+        "deleted": 1,
+        "metrics": {
+          "get": 13,
+          "put": 13,
+          "conflicts": 1,
+          "read_bytes": 6138,
+          "write_bytes": 6138,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 13,
+          "pin_put": 13,
+          "pin_read_bytes": 6138,
+          "pin_write_bytes": 6138
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 2.287875831942074,
+      "writer_metrics": {
+        "get": 19,
+        "put": 12,
+        "conflicts": 1,
+        "read_bytes": 505,
+        "write_bytes": 3215,
+        "ambiguous": 0,
+        "blocked": 7,
+        "pin_get": 11,
+        "pin_put": 4,
+        "pin_read_bytes": 505,
+        "pin_write_bytes": 767
+      },
+      "gc": {
+        "passes": 5,
+        "deleted": 1,
+        "metrics": {
+          "get": 15,
+          "put": 15,
+          "conflicts": 1,
+          "read_bytes": 2956,
+          "write_bytes": 2956,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 15,
+          "pin_put": 15,
+          "pin_read_bytes": 2956,
+          "pin_write_bytes": 2956
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 1.0916820770362392,
+      "writer_metrics": {
+        "get": 58,
+        "put": 21,
+        "conflicts": 0,
+        "read_bytes": 15516,
+        "write_bytes": 7071,
+        "ambiguous": 2,
+        "blocked": 35,
+        "pin_get": 47,
+        "pin_put": 11,
+        "pin_read_bytes": 14890,
+        "pin_write_bytes": 3691
+      },
+      "gc": {
+        "passes": 10,
+        "deleted": 1,
+        "metrics": {
+          "get": 29,
+          "put": 28,
+          "conflicts": 8,
+          "read_bytes": 10907,
+          "write_bytes": 10274,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 28,
+          "pin_put": 28,
+          "pin_read_bytes": 10281,
+          "pin_write_bytes": 10274
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.9839850619900972
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 2.8112936338875443,
+      "writer_metrics": {
+        "get": 132,
+        "put": 16,
+        "conflicts": 2,
+        "read_bytes": 8605,
+        "write_bytes": 5485,
+        "ambiguous": 2,
+        "blocked": 114,
+        "pin_get": 121,
+        "pin_put": 6,
+        "pin_read_bytes": 7979,
+        "pin_write_bytes": 2105
+      },
+      "gc": {
+        "passes": 7,
+        "deleted": 1,
+        "metrics": {
+          "get": 18,
+          "put": 17,
+          "conflicts": 3,
+          "read_bytes": 8245,
+          "write_bytes": 7617,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 17,
+          "pin_put": 17,
+          "pin_read_bytes": 7619,
+          "pin_write_bytes": 7617
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        2.6678943199804053
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 1.533475166070275,
+      "writer_metrics": {
+        "get": 23,
+        "put": 15,
+        "conflicts": 0,
+        "read_bytes": 4673,
+        "write_bytes": 4793,
+        "ambiguous": 2,
+        "blocked": 6,
+        "pin_get": 12,
+        "pin_put": 5,
+        "pin_read_bytes": 4047,
+        "pin_write_bytes": 1413
+      },
+      "gc": {
+        "passes": 5,
+        "deleted": 1,
+        "metrics": {
+          "get": 21,
+          "put": 19,
+          "conflicts": 1,
+          "read_bytes": 5672,
+          "write_bytes": 4420,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 19,
+          "pin_put": 19,
+          "pin_read_bytes": 4420,
+          "pin_write_bytes": 4420
+        }
+      },
+      "acknowledgments": 1,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.9021961929975078
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.198763411026448,
+      "writer_metrics": {
+        "get": 8,
+        "put": 4,
+        "conflicts": 0,
+        "read_bytes": 752,
+        "write_bytes": 546,
+        "ambiguous": 0,
+        "blocked": 4,
+        "pin_get": 7,
+        "pin_put": 3,
+        "pin_read_bytes": 752,
+        "pin_write_bytes": 240
+      },
+      "gc": {
+        "passes": 3,
+        "deleted": 2,
+        "metrics": {
+          "get": 8,
+          "put": 8,
+          "conflicts": 2,
+          "read_bytes": 624,
+          "write_bytes": 623,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 8,
+          "pin_put": 8,
+          "pin_read_bytes": 624,
+          "pin_write_bytes": 623
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.3832577670691535,
+      "writer_metrics": {
+        "get": 11,
+        "put": 11,
+        "conflicts": 0,
+        "read_bytes": 709,
+        "write_bytes": 3158,
+        "ambiguous": 0,
+        "blocked": 0,
+        "pin_get": 3,
+        "pin_put": 3,
+        "pin_read_bytes": 709,
+        "pin_write_bytes": 710
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 9,
+        "metrics": {
+          "get": 11,
+          "put": 11,
+          "conflicts": 3,
+          "read_bytes": 4391,
+          "write_bytes": 4389,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 11,
+          "pin_put": 11,
+          "pin_read_bytes": 4391,
+          "pin_write_bytes": 4389
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 1,
+      "objects": 9,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 0.32685833401046693,
+      "writer_metrics": {
+        "get": 15,
+        "put": 12,
+        "conflicts": 0,
+        "read_bytes": 842,
+        "write_bytes": 3205,
+        "ambiguous": 0,
+        "blocked": 3,
+        "pin_get": 7,
+        "pin_put": 4,
+        "pin_read_bytes": 842,
+        "pin_write_bytes": 757
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 9,
+        "metrics": {
+          "get": 14,
+          "put": 14,
+          "conflicts": 0,
+          "read_bytes": 2931,
+          "write_bytes": 2932,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 14,
+          "pin_put": 14,
+          "pin_read_bytes": 2931,
+          "pin_write_bytes": 2932
+        }
+      },
+      "acknowledgments": 0,
+      "fresh_readback": true,
+      "latency_seconds": [],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 7.287350503029302,
+      "writer_metrics": {
+        "get": 735,
+        "put": 573,
+        "conflicts": 403,
+        "read_bytes": 904775,
+        "write_bytes": 753552,
+        "ambiguous": 0,
+        "blocked": 162,
+        "pin_get": 655,
+        "pin_put": 493,
+        "pin_read_bytes": 904775,
+        "pin_write_bytes": 727212
+      },
+      "gc": {
+        "passes": 24,
+        "deleted": 1,
+        "metrics": {
+          "get": 218,
+          "put": 106,
+          "conflicts": 58,
+          "read_bytes": 196555,
+          "write_bytes": 141395,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 106,
+          "pin_put": 106,
+          "pin_read_bytes": 141451,
+          "pin_write_bytes": 141395
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        3.6314525729976594,
+        3.672496565966867,
+        4.091054119053297,
+        4.472078540944494,
+        5.797929305001162,
+        5.890181820956059,
+        6.453628735966049,
+        6.523411478963681,
+        6.728019980946556,
+        7.14779214002192
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 2.460792063968256,
+      "writer_metrics": {
+        "get": 202,
+        "put": 190,
+        "conflicts": 80,
+        "read_bytes": 149041,
+        "write_bytes": 152437,
+        "ambiguous": 0,
+        "blocked": 12,
+        "pin_get": 122,
+        "pin_put": 110,
+        "pin_read_bytes": 149041,
+        "pin_write_bytes": 126097
+      },
+      "gc": {
+        "passes": 10,
+        "deleted": 1,
+        "metrics": {
+          "get": 105,
+          "put": 36,
+          "conflicts": 16,
+          "read_bytes": 74969,
+          "write_bytes": 41006,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 36,
+          "pin_put": 36,
+          "pin_read_bytes": 41021,
+          "pin_write_bytes": 41006
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.1475256180856377,
+        1.1771738439565524,
+        1.2755766049958766,
+        1.3706513439537957,
+        1.5038635499076918,
+        1.6883994449162856,
+        1.753157505998388,
+        1.8892002500360832,
+        2.020329919992946,
+        2.2032795739360154
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 7.465725946007296,
+      "writer_metrics": {
+        "get": 938,
+        "put": 155,
+        "conflicts": 35,
+        "read_bytes": 153968,
+        "write_bytes": 38016,
+        "ambiguous": 0,
+        "blocked": 783,
+        "pin_get": 858,
+        "pin_put": 75,
+        "pin_read_bytes": 153968,
+        "pin_write_bytes": 11676
+      },
+      "gc": {
+        "passes": 9,
+        "deleted": 1,
+        "metrics": {
+          "get": 210,
+          "put": 151,
+          "conflicts": 7,
+          "read_bytes": 47902,
+          "write_bytes": 18877,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 151,
+          "pin_put": 151,
+          "pin_read_bytes": 18874,
+          "pin_write_bytes": 18877
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.44635948701761663,
+        0.496188357938081,
+        0.5490899770520627,
+        0.6342649550642818,
+        0.6560282789869234,
+        1.2137760899495333,
+        1.8360528069315478,
+        2.499356889980845,
+        5.203201116994023,
+        7.297768419026397
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 13.28360376006458,
+      "writer_metrics": {
+        "get": 678,
+        "put": 513,
+        "conflicts": 357,
+        "read_bytes": 791330,
+        "write_bytes": 612278,
+        "ambiguous": 0,
+        "blocked": 165,
+        "pin_get": 605,
+        "pin_put": 440,
+        "pin_read_bytes": 791330,
+        "pin_write_bytes": 588266
+      },
+      "gc": {
+        "passes": 26,
+        "deleted": 1,
+        "metrics": {
+          "get": 223,
+          "put": 106,
+          "conflicts": 54,
+          "read_bytes": 188864,
+          "write_bytes": 131247,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 106,
+          "pin_put": 106,
+          "pin_read_bytes": 131300,
+          "pin_write_bytes": 131247
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        3.353013230022043,
+        5.157679424039088,
+        8.36316618998535,
+        10.720123199978843,
+        10.833198672975414,
+        11.07257145899348,
+        11.962970306049101,
+        12.11450380901806,
+        13.022342989919707
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 1.9172547030029818,
+      "writer_metrics": {
+        "get": 201,
+        "put": 182,
+        "conflicts": 74,
+        "read_bytes": 189091,
+        "write_bytes": 179214,
+        "ambiguous": 0,
+        "blocked": 19,
+        "pin_get": 122,
+        "pin_put": 103,
+        "pin_read_bytes": 189091,
+        "pin_write_bytes": 153366
+      },
+      "gc": {
+        "passes": 8,
+        "deleted": 1,
+        "metrics": {
+          "get": 72,
+          "put": 32,
+          "conflicts": 16,
+          "read_bytes": 70575,
+          "write_bytes": 50880,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 32,
+          "pin_put": 32,
+          "pin_read_bytes": 50895,
+          "pin_write_bytes": 50880
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.43895417591556907,
+        0.5341939319623634,
+        0.6217577540082857,
+        0.7778457580134273,
+        0.8778952920110896,
+        1.114069462986663,
+        1.3713990550022572,
+        1.6184287649812177,
+        1.78294664202258
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 4.1697000180138275,
+      "writer_metrics": {
+        "get": 607,
+        "put": 143,
+        "conflicts": 25,
+        "read_bytes": 152899,
+        "write_bytes": 36038,
+        "ambiguous": 0,
+        "blocked": 464,
+        "pin_get": 528,
+        "pin_put": 64,
+        "pin_read_bytes": 152899,
+        "pin_write_bytes": 10190
+      },
+      "gc": {
+        "passes": 5,
+        "deleted": 1,
+        "metrics": {
+          "get": 116,
+          "put": 85,
+          "conflicts": 7,
+          "read_bytes": 28428,
+          "write_bytes": 13176,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 85,
+          "pin_put": 85,
+          "pin_read_bytes": 13176,
+          "pin_write_bytes": 13176
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.4978766021085903,
+        0.5335432740394026,
+        0.5778547229710966,
+        0.5941623710095882,
+        0.6411416970659047,
+        0.6804723959648982,
+        1.1770809529116377,
+        1.1934432180132717,
+        1.222327998955734
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 6.546628113021143,
+      "writer_metrics": {
+        "get": 1400,
+        "put": 623,
+        "conflicts": 453,
+        "read_bytes": 1473961,
+        "write_bytes": 1043658,
+        "ambiguous": 20,
+        "blocked": 757,
+        "pin_get": 1310,
+        "pin_put": 543,
+        "pin_read_bytes": 1469041,
+        "pin_write_bytes": 1017318
+      },
+      "gc": {
+        "passes": 22,
+        "deleted": 1,
+        "metrics": {
+          "get": 198,
+          "put": 101,
+          "conflicts": 57,
+          "read_bytes": 230419,
+          "write_bytes": 182639,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 101,
+          "pin_put": 101,
+          "pin_read_bytes": 182695,
+          "pin_write_bytes": 182639
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        3.0328460480086505,
+        3.559564650990069,
+        4.573382638976909,
+        4.6114274830324575,
+        4.649801212013699,
+        5.542790631065145,
+        5.600877198041417,
+        5.725476645049639,
+        5.853535901987925,
+        6.092683064052835
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 2.555797063978389,
+      "writer_metrics": {
+        "get": 217,
+        "put": 185,
+        "conflicts": 75,
+        "read_bytes": 217243,
+        "write_bytes": 201553,
+        "ambiguous": 20,
+        "blocked": 12,
+        "pin_get": 127,
+        "pin_put": 105,
+        "pin_read_bytes": 212323,
+        "pin_write_bytes": 175213
+      },
+      "gc": {
+        "passes": 9,
+        "deleted": 1,
+        "metrics": {
+          "get": 108,
+          "put": 36,
+          "conflicts": 18,
+          "read_bytes": 73509,
+          "write_bytes": 38068,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 36,
+          "pin_put": 36,
+          "pin_read_bytes": 38085,
+          "pin_write_bytes": 38068
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.6495418200502172,
+        0.7429804200073704,
+        0.8167702950304374,
+        0.9139334729406983,
+        0.9608213709434494,
+        1.4020539278862998,
+        1.4766689800890163,
+        1.7527935900725424,
+        1.917246142984368,
+        2.402974173077382
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "ambiguous",
+      "seconds": 2.7484480650164187,
+      "writer_metrics": {
+        "get": 539,
+        "put": 156,
+        "conflicts": 36,
+        "read_bytes": 104636,
+        "write_bytes": 37559,
+        "ambiguous": 20,
+        "blocked": 363,
+        "pin_get": 449,
+        "pin_put": 76,
+        "pin_read_bytes": 99716,
+        "pin_write_bytes": 11219
+      },
+      "gc": {
+        "passes": 5,
+        "deleted": 1,
+        "metrics": {
+          "get": 96,
+          "put": 72,
+          "conflicts": 6,
+          "read_bytes": 26077,
+          "write_bytes": 14268,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 72,
+          "pin_put": 72,
+          "pin_read_bytes": 14269,
+          "pin_write_bytes": 14268
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.4250365090556443,
+        0.5057270040269941,
+        0.5211975990096107,
+        0.56688275502529,
+        0.9049728540703654,
+        1.4617682559182867,
+        1.4926037770928815,
+        1.541890030959621,
+        1.6020615060115233,
+        2.343291810946539
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 4.92902645689901,
+      "writer_metrics": {
+        "get": 598,
+        "put": 472,
+        "conflicts": 315,
+        "read_bytes": 823765,
+        "write_bytes": 610929,
+        "ambiguous": 0,
+        "blocked": 126,
+        "pin_get": 525,
+        "pin_put": 399,
+        "pin_read_bytes": 823765,
+        "pin_write_bytes": 586917
+      },
+      "gc": {
+        "passes": 11,
+        "deleted": 2,
+        "metrics": {
+          "get": 105,
+          "put": 69,
+          "conflicts": 47,
+          "read_bytes": 120700,
+          "write_bytes": 102942,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 69,
+          "pin_put": 69,
+          "pin_read_bytes": 102988,
+          "pin_write_bytes": 102942
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        1.9304393469356,
+        2.862704745028168,
+        2.870754679082893,
+        4.075769147952087,
+        4.185089141945355,
+        4.461840623989701,
+        4.527085451991297,
+        4.70521100400947,
+        4.737865473958664
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 2.298128868918866,
+      "writer_metrics": {
+        "get": 242,
+        "put": 210,
+        "conflicts": 101,
+        "read_bytes": 184763,
+        "write_bytes": 198068,
+        "ambiguous": 0,
+        "blocked": 32,
+        "pin_get": 163,
+        "pin_put": 131,
+        "pin_read_bytes": 184763,
+        "pin_write_bytes": 172220
+      },
+      "gc": {
+        "passes": 8,
+        "deleted": 8,
+        "metrics": {
+          "get": 87,
+          "put": 35,
+          "conflicts": 19,
+          "read_bytes": 63278,
+          "write_bytes": 37676,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 35,
+          "pin_put": 35,
+          "pin_read_bytes": 37694,
+          "pin_write_bytes": 37676
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.4849324870156124,
+        0.6676517230225727,
+        0.6736618640134111,
+        0.7543927199440077,
+        0.7995044030249119,
+        1.4517805119976401,
+        1.6418681659270078,
+        2.0003157769097015,
+        2.1843125509331003
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 10,
+      "objects": 7,
+      "batch": 8,
+      "fault": "cancel",
+      "seconds": 3.817250892985612,
+      "writer_metrics": {
+        "get": 803,
+        "put": 167,
+        "conflicts": 48,
+        "read_bytes": 99850,
+        "write_bytes": 38570,
+        "ambiguous": 0,
+        "blocked": 636,
+        "pin_get": 724,
+        "pin_put": 88,
+        "pin_read_bytes": 99850,
+        "pin_write_bytes": 12722
+      },
+      "gc": {
+        "passes": 7,
+        "deleted": 1,
+        "metrics": {
+          "get": 124,
+          "put": 95,
+          "conflicts": 9,
+          "read_bytes": 29579,
+          "write_bytes": 15308,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 95,
+          "pin_put": 95,
+          "pin_read_bytes": 15311,
+          "pin_write_bytes": 15308
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.36169132695067674,
+        0.3986212849849835,
+        0.4357649589655921,
+        1.0002896619262174,
+        1.3524113029707223,
+        2.07480729999952,
+        2.888349191052839,
+        3.1483786469325423,
+        3.6491473980713636
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 10,
+      "objects": 8,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 4.97757492295932,
+      "writer_metrics": {
+        "get": 813,
+        "put": 646,
+        "conflicts": 456,
+        "read_bytes": 1400508,
+        "write_bytes": 1131743,
+        "ambiguous": 0,
+        "blocked": 167,
+        "pin_get": 723,
+        "pin_put": 556,
+        "pin_read_bytes": 1400508,
+        "pin_write_bytes": 1101673
+      },
+      "gc": {
+        "passes": 23,
+        "deleted": 1,
+        "metrics": {
+          "get": 200,
+          "put": 96,
+          "conflicts": 50,
+          "read_bytes": 221903,
+          "write_bytes": 163717,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 96,
+          "pin_put": 96,
+          "pin_read_bytes": 163767,
+          "pin_write_bytes": 163717
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        2.668286729953252,
+        2.73820835002698,
+        2.8321266040438786,
+        3.4750573879573494,
+        3.5183940450660884,
+        3.5841375360032544,
+        3.7316816390957683,
+        3.8781215470517054,
+        4.796777951065451,
+        4.903851551003754
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "batched",
+      "writers": 10,
+      "objects": 8,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 1.1920513299992308,
+      "writer_metrics": {
+        "get": 285,
+        "put": 210,
+        "conflicts": 90,
+        "read_bytes": 213966,
+        "write_bytes": 182011,
+        "ambiguous": 0,
+        "blocked": 75,
+        "pin_get": 195,
+        "pin_put": 120,
+        "pin_read_bytes": 213966,
+        "pin_write_bytes": 151941
+      },
+      "gc": {
+        "passes": 10,
+        "deleted": 1,
+        "metrics": {
+          "get": 91,
+          "put": 40,
+          "conflicts": 20,
+          "read_bytes": 85726,
+          "write_bytes": 57198,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 40,
+          "pin_put": 40,
+          "pin_read_bytes": 57217,
+          "pin_write_bytes": 57198
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.32401334296446294,
+        0.36331316200084984,
+        0.400126761989668,
+        0.4764455830445513,
+        0.6737924059852958,
+        0.7442091319244355,
+        0.8374874260043725,
+        0.9651785889873281,
+        1.0374178269412369,
+        1.104961271979846
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "owned",
+      "writers": 10,
+      "objects": 8,
+      "batch": 8,
+      "fault": "none",
+      "seconds": 1.4700684329727665,
+      "writer_metrics": {
+        "get": 524,
+        "put": 172,
+        "conflicts": 42,
+        "read_bytes": 67191,
+        "write_bytes": 41916,
+        "ambiguous": 0,
+        "blocked": 352,
+        "pin_get": 434,
+        "pin_put": 82,
+        "pin_read_bytes": 67191,
+        "pin_write_bytes": 11846
+      },
+      "gc": {
+        "passes": 4,
+        "deleted": 1,
+        "metrics": {
+          "get": 56,
+          "put": 45,
+          "conflicts": 9,
+          "read_bytes": 16811,
+          "write_bytes": 10654,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 45,
+          "pin_put": 45,
+          "pin_read_bytes": 10662,
+          "pin_write_bytes": 10654
+        }
+      },
+      "acknowledgments": 10,
+      "fresh_readback": true,
+      "latency_seconds": [
+        0.3392535949824378,
+        0.891141758998856,
+        0.9146753450622782,
+        1.1638896139338613,
+        1.180985628045164,
+        1.1883136769756675,
+        1.2128291649278253,
+        1.239612406003289,
+        1.2474213159875944,
+        1.2936906169634312
+      ],
+      "status": "ok",
+      "repetition": 1
+    },
+    {
+      "variant": "current-shape",
+      "writers": 10,
+      "objects": 8,
+      "batch": 8,
+      "fault": "crash",
+      "seconds": 5.196932871011086,
+      "writer_metrics": {
+        "get": 701,
+        "put": 571,
+        "conflicts": 397,
+        "read_bytes": 1039825,
+        "write_bytes": 833600,
+        "ambiguous": 0,
+        "blocked": 130,
+        "pin_get": 619,
+        "pin_put": 489,
+        "pin_read_bytes": 1039825,
+        "pin_write_bytes": 806231
+      },
+      "gc": {
+        "passes": 20,
+        "deleted": 1,
+        "metrics": {
+          "get": 166,
+          "put": 93,
+          "conflicts": 53,
+          "read_bytes": 187872,
+          "write_bytes": 147014,
+          "ambiguous": 0,
+          "blocked": 0,
+          "pin_get": 93,
+          "pin_put": 93,
+          "pin_read_bytes": 147065,
+          "pin_write_bytes": 147014
+        }
+      },
+      "acknowledgments": 9,
+      "fresh_readback": true,
+      "latency_seconds": [
+        2.330239273956977,
+        3.106084130005911,
+        3.5398555520223454,
+        3.576708330074325,
+        3.741644077003002,
+        3.9515074669616297,
+        4.285703126923181,
+        4.301462235045619,
+        5.150135221076198
+      ],
+      "status": "ok",
+      "repetition": 1
+    }
+  ],
+  "error": "Empty()"
+}

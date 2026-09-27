@@ -1,0 +1,3060 @@
+{
+  "baseline_revision": "9b5ded9",
+  "candidate": "9cb2dd3c (before PR rebase onto upstream 8b5220a9)",
+  "build": "cargo build --features cli --bin casita",
+  "toolchain": "Rust 1.96.0",
+  "directory_staging_concurrency": {
+    "before": 1,
+    "after": 16
+  },
+  "notes": [
+    "Shared Linux host with other workloads; no Rust builds or Rust tests from this task overlapped timed imports.",
+    "Development binaries; span and phase totals overlap and must not be added.",
+    "Generated sweep has one repetition; initial Riff and late 1024 controls have three. Late Riff controls have one."
+  ],
+  "runs": {
+    "before": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/before.json",
+      "configuration": {
+        "directories": [
+          1,
+          14,
+          15,
+          16,
+          17,
+          64,
+          511,
+          512,
+          513,
+          1024,
+          2047,
+          2048,
+          2049,
+          4095,
+          4096,
+          4097
+        ],
+        "source": null,
+        "repetitions": 1,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/casita",
+        "sha256": "ecf5170d9ee4467fb97001fc9ef406bf08fd0e3140f7cebb7ef149f2e76d3db7"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 2,
+          "wall_seconds": 0.32950460200663656,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2,
+          "wall_seconds": 0.08273946505505592,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2,
+          "wall_seconds": 0.07258447702042758,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1-2-warm-traced.jsonl",
+          "cache_hits": 1,
+          "cache_misses": 0,
+          "journal_flushes": 12,
+          "journal_flush_seconds": 0.017339349,
+          "directory_stage_seconds": 0.006704999999999999,
+          "state_commit_seconds": 0.012898,
+          "repository_open_seconds": 0.0079,
+          "cache_recall_seconds": 0.0009597
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2,
+          "wall_seconds": 0.06541198899503797,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 11,
+          "journal_flush_seconds": 0.018501716,
+          "directory_stage_seconds": 0.004189,
+          "state_commit_seconds": 0.013086,
+          "repository_open_seconds": 0.00707,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 15,
+          "wall_seconds": 0.2896290880162269,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/14-4-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 15,
+          "wall_seconds": 0.10838873405009508,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/14-5-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 15,
+          "wall_seconds": 0.11033472092822194,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/14-6-warm-traced.jsonl",
+          "cache_hits": 14,
+          "cache_misses": 0,
+          "journal_flushes": 25,
+          "journal_flush_seconds": 0.041154239999999995,
+          "directory_stage_seconds": 0.036857000000000015,
+          "state_commit_seconds": 0.01572,
+          "repository_open_seconds": 0.007719999999999999,
+          "cache_recall_seconds": 0.001404
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 15,
+          "wall_seconds": 0.11658704897854477,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/14-7-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 24,
+          "journal_flush_seconds": 0.04373780599999999,
+          "directory_stage_seconds": 0.039451,
+          "state_commit_seconds": 0.019514,
+          "repository_open_seconds": 0.00698,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 16,
+          "wall_seconds": 0.35222479805815965,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/15-8-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 16,
+          "wall_seconds": 0.12878063297830522,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/15-9-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 16,
+          "wall_seconds": 0.11328041495289654,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/15-10-warm-traced.jsonl",
+          "cache_hits": 15,
+          "cache_misses": 0,
+          "journal_flushes": 26,
+          "journal_flush_seconds": 0.04010704,
+          "directory_stage_seconds": 0.03803499999999999,
+          "state_commit_seconds": 0.016186,
+          "repository_open_seconds": 0.006920000000000001,
+          "cache_recall_seconds": 0.001485
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 16,
+          "wall_seconds": 0.13293856289237738,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/15-11-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 25,
+          "journal_flush_seconds": 0.044287525999999994,
+          "directory_stage_seconds": 0.03836200000000001,
+          "state_commit_seconds": 0.030296000000000003,
+          "repository_open_seconds": 0.00775,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 17,
+          "wall_seconds": 0.3566071280511096,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/16-12-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 17,
+          "wall_seconds": 0.12580881896428764,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/16-13-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 17,
+          "wall_seconds": 0.16979714401531965,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/16-14-warm-traced.jsonl",
+          "cache_hits": 16,
+          "cache_misses": 0,
+          "journal_flushes": 27,
+          "journal_flush_seconds": 0.09622720700000001,
+          "directory_stage_seconds": 0.09802399999999999,
+          "state_commit_seconds": 0.017917,
+          "repository_open_seconds": 0.00795,
+          "cache_recall_seconds": 0.001755
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 17,
+          "wall_seconds": 0.10966270801145583,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/16-15-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 26,
+          "journal_flush_seconds": 0.033285992,
+          "directory_stage_seconds": 0.031551,
+          "state_commit_seconds": 0.019188,
+          "repository_open_seconds": 0.00711,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 18,
+          "wall_seconds": 0.3238625460071489,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/17-16-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 18,
+          "wall_seconds": 0.1210667371051386,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/17-17-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 18,
+          "wall_seconds": 0.10908449301496148,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/17-18-warm-traced.jsonl",
+          "cache_hits": 17,
+          "cache_misses": 0,
+          "journal_flushes": 28,
+          "journal_flush_seconds": 0.038500621,
+          "directory_stage_seconds": 0.037993999999999986,
+          "state_commit_seconds": 0.015465000000000001,
+          "repository_open_seconds": 0.00777,
+          "cache_recall_seconds": 0.001485
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 18,
+          "wall_seconds": 0.12360518705099821,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/17-19-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 28,
+          "journal_flush_seconds": 0.04756803600000001,
+          "directory_stage_seconds": 0.04027,
+          "state_commit_seconds": 0.018297,
+          "repository_open_seconds": 0.007930000000000001,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 65,
+          "wall_seconds": 0.48347501805983484,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/64-20-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 65,
+          "wall_seconds": 0.24058998201508075,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/64-21-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 65,
+          "wall_seconds": 0.27609504002612084,
+          "load_average": [
+            6.7548828125,
+            6.6259765625,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/64-22-warm-traced.jsonl",
+          "cache_hits": 64,
+          "cache_misses": 0,
+          "journal_flushes": 75,
+          "journal_flush_seconds": 0.14802559999999998,
+          "directory_stage_seconds": 0.17920900000000003,
+          "state_commit_seconds": 0.022108,
+          "repository_open_seconds": 0.0072,
+          "cache_recall_seconds": 0.003337
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 65,
+          "wall_seconds": 0.5407005659071729,
+          "load_average": [
+            6.4541015625,
+            6.5654296875,
+            4.85205078125
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/64-23-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 80,
+          "journal_flush_seconds": 0.3981258590000001,
+          "directory_stage_seconds": 0.41097900000000015,
+          "state_commit_seconds": 0.032691,
+          "repository_open_seconds": 0.006869999999999999,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 512,
+          "wall_seconds": 2.2424974869936705,
+          "load_average": [
+            6.4541015625,
+            6.5654296875,
+            4.85205078125
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/511-24-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 512,
+          "wall_seconds": 1.6662788019748405,
+          "load_average": [
+            6.4541015625,
+            6.5654296875,
+            4.85205078125
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/511-25-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 512,
+          "wall_seconds": 1.8056608480401337,
+          "load_average": [
+            6.4541015625,
+            6.5654296875,
+            4.85205078125
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/511-26-warm-traced.jsonl",
+          "cache_hits": 511,
+          "cache_misses": 0,
+          "journal_flushes": 531,
+          "journal_flush_seconds": 1.1268249070000005,
+          "directory_stage_seconds": 1.4605710000000007,
+          "state_commit_seconds": 0.11718400000000001,
+          "repository_open_seconds": 0.04134,
+          "cache_recall_seconds": 0.024507
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 512,
+          "wall_seconds": 7.221754095051438,
+          "load_average": [
+            6.498046875,
+            6.57275390625,
+            4.86376953125
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/511-27-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 590,
+          "journal_flush_seconds": 5.930078350000002,
+          "directory_stage_seconds": 6.181686999999989,
+          "state_commit_seconds": 0.230308,
+          "repository_open_seconds": 0.04497,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 513,
+          "wall_seconds": 7.800061223912053,
+          "load_average": [
+            6.53857421875,
+            6.580078125,
+            4.87548828125
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/512-28-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 513,
+          "wall_seconds": 5.041149424039759,
+          "load_average": [
+            6.4619140625,
+            6.5615234375,
+            4.88818359375
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/512-29-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 513,
+          "wall_seconds": 6.162909284932539,
+          "load_average": [
+            6.1044921875,
+            6.4853515625,
+            4.87255859375
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/512-30-warm-traced.jsonl",
+          "cache_hits": 512,
+          "cache_misses": 0,
+          "journal_flushes": 533,
+          "journal_flush_seconds": 5.088927605000004,
+          "directory_stage_seconds": 5.598785000000003,
+          "state_commit_seconds": 0.128253,
+          "repository_open_seconds": 0.09473000000000001,
+          "cache_recall_seconds": 0.02589576
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 513,
+          "wall_seconds": 5.556993818026967,
+          "load_average": [
+            5.85546875,
+            6.42724609375,
+            4.8623046875
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/512-31-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 589,
+          "journal_flush_seconds": 4.3223026040000025,
+          "directory_stage_seconds": 4.343232000000004,
+          "state_commit_seconds": 0.201222,
+          "repository_open_seconds": 0.1057,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 514,
+          "wall_seconds": 5.873948631924577,
+          "load_average": [
+            5.54638671875,
+            6.353515625,
+            4.8466796875
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/513-32-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 514,
+          "wall_seconds": 5.22904338198714,
+          "load_average": [
+            5.07421875,
+            6.2255859375,
+            4.82080078125
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/513-33-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 514,
+          "wall_seconds": 5.144991944893263,
+          "load_average": [
+            4.98779296875,
+            6.1884765625,
+            4.81591796875
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/513-34-warm-traced.jsonl",
+          "cache_hits": 513,
+          "cache_misses": 0,
+          "journal_flushes": 535,
+          "journal_flush_seconds": 4.055995659000001,
+          "directory_stage_seconds": 4.572079999999996,
+          "state_commit_seconds": 0.128328,
+          "repository_open_seconds": 0.10493000000000001,
+          "cache_recall_seconds": 0.026351
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 514,
+          "wall_seconds": 5.901495186961256,
+          "load_average": [
+            4.9892578125,
+            6.16845703125,
+            4.8173828125
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/513-35-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 591,
+          "journal_flush_seconds": 4.793291928999998,
+          "directory_stage_seconds": 4.642508000000005,
+          "state_commit_seconds": 0.206236,
+          "repository_open_seconds": 0.10798,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 1025,
+          "wall_seconds": 10.645732557051815,
+          "load_average": [
+            4.82958984375,
+            6.11572265625,
+            4.8076171875
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1024-36-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 6.567040446097963,
+          "load_average": [
+            4.39404296875,
+            5.97998046875,
+            4.77734375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1024-37-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 6.85417024907656,
+          "load_average": [
+            4.1220703125,
+            5.89697265625,
+            4.7568359375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1024-38-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 1047,
+          "journal_flush_seconds": 5.300000019000011,
+          "directory_stage_seconds": 6.002193999999995,
+          "state_commit_seconds": 0.210226,
+          "repository_open_seconds": 0.13495000000000001,
+          "cache_recall_seconds": 0.047091720000000004
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 10.247750306036323,
+          "load_average": [
+            3.86865234375,
+            5.78466796875,
+            4.73193359375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/1024-39-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1162,
+          "journal_flush_seconds": 8.298448598000006,
+          "directory_stage_seconds": 8.443995999999968,
+          "state_commit_seconds": 0.383239,
+          "repository_open_seconds": 0.09672000000000001,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 2048,
+          "wall_seconds": 21.81736220093444,
+          "load_average": [
+            3.5810546875,
+            5.65966796875,
+            4.7021484375
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2047-40-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2048,
+          "wall_seconds": 19.365798747050576,
+          "load_average": [
+            3.19384765625,
+            5.43798828125,
+            4.64892578125
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2047-41-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2048,
+          "wall_seconds": 16.559752291999757,
+          "load_average": [
+            2.91650390625,
+            5.23046875,
+            4.5966796875
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2047-42-warm-traced.jsonl",
+          "cache_hits": 2047,
+          "cache_misses": 0,
+          "journal_flushes": 2073,
+          "journal_flush_seconds": 13.512939059000013,
+          "directory_stage_seconds": 15.368420999999977,
+          "state_commit_seconds": 0.362199,
+          "repository_open_seconds": 0.12141,
+          "cache_recall_seconds": 0.088053
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2048,
+          "wall_seconds": 17.897862104000524,
+          "load_average": [
+            2.73583984375,
+            5.03662109375,
+            4.54541015625
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2047-43-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 2307,
+          "journal_flush_seconds": 13.85239080600001,
+          "directory_stage_seconds": 14.490965999999954,
+          "state_commit_seconds": 0.735264,
+          "repository_open_seconds": 0.09592,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 2049,
+          "wall_seconds": 23.410233328002505,
+          "load_average": [
+            2.8681640625,
+            4.9189453125,
+            4.517578125
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2048-44-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2049,
+          "wall_seconds": 14.57040871703066,
+          "load_average": [
+            2.75146484375,
+            4.76025390625,
+            4.4736328125
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2048-45-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2049,
+          "wall_seconds": 8.973677290952764,
+          "load_average": [
+            2.80078125,
+            4.67333984375,
+            4.44873046875
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2048-46-warm-traced.jsonl",
+          "cache_hits": 2048,
+          "cache_misses": 0,
+          "journal_flushes": 2076,
+          "journal_flush_seconds": 6.010870366000009,
+          "directory_stage_seconds": 7.872755999999929,
+          "state_commit_seconds": 0.365211,
+          "repository_open_seconds": 0.07949,
+          "cache_recall_seconds": 0.09157962
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2049,
+          "wall_seconds": 13.316918952972628,
+          "load_average": [
+            2.5234375,
+            4.55224609375,
+            4.41162109375
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2048-47-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 2311,
+          "journal_flush_seconds": 9.433874047000012,
+          "directory_stage_seconds": 10.427285999999949,
+          "state_commit_seconds": 0.774567,
+          "repository_open_seconds": 0.08092,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 2050,
+          "wall_seconds": 15.393915997934528,
+          "load_average": [
+            2.3271484375,
+            4.41015625,
+            4.36669921875
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2049-48-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2050,
+          "wall_seconds": 10.856294102035463,
+          "load_average": [
+            2.4755859375,
+            4.34130859375,
+            4.3447265625
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2049-49-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2050,
+          "wall_seconds": 8.485884010908194,
+          "load_average": [
+            2.4765625,
+            4.2802734375,
+            4.32470703125
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2049-50-warm-traced.jsonl",
+          "cache_hits": 2049,
+          "cache_misses": 0,
+          "journal_flushes": 2078,
+          "journal_flush_seconds": 5.74316714300001,
+          "directory_stage_seconds": 7.367242999999955,
+          "state_commit_seconds": 0.37823,
+          "repository_open_seconds": 0.07728,
+          "cache_recall_seconds": 0.100278
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2050,
+          "wall_seconds": 10.318401501048356,
+          "load_average": [
+            2.2490234375,
+            4.171875,
+            4.28857421875
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/2049-51-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 2314,
+          "journal_flush_seconds": 6.884303748000006,
+          "directory_stage_seconds": 7.760714999999911,
+          "state_commit_seconds": 0.691787,
+          "repository_open_seconds": 0.08852,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 4096,
+          "wall_seconds": 20.539056002977304,
+          "load_average": [
+            2.13037109375,
+            4.08349609375,
+            4.2578125
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4095-52-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 4096,
+          "wall_seconds": 8.152013671933673,
+          "load_average": [
+            1.97216796875,
+            3.8837890625,
+            4.18603515625
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4095-53-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 4096,
+          "wall_seconds": 10.972186475992203,
+          "load_average": [
+            1.89404296875,
+            3.83544921875,
+            4.16845703125
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4095-54-warm-traced.jsonl",
+          "cache_hits": 4095,
+          "cache_misses": 0,
+          "journal_flushes": 4134,
+          "journal_flush_seconds": 6.3071007000000145,
+          "directory_stage_seconds": 8.939639999999942,
+          "state_commit_seconds": 0.7401,
+          "repository_open_seconds": 0.10400000000000001,
+          "cache_recall_seconds": 0.18575799999999998
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 4096,
+          "wall_seconds": 13.712379095028155,
+          "load_average": [
+            1.75634765625,
+            3.74169921875,
+            4.13427734375
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4095-55-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 4604,
+          "journal_flush_seconds": 7.394311269000004,
+          "directory_stage_seconds": 9.512456999999957,
+          "state_commit_seconds": 1.4516,
+          "repository_open_seconds": 0.1303,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 4097,
+          "wall_seconds": 16.923206017003395,
+          "load_average": [
+            1.591796875,
+            3.578125,
+            4.07177734375
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4096-56-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 4097,
+          "wall_seconds": 9.02446153096389,
+          "load_average": [
+            1.82421875,
+            3.533203125,
+            4.048828125
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4096-57-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 4097,
+          "wall_seconds": 12.750131947919726,
+          "load_average": [
+            1.931640625,
+            3.49853515625,
+            4.03173828125
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4096-58-warm-traced.jsonl",
+          "cache_hits": 4096,
+          "cache_misses": 0,
+          "journal_flushes": 4137,
+          "journal_flush_seconds": 7.824788649000004,
+          "directory_stage_seconds": 10.678526999999972,
+          "state_commit_seconds": 0.792999,
+          "repository_open_seconds": 0.1111,
+          "cache_recall_seconds": 0.19405354000000005
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 4097,
+          "wall_seconds": 14.606210206984542,
+          "load_average": [
+            2.0390625,
+            3.4423828125,
+            4.00341796875
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4096-59-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 4606,
+          "journal_flush_seconds": 8.367690455999991,
+          "directory_stage_seconds": 10.501518999999977,
+          "state_commit_seconds": 1.351496,
+          "repository_open_seconds": 0.1009,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 4098,
+          "wall_seconds": 29.100246482063085,
+          "load_average": [
+            1.94384765625,
+            3.35400390625,
+            3.96533203125
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4097-60-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 4098,
+          "wall_seconds": 13.991981226950884,
+          "load_average": [
+            2.0,
+            3.23779296875,
+            3.90673828125
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4097-61-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 4098,
+          "wall_seconds": 10.88926755997818,
+          "load_average": [
+            2.75634765625,
+            3.3544921875,
+            3.93505859375
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4097-62-warm-traced.jsonl",
+          "cache_hits": 4097,
+          "cache_misses": 0,
+          "journal_flushes": 4140,
+          "journal_flush_seconds": 6.462907816000017,
+          "directory_stage_seconds": 8.939591999999916,
+          "state_commit_seconds": 0.745832,
+          "repository_open_seconds": 0.1058,
+          "cache_recall_seconds": 0.19515810000000003
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 4098,
+          "wall_seconds": 13.668287264998071,
+          "load_average": [
+            2.55908203125,
+            3.29248046875,
+            3.908203125
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-fgbnxyu6/4097-63-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 4615,
+          "journal_flush_seconds": 7.5483646970000065,
+          "directory_stage_seconds": 9.503846999999926,
+          "state_commit_seconds": 1.4225240000000001,
+          "repository_open_seconds": 0.11420000000000001,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "after": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/after.json",
+      "configuration": {
+        "directories": [
+          1,
+          14,
+          15,
+          16,
+          17,
+          64,
+          511,
+          512,
+          513,
+          1024,
+          2047,
+          2048,
+          2049,
+          4095,
+          4096,
+          4097
+        ],
+        "source": null,
+        "repetitions": 1,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/casita",
+        "sha256": "b53589181d63c3eebb23ab1dca0e1ee9a687c88d563ee31dfc5bcec9f8bb421f"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 2,
+          "wall_seconds": 0.7569217139389366,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2,
+          "wall_seconds": 0.06874738202895969,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2,
+          "wall_seconds": 0.06503111496567726,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1-2-warm-traced.jsonl",
+          "cache_hits": 1,
+          "cache_misses": 0,
+          "journal_flushes": 11,
+          "journal_flush_seconds": 0.010417421,
+          "directory_stage_seconds": 0.008013,
+          "state_commit_seconds": 0.012497,
+          "repository_open_seconds": 0.007260000000000001,
+          "cache_recall_seconds": 0.0012414
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2,
+          "wall_seconds": 0.06078649696428329,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:csfLbfg9qDDjju3t84UXumeDkGRYlBvWJUdRbGHZmTo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 10,
+          "journal_flush_seconds": 0.009993553999999998,
+          "directory_stage_seconds": 0.003829,
+          "state_commit_seconds": 0.012597,
+          "repository_open_seconds": 0.00716,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 15,
+          "wall_seconds": 0.20700795704033226,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/14-4-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 15,
+          "wall_seconds": 0.06982545601204038,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/14-5-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 15,
+          "wall_seconds": 0.07718556397594512,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/14-6-warm-traced.jsonl",
+          "cache_hits": 14,
+          "cache_misses": 0,
+          "journal_flushes": 11,
+          "journal_flush_seconds": 0.010943397,
+          "directory_stage_seconds": 0.10140900000000001,
+          "state_commit_seconds": 0.016808,
+          "repository_open_seconds": 0.007949999999999999,
+          "cache_recall_seconds": 0.002138
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 15,
+          "wall_seconds": 0.08214019099250436,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:_bBwxgMO3OgeqfkZ7PZ5g9kdq-7z82gk-rSKIG_Z3is",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/14-7-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 10,
+          "journal_flush_seconds": 0.013377374000000001,
+          "directory_stage_seconds": 0.07407699999999999,
+          "state_commit_seconds": 0.018727,
+          "repository_open_seconds": 0.00745,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 16,
+          "wall_seconds": 0.17657137289643288,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/15-8-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 16,
+          "wall_seconds": 0.0730264310259372,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/15-9-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 16,
+          "wall_seconds": 0.08017757500056177,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/15-10-warm-traced.jsonl",
+          "cache_hits": 15,
+          "cache_misses": 0,
+          "journal_flushes": 11,
+          "journal_flush_seconds": 0.011551299,
+          "directory_stage_seconds": 0.107635,
+          "state_commit_seconds": 0.01627,
+          "repository_open_seconds": 0.0077800000000000005,
+          "cache_recall_seconds": 0.001673
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 16,
+          "wall_seconds": 0.08361720002721995,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:CkdQQB72DmknVJQyGOYBjaRqD5SMiUZVsJQxeiTFIOo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/15-11-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 10,
+          "journal_flush_seconds": 0.013542409000000002,
+          "directory_stage_seconds": 0.07681999999999999,
+          "state_commit_seconds": 0.019752,
+          "repository_open_seconds": 0.00775,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 17,
+          "wall_seconds": 0.1750623059924692,
+          "load_average": [
+            6.08056640625,
+            6.18994140625,
+            5.37353515625
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/16-12-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 17,
+          "wall_seconds": 0.07495580392424017,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/16-13-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 17,
+          "wall_seconds": 0.07903063704725355,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/16-14-warm-traced.jsonl",
+          "cache_hits": 16,
+          "cache_misses": 0,
+          "journal_flushes": 12,
+          "journal_flush_seconds": 0.012750477999999999,
+          "directory_stage_seconds": 0.124537,
+          "state_commit_seconds": 0.014742,
+          "repository_open_seconds": 0.00677,
+          "cache_recall_seconds": 0.001996
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 17,
+          "wall_seconds": 0.08639549510553479,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:1cP0LpiVulJoV113I1E9uj_-gDwdtR-ECsI0UF85kCo",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/16-15-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 11,
+          "journal_flush_seconds": 0.015189204,
+          "directory_stage_seconds": 0.084366,
+          "state_commit_seconds": 0.01887,
+          "repository_open_seconds": 0.007020000000000001,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 18,
+          "wall_seconds": 0.19314972299616784,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/17-16-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 18,
+          "wall_seconds": 0.0782731359358877,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/17-17-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 18,
+          "wall_seconds": 0.08880453906022012,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/17-18-warm-traced.jsonl",
+          "cache_hits": 17,
+          "cache_misses": 0,
+          "journal_flushes": 12,
+          "journal_flush_seconds": 0.012042843000000001,
+          "directory_stage_seconds": 0.127405,
+          "state_commit_seconds": 0.017785000000000002,
+          "repository_open_seconds": 0.00864,
+          "cache_recall_seconds": 0.002673
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 18,
+          "wall_seconds": 0.09355138696264476,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:scEBqR9Iq_BVfk83wXZcRfxVzvhvESpqkq71LrGp8qY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/17-19-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 12,
+          "journal_flush_seconds": 0.017054461,
+          "directory_stage_seconds": 0.104945,
+          "state_commit_seconds": 0.020554000000000003,
+          "repository_open_seconds": 0.00741,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 65,
+          "wall_seconds": 0.26607641903683543,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/64-20-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 65,
+          "wall_seconds": 0.10092574299778789,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/64-21-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 65,
+          "wall_seconds": 0.12239104497712106,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/64-22-warm-traced.jsonl",
+          "cache_hits": 64,
+          "cache_misses": 0,
+          "journal_flushes": 15,
+          "journal_flush_seconds": 0.016330203,
+          "directory_stage_seconds": 0.4358420000000001,
+          "state_commit_seconds": 0.023607,
+          "repository_open_seconds": 0.0081,
+          "cache_recall_seconds": 0.0037689999999999998
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 65,
+          "wall_seconds": 0.1673091989941895,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:ecWQi-MDxv2926c_-S7HwiVqYXvBTucxROUXxF-n26U",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/64-23-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 20,
+          "journal_flush_seconds": 0.030378409,
+          "directory_stage_seconds": 0.4622599999999999,
+          "state_commit_seconds": 0.037328,
+          "repository_open_seconds": 0.00821,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 512,
+          "wall_seconds": 1.033695743069984,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/511-24-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 512,
+          "wall_seconds": 0.39475661993492395,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/511-25-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 512,
+          "wall_seconds": 0.7566782970679924,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/511-26-warm-traced.jsonl",
+          "cache_hits": 511,
+          "cache_misses": 0,
+          "journal_flushes": 53,
+          "journal_flush_seconds": 0.236722658,
+          "directory_stage_seconds": 4.114549,
+          "state_commit_seconds": 0.124217,
+          "repository_open_seconds": 0.052719999999999996,
+          "cache_recall_seconds": 0.029756
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 512,
+          "wall_seconds": 0.8091702699894086,
+          "load_average": [
+            5.83349609375,
+            6.13671875,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:umKRe-eFCI3hfdbpaMQ-An5K1bIuUkW6vE9fhrr8SX4",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/511-27-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 115,
+          "journal_flush_seconds": 0.150445894,
+          "directory_stage_seconds": 3.574274999999999,
+          "state_commit_seconds": 0.199292,
+          "repository_open_seconds": 0.03388,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 513,
+          "wall_seconds": 1.0638687269529328,
+          "load_average": [
+            5.6064453125,
+            6.08447265625,
+            5.34765625
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/512-28-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 513,
+          "wall_seconds": 0.40323516400530934,
+          "load_average": [
+            5.6064453125,
+            6.08447265625,
+            5.34765625
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/512-29-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 513,
+          "wall_seconds": 0.6610479259397835,
+          "load_average": [
+            5.6064453125,
+            6.08447265625,
+            5.34765625
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/512-30-warm-traced.jsonl",
+          "cache_hits": 512,
+          "cache_misses": 0,
+          "journal_flushes": 55,
+          "journal_flush_seconds": 0.15681340800000007,
+          "directory_stage_seconds": 4.045008999999996,
+          "state_commit_seconds": 0.111317,
+          "repository_open_seconds": 0.05329,
+          "cache_recall_seconds": 0.027009639999999998
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 513,
+          "wall_seconds": 0.8363643069751561,
+          "load_average": [
+            5.6064453125,
+            6.08447265625,
+            5.34765625
+          ],
+          "key": "casita.directory.v1:7zRgU6r2b4mqVGz0BRVGIzH_Pk7KPeF3WMEy7IFSTRQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/512-31-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 113,
+          "journal_flush_seconds": 0.14697896199999996,
+          "directory_stage_seconds": 3.657408000000007,
+          "state_commit_seconds": 0.214216,
+          "repository_open_seconds": 0.03395,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 514,
+          "wall_seconds": 1.033777631004341,
+          "load_average": [
+            5.6064453125,
+            6.08447265625,
+            5.34765625
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/513-32-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 514,
+          "wall_seconds": 0.40462905389722437,
+          "load_average": [
+            5.6064453125,
+            6.08447265625,
+            5.34765625
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/513-33-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 514,
+          "wall_seconds": 0.6600541400257498,
+          "load_average": [
+            5.3974609375,
+            6.033203125,
+            5.3349609375
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/513-34-warm-traced.jsonl",
+          "cache_hits": 513,
+          "cache_misses": 0,
+          "journal_flushes": 56,
+          "journal_flush_seconds": 0.15681815900000007,
+          "directory_stage_seconds": 5.020747999999997,
+          "state_commit_seconds": 0.114196,
+          "repository_open_seconds": 0.054990000000000004,
+          "cache_recall_seconds": 0.028498000000000002
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 514,
+          "wall_seconds": 0.8425038499990478,
+          "load_average": [
+            5.3974609375,
+            6.033203125,
+            5.3349609375
+          ],
+          "key": "casita.directory.v1:y_5uEQEAxMldJpWJoCQpOpluSGa7kSbwyY7DElkoPR0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/513-35-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 116,
+          "journal_flush_seconds": 0.15166643400000002,
+          "directory_stage_seconds": 3.710164000000007,
+          "state_commit_seconds": 0.21324099999999999,
+          "repository_open_seconds": 0.0343,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 1025,
+          "wall_seconds": 2.0126019610324875,
+          "load_average": [
+            5.3974609375,
+            6.033203125,
+            5.3349609375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1024-36-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 0.9414218389429152,
+          "load_average": [
+            5.3974609375,
+            6.033203125,
+            5.3349609375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1024-37-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 1.269046975998208,
+          "load_average": [
+            5.76611328125,
+            6.09912109375,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1024-38-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 92,
+          "journal_flush_seconds": 0.15980659800000008,
+          "directory_stage_seconds": 9.37981599999998,
+          "state_commit_seconds": 0.270293,
+          "repository_open_seconds": 0.058429999999999996,
+          "cache_recall_seconds": 0.06293752
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 2.1620445270091295,
+          "load_average": [
+            5.76611328125,
+            6.09912109375,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/1024-39-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 212,
+          "journal_flush_seconds": 0.5424609880000001,
+          "directory_stage_seconds": 11.407757000000016,
+          "state_commit_seconds": 0.430199,
+          "repository_open_seconds": 0.08813000000000001,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 2048,
+          "wall_seconds": 4.321841389988549,
+          "load_average": [
+            5.76611328125,
+            6.09912109375,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2047-40-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2048,
+          "wall_seconds": 1.4978442849824205,
+          "load_average": [
+            5.865234375,
+            6.1142578125,
+            5.36962890625
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2047-41-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2048,
+          "wall_seconds": 2.178987282095477,
+          "load_average": [
+            5.6357421875,
+            6.0625,
+            5.3564453125
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2047-42-warm-traced.jsonl",
+          "cache_hits": 2047,
+          "cache_misses": 0,
+          "journal_flushes": 164,
+          "journal_flush_seconds": 0.37561127299999997,
+          "directory_stage_seconds": 17.482912000000013,
+          "state_commit_seconds": 0.436216,
+          "repository_open_seconds": 0.07991,
+          "cache_recall_seconds": 0.11475300000000001
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2048,
+          "wall_seconds": 3.54960220400244,
+          "load_average": [
+            5.6357421875,
+            6.0625,
+            5.3564453125
+          ],
+          "key": "casita.directory.v1:aLL230bkM-IdJQuz30qa5-VfNsRUFvApJsp8AHDmrzs",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2047-43-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 408,
+          "journal_flush_seconds": 0.765598434,
+          "directory_stage_seconds": 16.901229000000008,
+          "state_commit_seconds": 0.99244,
+          "repository_open_seconds": 0.07889,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 2049,
+          "wall_seconds": 10.663814879022539,
+          "load_average": [
+            5.6650390625,
+            6.06103515625,
+            5.3603515625
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2048-44-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2049,
+          "wall_seconds": 4.491182720055804,
+          "load_average": [
+            9.541015625,
+            6.8818359375,
+            5.6357421875
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2048-45-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2049,
+          "wall_seconds": 2.5804767849622294,
+          "load_average": [
+            11.01953125,
+            7.23291015625,
+            5.75634765625
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2048-46-warm-traced.jsonl",
+          "cache_hits": 2048,
+          "cache_misses": 0,
+          "journal_flushes": 167,
+          "journal_flush_seconds": 0.273640684,
+          "directory_stage_seconds": 18.653692000000046,
+          "state_commit_seconds": 0.48728899999999997,
+          "repository_open_seconds": 0.2384,
+          "cache_recall_seconds": 0.13712204000000003
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2049,
+          "wall_seconds": 3.638688910054043,
+          "load_average": [
+            10.857421875,
+            7.2626953125,
+            5.77392578125
+          ],
+          "key": "casita.directory.v1:ZM4L9J6FHZy3sqrZm2mMpbJquJgV8MJ-Bx7qx_Fk3lU",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2048-47-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 409,
+          "journal_flush_seconds": 0.807396244,
+          "directory_stage_seconds": 17.630351000000072,
+          "state_commit_seconds": 0.8662979999999999,
+          "repository_open_seconds": 0.08743000000000001,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 2050,
+          "wall_seconds": 4.191041133017279,
+          "load_average": [
+            10.30810546875,
+            7.20849609375,
+            5.76416015625
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2049-48-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 2050,
+          "wall_seconds": 1.454558431985788,
+          "load_average": [
+            9.72265625,
+            7.13818359375,
+            5.7490234375
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2049-49-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 2050,
+          "wall_seconds": 2.0898238320369273,
+          "load_average": [
+            9.72265625,
+            7.13818359375,
+            5.7490234375
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2049-50-warm-traced.jsonl",
+          "cache_hits": 2049,
+          "cache_misses": 0,
+          "journal_flushes": 168,
+          "journal_flush_seconds": 0.29978512900000015,
+          "directory_stage_seconds": 16.05635700000002,
+          "state_commit_seconds": 0.435229,
+          "repository_open_seconds": 0.08187,
+          "cache_recall_seconds": 0.11280100000000003
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 2050,
+          "wall_seconds": 3.4908679759828374,
+          "load_average": [
+            9.72265625,
+            7.13818359375,
+            5.7490234375
+          ],
+          "key": "casita.directory.v1:gEoE2fG3t9QzEmoTX1gVqOGbvmguhVtHo75OeRlnQK8",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/2049-51-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 414,
+          "journal_flush_seconds": 0.8643013729999992,
+          "directory_stage_seconds": 16.909601000000013,
+          "state_commit_seconds": 0.789813,
+          "repository_open_seconds": 0.086,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 4096,
+          "wall_seconds": 9.228936743107624,
+          "load_average": [
+            9.0634765625,
+            7.08349609375,
+            5.74609375
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4095-52-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 4096,
+          "wall_seconds": 2.74410966609139,
+          "load_average": [
+            8.81787109375,
+            7.0654296875,
+            5.74755859375
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4095-53-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 4096,
+          "wall_seconds": 4.170797105995007,
+          "load_average": [
+            8.91259765625,
+            7.1142578125,
+            5.7705078125
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4095-54-warm-traced.jsonl",
+          "cache_hits": 4095,
+          "cache_misses": 0,
+          "journal_flushes": 315,
+          "journal_flush_seconds": 0.6189541529999997,
+          "directory_stage_seconds": 31.12317600000012,
+          "state_commit_seconds": 0.8656969999999999,
+          "repository_open_seconds": 0.1318,
+          "cache_recall_seconds": 0.23855100000000004
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 4096,
+          "wall_seconds": 6.586452800082043,
+          "load_average": [
+            8.43896484375,
+            7.0458984375,
+            5.75537109375
+          ],
+          "key": "casita.directory.v1:milrENNrnRwhY7nXDNfwWCWmPXnNq8GNv2K6FeSEqr0",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4095-55-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 798,
+          "journal_flush_seconds": 1.4149663570000002,
+          "directory_stage_seconds": 30.26860500000002,
+          "state_commit_seconds": 1.674487,
+          "repository_open_seconds": 0.1105,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 4097,
+          "wall_seconds": 8.381107141962275,
+          "load_average": [
+            7.75634765625,
+            6.9453125,
+            5.73583984375
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4096-56-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 4097,
+          "wall_seconds": 2.810005994979292,
+          "load_average": [
+            7.09814453125,
+            6.8310546875,
+            5.71142578125
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4096-57-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 4097,
+          "wall_seconds": 4.201279529021122,
+          "load_average": [
+            7.09814453125,
+            6.8310546875,
+            5.71142578125
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4096-58-warm-traced.jsonl",
+          "cache_hits": 4096,
+          "cache_misses": 0,
+          "journal_flushes": 319,
+          "journal_flush_seconds": 0.5774696419999994,
+          "directory_stage_seconds": 32.60012799999997,
+          "state_commit_seconds": 0.8772769999999999,
+          "repository_open_seconds": 0.1291,
+          "cache_recall_seconds": 0.2359021500000001
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 4097,
+          "wall_seconds": 6.986771031981334,
+          "load_average": [
+            7.33056640625,
+            6.8837890625,
+            5.73486328125
+          ],
+          "key": "casita.directory.v1:FZH59Y_KRnN3QDVlCSXOh1X2IhQptInJ_V2uRPoz4fQ",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4096-59-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 799,
+          "journal_flush_seconds": 1.5069871089999995,
+          "directory_stage_seconds": 33.553619999999974,
+          "state_commit_seconds": 1.735316,
+          "repository_open_seconds": 0.1278,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "prime",
+          "directories": 4098,
+          "wall_seconds": 8.39145361003466,
+          "load_average": [
+            6.744140625,
+            6.77197265625,
+            5.71044921875
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4097-60-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 4098,
+          "wall_seconds": 2.5273665309650823,
+          "load_average": [
+            6.16162109375,
+            6.64697265625,
+            5.68115234375
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4097-61-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 4098,
+          "wall_seconds": 3.9068701730575413,
+          "load_average": [
+            6.16162109375,
+            6.64697265625,
+            5.68115234375
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4097-62-warm-traced.jsonl",
+          "cache_hits": 4097,
+          "cache_misses": 0,
+          "journal_flushes": 320,
+          "journal_flush_seconds": 0.5455987640000001,
+          "directory_stage_seconds": 29.852010000000025,
+          "state_commit_seconds": 0.8253940000000001,
+          "repository_open_seconds": 0.1255,
+          "cache_recall_seconds": 0.22812520000000003
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 4098,
+          "wall_seconds": 6.323453855002299,
+          "load_average": [
+            5.98828125,
+            6.60302734375,
+            5.671875
+          ],
+          "key": "casita.directory.v1:67rf70oxJZZarFiejCUtzS5NByW2JARRE8XAeNC7Y_A",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-b3mvdefx/4097-63-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 803,
+          "journal_flush_seconds": 1.4321594379999976,
+          "directory_stage_seconds": 30.19289199999991,
+          "state_commit_seconds": 1.573165,
+          "repository_open_seconds": 0.10800000000000001,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "riff-before": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/riff-before.json",
+      "configuration": {
+        "directories": [
+          1,
+          14,
+          15,
+          16,
+          17,
+          64
+        ],
+        "source": "/tmp/cargo-casita-project.e8LVAU/target",
+        "repetitions": 3,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/casita",
+        "sha256": "ecf5170d9ee4467fb97001fc9ef406bf08fd0e3140f7cebb7ef149f2e76d3db7"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 1416,
+          "wall_seconds": 15.080044148024172,
+          "load_average": [
+            2.56005859375,
+            3.2421875,
+            3.87890625
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 5.213690021075308,
+          "load_average": [
+            2.28759765625,
+            3.14794921875,
+            3.83740234375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 5.833252270938829,
+          "load_average": [
+            2.26416015625,
+            3.12841796875,
+            3.8271484375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-2-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 1098,
+          "journal_flush_seconds": 2.490477014,
+          "directory_stage_seconds": 4.085592300000003,
+          "state_commit_seconds": 0.302251,
+          "repository_open_seconds": 0.5458000000000001,
+          "cache_recall_seconds": 0.202908
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 20.616934119956568,
+          "load_average": [
+            3.2841796875,
+            3.32568359375,
+            3.88720703125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1776,
+          "journal_flush_seconds": 6.619878466,
+          "directory_stage_seconds": 4.572493500000002,
+          "state_commit_seconds": 1.644658,
+          "repository_open_seconds": 0.32568,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 14.258768855943345,
+          "load_average": [
+            8.970703125,
+            4.6005859375,
+            4.2919921875
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-4-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 11.00453065696638,
+          "load_average": [
+            10.54833984375,
+            5.08984375,
+            4.455078125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-5-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 1098,
+          "journal_flush_seconds": 8.055925171999998,
+          "directory_stage_seconds": 9.250105400000004,
+          "state_commit_seconds": 0.278237,
+          "repository_open_seconds": 0.617,
+          "cache_recall_seconds": 0.17151900000000003
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 24.719582005986013,
+          "load_average": [
+            9.6630859375,
+            5.166015625,
+            4.490234375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-6-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1869,
+          "journal_flush_seconds": 14.245842685000033,
+          "directory_stage_seconds": 8.957725699999953,
+          "state_commit_seconds": 0.857974,
+          "repository_open_seconds": 0.32541,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 10.405221357941628,
+          "load_average": [
+            7.53662109375,
+            5.03662109375,
+            4.46533203125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-7-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 10.577959421905689,
+          "load_average": [
+            6.98583984375,
+            5.00146484375,
+            4.4599609375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-8-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 1098,
+          "journal_flush_seconds": 7.531460968000001,
+          "directory_stage_seconds": 8.793565099999968,
+          "state_commit_seconds": 0.28927899999999995,
+          "repository_open_seconds": 0.624,
+          "cache_recall_seconds": 0.18861
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 20.838616141001694,
+          "load_average": [
+            6.5263671875,
+            4.9677734375,
+            4.4541015625
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-7xf9rzef/None-9-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1844,
+          "journal_flush_seconds": 10.580356568999976,
+          "directory_stage_seconds": 6.400771899999993,
+          "state_commit_seconds": 1.1666530000000002,
+          "repository_open_seconds": 0.3562,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "riff-after": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/riff-after.json",
+      "configuration": {
+        "directories": [
+          1,
+          14,
+          15,
+          16,
+          17,
+          64
+        ],
+        "source": "/tmp/cargo-casita-project.e8LVAU/target",
+        "repetitions": 3,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/casita",
+        "sha256": "b53589181d63c3eebb23ab1dca0e1ee9a687c88d563ee31dfc5bcec9f8bb421f"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 1416,
+          "wall_seconds": 14.567883304902352,
+          "load_average": [
+            5.67626953125,
+            6.50634765625,
+            5.6552734375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 1.7196842009434476,
+          "load_average": [
+            8.90478515625,
+            7.18310546875,
+            5.89111328125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 1.7418891679262742,
+          "load_average": [
+            8.90478515625,
+            7.18310546875,
+            5.89111328125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-2-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 130,
+          "journal_flush_seconds": 0.207844855,
+          "directory_stage_seconds": 7.7234902999999395,
+          "state_commit_seconds": 0.253232,
+          "repository_open_seconds": 0.24017000000000002,
+          "cache_recall_seconds": 0.161442
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 10.545648343046196,
+          "load_average": [
+            8.90478515625,
+            7.18310546875,
+            5.89111328125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 797,
+          "journal_flush_seconds": 2.4863578240000046,
+          "directory_stage_seconds": 11.481184100000085,
+          "state_commit_seconds": 0.6770539999999999,
+          "repository_open_seconds": 0.2778,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 1.4523077990161255,
+          "load_average": [
+            8.44482421875,
+            7.1435546875,
+            5.892578125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-4-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 1.9717774289892986,
+          "load_average": [
+            7.9287109375,
+            7.05810546875,
+            5.87158203125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-5-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 130,
+          "journal_flush_seconds": 0.3781625470000001,
+          "directory_stage_seconds": 7.649735199999937,
+          "state_commit_seconds": 0.239213,
+          "repository_open_seconds": 0.3337,
+          "cache_recall_seconds": 0.162243
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 10.131135941017419,
+          "load_average": [
+            7.9287109375,
+            7.05810546875,
+            5.87158203125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-6-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 811,
+          "journal_flush_seconds": 2.197195519,
+          "directory_stage_seconds": 7.55419299999995,
+          "state_commit_seconds": 0.7214830000000001,
+          "repository_open_seconds": 0.29452,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 1.4888636579271406,
+          "load_average": [
+            7.25048828125,
+            6.94091796875,
+            5.845703125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-7-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 1.75366824795492,
+          "load_average": [
+            6.90966796875,
+            6.87548828125,
+            5.830078125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-8-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 130,
+          "journal_flush_seconds": 0.25569797400000005,
+          "directory_stage_seconds": 7.5958905999999375,
+          "state_commit_seconds": 0.241303,
+          "repository_open_seconds": 0.26961,
+          "cache_recall_seconds": 0.15654700000000002
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 10.35291806398891,
+          "load_average": [
+            6.90966796875,
+            6.87548828125,
+            5.830078125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-gshs2wn1/None-9-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 810,
+          "journal_flush_seconds": 2.4403851630000024,
+          "directory_stage_seconds": 7.454209799999925,
+          "state_commit_seconds": 0.7250449999999999,
+          "repository_open_seconds": 0.26823,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "control-before": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/control-before.json",
+      "configuration": {
+        "directories": [
+          1024
+        ],
+        "source": null,
+        "repetitions": 3,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/casita",
+        "sha256": "ecf5170d9ee4467fb97001fc9ef406bf08fd0e3140f7cebb7ef149f2e76d3db7"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 1025,
+          "wall_seconds": 4.181637444999069,
+          "load_average": [
+            6.90234375,
+            6.85595703125,
+            5.8447265625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 2.323360643000342,
+          "load_average": [
+            6.58984375,
+            6.79150390625,
+            5.8291015625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 2.5574721820885316,
+          "load_average": [
+            6.58984375,
+            6.79150390625,
+            5.8291015625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-2-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 1047,
+          "journal_flush_seconds": 1.3239492470000012,
+          "directory_stage_seconds": 1.9414999999999976,
+          "state_commit_seconds": 0.213235,
+          "repository_open_seconds": 0.0492,
+          "cache_recall_seconds": 0.05401105
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 3.1796317010885105,
+          "load_average": [
+            6.22216796875,
+            6.7119140625,
+            5.80810546875
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1167,
+          "journal_flush_seconds": 1.5874264240000004,
+          "directory_stage_seconds": 2.105703000000001,
+          "state_commit_seconds": 0.376235,
+          "repository_open_seconds": 0.04229,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 2.058317366987467,
+          "load_average": [
+            5.8837890625,
+            6.63330078125,
+            5.78759765625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-4-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 2.6336424630135298,
+          "load_average": [
+            5.8837890625,
+            6.63330078125,
+            5.78759765625
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-5-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 1047,
+          "journal_flush_seconds": 1.3406854599999996,
+          "directory_stage_seconds": 1.9988339999999953,
+          "state_commit_seconds": 0.219246,
+          "repository_open_seconds": 0.04628,
+          "cache_recall_seconds": 0.053887140000000014
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 3.558951716986485,
+          "load_average": [
+            6.1337890625,
+            6.6728515625,
+            5.80517578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-6-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1168,
+          "journal_flush_seconds": 1.9199167770000005,
+          "directory_stage_seconds": 2.446115000000006,
+          "state_commit_seconds": 0.402214,
+          "repository_open_seconds": 0.04262,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 2.5461938589578494,
+          "load_average": [
+            6.1337890625,
+            6.6728515625,
+            5.80517578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-7-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 3.0191803929628804,
+          "load_average": [
+            5.802734375,
+            6.59521484375,
+            5.78466796875
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-8-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 1047,
+          "journal_flush_seconds": 1.7258529800000002,
+          "directory_stage_seconds": 2.389960999999999,
+          "state_commit_seconds": 0.20727900000000002,
+          "repository_open_seconds": 0.05365000000000001,
+          "cache_recall_seconds": 0.05201005
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 3.3920581359416246,
+          "load_average": [
+            5.802734375,
+            6.59521484375,
+            5.78466796875
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-uy8pbtg4/1024-9-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1166,
+          "journal_flush_seconds": 1.7217235190000006,
+          "directory_stage_seconds": 2.251607000000007,
+          "state_commit_seconds": 0.40725300000000003,
+          "repository_open_seconds": 0.04281,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "control-after": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/control-after.json",
+      "configuration": {
+        "directories": [
+          1024
+        ],
+        "source": null,
+        "repetitions": 3,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/casita",
+        "sha256": "b53589181d63c3eebb23ab1dca0e1ee9a687c88d563ee31dfc5bcec9f8bb421f"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 1025,
+          "wall_seconds": 2.8921299449866638,
+          "load_average": [
+            14.009765625,
+            8.8720703125,
+            6.62109375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 1.0130461329827085,
+          "load_average": [
+            13.3681640625,
+            8.82421875,
+            6.61767578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 1.1493534279288724,
+          "load_average": [
+            13.3681640625,
+            8.82421875,
+            6.61767578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-2-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 92,
+          "journal_flush_seconds": 0.15096932000000002,
+          "directory_stage_seconds": 8.44772099999996,
+          "state_commit_seconds": 0.23822100000000002,
+          "repository_open_seconds": 0.054650000000000004,
+          "cache_recall_seconds": 0.05987622000000001
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 1.8593697790056467,
+          "load_average": [
+            13.3681640625,
+            8.82421875,
+            6.61767578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 212,
+          "journal_flush_seconds": 0.38749816599999953,
+          "directory_stage_seconds": 8.124481999999972,
+          "state_commit_seconds": 0.441227,
+          "repository_open_seconds": 0.08985,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 0.9234556930605322,
+          "load_average": [
+            12.77783203125,
+            8.77685546875,
+            6.6142578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-4-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 1.145240593003109,
+          "load_average": [
+            12.77783203125,
+            8.77685546875,
+            6.6142578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-5-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 92,
+          "journal_flush_seconds": 0.138208167,
+          "directory_stage_seconds": 8.503387999999982,
+          "state_commit_seconds": 0.242281,
+          "repository_open_seconds": 0.05005,
+          "cache_recall_seconds": 0.05749385
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 1.8950625030556694,
+          "load_average": [
+            12.77783203125,
+            8.77685546875,
+            6.6142578125
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-6-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 213,
+          "journal_flush_seconds": 0.4216248450000001,
+          "directory_stage_seconds": 8.174563999999975,
+          "state_commit_seconds": 0.434259,
+          "repository_open_seconds": 0.07113000000000001,
+          "cache_recall_seconds": 0
+        },
+        {
+          "operation": "warm",
+          "directories": 1025,
+          "wall_seconds": 0.8965478029567748,
+          "load_average": [
+            12.23486328125,
+            8.73046875,
+            6.61083984375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-7-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1025,
+          "wall_seconds": 1.1316708779195324,
+          "load_average": [
+            12.23486328125,
+            8.73046875,
+            6.61083984375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-8-warm-traced.jsonl",
+          "cache_hits": 1024,
+          "cache_misses": 0,
+          "journal_flushes": 92,
+          "journal_flush_seconds": 0.17133871,
+          "directory_stage_seconds": 8.40085199999998,
+          "state_commit_seconds": 0.23125600000000002,
+          "repository_open_seconds": 0.05663,
+          "cache_recall_seconds": 0.05660434
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1025,
+          "wall_seconds": 1.8677378590218723,
+          "load_average": [
+            12.23486328125,
+            8.73046875,
+            6.61083984375
+          ],
+          "key": "casita.directory.v1:lOJX3DfQmq8Y6kXv2w-hFbSCqhufnM9Y-MV8V2q9LoY",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-k9b1i_fr/1024-9-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 211,
+          "journal_flush_seconds": 0.46103385700000016,
+          "directory_stage_seconds": 8.993624999999968,
+          "state_commit_seconds": 0.428239,
+          "repository_open_seconds": 0.0811,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "riff-control-before": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/riff-control-before.json",
+      "configuration": {
+        "directories": [
+          1,
+          14,
+          15,
+          16,
+          17,
+          64
+        ],
+        "source": "/tmp/cargo-casita-project.e8LVAU/target",
+        "repetitions": 1,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-1khs2lo4/casita",
+        "sha256": "ecf5170d9ee4467fb97001fc9ef406bf08fd0e3140f7cebb7ef149f2e76d3db7"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 1416,
+          "wall_seconds": 15.933681196067482,
+          "load_average": [
+            5.498046875,
+            6.5185546875,
+            5.76416015625
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-1khs2lo4/None-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 3.245235829963349,
+          "load_average": [
+            13.111328125,
+            8.162109375,
+            6.3193359375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-1khs2lo4/None-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 3.4661314350087196,
+          "load_average": [
+            13.111328125,
+            8.162109375,
+            6.3193359375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-1khs2lo4/None-2-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 1098,
+          "journal_flush_seconds": 1.5155337050000002,
+          "directory_stage_seconds": 2.302080100000009,
+          "state_commit_seconds": 0.253311,
+          "repository_open_seconds": 0.2597,
+          "cache_recall_seconds": 0.165805
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 20.17161981703248,
+          "load_average": [
+            12.22119140625,
+            8.0595703125,
+            6.2958984375
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-1khs2lo4/None-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 1759,
+          "journal_flush_seconds": 7.630808534999998,
+          "directory_stage_seconds": 6.100674799999985,
+          "state_commit_seconds": 1.198746,
+          "repository_open_seconds": 0.23555,
+          "cache_recall_seconds": 0
+        }
+      ]
+    },
+    "riff-control-after": {
+      "complete": true,
+      "raw_report": "/tmp/casita-directory-staging/riff-control-after.json",
+      "configuration": {
+        "directories": [
+          1,
+          14,
+          15,
+          16,
+          17,
+          64
+        ],
+        "source": "/tmp/cargo-casita-project.e8LVAU/target",
+        "repetitions": 1,
+        "trace_filter": "casita=debug"
+      },
+      "binary": {
+        "path": "/tmp/casita-directory-staging/filesystem-reuse-d5xqmswl/casita",
+        "sha256": "b53589181d63c3eebb23ab1dca0e1ee9a687c88d563ee31dfc5bcec9f8bb421f"
+      },
+      "samples": [
+        {
+          "operation": "prime",
+          "directories": 1416,
+          "wall_seconds": 16.956066886079498,
+          "load_average": [
+            11.6552734375,
+            8.66845703125,
+            6.60205078125
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-d5xqmswl/None-0-prime.jsonl"
+        },
+        {
+          "operation": "warm",
+          "directories": 1416,
+          "wall_seconds": 2.0120094770099968,
+          "load_average": [
+            10.58642578125,
+            8.5849609375,
+            6.60888671875
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-d5xqmswl/None-1-warm.jsonl"
+        },
+        {
+          "operation": "warm-traced",
+          "directories": 1416,
+          "wall_seconds": 1.963185137952678,
+          "load_average": [
+            10.138671875,
+            8.525390625,
+            6.60009765625
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-d5xqmswl/None-2-warm-traced.jsonl",
+          "cache_hits": 3060,
+          "cache_misses": 0,
+          "journal_flushes": 130,
+          "journal_flush_seconds": 0.21314013099999998,
+          "directory_stage_seconds": 8.539164299999948,
+          "state_commit_seconds": 0.293209,
+          "repository_open_seconds": 0.2747,
+          "cache_recall_seconds": 0.185638
+        },
+        {
+          "operation": "rehash-traced",
+          "directories": 1416,
+          "wall_seconds": 11.754275775980204,
+          "load_average": [
+            10.138671875,
+            8.525390625,
+            6.60009765625
+          ],
+          "key": "casita.directory.v1:qkzCbr9Gu7rifVauDJYZ78hP5cmuMN1O6d3Dv52I-Jw",
+          "log": "/tmp/casita-directory-staging/filesystem-reuse-d5xqmswl/None-3-rehash-traced.jsonl",
+          "cache_hits": 0,
+          "cache_misses": 0,
+          "journal_flushes": 783,
+          "journal_flush_seconds": 2.4834084410000004,
+          "directory_stage_seconds": 8.799897399999965,
+          "state_commit_seconds": 0.8445809999999999,
+          "repository_open_seconds": 0.2947,
+          "cache_recall_seconds": 0
+        }
+      ]
+    }
+  },
+  "cross_binary_identity_gate": "passed for every sample, including late controls"
+}

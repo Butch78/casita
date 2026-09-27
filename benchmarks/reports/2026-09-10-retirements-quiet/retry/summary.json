@@ -1,0 +1,9 @@
+{
+  "completed_runs": 1,
+  "correctness_passed": 1,
+  "clean_pairs": 0,
+  "measured_pairs_attempted": 0,
+  "imports_300_attempted": false,
+  "peak_external_cpu_fraction": 0.18097720090428607,
+  "outcome": "After warmup could not obtain a sustained quiet interval within 90 seconds."
+}

@@ -1,0 +1,26 @@
+{
+  "casita_base": "4788d7e796bb489f4791747af785c972811b90e7",
+  "obrador_base": "218a25ce7c38d716333dbde2bf5361df4a964d70",
+  "uid": 1000,
+  "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+  "load": [
+    4.3564453125,
+    9.43408203125,
+    14.41748046875
+  ],
+  "cpu_pressure": "some avg10=0.20 avg60=0.30 avg300=6.51 total=1838663479\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+  "source_sha256": {
+    "src/fs_root.rs": "e15bf02d35948571bcc94df0760c8d7abbf9f6e776856808b1c7cdd1c09a71c4",
+    "src/repository.rs": "5f09bd9ce5e77794d7f347872259a6cb24b960168395083efff72435111131c7",
+    "src/filesystem/scheduling_tests.rs": "43e4e66b7c2bf115d6861e53a08d5845bcb622c05cfb5c757eeceecde2bbd1b1",
+    "benches/filesystem_import.rs": "53b0a8e0b18414214d840e9f4ebaa31abafd869201ff93490941322ee108c036",
+    "Cargo.lock": "172a50fef7ce93e44accf77633019ad9b7fefce789f9a821b94d5c63ce4d7c15"
+  },
+  "validation": {
+    "casita_default_lib_passed": 615,
+    "ignored": 33,
+    "clippy": "all features and targets, -D warnings",
+    "benchmark_harness_tests": 7
+  },
+  "variant": "read batching plus byte-slice staging"
+}

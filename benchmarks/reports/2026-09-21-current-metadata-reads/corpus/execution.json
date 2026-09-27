@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "c038bc28f70eddd1561c9c7e81edb27b4ba42cb7",
+  "diff": " benchmarks/README.md             |  11 ++\n benchmarks/manifest.json         |   2 +-\n benchmarks/suites/metadata_kv.py |   4 +-\n src/metadata.rs                  |   5 +-\n src/metadata/kv_benchmarks.rs    |   7 +-\n src/metadata/record_tests.rs     |  10 ++\n src/sqlite.rs                    | 249 +++++++++++++++++++++++++++++++++++----\n 7 files changed, 255 insertions(+), 33 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "metadata-kv",
+      "status": "passed",
+      "command": [
+        "/home/domen/dev/casita-metadata-reads/.devenv/profile/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "metadata-kv",
+        "--profile",
+        "smoke",
+        "--probe-binary",
+        "/tmp/casita-current-reads-corpus-bc3aocbg/all/bin/casita-lib-test",
+        "--no-build",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-current-reads-corpus-bc3aocbg/all/metadata-kv.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.12836920004338,
+      "log": "/tmp/casita-current-reads-corpus-bc3aocbg/all/metadata-kv.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

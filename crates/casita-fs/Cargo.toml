@@ -1,0 +1,57 @@
+[package]
+name = "casita-fs"
+description = "Read-only filesystem views over Casita, with Linux FUSE and macOS FSKit transports."
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.94.1"
+license = "Apache-2.0"
+repository = "https://github.com/cachix/casita"
+readme = "README.md"
+publish = false
+
+[features]
+default = ["linux-fuse", "darwin-fskit"]
+linux-fuse = ["dep:fuse-backend-rs", "dep:rustix"]
+darwin-fskit = ["dep:tempfile", "dep:sha2", "dep:serde_json", "dep:fskit-native"]
+
+[dependencies]
+bytes = "1"
+casita = { path = "../casita", default-features = false, features = ["native"] }
+tempfile = { version = "3", optional = true }
+sha2 = { version = "0.10", optional = true }
+serde_json = { version = "1", optional = true }
+anyhow = "1"
+async-trait = "0.1"
+tokio = { version = "1", default-features = false, features = ["io-util", "rt"] }
+tracing = "0.1"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+fskit-native = { path = "../fskit-native", features = ["setup"], optional = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+fuse-backend-rs = { version = "0.14", optional = true }
+rustix = { version = "1", default-features = false, features = ["process"], optional = true }
+
+[dev-dependencies]
+casita = { path = "../casita", default-features = false, features = ["native", "experimental"] }
+bytes = "1"
+tempfile = "3"
+tokio = { version = "1", default-features = false, features = ["macros", "rt-multi-thread"] }
+
+[[example]]
+name = "bench"
+required-features = ["linux-fuse", "casita/experimental"]
+
+[[example]]
+name = "transport_server"
+required-features = ["linux-fuse", "darwin-fskit"]
+
+[[bin]]
+name = "casita-fs-setup"
+path = "src/bin/setup.rs"
+required-features = ["darwin-fskit"]
+
+[[test]]
+name = "native_mount"
+required-features = ["darwin-fskit"]

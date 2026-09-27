@@ -1,0 +1,18 @@
+--- a/src/blob/pack.rs
++++ b/src/blob/pack.rs
+@@ -6421,6 +6421,7 @@
+         ))
+     }
+
++    #[tracing::instrument(name = "blob.pack.compact", skip_all)]
+     async fn put_replacement_marker(&self, old: PackId, new: Option<PackId>) -> io::Result<()> {
+         let marker = encode_replacement(old, new);
+         let marker_id = Digest::from(blake3::hash(&marker));
+@@ -6440,7 +6441,6 @@
+         }
+     }
+
+-    #[tracing::instrument(name = "blob.pack.compact", skip_all)]
+     async fn compact_pack(
+         &self,
+         old: PackId,

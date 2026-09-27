@@ -1,0 +1,10 @@
+   Compiling casita v0.1.0 (/tmp/casita-current-main-20260925/crates/casita)
+    Finished `release` profile [optimized] target(s) in 3m 26s
+     Running tests/casitar_cli_pipes.rs (/home/domen/dev/casita7/target/release/deps/casitar_cli_pipes-157bd3fe9ee64c48)
+
+running 2 tests
+test two_repositories_exchange_every_multi_root_archive_over_pipes ... ok
+test verification_drains_temporary_repository_cleanup_across_batches ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.08s
+

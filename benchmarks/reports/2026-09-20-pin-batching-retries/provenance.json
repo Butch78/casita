@@ -1,0 +1,17 @@
+{
+  "baseline": "1f741ea03328690bd42b8e923f562c5f31c55190",
+  "dependency_lock_sha256": "7f1e8e95f99c7c7b342b86604dee9274c7a2831ba3df8d1763265b868798e245",
+  "final_source_sha256": {
+    "src/metadata.rs": "9909de98d68fc16a4edfacd779991cbc74187a0f271086f824315e90bda37947",
+    "src/metadata/wal3_shard.rs": "d386ab63ef1d25e7d7a64481798e299c9aebb7faceec802320042bd1a8366d87",
+    "src/metadata/wal3.rs": "127e7c19786744760885dc3fe19ef074a7902b89b3b0f7dfea1e7c57500a0aab",
+    "src/metadata/wal3/coordination.rs": "2209bfc6b2b206f325bc207cecb588a962b44732e942cab5271ffe51ec2bf7d4",
+    "src/repository.rs": "4637f4c2e6fff57128d57636029c7c7b8f7243be9f6e6c9718db6e834084a34b",
+    "src/repository/publication.rs": "cfa32d9b29e196611eba52df82935d7f9f95f383f0b9357e8ef55dc76379d0c6",
+    "src/repository/publication_retry_tests.rs": "e1ea39216689fa5c0e2111dbf7c662745ede972798fa8d43239e17f1181b5a4f",
+    "src/blob/chunked/upload.rs": "1c80749243d7ba3fc04268f9d689c1de26bfd96512957d0677141759a38ce7b9",
+    "src/blob/chunked/writer.rs": "f7b6af335c0fc3fbbd7320f206b7ea12074097685adb9be96b5579a11f0723a8",
+    "src/blob/chunked/tests.rs": "b3eb1c3fa178b7e696a404b637bf18fc65a881692cf8fe210806231a60e8f196",
+    "benchmarks/suites/small_blob_pins.py": "f93c0a342a17e3d2188c82ef10489e600f55b6590f02f9ca8a0cc0b27d396979"
+  }
+}

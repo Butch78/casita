@@ -1,0 +1,287 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 1K of event 'cpu-clock:u'
+# Event count (approx.): 2016032048
+#
+# Overhead  Command          Shared Object          Symbol                                                                                                                                                                                                                                                       
+# ........  ...............  .....................  .............................................................................................................................................................................................................................................................
+#
+    30.42%  tokio-rt-worker  obrador-reads-process  [.] _blake3_hash_many_avx512
+    12.52%  tokio-rt-worker  libc.so.6              [.] __memmove_avx512_unaligned_erms
+     3.98%  obrador-reads-p  obrador-reads-process  [.] _blake3_compress_in_place_avx512
+     3.48%  tokio-rt-worker  libc.so.6              [.] _int_malloc
+     1.49%  tokio-rt-worker  libc.so.6              [.] __syscall_cancel_arch_end
+     1.19%  tokio-rt-worker  libc.so.6              [.] __memcmp_evex_movbe
+     0.99%  tokio-rt-worker  libc.so.6              [.] unlink_chunk.isra.0
+     0.99%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::Program::step
+     0.80%  tokio-rt-worker  libc.so.6              [.] malloc
+     0.80%  tokio-rt-worker  libc.so.6              [.] malloc_consolidate
+     0.80%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::btree::BTreeCursor::indexbtree_seek_internal
+     0.70%  tokio-rt-worker  libc.so.6              [.] cfree@GLIBC_2.2.5
+     0.70%  tokio-rt-worker  obrador-reads-process  [.] hashbrown::raw::RawTable<T,A>::reserve_rehash
+     0.60%  obrador-reads-p  libc.so.6              [.] __memmove_avx512_unaligned_erms
+     0.60%  obrador-reads-p  libc.so.6              [.] _int_free_chunk
+     0.60%  obrador-reads-p  obrador-reads-process  [.] casita::repository::Repository$LT$PS$C$SS$GT$::logical_collection_plan_with_recovery::_$u7b$$u7b$closure$u7d$$u7d$::hb39759bd07939027
+     0.60%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::btree::BTreeCursor as turso_core::storage::btree::CursorTrait>::seek
+     0.60%  tokio-rt-worker  obrador-reads-process  [.] turso_core::types::RecordCompare::compare
+     0.50%  obrador-reads-p  libc.so.6              [.] cfree@GLIBC_2.2.5
+     0.50%  tokio-rt-worker  [vdso]                 [.] 0x0000000000000d9d
+     0.50%  tokio-rt-worker  libc.so.6              [.] __libc_malloc2
+     0.50%  tokio-rt-worker  libc.so.6              [.] _int_free_create_chunk
+     0.50%  tokio-rt-worker  obrador-reads-process  [.] ZSTD_decompressSequences_bmi2.constprop.0
+     0.50%  tokio-rt-worker  obrador-reads-process  [.] _blake3_compress_in_place_avx512
+     0.50%  tokio-rt-worker  obrador-reads-process  [.] casita::object::ObjectRecord::decode
+     0.50%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_column_fetch
+     0.40%  obrador-reads-p  libc.so.6              [.] __memcmp_evex_movbe
+     0.40%  obrador-reads-p  libc.so.6              [.] malloc_consolidate
+     0.40%  tokio-rt-worker  libc.so.6              [.] realloc
+     0.40%  tokio-rt-worker  obrador-reads-process  [.] <bytes::bytes::Bytes as core::convert::From<alloc::vec::Vec<u8>>>::from
+     0.40%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::btree::BTreeCursor::indexbtree_move_to_internal
+     0.40%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::pager::Pager::read_page
+     0.40%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::binding::bind_and_rewrite_expr::_$u7b$$u7b$closure$u7d$$u7d$::hf41bec43f7eac358
+     0.30%  obrador-reads-p  libc.so.6              [.] _int_free_create_chunk
+     0.30%  obrador-reads-p  obrador-reads-process  [.] _ZN8arc_swap4debt4Debt7pay_all28_$u7b$$u7b$closure$u7d$$u7d$17h2b8d040e7bbdacdaE.llvm.6477581804857955307
+     0.30%  tokio-rt-worker  libc.so.6              [.] _int_free_chunk
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::btree::BTreeCursor as turso_core::storage::btree::CursorTrait>::record
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::wal::WalFile as turso_core::storage::wal::Wal>::find_frame
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] ZSTD_decodeSeqHeaders
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] _RNvCsGIExRX8pES_7___rustc11___rdl_alloc
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] _ZN6casita6object11NamespaceId8validate17hfe5e6eb2cf54cfb7E.llvm.16421573118382860170
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] turso::Statement::step
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::btree::BTreeCursor::move_to
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::btree::BTreeCursor::process_overflow_read
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::translate
+     0.30%  tokio-rt-worker  obrador-reads-process  [.] turso_core::types::compare_records_generic
+     0.20%  obrador-reads-p  libc.so.6              [.] _int_malloc
+     0.20%  obrador-reads-p  libc.so.6              [.] malloc
+     0.20%  obrador-reads-p  libc.so.6              [.] syscall
+     0.20%  obrador-reads-p  obrador-reads-process  [.] <futures_util::future::try_maybe_done::TryMaybeDone<Fut> as core::future::future::Future>::poll
+     0.20%  obrador-reads-p  obrador-reads-process  [.] _ZN4core3ptr58drop_in_place$LT$turso_core..vdbe..builder..CursorType$GT$17ha2af4c29d578be21E.llvm.8854206554899608120
+     0.20%  obrador-reads-p  obrador-reads-process  [.] _ZN5bytes5bytes11shared_drop17h7399d9583add2ef2E.llvm.16691099742002384486
+     0.20%  obrador-reads-p  obrador-reads-process  [.] alloc::collections::btree::search::<impl alloc::collections::btree::node::NodeRef<BorrowType,K,V,alloc::collections::btree::node::marker::LeafOrInternal>>::search_tree
+     0.20%  obrador-reads-p  obrador-reads-process  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.20%  obrador-reads-p  obrador-reads-process  [.] blake3::ChunkState::update
+     0.20%  obrador-reads-p  obrador-reads-process  [.] blake3::Hasher::merge_cv_stack
+     0.20%  obrador-reads-p  obrador-reads-process  [.] bytes::bytes::promotable_even_drop
+     0.20%  obrador-reads-p  obrador-reads-process  [.] futures_util::future::future::FutureExt::now_or_never
+     0.20%  tokio-rt-worker  libc.so.6              [.] __GI___statfs
+     0.20%  tokio-rt-worker  libc.so.6              [.] _int_realloc
+     0.20%  tokio-rt-worker  libc.so.6              [.] statx
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] <alloc::vec::Vec<u8> as turso_core::types::FromValue>::from_sql
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] <smallvec::SmallVec<A> as core::iter::traits::collect::Extend<<A as smallvec::Array>::Item>>::extend
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] <turso_parser::ast::Expr as turso_core::translate::optimizer::Optimizable>::is_constant
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] <turso_parser::lexer::Lexer as core::iter::traits::iterator::Iterator>::next
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _RNvMsi_NtNtNtCs75vJTIYSa2J_3std3sys2fs4unixNtB5_4File6open_c
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _RNvNtNtCs27Vx93FoQ6z_4core3str8converts9from_utf8
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _RNvXs_NtNtCs27Vx93FoQ6z_4core3str7patternNtB4_12CharSearcherNtB4_8Searcher10next_match
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _ZN4core3ptr37drop_in_place$LT$turso..Statement$GT$17h09d9c63787a99550E.llvm.14078752914750947262
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _ZN4core3ptr44drop_in_place$LT$turso_parser..ast..Expr$GT$17hdd61e17a5dcf6e56E.llvm.8854206554899608120
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _ZN4core3ptr74drop_in_place$LT$core..option..Option$LT$turso_core..types..Cursor$GT$$GT$17hfb8f44427b7b66c2E.llvm.2715907537659858856
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _ZN6blake321compress_subtree_wide17h0c71ab55314e45a0E.llvm.15467225388989115982
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] _ZN94_$LT$casita..metadata..sqlite..TursoSnapshot$u20$as$u20$casita..metadata..MetadataSnapshot$GT$12object_batch28_$u7b$$u7b$closure$u7d$$u7d$28_$u7b$$u7b$closure$u7d$$u7d$28_$u7b$$u7b$closure$u7d$$u7d$17h14659f497da99fa5E.llvm.14078752914750947262
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] casita::blob::pack::ChunkIndex::insert
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::codec::decode
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] core::hash::BuildHasher::hash_one
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] data_encoding::Encoding::encode_len
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso::connection::Connection::execute_batch::_$u7b$$u7b$closure$u7d$$u7d$::h9ec65d6fa2031aa9
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::connection::Connection::maybe_update_schema
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::statement::Statement::_step
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::btree::PageStack::_push
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::page_cache::PageCache::get
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::shared_wal_coordination::MappedSharedWalCoordination::find_frame
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::sqlite3_ondisk::read_value_serial_type
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::walk::walk_expr
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::walk::walk_expr
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::walk::walk_expr
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::walk::walk_expr_mut
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::optimizer::join::join_lhs_and_rhs
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::optimizer::optimize_plan
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::plan::JoinedTable::utilizes_covering_index
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::select::emit_select_plan
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::builder::ProgramBuilder::emit_insn
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::apply_affinity_char
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_copy
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_open_read
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::parser::Parser::eat
+     0.20%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::parser::Parser::parse_select_without_cte
+     0.10%  obrador-reads-p  libc.so.6              [.] __libc_malloc2
+     0.10%  obrador-reads-p  libc.so.6              [.] _int_free_merge_chunk
+     0.10%  obrador-reads-p  libc.so.6              [.] unlink_chunk.isra.0
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <alloc::collections::btree::map::Iter<K,V> as core::iter::traits::iterator::Iterator>::next
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <casita::api::Reader as tokio::io::async_read::AsyncRead>::poll_read
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <futures_util::future::try_join_all::TryJoinAll<F> as core::future::future::Future>::poll
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <futures_util::stream::stream::map::Map<St,F> as futures_core::stream::Stream>::poll_next
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <hashbrown::raw::RawTable<T,A> as core::ops::drop::Drop>::drop
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <turso_core::storage::buffer_pool::ArenaBuffer as core::ops::drop::Drop>::drop
+     0.10%  obrador-reads-p  obrador-reads-process  [.] <turso_core::storage::wal::WalFile as turso_core::storage::wal::Wal>::holds_write_lock
+     0.10%  obrador-reads-p  obrador-reads-process  [.] _RNvCsGIExRX8pES_7___rustc11___rdl_alloc
+     0.10%  obrador-reads-p  obrador-reads-process  [.] _RNvXs4_NtCsgW8esjfipvk_5alloc6stringNtB5_6StringNtNtCs27Vx93FoQ6z_4core5clone5Clone5clone
+     0.10%  obrador-reads-p  obrador-reads-process  [.] _ZN10turso_core7storage23shared_wal_coordination27MappedSharedWalCoordination17unregister_reader17hfb1c575aa7771776E.llvm.6477581804857955307
+     0.10%  obrador-reads-p  obrador-reads-process  [.] _ZN4core3ptr65drop_in_place$LT$$LP$turso_core..vdbe..insn..Insn$C$usize$RP$$GT$17hdbc21100359879acE.llvm.8854206554899608120
+     0.10%  obrador-reads-p  obrador-reads-process  [.] _ZN71_$LT$core..hash..sip..Hasher$LT$S$GT$$u20$as$u20$core..hash..Hasher$GT$5write17h8f2e4bfaaff3e3c7E.llvm.395043023986514500
+     0.10%  obrador-reads-p  obrador-reads-process  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.10%  obrador-reads-p  obrador-reads-process  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.10%  obrador-reads-p  obrador-reads-process  [.] alloc::vec::Vec<T,A>::retain
+     0.10%  obrador-reads-p  obrador-reads-process  [.] blake3::Hasher::update
+     0.10%  obrador-reads-p  obrador-reads-process  [.] casita::blob::chunked::ChunkedBlobStore::open_bare_chunk_from::_$u7b$$u7b$closure$u7d$$u7d$::h5bb8cc1c426a2b23
+     0.10%  obrador-reads-p  obrador-reads-process  [.] casita::blob::pack::delta::encode_delta_catalog
+     0.10%  obrador-reads-p  obrador-reads-process  [.] casita::spill::SpillSet$LT$K$GT$::insert::_$u7b$$u7b$closure$u7d$$u7d$::he5618b0375b95f56
+     0.10%  obrador-reads-p  obrador-reads-process  [.] casita::spill::TraversalQueue::pop::_$u7b$$u7b$closure$u7d$$u7d$::hf76b3ae75c48de5a
+     0.10%  obrador-reads-p  obrador-reads-process  [.] core::ptr::drop_in_place<turso_core::translate::plan::Operation>
+     0.10%  obrador-reads-p  obrador-reads-process  [.] tokio::runtime::task::core::Trailer::set_waker
+     0.10%  obrador-reads-p  obrador-reads-process  [.] tokio::runtime::task::state::State::drop_join_handle_fast
+     0.10%  obrador-reads-p  obrador-reads-process  [.] tokio::util::sharded_list::ShardGuard<L,<L as tokio::util::linked_list::Link>::Target>::push
+     0.10%  tokio-rt-worker  [vdso]                 [.] 0x0000000000000da2
+     0.10%  tokio-rt-worker  libc.so.6              [.] __GI___libc_write
+     0.10%  tokio-rt-worker  libc.so.6              [.] __fcntl64_nocancel_adjusted
+     0.10%  tokio-rt-worker  libc.so.6              [.] __libc_calloc2
+     0.10%  tokio-rt-worker  libc.so.6              [.] __memset_avx512_unaligned_erms
+     0.10%  tokio-rt-worker  libc.so.6              [.] _int_free_merge_chunk
+     0.10%  tokio-rt-worker  libc.so.6              [.] _mid_memalign
+     0.10%  tokio-rt-worker  libc.so.6              [.] clock_gettime@@GLIBC_2.17
+     0.10%  tokio-rt-worker  libc.so.6              [.] getrandom_vdso
+     0.10%  tokio-rt-worker  libc.so.6              [.] llseek@GLIBC_2.2.5
+     0.10%  tokio-rt-worker  libc.so.6              [.] syscall
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <alloc::collections::btree::map::BTreeMap<K,V,A> as core::ops::drop::Drop>::drop
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <alloc::vec::Vec<T,A> as core::ops::drop::Drop>::drop
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <core::iter::adapters::map::Map<I,F> as core::iter::traits::iterator::Iterator>::try_fold
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <core::result::Result<T,std::io::error::Error> as tempfile::error::IoResultExt<T>>::with_err_path
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <futures_util::future::future::shared::Notifier as futures_task::arc_wake::ArcWake>::wake_by_ref
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <hashbrown::raw::RawTable<T,A> as core::ops::drop::Drop>::drop
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <percent_encoding::PercentEncode as core::iter::traits::iterator::Iterator>::next
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <smallvec::SmallVec<A> as core::iter::traits::collect::Extend<<A as smallvec::Array>::Item>>::extend
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <tokio::runtime::task::join::JoinHandle<T> as core::future::future::Future>::poll
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <tokio::task::task_local::TaskLocalFuture<T,F> as core::future::future::Future>::poll
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso::connection::Connection as core::clone::Clone>::clone
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::btree::BTreeCursor as turso_core::storage::btree::CursorTrait>::get_null_flag
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::btree::BTreeCursor as turso_core::storage::btree::CursorTrait>::rowid
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::database::DatabaseFile as turso_core::storage::database::DatabaseStorage>::read_header
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::wal::ShmWalCoordination as turso_core::storage::wal::WalCoordination>::find_frame
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::storage::wal::WalFile as turso_core::storage::wal::Wal>::read_frame
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_core::types::Value as turso_core::alloc::collections::traits::TryClone>::try_clone
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] <turso_parser::ast::Expr as turso_core::translate::optimizer::Optimizable>::check_always_true_or_false
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] ZSTD_findFrameSizeInfo.constprop.0
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvCsGIExRX8pES_7___rustc12___rust_alloc
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvCsGIExRX8pES_7___rustc14___rust_realloc
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvCsGIExRX8pES_7___rustc35___rust_no_alloc_shim_is_unstable_v2
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvMNtCs75vJTIYSa2J_3std4timeNtB2_7Instant7elapsed
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvMNtNtNtCs75vJTIYSa2J_3std4sync9nonpoison7condvarNtB2_7Condvar10notify_one
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvMs0_NtNtNtNtCs75vJTIYSa2J_3std3sys4sync4once5futexNtB5_4Once4call
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvNtNtNtCs75vJTIYSa2J_3std3sys2fs4unix9try_statx
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvNtNtNtNtCs75vJTIYSa2J_3std3sys2io5error4unix17decode_error_kind
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _RNvXs4_NtCsgW8esjfipvk_5alloc6stringNtB5_6StringNtNtCs27Vx93FoQ6z_4core5clone5Clone5clone
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN10turso_core7storage5btree9PageStack25unpin_all_and_clear_slots17heb6d549e12438becE.llvm.1174814256354293101
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN10turso_core8database8Database34open_shared_wal_coordination_inner17hb726071549627cb5E.llvm.10093431298024989862
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN10turso_core9statement9Statement29cleanup_orphaned_seq_inner_tx17h04bfd23deb3ec9d8E.llvm.16357490427341436237
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN4core3ptr44drop_in_place$LT$turso_parser..ast..Expr$GT$17hdd61e17a5dcf6e56E.llvm.17984012294866494820
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN4core3ptr52drop_in_place$LT$casita..metadata..pins..DataPin$GT$17h537ffc01bba6d6cdE.llvm.6833927892321029662
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN4core3ptr52drop_in_place$LT$turso_core..vdbe..ActiveOpState$GT$17h28bc0ce1e3f85c9cE.llvm.1174814256354293101
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN5alloc7raw_vec20RawVecInner$LT$A$GT$11finish_grow17h9ac92b094e6b43a9E.llvm.9831970714986799669
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN5tokio7runtime4park5Inner6unpark17hc9f9b75bf2a1b2fbE.llvm.366442695544234108
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN62_$LT$turso_parser..ast..Expr$u20$as$u20$core..clone..Clone$GT$5clone17hb08a9d326ef757e1E.llvm.12771086060291968305
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN62_$LT$turso_parser..ast..Expr$u20$as$u20$core..clone..Clone$GT$5clone17hb08a9d326ef757e1E.llvm.8854206554899608120
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN6casita6object9ObjectKey11decode_from17ha0c88a6efd832f95E.llvm.16421573118382860170
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] _ZN71_$LT$core..hash..sip..Hasher$LT$S$GT$$u20$as$u20$core..hash..Hasher$GT$5write17h96f420c14d310533E.llvm.6141215947188290319
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] alloc::collections::btree::set::BTreeSet<T,A>::difference
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] alloc::collections::btree::set::BTreeSet<T,A>::difference
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] alloc::raw_vec::RawVecInner<A>::try_allocate_in
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] alloc::sync::Arc<T,A>::drop_slow
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] alloc::vec::Vec<T,A>::extend_with
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] arc_swap::debt::list::LocalNode::with
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] blake3::hash
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] blake3::platform::Platform::hash_many
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::codec::Decoder::count
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::codec::encode
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::persistent::journal::incremental::<impl casita::metadata::pins::persistent::FilePinStore>::cached_readers
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::persistent::readers::<impl casita::metadata::pins::persistent::FilePinStore>::register_local_reader
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::persistent::readers::<impl casita::metadata::pins::persistent::FilePinStore>::write_readers
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::pins::persistent::readers::ReaderState::encode
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] casita::metadata::sqlite::decode_stored_record
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] core::hash::BuildHasher::hash_one
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] core::hash::BuildHasher::hash_one
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] core::ptr::drop_in_place$LT$$u5b$core..option..Option$LT$alloc..sync..Arc$LT$turso_core..storage..pager..Page$GT$$GT$$u3b$$u20$21$u5d$$GT$::h21e1dd7a10992358
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] core::ptr::drop_in_place<turso_core::vdbe::ProgramState>
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] hashbrown::map::HashMap<K,V,S,A>::insert
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] hashbrown::map::HashMap<K,V,S,A>::insert
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] hashbrown::raw::RawTable<T,A>::reserve_rehash
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] percent_encoding::<impl core::convert::From<percent_encoding::PercentEncode> for alloc::borrow::Cow<str>>::from
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] std::thread::local::LocalKey<T>::with
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] tempfile::util::create_helper
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] tokio::runtime::scheduler::multi_thread::worker::Context::run_task
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] tokio::runtime::task::harness::Harness<T,S>::poll
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] tokio::runtime::task::harness::can_read_output
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] tokio::runtime::task::state::State::transition_to_complete
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] tokio::runtime::task::waker::wake_by_ref
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso::rows::Rows::next::_$u7b$$u7b$closure$u7d$$u7d$::h6d7d1c18eebc58f8
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::connection::Connection::compile_cmd
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::connection::Connection::get_mv_tx_id_for_db
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::connection::Connection::parse_sql
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::database::Database::_connect_with_pager_and_default_cache_size
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::dialect::sqlite::parse
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::io::unix::unix_shared_wal_lock_byte
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::progress::ProgressHandler::should_interrupt
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::statement::Statement::reset
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::btree::BTreeCursor::new
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::page_cache::PageCache::clear
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::pager::Pager::read_page_no_cache
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::pager::Pager::unregister_cursor
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::sqlite3_ondisk::begin_read_wal_frame
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::storage::sqlite3_ondisk::read_btree_cell
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::alter::eval_constant_default_value
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::emitter::Resolver::new
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::emitter::select::emit_program_for_select_with_resolver
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::affinity::get_expr_affinity
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::translator::translate_expr
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::walk::walk_expr_mut
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::expr::walk::walk_expr_mut
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::optimizer::access_method::find_best_access_method_for_join_order
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::optimizer::constraints::Constraint::get_constraining_expr
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::optimizer::constraints::analyze_binary_term_index_info
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::optimizer::constraints::constraints_from_where_clause
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::plan::BitSet<T>::set
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::planner::parse_from
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::planner::parse_table
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::pragma::translate_pragma
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::select::prepare_one_select_plan
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::select::prepare_select_plan
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::subquery::emit_from_clause_subqueries
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::subquery::plan_subqueries_from_select_plan
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::transaction::translate_tx_begin
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::translate::translate_inner
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::types::compare_records_generic
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::util::parse_numeric_literal
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::Program::abort
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::ProgramState::bind_at
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::ProgramState::reset
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::Register::set_blob
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::Register::set_value
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::ColumnFetch::fetch
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::index_method_stage_statement_all
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_column
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_comparison
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_idx_gt
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_seek
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_seek_rowid
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_transaction
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_variable
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::op_yield
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_core::vdbe::execute::seek_internal
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::ast::Name::from_bytes
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::lexer::Lexer::mark
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::lexer::keyword_or_id_token
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::parser::Parser::next_cmd
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_parser::parser::Parser::peek
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_sdk_kit::rsapi::TursoConnection::new_with_sync_busy
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] turso_sdk_kit::rsapi::TursoConnection::prepare_first
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] url::path_segments::PathSegmentsMut::pop_if_empty
+     0.10%  tokio-rt-worker  obrador-reads-process  [.] zstd_safe::parse_code
+
+
+#
+# (Tip: For tracepoint events, try: perf report -s trace_fields)
+#

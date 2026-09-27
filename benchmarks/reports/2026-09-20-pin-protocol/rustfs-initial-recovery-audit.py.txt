@@ -1,0 +1,49 @@
+import json
+import pathlib
+import tempfile
+import time
+import xml.etree.ElementTree as ET
+from benchmarks.suites import pin_protocol as protocol
+from benchmarks.suites.pin_protocol_s3 import RemoteStore
+from benchmarks.suites.pin_http import Client
+from benchmarks.suites.pack.s3_gc import Rustfs
+
+initial = json.loads(pathlib.Path('/tmp/casita-pin-s3-all/pin-protocol-s3.json').read_text())
+server = Rustfs(pathlib.Path('/tmp/casita-pin-s3-all/pin-protocol-s3.artifacts/rustfs'), reuse=True)
+result = dict(fresh_readback=False, scope='fresh audit after restarting the retained initial RustFS fixture; includes aborted 32-writer case', prefixes=[])
+try:
+    config = dict(endpoint=server.endpoint,bucket=initial['backend']['bucket'],prefix='protocol',region='us-east-1',local=True)
+    client = Client(config)
+    prefixes = set()
+    continuation = None
+    while True:
+        query=[('list-type','2'),('prefix','protocol/')]
+        if continuation: query.append(('continuation-token',continuation))
+        deadline=time.monotonic()+30
+        while True:
+            status,data,_=client.request('GET','',query=query,bucket_request=True)
+            if status!=503 or time.monotonic()>deadline: break
+            time.sleep(0.1)
+        assert status==200,(status,client.events[-1])
+        document=ET.fromstring(data)
+        for node in document.findall('{*}Contents/{*}Key'):
+            prefixes.add('/'.join(node.text.split('/')[:2]))
+        if document.findtext('{*}IsTruncated')!='true': break
+        continuation=document.findtext('{*}NextContinuationToken');assert continuation
+    result['startup_list_503s']=sum(e['status']==503 for e in client.events)
+    protocol.Store=RemoteStore
+    for prefix in sorted(prefixes):
+        with tempfile.TemporaryDirectory() as root:
+            pathlib.Path(root,'remote.json').write_text(json.dumps({**config,'prefix':prefix}))
+            store=RemoteStore(root)
+            roots=list(store.path('roots').glob('*'))
+            protocol.audit_all_roots(root,32,9,'none')
+            result['prefixes'].append(dict(prefix=prefix,durable_roots=len(roots),fresh_readback=True))
+    assert len(prefixes)==25,len(prefixes)
+    result['fresh_readback']=True
+    result['durable_roots']=sum(p['durable_roots'] for p in result['prefixes'])
+finally:
+    server.close()
+    target=pathlib.Path('/home/domen/dev/casita9/benchmarks/reports/2026-09-20-pin-protocol/rustfs-initial-recovery-audit.json')
+    target.write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({k:v for k,v in result.items() if k!='prefixes'},indent=2))

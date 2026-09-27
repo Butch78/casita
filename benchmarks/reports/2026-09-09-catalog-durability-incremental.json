@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.native-probes.v1",
+  "suite_id": "blob-backends",
+  "environment": {
+    "captured_at_utc": "2026-09-09T15:54:23.087896+00:00",
+    "hostname": "cherimoya",
+    "platform": "Linux-7.0.10-x86_64-with-glibc2.42",
+    "kernel": "7.0.10",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "memory_bytes": 29178875904,
+    "cpu_governor": "performance",
+    "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+    "python": "3.14.7",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "casita_revision": "b7be32013c35caa5501ef03cc58ddd1bfe42513f",
+    "casita_worktree_dirty": false
+  },
+  "configuration": {
+    "probe": "catalog-durability",
+    "probe_binary": "/tmp/casita4-incremental-bin/casita-lib-test",
+    "iterations": 20,
+    "writers": 4,
+    "entries": 65536,
+    "repetitions": 3,
+    "output": "/tmp/catalog.json"
+  },
+  "samples": [
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "catalog-durability",
+      "repetition": 1,
+      "wall_seconds": 0.879584255,
+      "user_seconds": 0.02,
+      "system_seconds": 0.18,
+      "max_rss_bytes": 18808832,
+      "exit_code": 0,
+      "metrics": {
+        "running": 1,
+        "catalog_durability_iterations": 20,
+        "catalog_legacy_root_median_nanos": 249334,
+        "catalog_durable_root_median_nanos": 10209610,
+        "catalog_durable_object_median_nanos": 10341401,
+        "catalog_durable_batch_objects": 64,
+        "catalog_durable_batch_median_nanos": 61223232,
+        "catalog_durable_batch_median_nanos_per_object": 956613,
+        "catalog_durable_batch_speedup_x100": 1081,
+        "catalog_durable_root_slowdown_x100": 4094
+      },
+      "stdout": "\nrunning 1 test\ncatalog_durability_iterations 20\ncatalog_legacy_root_median_nanos 249334\ncatalog_durable_root_median_nanos 10209610\ncatalog_durable_object_median_nanos 10341401\ncatalog_durable_batch_objects 64\ncatalog_durable_batch_median_nanos 61223232\ncatalog_durable_batch_median_nanos_per_object 956613\ncatalog_durable_batch_speedup_x100 1081\ncatalog_durable_root_slowdown_x100 4094\ntest blob::pack::benchmarks::benchmark_local_catalog_durable_publication ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 664 filtered out; finished in 0.87s\n\n"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "catalog-durability",
+      "repetition": 2,
+      "wall_seconds": 0.918587128,
+      "user_seconds": 0.01,
+      "system_seconds": 0.2,
+      "max_rss_bytes": 19005440,
+      "exit_code": 0,
+      "metrics": {
+        "running": 1,
+        "catalog_durability_iterations": 20,
+        "catalog_legacy_root_median_nanos": 257644,
+        "catalog_durable_root_median_nanos": 12898850,
+        "catalog_durable_object_median_nanos": 13067447,
+        "catalog_durable_batch_objects": 64,
+        "catalog_durable_batch_median_nanos": 63100356,
+        "catalog_durable_batch_median_nanos_per_object": 985943,
+        "catalog_durable_batch_speedup_x100": 1325,
+        "catalog_durable_root_slowdown_x100": 5006
+      },
+      "stdout": "\nrunning 1 test\ncatalog_durability_iterations 20\ncatalog_legacy_root_median_nanos 257644\ncatalog_durable_root_median_nanos 12898850\ncatalog_durable_object_median_nanos 13067447\ncatalog_durable_batch_objects 64\ncatalog_durable_batch_median_nanos 63100356\ncatalog_durable_batch_median_nanos_per_object 985943\ncatalog_durable_batch_speedup_x100 1325\ncatalog_durable_root_slowdown_x100 5006\ntest blob::pack::benchmarks::benchmark_local_catalog_durable_publication ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 664 filtered out; finished in 0.91s\n\n"
+    },
+    {
+      "status": "ok",
+      "implementation": "casita",
+      "operation": "catalog-durability",
+      "repetition": 3,
+      "wall_seconds": 0.880878414,
+      "user_seconds": 0.01,
+      "system_seconds": 0.18,
+      "max_rss_bytes": 18415616,
+      "exit_code": 0,
+      "metrics": {
+        "running": 1,
+        "catalog_durability_iterations": 20,
+        "catalog_legacy_root_median_nanos": 243397,
+        "catalog_durable_root_median_nanos": 10746271,
+        "catalog_durable_object_median_nanos": 10317655,
+        "catalog_durable_batch_objects": 64,
+        "catalog_durable_batch_median_nanos": 61013080,
+        "catalog_durable_batch_median_nanos_per_object": 953329,
+        "catalog_durable_batch_speedup_x100": 1082,
+        "catalog_durable_root_slowdown_x100": 4415
+      },
+      "stdout": "\nrunning 1 test\ncatalog_durability_iterations 20\ncatalog_legacy_root_median_nanos 243397\ncatalog_durable_root_median_nanos 10746271\ncatalog_durable_object_median_nanos 10317655\ncatalog_durable_batch_objects 64\ncatalog_durable_batch_median_nanos 61013080\ncatalog_durable_batch_median_nanos_per_object 953329\ncatalog_durable_batch_speedup_x100 1082\ncatalog_durable_root_slowdown_x100 4415\ntest blob::pack::benchmarks::benchmark_local_catalog_durable_publication ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 664 filtered out; finished in 0.87s\n\n"
+    }
+  ]
+}

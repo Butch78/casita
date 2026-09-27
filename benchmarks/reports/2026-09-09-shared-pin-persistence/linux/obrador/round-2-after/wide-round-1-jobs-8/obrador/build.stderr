@@ -1,0 +1,161 @@
+@nix {"action":"msg","level":3,"msg":"these 32 derivations will be built:"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/09mmjpk7cx8f6c04fqyqsx38f97wwqbz-leaf-1.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/10dk720mapfk8nn5qz3wiw56bxamw9yc-leaf-24.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/1qk761qh5mq70mc7nq361p5ww1qw9w4f-leaf-22.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/4bir4y8akz22kvaqnmd05b2d56rlk6p3-leaf-31.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/5fh3j82pngw7y3m582iv1ycqrrvyj3zr-leaf-13.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/6ipkjnd7skvfzs60kcjmfdk9wr25ins0-leaf-23.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/7962yxgk9kh24v32ailxx4lxj7fnr1f1-leaf-15.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/8xnz7llnsw02qa7avcbxmxvpjla81xnb-leaf-29.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/90zmcy2k7mkh0hipyrpwz926q28bn29j-leaf-11.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/al0l1ibnj9x7wza146zbv1d9rv68qbz8-leaf-17.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/apqjdpdz5ifxhh2d1allwqk9l4sw0sbs-leaf-8.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/cq7qp5ff9555w8r2k8afc189y0j01p2d-leaf-18.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/f43l28j1zq6qhb98w9mvkv69darivh9s-leaf-14.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/fh84q9zmxf8r9s6fhlya0n0fralyz13y-leaf-20.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/gac4sd2ima145xv2zd56cxl15hzinv1d-leaf-5.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/gvxm6drgkarspzc3x2rzipqrsaph5qxm-leaf-6.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/h21dmwsskg096ydkpib6s7qishcq7rvi-leaf-4.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/hzsiqqlpvcgygl6mjc108ski2rf4bp29-leaf-25.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/i1galb70q5hiyzfad0icf3z0jdz8raa5-leaf-3.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/il73mmy84vjzrs0plxx7xgmsnay8n3hz-leaf-30.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/inh62sfa962pv3ajsyj1y7x2jhissx99-leaf-21.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/k0hv6hr33qv534yg5larasb0jcny2rcl-leaf-10.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/ldvrpa5mb0zy4zjxx31ngcib0wlj6dr6-leaf-28.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/lfls490mzal9sg12rsrarr7k3vrdjjrh-leaf-2.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/m1inmkvaf8hrc89m28hbgaw3hjl9l528-leaf-19.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/mc7w5qxamf0dwgnwqn7pia8xllw52n0b-leaf-16.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/mcap7zh1932gy03nmssk75wc7xwl17bg-leaf-26.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/my1h4fn1ghz40fk2raslnaiky7fffxxv-leaf-9.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/n86ciq9d25m8nyrcgjwpwhrzgpq81827-leaf-12.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/vsciq9mpai57j9chf8fjb3z7p24gr259-leaf-0.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/x6w34h71j8vsspzijiqj5cmfs2aak39z-leaf-7.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/yp84xchwznihmhq5wkywssnqai7yf5ah-leaf-27.drv.drv"}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/vsciq9mpai57j9chf8fjb3z7p24gr259-leaf-0.drv.drv","",1,1],"id":5448320633798656,"level":3,"parent":0,"text":"building 'leaf-0.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/09mmjpk7cx8f6c04fqyqsx38f97wwqbz-leaf-1.drv.drv","",1,1],"id":5448320633798657,"level":3,"parent":0,"text":"building 'leaf-1.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/lfls490mzal9sg12rsrarr7k3vrdjjrh-leaf-2.drv.drv","",1,1],"id":5448320633798658,"level":3,"parent":0,"text":"building 'leaf-2.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/i1galb70q5hiyzfad0icf3z0jdz8raa5-leaf-3.drv.drv","",1,1],"id":5448320633798659,"level":3,"parent":0,"text":"building 'leaf-3.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/h21dmwsskg096ydkpib6s7qishcq7rvi-leaf-4.drv.drv","",1,1],"id":5448320633798660,"level":3,"parent":0,"text":"building 'leaf-4.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/gac4sd2ima145xv2zd56cxl15hzinv1d-leaf-5.drv.drv","",1,1],"id":5448320633798661,"level":3,"parent":0,"text":"building 'leaf-5.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/gvxm6drgkarspzc3x2rzipqrsaph5qxm-leaf-6.drv.drv","",1,1],"id":5448320633798662,"level":3,"parent":0,"text":"building 'leaf-6.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/x6w34h71j8vsspzijiqj5cmfs2aak39z-leaf-7.drv.drv","",1,1],"id":5448320633798663,"level":3,"parent":0,"text":"building 'leaf-7.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798657}
+@nix {"action":"stop","id":5448320633798660}
+@nix {"action":"stop","id":5448320633798656}
+@nix {"action":"stop","id":5448320633798661}
+@nix {"action":"stop","id":5448320633798662}
+@nix {"action":"stop","id":5448320633798658}
+@nix {"action":"stop","id":5448320633798663}
+@nix {"action":"stop","id":5448320633798659}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/riabxql8rd1c4rqsv0fifc9yz9a6y882-leaf-1.drv","",1,1],"id":5448320633798664,"level":3,"parent":0,"text":"building 'leaf-1.drv'","type":105}
+@nix {"action":"stop","id":5448320633798664}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/4wf6dddysq8b93d8awadkvlja345z19s-leaf-4.drv","",1,1],"id":5448320633798665,"level":3,"parent":0,"text":"building 'leaf-4.drv'","type":105}
+@nix {"action":"stop","id":5448320633798665}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/kkqsa1psv7f4xazxgyrsyqvydmgw421j-leaf-0.drv","",1,1],"id":5448320633798666,"level":3,"parent":0,"text":"building 'leaf-0.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/kwr3n2fw7za5rl7dzqgsnb0m43d1r7bm-leaf-5.drv","",1,1],"id":5448320633798667,"level":3,"parent":0,"text":"building 'leaf-5.drv'","type":105}
+@nix {"action":"stop","id":5448320633798666}
+@nix {"action":"stop","id":5448320633798667}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/gbp2s93iph4s35xkwl6xsk7sy7h7cbyj-leaf-6.drv","",1,1],"id":5448320633798668,"level":3,"parent":0,"text":"building 'leaf-6.drv'","type":105}
+@nix {"action":"stop","id":5448320633798668}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/bm40l601n695ppydbfp9y5fl39ax30fw-leaf-2.drv","",1,1],"id":5448320633798669,"level":3,"parent":0,"text":"building 'leaf-2.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/3kxw2a47y204js51ivglhg56ym4p0w6z-leaf-7.drv","",1,1],"id":5448320633798670,"level":3,"parent":0,"text":"building 'leaf-7.drv'","type":105}
+@nix {"action":"stop","id":5448320633798669}
+@nix {"action":"stop","id":5448320633798670}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/3hj6i9mv01bf96vnllb3jr9xmv17cjna-leaf-3.drv","",1,1],"id":5448320633798671,"level":3,"parent":0,"text":"building 'leaf-3.drv'","type":105}
+@nix {"action":"stop","id":5448320633798671}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/apqjdpdz5ifxhh2d1allwqk9l4sw0sbs-leaf-8.drv.drv","",1,1],"id":5448320633798672,"level":3,"parent":0,"text":"building 'leaf-8.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/my1h4fn1ghz40fk2raslnaiky7fffxxv-leaf-9.drv.drv","",1,1],"id":5448320633798673,"level":3,"parent":0,"text":"building 'leaf-9.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798672}
+@nix {"action":"stop","id":5448320633798673}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/k0hv6hr33qv534yg5larasb0jcny2rcl-leaf-10.drv.drv","",1,1],"id":5448320633798674,"level":3,"parent":0,"text":"building 'leaf-10.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798674}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/90zmcy2k7mkh0hipyrpwz926q28bn29j-leaf-11.drv.drv","",1,1],"id":5448320633798675,"level":3,"parent":0,"text":"building 'leaf-11.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/n86ciq9d25m8nyrcgjwpwhrzgpq81827-leaf-12.drv.drv","",1,1],"id":5448320633798676,"level":3,"parent":0,"text":"building 'leaf-12.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/5fh3j82pngw7y3m582iv1ycqrrvyj3zr-leaf-13.drv.drv","",1,1],"id":5448320633798677,"level":3,"parent":0,"text":"building 'leaf-13.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/f43l28j1zq6qhb98w9mvkv69darivh9s-leaf-14.drv.drv","",1,1],"id":5448320633798678,"level":3,"parent":0,"text":"building 'leaf-14.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/7962yxgk9kh24v32ailxx4lxj7fnr1f1-leaf-15.drv.drv","",1,1],"id":5448320633798679,"level":3,"parent":0,"text":"building 'leaf-15.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798679}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/n1mhyfjdnvs84fqnhy9mlaw27qn9slsi-leaf-8.drv","",1,1],"id":5448320633798680,"level":3,"parent":0,"text":"building 'leaf-8.drv'","type":105}
+@nix {"action":"stop","id":5448320633798677}
+@nix {"action":"stop","id":5448320633798675}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/jwybs8gwifak61gh79ib30ybyydpdxz7-leaf-9.drv","",1,1],"id":5448320633798681,"level":3,"parent":0,"text":"building 'leaf-9.drv'","type":105}
+@nix {"action":"stop","id":5448320633798676}
+@nix {"action":"stop","id":5448320633798678}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/8hf1hs83qvq03x2ibxpmmwdbpmvmsjzp-leaf-10.drv","",1,1],"id":5448320633798682,"level":3,"parent":0,"text":"building 'leaf-10.drv'","type":105}
+@nix {"action":"stop","id":5448320633798680}
+@nix {"action":"stop","id":5448320633798681}
+@nix {"action":"stop","id":5448320633798682}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/vp0zi17yr5lqbm6j4c77pw86yq7kra54-leaf-15.drv","",1,1],"id":5448320633798683,"level":3,"parent":0,"text":"building 'leaf-15.drv'","type":105}
+@nix {"action":"stop","id":5448320633798683}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/y0wr1dydr0gxjxzccqjqv22mv45wfnck-leaf-13.drv","",1,1],"id":5448320633798684,"level":3,"parent":0,"text":"building 'leaf-13.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/3bywn0mviw97y0abbg0bhcbvshmr4hvz-leaf-11.drv","",1,1],"id":5448320633798685,"level":3,"parent":0,"text":"building 'leaf-11.drv'","type":105}
+@nix {"action":"stop","id":5448320633798684}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/w21744235phd4sb63wjkmpj29hk27ada-leaf-12.drv","",1,1],"id":5448320633798686,"level":3,"parent":0,"text":"building 'leaf-12.drv'","type":105}
+@nix {"action":"stop","id":5448320633798685}
+@nix {"action":"stop","id":5448320633798686}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/is1p0xgabx1m1blppnxak4ixmpb702y3-leaf-14.drv","",1,1],"id":5448320633798687,"level":3,"parent":0,"text":"building 'leaf-14.drv'","type":105}
+@nix {"action":"stop","id":5448320633798687}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/mc7w5qxamf0dwgnwqn7pia8xllw52n0b-leaf-16.drv.drv","",1,1],"id":5448320633798688,"level":3,"parent":0,"text":"building 'leaf-16.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798688}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/al0l1ibnj9x7wza146zbv1d9rv68qbz8-leaf-17.drv.drv","",1,1],"id":5448320633798689,"level":3,"parent":0,"text":"building 'leaf-17.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798689}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/cq7qp5ff9555w8r2k8afc189y0j01p2d-leaf-18.drv.drv","",1,1],"id":5448320633798690,"level":3,"parent":0,"text":"building 'leaf-18.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798690}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/m1inmkvaf8hrc89m28hbgaw3hjl9l528-leaf-19.drv.drv","",1,1],"id":5448320633798691,"level":3,"parent":0,"text":"building 'leaf-19.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798691}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/fh84q9zmxf8r9s6fhlya0n0fralyz13y-leaf-20.drv.drv","",1,1],"id":5448320633798692,"level":3,"parent":0,"text":"building 'leaf-20.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/inh62sfa962pv3ajsyj1y7x2jhissx99-leaf-21.drv.drv","",1,1],"id":5448320633798693,"level":3,"parent":0,"text":"building 'leaf-21.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/1qk761qh5mq70mc7nq361p5ww1qw9w4f-leaf-22.drv.drv","",1,1],"id":5448320633798694,"level":3,"parent":0,"text":"building 'leaf-22.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/6ipkjnd7skvfzs60kcjmfdk9wr25ins0-leaf-23.drv.drv","",1,1],"id":5448320633798695,"level":3,"parent":0,"text":"building 'leaf-23.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798693}
+@nix {"action":"stop","id":5448320633798692}
+@nix {"action":"stop","id":5448320633798695}
+@nix {"action":"stop","id":5448320633798694}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/6ws3mmqbscl13jcq2gcnlvk01q4fii8n-leaf-16.drv","",1,1],"id":5448320633798696,"level":3,"parent":0,"text":"building 'leaf-16.drv'","type":105}
+@nix {"action":"stop","id":5448320633798696}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/lkwzh41d8g4hy3wq81773ay4zqpgpm4i-leaf-17.drv","",1,1],"id":5448320633798697,"level":3,"parent":0,"text":"building 'leaf-17.drv'","type":105}
+@nix {"action":"stop","id":5448320633798697}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/pzs70j4jrslajp128nnp8is4bwpcvriq-leaf-18.drv","",1,1],"id":5448320633798698,"level":3,"parent":0,"text":"building 'leaf-18.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/qib5k3am3qn27mw13467s6pvz7dk2anm-leaf-19.drv","",1,1],"id":5448320633798699,"level":3,"parent":0,"text":"building 'leaf-19.drv'","type":105}
+@nix {"action":"stop","id":5448320633798698}
+@nix {"action":"stop","id":5448320633798699}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/m7bd75w9zb9cy4pdavwkqm3p4w7089la-leaf-21.drv","",1,1],"id":5448320633798700,"level":3,"parent":0,"text":"building 'leaf-21.drv'","type":105}
+@nix {"action":"stop","id":5448320633798700}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/4xmjayxisbr7ycsby7s8q9ps5cyvrycz-leaf-20.drv","",1,1],"id":5448320633798701,"level":3,"parent":0,"text":"building 'leaf-20.drv'","type":105}
+@nix {"action":"stop","id":5448320633798701}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/a1g7xsn4jvhs9x45kpkf7kmry5ah7xp6-leaf-23.drv","",1,1],"id":5448320633798702,"level":3,"parent":0,"text":"building 'leaf-23.drv'","type":105}
+@nix {"action":"stop","id":5448320633798702}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/9k4n3fbmbbr8y3j5x1v0hyrrlym2gj4j-leaf-22.drv","",1,1],"id":5448320633798703,"level":3,"parent":0,"text":"building 'leaf-22.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/10dk720mapfk8nn5qz3wiw56bxamw9yc-leaf-24.drv.drv","",1,1],"id":5448320633798704,"level":3,"parent":0,"text":"building 'leaf-24.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798703}
+@nix {"action":"stop","id":5448320633798704}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/hzsiqqlpvcgygl6mjc108ski2rf4bp29-leaf-25.drv.drv","",1,1],"id":5448320633798705,"level":3,"parent":0,"text":"building 'leaf-25.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798705}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/mcap7zh1932gy03nmssk75wc7xwl17bg-leaf-26.drv.drv","",1,1],"id":5448320633798706,"level":3,"parent":0,"text":"building 'leaf-26.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/yp84xchwznihmhq5wkywssnqai7yf5ah-leaf-27.drv.drv","",1,1],"id":5448320633798707,"level":3,"parent":0,"text":"building 'leaf-27.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798706}
+@nix {"action":"stop","id":5448320633798707}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/ldvrpa5mb0zy4zjxx31ngcib0wlj6dr6-leaf-28.drv.drv","",1,1],"id":5448320633798708,"level":3,"parent":0,"text":"building 'leaf-28.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/8xnz7llnsw02qa7avcbxmxvpjla81xnb-leaf-29.drv.drv","",1,1],"id":5448320633798709,"level":3,"parent":0,"text":"building 'leaf-29.drv.drv'","type":105}
+@nix {"action":"stop","id":5448320633798708}
+@nix {"action":"stop","id":5448320633798709}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/il73mmy84vjzrs0plxx7xgmsnay8n3hz-leaf-30.drv.drv","",1,1],"id":5448320633798710,"level":3,"parent":0,"text":"building 'leaf-30.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/4bir4y8akz22kvaqnmd05b2d56rlk6p3-leaf-31.drv.drv","",1,1],"id":5448320633798711,"level":3,"parent":0,"text":"building 'leaf-31.drv.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/gsgdfm0j658k5w51sckh967f0668n1kz-leaf-24.drv","",1,1],"id":5448320633798712,"level":3,"parent":0,"text":"building 'leaf-24.drv'","type":105}
+@nix {"action":"stop","id":5448320633798711}
+@nix {"action":"stop","id":5448320633798710}
+@nix {"action":"stop","id":5448320633798712}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/z5d48nvsbdwajl6a5x42rqhqsdyy1q02-leaf-25.drv","",1,1],"id":5448320633798713,"level":3,"parent":0,"text":"building 'leaf-25.drv'","type":105}
+@nix {"action":"stop","id":5448320633798713}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/cwn5sa0w9a1iha8a0xj74x0z7hzgcxb2-leaf-26.drv","",1,1],"id":5448320633798714,"level":3,"parent":0,"text":"building 'leaf-26.drv'","type":105}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/xa79v472fpjfzcphv6ddx9xwmfivwic5-leaf-27.drv","",1,1],"id":5448320633798715,"level":3,"parent":0,"text":"building 'leaf-27.drv'","type":105}
+@nix {"action":"stop","id":5448320633798714}
+@nix {"action":"stop","id":5448320633798715}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/hlhabfqzxb2skrmz77iw50l8i26ljb0c-leaf-28.drv","",1,1],"id":5448320633798716,"level":3,"parent":0,"text":"building 'leaf-28.drv'","type":105}
+@nix {"action":"stop","id":5448320633798716}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/b6i8j3s03ashd2d0mqmspi6vffsajjl1-leaf-29.drv","",1,1],"id":5448320633798717,"level":3,"parent":0,"text":"building 'leaf-29.drv'","type":105}
+@nix {"action":"stop","id":5448320633798717}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/lv7a28zszd4ixymvd4ss41ii2s8x44jq-leaf-31.drv","",1,1],"id":5448320633798718,"level":3,"parent":0,"text":"building 'leaf-31.drv'","type":105}
+@nix {"action":"stop","id":5448320633798718}
+@nix {"action":"start","fields":["/tmp/obrador-shared-pins-linux/round-2-after/wide-round-1-jobs-8/store/hrzy3q51qlrd4zgzifaqyzpin3wfpqiq-leaf-30.drv","",1,1],"id":5448320633798719,"level":3,"parent":0,"text":"building 'leaf-30.drv'","type":105}
+@nix {"action":"stop","id":5448320633798719}

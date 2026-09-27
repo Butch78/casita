@@ -1,0 +1,19 @@
+Benchmarking bao_packing/loose-16385/32
+Benchmarking bao_packing/loose-16385/32: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 1.2s or enable flat sampling.
+Benchmarking bao_packing/loose-16385/32: Collecting 10 samples in estimated 1.2260 s (55 iterations)
+Benchmarking bao_packing/loose-16385/32: Analyzing
+bao_packing/loose-16385/32
+                        time:   [14.337 ms 14.419 ms 14.505 ms]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) low severe
+  1 (10.00%) high severe
+Benchmarking bao_packing/loose-16385/585
+Benchmarking bao_packing/loose-16385/585: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 3.7s.
+Benchmarking bao_packing/loose-16385/585: Collecting 10 samples in estimated 3.6811 s (10 iterations)
+Benchmarking bao_packing/loose-16385/585: Analyzing
+bao_packing/loose-16385/585
+                        time:   [244.91 ms 247.34 ms 249.87 ms]

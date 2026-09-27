@@ -1,0 +1,115 @@
+{
+  "completed_runs": 22,
+  "correctness_passed": 22,
+  "within_cpu_ceiling": 11,
+  "cases": {
+    "60": {
+      "accepted_pairs": 3,
+      "variants": {
+        "before": {
+          "import_seconds": {
+            "median": 4.528833597,
+            "min": 4.357327367,
+            "max": 5.033568125
+          },
+          "reader_p99_ms": {
+            "median": 93.57234100000001,
+            "min": 74.141452,
+            "max": 94.67173299999999
+          },
+          "removed_during_imports": {
+            "median": 969,
+            "min": 969,
+            "max": 969
+          },
+          "cleanup_removed": {
+            "median": 17,
+            "min": 17,
+            "max": 17
+          }
+        },
+        "after": {
+          "import_seconds": {
+            "median": 4.06233672,
+            "min": 3.667070447,
+            "max": 4.147979325
+          },
+          "reader_p99_ms": {
+            "median": 75.09721599999999,
+            "min": 73.316316,
+            "max": 84.577551
+          },
+          "removed_during_imports": {
+            "median": 969,
+            "min": 969,
+            "max": 969
+          },
+          "cleanup_removed": {
+            "median": 17,
+            "min": 17,
+            "max": 17
+          }
+        }
+      },
+      "paired_import_percent_changes": [
+        -19.295088114060242,
+        -19.028368597398927,
+        -4.804505706536699
+      ],
+      "median_paired_import_percent_change": -19.028368597398927
+    },
+    "300": {
+      "accepted_pairs": 1,
+      "variants": {
+        "before": {
+          "import_seconds": {
+            "median": 42.514414371,
+            "min": 42.514414371,
+            "max": 42.514414371
+          },
+          "reader_p99_ms": {
+            "median": 94.580094,
+            "min": 94.580094,
+            "max": 94.580094
+          },
+          "removed_during_imports": {
+            "median": 5066,
+            "min": 5066,
+            "max": 5066
+          },
+          "cleanup_removed": {
+            "median": 17,
+            "min": 17,
+            "max": 17
+          }
+        },
+        "after": {
+          "import_seconds": {
+            "median": 37.754814837,
+            "min": 37.754814837,
+            "max": 37.754814837
+          },
+          "reader_p99_ms": {
+            "median": 100.24455,
+            "min": 100.24455,
+            "max": 100.24455
+          },
+          "removed_during_imports": {
+            "median": 5066,
+            "min": 5066,
+            "max": 5066
+          },
+          "cleanup_removed": {
+            "median": 17,
+            "min": 17,
+            "max": 17
+          }
+        }
+      },
+      "paired_import_percent_changes": [
+        -11.195260723729096
+      ],
+      "median_paired_import_percent_change": -11.195260723729096
+    }
+  }
+}

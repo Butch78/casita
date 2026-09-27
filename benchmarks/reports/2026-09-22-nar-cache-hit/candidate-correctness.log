@@ -1,0 +1,22 @@
+Testing nar_generation/local-cached/1
+Success
+Testing nar_generation/local-raw-dedup/1
+Success
+Testing nar_generation/local-second-handle-cached/1
+Success
+Testing nar_generation/local-scrub/1
+Success
+Testing nar_generation/local-cached/256
+Success
+Testing nar_generation/local-raw-dedup/256
+Success
+Testing nar_generation/local-second-handle-cached/256
+Success
+Testing nar_generation/local-scrub/256
+Success
+Testing nar_generation/memory-cached/1
+Success
+Testing nar_generation/memory-raw-dedup/1
+Success
+Testing nar_generation/memory-scrub/1
+Success

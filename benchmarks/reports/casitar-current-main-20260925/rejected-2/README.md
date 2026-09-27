@@ -1,0 +1,1 @@
+Second attempt: rejected at 84.070% external CPU, above the authorized 40% ceiling. 36 of 162 measured intervals exceeded the ceiling. The peak was led by an external wasm-opt process. Six baseline samples are excluded. All validation builds for this task had finished before this attempt.

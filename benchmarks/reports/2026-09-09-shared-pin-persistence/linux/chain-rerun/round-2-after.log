@@ -1,0 +1,8 @@
+chain       nix     jobs= 8 round=1: 0.917s (14.33 ms/build)
+chain       obrador jobs= 8 round=1: 40.876s (638.69 ms/build)
+
+| Workload | Backend | Jobs | Median batch (s) | Amortized ms/build |
+|---|---|---:|---:|---:|
+| chain | nix | 8 | 0.917 | 14.33 |
+| chain | obrador | 8 | 40.876 | 638.69 |
+Results and stores: /tmp/casita-chain-rerun-l2oceybd/round-2-after

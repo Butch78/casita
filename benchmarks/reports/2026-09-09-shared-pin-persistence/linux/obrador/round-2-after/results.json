@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "host": "Linux-7.0.10-x86_64-with-glibc2.42",
+    "cpu_count": 16,
+    "count": 64,
+    "jobs": [
+      8
+    ],
+    "rounds": 1,
+    "workloads": [
+      "chain",
+      "wide"
+    ],
+    "dynamic_expression": "# Shared Linux/macOS workload: N generators + N floating builds.\n# Give the leaf a different output name so the generator does not rewrite its\n# placeholder while substituting its own $out into the serialized payload.\n{ nodes, shape, shell }:\nassert builtins.isInt nodes && nodes > 0;\nassert builtins.elem shape [ \"chain\" \"wide\" ];\nlet\n  seed = builtins.toFile \"seed\" \"seed\\n\";\n  make = index: previous:\n    let\n      leaf = derivation {\n        name = \"leaf-${toString index}\";\n        system = builtins.currentSystem;\n        builder = shell;\n        outputs = [ \"result\" ];\n        __contentAddressed = true;\n        outputHashMode = \"recursive\";\n        outputHashAlgo = \"sha256\";\n        inherit seed;\n        args = [ \"-c\" ''set -eu; read -r value < \"$seed\"; test \"$value\" = seed; printf 'value-${toString index}' > \"$result\"'' ];\n      };\n    in derivation {\n      name = \"leaf-${toString index}.drv\";\n      system = builtins.currentSystem;\n      builder = shell;\n      __contentAddressed = true;\n      outputHashMode = \"text\";\n      outputHashAlgo = \"sha256\";\n      inherit seed previous;\n      payload = builtins.unsafeDiscardStringContext (builtins.readFile leaf.drvPath);\n      args = [ \"-c\" ''set -eu; read -r value < \"$seed\"; test \"$value\" = seed; if test -n \"$previous\"; then test -s \"$previous\"; fi; printf '%s' \"$payload\" > \"$out\"'' ];\n    };\n  generators = builtins.genList (index: make index (\n    if shape == \"chain\" && index > 0\n    then builtins.outputOf (builtins.elemAt generators (index - 1)).outPath \"result\"\n    else \"\"\n  )) nodes;\n  targets = if shape == \"chain\" then [ (builtins.elemAt generators (nodes - 1)) ] else generators;\nin map (generator: generator.drvPath + \"^out^result\") targets\n",
+    "shared_expression": "# Each output retains references to its two predecessors, forming overlapping\n# transitive closures. Request every node so verification checks every byte.\n{ count ? 64, nonce ? \"manual\", system ? builtins.currentSystem }:\nassert builtins.isInt count && count > 0;\nlet\n  graph = builtins.genList (index:\n    let\n      dependencies = builtins.genList\n        (offset: builtins.elemAt graph (index - offset - 1))\n        (if index < 2 then index else 2);\n    in derivation {\n      name = \"shared-${nonce}-${toString index}\";\n      inherit system;\n      builder = \"/bin/sh\";\n      previous = dependencies;\n      value = \"value-${toString index}\";\n      args = [ \"-c\" ''\n        set -eu\n        printf '%s\\n' \"$value\" > \"$out\"\n        for dependency in $previous; do\n          test -s \"$dependency\"\n          printf '%s\\n' \"$dependency\" >> \"$out\"\n        done\n      '' ];\n      preferLocalBuild = true;\n      allowSubstitutes = false;\n    }) count;\nin graph\n",
+    "shell": "/nix/store/a48z5j76wm1n36yq87hsxh3byf2zq4h1-busybox-1.37.0/bin/busybox",
+    "build_counting": "Nix build activities; Obrador local_build trace completions",
+    "sandbox": true,
+    "base_command": [
+      "/nix/store/n4sps2fl79lqrms8mjvqg0wd7i07pk55-nix-2.36.0pre20260901_f8cd4ce/bin/nix",
+      "--extra-experimental-features",
+      "nix-command ca-derivations dynamic-derivations",
+      "--option",
+      "substituters",
+      "",
+      "--option",
+      "builders",
+      "",
+      "--option",
+      "build-users-group",
+      "",
+      "--option",
+      "cores",
+      "1",
+      "--option",
+      "sandbox",
+      "true",
+      "--option",
+      "sandbox-fallback",
+      "false",
+      "--option",
+      "require-sigs",
+      "false",
+      "--option",
+      "sandbox-paths",
+      "/bin/sh=/nix/store/a48z5j76wm1n36yq87hsxh3byf2zq4h1-busybox-1.37.0/bin/busybox"
+    ],
+    "expression": "# No nixpkgs dependency: the host /bin/sh reads one declared store input and\n# writes one output. Distinct names ensure these are separate derivations.\n{ count ? 64, nonce ? \"manual\", system ? builtins.currentSystem }:\nassert builtins.isInt count && count > 0;\nlet\n  input = builtins.toFile \"build-benchmark-input\" \"casita\\n\";\n  script = builtins.toFile \"build-benchmark.sh\" ''\n    set -eu\n    read value < \"$input\"\n    printf '%s' \"$value\" > \"$out\"\n  '';\nin\nbuiltins.genList (index: derivation {\n  name = \"build-benchmark-${nonce}-${toString index}\";\n  inherit system input;\n  builder = \"/bin/sh\";\n  args = [ script ];\n  preferLocalBuild = true;\n  allowSubstitutes = false;\n}) count\n",
+    "timing": "build CLI including startup/shutdown; preparation and verification excluded",
+    "plugin": "/tmp/obrador-shared-pins-linux/after.so",
+    "plugin_sha256": "61abc4f582a66bffc5c6d487006e114f9c76ba4ef2955106d0e875d699c0da8f",
+    "extra_trace_filter": null,
+    "nix_version": "nix (Nix) 2.36.0pre20260901_f8cd4ce\n"
+  },
+  "trials": [
+    {
+      "backend": "nix",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "chain",
+      "verified_builds": 64,
+      "wall_seconds": 0.8160041670780629,
+      "amortized_ms": 12.750065110594733,
+      "preparation_seconds": 0.1143074999563396,
+      "verification_copy_seconds": 0.06415705103427172,
+      "verified_outputs": 1
+    },
+    {
+      "backend": "obrador",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "chain",
+      "verified_builds": 64,
+      "wall_seconds": 22.787812425987795,
+      "amortized_ms": 356.0595691560593,
+      "preparation_seconds": 1.868574694963172,
+      "verification_copy_seconds": 3.073168558999896,
+      "verified_outputs": 1
+    },
+    {
+      "backend": "nix",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "wide",
+      "verified_builds": 64,
+      "wall_seconds": 0.7663416999857873,
+      "amortized_ms": 11.974089062277926,
+      "preparation_seconds": 0.1144404779188335,
+      "verification_copy_seconds": 0.11437517602462322,
+      "verified_outputs": 32
+    },
+    {
+      "backend": "obrador",
+      "round": 1,
+      "jobs": 8,
+      "count": 64,
+      "workload": "wide",
+      "verified_builds": 64,
+      "wall_seconds": 18.91661782702431,
+      "amortized_ms": 295.57215354725486,
+      "preparation_seconds": 4.0753867969615385,
+      "verification_copy_seconds": 2.7211679479805753,
+      "verified_outputs": 32
+    }
+  ]
+}

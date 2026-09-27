@@ -1,0 +1,287 @@
+{
+  "rustc": "1.96.0",
+  "profile": "release",
+  "features": "all",
+  "artifacts": [
+    {
+      "target": "online_collection",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/online_collection-cb427d5ba2047aa1",
+      "sha256": "f4413e5618c45b6505fecac0ffe4a8efdb2e0b2f2a8cc1e8d31e45125a212b60"
+    },
+    {
+      "target": "repository_workflows",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/repository_workflows-50ad0fa9c39bfb27",
+      "sha256": "2cd6a141b9b320d336121b38517985981aa41c8ce3d7b951324f619741ce96da"
+    },
+    {
+      "target": "run_cli",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/run_cli-799991dfbba7ea6a",
+      "sha256": "49ff604dc991ebf1598d7788562bf0f76b324dfa10ad4682d4ca2ac2ced8e19f"
+    },
+    {
+      "target": "full_disk_gc",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/full_disk_gc-0260099bb72961bf",
+      "sha256": "bbeef880f2caee74ed4cc7a2ec5e0c22f19825aa188144b8795491cc890106d3"
+    },
+    {
+      "target": "properties",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/properties-0a8b6a0d41a7de93",
+      "sha256": "1de3de3c6d28abed871b2dc3e7abd9665cf2b81a740decbc5736c46a06f47725"
+    },
+    {
+      "target": "importers",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/importers-33f1d2d48a34322a",
+      "sha256": "d29fb3f0610d61472ab6294ac21629311d04aaebf193874d8b82be95a41217e6"
+    },
+    {
+      "target": "mutation_sessions",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/mutation_sessions-c8feecb21309766d",
+      "sha256": "6525fe56a7bcd41afe8210c1e74caa8414794a5b9a0ac300323a750aea8ba787"
+    },
+    {
+      "target": "online_pin_ledger",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/online_pin_ledger-2f78f254c11528a4",
+      "sha256": "3ea4f30b2dc28c5c8ad77365ba04f5a5496da154876100b3d8db10dfc9ebf926"
+    },
+    {
+      "target": "s3_path_transfer",
+      "kind": [
+        "example"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/examples/s3_path_transfer",
+      "sha256": "4f841a825bafc823b606cae3cbc7506c0196969c4713b943581bc0743c66ceab"
+    },
+    {
+      "target": "git_import_cli",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/git_import_cli-6fe08fd0c8ba410c",
+      "sha256": "04d8e93bea1e95b99e696c7e2c59ac20872d1430d3801dbbabb21e9f31d49324"
+    },
+    {
+      "target": "pack_gc_rustfs",
+      "kind": [
+        "example"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/examples/pack_gc_rustfs",
+      "sha256": "2cd590d6365d4e3a190b78f81b14731e605b62a78050b592af685db871fe7c52"
+    },
+    {
+      "target": "portable_api",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/portable_api-8c0064da877f8d28",
+      "sha256": "7e3f35ea7f8709a9a9a0b5c7c7a5c544c042f8b27518200649f8b5c298e7e01f"
+    },
+    {
+      "target": "casita",
+      "kind": [
+        "bin"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/casita-9a4f3a3c89e2a140",
+      "sha256": "99bbbbf54fadb2d6465e34b0341beaca1b1d8fb9f15720ed781b7dee682dd562"
+    },
+    {
+      "target": "s3_hold_diagnostics",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/s3_hold_diagnostics-d8385cc5c07bbe2a",
+      "sha256": "534f12bc7dd6acecf098c9f4660624c00cbcf79ad2673ee8da36960106bb6517"
+    },
+    {
+      "target": "spillable_traversal",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/spillable_traversal-421ae9338b40678e",
+      "sha256": "1febea3b572617bb7044f698d5660ae2b9bb131ea8c56c21dad2cc25410ad8ec"
+    },
+    {
+      "target": "online_holds_contention",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/online_holds_contention-88ffcada2f4aeb52",
+      "sha256": "a65b7d6ae3d73dfcef7560135fe1035731f043b3b3ccd0eae9c0adf82dbddd50"
+    },
+    {
+      "target": "publication_cancellation",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/publication_cancellation-0a8f2ecbb01f2855",
+      "sha256": "55f14fcf42522eae628ec67e9222f1f2a6b749fc60423c50fc8ead6a0cfe68d5"
+    },
+    {
+      "target": "retained_process_pins",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/retained_process_pins-63152dcbe6d8bd82",
+      "sha256": "28874a752a23dd180094881fe50b5207c2b967681f82d6835d5dea898e8df928"
+    },
+    {
+      "target": "s3_sync",
+      "kind": [
+        "example"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/examples/s3_sync",
+      "sha256": "3f90af4c019c2e68f4e338ba8733bf236eb823887d0fd36ae4b898c76717987b"
+    },
+    {
+      "target": "publication_snapshot",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/publication_snapshot-22932b6c4184d09c",
+      "sha256": "d14d8bf70bedd92b1634d9490c34a21a70305ca92169e73115aa9beb006483f7"
+    },
+    {
+      "target": "verified_cli",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/verified_cli-1aceadc0431d2b1a",
+      "sha256": "010d767c747e1d0f3336702bb8517d41bedc5c71ad2cb4885dc810bf82d4eafa"
+    },
+    {
+      "target": "rooted_filesystem",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/rooted_filesystem-71b9534899ef387d",
+      "sha256": "e6b8fd23759f3b6125681cdbc196590bcdd9203d17bc832470a27316a346917e"
+    },
+    {
+      "target": "s3_application_api",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/s3_application_api-642cec0f29fcfaa5",
+      "sha256": "86d9a812a6b4bbb2a4761d13ab676b9dd79b16a8425ae6122f5ac04470a54931"
+    },
+    {
+      "target": "casitar_cli_pipes",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/casitar_cli_pipes-3de2abc89792a4e0",
+      "sha256": "325caaf33aaa6d14625fb426a1ab276382f67fd1e1bdc5cd241a1f9b2075acfb"
+    },
+    {
+      "target": "pack_cache_network",
+      "kind": [
+        "example"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/examples/pack_cache_network",
+      "sha256": "8c1b8b0b44c5dacf961bf619b6507ea4facc22a7f981971cdef349e92d6cb13e"
+    },
+    {
+      "target": "s3_collection_recovery",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/s3_collection_recovery-90a782a903676eaf",
+      "sha256": "d6baa46e79015c572e56dbc2a5aadf9c76eb721c72a590aa762dd12b15d0b08a"
+    },
+    {
+      "target": "pack_index_rustfs",
+      "kind": [
+        "example"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/examples/pack_index_rustfs",
+      "sha256": "69b98ba0eb4c2feb4c8f67b677d197bf3bad8f22d0648e76477e7f1e9fadaae9"
+    },
+    {
+      "target": "gix_casita_odb",
+      "kind": [
+        "example"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/examples/gix_casita_odb",
+      "sha256": "2d6b45c794a2fd06edde95a88d0a06e96f27493bb421975ba2c87ba4e1963087"
+    },
+    {
+      "target": "local_hold_diagnostics",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/local_hold_diagnostics-19990c3bacdbb149",
+      "sha256": "4462c12575eb4860401136c030e410dbe4ff3651851a876618362f1bbb9fec9a"
+    },
+    {
+      "target": "generic_encodings",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/generic_encodings-154acbd641377576",
+      "sha256": "d02feec0c93511c2eee6f03cae269f896f975a0f007b3896a7a260ebe6243754"
+    },
+    {
+      "target": "turso_multiprocess",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/turso_multiprocess-96e28cf6fe3d2ac4",
+      "sha256": "068649131affb5c8708772fd1e79fb453e5441498753be0850c22eef82e981fb"
+    },
+    {
+      "target": "hostile_inputs",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/hostile_inputs-ce98897f115bc5cb",
+      "sha256": "bb384102147a7af2e5aad39a44cda14a3afc5ad0768f570bd98f20ce6e23454a"
+    },
+    {
+      "target": "casita",
+      "kind": [
+        "lib"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/casita-bce5d34f55b031aa",
+      "sha256": "663cac8e23f1c15eb7fecce4ade74e4208fbb865ea2547a5d5f95b878de77d9d"
+    },
+    {
+      "target": "casita",
+      "kind": [
+        "bin"
+      ],
+      "path": "/home/domen/dev/casita6/target/release/casita",
+      "sha256": "e0f346c974ba22b5abf910e41a35c7d5bf131a537ec72f570b743addbbb19985"
+    },
+    {
+      "target": "application_api",
+      "kind": [
+        "test"
+      ],
+      "path": "/home/domen/.cargo/build/57/be681442755f18/release/deps/application_api-102c53f8bcea8fd6",
+      "sha256": "4d6f92b9affb805f2d7f86dd74620c24aabb9f782ffba150b3d1fbbf3cdf4ebf"
+    }
+  ]
+}

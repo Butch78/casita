@@ -1,0 +1,27 @@
+{
+  "fixture": "Obrador streaming_memory, unique 65536-byte files encoded incrementally to disk",
+  "limit_bytes": 25165824,
+  "before_capacity_fix": [
+    {
+      "files": 512,
+      "payload_bytes": 33554432,
+      "peak_growth_bytes": 39145317,
+      "passed": false
+    }
+  ],
+  "after_capacity_fix": [
+    {
+      "files": 512,
+      "payload_bytes": 33554432,
+      "peak_growth_bytes": 8122485,
+      "passed": true
+    },
+    {
+      "files": 2048,
+      "payload_bytes": 134217728,
+      "peak_growth_bytes": 11164867,
+      "passed": true
+    }
+  ],
+  "scope": "Rust global allocator growth during import, not RSS or native codec allocations"
+}

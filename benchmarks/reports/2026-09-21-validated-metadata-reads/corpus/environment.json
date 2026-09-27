@@ -1,0 +1,17 @@
+{
+  "captured_at_utc": "2026-09-21T19:18:28.182997+00:00",
+  "hostname": "cherimoya",
+  "platform": "Linux-7.2.2-x86_64-with-glibc2.42",
+  "kernel": "7.2.2",
+  "architecture": "x86_64",
+  "cpu": "AMD Ryzen 7 7840S with Radeon 780M Graphics",
+  "logical_cpus": 16,
+  "memory_bytes": 29177946112,
+  "cpu_governor": "performance",
+  "filesystem": "btrfs /dev/mapper/encryptedroot rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/",
+  "python": "3.14.7",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+  "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+  "casita_revision": "822268666753536d137796541bf7853daef9df0a",
+  "casita_worktree_dirty": true
+}

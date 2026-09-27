@@ -1,0 +1,124 @@
+Benchmarking bao_packing/loose-16385/1
+Benchmarking bao_packing/loose-16385/1: Warming up for 100.00 ms
+Benchmarking bao_packing/loose-16385/1: Collecting 10 samples in estimated 1.3296 s (220 iterations)
+Benchmarking bao_packing/loose-16385/1: Analyzing
+bao_packing/loose-16385/1
+                        time:   [5.7234 ms 5.8002 ms 5.8479 ms]
+Benchmarking bao_packing/packed-16385/1
+Benchmarking bao_packing/packed-16385/1: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-16385/1: Collecting 10 samples in estimated 1.0519 s (165 iterations)
+Benchmarking bao_packing/packed-16385/1: Analyzing
+bao_packing/packed-16385/1
+                        time:   [5.7440 ms 5.8374 ms 5.9455 ms]
+Benchmarking bao_packing/loose-16385/32
+Benchmarking bao_packing/loose-16385/32: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 1.4s or enable flat sampling.
+Benchmarking bao_packing/loose-16385/32: Collecting 10 samples in estimated 1.4442 s (55 iterations)
+Benchmarking bao_packing/loose-16385/32: Analyzing
+bao_packing/loose-16385/32
+                        time:   [16.679 ms 18.040 ms 19.187 ms]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) low severe
+  1 (10.00%) high severe
+Benchmarking bao_packing/packed-16385/32
+Benchmarking bao_packing/packed-16385/32: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-16385/32: Collecting 10 samples in estimated 1.4082 s (165 iterations)
+Benchmarking bao_packing/packed-16385/32: Analyzing
+bao_packing/packed-16385/32
+                        time:   [6.5019 ms 6.6081 ms 6.6705 ms]
+Benchmarking bao_packing/loose-16385/584
+Benchmarking bao_packing/loose-16385/584: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 3.5s.
+Benchmarking bao_packing/loose-16385/584: Collecting 10 samples in estimated 3.5296 s (10 iterations)
+Benchmarking bao_packing/loose-16385/584: Analyzing
+bao_packing/loose-16385/584
+                        time:   [264.79 ms 268.85 ms 273.33 ms]
+Benchmarking bao_packing/packed-16385/584
+Benchmarking bao_packing/packed-16385/584: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-16385/584: Collecting 10 samples in estimated 1.1012 s (30 iterations)
+Benchmarking bao_packing/packed-16385/584: Analyzing
+bao_packing/packed-16385/584
+                        time:   [8.0301 ms 8.2380 ms 8.4471 ms]
+Benchmarking bao_packing/loose-16385/585
+Benchmarking bao_packing/loose-16385/585: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 3.9s.
+Benchmarking bao_packing/loose-16385/585: Collecting 10 samples in estimated 3.8595 s (10 iterations)
+Benchmarking bao_packing/loose-16385/585: Analyzing
+bao_packing/loose-16385/585
+                        time:   [255.98 ms 290.99 ms 354.78 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking bao_packing/packed-16385/585
+Benchmarking bao_packing/packed-16385/585: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-16385/585: Collecting 10 samples in estimated 1.0955 s (30 iterations)
+Benchmarking bao_packing/packed-16385/585: Analyzing
+bao_packing/packed-16385/585
+                        time:   [7.6827 ms 7.8120 ms 7.9451 ms]
+Benchmarking bao_packing/loose-16385/586
+Benchmarking bao_packing/loose-16385/586: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 3.9s.
+Benchmarking bao_packing/loose-16385/586: Collecting 10 samples in estimated 3.8805 s (10 iterations)
+Benchmarking bao_packing/loose-16385/586: Analyzing
+bao_packing/loose-16385/586
+                        time:   [257.73 ms 262.02 ms 266.97 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking bao_packing/packed-16385/586
+Benchmarking bao_packing/packed-16385/586: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-16385/586: Collecting 10 samples in estimated 1.3979 s (30 iterations)
+Benchmarking bao_packing/packed-16385/586: Analyzing
+bao_packing/packed-16385/586
+                        time:   [11.343 ms 12.079 ms 13.001 ms]
+Found 2 outliers among 10 measurements (20.00%)
+  1 (10.00%) high mild
+  1 (10.00%) high severe
+Benchmarking bao_packing/loose-1064959/16
+Benchmarking bao_packing/loose-1064959/16: Warming up for 100.00 ms
+Benchmarking bao_packing/loose-1064959/16: Collecting 10 samples in estimated 1.9465 s (110 iterations)
+Benchmarking bao_packing/loose-1064959/16: Analyzing
+bao_packing/loose-1064959/16
+                        time:   [8.9228 ms 9.1682 ms 9.3880 ms]
+Benchmarking bao_packing/packed-1064959/16
+Benchmarking bao_packing/packed-1064959/16: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-1064959/16: Collecting 10 samples in estimated 1.6310 s (110 iterations)
+Benchmarking bao_packing/packed-1064959/16: Analyzing
+bao_packing/packed-1064959/16
+                        time:   [10.262 ms 10.438 ms 10.611 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) low mild
+Benchmarking bao_packing/loose-1064960/16
+Benchmarking bao_packing/loose-1064960/16: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 1.2s or enable flat sampling.
+Benchmarking bao_packing/loose-1064960/16: Collecting 10 samples in estimated 1.1625 s (55 iterations)
+Benchmarking bao_packing/loose-1064960/16: Analyzing
+bao_packing/loose-1064960/16
+                        time:   [8.8660 ms 9.2066 ms 9.5028 ms]
+Benchmarking bao_packing/packed-1064960/16
+Benchmarking bao_packing/packed-1064960/16: Warming up for 100.00 ms
+
+Warning: Unable to complete 10 samples in 1.0s. You may wish to increase target time to 1.1s or enable flat sampling.
+Benchmarking bao_packing/packed-1064960/16: Collecting 10 samples in estimated 1.1416 s (55 iterations)
+Benchmarking bao_packing/packed-1064960/16: Analyzing
+bao_packing/packed-1064960/16
+                        time:   [10.306 ms 10.864 ms 11.760 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe
+Benchmarking bao_packing/loose-1064961/16
+Benchmarking bao_packing/loose-1064961/16: Warming up for 100.00 ms
+Benchmarking bao_packing/loose-1064961/16: Collecting 10 samples in estimated 1.7263 s (110 iterations)
+Benchmarking bao_packing/loose-1064961/16: Analyzing
+bao_packing/loose-1064961/16
+                        time:   [8.7242 ms 9.0562 ms 9.2623 ms]
+Benchmarking bao_packing/packed-1064961/16
+Benchmarking bao_packing/packed-1064961/16: Warming up for 100.00 ms
+Benchmarking bao_packing/packed-1064961/16: Collecting 10 samples in estimated 1.6246 s (110 iterations)
+Benchmarking bao_packing/packed-1064961/16: Analyzing
+bao_packing/packed-1064961/16
+                        time:   [8.9846 ms 10.644 ms 15.609 ms]
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high severe

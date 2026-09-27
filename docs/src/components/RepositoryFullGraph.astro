@@ -1,0 +1,64 @@
+---
+import RepositoryIcon from './RepositoryIcon.astro';
+interface Props { files: { label: string; path: string }[]; rootName: string; }
+const { files, rootName } = Astro.props;
+const centers = [300,100,500];
+const columns = [2,1,3];
+const chunkX = { A:180, B:300, C:420, D:60, E:540 };
+---
+<div class="expanded-graph" role="group" aria-label="Storage graph: a named root, directory, file objects, blobs, and chunks">
+  <div class="graph">
+    <svg viewBox="0 0 600 465" preserveAspectRatio="none" aria-hidden="true">
+      <path class="retention-edge" d="M300 50V88" />
+      {centers.map(x => <path class="retention-edge" d={`M300 148 C300 180 ${x} 173 ${x} 205`} />)}
+    </svg>
+    <div class="root node" data-build-root><strong>{rootName}</strong><small>Named root</small></div>
+    <div class="directory node" data-directory><strong>Output directory</strong><small>Directory object · file entries</small></div>
+    <div class="row objects">{files.map((file,i)=><div class:list={["node", { context: i > 0 }]} style={`grid-column:${columns[i]};grid-row:1`} data-object={i}><RepositoryIcon name="object" /><strong title={file.path}>{file.label}</strong><small>File object</small></div>)}</div>
+    <div class="row blobs">{files.map((_,i)=><div class:list={["node", { context: i > 0 }]} style={`grid-column:${columns[i]};grid-row:1`} data-blob={i}><RepositoryIcon name="blob" /><strong>Blob</strong><small>File contents</small></div>)}</div>
+    <div class="row chunks">{Object.keys(chunkX).map(chunk=><div class:list={["node", { context: !["A","B","C"].includes(chunk) }]} style={`grid-column:${(chunkX[chunk as keyof typeof chunkX]+60)/120};grid-row:1`} data-chunk={chunk} data-tone={chunk}><strong>{chunk}</strong><small>chunk</small></div>)}</div>
+  </div>
+  <p class="note">Storage links, not compilation dependencies. Chunk boundaries and sharing are illustrative; directory payload details are omitted.</p>
+</div>
+<style>
+  .expanded-graph { margin: 1.2rem .8rem; }
+  p { color: var(--sl-color-gray-2); font-size: .8rem; line-height: 1.6; margin: 0 0 1.5rem; }
+  .graph { height: 465px; position: relative; }
+  svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  svg path { fill: none; stroke: var(--sl-color-gray-2); stroke-width: 1; opacity: .5; vector-effect: non-scaling-stroke; }
+  .node { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .2rem; border: 1px solid var(--landing-line); border-radius: 7px; background: var(--sl-color-bg); min-width: 0; }
+  .node strong { font: .75rem var(--sl-font-mono); color: var(--sl-color-white); }
+  .node small { font-size: .63rem; color: var(--sl-color-gray-2); }
+
+  .node :global(.repository-icon) { position: static; width: 16px; height: 16px; color: var(--sl-color-gray-2); }
+  .root,.directory { position: absolute; left: 50%; transform: translateX(-50%); width: 200px; }
+  .root { opacity: var(--root-opacity,.18); top: 0; height: 50px; }
+  .directory { opacity: var(--directory-opacity,.18); top: 88px; height: 60px; }
+  .row { position: absolute; left: 0; right: 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .row .node { margin-inline: 4px; }
+  .objects { top: 205px; height: 60px; }
+  .blobs { top: 306px; height: 55px; }
+  .chunks { top: 411px; height: 54px; grid-template-columns: repeat(5,minmax(0,1fr)); }
+  .chunks .node { border-color: color-mix(in srgb,var(--sl-color-text-accent) 45%,var(--landing-line)); }
+  .note { margin: 1rem 0 0; font-size: .7rem; }
+  [data-object] { opacity: var(--object-opacity,.18); }
+  [data-blob] { opacity: var(--blob-opacity,.18); }
+  [data-chunk] { opacity: var(--stored,.15); }
+  .context strong { font-size: .66rem; }
+  svg .retention-edge { opacity: var(--retention-edge-opacity,.12); }
+  [data-tone='A'] { --chunk-color: var(--sl-color-text-accent); }
+  [data-tone='B'] { --chunk-color: light-dark(#2865b0,#81b4f0); }
+  [data-tone='C'] { --chunk-color: light-dark(#15766c,#6ac8b7); }
+  [data-tone='D'] { --chunk-color: var(--sl-color-gray-2); }
+  [data-tone='E'] { --chunk-color: var(--sl-color-gray-2); }
+  .chunks [data-tone] { border-color: var(--chunk-color); }
+  .chunks [data-tone] strong { color: var(--chunk-color); }
+  @media(max-width:400px) {
+    .expanded-graph { margin-inline: .35rem; }
+    .node strong { font-size: .7rem; }
+    .context strong { font-size: .57rem; }
+    .node small { font-size: .57rem; }
+    .row .node { margin-inline: 2px; }
+  }
+  .node,svg path { transition: none; }
+</style>

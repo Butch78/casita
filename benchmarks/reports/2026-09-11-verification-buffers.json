@@ -1,0 +1,225 @@
+{
+  "schema": "casita.verification-buffers.v1",
+  "date": "2026-09-11",
+  "baseline_commit": "843497a9fa7833d8661fb46cda362dc23bb27840",
+  "candidate_patch": "diff --git a/src/format.rs b/src/format.rs\nindex 3ce0a1a..8662e40 100644\n--- a/src/format.rs\n+++ b/src/format.rs\n@@ -494,7 +494,15 @@ impl ObjectFormat for BlobFormat {\n         limits: &FormatLimits,\n     ) -> Result<VerifiedObject, FormatError> {\n         let expected = expected_digest(context.key(), &self.namespace)?;\n-        let mut buffer = vec![0u8; limits.read_buffer_bytes.max(1)];\n+        // Size hints only bound scratch space; even a zero or understated\n+        // length must still read to EOF and verify every byte.\n+        let buffer_bytes = context\n+            .exact_len()\n+            .and_then(|size| usize::try_from(size).ok())\n+            .unwrap_or(limits.read_buffer_bytes)\n+            .min(limits.read_buffer_bytes)\n+            .max(1);\n+        let mut buffer = vec![0u8; buffer_bytes];\n         while context.read(&mut buffer).await? != 0 {\n             if context.observed_size() > limits.max_payload_bytes {\n                 return Err(FormatError::PayloadLimit {\n@@ -818,6 +826,77 @@ mod tests {\n         ));\n     }\n \n+    #[tokio::test]\n+    async fn blob_verifier_uses_length_only_as_a_buffer_hint() {\n+        struct HintedReader<'a> {\n+            bytes: &'a [u8],\n+            length: Option<u64>,\n+            largest_buffer: usize,\n+            eof: bool,\n+        }\n+\n+        #[async_trait]\n+        impl PayloadReader for HintedReader<'_> {\n+            fn exact_len(&self) -> Option<u64> {\n+                self.length\n+            }\n+\n+            async fn read(&mut self, buffer: &mut [u8]) -> io::Result<usize> {\n+                assert!(!buffer.is_empty());\n+                self.largest_buffer = self.largest_buffer.max(buffer.len());\n+                let count = std::io::Read::read(&mut self.bytes, buffer)?;\n+                self.eof |= count == 0;\n+                Ok(count)\n+            }\n+        }\n+\n+        let bytes = b\"the full payload must be verified despite its length hint\";\n+        let key = ObjectKey::blob(BlobId::new(Digest::hash(bytes)));\n+        for length in [\n+            None,\n+            Some(0),\n+            Some(1),\n+            Some(bytes.len() as u64),\n+            Some(u64::MAX),\n+        ] {\n+            for capacity in [0, 1, 32, 65536] {\n+                let mut reader = HintedReader {\n+                    bytes,\n+                    length,\n+                    largest_buffer: 0,\n+                    eof: false,\n+                };\n+                let limits = FormatLimits {\n+                    read_buffer_bytes: capacity,\n+                    ..Default::default()\n+                };\n+                let verified = BlobFormat::default()\n+                    .verify(VerificationContext::new(&key, &mut reader), &limits)\n+                    .await\n+                    .unwrap();\n+                assert_eq!(verified.record().payload_size(), bytes.len() as u64);\n+                assert_eq!(verified.record().key(), &key);\n+                assert!(reader.eof);\n+                assert!(reader.largest_buffer <= capacity.max(1));\n+                if length == Some(bytes.len() as u64) {\n+                    assert!(reader.largest_buffer <= bytes.len());\n+                }\n+\n+                reader.bytes = bytes;\n+                let limits = FormatLimits {\n+                    max_payload_bytes: bytes.len() as u64 - 1,\n+                    ..limits\n+                };\n+                assert!(matches!(\n+                    BlobFormat::default()\n+                        .verify(VerificationContext::new(&key, &mut reader), &limits)\n+                        .await,\n+                    Err(FormatError::PayloadLimit { .. })\n+                ));\n+            }\n+        }\n+    }\n+\n     #[tokio::test]\n     async fn directory_verifier_extracts_sorted_unique_links() {\n         let blob = BlobId::new(Digest::from([1; 32]));\n",
+  "shared_benchmark_source": "//! Controlled comparisons for the September 2026 optimization experiments.\n//! Each codec variant round-trips the same bytes before it is timed.\n\nmod bench_util;\n\nuse std::hint::black_box;\n\nuse casita::experimental::{MetadataStore, ObjectKey, Repository};\nuse criterion::{BenchmarkId, Criterion, Throughput, criterion_group, criterion_main};\n\n/// Scratch allocation for known and unknown payload lengths, including both\n/// sides of the default 64 KiB read-buffer cap. Every sample verifies EOF,\n/// content identity, and the complete payload size.\nfn verification_buffers(c: &mut Criterion) {\n    use casita::experimental::{\n        BlobFormat, BlobId, FormatLimits, ObjectFormat, PayloadReader, VerificationContext,\n    };\n\n    struct Reader<'a> {\n        bytes: &'a [u8],\n        length: Option<u64>,\n        largest_buffer: usize,\n        eof: bool,\n    }\n\n    #[async_trait::async_trait]\n    impl PayloadReader for Reader<'_> {\n        fn exact_len(&self) -> Option<u64> {\n            self.length\n        }\n\n        async fn read(&mut self, buffer: &mut [u8]) -> std::io::Result<usize> {\n            assert!(!buffer.is_empty());\n            self.largest_buffer = self.largest_buffer.max(buffer.len());\n            let count = std::io::Read::read(&mut self.bytes, buffer)?;\n            self.eof |= count == 0;\n            Ok(count)\n        }\n    }\n\n    let runtime = bench_util::runtime();\n    let format = BlobFormat::default();\n    let limits = FormatLimits::default();\n    let mut group = c.benchmark_group(\"verification_buffers\");\n    group.sample_size(10);\n    for size in [0, 1, 1024, 16384, 65535, 65536, 65537, 262144] {\n        let data = bench_util::random_bytes(103, size);\n        let key = ObjectKey::blob(BlobId::new(blake3::hash(&data).into()));\n        group.throughput(Throughput::Bytes(size as u64));\n        for (kind, length) in [(\"known\", Some(size as u64)), (\"unknown\", None)] {\n            let verify = || async {\n                let mut reader = Reader {\n                    bytes: &data,\n                    length,\n                    largest_buffer: 0,\n                    eof: false,\n                };\n                let verified = format\n                    .verify(VerificationContext::new(&key, &mut reader), &limits)\n                    .await\n                    .unwrap();\n                assert_eq!(verified.record().key(), &key);\n                assert_eq!(verified.record().payload_size(), size as u64);\n                assert!(reader.eof);\n                assert!(reader.largest_buffer <= limits.read_buffer_bytes);\n                reader.largest_buffer\n            };\n            let largest_buffer = runtime.block_on(verify());\n            eprintln!(\n                \"{}\",\n                serde_json::json!({\"case\": format!(\"verification_buffers/{kind}/{size}\"),\n                    \"largest_read_buffer_bytes\": largest_buffer, \"correctness\": \"passed\"})\n            );\n            group.bench_function(BenchmarkId::new(kind, size), |b| {\n                b.to_async(&runtime).iter(verify)\n            });\n        }\n    }\n    group.finish();\n}\n\nfn codecs(c: &mut Criterion) {\n    let mut group = c.benchmark_group(\"record_decode\");\n    group.sample_size(20);\n    for len in [128, 4096, 262_144] {\n        let data = bench_util::compressible_bytes(73, len);\n        let compressed = zstd::bulk::compress(&data, 1).unwrap();\n        let size = zstd::zstd_safe::get_frame_content_size(&compressed)\n            .unwrap()\n            .unwrap() as usize;\n        assert_eq!(size, data.len());\n        let mut decoder = zstd::bulk::Decompressor::new().unwrap();\n        assert_eq!(decoder.decompress(&compressed, size).unwrap(), data);\n        group.throughput(Throughput::Bytes(len as u64));\n        group.bench_with_input(\n            BenchmarkId::new(\"limit_capacity\", len),\n            &compressed,\n            |b, input| {\n                b.iter(|| {\n                    black_box(zstd::bulk::decompress(black_box(input), 256 * 1024 * 1024).unwrap())\n                })\n            },\n        );\n        group.bench_with_input(\n            BenchmarkId::new(\"frame_capacity\", len),\n            &compressed,\n            |b, input| {\n                b.iter(|| {\n                    let size = zstd::zstd_safe::get_frame_content_size(input)\n                        .unwrap()\n                        .unwrap() as usize;\n                    black_box(zstd::bulk::decompress(black_box(input), size).unwrap())\n                })\n            },\n        );\n        group.bench_with_input(\n            BenchmarkId::new(\"reused_context\", len),\n            &compressed,\n            |b, input| b.iter(|| black_box(decoder.decompress(black_box(input), size).unwrap())),\n        );\n    }\n    group.finish();\n\n    let mut group = c.benchmark_group(\"chunk_compression\");\n    group.sample_size(20);\n    for len in [4096, 262_144] {\n        for (kind, data) in [\n            (\"text\", bench_util::compressible_bytes(73, len)),\n            (\"random\", bench_util::random_bytes(73, len)),\n        ] {\n            let mut compressor = zstd::bulk::Compressor::new(3).unwrap();\n            let compressed = compressor.compress(&data).unwrap();\n            assert_eq!(zstd::bulk::decompress(&compressed, len).unwrap(), data);\n            group.throughput(Throughput::Bytes(len as u64));\n            group.bench_function(format!(\"fresh/{kind}/{len}\"), |b| {\n                b.iter(|| black_box(zstd::bulk::compress(black_box(&data), 3).unwrap()))\n            });\n            group.bench_function(format!(\"reused/{kind}/{len}\"), |b| {\n                b.iter(|| black_box(compressor.compress(black_box(&data)).unwrap()))\n            });\n        }\n    }\n    group.finish();\n}\n\nfn repository_metadata(c: &mut Criterion) {\n    let rt = bench_util::runtime();\n    let temp = tempfile::tempdir().unwrap();\n    let repo = rt.block_on(Repository::local(temp.path())).unwrap();\n    let keys = rt.block_on(async {\n        let mutation = repo.mutation_session().await.unwrap();\n        let mut staged = Vec::new();\n        let mut keys = Vec::new();\n        for number in 0u64..1024 {\n            let object = mutation.stage_blob(&number.to_le_bytes()).await.unwrap();\n            keys.push(object.record().key().clone());\n            staged.push(object);\n        }\n        mutation.publish_unrooted(staged).await.unwrap();\n        keys\n    });\n    let snapshot = rt.block_on(repo.metadata().snapshot()).unwrap();\n    let mut group = c.benchmark_group(\"state_lookup\");\n    group.sample_size(20);\n    group.throughput(Throughput::Elements(keys.len() as u64));\n    group.bench_function(\"records_1024\", |b| {\n        b.to_async(&rt)\n            .iter(|| async { black_box(snapshot.object_batch(&keys).await.unwrap()) })\n    });\n    group.bench_function(\"payloads_1024\", |b| {\n        b.to_async(&rt)\n            .iter(|| async { black_box(snapshot.object_payload_batch(&keys).await.unwrap()) })\n    });\n    group.finish();\n\n    let bytes = bench_util::compressible_bytes(75, 4096);\n    let key = ObjectKey::blob(casita::experimental::BlobId::new(\n        blake3::hash(&bytes).into(),\n    ));\n    let mutation = rt.block_on(repo.mutation_session()).unwrap();\n    let mut group = c.benchmark_group(\"generic_stage\");\n    group.sample_size(20);\n    group.throughput(Throughput::Bytes(bytes.len() as u64));\n    group.bench_function(\"slice_4k\", |b| {\n        b.to_async(&rt)\n            .iter(|| async { black_box(mutation.stage_object(key.clone(), &bytes).await.unwrap()) })\n    });\n    group.finish();\n}\n\ncriterion_group!(benches, codecs, repository_metadata, verification_buffers);\ncriterion_main!(benches);\n",
+  "shared_benchmark_sha256": "430259e592a7e923ccbd700020a3ab9e9ba39b4b449cc8b0b01bf895898608a8",
+  "candidate_format_sha256": "cdb5bbe733461f15659b03593c9cb9dae50ac1f057b117ac7779e22a1fafe058",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: x86_64-unknown-linux-gnu\nrelease: 1.96.0\nLLVM version: 22.1.2\n",
+  "build_command": [
+    "cargo",
+    "bench",
+    "--locked",
+    "--features",
+    "experimental",
+    "--bench",
+    "optimization",
+    "--no-run"
+  ],
+  "metric": "Largest initialized scratch slice passed to PayloadReader::read; not total allocations, RSS, or timing.",
+  "variants": {
+    "baseline": {
+      "binary_sha256": "b1a30e2e68e2d8e9b1ef27af013894dded57989518eb0c969199784aa198b41b",
+      "command": [
+        "/home/domen/dev/casita3/benchmarks/results/2026-09-11-verification-buffers/baseline",
+        "--test",
+        "verification_buffers"
+      ],
+      "exit_code": 0,
+      "cases": [
+        {
+          "case": "verification_buffers/known/0",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/0",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/1",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/1",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/1024",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/1024",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/16384",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/16384",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/65535",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/65535",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/65536",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/65536",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/65537",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/65537",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/262144",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/262144",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        }
+      ],
+      "log": "{\"case\":\"verification_buffers/known/0\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/0\nSuccess\n{\"case\":\"verification_buffers/unknown/0\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/0\nSuccess\n{\"case\":\"verification_buffers/known/1\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/1\nSuccess\n{\"case\":\"verification_buffers/unknown/1\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/1\nSuccess\n{\"case\":\"verification_buffers/known/1024\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/1024\nSuccess\n{\"case\":\"verification_buffers/unknown/1024\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/1024\nSuccess\n{\"case\":\"verification_buffers/known/16384\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/16384\nSuccess\n{\"case\":\"verification_buffers/unknown/16384\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/16384\nSuccess\n{\"case\":\"verification_buffers/known/65535\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65535\nSuccess\n{\"case\":\"verification_buffers/unknown/65535\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65535\nSuccess\n{\"case\":\"verification_buffers/known/65536\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65536\nSuccess\n{\"case\":\"verification_buffers/unknown/65536\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65536\nSuccess\n{\"case\":\"verification_buffers/known/65537\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65537\nSuccess\n{\"case\":\"verification_buffers/unknown/65537\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65537\nSuccess\n{\"case\":\"verification_buffers/known/262144\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/262144\nSuccess\n{\"case\":\"verification_buffers/unknown/262144\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/262144\nSuccess\n\n"
+    },
+    "candidate": {
+      "binary_sha256": "b4860288c30b2d8a62614da877325f632f2189f2a5a2470fd63ff3713f12d6e7",
+      "command": [
+        "/home/domen/dev/casita3/benchmarks/results/2026-09-11-verification-buffers/candidate",
+        "--test",
+        "verification_buffers"
+      ],
+      "exit_code": 0,
+      "cases": [
+        {
+          "case": "verification_buffers/known/0",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 1
+        },
+        {
+          "case": "verification_buffers/unknown/0",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/1",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 1
+        },
+        {
+          "case": "verification_buffers/unknown/1",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/1024",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 1024
+        },
+        {
+          "case": "verification_buffers/unknown/1024",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/16384",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 16384
+        },
+        {
+          "case": "verification_buffers/unknown/16384",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/65535",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65535
+        },
+        {
+          "case": "verification_buffers/unknown/65535",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/65536",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/65536",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/65537",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/65537",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/known/262144",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        },
+        {
+          "case": "verification_buffers/unknown/262144",
+          "correctness": "passed",
+          "largest_read_buffer_bytes": 65536
+        }
+      ],
+      "log": "{\"case\":\"verification_buffers/known/0\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":1}\nTesting verification_buffers/known/0\nSuccess\n{\"case\":\"verification_buffers/unknown/0\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/0\nSuccess\n{\"case\":\"verification_buffers/known/1\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":1}\nTesting verification_buffers/known/1\nSuccess\n{\"case\":\"verification_buffers/unknown/1\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/1\nSuccess\n{\"case\":\"verification_buffers/known/1024\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":1024}\nTesting verification_buffers/known/1024\nSuccess\n{\"case\":\"verification_buffers/unknown/1024\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/1024\nSuccess\n{\"case\":\"verification_buffers/known/16384\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":16384}\nTesting verification_buffers/known/16384\nSuccess\n{\"case\":\"verification_buffers/unknown/16384\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/16384\nSuccess\n{\"case\":\"verification_buffers/known/65535\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65535}\nTesting verification_buffers/known/65535\nSuccess\n{\"case\":\"verification_buffers/unknown/65535\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65535\nSuccess\n{\"case\":\"verification_buffers/known/65536\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65536\nSuccess\n{\"case\":\"verification_buffers/unknown/65536\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65536\nSuccess\n{\"case\":\"verification_buffers/known/65537\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65537\nSuccess\n{\"case\":\"verification_buffers/unknown/65537\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65537\nSuccess\n{\"case\":\"verification_buffers/known/262144\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/262144\nSuccess\n{\"case\":\"verification_buffers/unknown/262144\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/262144\nSuccess\n\n"
+    }
+  },
+  "rejected_attempts": [
+    {
+      "reason": "Shared Cargo cache returned the candidate executable for the baseline checkout.",
+      "binary_sha256": "b4860288c30b2d8a62614da877325f632f2189f2a5a2470fd63ff3713f12d6e7",
+      "log": "{\"case\":\"verification_buffers/known/0\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":1}\nTesting verification_buffers/known/0\nSuccess\n{\"case\":\"verification_buffers/unknown/0\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/0\nSuccess\n{\"case\":\"verification_buffers/known/1\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":1}\nTesting verification_buffers/known/1\nSuccess\n{\"case\":\"verification_buffers/unknown/1\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/1\nSuccess\n{\"case\":\"verification_buffers/known/1024\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":1024}\nTesting verification_buffers/known/1024\nSuccess\n{\"case\":\"verification_buffers/unknown/1024\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/1024\nSuccess\n{\"case\":\"verification_buffers/known/16384\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":16384}\nTesting verification_buffers/known/16384\nSuccess\n{\"case\":\"verification_buffers/unknown/16384\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/16384\nSuccess\n{\"case\":\"verification_buffers/known/65535\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65535}\nTesting verification_buffers/known/65535\nSuccess\n{\"case\":\"verification_buffers/unknown/65535\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65535\nSuccess\n{\"case\":\"verification_buffers/known/65536\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65536\nSuccess\n{\"case\":\"verification_buffers/unknown/65536\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65536\nSuccess\n{\"case\":\"verification_buffers/known/65537\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/65537\nSuccess\n{\"case\":\"verification_buffers/unknown/65537\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/65537\nSuccess\n{\"case\":\"verification_buffers/known/262144\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/known/262144\nSuccess\n{\"case\":\"verification_buffers/unknown/262144\",\"correctness\":\"passed\",\"largest_read_buffer_bytes\":65536}\nTesting verification_buffers/unknown/262144\nSuccess\n\n"
+    }
+  ],
+  "validation": {
+    "format_tests": 5,
+    "archive_tests": 39,
+    "tar_benchmark_cases": 16,
+    "python_harness_tests": 12,
+    "clippy_all_features_all_targets": "passed",
+    "formatting_and_whitespace": "passed",
+    "tar_benchmark_log": "   Compiling casita v0.1.0 (/home/domen/dev/casita3)\n    Finished `bench` profile [optimized] target(s) in 11.17s\n     Running benches/tar_import.rs (/home/domen/.cargo/build/b8/e394383c25fd38/release/deps/tar_import-b8d4647d879df260)\nTesting tar_import_pipeline/small-0/1\nSuccess\nTesting tar_import_pipeline/small-0/16\nSuccess\nTesting tar_import_pipeline/small-1/1\nSuccess\nTesting tar_import_pipeline/small-1/16\nSuccess\nTesting tar_import_pipeline/small-15/1\nSuccess\nTesting tar_import_pipeline/small-15/16\nSuccess\nTesting tar_import_pipeline/small-16/1\nSuccess\nTesting tar_import_pipeline/small-16/16\nSuccess\nTesting tar_import_pipeline/small-17/1\nSuccess\nTesting tar_import_pipeline/small-17/16\nSuccess\nTesting tar_import_pipeline/small-256/1\nSuccess\nTesting tar_import_pipeline/small-256/16\nSuccess\nTesting tar_import_pipeline/large/1\nSuccess\nTesting tar_import_pipeline/large/16\nSuccess\nTesting tar_import_pipeline/mixed/1\nSuccess\nTesting tar_import_pipeline/mixed/16\nSuccess\n\n",
+    "archive_test_log": "\nrunning 39 tests\ntest casitar::export::tests::preflight_failures_do_not_touch_stream_output ... ok\ntest casitar::stream::tests::operation_limits_apply_before_large_bodies_or_catalog_growth ... ok\ntest casitar::stream::tests::reader_rejects_duplicate_records_and_payload_identity_mismatch ... ok\ntest casitar::stream::tests::cancelled_partial_io_poisons_reader_and_writer ... ok\ntest casitar::stream::tests::reader_rejects_trailing_bytes_and_duplicate_payloads ... ok\ntest casitar::stream::tests::writer_and_fragmented_reader_roundtrip_with_exact_stats ... ok\ntest casitar::stream::tests::record_requires_a_preceding_payload_with_the_same_size ... ok\ntest casitar::import::tests::root_conflicts_are_preflighted_and_replacement_is_conditional ... ok\ntest casitar::stream::tests::only_the_canonical_frame_permutation_is_accepted ... ok\ntest casitar::stream::tests::reader_rejects_noncanonical_frame_order ... ok\ntest casitar::tests::frame_headers_reject_truncation_unknown_tags_and_oversized_records ... ok\ntest casitar::tests::every_truncated_header_prefix_is_rejected ... ok\ntest casitar::stream::tests::writer_rejects_duplicate_order_and_source_length_errors ... ok\ntest casitar::tests::frame_headers_roundtrip_and_leave_payload_bytes_unconsumed ... ok\ntest casitar::stream::tests::writer_rejects_noncanonical_frame_order ... ok\ntest casitar::import::tests::ambient_destination_objects_cannot_conceal_an_omitted_record ... ok\ntest casitar::import::tests::unreachable_records_and_payloads_publish_no_root ... ok\ntest casitar::tests::header_construction_is_a_canonical_set ... ok\ntest casitar::tests::header_rejects_empty_noncanonical_and_trailing_bodies ... ok\ntest casitar::export::tests::exports_canonical_union_once_from_one_snapshot ... ok\ntest casitar::import::tests::import_admits_collection_before_final_root_publication ... ok\ntest tar::pipeline_tests::duplicate_paths_and_truncation_cancel_queued_files ... ok\ntest tar::pipeline_tests::zero_or_oversized_concurrency_is_rejected_before_opening_writers ... ok\ntest tar::tests::pax_gnu_sparse_metadata_is_rejected_explicitly ... ok\ntest tar::pipeline_tests::finalizer_failure_and_cancellation_drop_all_writers_without_publishing ... ok\ntest tar::tests::unsafe_paths_links_duplicates_and_limits_are_rejected ... ok\ntest casitar::export::tests::filesystem_export_publishes_only_a_complete_archive ... ok\ntest tar::tests::entry_order_does_not_change_the_root_identity ... ok\ntest casitar::export::tests::cancelled_filesystem_export_removes_its_temporary_file ... ok\ntest tar::tests::links_preserve_their_canonical_filesystem_meaning ... ok\ntest tar::tests::empty_directories_round_trip ... ok\ntest tar::tests::import_streams_files_into_a_canonical_directory_tree ... ok\ntest casitar::stream::tests::every_truncated_archive_prefix_fails ... ok\ntest tar::pipeline_tests::forward_hardlinks_and_old_gnu_sparse_entries_keep_their_meaning ... ok\ntest tar::pipeline_tests::finalizers_overlap_with_one_limit_for_active_and_queued_files ... ok\ntest casitar::export::tests::filesystem_export_create_new_never_clobbers ... ok\ntest tar::pipeline_tests::streaming_and_finalization_share_a_tiny_chunk_budget_without_deadlock ... ok\ntest casitar::export::tests::export_bytes_are_stable_across_selection_order_and_spilling ... ok\ntest casitar::import::tests::imports_exact_multi_root_closure_atomically_and_reuses_on_retry ... ok\n\ntest result: ok. 39 passed; 0 failed; 0 ignored; 0 measured; 587 filtered out; finished in 2.28s\n\n"
+  },
+  "timing_claim": null
+}

@@ -1,0 +1,161 @@
+@nix {"action":"msg","level":3,"msg":"these 32 derivations will be built:"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vxifcgf5cxm0vvw19yagn933vdbn1hpq-leaf-0.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/cy2q3dd1823xv33rs0pghwrivx570ghy-leaf-1.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/86yqn47vkf7h5ah969dzn9mghw8am4ak-leaf-2.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/7vwmz7l0fa4r1b3i130ixzxifa2az6h9-leaf-3.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/3yg10rvvw187g22d7xx8cd0chxa7xy1q-leaf-4.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/73x7m0vc6yzkdpj4q9000qy7f2a0hdl0-leaf-5.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/9070d7cdrc933q7nxxs3j47y9jjaci23-leaf-6.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/b6aznwr4iqi6irbyv5vq59bxl6r8ylyc-leaf-7.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/dyh6iq2axqf53qn4ca5fl5l4q6xhmgbs-leaf-8.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vkgxdy3ixi81iw39ifa2yzk097afyqzf-leaf-9.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/xipny5r6fiikpwcql618s5r9j9rg54ax-leaf-10.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/k40v340md9zvm29r2kn4287g3wbdqsnc-leaf-11.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/295maflgn1jdl74fln3jw2y994fmcbxx-leaf-12.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/xls6zs3g378kp62y4pbz74gggz4l89zw-leaf-13.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/wrafv474klvvvcqlzsl5szrd0v39c4r9-leaf-14.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/sjm3sd22mskwvzlsc8jafpb8d8vi1qaf-leaf-15.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/0yvlzfmim4di1vpd84l49wx0vmawh2df-leaf-16.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pdabv4apwgqbqx3kyxripmyvvb6nm1ql-leaf-17.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/zxxda5vawc0f859vsi3a7aqp5z2jaxsb-leaf-18.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/3yx19cbr9v0d70pfq03yr0d75zqdjwz0-leaf-19.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/2yl4frgf5gx835gdzvwbi7yqd2s6s20c-leaf-20.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/kc60kr68yfpwn2zpvkd66m7wq2cl0if3-leaf-21.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/13z1ja9lj3m8k5ivi7qwacldpk57wgn4-leaf-22.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pdq96vslyz1mi4l301qjvqw1bhlr9say-leaf-23.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pnqdinbzah9w5nnyikjsvlkr9ml44n6r-leaf-24.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/00vi799id8jsih9wpzxj65bsk89j33qh-leaf-25.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/v1hsqp8ays4jglmwqjgwa3kdpqq0i8qr-leaf-26.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/wp9mvwyxbakisbriyxm2dzz1rad620yz-leaf-27.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/p76yy8vgmqp8jm67kl1pjq619hm6knnn-leaf-28.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/gp4brpqic77n5h32vlim2d76w58lh7dc-leaf-29.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/gvib9zq9xpmyrzb5gxvmm0f0bzhwqqq5-leaf-30.drv.drv"}
+@nix {"action":"msg","level":3,"msg":"  /tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/a0jhpn7iyv6d2b1zzc968386xw37vwvs-leaf-31.drv.drv"}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vxifcgf5cxm0vvw19yagn933vdbn1hpq-leaf-0.drv.drv","",1,1],"id":914106479542272,"level":3,"parent":0,"text":"building 'leaf-0.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542272}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/w10y0kpza7ybiww8yvdnfymf1w8q1iik-leaf-0.drv","",1,1],"id":914106479542273,"level":3,"parent":0,"text":"building 'leaf-0.drv'","type":105}
+@nix {"action":"stop","id":914106479542273}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/bmwzffx5wdv8x7vjcdf3dbd0pw5iva59-leaf-1.drv.drv","",1,1],"id":914106479542274,"level":3,"parent":0,"text":"building 'leaf-1.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542274}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/9a6x87ixg3pn5cx66arkwq1mhclrrnxh-leaf-1.drv","",1,1],"id":914106479542275,"level":3,"parent":0,"text":"building 'leaf-1.drv'","type":105}
+@nix {"action":"stop","id":914106479542275}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/1x8ciai2vkrsr4lk37129pcaax1b7a8v-leaf-2.drv.drv","",1,1],"id":914106479542276,"level":3,"parent":0,"text":"building 'leaf-2.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542276}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/k84p45amlrz914k5g7jgcjwa06kwni08-leaf-2.drv","",1,1],"id":914106479542277,"level":3,"parent":0,"text":"building 'leaf-2.drv'","type":105}
+@nix {"action":"stop","id":914106479542277}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/p3jmlyq9pwhsc620r4nf8mxk06l6qr2a-leaf-3.drv.drv","",1,1],"id":914106479542278,"level":3,"parent":0,"text":"building 'leaf-3.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542278}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/l6ywy9hv8jwjky6n0whszvz766q4x5s1-leaf-3.drv","",1,1],"id":914106479542279,"level":3,"parent":0,"text":"building 'leaf-3.drv'","type":105}
+@nix {"action":"stop","id":914106479542279}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/51qchzrmfqqbx3j8zfbfpzs2bzn88lwx-leaf-4.drv.drv","",1,1],"id":914106479542280,"level":3,"parent":0,"text":"building 'leaf-4.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542280}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/ds2xpdh2grjys33lkh7nmmhhs4h0l6kz-leaf-4.drv","",1,1],"id":914106479542281,"level":3,"parent":0,"text":"building 'leaf-4.drv'","type":105}
+@nix {"action":"stop","id":914106479542281}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/nnfrmp8p650zpf6hlcmssgai9zyjs1k0-leaf-5.drv.drv","",1,1],"id":914106479542282,"level":3,"parent":0,"text":"building 'leaf-5.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542282}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/z8msh0fcqpd7j7sdlpvv5ljrfg9mbrqc-leaf-5.drv","",1,1],"id":914106479542283,"level":3,"parent":0,"text":"building 'leaf-5.drv'","type":105}
+@nix {"action":"stop","id":914106479542283}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/k95cxdxmbgmf7rvp3limhc328lp28c84-leaf-6.drv.drv","",1,1],"id":914106479542284,"level":3,"parent":0,"text":"building 'leaf-6.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542284}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/fs62jxchq6arx579pppiza8nilmy4nl0-leaf-6.drv","",1,1],"id":914106479542285,"level":3,"parent":0,"text":"building 'leaf-6.drv'","type":105}
+@nix {"action":"stop","id":914106479542285}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/4dhm1z92r42w07d7arbxqvs5nxa6izkq-leaf-7.drv.drv","",1,1],"id":914106479542286,"level":3,"parent":0,"text":"building 'leaf-7.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542286}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/1hi1brnn91kwachg27zfmxb4fxvf1b33-leaf-7.drv","",1,1],"id":914106479542287,"level":3,"parent":0,"text":"building 'leaf-7.drv'","type":105}
+@nix {"action":"stop","id":914106479542287}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/hfb1qx7r3f4jpkvq1rwyj9vwn8n4g88n-leaf-8.drv.drv","",1,1],"id":914106479542288,"level":3,"parent":0,"text":"building 'leaf-8.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542288}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/adiqbxqibia6szbcmvqhw6314mdqi0cr-leaf-8.drv","",1,1],"id":914106479542289,"level":3,"parent":0,"text":"building 'leaf-8.drv'","type":105}
+@nix {"action":"stop","id":914106479542289}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/n954hs0bqf3g75zbm4vc1pd2q62rgliq-leaf-9.drv.drv","",1,1],"id":914106479542290,"level":3,"parent":0,"text":"building 'leaf-9.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542290}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/xhi5jqybq1c64x3xnxj5bf5nnjsd4jfn-leaf-9.drv","",1,1],"id":914106479542291,"level":3,"parent":0,"text":"building 'leaf-9.drv'","type":105}
+@nix {"action":"stop","id":914106479542291}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/b92y0z5kbsjgpx2fmx831h7vwvq5grz4-leaf-10.drv.drv","",1,1],"id":914106479542292,"level":3,"parent":0,"text":"building 'leaf-10.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542292}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/0qvq34wqnlq7ix7kk207ng0nhj91ldrv-leaf-10.drv","",1,1],"id":914106479542293,"level":3,"parent":0,"text":"building 'leaf-10.drv'","type":105}
+@nix {"action":"stop","id":914106479542293}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/dj3gg1gqinnl71qyfw40q6rnxsazjcxv-leaf-11.drv.drv","",1,1],"id":914106479542294,"level":3,"parent":0,"text":"building 'leaf-11.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542294}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/zk4q4k8dzwx3asrfb92djxdfxi108rhf-leaf-11.drv","",1,1],"id":914106479542295,"level":3,"parent":0,"text":"building 'leaf-11.drv'","type":105}
+@nix {"action":"stop","id":914106479542295}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/fan8a3yry0gz9s8fr981v5w4sk981asl-leaf-12.drv.drv","",1,1],"id":914106479542296,"level":3,"parent":0,"text":"building 'leaf-12.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542296}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pcmwr2vmyhj8chnnx45zx4nimplszpkv-leaf-12.drv","",1,1],"id":914106479542297,"level":3,"parent":0,"text":"building 'leaf-12.drv'","type":105}
+@nix {"action":"stop","id":914106479542297}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/sy53rkkxx43b129bsnkn4lshj5iskg2h-leaf-13.drv.drv","",1,1],"id":914106479542298,"level":3,"parent":0,"text":"building 'leaf-13.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542298}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/3waj6x73398wcm1wi4mhsd07nq85vkdm-leaf-13.drv","",1,1],"id":914106479542299,"level":3,"parent":0,"text":"building 'leaf-13.drv'","type":105}
+@nix {"action":"stop","id":914106479542299}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vpysmsa7c74my92192la3wvwn4w95g3v-leaf-14.drv.drv","",1,1],"id":914106479542300,"level":3,"parent":0,"text":"building 'leaf-14.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542300}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/16fid1pax8zwn99c4d1h5ym9ibrv1pw6-leaf-14.drv","",1,1],"id":914106479542301,"level":3,"parent":0,"text":"building 'leaf-14.drv'","type":105}
+@nix {"action":"stop","id":914106479542301}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/mqpqm7cmvcihaih742ddldq2maps40q0-leaf-15.drv.drv","",1,1],"id":914106479542302,"level":3,"parent":0,"text":"building 'leaf-15.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542302}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/ilfg37gyrmadg5n8ikv5n9m2xgq3bhhm-leaf-15.drv","",1,1],"id":914106479542303,"level":3,"parent":0,"text":"building 'leaf-15.drv'","type":105}
+@nix {"action":"stop","id":914106479542303}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vk91vib1s4xshb9awl7a2b537crvyvqm-leaf-16.drv.drv","",1,1],"id":914106479542304,"level":3,"parent":0,"text":"building 'leaf-16.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542304}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/hhnpmiwwdb8qq8x09nn3ry5rsm9dy0nv-leaf-16.drv","",1,1],"id":914106479542305,"level":3,"parent":0,"text":"building 'leaf-16.drv'","type":105}
+@nix {"action":"stop","id":914106479542305}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/78jj75xyw4rgas69b0pggdjr0fc0sr9c-leaf-17.drv.drv","",1,1],"id":914106479542306,"level":3,"parent":0,"text":"building 'leaf-17.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542306}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/p4y08k644hmiix8zb58aiv1dw6z8lijy-leaf-17.drv","",1,1],"id":914106479542307,"level":3,"parent":0,"text":"building 'leaf-17.drv'","type":105}
+@nix {"action":"stop","id":914106479542307}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/npbqxjj02wwjhlb9n95ylsw2f8hxi7gg-leaf-18.drv.drv","",1,1],"id":914106479542308,"level":3,"parent":0,"text":"building 'leaf-18.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542308}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/fzkybi6diq7m2kfa9dfc1hm7g1mc4n92-leaf-18.drv","",1,1],"id":914106479542309,"level":3,"parent":0,"text":"building 'leaf-18.drv'","type":105}
+@nix {"action":"stop","id":914106479542309}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/4d0yjcvzy648q4g3n8xf14ynlws3h3xk-leaf-19.drv.drv","",1,1],"id":914106479542310,"level":3,"parent":0,"text":"building 'leaf-19.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542310}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pwygs8alsbcbbvry5czdkb9jils565ay-leaf-19.drv","",1,1],"id":914106479542311,"level":3,"parent":0,"text":"building 'leaf-19.drv'","type":105}
+@nix {"action":"stop","id":914106479542311}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/4alpylzcwznyp3dhi4ngxsn850s4l1w3-leaf-20.drv.drv","",1,1],"id":914106479542312,"level":3,"parent":0,"text":"building 'leaf-20.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542312}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/x78aw5k7aq6pganbpmvqyhamv625bkza-leaf-20.drv","",1,1],"id":914106479542313,"level":3,"parent":0,"text":"building 'leaf-20.drv'","type":105}
+@nix {"action":"stop","id":914106479542313}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/wbfqy38nh3bfwlbczn2xsk39dcaiz9zl-leaf-21.drv.drv","",1,1],"id":914106479542314,"level":3,"parent":0,"text":"building 'leaf-21.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542314}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vx66bq4qichk4lha3ng1phlnq5jmm5nw-leaf-21.drv","",1,1],"id":914106479542315,"level":3,"parent":0,"text":"building 'leaf-21.drv'","type":105}
+@nix {"action":"stop","id":914106479542315}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/q9nm2pslrvicvyhkj6yx9s07ikam9yc7-leaf-22.drv.drv","",1,1],"id":914106479542316,"level":3,"parent":0,"text":"building 'leaf-22.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542316}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/8x5bq218s31qcd1bwxl9srsr1f8xjfq4-leaf-22.drv","",1,1],"id":914106479542317,"level":3,"parent":0,"text":"building 'leaf-22.drv'","type":105}
+@nix {"action":"stop","id":914106479542317}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/52zsdxzmgf24brlzzmcn9aw2akrv0sgk-leaf-23.drv.drv","",1,1],"id":914106479542318,"level":3,"parent":0,"text":"building 'leaf-23.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542318}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/5242l84rjlf6wv6mf3ivyjcis143x2aw-leaf-23.drv","",1,1],"id":914106479542319,"level":3,"parent":0,"text":"building 'leaf-23.drv'","type":105}
+@nix {"action":"stop","id":914106479542319}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/krknxx8vc5ggv0sr7c44aqvf57ysijh0-leaf-24.drv.drv","",1,1],"id":914106479542320,"level":3,"parent":0,"text":"building 'leaf-24.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542320}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/mby51nvsw4fkn1x86hg07w14hbpwjb4g-leaf-24.drv","",1,1],"id":914106479542321,"level":3,"parent":0,"text":"building 'leaf-24.drv'","type":105}
+@nix {"action":"stop","id":914106479542321}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/c7vwx28nhb0c3dza49gawf66g43b64p6-leaf-25.drv.drv","",1,1],"id":914106479542322,"level":3,"parent":0,"text":"building 'leaf-25.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542322}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/s349bm7ap8vw8psj00qvh36v1c1amvrp-leaf-25.drv","",1,1],"id":914106479542323,"level":3,"parent":0,"text":"building 'leaf-25.drv'","type":105}
+@nix {"action":"stop","id":914106479542323}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/gj2qz80kslig2dxmqgkdsk7craxh0fcs-leaf-26.drv.drv","",1,1],"id":914106479542324,"level":3,"parent":0,"text":"building 'leaf-26.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542324}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pq112vp9816dwlapx305z9vfp139h0cn-leaf-26.drv","",1,1],"id":914106479542325,"level":3,"parent":0,"text":"building 'leaf-26.drv'","type":105}
+@nix {"action":"stop","id":914106479542325}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/swdn4isdzlqb4sinr25y91blia9px9qd-leaf-27.drv.drv","",1,1],"id":914106479542326,"level":3,"parent":0,"text":"building 'leaf-27.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542326}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/vc47lmmpcjwm7vah5dlm221ily17z265-leaf-27.drv","",1,1],"id":914106479542327,"level":3,"parent":0,"text":"building 'leaf-27.drv'","type":105}
+@nix {"action":"stop","id":914106479542327}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/pa062ssmqwffagsgz21nc1b6kh2ch8fk-leaf-28.drv.drv","",1,1],"id":914106479542328,"level":3,"parent":0,"text":"building 'leaf-28.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542328}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/asnnwnnmkqkn94b050fqg9gabnp03qv1-leaf-28.drv","",1,1],"id":914106479542329,"level":3,"parent":0,"text":"building 'leaf-28.drv'","type":105}
+@nix {"action":"stop","id":914106479542329}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/crlfal062j273lzz8dhmzlj2jfa6z6rs-leaf-29.drv.drv","",1,1],"id":914106479542330,"level":3,"parent":0,"text":"building 'leaf-29.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542330}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/200mmrg7kynrag370djx7i44xnlg5h9g-leaf-29.drv","",1,1],"id":914106479542331,"level":3,"parent":0,"text":"building 'leaf-29.drv'","type":105}
+@nix {"action":"stop","id":914106479542331}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/0lkfnih7vnddflp85rxvbzq3fza2hyd4-leaf-30.drv.drv","",1,1],"id":914106479542332,"level":3,"parent":0,"text":"building 'leaf-30.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542332}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/n1104ff72skipdgad7k1bzd45hx7w80i-leaf-30.drv","",1,1],"id":914106479542333,"level":3,"parent":0,"text":"building 'leaf-30.drv'","type":105}
+@nix {"action":"stop","id":914106479542333}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/axlh6jd6z15ykbi0gjb6284v4lilc1yx-leaf-31.drv.drv","",1,1],"id":914106479542334,"level":3,"parent":0,"text":"building 'leaf-31.drv.drv'","type":105}
+@nix {"action":"stop","id":914106479542334}
+@nix {"action":"start","fields":["/tmp/casita-chain-rerun-l2oceybd/round-3-after/chain-round-1-jobs-8/store/ki9waxsplhv2vlnqp8052cvkwgfkbsfn-leaf-31.drv","",1,1],"id":914106479542335,"level":3,"parent":0,"text":"building 'leaf-31.drv'","type":105}
+@nix {"action":"stop","id":914106479542335}

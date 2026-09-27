@@ -1,0 +1,113 @@
+{
+  "kind": "counterfactual cost model, not network benchmark measurements",
+  "formula": "after - before = extra_requests * RTT_seconds - saved_bytes / bytes_per_second",
+  "assumptions": [
+    "serial backend requests",
+    "no request or transfer overlap",
+    "constant effective bandwidth",
+    "unchanged cache access order",
+    "ignores server, transport and CPU overhead"
+  ],
+  "inputs": [
+    {
+      "path": "benchmarks/results/2026-09-05-improve/before-cache-clean.json",
+      "sha256": "5d2282ed9ef6a54a7309f504750c5cc95e0f3a855c01790c4ee045f87e4208c6"
+    },
+    {
+      "path": "benchmarks/results/2026-09-05-improve/retained-cache-clean.json",
+      "sha256": "c68a5703d8b29f8b5b1d4c5630e222ac736ea6c5c156a254a1f3efa21b315a11"
+    }
+  ],
+  "cache_bytes": 8388608,
+  "working_set_bytes": 33554432,
+  "logical_reads": 8192,
+  "samples": [
+    {
+      "operation": "random-warm",
+      "observed": {
+        "before": {
+          "requests": 7200,
+          "backend_bytes": 1177373738,
+          "samples": 3
+        },
+        "retained": {
+          "requests": 8164,
+          "backend_bytes": 535117544,
+          "samples": 3
+        }
+      },
+      "extra_requests": 964,
+      "saved_bytes": 642256194,
+      "model": [
+        {
+          "rtt_ms": 25,
+          "break_even_mib_per_second": 25.415072065171362,
+          "predicted_after_minus_before_seconds_at_8_mib_per_second": -52.462904596328734
+        },
+        {
+          "rtt_ms": 100,
+          "break_even_mib_per_second": 6.3537680162928405,
+          "predicted_after_minus_before_seconds_at_8_mib_per_second": 19.83709540367127
+        }
+      ]
+    },
+    {
+      "operation": "skewed-warm",
+      "observed": {
+        "before": {
+          "requests": 1309,
+          "backend_bytes": 209247236,
+          "samples": 3
+        },
+        "retained": {
+          "requests": 1318,
+          "backend_bytes": 86389628,
+          "samples": 3
+        }
+      },
+      "extra_requests": 9,
+      "saved_bytes": 122857608,
+      "model": [
+        {
+          "rtt_ms": 25,
+          "break_even_mib_per_second": 520.7384236653646,
+          "predicted_after_minus_before_seconds_at_8_mib_per_second": -14.42076816558838
+        },
+        {
+          "rtt_ms": 100,
+          "break_even_mib_per_second": 130.18460591634116,
+          "predicted_after_minus_before_seconds_at_8_mib_per_second": -13.745768165588379
+        }
+      ]
+    },
+    {
+      "operation": "sequential-warm",
+      "observed": {
+        "before": {
+          "requests": 4096,
+          "backend_bytes": 671698944,
+          "samples": 3
+        },
+        "retained": {
+          "requests": 4096,
+          "backend_bytes": 671698944,
+          "samples": 3
+        }
+      },
+      "extra_requests": 0,
+      "saved_bytes": 0,
+      "model": [
+        {
+          "rtt_ms": 25,
+          "break_even_mib_per_second": null,
+          "predicted_after_minus_before_seconds_at_8_mib_per_second": 0.0
+        },
+        {
+          "rtt_ms": 100,
+          "break_even_mib_per_second": null,
+          "predicted_after_minus_before_seconds_at_8_mib_per_second": 0.0
+        }
+      ]
+    }
+  ]
+}

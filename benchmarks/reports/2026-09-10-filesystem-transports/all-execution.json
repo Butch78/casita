@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "profile": "smoke",
+  "complete": true,
+  "revision": "450a6336550e5faeb4d37c563a728ebfacaabbb3",
+  "diff": " .github/workflows/ci.yml     |  6 ++++++\n Cargo.toml                   |  5 +++--\n README.md                    |  3 +++\n benchmarks/README.md         | 16 ++++++++++++++++\n benchmarks/all.py            | 24 +++++++++++++++++++++++-\n benchmarks/manifest.json     |  2 ++\n benchmarks/tests/test_all.py | 24 ++++++++++++++++++++++--\n 7 files changed, 75 insertions(+), 5 deletions(-)\n",
+  "entries": [
+    {
+      "suite": "filesystem-transports",
+      "status": "passed",
+      "command": [
+        "/nix/store/3n4qphl9s728sz8frmpqqrv9b1m87g68-python3-3.14.7/bin/python3",
+        "-m",
+        "benchmarks.cli",
+        "run",
+        "filesystem-transports",
+        "--profile",
+        "smoke",
+        "--repetitions",
+        "1",
+        "--output",
+        "/tmp/casita-filesystem-all-20260910/filesystem-transports.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.16858822600625,
+      "log": "/tmp/casita-filesystem-all-20260910/filesystem-transports.log"
+    }
+  ],
+  "artifacts_unchanged": true
+}

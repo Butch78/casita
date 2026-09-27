@@ -1,0 +1,1465 @@
+{
+  "schema_version": 1,
+  "result_schema": "casita.tar-pipeline-investigation.v1",
+  "date": "2026-09-10",
+  "suite_id": "core-primitives",
+  "benchmark_group": "tar_import_pipeline",
+  "working_tree_head": "450a6336550e5faeb4d37c563a728ebfacaabbb3",
+  "working_tree_source_sha256": {
+    "src/tar.rs": "1fa4061c32fefec3998ee07f5db84010907c754061dff0d6872111e1f367877e",
+    "src/tar/pipeline_tests.rs": "dfdee118ccb3092129d4b53c7deb5356c74743287c285bb067d4c1d95e5ddd33",
+    "benches/tar_import.rs": "0cd7017543aa4c06b092db2b14bfaea7c76974b713e82454f7f170212b3908ed"
+  },
+  "executable_sha256": "484d3072f8b67b154f2a132f1f1cdca864abf2fbfc0b892003a5d10fc8d4c6a0",
+  "environment": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "cpu": "AMD Ryzen 7 7840S",
+    "rustc": "1.96.0 (ac68faa20 2026-05-25)",
+    "profile": "bench (optimized)",
+    "isolated_host": false
+  },
+  "configuration": {
+    "max_in_flight_files": [
+      1,
+      16
+    ],
+    "sample_size": 10,
+    "warm_up_seconds": 0.2,
+    "measurement_seconds": 0.5,
+    "repetitions": 1,
+    "run_order": "each shape with limit 1 followed by limit 16"
+  },
+  "command": "devenv shell cargo bench --features experimental --bench tar_import -- --warm-up-time 0.2 --measurement-time 0.5 --save-baseline pipeline",
+  "raw_execution_command": "CRITERION_HOME=target/tar-pipeline-criterion /home/domen/.cargo/build/b8/e394383c25fd38/release/deps/tar_import-1b4c701ef695d0ec --bench --warm-up-time 0.2 --measurement-time 0.5 --save-baseline pipeline",
+  "exit_code": 0,
+  "correctness_gates": [
+    "canonical root including executable bits",
+    "published root",
+    "file and entry counts",
+    "total logical bytes",
+    "full payload readback"
+  ],
+  "limitations": "Short exploratory run on a shared workstation. Compiler processes were observed at the end of the run, and the empty-archive control varied materially. These timings do not establish a causal speedup or a regression bound.",
+  "validation": {
+    "archive_tests_passed": 39,
+    "cli_tar_import_test": "passed",
+    "ipc_archive_import_test": "passed",
+    "permanent_benchmark_correctness_cases_passed": 16,
+    "benchmark_harness_tests_passed": 17,
+    "clippy_all_features_all_targets": "passed",
+    "docs_validation": "passed",
+    "format": "passed",
+    "diff_check": "passed"
+  },
+  "samples": [
+    {
+      "shape": "large",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "large",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 16777216
+        },
+        "full_id": "tar_import_pipeline/large/1",
+        "directory_name": "tar_import_pipeline/large/1",
+        "title": "tar_import_pipeline/large/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 35041843.0375,
+            "upper_bound": 37769082.712500006
+          },
+          "point_estimate": 36398578.3,
+          "standard_error": 698587.7994895573
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 33832221.0,
+            "upper_bound": 38235931.0
+          },
+          "point_estimate": 36692436.5,
+          "standard_error": 1254071.089046205
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 330054.9235403538,
+            "upper_bound": 3657895.859259367
+          },
+          "point_estimate": 2455614.0278041363,
+          "standard_error": 961483.6337128329
+        },
+        "slope": null,
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1497311.269186014,
+            "upper_bound": 2792114.0154979364
+          },
+          "point_estimate": 2329444.464309274,
+          "standard_error": 335565.14500130375
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Flat",
+        "iters": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "times": [
+          37389384.0,
+          35114509.0,
+          40048943.0,
+          38235931.0,
+          35995489.0,
+          37879740.0,
+          38427087.0,
+          33483154.0,
+          33579325.0,
+          33832221.0
+        ]
+      }
+    },
+    {
+      "shape": "large",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "large",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 16777216
+        },
+        "full_id": "tar_import_pipeline/large/16",
+        "directory_name": "tar_import_pipeline/large/16",
+        "title": "tar_import_pipeline/large/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 29487931.50125,
+            "upper_bound": 30739472.9525
+          },
+          "point_estimate": 30098506.95,
+          "standard_error": 322391.88667555375
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 29169382.25,
+            "upper_bound": 31065209.75
+          },
+          "point_estimate": 30053626.75,
+          "standard_error": 465371.94936466817
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 288688.1603747606,
+            "upper_bound": 1912121.7881530523
+          },
+          "point_estimate": 1099304.885083437,
+          "standard_error": 422787.0229212264
+        },
+        "slope": null,
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 605402.1316590427,
+            "upper_bound": 1317035.321085076
+          },
+          "point_estimate": 1072860.8139424715,
+          "standard_error": 181506.63915609973
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Flat",
+        "iters": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "times": [
+          57364582.0,
+          57905992.0,
+          58477086.0,
+          60301971.0,
+          61337300.0,
+          63240548.0,
+          58771537.0,
+          63638296.0,
+          59912536.0,
+          61020291.0
+        ]
+      }
+    },
+    {
+      "shape": "mixed",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "mixed",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 16809984
+        },
+        "full_id": "tar_import_pipeline/mixed/1",
+        "directory_name": "tar_import_pipeline/mixed/1",
+        "title": "tar_import_pipeline/mixed/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 36699200.23500001,
+            "upper_bound": 38599249.0625
+          },
+          "point_estimate": 37650946.2,
+          "standard_error": 484575.94751739496
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 36371270.0,
+            "upper_bound": 39031425.0
+          },
+          "point_estimate": 37670180.5,
+          "standard_error": 612200.0520829271
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 425111.8208527565,
+            "upper_bound": 2931774.730950594
+          },
+          "point_estimate": 1454005.06798625,
+          "standard_error": 641217.3672111279
+        },
+        "slope": null,
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 926287.8051233117,
+            "upper_bound": 2029401.4635993212
+          },
+          "point_estimate": 1618325.5632245874,
+          "standard_error": 284266.46606514556
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Flat",
+        "iters": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "times": [
+          39597769.0,
+          38465081.0,
+          37667212.0,
+          40196169.0,
+          36536899.0,
+          35642859.0,
+          35132318.0,
+          38498325.0,
+          37673149.0,
+          37099681.0
+        ]
+      }
+    },
+    {
+      "shape": "mixed",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "mixed",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 16809984
+        },
+        "full_id": "tar_import_pipeline/mixed/16",
+        "directory_name": "tar_import_pipeline/mixed/16",
+        "title": "tar_import_pipeline/mixed/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 31171295.15,
+            "upper_bound": 32136573.3
+          },
+          "point_estimate": 31671090.75,
+          "standard_error": 247266.97597822332
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 31067881.25,
+            "upper_bound": 32228767.0
+          },
+          "point_estimate": 31836660.25,
+          "standard_error": 313172.48749199166
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 157547.00360298157,
+            "upper_bound": 1377432.1151956916
+          },
+          "point_estimate": 649989.6196603775,
+          "standard_error": 317408.0119609654
+        },
+        "slope": null,
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 407134.53288340906,
+            "upper_bound": 1062155.8905817107
+          },
+          "point_estimate": 825156.9267257677,
+          "standard_error": 166693.54679799356
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Flat",
+        "iters": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "times": [
+          60267540.0,
+          63340282.0,
+          65773067.0,
+          64217699.0,
+          64006359.0,
+          61332551.0,
+          64457534.0,
+          62445054.0,
+          62938974.0,
+          64642755.0
+        ]
+      }
+    },
+    {
+      "shape": "small-0",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-0",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 0
+        },
+        "full_id": "tar_import_pipeline/small-0/1",
+        "directory_name": "tar_import_pipeline/small-0/1",
+        "title": "tar_import_pipeline/small-0/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 83597.5552378448,
+            "upper_bound": 100647.37597235704
+          },
+          "point_estimate": 92222.03899599322,
+          "standard_error": 4359.488712812873
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 81094.85228848821,
+            "upper_bound": 100866.25242718446
+          },
+          "point_estimate": 94644.25436893204,
+          "standard_error": 3931.225816769494
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1107.985824601155,
+            "upper_bound": 26051.036027469294
+          },
+          "point_estimate": 8571.681101657206,
+          "standard_error": 6992.135009473987
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 90616.15572129037,
+            "upper_bound": 107958.45075951131
+          },
+          "point_estimate": 98458.27441684529,
+          "standard_error": 4638.5262255373655
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 6814.382116387304,
+            "upper_bound": 19192.632231020452
+          },
+          "point_estimate": 14575.652093464503,
+          "standard_error": 3163.9179267024138
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          103.0,
+          206.0,
+          309.0,
+          412.0,
+          515.0,
+          618.0,
+          721.0,
+          824.0,
+          927.0,
+          1030.0
+        ],
+        "times": [
+          6967096.0,
+          14774820.0,
+          29700399.0,
+          38694232.0,
+          54391575.0,
+          59789050.0,
+          65226907.0,
+          71900750.0,
+          108796183.0,
+          98231584.0
+        ]
+      }
+    },
+    {
+      "shape": "small-0",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-0",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 0
+        },
+        "full_id": "tar_import_pipeline/small-0/16",
+        "directory_name": "tar_import_pipeline/small-0/16",
+        "title": "tar_import_pipeline/small-0/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 54680.10693411612,
+            "upper_bound": 55992.317921015434
+          },
+          "point_estimate": 55327.85197352686,
+          "standard_error": 335.7216723585094
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 54550.906392694065,
+            "upper_bound": 56020.59284627093
+          },
+          "point_estimate": 55252.38776908023,
+          "standard_error": 392.79728894197507
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 252.23647797054477,
+            "upper_bound": 1909.4961035996675
+          },
+          "point_estimate": 936.6610937305335,
+          "standard_error": 406.2431268648539
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 55051.656114047386,
+            "upper_bound": 56732.945907973306
+          },
+          "point_estimate": 55905.10738302793,
+          "standard_error": 453.98887586315806
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 560.1923911598855,
+            "upper_bound": 1487.629311008305
+          },
+          "point_estimate": 1122.0278111414411,
+          "standard_error": 238.10105081112576
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          146.0,
+          292.0,
+          438.0,
+          584.0,
+          730.0,
+          876.0,
+          1022.0,
+          1168.0,
+          1314.0,
+          1460.0
+        ],
+        "times": [
+          8000048.0,
+          15604732.0,
+          23786450.0,
+          32713775.0,
+          40450259.0,
+          49377594.0,
+          56305518.0,
+          63951737.0,
+          73155727.0,
+          83833120.0
+        ]
+      }
+    },
+    {
+      "shape": "small-1",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-1",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 1024
+        },
+        "full_id": "tar_import_pipeline/small-1/1",
+        "directory_name": "tar_import_pipeline/small-1/1",
+        "title": "tar_import_pipeline/small-1/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 115729.85364419427,
+            "upper_bound": 142124.83300207037
+          },
+          "point_estimate": 126052.56832815737,
+          "standard_error": 7313.531995465411
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 113537.64420289855,
+            "upper_bound": 127410.22567287784
+          },
+          "point_estimate": 117970.7720410628,
+          "standard_error": 3915.3395703312935
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 713.6881738512432,
+            "upper_bound": 16491.131044760128
+          },
+          "point_estimate": 6609.540713780372,
+          "standard_error": 4358.448399039345
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 115250.87667029994,
+            "upper_bound": 122057.36274509804
+          },
+          "point_estimate": 118079.10355731225,
+          "standard_error": 1744.6179084773746
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 2870.637481436131,
+            "upper_bound": 37058.94207915334
+          },
+          "point_estimate": 24350.069615471908,
+          "standard_error": 10982.465562957826
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          69.0,
+          138.0,
+          207.0,
+          276.0,
+          345.0,
+          414.0,
+          483.0,
+          552.0,
+          621.0,
+          690.0
+        ],
+        "times": [
+          13307300.0,
+          18238178.0,
+          23214164.0,
+          31203530.0,
+          39336562.0,
+          48882499.0,
+          61539139.0,
+          65063067.0,
+          73876425.0,
+          78638698.0
+        ]
+      }
+    },
+    {
+      "shape": "small-1",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-1",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 1024
+        },
+        "full_id": "tar_import_pipeline/small-1/16",
+        "directory_name": "tar_import_pipeline/small-1/16",
+        "title": "tar_import_pipeline/small-1/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 118093.304755102,
+            "upper_bound": 157334.85103511903
+          },
+          "point_estimate": 132103.3205770975,
+          "standard_error": 11583.859900205427
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 116871.29030612245,
+            "upper_bound": 125285.9857142857
+          },
+          "point_estimate": 118548.91571428571,
+          "standard_error": 3593.2851451358865
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 184.81561771888562,
+            "upper_bound": 10193.023314370994
+          },
+          "point_estimate": 4581.033843313251,
+          "standard_error": 4079.520072956572
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 117160.63343974462,
+            "upper_bound": 128511.0855929487
+          },
+          "point_estimate": 121808.80998144712,
+          "standard_error": 2950.04025946977
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 2368.1772412521173,
+            "upper_bound": 59409.308601628036
+          },
+          "point_estimate": 38619.71475027479,
+          "standard_error": 20251.850638658903
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          70.0,
+          140.0,
+          210.0,
+          280.0,
+          350.0,
+          420.0,
+          490.0,
+          560.0,
+          630.0,
+          700.0
+        ],
+        "times": [
+          8266007.0,
+          33788296.0,
+          24890643.0,
+          33142406.0,
+          41499836.0,
+          52620114.0,
+          56534654.0,
+          68071682.0,
+          81146251.0,
+          80581112.0
+        ]
+      }
+    },
+    {
+      "shape": "small-15",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-15",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 15360
+        },
+        "full_id": "tar_import_pipeline/small-15/1",
+        "directory_name": "tar_import_pipeline/small-15/1",
+        "title": "tar_import_pipeline/small-15/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 906494.5536155204,
+            "upper_bound": 994264.1369488535
+          },
+          "point_estimate": 947909.5591710759,
+          "standard_error": 22446.250588194212
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 888828.7222222222,
+            "upper_bound": 978971.5555555555
+          },
+          "point_estimate": 955930.3174603174,
+          "standard_error": 22338.323625080462
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 6045.077826011784,
+            "upper_bound": 131582.43618061134
+          },
+          "point_estimate": 46283.87919311173,
+          "standard_error": 32814.0802096181
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 942995.3518518518,
+            "upper_bound": 1000089.6423489278
+          },
+          "point_estimate": 966608.1711399711,
+          "standard_error": 14395.698914556055
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 34998.417542328825,
+            "upper_bound": 101945.09864321144
+          },
+          "point_estimate": 74592.92365944522,
+          "standard_error": 18570.115651561
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          9.0,
+          18.0,
+          27.0,
+          36.0,
+          45.0,
+          54.0,
+          63.0,
+          72.0,
+          81.0,
+          90.0
+        ],
+        "times": [
+          7668793.0,
+          15998917.0,
+          23146485.0,
+          34833120.0,
+          49896445.0,
+          51797316.0,
+          60017018.0,
+          71793888.0,
+          75710800.0,
+          86472520.0
+        ]
+      }
+    },
+    {
+      "shape": "small-15",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-15",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 15360
+        },
+        "full_id": "tar_import_pipeline/small-15/16",
+        "directory_name": "tar_import_pipeline/small-15/16",
+        "title": "tar_import_pipeline/small-15/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 576192.6767261906,
+            "upper_bound": 634227.5963470098
+          },
+          "point_estimate": 598909.6576218822,
+          "standard_error": 15886.61377286028
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 574570.2285714286,
+            "upper_bound": 603282.7901785714
+          },
+          "point_estimate": 582513.8630952381,
+          "standard_error": 6849.932760651923
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 2235.295976982318,
+            "upper_bound": 35918.356522321665
+          },
+          "point_estimate": 9897.229255717644,
+          "standard_error": 9622.896005675708
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 568424.0782248591,
+            "upper_bound": 586304.8330835733
+          },
+          "point_estimate": 577500.8484230055,
+          "standard_error": 4936.195798833319
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 6570.456771916493,
+            "upper_bound": 79859.20996539223
+          },
+          "point_estimate": 52760.141670773875,
+          "standard_error": 23357.887085371513
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          14.0,
+          28.0,
+          42.0,
+          56.0,
+          70.0,
+          84.0,
+          98.0,
+          112.0,
+          126.0,
+          140.0
+        ],
+        "times": [
+          10394844.0,
+          17365503.0,
+          24524947.0,
+          31983589.0,
+          40219916.0,
+          48812435.0,
+          57616298.0,
+          65673333.0,
+          73194904.0,
+          78466545.0
+        ]
+      }
+    },
+    {
+      "shape": "small-16",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-16",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 16384
+        },
+        "full_id": "tar_import_pipeline/small-16/1",
+        "directory_name": "tar_import_pipeline/small-16/1",
+        "title": "tar_import_pipeline/small-16/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 984004.7418154763,
+            "upper_bound": 1027845.2221633183
+          },
+          "point_estimate": 1005011.0960863095,
+          "standard_error": 11223.59067202852
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 979946.125,
+            "upper_bound": 1034408.70625
+          },
+          "point_estimate": 1001330.0208333333,
+          "standard_error": 11281.801066496615
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 4246.611104607651,
+            "upper_bound": 71600.219816342
+          },
+          "point_estimate": 26817.07803483923,
+          "standard_error": 17405.238078734492
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 970151.6265085118,
+            "upper_bound": 1014689.1270568442
+          },
+          "point_estimate": 990369.0107142857,
+          "standard_error": 11774.52132782331
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 17852.690108458464,
+            "upper_bound": 47561.86197588433
+          },
+          "point_estimate": 37367.32312184716,
+          "standard_error": 7615.8014165845625
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          8.0,
+          16.0,
+          24.0,
+          32.0,
+          40.0,
+          48.0,
+          56.0,
+          64.0,
+          72.0,
+          80.0
+        ],
+        "times": [
+          8005990.0,
+          16997441.0,
+          23144113.0,
+          34188411.0,
+          40259094.0,
+          48091742.0,
+          54928233.0,
+          65090371.0,
+          71679903.0,
+          76196405.0
+        ]
+      }
+    },
+    {
+      "shape": "small-16",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-16",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 16384
+        },
+        "full_id": "tar_import_pipeline/small-16/16",
+        "directory_name": "tar_import_pipeline/small-16/16",
+        "title": "tar_import_pipeline/small-16/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 602851.2650731293,
+            "upper_bound": 624041.2393778345
+          },
+          "point_estimate": 613191.0367913833,
+          "standard_error": 5454.310227302734
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 593914.8142857143,
+            "upper_bound": 628586.5331632653
+          },
+          "point_estimate": 611730.0095238095,
+          "standard_error": 8459.634347470326
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1990.8052396561006,
+            "upper_bound": 33024.40172322351
+          },
+          "point_estimate": 24574.86763370889,
+          "standard_error": 7769.364068194204
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 597320.5315180122,
+            "upper_bound": 630633.6961571367
+          },
+          "point_estimate": 612828.2922077922,
+          "standard_error": 8728.157537365521
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 10354.522414009047,
+            "upper_bound": 21881.895230004677
+          },
+          "point_estimate": 18175.4553936357,
+          "standard_error": 2886.835931827102
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          14.0,
+          28.0,
+          42.0,
+          56.0,
+          70.0,
+          84.0,
+          98.0,
+          112.0,
+          126.0,
+          140.0
+        ],
+        "times": [
+          8778922.0,
+          17301393.0,
+          25807235.0,
+          33180391.0,
+          42630143.0,
+          49883380.0,
+          62648085.0,
+          67518410.0,
+          80778212.0,
+          83148074.0
+        ]
+      }
+    },
+    {
+      "shape": "small-17",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-17",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 17408
+        },
+        "full_id": "tar_import_pipeline/small-17/1",
+        "directory_name": "tar_import_pipeline/small-17/1",
+        "title": "tar_import_pipeline/small-17/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 986316.2507098767,
+            "upper_bound": 1000783.5406921296
+          },
+          "point_estimate": 993094.012191358,
+          "standard_error": 3711.334249048456
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 982955.5833333333,
+            "upper_bound": 1003129.9361111111
+          },
+          "point_estimate": 989309.8827160494,
+          "standard_error": 4779.094712987186
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 3064.1955270811163,
+            "upper_bound": 20283.56349406141
+          },
+          "point_estimate": 11857.649264484644,
+          "standard_error": 4650.937360067357
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 985606.9853388808,
+            "upper_bound": 1002754.4841795438
+          },
+          "point_estimate": 991919.8467532467,
+          "standard_error": 4342.182423122004
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 5552.14257762332,
+            "upper_bound": 15628.725423967799
+          },
+          "point_estimate": 12394.921667647952,
+          "standard_error": 2574.5626423421418
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          9.0,
+          18.0,
+          27.0,
+          36.0,
+          45.0,
+          54.0,
+          63.0,
+          72.0,
+          81.0,
+          90.0
+        ],
+        "times": [
+          8871534.0,
+          17643333.0,
+          26696526.0,
+          35862513.0,
+          45453553.0,
+          54900926.0,
+          62934221.0,
+          70572153.0,
+          80178623.0,
+          88590674.0
+        ]
+      }
+    },
+    {
+      "shape": "small-17",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-17",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 17408
+        },
+        "full_id": "tar_import_pipeline/small-17/16",
+        "directory_name": "tar_import_pipeline/small-17/16",
+        "title": "tar_import_pipeline/small-17/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 605311.8053418805,
+            "upper_bound": 631588.2799725274
+          },
+          "point_estimate": 616191.7219810744,
+          "standard_error": 7114.7922225297325
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 603973.776923077,
+            "upper_bound": 622837.8729395603
+          },
+          "point_estimate": 606825.1805555555,
+          "standard_error": 4167.531000212512
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 1015.3814012041325,
+            "upper_bound": 23733.5129213382
+          },
+          "point_estimate": 4522.876502779833,
+          "standard_error": 5101.15283050021
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 605234.0540942928,
+            "upper_bound": 637212.6292223398
+          },
+          "point_estimate": 616595.6783216783,
+          "standard_error": 8353.264916898066
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 2061.561100568744,
+            "upper_bound": 34518.54593646109
+          },
+          "point_estimate": 23752.835365002666,
+          "standard_error": 9391.616091095992
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          13.0,
+          26.0,
+          39.0,
+          52.0,
+          65.0,
+          78.0,
+          91.0,
+          104.0,
+          117.0,
+          130.0
+        ],
+        "times": [
+          7855198.0,
+          15674783.0,
+          23584599.0,
+          31592969.0,
+          39672573.0,
+          52819573.0,
+          58028282.0,
+          63232241.0,
+          70912912.0,
+          78417852.0
+        ]
+      }
+    },
+    {
+      "shape": "small-256",
+      "max_in_flight_files": 1,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-256",
+        "value_str": "1",
+        "throughput": {
+          "Bytes": 262144
+        },
+        "full_id": "tar_import_pipeline/small-256/1",
+        "directory_name": "tar_import_pipeline/small-256/1",
+        "title": "tar_import_pipeline/small-256/1"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 14339341.72857143,
+            "upper_bound": 14823061.889682537
+          },
+          "point_estimate": 14558548.403015872,
+          "standard_error": 124735.09085670997
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 14266642.0,
+            "upper_bound": 14803481.85
+          },
+          "point_estimate": 14376527.3,
+          "standard_error": 137421.60162383702
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 25561.96151618494,
+            "upper_bound": 629154.4610236072
+          },
+          "point_estimate": 192356.37534499113,
+          "standard_error": 152308.98940889107
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 14283227.397317082,
+            "upper_bound": 14635427.861137908
+          },
+          "point_estimate": 14405439.68051948,
+          "standard_error": 90348.21558604809
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 125355.56433331374,
+            "upper_bound": 542266.7817917522
+          },
+          "point_estimate": 414684.56685813074,
+          "standard_error": 104924.6009827731
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0
+        ],
+        "times": [
+          14266642.0,
+          28761247.0,
+          46304848.0,
+          60402894.0,
+          72531201.0,
+          88536056.0,
+          100480333.0,
+          113974040.0,
+          127500991.0,
+          143724311.0
+        ]
+      }
+    },
+    {
+      "shape": "small-256",
+      "max_in_flight_files": 16,
+      "status": "ok",
+      "benchmark": {
+        "group_id": "tar_import_pipeline",
+        "function_id": "small-256",
+        "value_str": "16",
+        "throughput": {
+          "Bytes": 262144
+        },
+        "full_id": "tar_import_pipeline/small-256/16",
+        "directory_name": "tar_import_pipeline/small-256/16",
+        "title": "tar_import_pipeline/small-256/16"
+      },
+      "estimates_ns": {
+        "mean": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8120339.765833335,
+            "upper_bound": 8326952.90892857
+          },
+          "point_estimate": 8218478.918928571,
+          "standard_error": 52875.94618673449
+        },
+        "median": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8072082.666666667,
+            "upper_bound": 8375802.919642857
+          },
+          "point_estimate": 8160933.0,
+          "standard_error": 77500.78743372673
+        },
+        "median_abs_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 23587.90612623123,
+            "upper_bound": 297162.46884431026
+          },
+          "point_estimate": 154355.98514713347,
+          "standard_error": 72618.6942683751
+        },
+        "slope": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 8167727.607692308,
+            "upper_bound": 8434731.070914583
+          },
+          "point_estimate": 8328695.532467533,
+          "standard_error": 68701.12790104971
+        },
+        "std_dev": {
+          "confidence_interval": {
+            "confidence_level": 0.95,
+            "lower_bound": 83159.34537436298,
+            "upper_bound": 215240.50930712587
+          },
+          "point_estimate": 176333.88616200705,
+          "standard_error": 33483.995697739985
+        }
+      },
+      "raw_sample": {
+        "sampling_mode": "Linear",
+        "iters": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0
+        ],
+        "times": [
+          8159152.0,
+          16325428.0,
+          24124827.0,
+          32232923.0,
+          40450252.0,
+          48432496.0,
+          59396062.0,
+          66131633.0,
+          74924805.0,
+          85243662.0
+        ]
+      }
+    }
+  ]
+}

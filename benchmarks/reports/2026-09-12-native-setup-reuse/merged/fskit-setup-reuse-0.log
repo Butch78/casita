@@ -1,0 +1,46 @@
+warning: struct `cuse_init_in` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:539:19
+    |
+539 | pub(crate) struct cuse_init_in {
+    |                   ^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `cuse_init_out` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:548:19
+    |
+548 | pub(crate) struct cuse_init_out {
+    |                   ^^^^^^^^^^^^^
+
+warning: struct `fuse_ioctl_iovec` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:593:19
+    |
+593 | pub(crate) struct fuse_ioctl_iovec {
+    |                   ^^^^^^^^^^^^^^^^
+
+warning: struct `fuse_notify_retrieve_out` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:714:19
+    |
+714 | pub(crate) struct fuse_notify_retrieve_out {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `fuse_notify_retrieve_in` is never constructed
+   --> vendor/fuser/src/ll/fuse_abi.rs:724:19
+    |
+724 | pub(crate) struct fuse_notify_retrieve_in {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `fuser` (lib) generated 5 warnings
+   Compiling casita v0.1.0 (/Users/hetzner/casita-final-pins-20260912)
+   Compiling casita-fs v0.1.0 (/Users/hetzner/casita-final-pins-20260912/casita-fs)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 18s
+     Running unittests src/lib.rs (/Users/hetzner/native-final-build-20260912/debug/deps/casita_fs-e9d91232c548c34f)
+
+running 1 test
+{"correctness":"passed","iterations":1000000,"native":true,"native_first_ensure_ns":3160500,"ns_per_call":55.11625,"platform":"macos","profile":"test","scenario":"memory_reuse","schema_version":1}
+{"correctness":"passed","iterations":2000,"ns_per_call":65023.729,"platform":"macos","profile":"test","scenario":"receipt_reuse","schema_version":1}
+{"correctness":"passed","iterations":2000,"ns_per_call":56269.396,"platform":"macos","profile":"test","scenario":"receipt_reuse_after_settings_replacement","schema_version":1}
+test darwin::setup::tests::benchmark_reuse ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.41s
+

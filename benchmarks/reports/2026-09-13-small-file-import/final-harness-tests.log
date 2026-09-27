@@ -1,0 +1,17 @@
+...running online-holds
+.completion ledger: /tmp/tmp_iebnkit/results/execution.json
+running online-holds
+..completion ledger: /tmp/tmplxmkch3b/results/execution.json
+running fskit-setup-reuse
+completion ledger: /tmp/tmpl82qngsh/results/execution.json
+running fskit-setup-reuse
+.completion ledger: /tmp/tmp9xhaiaif/results/execution.json
+running transfer-holds
+completion ledger: /tmp/tmppsu0bhwj/results/execution.json
+running transfer-holds
+.
+----------------------------------------------------------------------
+Ran 8 tests in 0.284s
+
+OK
+completion ledger: /tmp/tmpgrhmwk6v/results/execution.json

@@ -1,0 +1,266 @@
+--- a/src/blob/pack.rs
++++ b/src/blob/pack.rs
+@@ -22,15 +22,6 @@
+     store: Arc<dyn crate::metadata::PinStore>,
+     inventory: Arc<crate::metadata::PinInventory>,
+     owned_claims: Arc<BTreeSet<crate::metadata::PinToken>>,
+-}
+-
+-// A mark-local cache of fully processed references. Keep payload table kinds
+-// separate, and include all reference metadata so a conflicting reference is
+-// still loaded and validated even when its immutable bytes were seen earlier.
+-#[derive(Default)]
+-struct PayloadShardMarks {
+-    packs: HashSet<ShardRef>,
+-    manifests: HashSet<ShardRef>,
+ }
+
+ struct PayloadPinMark {
+@@ -2132,10 +2123,8 @@
+                 }
+             }
+         }
+-        let mut shards = PayloadShardMarks::default();
+         for catalog in catalogs {
+-            self.mark_catalog_payloads(catalog, &mut retained, &mut shards)
+-                .await?;
++            self.mark_catalog_payloads(catalog, &mut retained).await?;
+         }
+         Ok(PayloadPinMark {
+             ledger: CatalogPinMark {
+@@ -2234,7 +2223,6 @@
+         &self,
+         catalog: &[u8],
+         retained: &mut HashSet<Path>,
+-        shards: &mut PayloadShardMarks,
+     ) -> io::Result<()> {
+         let loaded = self
+             .decode_v1_index_catalog(
+@@ -2254,29 +2242,15 @@
+         // compacted the corresponding chunks into a replacement pack.
+         if let Some(base) = loaded.lazy.base {
+             for reference in &base.map.packs {
+-                if shards.packs.contains(reference) {
+-                    continue;
+-                }
+                 let bytes = self.load_catalog_shard(*reference).await?;
+-                if bytes.len() as u64 != reference.encoded_bytes {
+-                    return Err(io::Error::other("catalog shard identity mismatch"));
+-                }
+                 let index = decode_pack_shard(&bytes, reference.prefix, reference.entries)?;
+                 self.mark_index_payloads(&index, retained);
+-                shards.packs.insert(*reference);
+             }
+             for reference in &base.map.manifests {
+-                if shards.manifests.contains(reference) {
+-                    continue;
+-                }
+                 let bytes = self.load_catalog_shard(*reference).await?;
+-                if bytes.len() as u64 != reference.encoded_bytes {
+-                    return Err(io::Error::other("catalog shard identity mismatch"));
+-                }
+                 for blob in list_manifest_shard(&bytes, reference.prefix)? {
+                     self.mark_manifest_paths(blob, retained);
+                 }
+-                shards.manifests.insert(*reference);
+             }
+         }
+         for reference in loaded.lazy.run_refs.values() {
+@@ -9952,186 +9926,6 @@
+     }
+
+     #[tokio::test]
+-    async fn payload_mark_deduplicates_shared_shards_without_losing_root_additions() {
+-        let objects: Arc<dyn ObjectStore> = Arc::new(InMemory::new());
+-        let base = Path::from("shared-payload-mark");
+-        let writer = PackedChunks::open_with_state_catalog(
+-            objects.clone(),
+-            base.clone(),
+-            u64::MAX,
+-            0,
+-            DEFAULT_PACK_CACHE_PROMOTION_READS,
+-            &PackedChunks::empty_state_catalog().unwrap(),
+-        )
+-        .await
+-        .unwrap();
+-        let mut index = Index {
+-            manifests_complete: true,
+-            ..Index::default()
+-        };
+-        let mut expected = HashSet::new();
+-        let mut maps = Vec::new();
+-        let mut catalogs = Vec::new();
+-        for generation in 1..=2 {
+-            for entry in 0..if generation == 1 { 32 } else { 1 } {
+-                let id = |kind| Digest::hash(format!("{generation}/{entry}/{kind}").as_bytes());
+-                let pack = PackId::new(id("pack"));
+-                let chunk = ChunkId::new(id("chunk"));
+-                let blob = BlobId::new(id("blob"));
+-                index.add_pack(
+-                    pack,
+-                    100 + 8 + PACK_ENTRY_LEN as u64 + PACK_TRAILER_LEN as u64,
+-                    vec![PackEntry {
+-                        digest: chunk,
+-                        offset: 0,
+-                        framed_len: 100,
+-                        uncompressed_len: 100,
+-                    }],
+-                );
+-                index.manifests.insert(blob);
+-                expected.insert(pack_path(&base, &pack));
+-                expected.insert(sharded_path(&base, "bao", chunk.as_digest()));
+-                for kind in ["blobs", "bao"] {
+-                    expected.insert(sharded_path(&base, kind, blob.as_digest()));
+-                }
+-            }
+-            let encoded = encode_index_shards(&index, 4).unwrap();
+-            maps.push(decode_shard_map(&encoded.map).unwrap());
+-            for (digest, bytes) in encoded.objects {
+-                put_object(
+-                    &objects,
+-                    &sharded_path(&base, INDEXES_KIND, &digest),
+-                    bytes,
+-                    true,
+-                )
+-                .await
+-                .unwrap();
+-            }
+-            put_object(
+-                &objects,
+-                &sharded_path(&base, INDEXES_KIND, &encoded.map_digest),
+-                encoded.map,
+-                true,
+-            )
+-            .await
+-            .unwrap();
+-            let blob = BlobId::new(Digest::hash(format!("inline-{generation}").as_bytes()));
+-            for kind in ["blobs", "bao"] {
+-                expected.insert(sharded_path(&base, kind, blob.as_digest()));
+-            }
+-            let mut inline = Index::default();
+-            inline.manifests.insert(blob);
+-            let mut mutations = IndexMutations::default();
+-            mutations.record_manifest_add(blob);
+-            catalogs.push(
+-                encode_delta_catalog(&DeltaCatalog {
+-                    generation,
+-                    base: CatalogBase::Sharded {
+-                        root: encoded.map_digest,
+-                        shard_bits: 4,
+-                    },
+-                    runs: BTreeMap::new(),
+-                    deltas: vec![encode_index_mutations(&inline, &mutations).unwrap()],
+-                })
+-                .unwrap(),
+-            );
+-        }
+-        assert!(
+-            maps[0]
+-                .packs
+-                .iter()
+-                .any(|reference| maps[1].packs.contains(reference))
+-        );
+-        assert!(
+-            maps[1]
+-                .packs
+-                .iter()
+-                .any(|reference| !maps[0].packs.contains(reference))
+-        );
+-        let mut retained = HashSet::new();
+-        let mut shards = PayloadShardMarks::default();
+-        for catalog in &catalogs {
+-            writer
+-                .mark_catalog_payloads(catalog, &mut retained, &mut shards)
+-                .await
+-                .unwrap();
+-        }
+-        assert_eq!(retained, expected);
+-        assert_eq!(
+-            shards.packs,
+-            maps.iter()
+-                .flat_map(|map| map.packs.iter().copied())
+-                .collect()
+-        );
+-        assert_eq!(
+-            shards.manifests,
+-            maps.iter()
+-                .flat_map(|map| map.manifests.iter().copied())
+-                .collect()
+-        );
+-        // The visited references must not survive the marking pass.
+-        let mut again = HashSet::new();
+-        let mut fresh = PayloadShardMarks::default();
+-        for catalog in &catalogs {
+-            writer
+-                .mark_catalog_payloads(catalog, &mut again, &mut fresh)
+-                .await
+-                .unwrap();
+-        }
+-        assert_eq!(again, expected);
+-
+-        // Even with the original references and bytes already cached, a map
+-        // with conflicting metadata must not take the deduplication shortcut.
+-        for fault in [
+-            "pack-prefix",
+-            "pack-count",
+-            "pack-length",
+-            "manifest-prefix",
+-            "manifest-length",
+-        ] {
+-            let mut map = maps[0].clone();
+-            match fault {
+-                "pack-prefix" => map.packs[0].prefix ^= 1,
+-                "pack-count" => map.packs[0].entries += 1,
+-                "pack-length" => map.packs[0].encoded_bytes += 1,
+-                "manifest-prefix" => map.manifests[0].prefix ^= 1,
+-                "manifest-length" => map.manifests[0].encoded_bytes += 1,
+-                _ => unreachable!(),
+-            }
+-            // A single reference avoids unrelated map ordering errors.
+-            map.packs.truncate(1);
+-            map.manifests.truncate(1);
+-            let bytes = encode_shard_map(&map).unwrap();
+-            let digest = Digest::hash(&bytes);
+-            put_object(
+-                &objects,
+-                &sharded_path(&base, INDEXES_KIND, &digest),
+-                bytes,
+-                true,
+-            )
+-            .await
+-            .unwrap();
+-            let catalog = encode_delta_catalog(&DeltaCatalog {
+-                generation: 3,
+-                base: CatalogBase::Sharded {
+-                    root: digest,
+-                    shard_bits: 4,
+-                },
+-                runs: BTreeMap::new(),
+-                deltas: Vec::new(),
+-            })
+-            .unwrap();
+-            assert!(
+-                writer
+-                    .mark_catalog_payloads(&catalog, &mut retained, &mut shards)
+-                    .await
+-                    .is_err(),
+-                "{fault}"
+-            );
+-        }
+-    }
+-
+-    #[tokio::test]
+     #[ignore = "performance corpus; benchmark run catalog-marking"]
+     async fn benchmark_catalog_marking() {
+         use crate::metadata::{DataPin, PinScope, PinStore};
+--- a/src/blob/pack/shard.rs
++++ b/src/blob/pack/shard.rs
+@@ -25,7 +25,7 @@
+ const MAX_RUN_ROUTING_BYTES: usize = 32 * 1024 * 1024;
+ pub(super) const DEFAULT_SHARD_TARGET_BYTES: u64 = 32 * 1024 * 1024;
+
+-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
++#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub(super) struct ShardRef {
+     pub(super) prefix: u32,
+     pub(super) digest: Digest,
