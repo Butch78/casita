@@ -63,7 +63,7 @@ tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "json"]
 # integration revision containing tursodatabase/turso#8476 and #8851 until
 # those WAL fixes are available upstream. Downstream consumers inherit this
 # engine directly without needing a Cargo patch or a version wrapper.
-turso = { git = "https://github.com/cachix/turso.git", rev = "dca55133caa690f90dcdd58d3c4329fb0703659c", default-features = false, optional = true }
+turso = { version = "=0.8.0-pre.7", git = "https://github.com/cachix/turso.git", rev = "dca55133caa690f90dcdd58d3c4329fb0703659c", default-features = false, optional = true }
 # Handle-rooted filesystem access for import and materialization. Every
 # descendant is resolved relative to an already open directory handle
 # (`openat`/`openat2` on Unix, handle-relative reparse-aware opens on Windows),

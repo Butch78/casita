@@ -147,6 +147,8 @@ jobs:
   windows:
     runs-on: windows-latest
     env:
+      # Turso contains paths too long for Cargo's default user-profile cache.
+      CARGO_HOME: C:\c
       # aws-lc-sys (rustls's crypto provider, via iroh/reqwest/gix) assembles
       # with NASM on MSVC; the runners have none, so use its prebuilt objects.
       AWS_LC_SYS_PREBUILT_NASM: "1"
