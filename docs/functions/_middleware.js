@@ -1,8 +1,3 @@
-import { createBasicAuthMiddleware, createMarkdownMiddleware } from '@cachix/site-kit/cloudflare';
+import { createMarkdownMiddleware } from '@cachix/site-kit/cloudflare';
 
-export const onRequest = [
-  createBasicAuthMiddleware({
-    realm: 'casita preview',
-  }),
-  createMarkdownMiddleware(),
-];
+export const onRequest = [createMarkdownMiddleware()];

@@ -27,25 +27,23 @@ are hidden when the site renders them. The CI test job runs these doctests.
 
 ## Cloudflare Pages
 
-The site is deployed from this directory by the `casita` Cloudflare Pages
-project. Pushes to `main` run `npm run build` and publish `dist/`; pull requests
-receive preview deployments. The `/api/stars` endpoint is implemented as a
-Pages Function under `functions/`.
+Connect the `cachix/casita` GitHub repository to a Cloudflare Pages project with
+these build settings:
+
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Root directory | `docs` |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+
+Pushes to `main` then publish the site, and pull requests receive preview
+deployments. Add `casita.rs` as a custom domain on the Pages project. The
+`/api/stars` endpoint is implemented as a Pages Function under `functions/`.
 
 `wrangler.jsonc` contains the Pages runtime configuration and can also be used
 for local previews with `wrangler pages dev` after building the site.
 
-### Temporary preview password
-
-[`functions/_middleware.js`](functions/_middleware.js) protects the Pages site
-with HTTP Basic Auth. The username is `friends`; the password is stored only as
-the encrypted `BASIC_AUTH_PASSWORD` Cloudflare Pages secret.
-
-Set or rotate the password from this directory with:
-
-```sh
-wrangler pages secret put BASIC_AUTH_PASSWORD --project-name casita
-```
-
-When the preview no longer needs protection, delete the middleware, deploy
-again, and delete the `BASIC_AUTH_PASSWORD` secret from the Pages project.
+[`functions/_middleware.js`](functions/_middleware.js) handles Markdown
+responses without requiring a password. Remove any old `BASIC_AUTH_PASSWORD`
+secret from the Pages project settings.
