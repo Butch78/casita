@@ -6,6 +6,6 @@ Rust-orange Root House and lowercase wordmark. Reuse the
 canonical SVGs in `public/brand/` and the shared `BrandLogo` component.
 
 Preserve the existing Astro/Starlight and site-kit integration and the
-Cloudflare Pages deployment flow. Validate changes with `npm run validate`
+Cloudflare Workers deployment flow. Validate changes with `npm run validate`
 from this directory (or `devenv shell -- npm --prefix docs run validate`
 from the repository root).

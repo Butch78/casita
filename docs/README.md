@@ -25,25 +25,24 @@ $ devenv shell cargo test -p casita --doc --all-features
 Lines beginning with `# ` inside Rust blocks provide compile-only setup and
 are hidden when the site renders them. The CI test job runs these doctests.
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-Connect the `cachix/casita` GitHub repository to a Cloudflare Pages project with
-these build settings:
+Connect the `cachix/casita` GitHub repository to a Cloudflare Worker with
+Workers Builds and these settings:
 
 | Setting | Value |
 | --- | --- |
 | Production branch | `main` |
 | Root directory | `docs` |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
+| Deploy command | `npx wrangler deploy` |
 
-Pushes to `main` then publish the site, and pull requests receive preview
-deployments. Add `casita.rs` as a custom domain on the Pages project. The
-`/api/stars` endpoint is implemented as a Pages Function under `functions/`.
+Pushes to `main` then publish the site. After the Worker deploys, add
+`casita.rs` under **Settings > Domains & Routes > Add > Custom Domain**.
 
-`wrangler.jsonc` contains the Pages runtime configuration and can also be used
-for local previews with `wrangler pages dev` after building the site.
+`wrangler.jsonc` configures `dist` as static assets and `worker.js` as the
+request handler. The handler serves `/api/github` and responds to Markdown
+requests through the site-kit middleware. For a local preview, run
+`npx wrangler dev` from `docs` after building the site.
 
-[`functions/_middleware.js`](functions/_middleware.js) handles Markdown
-responses without requiring a password. Remove any old `BASIC_AUTH_PASSWORD`
-secret from the Pages project settings.
+The Worker does not require a `BASIC_AUTH_PASSWORD` secret.
