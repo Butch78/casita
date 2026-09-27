@@ -1856,11 +1856,17 @@ async fn benchmark_scoped_catalog() {
     let case = std::env::var("CASITA_SCOPED_CASE").unwrap_or_else(|_| "manifests".into());
     assert!(matches!(
         case.as_str(),
-        "manifests" | "packs-below" | "packs-above"
+        "manifests" | "packs-below" | "packs-above" | "packs-count-below" | "packs-count-above"
     ));
     assert!(iterations > 0);
     let growing_packs = case != "manifests";
-    let chunks_per_pack = if growing_packs { 64 } else { 0 };
+    let chunks_per_pack = if case.starts_with("packs-count-") {
+        1
+    } else if growing_packs {
+        64
+    } else {
+        0
+    };
     let limit = if growing_packs { 1025 } else { publications };
     assert!(limit > 1);
     let objects: Arc<dyn ObjectStore> = Arc::new(object_store::memory::InMemory::new());
@@ -1918,7 +1924,7 @@ async fn benchmark_scoped_catalog() {
             "fixture never crossed the inline-delta limit"
         );
         assert!(decode_delta_catalog(&previous).unwrap().runs.is_empty());
-        if case == "packs-below" {
+        if case.ends_with("below") {
             catalog = previous;
             previous = before_previous;
             actual_publications -= 1;
@@ -1933,6 +1939,11 @@ async fn benchmark_scoped_catalog() {
         )
     });
     let root = decode_delta_catalog(&catalog).unwrap();
+    let first_manifest = BlobId::new(benchmark_ordinal_digest(1, 0));
+    let newest_manifest = BlobId::new(benchmark_ordinal_digest(
+        1,
+        (actual_publications - 1) as u64,
+    ));
     let ledger = Arc::new(MemoryPinStore::default());
     let mut pins = Vec::new();
     for selected in [&catalog, &previous] {
@@ -1962,6 +1973,8 @@ async fn benchmark_scoped_catalog() {
         snapshot.read_bare_chunk(&meta.digest).await.unwrap(),
         Some(compressed.clone())
     );
+    assert!(!snapshot.manifest_definitely_absent(&first_manifest));
+    assert!(!snapshot.manifest_definitely_absent(&newest_manifest));
     if let Some((digest, expected)) = &newest {
         assert_eq!(
             snapshot.read_bare_chunk(digest).await.unwrap(),
@@ -1990,6 +2003,12 @@ async fn benchmark_scoped_catalog() {
                 snapshot.read_bare_chunk(&meta.digest).await.unwrap(),
                 Some(compressed.clone())
             );
+            assert!(!snapshot.manifest_definitely_absent(&first_manifest));
+            assert_eq!(
+                snapshot.manifest_definitely_absent(&newest_manifest),
+                index == 1,
+                "the newest manifest must only be visible in the newer catalog"
+            );
             if let Some((digest, expected)) = &newest {
                 assert_eq!(
                     snapshot.read_bare_chunk(digest).await.unwrap(),
@@ -2009,7 +2028,7 @@ async fn benchmark_scoped_catalog() {
             "chunks_per_pack": chunks_per_pack, "carry_at": carry_at,
             "inline_deltas": root.deltas.len(), "runs": root.runs.len(), "cold_nanos": cold_nanos,
             "stable_nanos": stable_nanos, "alternating_nanos": alternating_nanos,
-            "correctness": "exact sentinel bytes; growing chunk visibility; all leases released",
+            "correctness": "exact sentinel bytes; growing chunk visibility; manifest visibility; all leases released",
         })
     );
 }

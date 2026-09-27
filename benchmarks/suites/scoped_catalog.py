@@ -12,9 +12,9 @@ from benchmarks.suites.metadata_collection import CARGO_ARGUMENTS
 from benchmarks.suites.pack.catalog import parse_probe_binary
 
 PROBE = "blob::pack::benchmarks::benchmark_scoped_catalog"
-CORRECTNESS = "exact sentinel bytes; growing chunk visibility; all leases released"
+CORRECTNESS = "exact sentinel bytes; growing chunk visibility; manifest visibility; all leases released"
 COUNTS = (8, 1023, 1024, 1025)
-CASES = ("manifests", "packs-below", "packs-above")
+CASES = ("manifests", "packs-below", "packs-above", "packs-count-below", "packs-count-above")
 
 
 def main(argv=None):
@@ -51,7 +51,7 @@ def main(argv=None):
     def save():
         common.write_atomic(args.output, json.dumps(result, indent=2) + "\n")
         lines = ["# Scoped catalog replay", "", f"Complete: {result['complete']}", "",
-                 "Admission timing only. Every snapshot checks a packed sentinel outside timing; growing cases also check new-chunk visibility.",
+                 "Admission timing only. Every snapshot checks a packed sentinel and manifest visibility outside timing; growing cases also check new-chunk visibility.",
                  "Alternating catalogs intentionally evict the single cached view. All leases must be released.", "",
                  "| Case | Publications | Inline deltas | Runs | Mode | Rep | Seconds/open |",
                  "|---|---:|---:|---:|---|---:|---:|"]
@@ -83,13 +83,16 @@ def main(argv=None):
                         raise common.BenchmarkError("fixture did not cross the expected inline-delta boundary")
                 else:
                     carry = sample.get("carry_at")
-                    below = case == "packs-below"
+                    below = case.endswith("below")
+                    chunks_per_pack = 1 if case.startswith("packs-count-") else 64
                     expected_deltas = sample.get("publications") if below else 0
-                    if (type(carry) is not int or carry <= 2 or sample.get("chunks_per_pack") != 64
+                    if (type(carry) is not int or carry <= 2 or sample.get("chunks_per_pack") != chunks_per_pack
                             or sample.get("publications") != carry - int(below)
                             or sample.get("runs") != (0 if below else 1)
                             or sample.get("inline_deltas") != expected_deltas):
                         raise common.BenchmarkError("pack fixture did not cross the expected carry boundary")
+                    if case.startswith("packs-count-") and carry != 1025:
+                        raise common.BenchmarkError("small-pack fixture missed the inline-delta count boundary")
                 for field in ("cold_nanos", "stable_nanos", "alternating_nanos", "catalog_bytes"):
                     if type(sample.get(field)) is not int or sample[field] <= 0:
                         raise common.BenchmarkError(f"invalid {field}")
